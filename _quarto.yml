@@ -26,6 +26,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: instructor-preview.qmd
+        text: Preview
       - href: syllabus/index.qmd
         text: Syllabus
       - href: weeks/index.qmd
@@ -45,6 +47,7 @@ website:
       style: "docked"
       contents:
         - index.qmd
+        - instructor-preview.qmd
         - syllabus/index.qmd
         - syllabus/ai-policy.qmd
         - weeks/index.qmd

@@ -1,0 +1,63 @@
+---
+title: "Instructor Preview"
+description: "A short guide for colleagues reviewing the MATH 346 redesign prototype."
+---
+
+## Why This Prototype Exists
+
+I am preparing to teach MATH 346, and I do not think that teaching the course exactly as it was taught before is the right approach in the LLM era.
+
+Students will use AI tools. The course should therefore teach them how to program, test, debug, interpret results, and critically inspect AI-generated code or explanations. The goal is not to make the course about AI. The goal is to teach mathematical and statistical software in a world where AI assistance is part of the working environment.
+
+## How The Prototype Was Built
+
+I used the existing course slides as a starting point for the syllabus topics and progression. With Codex, I then prepared this prototype website, rewriting the materials around problem-focused computational work, validation habits, and responsible AI use.
+
+The site does not redistribute copyrighted slide decks, textbook PDFs, answer keys, exams, or private student work. It contains original course materials and starter code prepared for this redesign.
+
+## What To Review First
+
+Weeks 1-3 are the most developed parts of the prototype. They show the intended teaching pattern:
+
+| Week | Focus | Suggested review |
+|---:|---|---|
+| [Week 1](weeks/week-01.qmd) | MATLAB arrays, scripts, and plots | Look at the survival checklist, lab, and AI critique activity. |
+| [Week 2](weeks/week-02.qmd) | Functions, conditions, and tests | Look at the testing emphasis and AI debugging activity. |
+| [Week 3](weeks/week-03.qmd) | Curve fitting, interpolation, and residual checks | Look at the model validation and overfitting critique. |
+
+The rest of the weeks are still more schematic. They show the intended arc of the course, but they are not yet expanded to the same level as Weeks 1-3.
+
+## Useful Direct Links
+
+- [Syllabus](syllabus/index.qmd)
+- [AI use policy](syllabus/ai-policy.qmd)
+- [Weekly materials](weeks/index.qmd)
+- [Slides index](slides/index.qmd)
+- [Labs index](labs/index.qmd)
+- [Code index](code/index.qmd)
+- [Projects](projects/index.qmd)
+
+## What Feedback Would Help
+
+I would especially appreciate feedback on these questions:
+
+- Does the redesign still respect the spirit and content of the existing course?
+- Are Weeks 1-3 realistic for two 75-minute meetings per week?
+- Is the balance right between MATLAB/R skills, mathematical thinking, and validation?
+- Do the LLM-related activities feel pedagogically useful rather than distracting?
+- Are there essential commands, concepts, habits, or warnings missing from the first three weeks?
+- What should be adjusted before expanding Weeks 4-15 in the same style?
+
+## The Intended Shift
+
+The old version of the course naturally emphasized learning MATLAB and R command by command. That made sense before LLMs were widely available.
+
+In this version, students still learn MATLAB and R, but each week is organized around a computational question:
+
+1. What is the problem?
+2. What representation or model should we use?
+3. What code answers the question?
+4. How do we know the result is correct?
+5. What can an LLM help with, and what must we still verify ourselves?
+
+The core skill I want students to leave with is not just the ability to run software. It is the ability to produce a computational result that they can defend.
