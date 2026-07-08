@@ -1,0 +1,76 @@
+---
+title: "Lab 3B: AI Overfitting Critique"
+---
+
+## Goal
+
+Practice reviewing an AI-generated curve-fitting script that looks polished but makes a weak modeling claim.
+
+## Scenario
+
+A student asks an LLM:
+
+> Fit the best polynomial to my data and predict the value when x is 12.
+
+The generated script resembles [week03_ai_overfit_review.m](../code/matlab/week03_ai_overfit_review.m).
+
+## Part A: Run The Script
+
+1. Open the script.
+2. Run it without editing.
+3. Record the polynomial degree used by the generated code.
+4. Record the prediction at `x = 12`.
+5. Decide whether `x = 12` is inside the measured data range.
+
+## Part B: Name The Claims
+
+Complete the table.
+
+| Claim | Evidence in the script | Is it justified? |
+|---|---|---|
+| The polynomial is the "best" model. |  |  |
+| The model should be trusted outside the data range. |  |  |
+| Passing near all measured points means the model is good. |  |  |
+| A plot alone is enough validation. |  |  |
+
+## Part C: Add Diagnostics
+
+Modify the script to compute:
+
+```matlab
+yhat = polyval(p, x);
+residuals = y - yhat;
+rmse = sqrt(mean(residuals.^2));
+```
+
+Then add a residual plot.
+
+Answer:
+
+- Did the high-degree model have small residuals at the measured points?
+- Does that make the prediction at `x = 12` trustworthy?
+- What other degree should you compare against?
+
+## Part D: Repair The Analysis
+
+Create a revised script or note that:
+
+1. Compares at least two polynomial degrees.
+2. Plots residuals for each degree.
+3. Labels `x = 12` as extrapolation.
+4. Refuses or qualifies the prediction if the evidence is weak.
+
+## Deliverable
+
+Submit:
+
+- the original generated claim in one sentence;
+- one residual plot;
+- one paragraph explaining the overfitting or extrapolation risk;
+- a revised recommendation that a careful analyst could defend.
+
+## Exit Question
+
+Complete this sentence:
+
+> A curve-fitting script is not trustworthy until ...

@@ -6,13 +6,76 @@ title: "Lab 3: Fitting, Interpolation, and Residuals"
 
 Compare a fitted model with measured data and decide whether the model is credible.
 
-## Tasks
+## Setup
 
-1. Open [week03_curve_fitting_validation.m](../code/matlab/week03_curve_fitting_validation.m).
-2. Run the script and inspect the data plot.
-3. Fit polynomials of degree 1, 2, and 5.
-4. For each fit, plot residuals.
-5. Decide which model you would report and why.
+Work in a folder called `week03`. Start scripts from a clean workspace:
+
+```matlab
+clear; clc; close all;
+```
+
+## Part A: Run And Explain
+
+Open [week03_curve_fitting_validation.m](../code/matlab/week03_curve_fitting_validation.m).
+
+Run the script and answer:
+
+- What are the independent and dependent variables?
+- Which polynomial degrees are compared?
+- Which degree has the smallest RMSE?
+- Which degree would you trust most for this data set?
+- What does the residual plot show that the fitted-curve plot hides?
+
+## Part B: Change The Candidate Models
+
+Modify the script so it compares:
+
+```matlab
+degrees = [1 2 3 5];
+```
+
+Then answer:
+
+1. Did the RMSE decrease for every added degree?
+2. Did the residual plot become easier or harder to interpret?
+3. Which degree would you report to someone who cares about the underlying trend?
+
+## Part C: Interpolation Versus Fit
+
+Open [week03_interpolation_vs_fit.m](../code/matlab/week03_interpolation_vs_fit.m).
+
+Run the script and compare the estimates at the query points.
+
+| Question | Answer |
+|---|---|
+| Which method passes through the measured data? |  |
+| Which method smooths noisy measurements? |  |
+| Which method would you use to estimate between trusted measurements? |  |
+| Which method would you use to describe an approximate trend? |  |
+
+## Part D: Residual Notes
+
+For your selected polynomial degree, write 4-6 sentences:
+
+- Describe the residuals near the start of the data.
+- Describe the residuals near the middle.
+- Describe the residuals near the end.
+- State whether the residuals show a pattern.
+- Decide whether the model is adequate for the question.
+
+## Part E: Stress Test
+
+For one selected degree, add this line after computing its coefficient vector `p`:
+
+```matlab
+prediction = polyval(p, 12);
+```
+
+Answer:
+
+- Is `x = 12` inside or outside the measured range?
+- Is this interpolation, fitting, or extrapolation?
+- Would you report this number? Why or why not?
 
 ## Deliverable
 
@@ -21,9 +84,11 @@ Submit a short note containing:
 - the selected model degree;
 - one plot of the data and fitted curve;
 - one residual plot;
+- the RMSE values you compared;
 - a justification based on the residuals, not only visual appearance.
 
 ## AI Use
 
 Ask an LLM: "How do I decide whether a polynomial fit is overfitting?" Then evaluate whether the answer mentions residuals, extrapolation, and model complexity.
 
+Include the prompt and the part of the answer that changed or challenged your model choice.

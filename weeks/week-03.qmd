@@ -12,19 +12,126 @@ Given imperfect measurements, should we interpolate the data, fit a model, or re
 
 Students compare interpolation and polynomial fitting, then use residual plots to detect overfitting or a poor model choice.
 
-## In Class
+## Learning Goals
 
-- Represent paired data as vectors.
-- Use interpolation for values between measured points.
-- Use polynomial fitting for approximate trends.
-- Plot data, fitted curves, and residuals.
+By the end of the week, students should be able to:
+
+- represent a polynomial in MATLAB as a coefficient vector in descending powers;
+- evaluate a polynomial with `polyval`;
+- use `polyfit` to fit a polynomial model to paired data;
+- explain the role of the degree in a polynomial fit;
+- compute and plot residuals;
+- use RMSE as one simple summary of fit quality;
+- use `interp1` for one-dimensional interpolation;
+- distinguish interpolation, fitting, and extrapolation;
+- critique an AI-generated fitting script for overfitting or unsupported claims.
+
+## Meeting 1: Polynomials, Fits, And Residuals
+
+**Question:** When is a curve a model rather than just a drawing through points?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-8 min | Warm-up: read a polynomial coefficient vector |
+| 8-20 min | Live coding: evaluate and plot a polynomial with `polyval` |
+| 20-35 min | Paired data: fit degree 1 and degree 2 models with `polyfit` |
+| 35-50 min | Residuals: compute observed minus fitted values |
+| 50-65 min | Student task: compare degree 1, 2, and 5 fits |
+| 65-75 min | Exit ticket: what evidence makes a fit believable? |
+
+### Core MATLAB Pattern
+
+```matlab
+p = polyfit(x, y, 2);
+yhat = polyval(p, x);
+residuals = y - yhat;
+rmse = sqrt(mean(residuals.^2));
+```
+
+The plot is not enough. Students should be able to say what the residuals show.
+
+## Meeting 2: Interpolation, Overfitting, And AI Claims
+
+**Question:** What question are we actually answering between or beyond measured points?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-12 min | Quiz 1 or short retrieval check |
+| 12-25 min | Interpolation: `interp1` and method choice |
+| 25-40 min | Compare interpolation with polynomial fitting |
+| 40-58 min | AI critique: high-degree polynomial overclaim |
+| 58-70 min | Repair: choose a simpler model and write validation notes |
+| 70-75 min | Exit ticket: interpolate, fit, or reject? |
+
+If Quiz 1 is administered outside the class meeting, use the first 12 minutes for a short residual-reading warm-up.
+
+## In-Class Checks
+
+- Translate between a written polynomial and a MATLAB coefficient vector.
+- Evaluate a polynomial on a scalar and a vector.
+- Fit several polynomial degrees to the same data.
+- Plot data and fitted curves on the same axes.
+- Plot residuals and interpret visible patterns.
+- Use interpolation only inside the measured data range unless extrapolation is explicitly justified.
+- Explain why a high-degree fit can be less trustworthy than a simpler fit.
 
 ## AI-Aware Task
 
 Ask an LLM for a curve-fitting solution. Identify whether it explains the difference between interpolation and regression, and whether it checks residuals.
 
+## Survival Checklist
+
+These are the Week 3 MATLAB habits you should be able to recognize, test, and repair without relying on AI.
+
+### Commands And Patterns To Own
+
+| Pattern | What you should know |
+|---|---|
+| `p = [2 0 -3 1]` | Coefficients are ordered from highest power to constant term. Zeros matter. |
+| `polyval(p, x)` | Evaluates a polynomial at scalar, vector, or matrix inputs. |
+| `roots(p)` | Finds values where the polynomial is zero. |
+| `polyfit(x, y, degree)` | Finds a least-squares polynomial fit of the chosen degree. |
+| `yhat = polyval(p, x)` | Computes fitted values at the measured x-values. |
+| `residuals = y - yhat` | Measures what the model missed at each data point. |
+| `sqrt(mean(residuals.^2))` | Computes RMSE, a compact residual summary. |
+| `interp1(x, y, xq, "linear")` | Estimates values between measured x-values. |
+| `linspace(a, b, n)` | Creates a dense grid for plotting a smooth curve. |
+| `subplot(m, n, k)` | Places several diagnostic plots in one figure. |
+
+### Mistakes To Catch
+
+- Reversing the order of polynomial coefficients.
+- Omitting zero coefficients from a polynomial vector.
+- Using a fitted curve without checking residuals.
+- Choosing the highest possible degree because it has the smallest training error.
+- Confusing interpolation with extrapolation.
+- Asking `interp1` for values outside the measured range without noticing.
+- Reporting RMSE without looking for residual patterns.
+- Trusting an AI-generated plot title more than the code and diagnostics.
+
+### Checks Before Trusting A Fit
+
+- State whether the task is interpolation, fitting, or extrapolation.
+- Plot the raw data before fitting.
+- Compare at least two reasonable model degrees.
+- Plot residuals against `x`.
+- Check whether the model behaves sensibly near the ends of the data range.
+- Avoid making claims beyond the observed data unless the course question explicitly asks for extrapolation.
+- Save a short note explaining why the selected model is adequate for the question.
+
+## Exercises
+
+Complete the [Week 3 exercises](week-03-exercises.qmd) after the lab.
+
 ## Materials
 
 - [Slides](../slides/week-03.qmd)
 - Starter code: [week03_curve_fitting_validation.m](../code/matlab/week03_curve_fitting_validation.m)
-
+- Interpolation comparison: [week03_interpolation_vs_fit.m](../code/matlab/week03_interpolation_vs_fit.m)
+- AI critique script: [week03_ai_overfit_review.m](../code/matlab/week03_ai_overfit_review.m)
+- [Lab 3](../labs/lab-03-fitting-validation.qmd)
+- [AI overfitting critique](../labs/lab-03-ai-overfit.qmd)

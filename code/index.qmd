@@ -13,6 +13,8 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 - [week02_piecewise_validation.m](matlab/week02_piecewise_validation.m)
 - [week02_ai_function_review.m](matlab/week02_ai_function_review.m)
 - [week03_curve_fitting_validation.m](matlab/week03_curve_fitting_validation.m)
+- [week03_interpolation_vs_fit.m](matlab/week03_interpolation_vs_fit.m)
+- [week03_ai_overfit_review.m](matlab/week03_ai_overfit_review.m)
 
 ## R
 

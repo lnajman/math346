@@ -11,11 +11,129 @@ format:
 
 Should we interpolate the data, fit a model, or reject the question?
 
+## Week 3 Plan
+
+- Meeting 1: polynomial fits and residuals
+- Meeting 2: interpolation, overfitting, and AI critique
+
+## The Core Distinction
+
+Same data, different questions:
+
+- Interpolation asks for a value between measured points.
+- Curve fitting asks for a simpler model of noisy data.
+- Extrapolation asks beyond the measured range.
+
+## Polynomial Vectors
+
+MATLAB stores polynomial coefficients from highest power to constant term.
+
+```matlab
+p = [2 0 -3 1];
+```
+
+This means:
+
+```text
+2*x^3 + 0*x^2 - 3*x + 1
+```
+
+## Why Zeros Matter
+
+```matlab
+p = [2 0 -3 1];
+q = [2 -3 1];
+```
+
+These are different polynomials.
+
+## Evaluate A Polynomial
+
+```matlab
+x = linspace(-2, 2, 100);
+p = [2 0 -3 1];
+y = polyval(p, x);
+plot(x, y)
+```
+
+## Meeting 1 Question
+
+When is a curve a model rather than just a drawing through points?
+
+## Paired Data
+
+```matlab
+x = [0 1 2 3 4 5];
+y = [2.0 2.8 3.6 5.1 6.9 8.2];
+```
+
+Before fitting, plot the data.
+
+## Curve Fitting Pattern
+
+```matlab
+p = polyfit(x, y, 2);
+yhat = polyval(p, x);
+```
+
+The degree is a modeling choice.
+
+## Residuals
+
+```matlab
+residuals = y - yhat;
+stem(x, residuals, "filled")
+```
+
+Residuals show what the model missed.
+
+## RMSE
+
+```matlab
+rmse = sqrt(mean(residuals.^2));
+```
+
+RMSE is useful, but it does not replace the residual plot.
+
+## Overfitting
+
+A higher-degree polynomial can follow the data more closely and still be a worse model.
+
+Ask:
+
+- Does the curve behave sensibly?
+- Are residuals random-looking?
+- Is the degree justified by the question?
+
+## Meeting 2 Question
+
+What question are we actually answering between or beyond measured points?
+
 ## Interpolation
 
 Interpolation estimates values between observed points.
 
 It should respect the measured data, but it does not explain the mechanism.
+
+## Interpolation Pattern
+
+```matlab
+xq = 4.5;
+yq = interp1(x, y, xq, "linear");
+```
+
+The query point should be inside the measured range unless extrapolation is intentional.
+
+## Method Choice
+
+Common `interp1` methods:
+
+- `"nearest"`
+- `"linear"`
+- `"pchip"`
+- `"spline"`
+
+The smoother curve is not automatically the better answer.
 
 ## Curve Fitting
 
@@ -23,19 +141,38 @@ Curve fitting estimates a simpler relationship from noisy data.
 
 The fitted curve is a claim about a pattern, not a copy of the data.
 
-## MATLAB Pattern
+## Interpolation Or Fit?
+
+Use interpolation when the measured values are trusted and the question is between them.
+
+Use fitting when the data are noisy and the question is about a trend.
+
+## Extrapolation
+
+Extrapolation is a separate claim.
+
+It needs a reason beyond the code running without an error.
+
+## Plausible But Weak AI Code
 
 ```matlab
-p = polyfit(x, y, 2);
-yhat = polyval(p, x);
-residuals = y - yhat;
+degree = length(x) - 1;
+p = polyfit(x, y, degree);
+y_future = polyval(p, 12);
 ```
 
-## Validation
-
-Plot the data, fitted curve, and residuals. A fitted model without residual checks is unfinished.
+What is the hidden claim?
 
 ## AI Check
 
 Does the generated solution explain the difference between interpolation and fitting?
 
+Does it check residuals, degree choice, and extrapolation risk?
+
+## Exit Ticket
+
+For a new data set, what would make you choose:
+
+- interpolation;
+- curve fitting;
+- rejection of the question?
