@@ -10,6 +10,8 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 - [week01_temperature_matrix.m](matlab/week01_temperature_matrix.m)
 - [week01_ai_plot_review.m](matlab/week01_ai_plot_review.m)
 - [week02_function_tests.m](matlab/week02_function_tests.m)
+- [week02_piecewise_validation.m](matlab/week02_piecewise_validation.m)
+- [week02_ai_function_review.m](matlab/week02_ai_function_review.m)
 - [week03_curve_fitting_validation.m](matlab/week03_curve_fitting_validation.m)
 
 ## R

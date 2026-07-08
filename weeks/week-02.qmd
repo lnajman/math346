@@ -12,19 +12,117 @@ How do we turn a formula into reusable, testable code?
 
 Students write small functions, use conditionals and loops when appropriate, and practice checking output on simple cases before trusting the code.
 
-## In Class
+## Learning Goals
+
+By the end of the week, students should be able to:
+
+- read and write simple MATLAB functions with clear inputs and outputs;
+- distinguish scripts, local functions, and function files;
+- use `if`, `elseif`, `else`, and logical conditions for piecewise rules;
+- explain when a vectorized expression is better than a loop;
+- write tests for known values, boundary cases, and vector inputs;
+- recognize common bugs in AI-generated functions;
+- document the checks performed before trusting a function.
+
+## Meeting 1: From Formula To Function
+
+**Question:** What does it mean for code to implement a mathematical definition?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-8 min | Warm-up: read a function signature and predict outputs |
+| 8-25 min | Live coding: scalar formula to vectorized function |
+| 25-40 min | Script plus local functions: where tests should live |
+| 40-55 min | Student task: add tests for a quadratic function |
+| 55-68 min | Boundary cases: zeros, negatives, and unexpected inputs |
+| 68-75 min | Exit ticket: one test you trust and why |
+
+### Core MATLAB Pattern
+
+```matlab
+values = [-2, -1, 0, 1, 2];
+outputs = quadratic_value(1, 0, -1, values);
+```
+
+```matlab
+function y = quadratic_value(a, b, c, x)
+    y = a .* x.^2 + b .* x + c;
+end
+```
+
+## Meeting 2: Conditions, Debugging, And AI Review
+
+**Question:** How do we know a generated function matches the intended rule?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Review: function input/output contracts |
+| 10-28 min | Live coding: piecewise rules with `if` and logical conditions |
+| 28-45 min | AI debugging activity: inspect plausible generated code |
+| 45-63 min | Lab work: repair function and add tests |
+| 63-72 min | Pair discussion: what bug did a test reveal? |
+| 72-75 min | Exit ticket: a boundary case students now check |
+
+## In-Class Checks
 
 - Define function inputs and outputs.
 - Use relational and logical operators.
 - Write short tests for known values.
 - Debug common mistakes in generated or student-written code.
+- Check scalar input, vector input, and boundary values.
+- Decide whether a function should reject invalid input.
 
 ## AI-Aware Task
 
 Ask an LLM to write a MATLAB function for a piecewise mathematical formula. Then test boundary cases and decide whether the generated implementation matches the intended definition.
 
+## Survival Checklist
+
+These are the Week 2 MATLAB habits you should be able to recognize, test, and repair without relying on AI.
+
+### Commands And Patterns To Own
+
+| Pattern | What you should know |
+|---|---|
+| `function out = name(in)` | Defines a function contract: inputs in, outputs out. |
+| `if`, `elseif`, `else`, `end` | Selects code based on conditions. |
+| `&&`, `||`, `~` | Scalar logical AND, OR, and NOT. |
+| `&`, `|` | Elementwise logical AND and OR for arrays. |
+| `assert(condition)` | Stops execution if a test fails. |
+| `error("message")` | Stops execution with a clear message. |
+| `abs(actual - expected) < tol` | Compares floating-point numbers with tolerance. |
+
+### Mistakes To Catch
+
+- Writing `x^2` when vector input requires `x.^2`.
+- Testing only one convenient input.
+- Forgetting boundary cases such as `0`, negative values, or threshold values.
+- Returning an output variable that was never assigned.
+- Using scalar `if` logic on a vector without thinking about dimensions.
+- Trusting code because it works once in the Command Window.
+
+### Checks Before Trusting A Function
+
+- State the input/output contract in one sentence.
+- Test at least one value where the answer is known by hand.
+- Test a boundary value.
+- Test a vector input if the function claims to support vectors.
+- Decide what invalid input should do.
+- Run the script from a clean workspace.
+
+## Exercises
+
+Complete the [Week 2 exercises](week-02-exercises.qmd) after the lab.
+
 ## Materials
 
 - [Slides](../slides/week-02.qmd)
 - Starter code: [week02_function_tests.m](../code/matlab/week02_function_tests.m)
-
+- Piecewise function script: [week02_piecewise_validation.m](../code/matlab/week02_piecewise_validation.m)
+- AI debugging script: [week02_ai_function_review.m](../code/matlab/week02_ai_function_review.m)
+- [Lab 2](../labs/lab-02-matlab-functions.qmd)
+- [AI debugging activity](../labs/lab-02-ai-debugging.qmd)

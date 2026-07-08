@@ -1,0 +1,86 @@
+---
+title: "Week 2 Exercises"
+---
+
+These exercises practice functions, conditions, and tests. Use AI only after you have written a first attempt yourself.
+
+## Exercise 1: Read A Function
+
+Given:
+
+```matlab
+function y = affine_value(m, b, x)
+    y = m .* x + b;
+end
+```
+
+Answer:
+
+1. What are the inputs?
+2. What is the output?
+3. What is returned by `affine_value(2, -1, 4)`?
+4. What is returned by `affine_value(2, -1, [0 1 2])`?
+5. Why is `.*` used?
+
+## Exercise 2: Write Tests
+
+For:
+
+```matlab
+function y = square_shift(x)
+    y = x.^2 - 4;
+end
+```
+
+Write tests for:
+
+- `x = 0`;
+- `x = 2`;
+- `x = -2`;
+- `x = [0 2 -2]`.
+
+Use `assert`.
+
+## Exercise 3: Piecewise Rule
+
+Write a function `ticket_price(age)` using this rule:
+
+| Age | Price |
+|---:|---:|
+| less than 0 | error |
+| 0 to 5 | 0 |
+| 6 to 17 | 20 |
+| 18 to 64 | 35 |
+| 65 or more | 25 |
+
+Test boundary ages: `-1`, `0`, `5`, `6`, `17`, `18`, `64`, `65`.
+
+## Exercise 4: Debug Generated Code
+
+An LLM produced:
+
+```matlab
+function area = circle_area(radius)
+    area = 3.14 * radius^2;
+end
+```
+
+Find at least three issues or limitations. Write a corrected version and tests.
+
+## Exercise 5: Explain A Failure
+
+Run:
+
+```matlab
+x = [1 2 3];
+y = x^2;
+```
+
+Explain the error in words. Then fix it.
+
+## Exit Ticket
+
+Write 3-5 sentences answering:
+
+> What makes a function trustworthy enough to reuse?
+

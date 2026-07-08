@@ -24,7 +24,7 @@ Each week has a problem focus, the official syllabus topic, the software tools i
 
 ## Model Week
 
-Week 1 is the first fully expanded week. It includes:
+Weeks 1 and 2 are fully expanded model weeks. They include:
 
 - a two-meeting teaching plan;
 - a detailed MATLAB lab;

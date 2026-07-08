@@ -1,0 +1,82 @@
+---
+title: "Lab 2: MATLAB Functions And Tests"
+---
+
+## Goal
+
+Write small MATLAB functions and build a habit of testing them before reuse.
+
+## Setup
+
+Work in a folder called `week02`. Start scripts from a clean workspace:
+
+```matlab
+clear; clc; close all;
+```
+
+## Part A: Run And Explain
+
+Open [week02_function_tests.m](../code/matlab/week02_function_tests.m).
+
+Run the script and answer:
+
+- What function is being tested?
+- What values are used as test inputs?
+- Which test would fail if the function used `x^2` instead of `x.^2`?
+- Why is a vector test useful?
+
+## Part B: Add Tests
+
+Add tests for:
+
+1. `quadratic_value(1, 0, -1, 1)`;
+2. `quadratic_value(1, 0, -1, -1)`;
+3. `quadratic_value(0, 2, 3, [0 1 2])`.
+
+Use either `assert` or a helper function that compares actual and expected values.
+
+## Part C: Piecewise Function
+
+Open [week02_piecewise_validation.m](../code/matlab/week02_piecewise_validation.m).
+
+The script computes ticket prices from ages. Modify it to:
+
+1. Add tests for every boundary age.
+2. Reject negative ages.
+3. Explain why the thresholds are easy places for bugs.
+
+## Part D: Invalid Input
+
+Decide what your function should do for:
+
+- `age = -3`;
+- `age = 17.5`;
+- `age = [5 6 18 65]`.
+
+Write a short note explaining which cases your implementation supports and why.
+
+## Deliverable
+
+Submit one MATLAB script containing:
+
+- at least one function;
+- at least five tests;
+- one boundary-case test;
+- one vector-input test or a written explanation of why vector input is not supported.
+
+## Reflection
+
+Answer:
+
+- What is the input/output contract of your function?
+- Which test gave you the most confidence?
+- Which input would you still be nervous about?
+
+## AI Use
+
+If you ask an LLM for a function, include:
+
+- the prompt;
+- the generated code;
+- at least two tests that caught or could have caught a mistake.
+

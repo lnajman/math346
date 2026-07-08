@@ -1,0 +1,59 @@
+---
+title: "Lab 2B: AI Function Debugging"
+---
+
+## Goal
+
+Practice reviewing AI-generated MATLAB functions by designing tests that reveal hidden assumptions.
+
+## Scenario
+
+A student asks an LLM:
+
+> Write a MATLAB function that computes the area of a circle from its radius.
+
+The LLM returns code similar to [week02_ai_function_review.m](../code/matlab/week02_ai_function_review.m).
+
+## Part A: Run The Code
+
+1. Open the script.
+2. Run it without editing.
+3. Record whether it works for a scalar radius.
+4. Record whether it works for a vector of radii.
+
+## Part B: Design Tests
+
+Write tests for:
+
+- `radius = 0`;
+- `radius = 1`;
+- `radius = 2`;
+- `radius = [0 1 2]`;
+- `radius = -1`.
+
+For each test, decide whether the function should return a value or stop with an error.
+
+## Part C: Repair The Function
+
+Create a corrected function that:
+
+1. Uses `pi`.
+2. Uses elementwise operations.
+3. Rejects negative radius values.
+4. Passes your scalar and vector tests.
+
+## Part D: AI Appendix Practice
+
+| Question | Answer |
+|---|---|
+| What did the generated code get right? |  |
+| What mistake did scalar testing miss? |  |
+| What vector test revealed the problem? |  |
+| How did you handle invalid input? |  |
+
+## Exit Question
+
+Complete this sentence:
+
+> A generated function is not trustworthy until ...
+

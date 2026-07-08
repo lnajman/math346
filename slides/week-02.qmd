@@ -11,6 +11,11 @@ format:
 
 How do we turn a formula into reusable, testable code?
 
+## Week 2 Plan
+
+- Meeting 1: formulas, functions, and tests
+- Meeting 2: conditions, boundary cases, and AI debugging
+
 ## From Formula To Function
 
 - Name the inputs.
@@ -18,13 +23,56 @@ How do we turn a formula into reusable, testable code?
 - Write the computation once.
 - Test on values where the answer is known.
 
-## MATLAB Pattern
+## Meeting 1 Question
+
+What does it mean for code to implement a mathematical definition?
+
+## Function Pattern
 
 ```matlab
 function y = quadratic_value(a, b, c, x)
-    y = a*x.^2 + b*x + c;
+    y = a .* x.^2 + b .* x + c;
 end
 ```
+
+## Test Pattern
+
+```matlab
+actual = quadratic_value(1, 0, -1, 0);
+expected = -1;
+assert(abs(actual - expected) < 1e-12)
+```
+
+## Vector Test
+
+```matlab
+x = [-1 0 1];
+y = quadratic_value(1, 0, -1, x);
+```
+
+If a function claims to support vectors, test vectors.
+
+## Meeting 2 Question
+
+How do we know a generated function matches the intended rule?
+
+## Conditional Pattern
+
+```matlab
+if age < 0
+    error("Age must be nonnegative.")
+elseif age <= 5
+    price = 0;
+else
+    price = 35;
+end
+```
+
+## Boundary Cases
+
+Piecewise functions are most fragile at thresholds.
+
+Test values exactly at and just around the threshold.
 
 ## Debugging Habit
 
@@ -35,7 +83,25 @@ Before trusting a function, test:
 - boundary cases;
 - impossible or unexpected input.
 
-## AI Check
+## Plausible But Weak Code
+
+```matlab
+function area = circle_area(radius)
+    area = 3.14 * radius^2;
+end
+```
+
+## Critique Questions
+
+- Does it use `pi`?
+- Does it support vector input?
+- What happens for negative radius?
+- Which tests would reveal the problem?
+
+## Survival Rule
 
 Generated functions often look plausible. The test cases decide whether they are correct.
 
+## Exit Ticket
+
+A function is trustworthy enough to reuse when ...
