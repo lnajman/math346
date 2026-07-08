@@ -1,0 +1,30 @@
+---
+title: "Week 5: Symbolic Math"
+---
+
+## Official Topic
+
+MATLAB symbolic math. Project 1 assigned.
+
+## Problem Focus
+
+What changes when a computation is symbolic rather than numerical?
+
+Students compare exact symbolic expressions with numerical approximations and learn when each representation is useful or misleading.
+
+## In Class
+
+- Define symbolic variables.
+- Differentiate, integrate, and solve symbolic expressions.
+- Convert symbolic results to numerical values.
+- Compare exact and approximate answers.
+
+## AI-Aware Task
+
+Ask an LLM for a symbolic solution and a numerical solution to the same problem. Compare assumptions, domains, and whether the answer is usable for computation.
+
+## Materials
+
+- [Slides](../slides/week-05.qmd)
+- [Project 1](../projects/project-1-eda.qmd)
+

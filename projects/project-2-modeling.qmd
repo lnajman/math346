@@ -1,0 +1,37 @@
+---
+title: "Project 2: Modeling and Communication"
+---
+
+## Purpose
+
+Project 2 builds on Project 1. Your group will use a simple model to analyze a question, check model assumptions, and communicate conclusions honestly.
+
+## Required Elements
+
+Your report must include:
+
+1. Refined research question.
+2. Dataset and variables used for modeling.
+3. Data preparation steps.
+4. Model choice and justification.
+5. Model output and interpretation.
+6. Diagnostic checks.
+7. Limitations and possible improvements.
+8. Final conclusion.
+9. AI-use appendix.
+
+## Modeling Standard
+
+A model is not complete when code runs. It is complete when you can explain:
+
+- what the model assumes;
+- what each important parameter means;
+- what the residuals suggest;
+- where prediction or interpretation is unsafe.
+
+## AI-Use Appendix Template
+
+| Tool | Prompt or task | Used result? | Student check |
+|---|---|---|---|
+|  |  |  |  |
+

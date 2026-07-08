@@ -1,0 +1,22 @@
+---
+title: "Labs"
+---
+
+Labs are designed as studio activities. They should be completed with MATLAB or R open, not just read.
+
+| Lab | Topic | Status |
+|---|---|---|
+| [Lab 1](lab-01-matlab-arrays.qmd) | MATLAB arrays, scripts, and plots | Ready |
+| [Lab 3](lab-03-fitting-validation.qmd) | Curve fitting and residual checks | Ready |
+| [Lab 6](lab-06-rmarkdown-eda.qmd) | First reproducible R report | Ready |
+
+## Lab Routine
+
+For each lab:
+
+1. Run the starter code.
+2. Predict what each section should produce.
+3. Modify the code for a new question.
+4. Add at least one validation check.
+5. Record any AI assistance and whether it was correct.
+

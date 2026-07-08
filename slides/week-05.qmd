@@ -1,0 +1,44 @@
+---
+title: "Week 5: Symbolic Math"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+What changes when computation is symbolic rather than numerical?
+
+## Symbolic Strengths
+
+- Exact expressions
+- Algebraic manipulation
+- Derivatives and integrals
+- Closed-form solutions when available
+
+## Numerical Strengths
+
+- Measured data
+- Approximate answers
+- Large-scale computation
+- Direct plotting and simulation
+
+## MATLAB Pattern
+
+```matlab
+syms x
+f = x^2 * exp(-x);
+df = diff(f, x);
+int_f = int(f, x);
+```
+
+## Validation
+
+Check domains, assumptions, and whether the exact expression is useful for the original problem.
+
+## AI Check
+
+Symbolic-looking answers can hide missing assumptions.
+

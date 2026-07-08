@@ -1,0 +1,31 @@
+---
+title: "Week 15: Communication and Synthesis"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+What makes a computational result worth believing and worth reading?
+
+## Final Report Checklist
+
+- Clear question
+- Traceable data source
+- Reproducible code
+- Honest figures
+- Validated results
+- Supported conclusion
+- AI-use appendix
+
+## Communication
+
+Readers should see what you did, why you did it, and why the conclusion follows.
+
+## AI Check
+
+AI can make prose smoother. It must not make claims stronger than the evidence.
+

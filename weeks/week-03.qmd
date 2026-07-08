@@ -1,0 +1,30 @@
+---
+title: "Week 3: Curve Fitting and Interpolation"
+---
+
+## Official Topic
+
+MATLAB curve fitting and interpolation. Quiz 1.
+
+## Problem Focus
+
+Given imperfect measurements, should we interpolate the data, fit a model, or reject the question?
+
+Students compare interpolation and polynomial fitting, then use residual plots to detect overfitting or a poor model choice.
+
+## In Class
+
+- Represent paired data as vectors.
+- Use interpolation for values between measured points.
+- Use polynomial fitting for approximate trends.
+- Plot data, fitted curves, and residuals.
+
+## AI-Aware Task
+
+Ask an LLM for a curve-fitting solution. Identify whether it explains the difference between interpolation and regression, and whether it checks residuals.
+
+## Materials
+
+- [Slides](../slides/week-03.qmd)
+- Starter code: [week03_curve_fitting_validation.m](../code/matlab/week03_curve_fitting_validation.m)
+

@@ -1,0 +1,33 @@
+---
+title: "Projects"
+---
+
+There are two group projects. Group size may be 1, 2, or 3 students, with expectations scaled by group size.
+
+| Project | Due | Focus | Weight |
+|---|---|---|---:|
+| [Project 1](project-1-eda.qmd) | Week 9 | Exploratory data analysis | 10% |
+| [Project 2](project-2-modeling.qmd) | Week 15 | Modeling and communication | 10% |
+
+## Shared Requirements
+
+Every project must include:
+
+- a clear question;
+- a description and citation of the dataset;
+- reproducible code;
+- labeled figures and tables;
+- interpretation in context;
+- validation checks;
+- an AI-use appendix.
+
+## Suggested Rubric
+
+| Criterion | Weight |
+|---|---:|
+| Problem formulation and data understanding | 20% |
+| Computational correctness | 25% |
+| Validation, diagnostics, and reproducibility | 25% |
+| Communication and visualization quality | 20% |
+| Responsible AI-use appendix | 10% |
+

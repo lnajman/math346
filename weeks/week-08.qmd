@@ -1,0 +1,29 @@
+---
+title: "Week 8: Exploratory Data Analysis"
+---
+
+## Official Topic
+
+Exploratory data analysis.
+
+## Problem Focus
+
+How do we generate useful questions from data without fooling ourselves?
+
+Students use variation, covariation, visualization, and transformation to discover patterns and data-quality problems.
+
+## In Class
+
+- Separate variable types.
+- Visualize distributions.
+- Investigate relationships between variables.
+- Record questions, findings, and doubts.
+
+## AI-Aware Task
+
+Ask an LLM to summarize a plot. Decide whether it overclaims, ignores uncertainty, or misses data-quality issues.
+
+## Materials
+
+- [Slides](../slides/week-08.qmd)
+

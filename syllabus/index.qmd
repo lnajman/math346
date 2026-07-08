@@ -1,0 +1,70 @@
+---
+title: "Syllabus"
+---
+
+## Course Information
+
+**Course:** MATH 346 Mathematical and Statistical Software  
+**Credits:** 3  
+**Contact hours:** 3 lecture hours per week  
+**Prerequisites:** COSC 114; MATH 204 or MATH 211; MATH 242 or MATH 243 or MATH 244
+
+## Catalog Description
+
+This course introduces mathematical and statistical programming using MATLAB and R. Topics include data science, numerical computation, tidy data, exploratory data analysis, plotting, and symbolic computation.
+
+## Course Framing
+
+The course follows the approved MATLAB and R syllabus. The teaching approach emphasizes reproducible, AI-aware computational work:
+
+- formulate a mathematical or statistical problem;
+- implement a solution in MATLAB or R;
+- validate numerical, graphical, and statistical output;
+- communicate the result in a reproducible report;
+- document any generative AI assistance.
+
+## Course Learning Outcomes
+
+By the end of the course, students should be able to:
+
+1. Write code for mathematical and statistical applications using appropriate software.
+2. Present mathematical and statistical results using appropriate software.
+3. Solve problems using mathematical and statistical software.
+4. Analyze data using mathematical and statistical software.
+
+## Assessment
+
+| Assessment | Weight | Notes |
+|---|---:|---|
+| Quizzes | 20% | Four quizzes; lowest quiz dropped |
+| Projects | 20% | Two projects, 10% each |
+| Semester examination | 25% | Around Week 8 |
+| Final examination | 35% | Cumulative |
+
+## Tentative Weekly Plan
+
+| Week | Topic |
+|---:|---|
+| 1 | MATLAB arrays, scripts, and 2D plotting |
+| 2 | MATLAB programming and user functions |
+| 3 | MATLAB curve fitting and interpolation |
+| 4 | MATLAB numerical analysis and 3D plotting |
+| 5 | MATLAB symbolic math |
+| 6 | R Markdown and data visualization |
+| 7 | R workflow and data transformation |
+| 8 | Exploratory data analysis |
+| 9 | Tibbles, data import, and tidy data |
+| 10 | Relational data, strings, factors, dates, and times |
+| 11 | Pipes and functions |
+| 12 | Vectors and iteration |
+| 13 | Model basics and model building |
+| 14 | Handling many models |
+| 15 | Visualization, communication, and project synthesis |
+
+## Project Structure
+
+**Project 1:** Exploratory data analysis, due around Week 9.  
+**Project 2:** Modeling and complete data science report, due around Week 15.
+
+Project requirements scale with group size. All projects must use appropriate software, cite data sources, and include a responsible AI-use appendix.
+

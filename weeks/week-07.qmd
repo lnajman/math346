@@ -1,0 +1,30 @@
+---
+title: "Week 7: Workflow and Data Transformation"
+---
+
+## Official Topic
+
+R workflow, visualization, and data transformation.
+
+## Problem Focus
+
+How do data transformation verbs become a language for answering questions?
+
+Students use filtering, selecting, mutating, grouping, and summarizing to turn raw rows into interpretable evidence.
+
+## In Class
+
+- Use a consistent project workflow.
+- Read code pipelines from left to right.
+- Use `dplyr` verbs to answer questions.
+- Check row counts and variable definitions after each transformation.
+
+## AI-Aware Task
+
+Ask an LLM for a `dplyr` pipeline. Then inspect whether it grouped by the correct variable, used the correct summary, and preserved the intended rows.
+
+## Materials
+
+- [Slides](../slides/week-07.qmd)
+- Starter code: [week07-dplyr-eda.R](../code/r/week07-dplyr-eda.R)
+

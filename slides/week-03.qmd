@@ -1,0 +1,41 @@
+---
+title: "Week 3: Curve Fitting and Interpolation"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+Should we interpolate the data, fit a model, or reject the question?
+
+## Interpolation
+
+Interpolation estimates values between observed points.
+
+It should respect the measured data, but it does not explain the mechanism.
+
+## Curve Fitting
+
+Curve fitting estimates a simpler relationship from noisy data.
+
+The fitted curve is a claim about a pattern, not a copy of the data.
+
+## MATLAB Pattern
+
+```matlab
+p = polyfit(x, y, 2);
+yhat = polyval(p, x);
+residuals = y - yhat;
+```
+
+## Validation
+
+Plot the data, fitted curve, and residuals. A fitted model without residual checks is unfinished.
+
+## AI Check
+
+Does the generated solution explain the difference between interpolation and fitting?
+

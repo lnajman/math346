@@ -1,0 +1,29 @@
+---
+title: "Week 12: Vectors and Iteration"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+How do we scale one analysis across many variables, groups, or files?
+
+## Vectorized Thinking
+
+Operate on whole vectors when the operation is naturally elementwise.
+
+## Iteration
+
+Use iteration when a workflow must repeat across many inputs.
+
+## Risk
+
+Automation can repeat mistakes faster than manual work.
+
+## AI Check
+
+Ask an LLM to automate a repeated task. Then make sure failures, warnings, and missing values are not hidden.
+

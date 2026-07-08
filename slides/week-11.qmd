@@ -1,0 +1,36 @@
+---
+title: "Week 11: Pipes and Functions"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+How do we turn an analysis into a reusable workflow?
+
+## Pipes
+
+Pipes make the sequence of transformations readable.
+
+```r
+data |>
+  clean_step() |>
+  summarize_step() |>
+  plot_step()
+```
+
+## Functions
+
+Use a function when the same logic appears more than once.
+
+## Validation
+
+Test a function on a tiny dataset where you know the answer.
+
+## AI Check
+
+Generated refactors must preserve behavior. Refactoring is not improvement unless tests still pass.
+

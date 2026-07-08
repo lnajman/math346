@@ -1,0 +1,30 @@
+---
+title: "Week 15: Visualization, Communication, and Synthesis"
+---
+
+## Official Topic
+
+Additional topics in visualization and communication. Project 2 due.
+
+## Problem Focus
+
+What makes a computational result worth believing and worth reading?
+
+Students revise final reports for clarity, reproducibility, interpretation, and responsible documentation of AI assistance.
+
+## In Class
+
+- Improve figures and captions.
+- Separate evidence from speculation.
+- Audit reproducibility.
+- Prepare final project communication.
+
+## AI-Aware Task
+
+Ask an LLM to critique a draft conclusion. Keep only suggestions that are supported by the analysis and revise any vague or exaggerated claims.
+
+## Materials
+
+- [Slides](../slides/week-15.qmd)
+- [Project 2](../projects/project-2-modeling.qmd)
+

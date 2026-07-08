@@ -1,0 +1,30 @@
+---
+title: "Week 6: R Markdown and Visualization"
+---
+
+## Official Topic
+
+R Markdown and data visualization. Quiz 2.
+
+## Problem Focus
+
+How do we turn code, figures, and explanation into a reproducible report?
+
+Students write a first Quarto/R Markdown-style report and use `ggplot2` to create honest, labeled visualizations.
+
+## In Class
+
+- Create a computational document.
+- Use code chunks and narrative text.
+- Create scatterplots and histograms.
+- Interpret a plot in words.
+
+## AI-Aware Task
+
+Ask an LLM to improve a plot. Evaluate whether the suggested labels, scales, and conclusion are statistically honest.
+
+## Materials
+
+- [Slides](../slides/week-06.qmd)
+- Starter report: [week06-first-report.qmd](../code/r/week06-first-report.qmd)
+

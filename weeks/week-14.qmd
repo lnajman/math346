@@ -1,0 +1,29 @@
+---
+title: "Week 14: Handling Many Models"
+---
+
+## Official Topic
+
+Handling many models.
+
+## Problem Focus
+
+How do we compare many models without losing sight of the question?
+
+Students apply the same modeling workflow across groups and summarize patterns while preserving diagnostics.
+
+## In Class
+
+- Nest or split data by group.
+- Fit repeated models.
+- Extract comparable summaries.
+- Identify groups where the model fails.
+
+## AI-Aware Task
+
+Ask an LLM to rank several models. Then decide whether the ranking uses an appropriate metric and whether diagnostics were considered.
+
+## Materials
+
+- [Slides](../slides/week-14.qmd)
+

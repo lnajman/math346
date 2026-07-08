@@ -1,0 +1,21 @@
+---
+title: "Code"
+---
+
+Starter code is intentionally small. Students should run it, modify it, and add checks.
+
+## MATLAB
+
+- [week01_arrays_plotting.m](matlab/week01_arrays_plotting.m)
+- [week02_function_tests.m](matlab/week02_function_tests.m)
+- [week03_curve_fitting_validation.m](matlab/week03_curve_fitting_validation.m)
+
+## R
+
+- [week06-first-report.qmd](r/week06-first-report.qmd)
+- [week07-dplyr-eda.R](r/week07-dplyr-eda.R)
+
+## Policy
+
+Code in this repository is starter material. Submitted student work must include interpretation, validation, and appropriate attribution of AI assistance.
+

@@ -1,0 +1,79 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - code/
+    - data/
+
+website:
+  title: "MATH 346"
+  site-url: "https://lnajman.github.io/math346/"
+  repo-url: "https://github.com/lnajman/math346"
+  page-navigation: true
+  search: true
+  navbar:
+    background: "#264653"
+    foreground: "#ffffff"
+    left:
+      - href: index.qmd
+        text: Home
+      - href: syllabus/index.qmd
+        text: Syllabus
+      - href: weeks/index.qmd
+        text: Weeks
+      - href: slides/index.qmd
+        text: Slides
+      - href: labs/index.qmd
+        text: Labs
+      - href: projects/index.qmd
+        text: Projects
+      - href: code/index.qmd
+        text: Code
+      - href: resources/index.qmd
+        text: Resources
+  sidebar:
+    - title: "Course"
+      style: "docked"
+      contents:
+        - index.qmd
+        - syllabus/index.qmd
+        - syllabus/ai-policy.qmd
+        - weeks/index.qmd
+        - section: "Weekly Materials"
+          contents:
+            - weeks/week-01.qmd
+            - weeks/week-02.qmd
+            - weeks/week-03.qmd
+            - weeks/week-04.qmd
+            - weeks/week-05.qmd
+            - weeks/week-06.qmd
+            - weeks/week-07.qmd
+            - weeks/week-08.qmd
+            - weeks/week-09.qmd
+            - weeks/week-10.qmd
+            - weeks/week-11.qmd
+            - weeks/week-12.qmd
+            - weeks/week-13.qmd
+            - weeks/week-14.qmd
+            - weeks/week-15.qmd
+        - slides/index.qmd
+        - labs/index.qmd
+        - projects/index.qmd
+        - code/index.qmd
+        - resources/index.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles.css
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap
+
+execute:
+  freeze: auto
+  warning: false
+  message: false
+

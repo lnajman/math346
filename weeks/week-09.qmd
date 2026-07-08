@@ -1,0 +1,30 @@
+---
+title: "Week 9: Import, Tibbles, and Tidy Data"
+---
+
+## Official Topic
+
+Tibbles, data import, and tidy data. Quiz 3. Project 1 due.
+
+## Problem Focus
+
+How do we turn a messy file into data that is ready for analysis?
+
+Students practice importing data, checking types, identifying missing values, and reshaping data into tidy form.
+
+## In Class
+
+- Import tabular data.
+- Inspect column types.
+- Identify one row per observation.
+- Reshape data when variable names or values are stored in the wrong place.
+
+## AI-Aware Task
+
+Ask an LLM to propose a tidy-data structure for a messy table. Then check whether each row, column, and cell has the intended meaning.
+
+## Materials
+
+- [Slides](../slides/week-09.qmd)
+- [Project 1](../projects/project-1-eda.qmd)
+

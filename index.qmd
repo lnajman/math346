@@ -1,0 +1,55 @@
+---
+title: "MATH 346: Mathematical and Statistical Software"
+description: "Course home for MATLAB, R, reproducible computation, and responsible AI-assisted workflows."
+---
+
+::: {.hero}
+::: {}
+# MATH 346
+
+Mathematical and statistical software for students who need to compute, analyze, visualize, and explain results they can defend.
+
+This course uses MATLAB and R, with generative AI treated as a professional assistant whose output must be tested, interpreted, and documented.
+
+::: {.pill-row}
+<span class="pill">MATLAB</span>
+<span class="pill">R</span>
+<span class="pill">Reproducible reports</span>
+<span class="pill">Numerical methods</span>
+<span class="pill">Data analysis</span>
+<span class="pill">AI-aware validation</span>
+:::
+:::
+
+::: {.course-map}
+## Course Workflow
+
+1. Ask a precise question.
+2. Choose a computational representation.
+3. Write or adapt code.
+4. Check the result.
+5. Communicate the conclusion.
+6. Document any AI assistance.
+:::
+:::
+
+## Start Here
+
+- Read the [syllabus](syllabus/index.qmd).
+- Read the [AI use policy](syllabus/ai-policy.qmd).
+- Follow the [weekly materials](weeks/index.qmd).
+- Use the [labs](labs/index.qmd) for guided practice.
+- Use the [projects](projects/index.qmd) pages for the two major submissions.
+
+## Course Question
+
+The central question of the course is not "Can I make MATLAB or R run?"
+
+It is:
+
+> Can I turn a mathematical or statistical question into a reproducible computational answer that is correct, interpretable, and honestly communicated?
+
+## Public Materials Policy
+
+This website contains original course materials and links to references. It does not redistribute textbook PDFs, publisher slide decks, answer keys, exams, or private student work.
+

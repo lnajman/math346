@@ -1,0 +1,43 @@
+---
+title: "Responsible AI Use"
+---
+
+## Policy
+
+Generative AI may be used as a coding assistant, debugger, explanation tool, and writing aid. It may not replace the student's responsibility to understand, validate, and communicate submitted work.
+
+Students may use generative AI to:
+
+- ask for explanations of MATLAB or R errors;
+- request starter code or alternative implementations;
+- improve code organization;
+- review plots, reports, and explanations;
+- ask for checks that could reveal mistakes.
+
+Students may not:
+
+- submit code, text, plots, or conclusions they cannot explain;
+- fabricate datasets, citations, results, or interpretations;
+- hide AI assistance in projects;
+- use AI to bypass required validation or reflection;
+- submit answer keys, exam solutions, or private material to public AI tools.
+
+## Required Project Appendix
+
+Each project must include an AI-use appendix with:
+
+1. Tools used.
+2. The main kinds of help requested.
+3. Generated suggestions that were accepted.
+4. Generated suggestions that were rejected or corrected.
+5. Validation checks performed by the student.
+
+## Practical Standard
+
+For any submitted line of code, figure, table, or conclusion, the student should be able to answer:
+
+- What does it do?
+- Why is it appropriate here?
+- How did you check that it is correct?
+- What could make it misleading?
+

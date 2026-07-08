@@ -1,0 +1,35 @@
+---
+title: "Week 6 Starter Report"
+format: html
+---
+
+## Question
+
+How is car weight related to fuel efficiency in the `mtcars` dataset?
+
+## Code
+
+```{r}
+library(ggplot2)
+
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Fuel efficiency decreases as car weight increases",
+    x = "Weight (1000 lbs)",
+    y = "Miles per gallon"
+  )
+```
+
+## Summary
+
+```{r}
+model <- lm(mpg ~ wt, data = mtcars)
+summary(model)
+```
+
+## Validation
+
+The plot suggests a negative relationship between weight and miles per gallon. Before trusting this conclusion, inspect residuals and remember that this is an observational dataset.
+

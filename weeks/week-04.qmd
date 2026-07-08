@@ -1,0 +1,29 @@
+---
+title: "Week 4: Numerical Analysis and 3D Plotting"
+---
+
+## Official Topic
+
+MATLAB built-in numerical analysis and 3D plotting.
+
+## Problem Focus
+
+When exact solutions are hard or impossible, how do we compute approximate answers responsibly?
+
+Students use root-finding, numerical integration, and 3D plotting as tools for understanding approximation.
+
+## In Class
+
+- Solve scalar equations numerically.
+- Approximate integrals.
+- Visualize functions of two variables.
+- Discuss initial guesses, numerical tolerance, and graphical checks.
+
+## AI-Aware Task
+
+Ask an LLM to solve an equation numerically. Then verify the returned root by substituting it back into the equation and plotting the function near the root.
+
+## Materials
+
+- [Slides](../slides/week-04.qmd)
+

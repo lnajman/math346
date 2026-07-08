@@ -1,0 +1,29 @@
+---
+title: "Week 11: Pipes and Functions"
+---
+
+## Official Topic
+
+Pipes and functions.
+
+## Problem Focus
+
+How do we turn an analysis into a reusable workflow?
+
+Students use pipes for readable analysis and write functions when repetition begins to hide the logic of the work.
+
+## In Class
+
+- Read and write pipelines.
+- Identify repeated code.
+- Write simple functions.
+- Test functions on small cases.
+
+## AI-Aware Task
+
+Ask an LLM to refactor repeated R code into a function. Then test whether the function preserves the original behavior.
+
+## Materials
+
+- [Slides](../slides/week-11.qmd)
+

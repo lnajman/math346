@@ -1,0 +1,29 @@
+---
+title: "Week 13: Model Basics and Model Building"
+---
+
+## Official Topic
+
+Model basics and model building. Quiz 4.
+
+## Problem Focus
+
+What does a statistical model claim, and how do we know when that claim is weak?
+
+Students fit simple models, interpret coefficients, inspect residuals, and discuss assumptions.
+
+## In Class
+
+- Fit a simple linear model.
+- Interpret slope and intercept in context.
+- Compare fitted values and residuals.
+- Discuss prediction limits.
+
+## AI-Aware Task
+
+Ask an LLM to interpret a regression output. Then identify overclaims, missing assumptions, and conclusions not supported by the model.
+
+## Materials
+
+- [Slides](../slides/week-13.qmd)
+

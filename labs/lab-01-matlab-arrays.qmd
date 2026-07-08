@@ -1,0 +1,32 @@
+---
+title: "Lab 1: MATLAB Arrays, Scripts, and Plots"
+---
+
+## Goal
+
+Create a reproducible MATLAB script that samples, plots, and checks a mathematical function.
+
+## Tasks
+
+1. Open [week01_arrays_plotting.m](../code/matlab/week01_arrays_plotting.m).
+2. Run the script.
+3. Change the domain from `[0, 2*pi]` to `[-pi, pi]`.
+4. Add a plot of `sin(x)^2 + cos(x)^2`.
+5. Check numerically that the identity is close to 1 for all sampled points.
+
+## Reflection
+
+Answer in a short paragraph:
+
+- What did the array `x` represent?
+- Why did we use elementwise operations?
+- What validation check convinced you that the identity was computed correctly?
+
+## AI Use
+
+You may ask an LLM for help with MATLAB plotting syntax. If you do, record:
+
+- the prompt;
+- the useful suggestion;
+- the check you performed before trusting it.
+

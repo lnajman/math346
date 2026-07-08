@@ -1,0 +1,29 @@
+---
+title: "Resources"
+---
+
+## Software
+
+- MATLAB
+- R
+- RStudio or Positron
+- Quarto
+- Git and GitHub
+
+## References
+
+- MATLAB documentation: <https://www.mathworks.com/help/matlab/>
+- R for Data Science, 2e: <https://r4ds.hadley.nz/>
+- ggplot2 documentation: <https://ggplot2.tidyverse.org/>
+- dplyr documentation: <https://dplyr.tidyverse.org/>
+- Quarto documentation: <https://quarto.org/docs/>
+
+## Setup Checklist
+
+1. Confirm that MATLAB opens and can run a script.
+2. Confirm that R opens and can install/load packages.
+3. Install Quarto.
+4. Render a small `.qmd` document.
+5. Create a folder for course work.
+6. Keep code, data, and reports organized.
+

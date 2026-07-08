@@ -1,0 +1,37 @@
+---
+title: "Project 1: Exploratory Data Analysis"
+---
+
+## Purpose
+
+Project 1 asks you to perform an exploratory data analysis on a dataset chosen by your group.
+
+The goal is not to prove a final claim. The goal is to understand the data, discover patterns, notice limitations, and communicate what should be investigated next.
+
+## Required Elements
+
+Your report must include:
+
+1. Dataset source and description.
+2. Data import and cleaning steps.
+3. Identification of key variables and variable types.
+4. At least two exploratory questions per group member.
+5. Visualizations that address those questions.
+6. A short data-quality section.
+7. A conclusion describing what you learned and what remains uncertain.
+8. An AI-use appendix.
+
+## Validation Checklist
+
+- Can the report be rerun from the submitted files?
+- Are missing values handled explicitly?
+- Are plots labeled clearly?
+- Are conclusions supported by the plots or summaries?
+- Is any AI assistance documented?
+
+## AI-Use Appendix Template
+
+| Tool | Prompt or task | Used result? | Student check |
+|---|---|---|---|
+|  |  |  |  |
+

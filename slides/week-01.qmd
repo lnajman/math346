@@ -1,0 +1,41 @@
+---
+title: "Week 1: MATLAB Arrays, Scripts, and Plots"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+How does a mathematical object become a computational object?
+
+## Core Ideas
+
+- Vectors represent ordered values.
+- Matrices represent tabular or linear-algebra objects.
+- Scripts preserve a computation.
+- Plots reveal whether output makes sense.
+
+## MATLAB Pattern
+
+```matlab
+x = linspace(0, 2*pi, 200);
+y = sin(x);
+plot(x, y)
+xlabel("x")
+ylabel("sin(x)")
+```
+
+## Validation
+
+- Are dimensions correct?
+- Are units and labels clear?
+- Is the sampling dense enough?
+- Can the script run from a clean workspace?
+
+## AI Check
+
+Ask an LLM for plotting code. Your job is to decide whether the code is runnable, labeled, and mathematically appropriate.
+

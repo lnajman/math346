@@ -1,0 +1,41 @@
+---
+title: "Week 2: MATLAB Functions and Debugging"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+How do we turn a formula into reusable, testable code?
+
+## From Formula To Function
+
+- Name the inputs.
+- Name the outputs.
+- Write the computation once.
+- Test on values where the answer is known.
+
+## MATLAB Pattern
+
+```matlab
+function y = quadratic_value(a, b, c, x)
+    y = a*x.^2 + b*x + c;
+end
+```
+
+## Debugging Habit
+
+Before trusting a function, test:
+
+- scalar input;
+- vector input;
+- boundary cases;
+- impossible or unexpected input.
+
+## AI Check
+
+Generated functions often look plausible. The test cases decide whether they are correct.
+

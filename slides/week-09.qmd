@@ -1,0 +1,34 @@
+---
+title: "Week 9: Import and Tidy Data"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+How do we turn a messy file into data ready for analysis?
+
+## Tidy Data
+
+- Each variable is a column.
+- Each observation is a row.
+- Each value is a cell.
+
+## Import Checklist
+
+- Are column names meaningful?
+- Are types correct?
+- Are missing values encoded consistently?
+- Is one row one observation?
+
+## Project 1
+
+Project 1 is due this week. Your report should show data import, EDA, visual evidence, and validation.
+
+## AI Check
+
+Ask for a tidy structure, then decide whether the proposed structure matches the scientific meaning of the data.
+

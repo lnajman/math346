@@ -1,0 +1,43 @@
+---
+title: "Week 4: Numerical Methods and 3D Plotting"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+When exact answers are unavailable, how do we compute responsibly?
+
+## Approximation Is A Claim
+
+Numerical answers depend on:
+
+- method;
+- initial guess;
+- tolerance;
+- step size;
+- conditioning.
+
+## MATLAB Pattern
+
+```matlab
+f = @(x) x.*exp(-x) - 0.2;
+root = fzero(f, 1);
+f(root)
+```
+
+## Visual Check
+
+Plot before solving. Plot again near the computed answer.
+
+## 3D Plotting
+
+Use surfaces and contours to understand functions of two variables, not just decorate results.
+
+## AI Check
+
+Substitute any generated numerical answer back into the original problem.
+

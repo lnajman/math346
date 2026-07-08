@@ -1,0 +1,30 @@
+---
+title: "Week 12: Vectors and Iteration"
+---
+
+## Official Topic
+
+Vectors and iteration. Project 2 assigned.
+
+## Problem Focus
+
+How do we scale one analysis across many variables, groups, or files?
+
+Students use vectorized thinking and iteration to repeat a workflow while keeping the logic clear.
+
+## In Class
+
+- Distinguish vectorized operations from loops.
+- Use iteration for repeated tasks.
+- Store repeated results consistently.
+- Recognize when automation can amplify mistakes.
+
+## AI-Aware Task
+
+Ask an LLM to automate a repeated analysis. Then check whether it silently drops failures, changes variable types, or hides warnings.
+
+## Materials
+
+- [Slides](../slides/week-12.qmd)
+- [Project 2](../projects/project-2-modeling.qmd)
+

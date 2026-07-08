@@ -1,0 +1,30 @@
+---
+title: "Week 14: Handling Many Models"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+How do we compare many models without losing the question?
+
+## Many Models
+
+Repeated models are useful when groups differ.
+
+They are dangerous when automation hides failures.
+
+## Workflow
+
+- Split or group data.
+- Fit one model per group.
+- Extract comparable summaries.
+- Inspect failures and diagnostics.
+
+## AI Check
+
+Model ranking without diagnostics is incomplete.
+

@@ -1,0 +1,29 @@
+---
+title: "Lab 3: Fitting, Interpolation, and Residuals"
+---
+
+## Goal
+
+Compare a fitted model with measured data and decide whether the model is credible.
+
+## Tasks
+
+1. Open [week03_curve_fitting_validation.m](../code/matlab/week03_curve_fitting_validation.m).
+2. Run the script and inspect the data plot.
+3. Fit polynomials of degree 1, 2, and 5.
+4. For each fit, plot residuals.
+5. Decide which model you would report and why.
+
+## Deliverable
+
+Submit a short note containing:
+
+- the selected model degree;
+- one plot of the data and fitted curve;
+- one residual plot;
+- a justification based on the residuals, not only visual appearance.
+
+## AI Use
+
+Ask an LLM: "How do I decide whether a polynomial fit is overfitting?" Then evaluate whether the answer mentions residuals, extrapolation, and model complexity.
+

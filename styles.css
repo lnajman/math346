@@ -1,0 +1,87 @@
+:root {
+  --math346-ink: #1f2933;
+  --math346-muted: #52616b;
+  --math346-blue: #264653;
+  --math346-teal: #2a9d8f;
+  --math346-gold: #e9c46a;
+  --math346-rust: #e76f51;
+  --math346-bg: #f7f8fa;
+}
+
+body {
+  color: var(--math346-ink);
+}
+
+.navbar {
+  box-shadow: 0 2px 12px rgba(31, 41, 51, 0.08);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  gap: 2rem;
+  align-items: center;
+  padding: 2.5rem 0 1.5rem;
+}
+
+.hero h1 {
+  margin-bottom: 0.75rem;
+  line-height: 1.05;
+}
+
+.hero p {
+  color: var(--math346-muted);
+  font-size: 1.08rem;
+}
+
+.course-map {
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+  padding: 1rem;
+  background:
+    linear-gradient(135deg, rgba(42, 157, 143, 0.08), rgba(233, 196, 106, 0.12)),
+    var(--math346-bg);
+}
+
+.course-map ol {
+  margin-bottom: 0;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.pill {
+  display: inline-block;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  padding: 0.28rem 0.65rem;
+  background: #ffffff;
+  color: #334155;
+  font-size: 0.92rem;
+}
+
+.week-card {
+  border-left: 4px solid var(--math346-teal);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  background: #ffffff;
+  box-shadow: 0 1px 6px rgba(31, 41, 51, 0.06);
+}
+
+.note-box {
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #ffffff;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+

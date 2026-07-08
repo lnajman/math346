@@ -1,0 +1,35 @@
+---
+title: "Week 1: MATLAB Arrays, Scripts, and 2D Plotting"
+---
+
+## Official Topic
+
+MATLAB arrays, script files, and 2D plotting.
+
+## Problem Focus
+
+How does a mathematical object become a computational object?
+
+Students use vectors and matrices to represent data, functions, and sampled values, then use scripts and plots to make the computation reproducible.
+
+## In Class
+
+- Create row vectors, column vectors, and matrices.
+- Use indexing to inspect and modify data.
+- Plot sampled functions and measured data.
+- Distinguish a command-window experiment from a reproducible script.
+
+## AI-Aware Task
+
+Ask an LLM for MATLAB code that plots `sin(x)` and `cos(x)` on the same figure. Then check:
+
+- Does the code create an appropriate domain?
+- Are labels and legend present?
+- Is the sampling dense enough?
+- Does the code run in a fresh MATLAB session?
+
+## Materials
+
+- [Slides](../slides/week-01.qmd)
+- Starter code: [week01_arrays_plotting.m](../code/matlab/week01_arrays_plotting.m)
+

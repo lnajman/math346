@@ -1,0 +1,33 @@
+---
+title: "Week 8: Exploratory Data Analysis"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+How do we discover patterns without fooling ourselves?
+
+## EDA Cycle
+
+1. Ask a question.
+2. Visualize or transform.
+3. Notice a pattern or problem.
+4. Refine the question.
+5. Record uncertainty.
+
+## Variation
+
+How does one variable change across observations?
+
+## Covariation
+
+How do two or more variables change together?
+
+## AI Check
+
+Generated summaries often overstate patterns. Look for uncertainty, outliers, and missing context.
+

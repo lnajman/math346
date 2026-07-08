@@ -1,0 +1,24 @@
+---
+title: "Slides"
+---
+
+Slides are written in Quarto RevealJS. They are intentionally short: each deck launches the problem, frames the key ideas, and points students into live coding or lab work.
+
+| Week | Slides |
+|---:|---|
+| 1 | [MATLAB arrays, scripts, and plotting](week-01.qmd) |
+| 2 | [MATLAB functions and debugging](week-02.qmd) |
+| 3 | [Curve fitting and interpolation](week-03.qmd) |
+| 4 | [Numerical methods and 3D plotting](week-04.qmd) |
+| 5 | [Symbolic math](week-05.qmd) |
+| 6 | [R Markdown and visualization](week-06.qmd) |
+| 7 | [Data transformation](week-07.qmd) |
+| 8 | [Exploratory data analysis](week-08.qmd) |
+| 9 | [Import and tidy data](week-09.qmd) |
+| 10 | [Relational data and messy variables](week-10.qmd) |
+| 11 | [Pipes and functions](week-11.qmd) |
+| 12 | [Vectors and iteration](week-12.qmd) |
+| 13 | [Model basics](week-13.qmd) |
+| 14 | [Many models](week-14.qmd) |
+| 15 | [Communication and synthesis](week-15.qmd) |
+

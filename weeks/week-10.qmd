@@ -1,0 +1,29 @@
+---
+title: "Week 10: Relational Data, Strings, Factors, Dates, and Times"
+---
+
+## Official Topic
+
+Relational data, strings, factors, dates, and times.
+
+## Problem Focus
+
+Why is real data difficult even before modeling begins?
+
+Students handle joins, labels, categorical variables, and dates as sources of both insight and error.
+
+## In Class
+
+- Join related tables.
+- Clean strings.
+- Use factors for categorical variables.
+- Parse and use dates and times.
+
+## AI-Aware Task
+
+Ask an LLM to join two tables. Then check keys, duplicated rows, unmatched rows, and whether the join changes the meaning of the analysis.
+
+## Materials
+
+- [Slides](../slides/week-10.qmd)
+

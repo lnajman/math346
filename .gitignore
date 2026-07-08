@@ -1,0 +1,11 @@
+/.quarto/
+/_site/
+/.Rproj.user/
+/.Rhistory
+/.RData
+/.DS_Store
+MATH346_LLM_redesign.md
+*.log
+*.aux
+*.out
+*.toc

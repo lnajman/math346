@@ -1,0 +1,32 @@
+---
+title: "Week 10: Real Data Is Difficult"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+Why is real data difficult before modeling begins?
+
+## Common Problems
+
+- Multiple tables
+- Inconsistent labels
+- Text fields
+- Ordered categories
+- Dates and times
+
+## Join Checklist
+
+- What are the keys?
+- Are keys unique?
+- Are any rows unmatched?
+- Did the join duplicate observations?
+
+## AI Check
+
+A join that runs is not necessarily a join that means what you think it means.
+

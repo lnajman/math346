@@ -1,0 +1,30 @@
+---
+title: "Week 2: MATLAB Programming and Functions"
+---
+
+## Official Topic
+
+MATLAB programming and user functions.
+
+## Problem Focus
+
+How do we turn a formula into reusable, testable code?
+
+Students write small functions, use conditionals and loops when appropriate, and practice checking output on simple cases before trusting the code.
+
+## In Class
+
+- Define function inputs and outputs.
+- Use relational and logical operators.
+- Write short tests for known values.
+- Debug common mistakes in generated or student-written code.
+
+## AI-Aware Task
+
+Ask an LLM to write a MATLAB function for a piecewise mathematical formula. Then test boundary cases and decide whether the generated implementation matches the intended definition.
+
+## Materials
+
+- [Slides](../slides/week-02.qmd)
+- Starter code: [week02_function_tests.m](../code/matlab/week02_function_tests.m)
+

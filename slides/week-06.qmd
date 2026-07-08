@@ -1,0 +1,45 @@
+---
+title: "Week 6: R Markdown and Visualization"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346"
+---
+
+## Today's Question
+
+How do code, plots, and explanation become a reproducible report?
+
+## Reproducible Report
+
+A report should include:
+
+- question;
+- data;
+- code;
+- output;
+- interpretation;
+- checks.
+
+## R Pattern
+
+```r
+library(ggplot2)
+
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(x = "Weight", y = "Miles per gallon")
+```
+
+## Plot Checklist
+
+- Clear labels
+- Appropriate geometry
+- Honest scale
+- Interpretable caption
+
+## AI Check
+
+An LLM can improve wording. It cannot decide whether your plot supports the conclusion unless you verify it.
+
