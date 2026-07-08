@@ -1,0 +1,61 @@
+---
+title: "Lab 1B: AI Code Critique"
+---
+
+## Goal
+
+Practice treating AI-generated code as a draft that must be inspected, tested, and improved.
+
+## Scenario
+
+A student asks an LLM:
+
+> Write MATLAB code that plots `sin(x)` and `cos(x)` on the same figure from 0 to 2*pi.
+
+The LLM returns a script similar to [week01_ai_plot_review.m](../code/matlab/week01_ai_plot_review.m).
+
+## Part A: Run The Code
+
+1. Open the script.
+2. Run it without editing.
+3. Write down what the figure appears to show.
+
+## Part B: Critique The Code
+
+Answer these questions:
+
+- Does the script use enough sample points?
+- Does it plot both functions against `x`?
+- Are axes labeled?
+- Is there a legend?
+- Does the title describe the actual plot?
+- Would this script be convincing in a report?
+
+## Part C: Repair The Script
+
+Create a corrected version that:
+
+1. Uses at least 200 sample points.
+2. Plots `sin(x)` and `cos(x)` against `x`.
+3. Uses different line styles or colors.
+4. Adds axis labels, title, legend, and grid.
+5. Includes one numerical check.
+
+## Part D: AI Appendix Practice
+
+Write a short AI-use note:
+
+| Question | Answer |
+|---|---|
+| What was the AI asked to do? |  |
+| What did the generated code get right? |  |
+| What did it get wrong or omit? |  |
+| What checks did you perform? |  |
+| What did you change before trusting it? |  |
+
+## Exit Question
+
+Complete this sentence:
+
+> Code that runs is not enough because ...
+

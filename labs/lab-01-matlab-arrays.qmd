@@ -6,13 +6,81 @@ title: "Lab 1: MATLAB Arrays, Scripts, and Plots"
 
 Create a reproducible MATLAB script that samples, plots, and checks a mathematical function.
 
-## Tasks
+## Setup
+
+Work in a folder called `week01`. Save every script before running it. A script should run correctly from a clean workspace, so begin with:
+
+```matlab
+clear; clc; close all;
+```
+
+## Part A: Run And Explain
 
 1. Open [week01_arrays_plotting.m](../code/matlab/week01_arrays_plotting.m).
 2. Run the script.
-3. Change the domain from `[0, 2*pi]` to `[-pi, pi]`.
-4. Add a plot of `sin(x)^2 + cos(x)^2`.
-5. Check numerically that the identity is close to 1 for all sampled points.
+3. In comments at the bottom of the file, answer:
+   - What does `x` represent?
+   - What do `y1` and `y2` represent?
+   - Why do `y1` and `y2` have the same length as `x`?
+
+## Part B: Modify The Domain
+
+Change the domain from `[0, 2*pi]` to `[-pi, pi]`.
+
+Then answer:
+
+- Did the numerical values change?
+- Did the shape of the plotted functions change?
+- Why is this still the same mathematical function?
+
+## Part C: Add A Check
+
+Add a plot of:
+
+```matlab
+sin(x).^2 + cos(x).^2
+```
+
+Then check numerically that the identity is close to 1 for all sampled points:
+
+```matlab
+identity_values = y1.^2 + y2.^2;
+identity_error = max(abs(identity_values - 1));
+```
+
+Interpret the value of `identity_error`.
+
+## Part D: Sample Count Experiment
+
+Run the script with:
+
+- 10 sample points;
+- 50 sample points;
+- 200 sample points;
+- 1000 sample points.
+
+For each run, record whether the plot looks smooth and whether the identity check changes.
+
+## Part E: Measured Data
+
+Open [week01_temperature_matrix.m](../code/matlab/week01_temperature_matrix.m).
+
+The matrix stores time, temperature, and humidity measurements. Modify the script to:
+
+1. Plot temperature against time.
+2. Plot humidity against time.
+3. Compute the mean temperature.
+4. Find the maximum humidity.
+5. Add labels and a legend.
+
+## Deliverable
+
+Submit one MATLAB script and a short note containing:
+
+- the final plot;
+- the value of `identity_error`;
+- one sentence explaining why elementwise operations were needed;
+- one sentence explaining how you know the script is reproducible.
 
 ## Reflection
 
@@ -21,6 +89,7 @@ Answer in a short paragraph:
 - What did the array `x` represent?
 - Why did we use elementwise operations?
 - What validation check convinced you that the identity was computed correctly?
+- What mistake would be easiest to miss if you only looked at whether MATLAB produced a figure?
 
 ## AI Use
 
@@ -29,4 +98,3 @@ You may ask an LLM for help with MATLAB plotting syntax. If you do, record:
 - the prompt;
 - the useful suggestion;
 - the check you performed before trusting it.
-

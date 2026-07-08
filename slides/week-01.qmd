@@ -11,6 +11,11 @@ format:
 
 How does a mathematical object become a computational object?
 
+## Week 1 Plan
+
+- Meeting 1: arrays, scripts, and first plots
+- Meeting 2: validation, measured data, and AI critique
+
 ## Core Ideas
 
 - Vectors represent ordered values.
@@ -18,7 +23,11 @@ How does a mathematical object become a computational object?
 - Scripts preserve a computation.
 - Plots reveal whether output makes sense.
 
-## MATLAB Pattern
+## Meeting 1 Question
+
+What does an array mean?
+
+## Vector Pattern
 
 ```matlab
 x = linspace(0, 2*pi, 200);
@@ -28,14 +37,77 @@ xlabel("x")
 ylabel("sin(x)")
 ```
 
-## Validation
+## Matrix Pattern
+
+```matlab
+A = [1 2 3; 4 5 6];
+size(A)
+A(2, 3)
+```
+
+## Script Habit
+
+A reproducible script should:
+
+- begin from a clean workspace;
+- define all needed variables;
+- run from top to bottom;
+- label its output;
+- include at least one check.
+
+## Meeting 1 Activity
+
+Change:
+
+```matlab
+x = linspace(0, 2*pi, 200);
+```
+
+to a different domain and sample count. Predict what changes before running the script.
+
+## Meeting 2 Question
+
+How do we know a figure is trustworthy?
+
+## Validation Checklist
 
 - Are dimensions correct?
 - Are units and labels clear?
 - Is the sampling dense enough?
 - Can the script run from a clean workspace?
+- Does a numerical check support the visual output?
 
-## AI Check
+## Identity Check
+
+```matlab
+identity_values = sin(x).^2 + cos(x).^2;
+identity_error = max(abs(identity_values - 1));
+```
+
+The plot is useful. The numerical check is evidence.
+
+## AI Critique
 
 Ask an LLM for plotting code. Your job is to decide whether the code is runnable, labeled, and mathematically appropriate.
 
+## Plausible But Weak Code
+
+```matlab
+x = 0:2*pi;
+y1 = sin(x);
+y2 = cos(x);
+plot(y1, y2)
+title("Sine and cosine")
+```
+
+## Critique Questions
+
+- Is `x` sampled well?
+- What is actually on the horizontal axis?
+- Are the axes labeled?
+- Would this be acceptable in a report?
+- What check would reveal the problem?
+
+## Exit Ticket
+
+Code that runs is not enough because ...

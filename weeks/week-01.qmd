@@ -12,12 +12,69 @@ How does a mathematical object become a computational object?
 
 Students use vectors and matrices to represent data, functions, and sampled values, then use scripts and plots to make the computation reproducible.
 
-## In Class
+## Learning Goals
+
+By the end of the week, students should be able to:
+
+- create and inspect row vectors, column vectors, and matrices;
+- explain what each array represents in a mathematical or data context;
+- use elementwise operations correctly;
+- write a script that runs from a clean workspace;
+- make a labeled 2D plot;
+- add simple numerical checks before trusting a plot;
+- critique AI-generated MATLAB code for correctness and clarity.
+
+## Meeting 1: Arrays As Representations
+
+**Question:** What does an array mean?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Course framing: computation is not just syntax |
+| 10-25 min | Live coding: vectors, matrices, indexing, and dimensions |
+| 25-40 min | Script habit: move command-window work into a reproducible file |
+| 40-55 min | Plot sampled functions with labels and legends |
+| 55-68 min | Student modification: change domain, sample count, and plotted function |
+| 68-75 min | Exit ticket: what did `x`, `y`, and the plot represent? |
+
+### Core MATLAB Patterns
+
+```matlab
+x = linspace(0, 2*pi, 200);
+y = sin(x);
+plot(x, y)
+```
+
+```matlab
+A = [1 2 3; 4 5 6];
+size(A)
+A(2, 3)
+```
+
+## Meeting 2: Plots, Checks, And AI Critique
+
+**Question:** How do we know that code which runs is actually answering the question?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-8 min | Warm-up: predict dimensions and plot shape |
+| 8-25 min | Review common plotting mistakes |
+| 25-45 min | AI critique activity: inspect a plausible but weak script |
+| 45-65 min | Lab work: trigonometric identity and measurement data |
+| 65-72 min | Pair discussion: what checks caught mistakes? |
+| 72-75 min | Exit ticket: one validation check you now trust |
+
+## In-Class Checks
 
 - Create row vectors, column vectors, and matrices.
 - Use indexing to inspect and modify data.
 - Plot sampled functions and measured data.
 - Distinguish a command-window experiment from a reproducible script.
+- Use `size`, `length`, `max`, and simple identity checks to validate output.
 
 ## AI-Aware Task
 
@@ -27,9 +84,17 @@ Ask an LLM for MATLAB code that plots `sin(x)` and `cos(x)` on the same figure. 
 - Are labels and legend present?
 - Is the sampling dense enough?
 - Does the code run in a fresh MATLAB session?
+- Does the plot show both functions against `x`, or does it accidentally plot one function against the other?
+
+## Exercises
+
+Complete the [Week 1 exercises](week-01-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-01.qmd)
 - Starter code: [week01_arrays_plotting.m](../code/matlab/week01_arrays_plotting.m)
-
+- Measurement-data script: [week01_temperature_matrix.m](../code/matlab/week01_temperature_matrix.m)
+- AI critique script: [week01_ai_plot_review.m](../code/matlab/week01_ai_plot_review.m)
+- [Lab 1](../labs/lab-01-matlab-arrays.qmd)
+- [AI code critique activity](../labs/lab-01-ai-critique.qmd)

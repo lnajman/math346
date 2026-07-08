@@ -7,6 +7,8 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 ## MATLAB
 
 - [week01_arrays_plotting.m](matlab/week01_arrays_plotting.m)
+- [week01_temperature_matrix.m](matlab/week01_temperature_matrix.m)
+- [week01_ai_plot_review.m](matlab/week01_ai_plot_review.m)
 - [week02_function_tests.m](matlab/week02_function_tests.m)
 - [week03_curve_fitting_validation.m](matlab/week03_curve_fitting_validation.m)
 

@@ -51,6 +51,7 @@ website:
         - section: "Weeks 1-15"
           contents:
             - weeks/week-01.qmd
+            - weeks/week-01-exercises.qmd
             - weeks/week-02.qmd
             - weeks/week-03.qmd
             - weeks/week-04.qmd

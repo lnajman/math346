@@ -22,6 +22,18 @@ Each week has a problem focus, the official syllabus topic, the software tools i
 | [14](week-14.qmd) | Many models and grouped workflows | R |
 | [15](week-15.qmd) | Communication, visualization, and synthesis | R |
 
+## Model Week
+
+Week 1 is the first fully expanded week. It includes:
+
+- a two-meeting teaching plan;
+- a detailed MATLAB lab;
+- an AI code critique activity;
+- a student exercise set;
+- multiple starter scripts.
+
+The other weeks will follow this pattern as the course site develops.
+
 ## Weekly Pattern
 
 Each week follows the same rhythm:
@@ -32,4 +44,3 @@ Each week follows the same rhythm:
 4. Check the output against expectations.
 5. Critique any AI-generated code or explanation.
 6. Save work in a reproducible form.
-
