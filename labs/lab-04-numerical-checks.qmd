@@ -1,0 +1,105 @@
+---
+title: "Lab 4: Numerical Methods And Visual Checks"
+---
+
+## Goal
+
+Use MATLAB numerical methods responsibly by pairing every computed answer with a visual or residual check.
+
+## Setup
+
+Work in a folder called `week04`. Start scripts from a clean workspace:
+
+```matlab
+clear; clc; close all;
+```
+
+## Part A: Roots And Residuals
+
+Open [week04_root_integration_checks.m](../code/matlab/week04_root_integration_checks.m).
+
+Run the script and answer:
+
+- What equation is being solved?
+- How many roots are found?
+- What brackets are used?
+- What is the residual at each root?
+- What would be missing if the script only printed the first root?
+
+## Part B: Change The Equation
+
+Modify the root-finding section for:
+
+```matlab
+f = @(x) cos(x) - x;
+```
+
+Use the interval `[0, 2]`.
+
+Record:
+
+1. the root;
+2. the residual;
+3. a plot showing the crossing;
+4. one sentence explaining why the answer is credible.
+
+## Part C: Integration By Function And By Data
+
+The script compares `integral` with `trapz`.
+
+Change the number of sampled points used by `trapz`:
+
+```matlab
+x_data = linspace(0, 6, 7);
+x_data = linspace(0, 6, 31);
+x_data = linspace(0, 6, 201);
+```
+
+Answer:
+
+- How does the estimate change?
+- Which estimate is closest to `integral`?
+- Why does sample spacing matter?
+
+## Part D: Surface And Contour
+
+Open [week04_surface_contour_visualization.m](../code/matlab/week04_surface_contour_visualization.m).
+
+Run the script and answer:
+
+- What function of two variables is being plotted?
+- What does `meshgrid` create?
+- What does the surface plot show well?
+- What does the contour plot show more clearly?
+
+## Part E: Modify The Surface
+
+Change the plotted function to:
+
+```matlab
+Z = X .* exp(-X.^2 - Y.^2);
+```
+
+Then:
+
+1. Update the title.
+2. Find the approximate maximum value.
+3. Record the approximate `(x, y)` location of that maximum.
+
+## Deliverable
+
+Submit a short note containing:
+
+- one root-finding result with residual;
+- one integration comparison;
+- one surface or contour plot;
+- one paragraph explaining how the checks changed your confidence.
+
+## AI Use
+
+If you ask an LLM for help, include:
+
+- the prompt;
+- the generated code or explanation;
+- the check you used before trusting it;
+- one thing the LLM did not verify.

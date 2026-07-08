@@ -1,0 +1,106 @@
+---
+title: "Week 4 Exercises"
+---
+
+These exercises practice numerical root-finding, integration, 3D plotting, and validation. Use AI only after you have written a first attempt yourself.
+
+## Exercise 1: Put An Equation In Root Form
+
+Rewrite each equation in the form `f(x) = 0`.
+
+1. `cos(x) = x`
+2. `x^2 = 5`
+3. `exp(-x) = 0.1*x`
+4. `sin(x) + x/4 = 1`
+
+For one of them, define `f` as an anonymous MATLAB function.
+
+## Exercise 2: Find And Check A Root
+
+For:
+
+```matlab
+f = @(x) cos(x) - x;
+```
+
+Write MATLAB code to:
+
+1. Plot `f` on `[0, 2]`.
+2. Use `fzero` to find a root.
+3. Compute `f(root)`.
+4. Report the root and residual.
+
+Why is the residual important?
+
+## Exercise 3: Multiple Roots
+
+For:
+
+```matlab
+f = @(x) x.^3 - 6*x.^2 + 11*x - 6;
+```
+
+1. Plot the function on `[0, 4]`.
+2. Use brackets to find the three roots.
+3. Compute the residual at each root.
+4. Explain why one call to `fzero` is not enough.
+
+## Exercise 4: Compare Integrals
+
+For:
+
+```matlab
+g = @(x) sin(x)./(1 + x.^2);
+```
+
+Compute the integral from `0` to `6` using:
+
+1. `integral(g, 0, 6)`;
+2. `trapz` with 13 equally spaced points;
+3. `trapz` with 201 equally spaced points.
+
+Which estimates are closest? Why?
+
+## Exercise 5: Build A Surface
+
+Create a surface plot for:
+
+```text
+z = x*exp(-x^2 - y^2)
+```
+
+on `-2 <= x <= 2` and `-2 <= y <= 2`.
+
+Your code should use:
+
+- `linspace`;
+- `meshgrid`;
+- elementwise operations;
+- `surf`;
+- axis labels and a colorbar.
+
+Then make a filled contour plot of the same surface.
+
+## Exercise 6: Critique Generated Code
+
+An LLM produced:
+
+```matlab
+f = @(x) x.^3 - 6*x.^2 + 11*x - 6;
+root = fzero(f, 0);
+disp(root)
+```
+
+Find at least four issues or missing checks. Your answer should mention:
+
+- plotting;
+- initial guess or bracket;
+- multiple roots;
+- residual checks;
+- whether the phrase "the root" would be justified.
+
+## Exit Ticket
+
+Write 3-5 sentences answering:
+
+> What makes a numerical answer trustworthy enough to report?

@@ -12,18 +12,131 @@ When exact solutions are hard or impossible, how do we compute approximate answe
 
 Students use root-finding, numerical integration, and 3D plotting as tools for understanding approximation.
 
-## In Class
+## Learning Goals
 
-- Solve scalar equations numerically.
-- Approximate integrals.
-- Visualize functions of two variables.
-- Discuss initial guesses, numerical tolerance, and graphical checks.
+By the end of the week, students should be able to:
+
+- write a scalar equation in the form `f(x) = 0`;
+- solve scalar equations with `fzero`;
+- verify a computed root by evaluating the residual `f(root)`;
+- use a plot or bracket to look for multiple roots;
+- approximate definite integrals with `integral` and compare with `trapz` on sampled data;
+- explain how grid size or sample spacing affects numerical approximation;
+- create 3D line, surface, and contour plots;
+- build a surface plot from `meshgrid` and elementwise formulas;
+- use visualizations as diagnostics rather than decoration;
+- critique an AI-generated numerical answer for missing checks.
+
+## Meeting 1: Roots, Integrals, And Checks
+
+**Question:** What evidence makes a numerical answer trustworthy?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-8 min | Warm-up: turn an equation into `f(x) = 0` |
+| 8-25 min | Live coding: plot a function before using `fzero` |
+| 25-42 min | Multiple roots: compare initial guesses and brackets |
+| 42-55 min | Numerical integration: `integral` versus `trapz` |
+| 55-68 min | Student task: report an answer with a residual check |
+| 68-75 min | Exit ticket: one check you would not skip |
+
+### Core MATLAB Patterns
+
+```matlab
+f = @(x) x.*exp(-x) - 0.2;
+root = fzero(f, [0 1]);
+residual = f(root);
+```
+
+```matlab
+g = @(x) sin(x)./(1 + x.^2);
+area = integral(g, 0, 6);
+```
+
+The number is not the full answer. Students should report the method, the interval or initial guess, and a check.
+
+## Meeting 2: Surfaces, Contours, And AI Claims
+
+**Question:** What does a 3D plot reveal, and what can it hide?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Review: root residuals and integration error intuition |
+| 10-25 min | Build grids with `meshgrid` |
+| 25-40 min | Surface plots: `surf`, `mesh`, labels, and colorbar |
+| 40-52 min | Contour plots as a readable alternative to surfaces |
+| 52-67 min | AI critique: generated numerical answer with weak evidence |
+| 67-75 min | Exit ticket: what plot or check would change your mind? |
+
+## In-Class Checks
+
+- Plot the function before calling a numerical solver.
+- State the interval or initial guess used by `fzero`.
+- Substitute a computed root back into the function.
+- Look for more than one root when the plot suggests several crossings.
+- Compare integral estimates when the data are sampled at different spacings.
+- Use elementwise operations when evaluating functions on vectors or grids.
+- Label axes and include a colorbar when a surface uses color to encode height.
+- Prefer a contour plot when the 3D view hides the shape of the function.
 
 ## AI-Aware Task
 
 Ask an LLM to solve an equation numerically. Then verify the returned root by substituting it back into the equation and plotting the function near the root.
 
+## Survival Checklist
+
+These are the Week 4 MATLAB habits you should be able to recognize, test, and repair without relying on AI.
+
+### Commands And Patterns To Own
+
+| Pattern | What you should know |
+|---|---|
+| `f = @(x) ...` | Creates an anonymous function handle. Use elementwise operations when needed. |
+| `fzero(f, x0)` | Finds a nearby root from an initial guess. It may find only one root. |
+| `fzero(f, [a b])` | Finds a root in a bracket where the function changes sign. |
+| `f(root)` | Checks the residual after solving `f(x) = 0`. |
+| `integral(g, a, b)` | Numerically approximates a definite integral of a function. |
+| `trapz(x, y)` | Approximates an integral from sampled data. |
+| `fminbnd(h, a, b)` | Finds a local minimum on an interval. |
+| `[X, Y] = meshgrid(x, y)` | Builds coordinate matrices for functions of two variables. |
+| `Z = f(X, Y)` | Evaluates a surface on a grid. |
+| `surf(X, Y, Z)` | Creates a surface plot. |
+| `contourf(X, Y, Z)` | Creates a filled contour plot that is often easier to read from above. |
+
+### Mistakes To Catch
+
+- Reporting a root without checking `f(root)`.
+- Assuming one call to `fzero` found every root.
+- Using an initial guess without plotting the function.
+- Confusing a local minimum with an absolute minimum.
+- Comparing `trapz` and `integral` without noticing different input assumptions.
+- Using `^`, `*`, or `/` where grid calculations require `.^`, `.*`, or `./`.
+- Making a 3D plot that is attractive but unreadable.
+- Trusting an AI-generated number because it has many decimal places.
+
+### Checks Before Trusting A Numerical Answer
+
+- State the mathematical problem in one sentence.
+- Plot the function or surface before interpreting the result.
+- State the interval, bracket, initial guess, or grid used.
+- Compute a residual or comparison check.
+- Check whether there may be multiple answers.
+- Avoid overclaiming precision beyond the evidence.
+- Save a short note explaining what could make the numerical result unreliable.
+
+## Exercises
+
+Complete the [Week 4 exercises](week-04-exercises.qmd) after the lab.
+
 ## Materials
 
 - [Slides](../slides/week-04.qmd)
-
+- Numerical checks: [week04_root_integration_checks.m](../code/matlab/week04_root_integration_checks.m)
+- Surface visualization: [week04_surface_contour_visualization.m](../code/matlab/week04_surface_contour_visualization.m)
+- AI critique script: [week04_ai_numeric_review.m](../code/matlab/week04_ai_numeric_review.m)
+- [Lab 4](../labs/lab-04-numerical-checks.qmd)
+- [AI numerical critique](../labs/lab-04-ai-numeric-review.qmd)

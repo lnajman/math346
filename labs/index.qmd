@@ -12,6 +12,8 @@ Labs are designed as studio activities. They should be completed with MATLAB or 
 | [Lab 2B](lab-02-ai-debugging.qmd) | AI function debugging | Ready |
 | [Lab 3](lab-03-fitting-validation.qmd) | Curve fitting and residual checks | Ready |
 | [Lab 3B](lab-03-ai-overfit.qmd) | AI overfitting critique | Ready |
+| [Lab 4](lab-04-numerical-checks.qmd) | Numerical methods and visual checks | Ready |
+| [Lab 4B](lab-04-ai-numeric-review.qmd) | AI numerical answer review | Ready |
 | [Lab 6](lab-06-rmarkdown-eda.qmd) | First reproducible R report | Ready |
 
 ## Lab Routine

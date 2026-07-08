@@ -15,6 +15,9 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 - [week03_curve_fitting_validation.m](matlab/week03_curve_fitting_validation.m)
 - [week03_interpolation_vs_fit.m](matlab/week03_interpolation_vs_fit.m)
 - [week03_ai_overfit_review.m](matlab/week03_ai_overfit_review.m)
+- [week04_root_integration_checks.m](matlab/week04_root_integration_checks.m)
+- [week04_surface_contour_visualization.m](matlab/week04_surface_contour_visualization.m)
+- [week04_ai_numeric_review.m](matlab/week04_ai_numeric_review.m)
 
 ## R
 

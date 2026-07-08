@@ -17,15 +17,16 @@ The site does not redistribute copyrighted slide decks, textbook PDFs, answer ke
 
 ## What To Review First
 
-Weeks 1-3 are the most developed parts of the prototype. They show the intended teaching pattern:
+Weeks 1-4 are the most developed parts of the prototype. They show the intended teaching pattern:
 
 | Week | Focus | Suggested review |
 |---:|---|---|
 | [Week 1](weeks/week-01.qmd) | MATLAB arrays, scripts, and plots | Look at the survival checklist, lab, and AI critique activity. |
 | [Week 2](weeks/week-02.qmd) | Functions, conditions, and tests | Look at the testing emphasis and AI debugging activity. |
 | [Week 3](weeks/week-03.qmd) | Curve fitting, interpolation, and residual checks | Look at the model validation and overfitting critique. |
+| [Week 4](weeks/week-04.qmd) | Numerical methods and 3D plotting | Look at the numerical checks, surface plots, and AI answer review. |
 
-The rest of the weeks are still more schematic. They show the intended arc of the course, but they are not yet expanded to the same level as Weeks 1-3.
+Weeks 5-15 are still more schematic. They show the intended arc of the course, but they are not yet expanded to the same level as Weeks 1-4.
 
 ## Useful Direct Links
 
@@ -42,11 +43,11 @@ The rest of the weeks are still more schematic. They show the intended arc of th
 I would especially appreciate feedback on these questions:
 
 - Does the redesign still respect the spirit and content of the existing course?
-- Are Weeks 1-3 realistic for two 75-minute meetings per week?
+- Are Weeks 1-4 realistic for two 75-minute meetings per week?
 - Is the balance right between MATLAB/R skills, mathematical thinking, and validation?
 - Do the LLM-related activities feel pedagogically useful rather than distracting?
-- Are there essential commands, concepts, habits, or warnings missing from the first three weeks?
-- What should be adjusted before expanding Weeks 4-15 in the same style?
+- Are there essential commands, concepts, habits, or warnings missing from the first four weeks?
+- What should be adjusted before expanding Weeks 5-15 in the same style?
 
 ## The Intended Shift
 

@@ -11,6 +11,11 @@ format:
 
 When exact answers are unavailable, how do we compute responsibly?
 
+## Week 4 Plan
+
+- Meeting 1: roots, integrals, and checks
+- Meeting 2: surfaces, contours, and AI claims
+
 ## Approximation Is A Claim
 
 Numerical answers depend on:
@@ -21,23 +26,158 @@ Numerical answers depend on:
 - step size;
 - conditioning.
 
-## MATLAB Pattern
+## Meeting 1 Question
+
+What evidence makes a numerical answer trustworthy?
+
+## Root-Finding Form
+
+Write the problem as:
+
+```text
+f(x) = 0
+```
+
+Then a numerical root is an `x` where `f(x)` is close to zero.
+
+## Root-Finding Pattern
 
 ```matlab
 f = @(x) x.*exp(-x) - 0.2;
-root = fzero(f, 1);
-f(root)
+x = linspace(0, 6, 300);
+plot(x, f(x))
+root = fzero(f, [0 1]);
+residual = f(root);
 ```
+
+## Why Plot First?
+
+The plot can reveal:
+
+- no crossing;
+- more than one crossing;
+- a bad initial guess;
+- a numerical answer that needs qualification.
+
+## One Root Or All Roots?
+
+```matlab
+left_root = fzero(f, [0 1]);
+right_root = fzero(f, [1 5]);
+```
+
+One solver call is not a proof that there is only one root.
 
 ## Visual Check
 
 Plot before solving. Plot again near the computed answer.
 
-## 3D Plotting
+Substitute the answer back into the original function.
 
-Use surfaces and contours to understand functions of two variables, not just decorate results.
+## Numerical Integration
+
+```matlab
+g = @(x) sin(x)./(1 + x.^2);
+area = integral(g, 0, 6);
+```
+
+The answer depends on the method and the function behavior.
+
+## Data-Based Integration
+
+```matlab
+x = linspace(0, 6, 13);
+y = g(x);
+area_data = trapz(x, y);
+```
+
+`trapz` is useful when the function is known only through sampled data.
+
+## Comparison Habit
+
+Ask:
+
+- What input did the method receive?
+- What spacing or tolerance was used?
+- Does a finer grid change the answer?
+
+## Meeting 2 Question
+
+What does a 3D plot reveal, and what can it hide?
+
+## 3D Line Plot
+
+```matlab
+t = linspace(0, 6*pi, 400);
+x = sqrt(t).*sin(2*t);
+y = sqrt(t).*cos(2*t);
+z = 0.5*t;
+plot3(x, y, z)
+```
+
+The three coordinate vectors must have compatible sizes.
+
+## Surface Workflow
+
+1. Create a grid in the `x,y` plane.
+2. Evaluate `z = f(x,y)` on the grid.
+3. Plot the surface or contours.
+
+## Meshgrid Pattern
+
+```matlab
+x = linspace(-3, 3, 100);
+y = linspace(-3, 3, 100);
+[X, Y] = meshgrid(x, y);
+Z = sin(X).*cos(Y);
+```
+
+Elementwise operations matter.
+
+## Surface Plot
+
+```matlab
+surf(X, Y, Z)
+shading interp
+colorbar
+xlabel("x")
+ylabel("y")
+zlabel("z")
+```
+
+Use the plot to answer a question.
+
+## Contour Plot
+
+```matlab
+contourf(X, Y, Z, 20)
+colorbar
+axis equal tight
+```
+
+Contours are often easier to read than a rotated 3D surface.
 
 ## AI Check
 
 Substitute any generated numerical answer back into the original problem.
 
+Then ask:
+
+- Did it find all relevant roots?
+- Did it state the interval or initial guess?
+- Did it check the residual?
+- Did it explain the numerical method?
+
+## Plausible But Weak AI Code
+
+```matlab
+f = @(x) x.^3 - 6*x.^2 + 11*x - 6;
+root = fzero(f, 0);
+fprintf("The solution is %.4f\n", root)
+```
+
+What is missing?
+
+## Exit Ticket
+
+A numerical answer is trustworthy enough to report when ...

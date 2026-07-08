@@ -1,0 +1,68 @@
+---
+title: "Lab 4B: AI Numerical Answer Review"
+---
+
+## Goal
+
+Practice reviewing AI-generated numerical work that gives an answer without enough evidence.
+
+## Scenario
+
+A student asks an LLM:
+
+> Solve this equation numerically: x^3 - 6x^2 + 11x - 6 = 0.
+
+The generated script resembles [week04_ai_numeric_review.m](../code/matlab/week04_ai_numeric_review.m).
+
+## Part A: Run The Script
+
+1. Open the script.
+2. Run it without editing.
+3. Record the printed answer.
+4. Record the initial guess used by the code.
+5. Decide whether the script proves that there is only one solution.
+
+## Part B: Add Evidence
+
+Modify the script to:
+
+1. Plot the function on `[0, 4]`.
+2. Add a horizontal line at zero.
+3. Use brackets to find each root.
+4. Compute the residual at each root.
+
+## Part C: Name The Missing Checks
+
+Complete the table.
+
+| Missing check | Why it matters |
+|---|---|
+| Plot before solving |  |
+| Brackets or multiple guesses |  |
+| Residual `f(root)` |  |
+| Statement of method limits |  |
+
+## Part D: Repair The Claim
+
+Rewrite the generated conclusion so that it is mathematically honest. It should mention:
+
+- the equation;
+- all roots found on the checked interval;
+- the residuals;
+- the interval you inspected.
+
+## Deliverable
+
+Submit:
+
+- the original generated claim in one sentence;
+- the repaired claim;
+- one plot;
+- the residual table;
+- a short explanation of why the original output was incomplete.
+
+## Exit Question
+
+Complete this sentence:
+
+> A generated numerical answer is not trustworthy until ...
