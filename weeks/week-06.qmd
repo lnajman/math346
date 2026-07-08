@@ -26,5 +26,4 @@ Ask an LLM to improve a plot. Evaluate whether the suggested labels, scales, and
 ## Materials
 
 - [Slides](../slides/week-06.qmd)
-- Starter report: [week06-first-report.qmd](../code/r/week06-first-report.qmd)
-
+- Starter report: <a href="../code/r/week06-first-report.qmd" download>week06-first-report.qmd</a>

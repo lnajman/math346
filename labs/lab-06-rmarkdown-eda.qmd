@@ -8,7 +8,7 @@ Create a short reproducible report with a question, code, plots, and interpretat
 
 ## Tasks
 
-1. Open [week06-first-report.qmd](../code/r/week06-first-report.qmd).
+1. Open <a href="../code/r/week06-first-report.qmd" download>week06-first-report.qmd</a>.
 2. Render the report.
 3. Replace one plot with a plot of your own.
 4. Add a one-paragraph interpretation.
@@ -21,4 +21,3 @@ Submit the rendered HTML report and the source `.qmd` file.
 ## AI Use
 
 You may ask an LLM for help improving the caption of one figure. You must check that the caption describes only what the plot supports.
-
