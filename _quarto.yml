@@ -1,6 +1,15 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "*.qmd"
+    - "code/index.qmd"
+    - "labs/*.qmd"
+    - "projects/*.qmd"
+    - "resources/*.qmd"
+    - "slides/*.qmd"
+    - "syllabus/*.qmd"
+    - "weeks/*.qmd"
   resources:
     - code/
     - data/
