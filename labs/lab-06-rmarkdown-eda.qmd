@@ -8,7 +8,7 @@ Create a short reproducible report with a question, code, plots, and interpretat
 
 ## Tasks
 
-1. Open <a href="../code/r/week06-first-report.qmd" download>week06-first-report.qmd</a>.
+1. Download <a href="../code/r/week06-first-report.qmd.txt" download>week06-first-report.qmd template</a> and save it as `week06-first-report.qmd`.
 2. Render the report.
 3. Replace one plot with a plot of your own.
 4. Add a one-paragraph interpretation.
