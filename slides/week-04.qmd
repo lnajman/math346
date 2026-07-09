@@ -101,6 +101,45 @@ Ask:
 - What spacing or tolerance was used?
 - Does a finer grid change the answer?
 
+## Optimization Pattern
+
+```matlab
+h = @(x) (x - 2).^2 + 0.5*sin(5*x);
+[xmin, hmin] = fminbnd(h, 0, 4);
+```
+
+`fminbnd` reports a local minimum on the interval you gave it.
+
+## ODE Initial-Value Problem
+
+Write the problem as:
+
+```text
+y' = f(t,y),  y(t0) = y0
+```
+
+The solver needs the derivative rule, interval, and initial value.
+
+## ODE Solver Pattern
+
+```matlab
+f = @(t,y) -y + sin(t);
+tspan = [0 10];
+y0 = 1;
+[t, y] = ode45(f, tspan, y0);
+plot(t, y)
+```
+
+`ode45` is the first solver to try for many nonstiff problems.
+
+## ODE Check
+
+```matlab
+initial_error = abs(y(1) - y0);
+```
+
+For every ODE solve, check that the reported solution starts where the problem says it should.
+
 ## Meeting 2 Question
 
 What does a 3D plot reveal, and what can it hide?

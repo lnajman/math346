@@ -53,7 +53,27 @@ Run the script and compare the estimates at the query points.
 | Which method would you use to estimate between trusted measurements? |  |
 | Which method would you use to describe an approximate trend? |  |
 
-## Part D: Residual Notes
+## Part D: Polynomial Tool Check
+
+Open [week03_polynomial_tools.m](../code/matlab/week03_polynomial_tools.m).
+
+Run the script and answer:
+
+1. What roots are used to build the polynomial?
+2. What coefficient vector does `poly` return?
+3. How does the script check the polynomial built with `conv`?
+4. What does `polyder` compute?
+
+## Part E: Interpolation Input Check
+
+Before using `interp1`, add checks that:
+
+1. the `x` values are sorted;
+2. every query point is inside the measured range.
+
+Explain what should happen if either check fails.
+
+## Part F: Residual Notes
 
 For your selected polynomial degree, write 4-6 sentences:
 
@@ -63,7 +83,7 @@ For your selected polynomial degree, write 4-6 sentences:
 - State whether the residuals show a pattern.
 - Decide whether the model is adequate for the question.
 
-## Part E: Stress Test
+## Part G: Stress Test
 
 For one selected degree, add this line after computing its coefficient vector `p`:
 

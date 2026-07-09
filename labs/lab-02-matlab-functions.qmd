@@ -71,6 +71,19 @@ Modify the script so that the `while` loop stops when the accumulated sum is at 
 
 Record the final value of `n` and the final accumulated sum.
 
+## Part F: Logical Indexing And Switch
+
+Open [week02_logical_indexing_switch.m](../code/matlab/week02_logical_indexing_switch.m).
+
+Run the script and answer:
+
+1. What does the logical mask represent?
+2. What does `nnz(hot_mask)` count?
+3. Which values are changed in `adjusted`?
+4. What input choices does the `switch` block accept?
+
+Modify the script so that it caps values above `28` instead of values at least `30`.
+
 ## Deliverable
 
 Submit one MATLAB script containing:
@@ -78,6 +91,7 @@ Submit one MATLAB script containing:
 - at least one function;
 - at least five tests;
 - one boundary-case test;
+- one logical-indexing example or a written explanation of why it is not needed;
 - one loop or one vectorized replacement with an explanation;
 - one vector-input test or a written explanation of why vector input is not supported.
 

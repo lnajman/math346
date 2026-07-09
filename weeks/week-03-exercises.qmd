@@ -30,7 +30,19 @@ Write MATLAB code that:
 4. Plots `x` versus `y`.
 5. Adds axis labels and a title.
 
-## Exercise 3: Fit And Check Residuals
+## Exercise 3: Polynomial Tools
+
+Write MATLAB code that:
+
+1. creates a polynomial with roots `1`, `2`, and `3` using `poly`;
+2. verifies the roots using `roots`;
+3. builds the same polynomial by multiplying factors with `conv`;
+4. computes the derivative with `polyder`;
+5. evaluates the derivative at `x = 2`.
+
+Explain what information is stored in each coefficient vector.
+
+## Exercise 4: Fit And Check Residuals
 
 For the data:
 
@@ -49,7 +61,7 @@ Write code to:
 
 Which model would you report? Give a reason based on both the plot and the residuals.
 
-## Exercise 4: Interpolate
+## Exercise 5: Interpolate
 
 For:
 
@@ -66,7 +78,15 @@ Use `interp1` to estimate the temperature at:
 
 Compare `"linear"` and `"pchip"`. Which estimate would you use if the measurements are trusted but sparse?
 
-## Exercise 5: Critique Generated Code
+Before interpolating, check:
+
+```matlab
+issorted(time)
+```
+
+Then explain why asking for `time = 10` would be a different kind of claim.
+
+## Exercise 6: Critique Generated Code
 
 An LLM produced:
 

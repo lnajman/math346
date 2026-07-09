@@ -18,11 +18,13 @@ By the end of the week, students should be able to:
 
 - represent a polynomial in MATLAB as a coefficient vector in descending powers;
 - evaluate a polynomial with `polyval`;
+- use `roots`, `poly`, `conv`, and `polyder` for common polynomial checks;
 - use `polyfit` to fit a polynomial model to paired data;
 - explain the role of the degree in a polynomial fit;
 - compute and plot residuals;
 - use RMSE as one simple summary of fit quality;
 - use `interp1` for one-dimensional interpolation;
+- check that interpolation inputs are ordered and query points are inside the measured range;
 - distinguish interpolation, fitting, and extrapolation;
 - critique an AI-generated fitting script for overfitting or unsupported claims.
 
@@ -73,6 +75,7 @@ If Quiz 1 is administered outside the class meeting, use the first 12 minutes fo
 
 - Translate between a written polynomial and a MATLAB coefficient vector.
 - Evaluate a polynomial on a scalar and a vector.
+- Use polynomial utility commands to move between roots, factors, coefficients, and derivatives.
 - Fit several polynomial degrees to the same data.
 - Plot data and fitted curves on the same axes.
 - Plot residuals and interpret visible patterns.
@@ -94,11 +97,16 @@ These are the Week 3 MATLAB habits you should be able to recognize, test, and re
 | `p = [2 0 -3 1]` | Coefficients are ordered from highest power to constant term. Zeros matter. |
 | `polyval(p, x)` | Evaluates a polynomial at scalar, vector, or matrix inputs. |
 | `roots(p)` | Finds values where the polynomial is zero. |
+| `poly(r)` | Builds polynomial coefficients from roots. |
+| `conv(p, q)` | Multiplies polynomial coefficient vectors. |
+| `deconv(p, q)` | Divides polynomial coefficient vectors and returns quotient and remainder. |
+| `polyder(p)` | Computes the derivative coefficient vector. |
 | `polyfit(x, y, degree)` | Finds a least-squares polynomial fit of the chosen degree. |
 | `yhat = polyval(p, x)` | Computes fitted values at the measured x-values. |
 | `residuals = y - yhat` | Measures what the model missed at each data point. |
 | `sqrt(mean(residuals.^2))` | Computes RMSE, a compact residual summary. |
 | `interp1(x, y, xq, "linear")` | Estimates values between measured x-values. |
+| `issorted(x)` | Checks that interpolation inputs are ordered. |
 | `linspace(a, b, n)` | Creates a dense grid for plotting a smooth curve. |
 | `subplot(m, n, k)` | Places several diagnostic plots in one figure. |
 
@@ -106,10 +114,12 @@ These are the Week 3 MATLAB habits you should be able to recognize, test, and re
 
 - Reversing the order of polynomial coefficients.
 - Omitting zero coefficients from a polynomial vector.
+- Forgetting that `poly` expects roots, while `polyval` expects coefficients.
 - Using a fitted curve without checking residuals.
 - Choosing the highest possible degree because it has the smallest training error.
 - Confusing interpolation with extrapolation.
 - Asking `interp1` for values outside the measured range without noticing.
+- Giving `interp1` unordered or repeated x-values.
 - Reporting RMSE without looking for residual patterns.
 - Trusting an AI-generated plot title more than the code and diagnostics.
 
@@ -117,6 +127,8 @@ These are the Week 3 MATLAB habits you should be able to recognize, test, and re
 
 - State whether the task is interpolation, fitting, or extrapolation.
 - Plot the raw data before fitting.
+- Check `issorted(x)` before using `interp1`.
+- Check that query points satisfy `min(x) <= xq <= max(x)`.
 - Compare at least two reasonable model degrees.
 - Plot residuals against `x`.
 - Check whether the model behaves sensibly near the ends of the data range.
@@ -131,6 +143,7 @@ Complete the [Week 3 exercises](week-03-exercises.qmd) after the lab.
 
 - [Slides](../slides/week-03.qmd)
 - Starter code: [week03_curve_fitting_validation.m](../code/matlab/week03_curve_fitting_validation.m)
+- Polynomial tools script: [week03_polynomial_tools.m](../code/matlab/week03_polynomial_tools.m)
 - Interpolation comparison: [week03_interpolation_vs_fit.m](../code/matlab/week03_interpolation_vs_fit.m)
 - AI critique script: [week03_ai_overfit_review.m](../code/matlab/week03_ai_overfit_review.m)
 - [Lab 3](../labs/lab-03-fitting-validation.qmd)

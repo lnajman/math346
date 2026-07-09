@@ -61,7 +61,37 @@ Compute the integral from `0` to `6` using:
 
 Which estimates are closest? Why?
 
-## Exercise 5: Build A Surface
+## Exercise 5: Solve A First-Order ODE
+
+For:
+
+```text
+y' = -y + sin(t),  y(0) = 1
+```
+
+Write MATLAB code that:
+
+1. defines the right-hand side with `f = @(t,y) ...`;
+2. solves on `[0, 10]` with `ode45`;
+3. plots `y` against `t`;
+4. checks that the first computed value matches the initial condition;
+5. reports the final value `y(end)`.
+
+Which parts of your code represent the differential equation, the time interval, and the initial condition?
+
+## Exercise 6: Local Optimization
+
+For:
+
+```matlab
+h = @(x) (x - 2).^2 + 0.5*sin(5*x);
+```
+
+Use `fplot` to inspect the function on `[0, 4]`, then use `fminbnd`.
+
+Explain why the result should be called a local minimum on the chosen interval, not automatically a global fact about the function.
+
+## Exercise 7: Build A Surface
 
 Create a surface plot for:
 
@@ -81,7 +111,7 @@ Your code should use:
 
 Then make a filled contour plot of the same surface.
 
-## Exercise 6: Critique Generated Code
+## Exercise 8: Critique Generated Code
 
 An LLM produced:
 

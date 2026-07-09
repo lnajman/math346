@@ -56,6 +56,27 @@ y = polyval(p, x);
 plot(x, y)
 ```
 
+## Polynomial Utility Tools
+
+```matlab
+r = [1 2 3];
+p = poly(r);
+roots(p)
+```
+
+`poly` moves from roots to coefficients. `roots` moves back.
+
+## Polynomial Factors
+
+```matlab
+factor1 = [1 -1];
+factor2 = [1 -2];
+p = conv(factor1, factor2);
+dp = polyder(p);
+```
+
+Coefficient vectors can be multiplied, divided, and differentiated.
+
 ## Meeting 1 Question
 
 When is a curve a model rather than just a drawing through points?
@@ -123,6 +144,15 @@ yq = interp1(x, y, xq, "linear");
 ```
 
 The query point should be inside the measured range unless extrapolation is intentional.
+
+## Interpolation Input Check
+
+```matlab
+assert(issorted(x))
+assert(all(xq >= min(x) & xq <= max(x)))
+```
+
+Interpolation has assumptions before it has an answer.
 
 ## Method Choice
 

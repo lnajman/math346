@@ -74,6 +74,42 @@ Piecewise functions are most fragile at thresholds.
 
 Test values exactly at and just around the threshold.
 
+## Logical Mask Pattern
+
+```matlab
+temperatures = [18 21 25 29 34 31 22];
+hot_mask = temperatures >= 30;
+hot_values = temperatures(hot_mask);
+```
+
+A mask is data about the data.
+
+## Logical Indexing Pattern
+
+```matlab
+adjusted = temperatures;
+adjusted(hot_mask) = 30;
+
+nnz(hot_mask)
+```
+
+Use logical indexing to select, count, or replace values.
+
+## Switch Pattern
+
+```matlab
+switch unit
+    case "C"
+        celsius = value;
+    case "F"
+        celsius = (value - 32) * 5/9;
+    otherwise
+        error("Unknown unit.")
+end
+```
+
+Use `switch` when the cases are named choices.
+
 ## Loop Question
 
 When should code repeat a computation one step at a time?

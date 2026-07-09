@@ -19,6 +19,9 @@ By the end of the week, students should be able to:
 - create and inspect row vectors, column vectors, and matrices;
 - explain what each array represents in a mathematical or data context;
 - use elementwise operations correctly;
+- distinguish matrix multiplication from elementwise multiplication;
+- solve a small linear system with `A\b`;
+- use `:`, transpose, `zeros`, `ones`, and `eye` when building or inspecting arrays;
 - write a script that runs from a clean workspace;
 - make a labeled 2D plot;
 - add simple numerical checks before trusting a plot;
@@ -34,10 +37,11 @@ Suggested 75-minute rhythm:
 |---:|---|
 | 0-10 min | Course framing: computation is not just syntax |
 | 10-25 min | Live coding: vectors, matrices, indexing, and dimensions |
-| 25-40 min | Script habit: move command-window work into a reproducible file |
-| 40-55 min | Plot sampled functions with labels and legends |
-| 55-68 min | Student modification: change domain, sample count, and plotted function |
-| 68-75 min | Exit ticket: what did `x`, `y`, and the plot represent? |
+| 25-37 min | Matrix operations: `*`, `.*`, transpose, and `A\b` |
+| 37-50 min | Script habit: move command-window work into a reproducible file |
+| 50-62 min | Plot sampled functions with labels and legends |
+| 62-72 min | Student modification: change domain, sample count, and plotted function |
+| 72-75 min | Exit ticket: what did `x`, `y`, and the plot represent? |
 
 ### Core MATLAB Patterns
 
@@ -51,6 +55,14 @@ plot(x, y)
 A = [1 2 3; 4 5 6];
 size(A)
 A(2, 3)
+A(:, 2)
+```
+
+```matlab
+A = [2 1; 1 3];
+b = [1; 2];
+x = A\b;
+residual = A*x - b;
 ```
 
 ## Meeting 2: Plots, Checks, And AI Critique
@@ -72,6 +84,9 @@ Suggested 75-minute rhythm:
 
 - Create row vectors, column vectors, and matrices.
 - Use indexing to inspect and modify data.
+- Use `:` to select rows or columns.
+- Decide when `A*B` and `A.*B` mean different things.
+- Solve `A*x = b` with `A\b` and check the residual.
 - Plot sampled functions and measured data.
 - Distinguish a command-window experiment from a reproducible script.
 - Use `size`, `length`, `max`, and simple identity checks to validate output.
@@ -99,13 +114,21 @@ These are the Week 1 MATLAB habits you should be able to recognize, test, and re
 | `close all` | Closes open figures before rerunning a script. |
 | `size(A)` | Reports the number of rows and columns. |
 | `length(x)` | Reports the length of a vector. |
+| `A(:,j)`, `A(i,:)` | Selects a column or row using the colon operator. |
+| `A'` | Transposes a vector or matrix. |
+| `zeros`, `ones`, `eye` | Creates common arrays with known structure. |
 | `linspace(a,b,n)` | Creates `n` evenly spaced values from `a` to `b`. |
+| `A*B` | Matrix multiplication when dimensions are compatible. |
+| `A.*B` | Elementwise multiplication for arrays of matching size. |
+| `A\b` | Solves the linear system `A*x = b` without forming `inv(A)`. |
 | `plot(x,y)` | Plots values of `y` against values of `x`. |
 | `xlabel`, `ylabel`, `title`, `legend` | Make a figure interpretable. |
 
 ### Mistakes To Catch
 
 - Using `^` when the computation needs `.^`.
+- Using `*` when the computation needs `.*`, or the reverse.
+- Solving `A*x = b` with `inv(A)*b` instead of `A\b`.
 - Plotting `plot(y1, y2)` when the intended plot is `plot(x, y1, x, y2)`.
 - Using too few sample points for a rapidly changing function.
 - Forgetting to label axes or include units.
@@ -116,6 +139,7 @@ These are the Week 1 MATLAB habits you should be able to recognize, test, and re
 
 - Run the script from a clean workspace.
 - Check `size` or `length` for important arrays.
+- For a linear system, check `norm(A*x - b)`.
 - Use a known value, identity, or simple case.
 - Ask whether the horizontal and vertical axes mean what the title claims.
 - Explain in one sentence what each array represents.
@@ -128,6 +152,7 @@ Complete the [Week 1 exercises](week-01-exercises.qmd) after the lab.
 
 - [Slides](../slides/week-01.qmd)
 - Starter code: [week01_arrays_plotting.m](../code/matlab/week01_arrays_plotting.m)
+- Matrix-systems script: [week01_matrix_systems.m](../code/matlab/week01_matrix_systems.m)
 - Measurement-data script: [week01_temperature_matrix.m](../code/matlab/week01_temperature_matrix.m)
 - AI critique script: [week01_ai_plot_review.m](../code/matlab/week01_ai_plot_review.m)
 - [Lab 1](../labs/lab-01-matlab-arrays.qmd)

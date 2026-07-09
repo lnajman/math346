@@ -10,7 +10,7 @@ MATLAB built-in numerical analysis and 3D plotting.
 
 When exact solutions are hard or impossible, how do we compute approximate answers responsibly?
 
-Students use root-finding, numerical integration, and 3D plotting as tools for understanding approximation.
+Students use root-finding, numerical integration, ODE solvers, and 3D plotting as tools for understanding approximation.
 
 ## Learning Goals
 
@@ -21,6 +21,8 @@ By the end of the week, students should be able to:
 - verify a computed root by evaluating the residual `f(root)`;
 - use a plot or bracket to look for multiple roots;
 - approximate definite integrals with `integral` and compare with `trapz` on sampled data;
+- solve a first-order initial-value problem with `ode45`;
+- identify the derivative function, time interval, and initial value in an ODE solve;
 - explain how grid size or sample spacing affects numerical approximation;
 - create 3D line, surface, and contour plots;
 - build a surface plot from `meshgrid` and elementwise formulas;
@@ -39,8 +41,9 @@ Suggested 75-minute rhythm:
 | 8-25 min | Live coding: plot a function before using `fzero` |
 | 25-42 min | Multiple roots: compare initial guesses and brackets |
 | 42-55 min | Numerical integration: `integral` versus `trapz` |
-| 55-68 min | Student task: report an answer with a residual check |
-| 68-75 min | Exit ticket: one check you would not skip |
+| 55-65 min | ODE mini-pattern: derivative, `tspan`, initial condition |
+| 65-72 min | Student task: report an answer with a residual or consistency check |
+| 72-75 min | Exit ticket: one check you would not skip |
 
 ### Core MATLAB Patterns
 
@@ -53,6 +56,11 @@ residual = f(root);
 ```matlab
 g = @(x) sin(x)./(1 + x.^2);
 area = integral(g, 0, 6);
+```
+
+```matlab
+f = @(t,y) -y + sin(t);
+[t, y] = ode45(f, [0 10], 1);
 ```
 
 The number is not the full answer. Students should report the method, the interval or initial guess, and a check.
@@ -79,6 +87,9 @@ Suggested 75-minute rhythm:
 - Substitute a computed root back into the function.
 - Look for more than one root when the plot suggests several crossings.
 - Compare integral estimates when the data are sampled at different spacings.
+- Identify `f`, `tspan`, and `y0` before using `ode45`.
+- Check that the first ODE output value matches the initial condition.
+- Recognize that stiff ODEs may require a solver such as `ode15s`.
 - Use elementwise operations when evaluating functions on vectors or grids.
 - Label axes and include a colorbar when a surface uses color to encode height.
 - Prefer a contour plot when the 3D view hides the shape of the function.
@@ -102,6 +113,10 @@ These are the Week 4 MATLAB habits you should be able to recognize, test, and re
 | `integral(g, a, b)` | Numerically approximates a definite integral of a function. |
 | `trapz(x, y)` | Approximates an integral from sampled data. |
 | `fminbnd(h, a, b)` | Finds a local minimum on an interval. |
+| `fplot(f, [a b])` | Plots a function handle over an interval without manually building a grid. |
+| `[t, y] = ode45(f, tspan, y0)` | Solves a nonstiff initial-value problem numerically. |
+| `f = @(t,y) ...` | Defines the ODE right-hand side `y' = f(t,y)`. |
+| `ode15s` | A solver to recognize when a problem appears stiff. |
 | `[X, Y] = meshgrid(x, y)` | Builds coordinate matrices for functions of two variables. |
 | `Z = f(X, Y)` | Evaluates a surface on a grid. |
 | `surf(X, Y, Z)` | Creates a surface plot. |
@@ -114,6 +129,10 @@ These are the Week 4 MATLAB habits you should be able to recognize, test, and re
 - Using an initial guess without plotting the function.
 - Confusing a local minimum with an absolute minimum.
 - Comparing `trapz` and `integral` without noticing different input assumptions.
+- Treating the output points requested from an ODE solver as the solver's internal step size.
+- Forgetting to check that the first ODE value matches the initial condition.
+- Using `ode45` on a stiff problem without noticing warning signs.
+- Calling the `fminbnd` result a global minimum without checking the interval and shape.
 - Using `^`, `*`, or `/` where grid calculations require `.^`, `.*`, or `./`.
 - Making a 3D plot that is attractive but unreadable.
 - Trusting an AI-generated number because it has many decimal places.
@@ -124,6 +143,7 @@ These are the Week 4 MATLAB habits you should be able to recognize, test, and re
 - Plot the function or surface before interpreting the result.
 - State the interval, bracket, initial guess, or grid used.
 - Compute a residual or comparison check.
+- For ODEs, state `y0`, check the initial value, and compare against a simple limiting case when possible.
 - Check whether there may be multiple answers.
 - Avoid overclaiming precision beyond the evidence.
 - Save a short note explaining what could make the numerical result unreliable.
@@ -136,7 +156,9 @@ Complete the [Week 4 exercises](week-04-exercises.qmd) after the lab.
 
 - [Slides](../slides/week-04.qmd)
 - Numerical checks: [week04_root_integration_checks.m](../code/matlab/week04_root_integration_checks.m)
+- ODE solver check: [week04_ode_solver_check.m](../code/matlab/week04_ode_solver_check.m)
 - Surface visualization: [week04_surface_contour_visualization.m](../code/matlab/week04_surface_contour_visualization.m)
 - AI critique script: [week04_ai_numeric_review.m](../code/matlab/week04_ai_numeric_review.m)
 - [Lab 4](../labs/lab-04-numerical-checks.qmd)
+- [ODE solver mini-lab](../labs/lab-04-ode-mini.qmd)
 - [AI numerical critique](../labs/lab-04-ai-numeric-review.qmd)

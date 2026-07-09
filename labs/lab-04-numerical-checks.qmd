@@ -61,7 +61,18 @@ Answer:
 - Which estimate is closest to `integral`?
 - Why does sample spacing matter?
 
-## Part D: Surface And Contour
+## Part D: ODE Solver Check
+
+Open [week04_ode_solver_check.m](../code/matlab/week04_ode_solver_check.m).
+
+Run the script and answer:
+
+1. What differential equation is being solved?
+2. What are `tspan` and `y0`?
+3. What does the initial-condition check verify?
+4. What changes when output times are requested explicitly?
+
+## Part E: Surface And Contour
 
 Open [week04_surface_contour_visualization.m](../code/matlab/week04_surface_contour_visualization.m).
 
@@ -72,7 +83,7 @@ Run the script and answer:
 - What does the surface plot show well?
 - What does the contour plot show more clearly?
 
-## Part E: Modify The Surface
+## Part F: Modify The Surface
 
 Change the plotted function to:
 
@@ -92,6 +103,7 @@ Submit a short note containing:
 
 - one root-finding result with residual;
 - one integration comparison;
+- one ODE solve with an initial-condition check;
 - one surface or contour plot;
 - one paragraph explaining how the checks changed your confidence.
 

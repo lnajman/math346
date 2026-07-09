@@ -1,0 +1,76 @@
+---
+title: "Lab 4 Mini: ODE Solver Checks"
+---
+
+## Goal
+
+Solve a first-order initial-value problem with `ode45` and record the checks that make the numerical solution credible.
+
+## Setup
+
+Work in your `week04` folder. Start from a clean workspace:
+
+```matlab
+clear; clc; close all;
+```
+
+## Part A: Run The Script
+
+Open [week04_ode_solver_check.m](../code/matlab/week04_ode_solver_check.m).
+
+Run the script and identify:
+
+1. the derivative function `f`;
+2. the time interval `tspan`;
+3. the initial value `y0`;
+4. the line that checks the initial condition.
+
+## Part B: Change The Initial Condition
+
+Change:
+
+```matlab
+y0 = 1;
+```
+
+to:
+
+```matlab
+y0 = 0;
+```
+
+Run the script again. Record:
+
+- the new first value of `y`;
+- the new final value of `y`;
+- whether the initial-condition check still passes.
+
+## Part C: Request Output Times
+
+The script includes a second solve with:
+
+```matlab
+t_requested = linspace(0, 10, 21);
+```
+
+Change the number of requested output times to `6`, then to `101`.
+
+Answer:
+
+- Does the plotted curve become easier to read?
+- Does requesting more output points prove that the solver used smaller internal steps?
+- Why should we be careful when interpreting the plotted markers?
+
+## Deliverable
+
+Submit a short note containing:
+
+- the ODE you solved;
+- the values of `tspan` and `y0`;
+- one plot;
+- the initial-condition check;
+- one sentence about what the requested output grid does and does not prove.
+
+## AI Use
+
+If you ask an LLM for ODE help, include the prompt and the check you used before trusting the generated code.

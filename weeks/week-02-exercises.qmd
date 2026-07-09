@@ -55,7 +55,30 @@ Write a function `ticket_price(age)` using this rule:
 
 Test boundary ages: `-1`, `0`, `5`, `6`, `17`, `18`, `64`, `65`.
 
-## Exercise 4: Write A For Loop
+## Exercise 4: Logical Indexing
+
+Let:
+
+```matlab
+temperatures = [18 21 25 29 34 31 22];
+```
+
+Write MATLAB code that:
+
+1. creates a logical mask for temperatures at least `30`;
+2. extracts the hot temperatures;
+3. counts the hot temperatures with `nnz`;
+4. creates a copy where every value above `30` is replaced by `30`.
+
+Explain why this does not need a loop.
+
+## Exercise 5: Switch
+
+Write a small `switch` block that converts a value to Celsius when `unit` is `"C"` or `"F"`.
+
+Include an `otherwise` case that raises an error for an unknown unit.
+
+## Exercise 6: Write A For Loop
 
 Write MATLAB code that:
 
@@ -67,7 +90,7 @@ Write MATLAB code that:
 
 Answer: which version is easier to read?
 
-## Exercise 5: Accumulator And While Loop
+## Exercise 7: Accumulator And While Loop
 
 Write MATLAB code that finds the smallest positive integer `n` such that:
 
@@ -83,7 +106,7 @@ Use:
 
 Report `n` and the final accumulated sum.
 
-## Exercise 6: Debug Generated Code
+## Exercise 8: Debug Generated Code
 
 An LLM produced:
 
@@ -95,7 +118,7 @@ end
 
 Find at least three issues or limitations. Write a corrected version and tests.
 
-## Exercise 7: Explain A Failure
+## Exercise 9: Explain A Failure
 
 Run:
 

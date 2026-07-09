@@ -73,6 +73,17 @@ The matrix stores time, temperature, and humidity measurements. Modify the scrip
 4. Find the maximum humidity.
 5. Add labels and a legend.
 
+## Part F: Matrix Operations And Systems
+
+Open [week01_matrix_systems.m](../code/matlab/week01_matrix_systems.m).
+
+Run the script, then answer:
+
+1. What is the difference between `B*C` and `B.*C`?
+2. What does `A\b` compute?
+3. Why is `norm(A*x - b)` a useful check?
+4. What row or column is selected by each colon expression in the script?
+
 ## Deliverable
 
 Submit one MATLAB script and a short note containing:
@@ -80,6 +91,7 @@ Submit one MATLAB script and a short note containing:
 - the final plot;
 - the value of `identity_error`;
 - one sentence explaining why elementwise operations were needed;
+- one sentence explaining how you checked a linear-system result;
 - one sentence explaining how you know the script is reproducible.
 
 ## Reflection
@@ -88,6 +100,7 @@ Answer in a short paragraph:
 
 - What did the array `x` represent?
 - Why did we use elementwise operations?
+- Why is `A\b` preferable to forming `inv(A)` when solving a system?
 - What validation check convinced you that the identity was computed correctly?
 - What mistake would be easiest to miss if you only looked at whether MATLAB produced a figure?
 
