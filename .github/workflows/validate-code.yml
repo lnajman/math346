@@ -1,0 +1,27 @@
+name: Validate course code
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  r:
+    name: R scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages(c("dplyr", "ggplot2"), repos = "https://cloud.r-project.org")'
+
+      - name: Validate R scripts
+        run: scripts/validate_course_code.sh --r-only
