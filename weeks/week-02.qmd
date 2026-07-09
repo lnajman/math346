@@ -19,6 +19,9 @@ By the end of the week, students should be able to:
 - read and write simple MATLAB functions with clear inputs and outputs;
 - distinguish scripts, local functions, and function files;
 - use `if`, `elseif`, `else`, and logical conditions for piecewise rules;
+- write `for` loops for repeated calculations;
+- use `while` loops with a clear stopping condition and a guard against infinite loops;
+- trace accumulator variables and preallocated arrays;
 - explain when a vectorized expression is better than a loop;
 - write tests for known values, boundary cases, and vector inputs;
 - recognize common bugs in AI-generated functions;
@@ -52,7 +55,7 @@ function y = quadratic_value(a, b, c, x)
 end
 ```
 
-## Meeting 2: Conditions, Debugging, And AI Review
+## Meeting 2: Conditions, Loops, Debugging, And AI Review
 
 **Question:** How do we know a generated function matches the intended rule?
 
@@ -61,16 +64,21 @@ Suggested 75-minute rhythm:
 | Time | Activity |
 |---:|---|
 | 0-10 min | Review: function input/output contracts |
-| 10-28 min | Live coding: piecewise rules with `if` and logical conditions |
-| 28-45 min | AI debugging activity: inspect plausible generated code |
-| 45-63 min | Lab work: repair function and add tests |
-| 63-72 min | Pair discussion: what bug did a test reveal? |
-| 72-75 min | Exit ticket: a boundary case students now check |
+| 10-24 min | Live coding: piecewise rules with `if` and logical conditions |
+| 24-40 min | Loop patterns: `for`, accumulators, and preallocation |
+| 40-52 min | `while` loops: stopping conditions and iteration guards |
+| 52-64 min | AI debugging activity: inspect plausible generated code |
+| 64-72 min | Lab work: repair code and add tests |
+| 72-75 min | Exit ticket: a loop or boundary case students now check |
 
 ## In-Class Checks
 
 - Define function inputs and outputs.
 - Use relational and logical operators.
+- Use `for` loops when the number of repetitions is known.
+- Use `while` loops when repetition depends on a condition.
+- Initialize accumulator variables before a loop.
+- Preallocate arrays before filling them in a loop.
 - Write short tests for known values.
 - Debug common mistakes in generated or student-written code.
 - Check scalar input, vector input, and boundary values.
@@ -90,6 +98,11 @@ These are the Week 2 MATLAB habits you should be able to recognize, test, and re
 |---|---|
 | `function out = name(in)` | Defines a function contract: inputs in, outputs out. |
 | `if`, `elseif`, `else`, `end` | Selects code based on conditions. |
+| `for k = 1:n` | Repeats code a known number of times. |
+| `while condition` | Repeats code until a condition becomes false. |
+| `total = total + value` | Updates an accumulator variable. |
+| `values = zeros(1, n)` | Preallocates space before filling an array. |
+| `numel(x)` | Counts elements in an array. |
 | `&&`, `||`, `~` | Scalar logical AND, OR, and NOT. |
 | `&`, `|` | Elementwise logical AND and OR for arrays. |
 | `assert(condition)` | Stops execution if a test fails. |
@@ -103,6 +116,11 @@ These are the Week 2 MATLAB habits you should be able to recognize, test, and re
 - Forgetting boundary cases such as `0`, negative values, or threshold values.
 - Returning an output variable that was never assigned.
 - Using scalar `if` logic on a vector without thinking about dimensions.
+- Starting a loop at the wrong index.
+- Forgetting to initialize or update an accumulator.
+- Writing a `while` loop with no reliable stopping condition.
+- Growing an array inside a loop when it could be preallocated.
+- Using a loop when a short vectorized expression would be clearer.
 - Trusting code because it works once in the Command Window.
 
 ### Checks Before Trusting A Function
@@ -111,6 +129,8 @@ These are the Week 2 MATLAB habits you should be able to recognize, test, and re
 - Test at least one value where the answer is known by hand.
 - Test a boundary value.
 - Test a vector input if the function claims to support vectors.
+- For loops, test the first iteration, last iteration, and an empty or tiny input when relevant.
+- For `while` loops, state the stopping condition and a maximum number of iterations.
 - Decide what invalid input should do.
 - Run the script from a clean workspace.
 
@@ -123,6 +143,7 @@ Complete the [Week 2 exercises](week-02-exercises.qmd) after the lab.
 - [Slides](../slides/week-02.qmd)
 - Starter code: [week02_function_tests.m](../code/matlab/week02_function_tests.m)
 - Piecewise function script: [week02_piecewise_validation.m](../code/matlab/week02_piecewise_validation.m)
+- Loop patterns script: [week02_loop_patterns.m](../code/matlab/week02_loop_patterns.m)
 - AI debugging script: [week02_ai_function_review.m](../code/matlab/week02_ai_function_review.m)
 - [Lab 2](../labs/lab-02-matlab-functions.qmd)
 - [AI debugging activity](../labs/lab-02-ai-debugging.qmd)

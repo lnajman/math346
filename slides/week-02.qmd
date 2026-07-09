@@ -14,7 +14,7 @@ How do we turn a formula into reusable, testable code?
 ## Week 2 Plan
 
 - Meeting 1: formulas, functions, and tests
-- Meeting 2: conditions, boundary cases, and AI debugging
+- Meeting 2: conditions, loops, boundary cases, and AI debugging
 
 ## From Formula To Function
 
@@ -74,6 +74,85 @@ Piecewise functions are most fragile at thresholds.
 
 Test values exactly at and just around the threshold.
 
+## Loop Question
+
+When should code repeat a computation one step at a time?
+
+## For Loop Pattern
+
+```matlab
+values = [2 4 6 8];
+squares = zeros(size(values));
+
+for k = 1:numel(values)
+    squares(k) = values(k)^2;
+end
+```
+
+Use a `for` loop when the number of repetitions is known.
+
+## Accumulator Pattern
+
+```matlab
+total = 0;
+
+for k = 1:numel(values)
+    total = total + values(k);
+end
+```
+
+An accumulator must be initialized before the loop.
+
+## While Loop Pattern
+
+```matlab
+total = 0;
+n = 0;
+
+while total < 100
+    n = n + 1;
+    total = total + n^2;
+end
+```
+
+Use a `while` loop when repetition depends on a condition.
+
+## While Loop Guard
+
+```matlab
+max_steps = 1000;
+
+while total < 100 && n < max_steps
+    n = n + 1;
+    total = total + n^2;
+end
+```
+
+A generated `while` loop without a guard deserves suspicion.
+
+## Loop Or Vectorize?
+
+```matlab
+squares_loop = zeros(size(values));
+for k = 1:numel(values)
+    squares_loop(k) = values(k)^2;
+end
+
+squares_vector = values.^2;
+```
+
+In MATLAB, the vectorized version is often clearer.
+
+## Loop Debugging Habit
+
+Check:
+
+- first iteration;
+- last iteration;
+- accumulator initialization;
+- stopping condition;
+- array size.
+
 ## Debugging Habit
 
 Before trusting a function, test:
@@ -81,6 +160,7 @@ Before trusting a function, test:
 - scalar input;
 - vector input;
 - boundary cases;
+- loop edge cases;
 - impossible or unexpected input.
 
 ## Plausible But Weak Code
@@ -96,6 +176,7 @@ end
 - Does it use `pi`?
 - Does it support vector input?
 - What happens for negative radius?
+- Is a loop needed?
 - Which tests would reveal the problem?
 
 ## Survival Rule

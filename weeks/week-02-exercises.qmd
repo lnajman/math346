@@ -2,7 +2,7 @@
 title: "Week 2 Exercises"
 ---
 
-These exercises practice functions, conditions, and tests. Use AI only after you have written a first attempt yourself.
+These exercises practice functions, conditions, loops, and tests. Use AI only after you have written a first attempt yourself.
 
 ## Exercise 1: Read A Function
 
@@ -55,7 +55,35 @@ Write a function `ticket_price(age)` using this rule:
 
 Test boundary ages: `-1`, `0`, `5`, `6`, `17`, `18`, `64`, `65`.
 
-## Exercise 4: Debug Generated Code
+## Exercise 4: Write A For Loop
+
+Write MATLAB code that:
+
+1. Creates `values = [1 2 3 4 5]`.
+2. Preallocates an array called `squares`.
+3. Uses a `for` loop to fill `squares` with the square of each value.
+4. Checks the result with `assert`.
+5. Writes the equivalent vectorized expression.
+
+Answer: which version is easier to read?
+
+## Exercise 5: Accumulator And While Loop
+
+Write MATLAB code that finds the smallest positive integer `n` such that:
+
+```text
+1^2 + 2^2 + ... + n^2 >= 500
+```
+
+Use:
+
+- an accumulator variable;
+- a `while` loop;
+- a maximum-iteration guard.
+
+Report `n` and the final accumulated sum.
+
+## Exercise 6: Debug Generated Code
 
 An LLM produced:
 
@@ -67,7 +95,7 @@ end
 
 Find at least three issues or limitations. Write a corrected version and tests.
 
-## Exercise 5: Explain A Failure
+## Exercise 7: Explain A Failure
 
 Run:
 
@@ -83,4 +111,3 @@ Explain the error in words. Then fix it.
 Write 3-5 sentences answering:
 
 > What makes a function trustworthy enough to reuse?
-

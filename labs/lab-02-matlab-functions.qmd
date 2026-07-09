@@ -55,6 +55,22 @@ Decide what your function should do for:
 
 Write a short note explaining which cases your implementation supports and why.
 
+## Part E: Loop Patterns
+
+Open [week02_loop_patterns.m](../code/matlab/week02_loop_patterns.m).
+
+Run the script and answer:
+
+- Which section uses a `for` loop?
+- Which section uses an accumulator?
+- Which section uses a `while` loop?
+- What guard prevents the `while` loop from running forever?
+- Which computation is clearer when written in vectorized MATLAB?
+
+Modify the script so that the `while` loop stops when the accumulated sum is at least `500` instead of `100`.
+
+Record the final value of `n` and the final accumulated sum.
+
 ## Deliverable
 
 Submit one MATLAB script containing:
@@ -62,6 +78,7 @@ Submit one MATLAB script containing:
 - at least one function;
 - at least five tests;
 - one boundary-case test;
+- one loop or one vectorized replacement with an explanation;
 - one vector-input test or a written explanation of why vector input is not supported.
 
 ## Reflection
@@ -79,4 +96,3 @@ If you ask an LLM for a function, include:
 - the prompt;
 - the generated code;
 - at least two tests that caught or could have caught a mistake.
-
