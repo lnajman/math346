@@ -37,7 +37,7 @@ By the end of the course, students should be able to:
 | Assessment | Weight | Notes |
 |---|---:|---|
 | Quizzes | 20% | Four quizzes; lowest quiz dropped |
-| Projects | 20% | Two projects, 10% each |
+| Projects | 20% | MATLAB Project 1 and R Project 2, 10% each |
 | Semester examination | 25% | Around Week 8 |
 | Final examination | 35% | Cumulative |
 
@@ -63,8 +63,14 @@ By the end of the course, students should be able to:
 
 ## Project Structure
 
-**Project 1:** Exploratory data analysis, due around Week 9.  
-**Project 2:** Modeling and complete data science report, due around Week 15.
+**Project 1:** MATLAB numerical investigation using a group-specific synthetic
+building-energy dataset. The exact due date is being aligned with the end of the
+MATLAB block.
 
-Project requirements scale with group size. All projects must use appropriate software, cite data sources, and include a responsible AI-use appendix.
+**Project 2:** R data analysis, modeling, and validation using richer training
+data and a withheld validation file, due around Week 15.
 
+Students submit a PDF report together with executable source code and required
+machine-readable results. They are not required to find or collect a dataset,
+write Quarto, or write HTML. All synthetic data must be identified as synthetic,
+and every project includes a responsible AI-use appendix.

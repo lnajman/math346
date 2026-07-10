@@ -1,37 +1,162 @@
 ---
-title: "Project 1: Exploratory Data Analysis"
+title: "Project 1: MATLAB Numerical Investigation"
+description: "Use MATLAB to explore, fit, check, and communicate a group-specific building-energy dataset."
 ---
+
+::: {.callout-note}
+## Submission format
+
+Submit a **PDF report**, MATLAB source files, and the required results CSV. No
+Quarto or HTML document is required.
+:::
 
 ## Purpose
 
-Project 1 asks you to perform an exploratory data analysis on a dataset chosen by your group.
+Project 1 brings together the MATLAB portion of the course. Each team analyzes
+data for a different synthetic building and investigates the relationship
+between outdoor temperature and daily heating-energy consumption.
 
-The goal is not to prove a final claim. The goal is to understand the data, discover patterns, notice limitations, and communicate what should be investigated next.
+The problem is realistic, but the data are generated for this course. Different
+teams will obtain different coefficients, prediction errors, and conclusions.
 
-## Required Elements
+## Files Provided
 
-Your report must include:
+Each team receives files following this pattern:
 
-1. Dataset source and description.
-2. Data import and cleaning steps.
-3. Identification of key variables and variable types.
-4. At least two exploratory questions per group member.
-5. Visualizations that address those questions.
-6. A short data-quality section.
-7. A conclusion describing what you learned and what remains uncertain.
-8. An AI-use appendix.
+```text
+group-01-matlab-data.csv
+project1-starter.m
+model_rmse_starter.m
+project1-report-template.docx
+data-dictionary.pdf
+```
 
-## Validation Checklist
+The starter files contain the required structure, comments, filenames, and
+partially completed code. Students complete specified sections rather than
+starting from an empty program.
 
-- Can the report be rerun from the submitted files?
-- Are missing values handled explicitly?
-- Are plots labeled clearly?
-- Are conclusions supported by the plots or summaries?
-- Is any AI assistance documented?
+## Required MATLAB Work
 
-## AI-Use Appendix Template
+### 1. Import and inspect the data
 
-| Tool | Prompt or task | Used result? | Student check |
-|---|---|---|---|
-|  |  |  |  |
+- Import the assigned CSV file.
+- Identify the number of rows and variables.
+- Check ranges, missing values, and unexpected values.
+- Use logical indexing to examine colder days, warmer days, or another assigned
+  condition.
 
+### 2. Write and test a function
+
+Complete a small MATLAB function that calculates a required quantity, such as
+root-mean-square error. Test the function on a simple example whose answer can
+be checked by hand, and confirm that it works on vector input.
+
+### 3. Visualize the relationship
+
+Create clearly labeled figures showing:
+
+- heating energy over time or observation order;
+- heating energy against outdoor temperature;
+- residuals from a fitted relationship.
+
+Use titles, axis labels with units, legends when necessary, and readable plot
+styles.
+
+### 4. Fit and compare models
+
+Fit at least two simple curves using the methods taught in the MATLAB block.
+For example, compare a linear fit with a quadratic fit.
+
+For each fit:
+
+- report the coefficients;
+- calculate fitted values and residuals;
+- calculate an error measure;
+- identify unusual observations;
+- explain whether additional complexity materially improves the result.
+
+### 5. Make and check a prediction
+
+Use the selected fit to calculate a prediction at an assigned temperature.
+Check that the temperature lies within a defensible range and explain why
+extrapolation may be unsafe.
+
+### 6. Perform a numerical sensitivity check
+
+Repeat one calculation after a specified change, such as removing the most
+unusual observation or restricting the data to a temperature range. State
+whether the main conclusion survives.
+
+## Required Submission
+
+Use the exact group identifier in each filename:
+
+```text
+group-01-project-1.pdf
+group-01-project1.m
+group-01-model-rmse.m
+group-01-project1-results.csv
+```
+
+The MATLAB script must run from beginning to end using the assigned dataset. It
+must generate the figures and results reported in the PDF.
+
+## PDF Report
+
+The report is prepared using the supplied Word or Google Docs template and then
+exported as PDF. It should normally contain:
+
+1. problem and assigned building;
+2. data checks;
+3. principal figures;
+4. fitted models and residual analysis;
+5. prediction and sensitivity check;
+6. conclusion and limitations;
+7. AI-use appendix.
+
+The report should emphasize results and interpretation. Long blocks of MATLAB
+code belong in the submitted `.m` files, not in the PDF.
+
+## Machine-Readable Results
+
+The starter script generates `group-01-project1-results.csv`. The file records
+the quantities required for automated checking, such as:
+
+- number of usable observations;
+- selected summary statistics;
+- fitted coefficients;
+- model error measures;
+- assigned prediction;
+- result of the sensitivity check.
+
+Students must generate this file from MATLAB code rather than typing its values
+manually.
+
+## Individual Verification
+
+A proposed short in-class task will ask each student to make one change to the
+frozen group analysis, rerun the MATLAB code, and explain the effect. Examples
+include removing an observation, changing the prediction temperature, or
+recalculating an error measure.
+
+The exact format and weight of this component remain under review.
+
+## Draft Grading Structure
+
+| Criterion | Weight |
+|---|---:|
+| Correct MATLAB code and required function | 25% |
+| Figures, fitting, residuals, and numerical checks | 25% |
+| Reproducibility and agreement with results CSV | 15% |
+| PDF interpretation and communication | 15% |
+| Individual verification | 20% |
+
+## Final Checklist
+
+- Does the main script run without manual intervention?
+- Does the function work on vectors and pass the simple test?
+- Are figures labeled with meaningful units?
+- Are residuals and model errors calculated correctly?
+- Is the prediction an interpolation rather than unjustified extrapolation?
+- Does the PDF agree with the MATLAB output and results CSV?
+- Is material AI assistance documented and checked?

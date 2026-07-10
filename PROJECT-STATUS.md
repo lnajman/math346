@@ -18,8 +18,9 @@ describe pedagogical progress.
 ## Current Phase
 
 The developed Weeks 1-4 prototype has been sent to colleagues for feedback and
-is now considered validated as the model for the course. The project is moving
-from prototype validation to assessment design.
+is now considered validated as the model for the course. The active work is
+implementing the agreed project architecture and preparing synthetic datasets,
+starter files, and checkers.
 
 Weeks 5-15 remain outlines. They should not yet be described as complete course
 materials.
@@ -48,6 +49,12 @@ materials.
 - The anticipated enrollment is about 60 students.
 - Individual oral project defenses are not operationally reasonable at that
   enrollment.
+- Project 1 uses MATLAB and Project 2 uses R.
+- Students receive instructor-generated, group-specific synthetic data based on
+  a realistic building-energy problem.
+- Students are not required to find or collect datasets.
+- The readable report is a PDF. Students also submit executable source code and
+  machine-readable results; Quarto and HTML are not required.
 
 ## Open Decisions
 
@@ -55,14 +62,16 @@ These ideas have been discussed but are **not yet approved course policy**:
 
 1. The number, timing, and exact format of the quizzes.
 2. The balance of code reading, implementation, and validation in the midterm.
-3. Whether the two projects should be separate projects or two phases of one
-   longitudinal investigation.
-4. How projects should require work that an LLM cannot complete alone while
-   remaining manageable for 60 students.
-5. Whether short individual, project-linked verification tasks should replace
+3. The exact due date for the MATLAB project and its relationship to the quiz
+   schedule.
+4. Whether short individual, project-linked verification tasks should replace
    oral defenses.
-6. The division of a project grade between the group artifact, documented
+5. The division of a project grade between the group artifact, documented
    process, and individual verification.
+
+A detailed implementation draft is available in `projects/`. The agreed core
+architecture has not yet been incorporated into the syllabus because dates and
+individual-assessment weights remain open.
 
 ## Evidence Map
 
@@ -76,18 +85,23 @@ These ideas have been discussed but are **not yet approved course policy**:
 | Week 5 | week and slide pages | Outline |
 | Weeks 6-12 | week and slide pages; limited R lab/code | Outline/early scaffold |
 | Weeks 13-15 | week and slide pages | Outline |
-| Projects | `projects/` | Initial draft; redesign open |
+| Projects | `projects/` | Core architecture agreed; data and starter implementation pending |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
 
 ## Next Actions
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Decide the assessment architecture in this order: quizzes, midterm, then
-   scalable project verification.
-3. Update the syllabus and project pages only after those decisions are made.
-4. Expand Week 5 and then the R sequence using the validated Weeks 1-4 pattern.
-5. Update both this record and `instructor-progress.qmd` after each decision or
+2. Generate and quality-check the 20 synthetic building datasets and withheld
+   validation files.
+3. Build scaffolded MATLAB and R starter scripts, fixed result schemas, and
+   batch checkers.
+4. Create the Word/Google Docs report template used to export PDF.
+5. Decide the project dates, individual verification format, and grade weights.
+6. Decide the remaining quiz and midterm architecture.
+7. Update the syllabus after the remaining assessment decisions are approved.
+8. Expand Week 5 and then the R sequence using the validated Weeks 1-4 pattern.
+9. Update both this record and `instructor-progress.qmd` after each decision or
    major milestone.
 
 ## Update Protocol
@@ -110,3 +124,8 @@ milestone:
 - **2026-07-10:** Weeks 1-4 recorded as validated; assessment design identified
   as the active phase; 60-student scalability and the impracticality of oral
   defenses recorded as constraints.
+- **2026-07-10:** A detailed two-stage project design, student templates, and
+  instructor implementation workflow were drafted for review.
+- **2026-07-10:** Project 1 was confirmed as MATLAB and Project 2 as R. The
+  synthetic building-energy scenario, group-specific datasets, and PDF plus
+  source-code submission format were approved as the core architecture.

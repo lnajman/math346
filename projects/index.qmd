@@ -1,33 +1,89 @@
 ---
 title: "Projects"
+description: "Two scaffolded projects using MATLAB first and R second."
 ---
 
-There are two group projects. Group size may be 1, 2, or 3 students, with expectations scaled by group size.
+::: {.callout-note}
+## Agreed project architecture
 
-| Project | Due | Focus | Weight |
+Project 1 is completed in **MATLAB**. Project 2 is completed in **R**. Students
+submit a PDF report together with executable source code and machine-readable
+results. Exact dates, rubrics, and verification details remain under review.
+:::
+
+## A Two-Language Project Sequence
+
+The projects follow the progression of the course:
+
+1. [Project 1](project-1-eda.qmd) uses MATLAB for numerical exploration, curve
+   fitting, residual analysis, and validation.
+2. [Project 2](project-2-modeling.qmd) uses R for data transformation,
+   visualization, statistical modeling, and validation on previously unseen
+   data.
+
+The common real-world problem is building-energy management:
+
+> How can temperature and operating conditions help explain and predict the
+> daily heating-energy consumption of a building?
+
+The data are **synthetic but realistic**. They represent a genuine facilities-
+management problem but are not actual campus measurements.
+
+## What Students Receive
+
+Each team receives data for a different synthetic building. All teams use the
+same variable definitions and comparable tasks, but the numerical relationships
+and conclusions differ by group.
+
+The instructor provides:
+
+- a group-specific CSV dataset;
+- a data dictionary and problem description;
+- a scaffolded MATLAB or R script;
+- a report template for Word or Google Docs;
+- required output names and examples;
+- a later validation dataset for Project 2.
+
+Students are **not** expected to find a dataset, collect measurements, create a
+Quarto document, or write HTML.
+
+## What Students Submit
+
+| Project | Main software | Required files | Course weight |
 |---|---|---|---:|
-| [Project 1](project-1-eda.qmd) | Week 9 | Exploratory data analysis | 10% |
-| [Project 2](project-2-modeling.qmd) | Week 15 | Modeling and communication | 10% |
+| [Project 1: MATLAB Numerical Investigation](project-1-eda.qmd) | MATLAB | PDF report, `.m` files, `project1-results.csv` | 10% |
+| [Project 2: R Modeling and Validation](project-2-modeling.qmd) | R | PDF report, `.R` file, results and validation-prediction CSV files | 10% |
 
-## Shared Requirements
+The PDF is the readable report. The source code and CSV outputs make the work
+reproducible and allow numerical checking across all groups.
 
-Every project must include:
+## Teams and Individual Understanding
 
-- a clear question;
-- a description and citation of the dataset;
-- reproducible code;
-- labeled figures and tables;
-- interpretation in context;
-- validation checks;
-- an AI-use appendix.
+Teams normally contain three students, giving approximately 20 submissions in
+a class of 60. Group members may collaborate on the take-home analysis and may
+use documented AI assistance.
 
-## Suggested Rubric
+The design also includes a short individual task based on the group's frozen
+submission. The exact timing and grade weight of that task are still being
+reviewed.
 
-| Criterion | Weight |
-|---|---:|
-| Problem formulation and data understanding | 20% |
-| Computational correctness | 25% |
-| Validation, diagnostics, and reproducibility | 25% |
-| Communication and visualization quality | 20% |
-| Responsible AI-use appendix | 10% |
+## How the Work Is Checked
 
+The common file structure permits two complementary checks:
+
+1. **Automated check:** rerun the MATLAB or R code and independently verify row
+   counts, summaries, coefficients, prediction errors, and saved results.
+2. **Report review:** inspect the PDF for appropriate figures, correct
+   interpretation, honest limitations, and agreement between the prose and the
+   computation.
+
+The instructor retains final responsibility for qualitative judgments and
+grades.
+
+## Resources
+
+- [Project submission templates](project-templates.qmd)
+- [Project 1: MATLAB Numerical Investigation](project-1-eda.qmd)
+- [Project 2: R Modeling and Validation](project-2-modeling.qmd)
+- [Instructor implementation notes](instructor-implementation.qmd)
+- [Responsible AI policy](../syllabus/ai-policy.qmd)

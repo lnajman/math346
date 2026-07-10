@@ -1,0 +1,131 @@
+---
+title: "Instructor Project Implementation"
+description: "Synthetic-data release, submission, and checking workflow for approximately 60 students."
+---
+
+## Operating Assumptions
+
+- Approximately 60 students form about 20 teams of three.
+- Project 1 uses MATLAB; Project 2 uses R.
+- Students receive instructor-generated data rather than finding or collecting
+  data themselves.
+- Each group receives a distinct synthetic building dataset with a common
+  schema and comparable difficulty.
+- The readable deliverable is PDF; executable source and results CSV files are
+  submitted separately.
+- Quarto and HTML are not required.
+
+## Synthetic Building-Energy Data
+
+The scenario is a real facilities-management problem represented by simulated
+data. The student-facing materials must state clearly that the observations are
+synthetic.
+
+Each group represents a different building with its own simulated base load,
+temperature sensitivity, operating effects, noise level, and unusual
+observations. All datasets share variable names and units.
+
+The private instructor package should contain:
+
+```text
+generator/
+  generate-project-data.R
+  simulation-manifest.csv
+release-project-1/
+  group-01-matlab-data.csv
+  ...
+release-project-2-training/
+  group-01-r-training.csv
+  ...
+release-project-2-validation/
+  group-01-r-validation.csv
+  ...
+```
+
+The generator, manifest, and validation files must remain outside the public
+repository until their scheduled LMS release.
+
+## Starter Materials
+
+Every team receives the same scaffolded structure with filenames adjusted for
+its group identifier.
+
+For Project 1:
+
+- partially completed main MATLAB script;
+- a small function starter and function test;
+- PDF/Word report template;
+- common data dictionary;
+- assigned data file.
+
+For Project 2:
+
+- partially completed R script;
+- PDF/Word report template;
+- common data dictionary;
+- training file;
+- later validation file.
+
+## Submission Intake
+
+Require fixed filenames and one ZIP file per team. A first-pass checker should
+report missing files, unexpected filenames, unreadable PDFs, and CSV schema
+errors before grading begins.
+
+## Automated Checking
+
+### Project 1
+
+Run every main MATLAB script in batch mode using its assigned dataset. Check:
+
+- successful execution;
+- required function behavior, including vector input;
+- required figures or saved outputs;
+- row counts and selected summaries;
+- fitted coefficients and residual error;
+- assigned prediction and sensitivity result;
+- agreement with `project1-results.csv`.
+
+### Project 2
+
+Run every R script using its assigned training and validation files. Check:
+
+- successful execution;
+- row counts after cleaning;
+- model formula and selected coefficients;
+- baseline, training, and validation error metrics;
+- one prediction per validation observation;
+- agreement between predictions and the results CSV;
+- sensitivity result.
+
+The checker should produce one instructor table with a row per group and columns
+for reproducibility, numerical discrepancies, warnings, and items needing human
+review.
+
+## PDF Review
+
+Automated checks do not determine the whole grade. Review each PDF for:
+
+- appropriate and readable figures;
+- agreement between numbers, figures, and prose;
+- correct mathematical or statistical interpretation;
+- unsupported causal or extrapolative claims;
+- meaningful limitations;
+- quality of the AI-use appendix.
+
+The instructor retains final responsibility for qualitative scores and grades.
+
+## Individual Verification
+
+The proposed verification task uses the frozen group submission. Students make
+one small code change, rerun the analysis, and explain the result without
+generative AI or messaging. Different variants can be assigned within a group.
+
+The exact duration, scheduling, and weight remain to be decided.
+
+## Privacy and Repository Policy
+
+- Use group identifiers rather than student names in data and checker outputs.
+- Keep student submissions, grades, validation releases, generator parameters,
+  and answer keys out of the public repository.
+- Publish only student instructions, starter examples, and non-secret schemas.

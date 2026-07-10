@@ -24,11 +24,15 @@ How do we turn a messy file into data ready for analysis?
 - Are missing values encoded consistently?
 - Is one row one observation?
 
-## Project 1
+## From MATLAB Data to R Data
 
-Project 1 is due this week. Your report should show data import, EDA, visual evidence, and validation.
+The same habits used in the MATLAB project still matter:
+
+- know what one row represents;
+- check types, units, and missing values;
+- generate results through code;
+- verify before interpreting.
 
 ## AI Check
 
 Ask for a tidy structure, then decide whether the proposed structure matches the scientific meaning of the data.
-

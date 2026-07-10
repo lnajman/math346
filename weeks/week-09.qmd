@@ -4,7 +4,7 @@ title: "Week 9: Import, Tibbles, and Tidy Data"
 
 ## Official Topic
 
-Tibbles, data import, and tidy data. Quiz 3. Project 1 due.
+Tibbles, data import, and tidy data. Quiz 3.
 
 ## Problem Focus
 
@@ -26,5 +26,3 @@ Ask an LLM to propose a tidy-data structure for a messy table. Then check whethe
 ## Materials
 
 - [Slides](../slides/week-09.qmd)
-- [Project 1](../projects/project-1-eda.qmd)
-
