@@ -36,6 +36,7 @@ This course uses MATLAB and R, with generative AI treated as a professional assi
 ## Start Here
 
 - Colleagues reviewing the prototype can start with the [instructor preview](instructor-preview.qmd).
+- Follow the redesign through the [instructor progress page](instructor-progress.qmd).
 - Read the [syllabus](syllabus/index.qmd).
 - Read the [AI use policy](syllabus/ai-policy.qmd).
 - Follow the [weekly materials](weeks/index.qmd).

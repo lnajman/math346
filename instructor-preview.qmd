@@ -3,6 +3,11 @@ title: "Instructor Preview"
 description: "A short guide for colleagues reviewing the MATH 346 redesign prototype."
 ---
 
+::: {.callout-tip}
+For the current development state, decisions, and next milestone, see the
+[instructor progress page](instructor-progress.qmd).
+:::
+
 ## Why This Prototype Exists
 
 I am preparing to teach MATH 346, and I do not think that teaching the course exactly as it was taught before is the right approach in the LLM era.
@@ -26,11 +31,14 @@ Weeks 1-4 are the most developed parts of the prototype. They show the intended 
 | [Week 3](weeks/week-03.qmd) | Curve fitting, interpolation, and residual checks | Look at the model validation and overfitting critique. |
 | [Week 4](weeks/week-04.qmd) | Numerical methods and 3D plotting | Look at the numerical checks, surface plots, and AI answer review. |
 
-Weeks 5-15 are still more schematic. They show the intended arc of the course, but they are not yet expanded to the same level as Weeks 1-4.
+Weeks 1-4 have now been validated as the prototype pattern for the course.
+Weeks 5-15 are still more schematic. They show the intended arc of the course,
+but they are not yet expanded to the same level as Weeks 1-4.
 
 ## Useful Direct Links
 
 - [Syllabus](syllabus/index.qmd)
+- [Development progress](instructor-progress.qmd)
 - [AI use policy](syllabus/ai-policy.qmd)
 - [Weekly materials](weeks/index.qmd)
 - [Slides index](slides/index.qmd)

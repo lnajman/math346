@@ -28,6 +28,8 @@ website:
         text: Home
       - href: instructor-preview.qmd
         text: Preview
+      - href: instructor-progress.qmd
+        text: Progress
       - href: syllabus/index.qmd
         text: Syllabus
       - href: weeks/index.qmd
@@ -48,6 +50,7 @@ website:
       contents:
         - index.qmd
         - instructor-preview.qmd
+        - instructor-progress.qmd
         - syllabus/index.qmd
         - syllabus/ai-policy.qmd
         - weeks/index.qmd

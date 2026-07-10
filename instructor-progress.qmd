@@ -1,0 +1,88 @@
+---
+title: "Instructor Progress"
+description: "A concise, shareable status report for the MATH 346 redesign."
+---
+
+::: {.callout-note}
+## Current phase
+
+**Prototype validated; assessment design in progress.**
+
+Last updated: **10 July 2026**
+:::
+
+This page tracks the redesign at the level of decisions and teaching materials.
+It complements the [instructor preview](instructor-preview.qmd), which explains
+the motivation and the kind of feedback being requested.
+
+## Status at a Glance
+
+| Workstream | Status | Evidence | Next step |
+|---|---|---|---|
+| Course framing and AI policy | Developed | [Syllabus](syllabus/index.qmd) and [AI policy](syllabus/ai-policy.qmd) | Revise after assessment decisions |
+| Colleague feedback | Requested | [Instructor preview](instructor-preview.qmd) shared for review | Record and synthesize responses |
+| Weeks 1-4: MATLAB prototype | **Validated prototype** | Week pages, slides, labs, exercises, and checked MATLAB code | Use as the pattern for later weeks |
+| Week 5: symbolic mathematics | Outline | Week and slide outlines | Expand after assessment design |
+| Weeks 6-12: R and data workflow | Outline/early scaffold | Week and slide outlines; limited R lab and starter code | Build the R teaching sequence |
+| Weeks 13-15: modeling and synthesis | Outline | Week and slide outlines | Expand after the R foundations |
+| Quizzes and midterm | **Active design** | Assessment weights exist in the syllabus | Decide format, timing, and validation tasks |
+| Projects | **Active design** | Two initial project briefs | Redesign for authentic work at a scale of 60 students |
+| Executable code checks | Implemented | Local scripts and GitHub Actions | Extend checks as new code is added |
+
+“Validated prototype” means that Weeks 1-4 are sufficiently developed and
+reviewed to serve as the model for the remaining course. It does not mean that
+they can never be revised.
+
+## What Has Been Established
+
+- The course remains a mathematical and statistical software course using
+  MATLAB and R.
+- LLM use is treated as a normal part of the environment, with an emphasis on
+  verification rather than trust.
+- Students must be able to explain, test, and interpret computational results.
+- Weeks 1-4 demonstrate the intended weekly pattern and have been validated as
+  the prototype.
+- The course is expected to have about 60 students, so individual oral project
+  defenses are not a practical default.
+
+## Current Design Questions
+
+The current work is not further expansion of the weekly content. It is to make
+the assessment system coherent before that expansion continues:
+
+1. What should the quizzes measure, and how should they prepare students for
+   the midterm?
+2. How should the midterm combine code reading, implementation, and validation?
+3. What project requires genuine observation, judgment, or verification that
+   an LLM cannot supply on its own?
+4. How can individual understanding be verified for 60 students without 60
+   oral defenses?
+5. Should the two current projects remain separate, or become two phases of one
+   investigation?
+
+Short individual, project-linked verification tasks are one option under
+consideration. They are not yet part of the approved syllabus.
+
+## Feedback and Decision Log
+
+| Date | Milestone or decision |
+|---|---|
+| 8 July 2026 | The [instructor preview](instructor-preview.qmd) was added as the entry point for colleague review. |
+| 8-9 July 2026 | Weeks 1-4 were expanded with fuller notes, slides, labs, exercises, and MATLAB examples. |
+| 9 July 2026 | Automated MATLAB and R course-code checks were added. |
+| 10 July 2026 | Weeks 1-4 were recorded as the validated prototype; assessment design became the active phase. |
+| 10 July 2026 | Enrollment of about 60 and the impracticality of individual oral defenses were recorded as design constraints. |
+
+## Next Decision Gate
+
+Before Weeks 5-15 are expanded to the same depth, the next milestone is an
+assessment blueprint covering:
+
+- quiz sequence and format;
+- midterm structure;
+- project structure, checkpoints, and group size;
+- scalable individual verification;
+- grading workload for an enrollment of 60.
+
+Feedback on those choices is especially useful now. The original review
+questions remain available on the [instructor preview](instructor-preview.qmd).

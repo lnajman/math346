@@ -2,6 +2,13 @@
 
 This repository contains the public course website for MATH 346.
 
+## Redesign Status
+
+Before continuing course-design work, read [PROJECT-STATUS.md](PROJECT-STATUS.md).
+It records the current pedagogical phase, established constraints, open
+decisions, evidence, and next actions. The public companion is
+[instructor-progress.qmd](instructor-progress.qmd).
+
 The site is built with [Quarto](https://quarto.org/) and is intended for GitHub Pages at:
 
 https://lnajman.github.io/math346/
