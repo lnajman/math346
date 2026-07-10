@@ -132,24 +132,23 @@ the quantities required for automated checking, such as:
 Students must generate this file from MATLAB code rather than typing its values
 manually.
 
-## Individual Verification
+## Possible Project Verification
 
-A proposed short in-class task will ask each student to make one change to the
-frozen group analysis, rerun the MATLAB code, and explain the effect. Examples
-include removing an observation, changing the prediction temperature, or
-recalculating an error measure.
-
-The exact format and weight of this component remain under review.
+The MATLAB project is assessed as group work. Any student may nevertheless be
+selected for a brief verification, either randomly or because the submitted
+work requires clarification. The student may be asked to explain a MATLAB code
+fragment, interpret a figure or numerical result, describe a contribution, or
+reproduce a small modification. Selection is not itself an accusation of
+misconduct and has no separate routine grade weight.
 
 ## Draft Grading Structure
 
 | Criterion | Weight |
 |---|---:|
-| Correct MATLAB code and required function | 25% |
-| Figures, fitting, residuals, and numerical checks | 25% |
-| Reproducibility and agreement with results CSV | 15% |
-| PDF interpretation and communication | 15% |
-| Individual verification | 20% |
+| Correct MATLAB code and required function | 30% |
+| Figures, fitting, residuals, and numerical checks | 30% |
+| Reproducibility and agreement with results CSV | 20% |
+| PDF interpretation and communication | 20% |
 
 ## Final Checklist
 

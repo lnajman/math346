@@ -133,21 +133,23 @@ allow the instructor to verify:
 - one-to-one alignment of predictions with validation rows;
 - the reported sensitivity result.
 
-## Individual Verification
+## Possible Project Verification
 
-A proposed in-class task will ask each student to modify one part of the frozen R
-analysis and explain the numerical consequence. The exact task format and grade
-weight remain under review.
+The R project is assessed as group work. Any student may nevertheless be
+selected for a brief verification, either randomly or because the submitted
+work requires clarification. The student may be asked to explain an R code
+fragment, interpret a figure or model result, describe a contribution, or
+reproduce a small modification. Selection is not itself an accusation of
+misconduct and has no separate routine grade weight.
 
 ## Draft Grading Structure
 
 | Criterion | Weight |
 |---|---:|
-| Data transformation, summaries, and figures | 20% |
-| Model correctness and interpretation | 20% |
-| Diagnostics, validation, and sensitivity | 25% |
-| Reproducibility and machine-readable outputs | 15% |
-| Individual verification | 20% |
+| Data transformation, summaries, and figures | 25% |
+| Model correctness and interpretation | 25% |
+| Diagnostics, validation, and sensitivity | 30% |
+| Reproducibility and machine-readable outputs | 20% |
 
 ## Final Checklist
 

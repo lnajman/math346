@@ -49,6 +49,11 @@ they can never be revised.
   the instructor.
 - Students submit PDF reports with executable source code and machine-readable
   results; Quarto and HTML are not required.
+- Projects are group-assessed. The remaining 80% of the course establishes
+  individual competence through quizzes and examinations.
+- There is no mandatory individual project examination. A brief verification
+  may occur for a small random sample or when submitted evidence requires
+  clarification.
 
 ## Current Design Questions
 
@@ -60,12 +65,9 @@ the assessment system coherent before that expansion continues:
 2. How should the midterm combine code reading, implementation, and validation?
 3. When should the MATLAB project be due relative to the quizzes and transition
    to R?
-4. How should individual understanding be verified for 60 students without 60
-   oral defenses?
-5. What fraction of each project grade should be individual?
 
-Short individual, project-linked verification tasks are one option under
-consideration. They are not yet part of the approved syllabus.
+Projects have no mandatory individual examination. The approved policy permits
+only limited random or evidence-triggered verification of submitted work.
 
 The [project pages](projects/index.qmd) now record the agreed MATLAB-to-R
 architecture and the remaining implementation decisions.
@@ -81,6 +83,7 @@ architecture and the remaining implementation decisions.
 | 10 July 2026 | Enrollment of about 60 and the impracticality of individual oral defenses were recorded as design constraints. |
 | 10 July 2026 | A detailed two-stage project design and implementation workflow were drafted for review. |
 | 10 July 2026 | The core project architecture was agreed: MATLAB first, R second, group-specific synthetic building data, and PDF reports accompanied by executable source and results files. |
+| 10 July 2026 | Projects were confirmed as group-assessed; mandatory individual project examinations were replaced by limited random or evidence-triggered verification. |
 
 ## Next Decision Gate
 
@@ -92,7 +95,7 @@ working project package containing:
 - scaffolded MATLAB and R scripts;
 - fixed results-file schemas and batch checkers;
 - a PDF report template;
-- a decision on dates and individual verification.
+- a decision on the MATLAB project date.
 
 Feedback on those choices is especially useful now. The original review
 questions remain available on the [instructor preview](instructor-preview.qmd).

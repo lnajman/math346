@@ -55,6 +55,16 @@ materials.
 - Students are not required to find or collect datasets.
 - The readable report is a PDF. Students also submit executable source code and
   machine-readable results; Quarto and HTML are not required.
+- Projects are assessed as group work. Individual competence is established by
+  quizzes, the semester examination, and the final examination, totaling 80%
+  of the course grade.
+- There is no mandatory individual project examination. A brief verification
+  may be requested for a small random sample or when submitted evidence contains
+  a material inconsistency.
+- A project–examination grade difference may prompt review but is not sufficient
+  evidence of misconduct by itself.
+- Blackboard is the course platform for group setup, release, submission, and
+  grading.
 
 ## Open Decisions
 
@@ -64,14 +74,10 @@ These ideas have been discussed but are **not yet approved course policy**:
 2. The balance of code reading, implementation, and validation in the midterm.
 3. The exact due date for the MATLAB project and its relationship to the quiz
    schedule.
-4. Whether short individual, project-linked verification tasks should replace
-   oral defenses.
-5. The division of a project grade between the group artifact, documented
-   process, and individual verification.
 
 A detailed implementation draft is available in `projects/`. The agreed core
-architecture has not yet been incorporated into the syllabus because dates and
-individual-assessment weights remain open.
+architecture is incorporated into the syllabus; the MATLAB project date remains
+open.
 
 ## Evidence Map
 
@@ -97,7 +103,7 @@ individual-assessment weights remain open.
 3. Build scaffolded MATLAB and R starter scripts, fixed result schemas, and
    batch checkers.
 4. Create the Word/Google Docs report template used to export PDF.
-5. Decide the project dates, individual verification format, and grade weights.
+5. Decide the MATLAB project date.
 6. Decide the remaining quiz and midterm architecture.
 7. Update the syllabus after the remaining assessment decisions are approved.
 8. Expand Week 5 and then the R sequence using the validated Weeks 1-4 pattern.
@@ -129,3 +135,6 @@ milestone:
 - **2026-07-10:** Project 1 was confirmed as MATLAB and Project 2 as R. The
   synthetic building-energy scenario, group-specific datasets, and PDF plus
   source-code submission format were approved as the core architecture.
+- **2026-07-10:** Projects were confirmed as group-assessed. Mandatory
+  individual project examinations were removed; brief random or evidence-
+  triggered verification remains available when needed.

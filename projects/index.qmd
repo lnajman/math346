@@ -57,15 +57,34 @@ Quarto document, or write HTML.
 The PDF is the readable report. The source code and CSV outputs make the work
 reproducible and allow numerical checking across all groups.
 
-## Teams and Individual Understanding
+## Teams and Individual Competence
 
 Teams normally contain three students, giving approximately 20 submissions in
 a class of 60. Group members may collaborate on the take-home analysis and may
 use documented AI assistance.
 
-The design also includes a short individual task based on the group's frozen
-submission. The exact timing and grade weight of that task are still being
-reviewed.
+The projects are assessed as group work. Individual competence is established
+through the quizzes, semester examination, and final examination, which together
+account for 80% of the course grade.
+
+Every group member remains responsible for understanding the submitted code,
+figures, calculations, and conclusions. Each submission includes a contribution
+statement signed by all group members.
+
+## Possible Project Verification
+
+After a project is submitted, any student may be invited to a brief individual
+verification. Selection may be random or may occur because a material
+inconsistency in the code, results, report, or contribution statement requires
+clarification. Selection does not imply suspected misconduct.
+
+The verification normally lasts five to ten minutes and concerns only submitted
+work. A student may be asked to explain a code fragment, interpret a figure or
+result, describe a contribution, or reproduce a small modification.
+
+A difference between project and examination performance may prompt review, but
+does not by itself establish academic misconduct. Unresolved concerns are
+handled through the university's academic-integrity procedures.
 
 ## How the Work Is Checked
 

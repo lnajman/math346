@@ -41,3 +41,17 @@ For any submitted line of code, figure, table, or conclusion, the student should
 - How did you check that it is correct?
 - What could make it misleading?
 
+## Project Responsibility and Verification
+
+Projects are collaborative and may use documented generative AI assistance.
+Every group member must review the final submission and be prepared to explain
+its code, figures, calculations, conclusions, and AI-use appendix.
+
+After submission, a student may be invited to a brief project verification,
+selected randomly or because a material inconsistency requires clarification.
+Selection does not imply suspected misconduct. A student may be asked to
+explain part of the submitted work or reproduce a small modification.
+
+A difference between project and examination performance may prompt review, but
+does not by itself establish academic misconduct. Unresolved concerns are
+handled through the university's academic-integrity procedures.

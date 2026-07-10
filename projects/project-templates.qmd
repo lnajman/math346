@@ -67,6 +67,17 @@ interpretations, but not pages of source code.
 
 If no generative AI was used, state that explicitly.
 
+## Group Contribution Statement
+
+Every submission includes a contribution statement signed by all group members.
+
+| Student | Principal contribution | Work checked by |
+|---|---|---|
+|  |  |  |
+
+Signing confirms that each student has reviewed the final submission and accepts
+responsibility for understanding its code, figures, results, and conclusions.
+
 ## Machine-Readable Results Principle
 
 The generated results files are part of the assessment. They connect the report

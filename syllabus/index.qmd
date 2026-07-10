@@ -73,4 +73,11 @@ data and a withheld validation file, due around Week 15.
 Students submit a PDF report together with executable source code and required
 machine-readable results. They are not required to find or collect a dataset,
 write Quarto, or write HTML. All synthetic data must be identified as synthetic,
-and every project includes a responsible AI-use appendix.
+and every project includes a responsible AI-use appendix and group-contribution
+statement.
+
+Projects are group-assessed. Individual competence is established through the
+quizzes, semester examination, and final examination. Any group member may be
+invited to a brief project verification, selected randomly or because submitted
+work requires clarification. Selection does not imply suspected misconduct, and
+a project–examination grade difference is not evidence by itself.

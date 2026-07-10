@@ -14,6 +14,9 @@ description: "Synthetic-data release, submission, and checking workflow for appr
 - The readable deliverable is PDF; executable source and results CSV files are
   submitted separately.
 - Quarto and HTML are not required.
+- Blackboard is used for group formation, file release, submission, and grades.
+- Projects are group-assessed; individual competence is established through the
+  quizzes, semester examination, and final examination.
 
 ## Synthetic Building-Energy Data
 
@@ -68,9 +71,13 @@ For Project 2:
 
 ## Submission Intake
 
-Require fixed filenames and one ZIP file per team. A first-pass checker should
-report missing files, unexpected filenames, unreadable PDFs, and CSV schema
-errors before grading begins.
+Create the teams as Blackboard Groups and use a Blackboard Group Assignment for
+each project. Require fixed filenames and one ZIP file per team. A first-pass
+checker should report missing files, unexpected filenames, unreadable PDFs, and
+CSV schema errors before grading begins.
+
+Release the group-specific data and starter files through Blackboard. Release
+the Project 2 validation file only after the model-plan deadline.
 
 ## Automated Checking
 
@@ -115,13 +122,28 @@ Automated checks do not determine the whole grade. Review each PDF for:
 
 The instructor retains final responsibility for qualitative scores and grades.
 
-## Individual Verification
+## Project Verification Policy
 
-The proposed verification task uses the frozen group submission. Students make
-one small code change, rerun the analysis, and explain the result without
-generative AI or messaging. Different variants can be assigned within a group.
+There is no mandatory individual project examination. Each project is worth 10%
+of the course, while quizzes and examinations provide 80% individual
+assessment.
 
-The exact duration, scheduling, and weight remain to be decided.
+For each project, a small number of students may be selected randomly for a
+five-to-ten-minute verification. A verification may also be requested when the
+submitted files contain a material inconsistency or a contribution concern
+requires clarification.
+
+The student may be asked to explain a code fragment, interpret a result,
+describe a contribution, or reproduce a small modification. Selection does not
+imply suspected misconduct. A project–examination grade difference may inform a
+review but is not sufficient evidence by itself.
+
+If the first conversation leaves a serious unresolved concern, arrange a second
+documented verification rather than applying an immediate penalty. Follow the
+university's academic-integrity procedure if the concern remains.
+
+The contribution statement and automated checks should resolve ordinary group-
+work issues without requiring oral verification for all 60 students.
 
 ## Privacy and Repository Policy
 
