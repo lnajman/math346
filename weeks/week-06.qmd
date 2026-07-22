@@ -140,19 +140,17 @@ Read the code from the inside out:
 
 ### Reproducible-Report Pattern
 
-````markdown
-## Question
+<pre><code>## Question
 
 What relationship are we investigating?
 
-```{r}
+&#96;&#96;&#96;{r}
 # code that produces the evidence
-```
+&#96;&#96;&#96;
 
 ## Interpretation
 
-What does the output support, and what does it not establish?
-````
+What does the output support, and what does it not establish?</code></pre>
 
 The source `.qmd` contains the instructions, code, and prose. Rendering creates
 the readable output. If the data or code changes, the report can be regenerated.

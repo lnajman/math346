@@ -229,11 +229,9 @@ Edit the source, then render again.
 
 ## Code Chunk
 
-````markdown
-```{r}
+<pre><code>&#96;&#96;&#96;{r}
 mean(mtcars$mpg)
-```
-````
+&#96;&#96;&#96;</code></pre>
 
 The rendered result is generated from the code.
 
