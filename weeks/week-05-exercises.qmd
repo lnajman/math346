@@ -2,6 +2,14 @@
 title: "Week 5 Exercises"
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 4, 6, 7, 9. **Guided:** 2, 3, 5. **Extension:** 8. See the
+[weekly workload guide](workload-guide.qmd); the complete set is not
+automatically due.
+:::
+
 These exercises practice exact symbolic computation, assumptions, calculus,
 equation solving, conversion to numerical functions, and verification. Use AI
 only after you have written a first attempt yourself.

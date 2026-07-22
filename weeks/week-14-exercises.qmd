@@ -4,6 +4,14 @@ execute:
   enabled: false
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 2, 4, 5, 6. **Guided:** 3, 7, 8, 9, 10. See the
+[weekly workload guide](workload-guide.qmd); the complete set is not
+automatically due.
+:::
+
 Use R's built-in `airquality` data and the supplied Week 14 scripts.
 
 ## Exercise 1: Freeze The Contract

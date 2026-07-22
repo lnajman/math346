@@ -4,6 +4,16 @@ title: "Labs"
 
 Labs are designed as studio activities. They should be completed with MATLAB or R open, not just read.
 
+::: {.callout-tip}
+## Lab workload
+
+The numbered main lab is the week's **guided core workflow**: the instructor
+selects the checkpoints to complete, and the whole file is not automatically
+extra homework. Labs ending in **B** are **guided AI audits** that are embedded
+or assigned selectively. Lab 4A is an **extension or alternate** activity. See
+the [weekly workload guide](../weeks/workload-guide.qmd) for the full policy.
+:::
+
 | Lab | Topic | Status |
 |---|---|---|
 | [Lab 1](lab-01-matlab-arrays.qmd) | MATLAB arrays, scripts, and plots | Ready |
@@ -40,7 +50,7 @@ Labs are designed as studio activities. They should be completed with MATLAB or 
 
 ## Lab Routine
 
-For each lab:
+For each assigned lab or selected checkpoint:
 
 1. Run the starter code.
 2. Predict what each section should produce.

@@ -4,6 +4,14 @@ execute:
   enabled: false
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 4, 5, 6, 8, 12. **Guided:** 2, 3, 7, 9, 10, 11. See the
+[weekly workload guide](workload-guide.qmd); the complete set is not
+automatically due. Project work is scheduled separately.
+:::
+
 Use the supplied Week 15 scripts and R's built-in `airquality` data.
 
 ## Exercise 1: Assign Artifact Roles

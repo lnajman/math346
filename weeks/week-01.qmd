@@ -146,7 +146,10 @@ These are the Week 1 MATLAB habits you should be able to recognize, test, and re
 
 ## Exercises
 
-Complete the [Week 1 exercises](week-01-exercises.qmd) after the lab.
+After the lab, attempt the core selection in the
+[Week 1 exercises](week-01-exercises.qmd). The
+[workload guide](workload-guide.qmd) distinguishes core, guided, and extension
+work.
 
 ## Materials
 

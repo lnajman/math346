@@ -6,7 +6,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**The full 15-week sequence is developed; course-wide coherence and workload review are the next milestone.**
+**The workload contract is approved and published; assessment displacement and project milestones are the next decisions.**
 
 Last updated: **22 July 2026**
 :::
@@ -33,6 +33,7 @@ the motivation and the kind of feedback being requested.
 | Week 13: model claims and diagnostics | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the interpretation and diagnostic workload |
 | Week 14: many models and grouped evidence | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the alignment, uncertainty, and sensitivity workload |
 | Week 15: communication and synthesis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the evidence-reconciliation and clean-run workload |
+| Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time and project milestones |
 | Quizzes and midterm | **Working placement restored** | Quizzes in Weeks 3, 6, 9, and 13; semester examination (midterm) in Week 8 | Decide exact dates, delivery, and formats later |
 | Projects | **Complete and privately backed up** | 20-group data, MATLAB/R starters, Word report templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Check the live Blackboard setup before release |
 | Executable code checks | Implemented | Local scripts and GitHub Actions | Extend checks as new code is added |
@@ -130,6 +131,20 @@ they can never be revised.
   all-seasons, replacement-model, and no-limitation claims. The example adds no
   new Project 2 model or document format. All three Week 15 R scripts pass the
   validation harness.
+- The [course-wide audit](instructor-course-audit.qmd) confirms a coherent
+  MATLAB-to-R progression, cumulative validation habits, purposeful dataset
+  reuse, and technically healthy materials. Its principal workload concern is
+  now resolved through the [student workload guide](weeks/workload-guide.qmd),
+  while assessment weeks still require calendar decisions.
+- The website remains a complete resource bank, but the ordinary student load
+  is now explicit: two class meetings, instructor-selected checkpoints from
+  one guided main lab, 4-6 core exercises, and a short in-class exit check.
+  AI-review labs are embedded or assigned selectively; Lab 4A is extension or
+  alternate work.
+- Routine website-based practice targets approximately 90-120 minutes outside
+  class in an ordinary week, excluding separately announced project and
+  examination preparation. Assessment weeks receive a reduced selection when
+  an assessment displaces class time.
 - The course is expected to have about 60 students, so individual oral project
   defenses are not a practical default.
 - Project 1 uses MATLAB and Project 2 uses R.
@@ -164,16 +179,20 @@ they can never be revised.
 
 ## Deferred Design Questions
 
-The following questions remain open but do not block further development of the
-weekly content:
+The following questions remain open. They do not change the confirmed core
+architecture, but they block approval of the final calendar and release plan:
 
 1. What should the four quizzes measure, how should they be delivered, and how
    should they prepare students for the midterm while retaining their working
    Week 3, 6, 9, and 13 placement?
 2. How should the Week 8 midterm combine code reading, implementation, and
-   validation?
+   validation, and how much normal teaching time will it replace?
 3. When should the MATLAB project be due relative to the quizzes and transition
    to R?
+4. When should Project 2 training, the frozen plan, validation data, and final
+   submission be released or due?
+5. Which software must students install, which is supplied in laboratories,
+   and which is optional?
 
 Projects have no mandatory individual examination. The approved policy permits
 only limited random or evidence-triggered verification of submitted work.
@@ -209,6 +228,8 @@ architecture and the remaining implementation decisions.
 | 22 July 2026 | Week 13 was expanded around complete-case row accounting, regression formulas, coefficient interpretation, mean-baseline comparison, residual and influence diagnostics, an additive model, full slides, two labs, exercises, three checked R scripts, and an AI model-interpretation audit. Quiz 4 remains the working Week 13 marker with its details deferred. |
 | 22 July 2026 | Week 14 was expanded around one fixed regression contract across monthly subsets, retained model objects, aligned summaries, coefficient intervals, diagnostic and sensitivity evidence, full slides, two labs, exercises, three checked R scripts, and an AI audit of unsupported model ranking. |
 | 22 July 2026 | Week 15 was expanded around checked figures and captions, generated evidence bundles, clean-run rehearsal, cross-artifact reconciliation, claim-evidence-limitation ledgers, group sign-off, full slides, two labs, exercises, three checked R scripts, and an AI conclusion audit. This completes the developed 15-week sequence. |
+| 22 July 2026 | The [course-wide coherence and beginner-workload audit](instructor-course-audit.qmd) confirmed the cumulative teaching spine and technical health, while identifying workload labels, assessment displacement, project milestones, and software requirements as the remaining pre-release decisions. |
+| 22 July 2026 | The [student workload guide](weeks/workload-guide.qmd) was approved and implemented: one guided main-lab workflow, 4-6 core exercises, selected AI audits, explicit guided/extension work, a 90-120 minute ordinary-week practice target, and reduced selections when assessments displace class time. |
 
 ## Next Decision Gate
 
@@ -224,14 +245,14 @@ The working student project package is complete:
 - **Completed:** exact-content checks for all 60 release ZIPs and a
   representative upload/download extraction rehearsal.
 
-The next development milestone is a **course-wide coherence and workload
-audit**: review the progression from MATLAB to R, check beginner prerequisites
-and two-meeting workload across all 15 weeks, remove unnecessary repetition,
-verify navigation and publication, and synthesize colleague feedback. Project
-2 has been introduced, while its exact due date remains deferred. The working
-quiz and midterm placement remains visible; exact dates, delivery, and formats
-can be decided later. The MATLAB project date can also be decided later. The
-live Blackboard setup still needs a short final check before student release.
+The audit and student workload contract are complete. The next decision gate is
+to reconcile that contract with the assessment calendar. Week 8 cannot be
+judged feasible until the semester examination's use of class time is known;
+Quiz 2, Quiz 3, and Quiz 4 also have no reserved time in their weekly plans.
+Project preview, release, frozen-plan, validation, and completion milestones
+should then be set. Exact dates and formats may remain deferred. A student
+software matrix and the live Blackboard setup still need final checks before
+release.
 
 Feedback on those choices is especially useful now. The original review
 questions remain available on the [instructor preview](instructor-preview.qmd).

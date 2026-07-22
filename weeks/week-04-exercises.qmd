@@ -2,6 +2,14 @@
 title: "Week 4 Exercises"
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 2, 4, 7, 8. **Guided:** 3. **Extension:** 5, 6. See the
+[weekly workload guide](workload-guide.qmd); the complete set is not
+automatically due.
+:::
+
 These exercises practice numerical root-finding, integration, 3D plotting, and validation. Use AI only after you have written a first attempt yourself.
 
 ## Exercise 1: Put An Equation In Root Form

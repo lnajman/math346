@@ -5,7 +5,10 @@ description: "A short guide for colleagues reviewing the MATH 346 redesign proto
 
 ::: {.callout-tip}
 For the current development state, decisions, and next milestone, see the
-[instructor progress page](instructor-progress.qmd).
+[instructor progress page](instructor-progress.qmd). The completed
+[course-wide coherence and workload audit](instructor-course-audit.qmd)
+led to an approved [student workload guide](weeks/workload-guide.qmd). The
+remaining calendar and project-milestone questions are recorded separately.
 :::
 
 ## Why This Prototype Exists
@@ -52,6 +55,8 @@ course-wide coherence and workload review.
 
 - [Syllabus](syllabus/index.qmd)
 - [Development progress](instructor-progress.qmd)
+- [Course-wide coherence and workload audit](instructor-course-audit.qmd)
+- [Student workload guide](weeks/workload-guide.qmd)
 - [AI use policy](syllabus/ai-policy.qmd)
 - [Weekly materials](weeks/index.qmd)
 - [Slides index](slides/index.qmd)
@@ -94,7 +99,9 @@ I would especially appreciate feedback on these questions:
 - Is the balance right between MATLAB/R skills, mathematical thinking, and validation?
 - Do the LLM-related activities feel pedagogically useful rather than distracting?
 - Are there essential commands, concepts, habits, or warnings missing from the full 15-week sequence?
-- Where should workload, repetition, or prerequisites be adjusted before the course-wide review is closed?
+- Does the approved [core/guided/extension workload model](weeks/workload-guide.qmd)
+  make the 15-week resource bank realistic for beginners, and are any core
+  selections still too ambitious?
 
 ## The Intended Shift
 

@@ -4,6 +4,14 @@ title: "Weekly Materials"
 
 Each week has a problem focus, the official syllabus topic, the software tools involved, and an AI-aware validation task.
 
+::: {.callout-tip}
+## Start with the workload guide
+
+The website is a complete resource bank, not a list of tasks that are all due.
+The [weekly workload guide](workload-guide.qmd) identifies core exercises,
+guided practice, extension work, and the role of each lab.
+:::
+
 | Week | Focus | Main Tool | Planned assessment marker |
 |---:|---|---|---|
 | [1](week-01.qmd) | Arrays, scripts, and plots as computational objects | MATLAB | — |
@@ -36,8 +44,9 @@ same pattern and are ready for review. These weeks include:
 - a student exercise set;
 - multiple starter scripts.
 
-The full 15-week sequence now follows this pattern. Exact assessment dates and
-formats remain open where noted.
+The full 15-week sequence now follows this pattern. The
+[workload guide](workload-guide.qmd) defines the default student selection.
+Exact assessment dates and formats remain open where noted.
 
 ## Weekly Pattern
 

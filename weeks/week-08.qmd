@@ -321,7 +321,10 @@ Audit each sentence:
 
 ## Exercises
 
-Complete the [Week 8 exercises](week-08-exercises.qmd) after the lab.
+After the lab, attempt the core selection in the
+[Week 8 exercises](week-08-exercises.qmd). The selection will be reduced if
+the midterm displaces normal teaching time; see the
+[workload guide](workload-guide.qmd).
 
 ## Materials
 

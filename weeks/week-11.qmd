@@ -369,7 +369,10 @@ Do not write a function merely to hide code that is not yet understood.
 
 ## Exercises
 
-Complete the [Week 11 exercises](week-11-exercises.qmd) after the lab.
+After the lab, attempt the core selection in the
+[Week 11 exercises](week-11-exercises.qmd). The
+[workload guide](workload-guide.qmd) distinguishes core, guided, and extension
+work.
 
 ## Materials
 

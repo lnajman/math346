@@ -65,6 +65,22 @@ The assessment markers above preserve the current working sequence. Exact
 calendar dates, delivery arrangements, and formats remain subject to later
 discussion.
 
+## Weekly Workload
+
+The website is a complete resource bank; not every visible activity is due. In
+an ordinary week, students attend the two class meetings, complete the
+instructor-selected checkpoints of one guided main lab, attempt 4-6 core
+exercises, and complete a short in-class exit check. AI-review labs are
+embedded or assigned selectively rather than added automatically as a second
+weekly submission.
+
+Routine website-based practice outside class targets approximately 90-120
+minutes in an ordinary week, excluding separately announced project work and
+quiz or examination preparation. See the
+[weekly workload guide](../weeks/workload-guide.qmd) for the exercise selection
+and the meaning of core, guided, and extension work. Assessment weeks receive
+a reduced selection when an assessment displaces normal class time.
+
 ## Project Structure
 
 **Project 1:** MATLAB numerical investigation using a group-specific synthetic

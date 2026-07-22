@@ -4,6 +4,14 @@ execute:
   enabled: false
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 2, 4, 7, 8. **Guided:** 3, 9, 10. **Extension:** 5, 6. See the
+[weekly workload guide](workload-guide.qmd); the complete set is not
+automatically due.
+:::
+
 Use the Week 10 synthetic service-event log and the supplied Week 11 scripts.
 
 ## Exercise 1: Trace A Pipe

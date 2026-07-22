@@ -242,7 +242,10 @@ without relying on AI.
 
 ## Exercises
 
-Complete the [Week 6 exercises](week-06-exercises.qmd) after the lab.
+After the lab, attempt the core selection in the
+[Week 6 exercises](week-06-exercises.qmd). The
+[workload guide](workload-guide.qmd) distinguishes core, guided, and extension
+work.
 
 ## Materials
 

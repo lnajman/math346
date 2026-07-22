@@ -1,0 +1,103 @@
+---
+title: "How Weekly Work Is Organized"
+description: "The default core, guided, and extension workload for MATH 346."
+execute:
+  enabled: false
+---
+
+::: {.callout-important}
+## Not everything on the website is assigned
+
+The site contains a complete teaching and practice bank. In a normal week,
+students are expected to follow the two class meetings, complete the parts of
+the main lab selected in class, and attempt the **core exercises** listed
+below. Guided and extension material is available for support and further
+practice; it is not automatically due.
+:::
+
+## The Three Workload Labels
+
+| Label | What it means for students |
+|---|---|
+| **Core** | Essential work. Participate in the in-class workflow and attempt these exercises independently. Core does not mean that every item must be submitted. |
+| **Guided** | Work used selectively in class, office hours, tutorials, or a Blackboard announcement. Complete it when the instructor assigns it or when you need more practice. |
+| **Extension** | Optional breadth or challenge. It is not assumed knowledge for the next week unless the instructor announces otherwise. |
+
+Slides, examples, checklists, and complete lab instructions remain available as
+reference material. Their presence on the website does not make every line a
+separate task.
+
+## The Default Week
+
+Unless a Blackboard announcement says otherwise, the normal rhythm is:
+
+1. take part in the two scheduled class meetings;
+2. work through the instructor-selected checkpoints of the week's main lab;
+3. attempt the 4-6 core exercises listed below;
+4. complete the short in-class exit check;
+5. use guided exercises for recovery or consolidation;
+6. complete an AI-review lab only when it is embedded in class or explicitly
+   assigned.
+
+The target for routine website-based practice outside class is approximately
+**90-120 minutes in an ordinary week**. This target does not include separately
+announced project work or preparation for a quiz, midterm, or final
+examination.
+
+Assessment weeks will use a reduced teaching and practice selection when an
+assessment displaces normal class time. The detailed quiz and midterm formats
+are still to be announced; students will not be expected to complete a full
+ordinary week on top of displaced class time.
+
+## Weekly Exercise Selection
+
+The exercise numbers link to the complete sets. The labels determine the
+default workload.
+
+| Week | Core | Guided | Extension |
+|---:|---|---|---|
+| [1](week-01-exercises.qmd) | 1, 2, 3, 4, 6, 7 | 5 | — |
+| [2](week-02-exercises.qmd) | 1, 2, 3, 4, 6 | 8, 9 | 5, 7 |
+| [3](week-03-exercises.qmd) | 1, 2, 4, 5, 6 | 3 | — |
+| [4](week-04-exercises.qmd) | 1, 2, 4, 7, 8 | 3 | 5, 6 |
+| [5](week-05-exercises.qmd) | 1, 4, 6, 7, 9 | 2, 3, 5 | 8 |
+| [6](week-06-exercises.qmd) | 1, 2, 3, 5, 6 | 4, 7, 8, 9 | — |
+| [7](week-07-exercises.qmd) | 1, 3, 4, 6, 9 | 2, 5, 8 | 7 |
+| [8](week-08-exercises.qmd) | 1, 2, 3, 6, 9 | 4, 5, 7 | 8 |
+| [9](week-09-exercises.qmd) | 1, 3, 4, 5, 6 | 2, 7, 9 | 8 |
+| [10](week-10-exercises.qmd) | 1, 3, 6, 7, 8, 9 | 2, 4, 5, 10 | — |
+| [11](week-11-exercises.qmd) | 1, 2, 4, 7, 8 | 3, 9, 10 | 5, 6 |
+| [12](week-12-exercises.qmd) | 1, 2, 4, 7, 8 | 3, 5, 6, 9, 10 | — |
+| [13](week-13-exercises.qmd) | 1, 2, 3, 4, 6, 8 | 5, 7, 9, 10 | — |
+| [14](week-14-exercises.qmd) | 1, 2, 4, 5, 6 | 3, 7, 8, 9, 10 | — |
+| [15](week-15-exercises.qmd) | 1, 4, 5, 6, 8, 12 | 2, 3, 7, 9, 10, 11 | — |
+
+These are the default selections, not submission instructions. The instructor
+will say in class or on Blackboard which work, if any, must be uploaded.
+
+## How Labs Fit
+
+- The numbered main lab for each week is the **guided core workflow**. The
+  instructor selects its checkpoints; the whole file is not automatically
+  additional homework.
+- Labs ending in **B** are **guided AI audits**. They are embedded in a meeting
+  or assigned selectively rather than added as a second full weekly lab.
+- [Lab 4A: ODE solver checks](../labs/lab-04-ode-mini.qmd) is an **extension or
+  alternate** activity.
+- Project work has its own instructions and milestones. It is not hidden inside
+  the weekly lab expectation.
+
+## If You Are Behind
+
+Do the work in this order:
+
+1. read the week's computational question and survival checklist;
+2. rerun the main example or starter script;
+3. complete the main-lab checkpoints identified by the instructor;
+4. attempt the core exercises;
+5. use guided work only where it addresses a specific difficulty;
+6. leave extension work until the core is secure.
+
+Ask for help when a core task remains blocked after one serious attempt. The
+goal is a checked workflow that you understand, not completion of every page on
+the site.

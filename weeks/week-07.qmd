@@ -318,7 +318,10 @@ Repair the pipeline, then verify the row flow and both group counts.
 
 ## Exercises
 
-Complete the [Week 7 exercises](week-07-exercises.qmd) after the lab.
+After the lab, attempt the core selection in the
+[Week 7 exercises](week-07-exercises.qmd). The
+[workload guide](workload-guide.qmd) distinguishes core, guided, and extension
+work.
 
 ## Materials
 

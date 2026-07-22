@@ -1,0 +1,325 @@
+---
+title: "Course-Wide Coherence and Beginner-Workload Audit"
+description: "A structured review of the developed 15-week MATH 346 sequence."
+execute:
+  enabled: false
+---
+
+::: {.callout-important}
+## Overall finding
+
+The 15-week sequence has a **coherent conceptual spine, strong scaffolding, and
+healthy executable materials**. It is ready for structured colleague review.
+
+The audit's principal workload concern has now been addressed through an
+approved [student workload guide](weeks/workload-guide.qmd): one guided main
+lab workflow, 4-6 core exercises, selected AI audits, and explicit guided and
+extension material. The course is **not yet ready to freeze its calendar**
+because assessment displacement and project milestones remain unresolved.
+:::
+
+Audit completed: **22 July 2026**
+
+## Scope And Method
+
+This audit reviewed:
+
+- the syllabus, AI policy, assessment markers, and two project specifications;
+- all 15 week pages and their 30 planned 75-minute meetings;
+- all 15 slide decks, 31 labs, 15 exercise sets, and weekly indexes;
+- 21 MATLAB and 30 R scripts;
+- the transition from MATLAB to R and the prerequisite chain among weeks;
+- the relationship between weekly work, quizzes, the semester examination,
+  projects, and the final examination;
+- internal links, navigation, document parsing, slide density, local code
+  execution, GitHub validation, and GitHub Pages publication.
+
+The audit does not decide the deferred quiz formats, examination architecture,
+or project dates. The workload model recommended below was approved after the
+audit; the remaining recommendations are proposals, not approved policy.
+
+## Executive Assessment
+
+| Area | Finding | Judgment |
+|---|---|---|
+| Conceptual progression | MATLAB foundations lead to R data work, reusable workflows, models, and final evidence reconciliation | Strong |
+| Beginner scaffolding | Supplied data, small scripts, explicit checks, repeated datasets, and templates reduce blank-page work | Strong |
+| Validation culture | Row counts, residuals, baselines, identifiers, tests, sensitivity, and clean runs recur meaningfully | Strong |
+| AI integration | Activities progress from code defects to question drift, statistical claims, automation, and communication | Strong but must not become a second weekly assignment |
+| Workload clarity | The full resource bank is now separated into core, guided, and extension work | Resolved through the [student workload guide](weeks/workload-guide.qmd) |
+| Assessment-week feasibility | Only Quiz 1 has time explicitly reserved; Weeks 6, 8, 9, and 13 retain full plans beside assessments | Calendar-critical |
+| Project sequencing | Project tasks align well with course content, but their visible assignment windows are compressed | Needs milestone planning |
+| Software readiness | Course code and site are healthy; student-facing required versus optional software is not fully distinguished | Needs clarification |
+| Navigation and publication | Weekly pages, exercises, labs, slides, code, and projects are linked and publish correctly | Strong |
+
+## The Coherent Course Spine
+
+| Phase | Weeks | Progression |
+|---|---:|---|
+| MATLAB foundations | 1-2 | Arrays, scripts, plots, functions, control flow, and tests |
+| MATLAB numerical work | 3-5 | Fitting, interpolation, numerical methods, visualization, symbolic work, and independent checks |
+| R transition | 6 | Familiar programming ideas, data frames, missingness, `ggplot2`, and a supplied report scaffold |
+| R data reasoning | 7-10 | Transformation, EDA, import, tidy structure, typed cleaning, relationships, and joins |
+| Reusable R workflows | 11-12 | Readable pipelines, function contracts, vectorization, iteration, and visible failures |
+| Modeling and synthesis | 13-15 | Model meaning, diagnostics, repeated models, sensitivity, validation evidence, and communication |
+
+The sequence contains no major prerequisite reversal. In particular:
+
+- file import is delayed until Week 9 so beginners can first learn R using
+  built-in data;
+- R functions precede typed iteration;
+- one-model interpretation precedes many-model automation;
+- final communication reuses familiar data and introduces no new model;
+- repeated use of `airquality` in Weeks 7 and 12-15 reduces dataset-switching
+  cost during the most abstract material.
+
+## Measured Workload Inventory
+
+The numbers below are not hours. They describe how much visible material a
+student could reasonably interpret as expected work.
+
+| Week | Goals | Slide sections | Labs | Exercises | Audit pressure |
+|---:|---:|---:|---:|---:|---|
+| 1 | 10 | 18 | 2 | 7 | Balanced, but software startup is fragile |
+| 2 | 12 | 25 | 2 | 9 | High breadth: functions, conditions, masks, two loop forms, and tests |
+| 3 | 11 | 25 | 2 | 6 | Balanced; Quiz 1 time is already acknowledged |
+| 4 | 12 | 25 | 3 | 8 | High: roots, integration, ODEs, optimization, and 3D views |
+| 5 | 14 | 31 | 2 | 9 | High but coherent MATLAB capstone; toolbox dependency matters |
+| 6 | 15 | 29 | 2 | 9 | Calendar-critical R transition plus Quiz 2 |
+| 7 | 15 | 31 | 2 | 9 | Coherent but needs core-versus-extension labels |
+| 8 | 16 | 32 | 2 | 9 | Calendar-critical full EDA week plus semester examination |
+| 9 | 17 | 33 | 2 | 9 | Calendar-critical import and reshape week plus Quiz 3 |
+| 10 | 17 | 34 | 2 | 10 | High breadth across strings, factors, date-times, and joins |
+| 11 | 16 | 34 | 2 | 10 | High: functions, validation, boundaries, errors, and refactoring |
+| 12 | 16 | 35 | 2 | 10 | High: three iteration forms, failure logs, and Project 2 orientation |
+| 13 | 19 | 37 | 2 | 10 | Calendar-critical first model week plus Quiz 4 |
+| 14 | 18 | 39 | 2 | 10 | High abstraction, though formula and data are deliberately fixed |
+| 15 | 19 | 47 | 2 | 12 | Calendar-critical synthesis beside Project 2 completion |
+
+Across the course, there are **227 learning goals, 475 slide sections, 31 labs,
+and 137 exercises**. The slide decks themselves are not overcrowded: every
+slide stays within the current nine-nonblank-line density threshold. The issue
+is cumulative selection, not slide layout.
+
+## Principal Workload Finding
+
+Every weekly plan schedules essentially all 150 contact minutes. That precision
+is useful for planning, but beginners need time for software launch problems,
+typing errors, questions, reruns, and recovery after an unsuccessful attempt.
+There is no visible contingency budget.
+
+The larger ambiguity is outside class. A reader cannot tell whether a normal
+week requires:
+
+- the complete main lab;
+- the complete AI lab;
+- every exercise;
+- only the tasks embedded in the two meeting plans; or
+- some instructor-selected subset.
+
+That distinction is now made in the student workload guide. It bounds routine
+website-based practice at approximately 90-120 minutes outside class in an
+ordinary week, excluding separately announced project and examination work.
+
+::: {.callout-tip}
+## Adopted workload model
+
+- The main lab supplies one **guided core workflow**; the instructor selects
+  its checkpoints.
+- The AI activity is embedded or assigned selectively, not automatically added
+  as a second full lab.
+- Each week identifies 4-6 **core exercises**; the remainder is guided or
+  extension work.
+- Core does not mean that every item is submitted. Blackboard or the instructor
+  identifies any required upload.
+- Assessment weeks receive a reduced selection when an assessment displaces
+  class time.
+- Routine website-based practice targets 90-120 minutes outside class in an
+  ordinary week, excluding project and examination preparation.
+:::
+
+## Week-Specific Beginner Risks
+
+### Weeks 1-5: MATLAB
+
+- **Week 2** asks for functions, conditionals, logical indexing, `switch`,
+  `for`, `while`, preallocation, vectorization, and tests. The conceptual core
+  is functions, conditions, logical indexing, one loop pattern, and tests;
+  `switch` and `while` can remain reference or extension material.
+- **Week 4** is the broadest MATLAB week and has three labs. The ODE mini-lab
+  should be identified as an alternate or extension unless additional contact
+  time exists.
+- **Week 5** is a coherent symbolic capstone, but student machines must have
+  the required MATLAB symbolic capability before the week begins.
+- Project 1 is first made visible in Week 5 even though most required techniques
+  are learned in Weeks 1-4. An earlier preview would distribute reading and
+  group organization without fixing the final due date.
+
+### Weeks 6-10: R transition and data
+
+- **Week 6** carries the largest software transition: R objects, data frames,
+  missing values, selection, checks, `ggplot2`, and rendering a supplied report.
+  The current text correctly avoids requiring students to author Quarto, but a
+  pre-class software check is essential.
+- **Week 8** cannot simultaneously retain two complete EDA meetings and use
+  substantial in-class time for the semester examination. The examination
+  location and duration must be resolved before this week is considered
+  feasible.
+- **Week 9** combines import contracts and reshaping effectively, but Quiz 3
+  has no reserved time in either meeting.
+- **Week 10** is pedagogically coherent but unusually broad. Join contracts and
+  observation preservation should remain the central outcome; the separate
+  string, factor, and date-time tools can be scaffolded around that purpose.
+
+### Weeks 11-15: reusable workflows, models, and projects
+
+- **Week 11** benefits from the MATLAB function experience, but expected-error
+  testing with `tryCatch` is a candidate for scaffolded recognition rather than
+  independent mastery.
+- **Week 12** compares `lapply`, `vapply`, and a preallocated loop while also
+  introducing safe failure records and Project 2. This is coherent but dense;
+  the Project 2 orientation should not consume the only practice time for
+  iteration.
+- **Week 13** is a large first modeling week—formula meaning, coefficients,
+  baseline error, R-squared, diagnostics, an additive model, and Quiz 4. Its
+  feasibility depends on quiz delivery and students' retained statistical
+  background.
+- **Week 14** is appropriately constrained to one formula and familiar data.
+  Students should modify and interpret a supplied many-model scaffold rather
+  than be expected to construct the entire abstraction from a blank file.
+- **Week 15** should function primarily as a project workshop and release
+  rehearsal. Its 47-slide deck is a reference bank across two meetings, not a
+  signal that every slide, lab part, and exercise is new required work.
+
+## Assessment And Calendar Coherence
+
+The working placements remain internally consistent with the syllabus: quizzes
+in Weeks 3, 6, 9, and 13; the semester examination in Week 8; Project 2 around
+Week 15. However, only Week 3 reserves quiz time in its meeting plan.
+
+Before final workload approval, the course needs one calendar table recording:
+
+- whether each quiz is in class, in Blackboard outside class, or completed in
+  another scheduled period;
+- how many teaching minutes it displaces;
+- whether the Week 8 examination replaces one or both meetings;
+- the Project 1 preview, release, workshop, and due milestones;
+- the Project 2 training release, frozen-plan deadline, validation release, and
+  completion milestones;
+- where cumulative final-examination review occurs.
+
+The assessment formats may remain deferred, but the amount of displaced
+teaching time cannot remain unknown when judging beginner workload.
+
+## Project Workload
+
+Both projects are unusually well scaffolded: students receive data, starters,
+result schemas, Word templates, and fixed checks. That makes ambitious work
+possible for groups with limited programming experience.
+
+The remaining concern is timing rather than architecture:
+
+- Project 1 has 12 visible starter `TODO` markers and is introduced only in
+  Week 5.
+- Project 2 has 14 visible starter `TODO` markers, is formally assigned in Week
+  12, depends on modeling taught in Weeks 13-14, and completes around Week 15.
+- Each project is worth 10%, so required report length, figure count, and
+  expected group effort should be bounded explicitly.
+
+A possible nonbinding milestone pattern is:
+
+| Project | Earlier orientation | Technical milestone | Completion window |
+|---|---|---|---|
+| Project 1 | Preview the question and files in Week 3 | Release/workshop after fitting methods are known | Set later around the MATLAB-to-R transition |
+| Project 2 | Preview data and filenames in Weeks 9-10 | Assign in Week 12; freeze the model plan after Week 13; release validation after the freeze | Complete around Week 15 |
+
+## AI Activity Coherence
+
+The AI strand is cumulative rather than decorative:
+
+1. syntax, dimensions, and plotting defects;
+2. function and boundary failures;
+3. overfitting and numerical evidence;
+4. symbolic assumptions;
+5. causal plot language;
+6. question drift and lost data meaning;
+7. partial joins and behavior-changing refactors;
+8. erased batch failures;
+9. model interpretation and ranking;
+10. cross-artifact and conclusion claims.
+
+The content is preserved. Its adopted workload label now treats AI audits as
+part of the core computational question or as selected practice, not
+automatically as an additional full weekly deliverable.
+
+## Terminology And Recovery
+
+The course intentionally repeats useful words—contract, baseline, residual,
+diagnostic, sensitivity, observation unit, and reproducibility—but there is no
+student glossary or phase-level recovery page.
+
+Two low-cost supports would materially help beginners:
+
+- a one-page evolving glossary with a short example for each recurring term;
+- a “minimum knowledge before the next phase” checklist after Weeks 5, 10, and
+  12, with links to one recovery script and one recovery exercise.
+
+These supports matter because missing Week 6, 9, 11, or 13 creates a strong
+downstream dependency.
+
+## Software And Access
+
+The resources page currently lists MATLAB, R, RStudio or Positron, Quarto, Git,
+and GitHub together. The weekly and project materials imply a more nuanced
+requirement:
+
+- MATLAB and R are required;
+- an R IDE and the listed R packages are required;
+- Quarto is needed to render the supplied Week 6 scaffold, but students do not
+  author project reports in Quarto;
+- Git and GitHub are not used as student submission requirements;
+- MATLAB symbolic capability is needed in Week 5.
+
+A student-facing setup matrix should distinguish **required**, **provided on
+lab machines**, **used once with a scaffold**, and **optional** software.
+
+## Technical And Publication QA
+
+At the audit point:
+
+- all 30 R scripts and the Week 6 report code pass the complete R harness;
+- all executable MATLAB scripts pass the local MATLAB harness, including
+  expected-failure classification for the intentionally weak AI example;
+- GitHub's R validation workflow passes on the Week 15 commit;
+- the GitHub Pages workflow renders and deploys the Week 15 commit;
+- every QMD file parses successfully with Pandoc;
+- all relative Markdown links resolve locally;
+- all weekly scripts, labs, and slide decks appear in their indexes;
+- every slide deck remains within the nine-nonblank-line density threshold;
+- the Week 15 public page returns HTTP 200.
+
+GitHub validates R automatically; MATLAB remains a local licensed-runtime
+check. External documentation links and rendered visual accessibility should be
+rechecked shortly before the teaching term.
+
+## Recommended Decision Order
+
+1. **Completed: approve a workload-label model:** core, guided, and extension
+   materials are now identified in the student workload guide.
+2. **Resolve assessment displacement:** especially Week 8 and quizzes in Weeks
+   6, 9, and 13.
+3. **Set project milestones:** preview, release, frozen plan, validation, and
+   completion—not only final due dates.
+4. **Publish the student software matrix** and run a live lab-machine check.
+5. **Add glossary and recovery checkpoints** at the three phase boundaries.
+6. **Build an assessment blueprint** after quiz and examination formats are
+   chosen, including a place for cumulative final-examination review.
+7. **Then revise individual meeting plans**, preserving the coherent spine and
+   using the approved labels to select what fits the available time.
+
+## Audit Boundary
+
+This audit recommends no deletion of the resource bank and does not change
+approved assessment policy. Its workload recommendation has been implemented;
+the assessment calendar, project milestones, software matrix, and recovery
+supports remain to be resolved.

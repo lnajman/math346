@@ -78,9 +78,15 @@ example uses familiar `airquality` data and does not add a new Project 2
 requirement. Its three R scripts pass the complete course validation harness.
 
 The full 15-week sequence is now developed. Weeks 5-15 are ready for review but
-have not been designated validated prototypes. The next content milestone is a
-course-wide coherence, workload, and publication audit rather than another
-weekly expansion.
+have not been designated validated prototypes. A course-wide coherence,
+beginner-workload, navigation, and publication audit is complete. It finds a
+strong cumulative spine and healthy technical materials. Its workload
+recommendation is now approved and published: one guided main-lab workflow,
+4-6 core exercises per week, selected AI audits, explicit guided and extension
+material, and approximately 90-120 minutes of routine website-based practice
+outside class in an ordinary week. The remaining barriers to freezing the
+student experience are assessment displacement, project milestones, software
+requirements, and recovery support.
 
 ## Confirmed Progress
 
@@ -152,6 +158,13 @@ weekly expansion.
   a main lab, an AI conclusion-review lab, exercises, and three checked R
   scripts. It is developed and ready for review, but has not yet been
   designated a validated prototype.
+- The course-wide audit reviews all 15 weeks, 30 planned meetings, 31 labs, 137
+  exercises, 227 learning goals, 21 MATLAB scripts, and 30 R scripts. It
+  confirms conceptual and technical coherence while flagging the missing
+  required-versus-extension distinction and assessment-week time conflicts.
+- The student workload guide resolves the first audit finding without deleting
+  the resource bank. Every exercise set now identifies core, guided, and where
+  useful extension work; main labs and AI labs have distinct workload roles.
 
 ## Established Decisions and Constraints
 
@@ -184,6 +197,16 @@ weekly expansion.
   evidence of misconduct by itself.
 - Blackboard is the course platform for group setup, release, submission, and
   grading.
+- The public website is a resource bank, not a declaration that every visible
+  activity is due. In an ordinary week, the default student workload is the
+  two class meetings, instructor-selected checkpoints from one guided main
+  lab, 4-6 core exercises, and a short in-class exit check.
+- AI-review labs are embedded or assigned selectively and are not an automatic
+  second weekly submission. Lab 4A is an extension or alternate activity.
+- Routine website-based practice outside class targets approximately 90-120
+  minutes in an ordinary week, excluding separately announced project and
+  quiz/examination preparation. Assessment weeks receive a reduced selection
+  when an assessment displaces class time.
 
 ## Open Decisions
 
@@ -192,9 +215,14 @@ These ideas have been discussed but are **not yet approved course policy**:
 1. The exact calendar dates, delivery arrangements, duration, and format of the
    four quizzes; their working Week 3, 6, 9, and 13 placement remains visible.
 2. The exact timing and balance of code reading, implementation, and validation
-   in the Week 8 semester examination (midterm).
+   in the Week 8 semester examination (midterm), including whether it replaces
+   one or both normal teaching meetings.
 3. The exact due date for the MATLAB project and its relationship to the quiz
    schedule.
+4. The Project 2 training release, frozen-plan deadline, validation release,
+   and completion milestones around Weeks 12-15.
+5. Which software is required on student machines, provided in laboratories,
+   used only with a scaffold, or optional.
 
 These decisions remain open and are intentionally deferred until later course
 planning. A detailed implementation draft is available in `projects/`, and the
@@ -208,6 +236,8 @@ agreed core project architecture is incorporated into the syllabus.
 | Responsible AI policy | `syllabus/ai-policy.qmd` | Developed; still revisable |
 | Colleague review gateway | `instructor-preview.qmd` | Published and shared |
 | Colleague feedback | Responses are external to the repository | Requested; synthesis pending |
+| Course-wide audit | `instructor-course-audit.qmd` | Completed; workload recommendation implemented, other recommendations remain open |
+| Student workload contract | `weeks/workload-guide.qmd`; 15 exercise pages; `labs/index.qmd` | Approved and published |
 | Weeks 1-4 | `weeks/`, `slides/`, `labs/`, `code/matlab/` | Validated prototype |
 | Week 5 | `weeks/week-05.qmd`; `slides/week-05.qmd`; two labs; exercises; four checked MATLAB scripts | Developed; ready for review |
 | Week 6 | `weeks/week-06.qmd`; `slides/week-06.qmd`; two labs; exercises; three checked R scripts; checked report scaffold | Developed; ready for review |
@@ -227,13 +257,14 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Perform a course-wide coherence, beginner-workload, navigation, and
-   publication audit across the developed 15-week sequence.
-3. Perform a short setup check in the live Blackboard course before student
-   release, including Groups, staged availability, and downloaded filenames.
-4. Decide the MATLAB project date later, when the teaching calendar is ready.
-5. Decide the exact quiz and midterm dates, delivery arrangements, and formats
-   later without removing their working weekly placement from the public site.
+2. Reconcile quiz and semester-examination delivery with the teaching minutes
+   available in Weeks 3, 6, 8, 9, and 13.
+3. Set Project 1 and Project 2 preview, release, workshop, frozen-plan,
+   validation, and completion milestones without prematurely fixing dates.
+4. Publish a student software-requirement matrix and perform a short setup check
+   on lab machines and in the live Blackboard course.
+5. Add a compact glossary and phase-recovery checkpoints using the approved
+   core selections.
 6. Update the syllabus after the remaining assessment decisions are approved.
 7. Update both this record and `instructor-progress.qmd` after each decision or
    major milestone.
@@ -343,3 +374,15 @@ milestone:
   conclusion audit. Two labs, exercises, three R scripts, and full slides were
   added. The complete R validation harness passed, completing the developed
   15-week sequence.
+- **2026-07-22:** A course-wide coherence and beginner-workload audit reviewed
+  all 15 weeks and supporting materials. It confirmed the cumulative course
+  spine, AI progression, executable-code health, navigation, and publication;
+  it identified workload labeling, assessment displacement, project
+  milestones, and software requirements as the decisions needed before student
+  release.
+- **2026-07-22:** The workload model was approved and implemented. A public
+  guide now defines one guided main-lab workflow, 4-6 core exercises per week,
+  selected AI audits, guided and extension material, a 90-120 minute ordinary-
+  week practice target, and proportional reduction in assessment weeks. All 15
+  exercise sets and the lab index expose these roles while preserving the full
+  resource bank.

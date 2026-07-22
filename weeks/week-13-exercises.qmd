@@ -4,6 +4,14 @@ execute:
   enabled: false
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 2, 3, 4, 6, 8. **Guided:** 5, 7, 9, 10. See the
+[weekly workload guide](workload-guide.qmd); the complete set is not
+automatically due.
+:::
+
 Use R's built-in `airquality` data and the supplied Week 13 scripts.
 
 ## Exercise 1: State The Modeling Contract

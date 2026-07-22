@@ -344,6 +344,13 @@ random or prompted by a material inconsistency, and is not itself an accusation.
 - submitting code that depends on objects left in the workspace;
 - signing the contribution statement without reviewing the final bundle.
 
+## Workload
+
+Attempt the core selection in the
+[Week 15 exercises](week-15-exercises.qmd). The
+[workload guide](workload-guide.qmd) distinguishes core and guided work;
+Project 2 remains separately scheduled.
+
 ## Materials
 
 - [Slides](../slides/week-15.qmd)
@@ -360,4 +367,3 @@ random or prompted by a material inconsistency, and is not itself an accusation.
 A computational result is ready to communicate when another person can run the
 source, recover the same artifacts, trace every important claim to evidence,
 see the limitations, and understand what AI did and did not contribute.
-

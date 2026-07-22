@@ -346,7 +346,10 @@ The result looks long and the code runs. Audit whether:
 
 ## Exercises
 
-Complete the [Week 9 exercises](week-09-exercises.qmd) after the lab.
+After the lab, attempt the core selection in the
+[Week 9 exercises](week-09-exercises.qmd). The
+[workload guide](workload-guide.qmd) distinguishes core, guided, and extension
+work.
 
 ## Materials
 

@@ -2,6 +2,14 @@
 title: "Week 6 Exercises"
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 2, 3, 5, 6. **Guided:** 4, 7, 8, 9. See the
+[weekly workload guide](workload-guide.qmd); the complete set is not
+automatically due.
+:::
+
 These exercises practice the transition from MATLAB to R, first data checks,
 ggplot2, reproducible reports, and AI critique. Use AI only after writing a
 first attempt yourself.

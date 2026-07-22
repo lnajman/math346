@@ -4,6 +4,14 @@ execute:
   enabled: false
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 2, 3, 6, 9. **Guided:** 4, 5, 7. **Extension:** 8. See the
+[weekly workload guide](workload-guide.qmd). This default selection will be
+reduced if the midterm displaces normal teaching time.
+:::
+
 Use `ggplot2::diamonds`. Keep an EDA log with columns for question, evidence,
 pattern or anomaly, limitation, and next question.
 

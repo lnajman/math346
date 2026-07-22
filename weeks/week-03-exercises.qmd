@@ -2,6 +2,14 @@
 title: "Week 3 Exercises"
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 2, 4, 5, 6. **Guided:** 3. See the
+[weekly workload guide](workload-guide.qmd); the complete set is not
+automatically due.
+:::
+
 These exercises practice polynomial representation, fitting, residuals, interpolation, and AI critique. Use AI only after you have written a first attempt yourself.
 
 ## Exercise 1: Read A Polynomial Vector

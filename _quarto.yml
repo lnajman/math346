@@ -54,9 +54,11 @@ website:
         - index.qmd
         - instructor-preview.qmd
         - instructor-progress.qmd
+        - instructor-course-audit.qmd
         - syllabus/index.qmd
         - syllabus/ai-policy.qmd
         - weeks/index.qmd
+        - weeks/workload-guide.qmd
         - section: "Weeks 1-15"
           contents:
             - weeks/week-01.qmd

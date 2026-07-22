@@ -2,6 +2,14 @@
 title: "Week 2 Exercises"
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 2, 3, 4, 6. **Guided:** 8, 9. **Extension:** 5, 7. See the
+[weekly workload guide](workload-guide.qmd); the complete set is not
+automatically due.
+:::
+
 These exercises practice functions, conditions, loops, and tests. Use AI only after you have written a first attempt yourself.
 
 ## Exercise 1: Read A Function

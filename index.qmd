@@ -40,6 +40,8 @@ This course uses MATLAB and R, with generative AI treated as a professional assi
 - Read the [syllabus](syllabus/index.qmd).
 - Read the [AI use policy](syllabus/ai-policy.qmd).
 - Follow the [weekly materials](weeks/index.qmd).
+- Check the [weekly workload guide](weeks/workload-guide.qmd) before assuming
+  that every visible exercise or lab is assigned.
 - Use the [labs](labs/index.qmd) for guided practice.
 - Use the [projects](projects/index.qmd) pages for the two major submissions.
 

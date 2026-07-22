@@ -4,6 +4,14 @@ execute:
   enabled: false
 ---
 
+::: {.callout-note}
+## Workload for this set
+
+**Core:** 1, 3, 6, 7, 8, 9. **Guided:** 2, 4, 5, 10. See the
+[weekly workload guide](workload-guide.qmd); the complete set is not
+automatically due.
+:::
+
 Use the supplied synthetic building registry and service-event log. Keep both
 files inside a `data` folder and use relative paths.
 

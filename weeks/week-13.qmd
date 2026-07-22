@@ -352,7 +352,10 @@ qualifies, or contradicts it.
 
 ## Exercises
 
-Complete the [Week 13 exercises](week-13-exercises.qmd) after the lab.
+After the lab, attempt the core selection in the
+[Week 13 exercises](week-13-exercises.qmd). The
+[workload guide](workload-guide.qmd) distinguishes core, guided, and extension
+work.
 
 ## Materials
 

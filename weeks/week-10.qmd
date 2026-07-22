@@ -364,7 +364,10 @@ The repaired join preserves nine event rows. The relevant energy-table key is
 
 ## Exercises
 
-Complete the [Week 10 exercises](week-10-exercises.qmd) after the lab.
+After the lab, attempt the core selection in the
+[Week 10 exercises](week-10-exercises.qmd). The
+[workload guide](workload-guide.qmd) distinguishes core, guided, and extension
+work.
 
 ## Materials
 

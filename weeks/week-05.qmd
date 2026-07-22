@@ -232,7 +232,10 @@ repair without relying on AI.
 
 ## Exercises
 
-Complete the [Week 5 exercises](week-05-exercises.qmd) after the lab.
+After the lab, attempt the core selection in the
+[Week 5 exercises](week-05-exercises.qmd). The
+[workload guide](workload-guide.qmd) distinguishes core, guided, and extension
+work.
 
 ## Materials
 
