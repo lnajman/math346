@@ -35,6 +35,8 @@ Labs are designed as studio activities. They should be completed with MATLAB or 
 | [Lab 13B](lab-13-ai-model-review.qmd) | AI-generated regression interpretation review | Ready |
 | [Lab 14](lab-14-many-models.qmd) | Checked group models, uncertainty, and sensitivity | Ready |
 | [Lab 14B](lab-14-ai-model-ranking.qmd) | AI-generated model-ranking review | Ready |
+| [Lab 15](lab-15-evidence-reconciliation.qmd) | Evidence bundle and submission rehearsal | Ready |
+| [Lab 15B](lab-15-ai-conclusion-review.qmd) | AI-generated conclusion and caption review | Ready |
 
 ## Lab Routine
 

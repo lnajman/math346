@@ -1,0 +1,100 @@
+---
+title: "Lab 15: Evidence Bundle and Submission Rehearsal"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Generate a small analysis bundle, verify its saved artifacts, reconcile report
+values with computational evidence, and make a release decision from a clean R
+session.
+
+## Setup
+
+Create:
+
+```text
+week15/
+  week15-evidence-bundle.R
+  week15-cross-artifact-audit.R
+```
+
+Download:
+
+- [week15-evidence-bundle.R](../code/r/week15-evidence-bundle.R)
+- [week15-cross-artifact-audit.R](../code/r/week15-cross-artifact-audit.R)
+
+The scripts use R's built-in `airquality` data and write practice artifacts to
+a temporary folder. They do not use or replace your Project 2 data.
+
+## Part A: Map The Evidence
+
+Create an artifact-role table for source, results, predictions, figure, and
+report prose. State which artifact is authoritative for exact values and which
+preserves row-level alignment.
+
+## Part B: Run From A Clean Session
+
+Restart R and run `week15-evidence-bundle.R` from beginning to end. Record the
+printed bundle location. Confirm that no object or manual console command was
+needed before the script ran.
+
+## Part C: Inspect Generated Files
+
+Read all CSVs from the bundle. Check filenames, schemas, row counts, missing
+values, finite numeric values, and observation-ID order. Confirm that the figure
+exists and is nonempty.
+
+## Part D: Audit The Figure
+
+Inspect its question, marks, axes, units, identity line, annotation, displayed
+subset, and caption. Write one supported pattern and one visible limitation.
+
+## Part E: Reconcile Exact And Displayed Values
+
+Create a small table containing the exact CSV values, your proposed report
+values, rounding rule, tolerance, and agreement status for validation RMSE,
+MAE, baseline RMSE, and sensitivity RMSE.
+
+## Part F: Find Deliberate Inconsistencies
+
+Run `week15-cross-artifact-audit.R`. Trace each mismatch to its source artifact.
+Classify it as display-only, PDF repair, or release-blocking. Repair the
+reported source, not the generated evidence.
+
+## Part G: Build A Claim Ledger
+
+Write three proposed conclusion claims. For each, record evidence, scope,
+limitation, and final verdict. At least one claim must concern validation and
+one must concern sensitivity.
+
+## Part H: Rehearse The Project 2 Bundle
+
+Without using private group data in this lab submission, prepare a checklist
+for the four actual Project 2 filenames. Map each file to the code that creates
+or supports it and the checks that must pass.
+
+## Part I: Group Release Decision
+
+Choose `ready`, `repair`, or `escalate`. List every unresolved item, assign a
+reviewer, and state the exact evidence needed to change the decision.
+
+## Deliverable
+
+Submit:
+
+- artifact-role table;
+- clean-run record and generated-file inventory;
+- saved-file and figure checks;
+- exact-versus-displayed reconciliation table;
+- classification and repair of the three deliberate mismatches;
+- claim ledger;
+- Project 2 submission checklist;
+- release decision with reviewer assignments.
+
+## AI Use
+
+If an LLM helps with a caption, checklist, or reconciliation code, retain its
+output and record which numerical, row-level, visual, and claim checks you
+performed.

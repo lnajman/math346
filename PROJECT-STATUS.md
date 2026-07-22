@@ -70,11 +70,17 @@ and sensitivity evidence without declaring a model winner. Its grouped
 sensitivity workflow and AI model-ranking audit expose conclusions that change
 after one difficult observation and rankings that ignore uncertainty and
 validation. Its three R scripts pass the complete course validation harness.
-The next content milestone is Week 15 communication, visualization, and
-synthesis.
+Week 15 has now been expanded around an evidence-bundle workflow:
+students generate exact results, row-aligned predictions, and a checked figure
+from one R script; reconcile those artifacts with report claims; rehearse a
+clean run; and audit AI-polished conclusions at the claim level. The classroom
+example uses familiar `airquality` data and does not add a new Project 2
+requirement. Its three R scripts pass the complete course validation harness.
 
-Week 15 remains an outline. It should not yet be described as complete course
-material.
+The full 15-week sequence is now developed. Weeks 5-15 are ready for review but
+have not been designated validated prototypes. The next content milestone is a
+course-wide coherence, workload, and publication audit rather than another
+weekly expansion.
 
 ## Confirmed Progress
 
@@ -142,8 +148,10 @@ material.
 - Week 14 now has a two-meeting many-models plan, full slides, a main lab, an AI
   model-ranking lab, exercises, and three checked R scripts. It is developed
   and ready for review, but has not yet been designated a validated prototype.
-- Week 15 has a short week page and slide outline, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-14.
+- Week 15 now has a two-meeting communication-and-synthesis plan, full slides,
+  a main lab, an AI conclusion-review lab, exercises, and three checked R
+  scripts. It is developed and ready for review, but has not yet been
+  designated a validated prototype.
 
 ## Established Decisions and Constraints
 
@@ -211,7 +219,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 12 | `weeks/week-12.qmd`; `slides/week-12.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 13 | `weeks/week-13.qmd`; `slides/week-13.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 14 | `weeks/week-14.qmd`; `slides/week-14.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
-| Week 15 | week and slide pages | Outline |
+| Week 15 | `weeks/week-15.qmd`; `slides/week-15.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
 
@@ -219,8 +227,8 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 15 around visualization, communication, and synthesis using the
-   validated weekly pattern.
+2. Perform a course-wide coherence, beginner-workload, navigation, and
+   publication audit across the developed 15-week sequence.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
 4. Decide the MATLAB project date later, when the teaching calendar is ready.
@@ -329,3 +337,9 @@ milestone:
   intervals, training metrics, diagnostics, and grouped sensitivity checks.
   Two labs, exercises, three R scripts, and an AI audit for unsupported model
   ranking were added. The complete R validation harness passed.
+- **2026-07-22:** Week 15 was expanded around figure and caption contracts,
+  generated evidence bundles, clean-run rehearsal, cross-artifact
+  reconciliation, claim-evidence-limitation ledgers, group sign-off, and an AI
+  conclusion audit. Two labs, exercises, three R scripts, and full slides were
+  added. The complete R validation harness passed, completing the developed
+  15-week sequence.

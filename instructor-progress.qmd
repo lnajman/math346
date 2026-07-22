@@ -6,7 +6,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**Week 14 developed; communication, visualization, and synthesis in Week 15 are the next content milestone.**
+**The full 15-week sequence is developed; course-wide coherence and workload review are the next milestone.**
 
 Last updated: **22 July 2026**
 :::
@@ -32,7 +32,7 @@ the motivation and the kind of feedback being requested.
 | Week 12: iteration and repeated workflows | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the typed-iteration and visible-failure workload |
 | Week 13: model claims and diagnostics | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the interpretation and diagnostic workload |
 | Week 14: many models and grouped evidence | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the alignment, uncertainty, and sensitivity workload |
-| Week 15: communication and synthesis | Outline | Week and slide outlines | Expand the final communication and reproducibility sequence |
+| Week 15: communication and synthesis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the evidence-reconciliation and clean-run workload |
 | Quizzes and midterm | **Working placement restored** | Quizzes in Weeks 3, 6, 9, and 13; semester examination (midterm) in Week 8 | Decide exact dates, delivery, and formats later |
 | Projects | **Complete and privately backed up** | 20-group data, MATLAB/R starters, Word report templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Check the live Blackboard setup before release |
 | Executable code checks | Implemented | Local scripts and GitHub Actions | Extend checks as new code is added |
@@ -120,6 +120,16 @@ they can never be revised.
   audits a fluent ranking that ignores unequal sample sizes, uncertainty,
   diagnostics, row alignment, and performance on new data. All three Week 14 R
   scripts pass the validation harness.
+- Week 15 uses a miniature training-and-validation example from the familiar
+  `airquality` data to make communication computationally checkable. Students
+  generate exact results, one row-aligned prediction per validation
+  observation, a captioned figure, and an artifact manifest from one R script;
+  read saved files back; reconcile PDF values with declared tolerances; and
+  rehearse the Project 2 bundle from a clean session. The AI activity separates
+  one supported baseline comparison from causal, universal-accuracy,
+  all-seasons, replacement-model, and no-limitation claims. The example adds no
+  new Project 2 model or document format. All three Week 15 R scripts pass the
+  validation harness.
 - The course is expected to have about 60 students, so individual oral project
   defenses are not a practical default.
 - Project 1 uses MATLAB and Project 2 uses R.
@@ -198,6 +208,7 @@ architecture and the remaining implementation decisions.
 | 22 July 2026 | Week 12 was expanded around vectorized operations, `lapply`, typed `vapply`, preallocated loops, complete batch status logs, full slides, two labs, exercises, three checked R scripts, and an AI audit for dropped failures and type coercion. Project 2 is assigned through the existing two-stage workflow; its due date remains deferred. |
 | 22 July 2026 | Week 13 was expanded around complete-case row accounting, regression formulas, coefficient interpretation, mean-baseline comparison, residual and influence diagnostics, an additive model, full slides, two labs, exercises, three checked R scripts, and an AI model-interpretation audit. Quiz 4 remains the working Week 13 marker with its details deferred. |
 | 22 July 2026 | Week 14 was expanded around one fixed regression contract across monthly subsets, retained model objects, aligned summaries, coefficient intervals, diagnostic and sensitivity evidence, full slides, two labs, exercises, three checked R scripts, and an AI audit of unsupported model ranking. |
+| 22 July 2026 | Week 15 was expanded around checked figures and captions, generated evidence bundles, clean-run rehearsal, cross-artifact reconciliation, claim-evidence-limitation ledgers, group sign-off, full slides, two labs, exercises, three checked R scripts, and an AI conclusion audit. This completes the developed 15-week sequence. |
 
 ## Next Decision Gate
 
@@ -213,12 +224,11 @@ The working student project package is complete:
 - **Completed:** exact-content checks for all 60 release ZIPs and a
   representative upload/download extraction rehearsal.
 
-The next development milestone is to expand **Week 15** around communication,
-visualization, and synthesis: selecting a final figure that answers a declared
-question, writing a conclusion whose strength matches the evidence, reproducing
-report artifacts from source, reconciling code, results files, figures, and
-prose, and auditing an AI-polished conclusion for unsupported claims. Project 2
-has been introduced, while its exact due date remains deferred. The working
+The next development milestone is a **course-wide coherence and workload
+audit**: review the progression from MATLAB to R, check beginner prerequisites
+and two-meeting workload across all 15 weeks, remove unnecessary repetition,
+verify navigation and publication, and synthesize colleague feedback. Project
+2 has been introduced, while its exact due date remains deferred. The working
 quiz and midterm placement remains visible; exact dates, delivery, and formats
 can be decided later. The MATLAB project date can also be decided later. The
 live Blackboard setup still needs a short final check before student release.

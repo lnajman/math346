@@ -1,0 +1,96 @@
+---
+title: "Week 15 Exercises"
+execute:
+  enabled: false
+---
+
+Use the supplied Week 15 scripts and R's built-in `airquality` data.
+
+## Exercise 1: Assign Artifact Roles
+
+For source code, a results CSV, a prediction CSV, a figure, and a PDF report,
+state the primary question each artifact answers. Identify one claim that each
+artifact cannot establish alone.
+
+## Exercise 2: Freeze The Communication Contract
+
+Record the classroom question, observation unit, training and validation rows,
+formula, baseline, metrics, sensitivity rule, required outputs, and rounding
+rule. Explain why this contract should be stable before prose is polished.
+
+## Exercise 3: Audit A Figure
+
+Run `week15-evidence-bundle.R`. Check the observed-versus-predicted figure for
+mark meaning, subset, labels, units, identity line, source identifier, readable
+size, and caption scope. Propose one justified improvement without changing the
+analysis.
+
+## Exercise 4: Write An Evidence-Bearing Caption
+
+Write a four-sentence caption that states what is plotted, explains the dashed
+line, summarizes the important pattern using checked values, and identifies
+one limitation. Do not use the words “proves,” “causes,” or “always.”
+
+## Exercise 5: Inspect The Bundle
+
+Read the generated results, predictions, and manifest files back into R. Check
+their filenames, column names, row counts, missingness, identifier order, and
+numeric finiteness. Explain why reading saved files is stronger than inspecting
+only the in-memory objects.
+
+## Exercise 6: Reconcile Reported Values
+
+Run `week15-cross-artifact-audit.R`. Locate the three deliberate mismatches.
+For each, identify its likely source, whether it blocks release, and the correct
+repair. Do not repair any mismatch by manually editing a generated CSV.
+
+## Exercise 7: Set Tolerances Deliberately
+
+Choose tolerances for row counts, observation identifiers, displayed RMSE,
+displayed MAE, and a binary baseline comparison. Justify why exact identifiers
+need tolerance zero while a rounded report value may not.
+
+## Exercise 8: Make A Claim Ledger
+
+Write one descriptive, associative, and predictive claim supported by the
+classroom analysis. For each claim, record direct evidence, scope, and a
+limitation. Write one causal claim and explain why the current evidence cannot
+support it.
+
+## Exercise 9: Describe Errors Honestly
+
+Compare validation RMSE, validation MAE, and the largest absolute validation
+error. Explain why a lower average error than the baseline does not mean that
+every observation is predicted accurately.
+
+## Exercise 10: Keep Sensitivity In Its Role
+
+The declared sensitivity refit has lower validation RMSE in this example.
+Explain why it should be reported but should not silently replace the frozen
+primary model.
+
+## Exercise 11: Audit Generated Prose
+
+Run `week15-ai-conclusion-review.R`. For each generated claim, independently
+check the verdict and evidence. Then write a repaired 5-7 sentence conclusion
+that retains the supported baseline comparison and states material limitations.
+
+## Exercise 12: Clean-Run Rehearsal
+
+Restart R and run the evidence-bundle script from its first line to its last.
+List every file it generates and every hidden dependency that would have caused
+the run to fail in a clean session.
+
+## Project 2 Transfer
+
+Create a final submission matrix with one row for each required Project 2 file.
+Include filename pattern, producing code section, expected rows or pages,
+principal checks, and reviewing group member. The Week 15 `airquality` outputs
+are practice artifacts and must not be submitted as Project 2 evidence.
+
+## Exit Ticket
+
+In 4-6 sentences, answer:
+
+> Why can a correct R script, a readable PDF, and plausible CSV files still
+> form an indefensible submission when they are not reconciled?

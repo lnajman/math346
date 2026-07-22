@@ -1,0 +1,86 @@
+---
+title: "Lab 15B: AI Conclusion and Caption Review"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Audit polished generated prose at the claim level and replace it with a concise
+conclusion whose numbers, scope, and limitations agree with the evidence.
+
+## Scenario
+
+Download and run:
+
+- [week15-ai-conclusion-review.R](../code/r/week15-ai-conclusion-review.R)
+
+The generated paragraph uses correct vocabulary and one correct numerical
+comparison. It also introduces causation, universal accuracy, unsupported
+generalization, an undeclared replacement model, and a claim that limitations
+are negligible.
+
+## Part A: Segment The Paragraph
+
+Underline each independently checkable claim. Separate linked claims joined by
+“so,” “therefore,” or “because”; a correct premise does not guarantee a correct
+conclusion.
+
+## Part B: Verify Every Number
+
+Recalculate validation RMSE, baseline RMSE, sensitivity RMSE, and largest
+absolute error. Record the exact source and displayed rounding for each value.
+
+## Part C: Complete The Claim Audit
+
+For every generated claim, record:
+
+| Claim | Evidence | Verdict | Repair |
+|---|---|---|---|
+| Weather causes high ozone |  |  |  |
+| Model RMSE is below baseline RMSE |  |  |  |
+| Every September day is accurate |  |  |  |
+| The model generalizes to all seasons |  |  |  |
+| Sensitivity refit should replace the model |  |  |  |
+| Limitations are negligible |  |  |  |
+
+## Part D: Check Logical Connectors
+
+For each “so” or “because,” decide whether the second clause follows from the
+first. Replace overstrong connectors with wording that matches the evidence.
+
+## Part E: Repair The Caption
+
+Write a caption for the observed-versus-predicted figure that names the 29-row
+September subset, explains the identity line and labeled error, reports one
+checked performance comparison, and states one limitation.
+
+## Part F: Write The Final Conclusion
+
+Write 5-7 sentences covering:
+
+- the question and validation setting;
+- model-versus-baseline evidence;
+- one important failure or diagnostic;
+- sensitivity result without replacing the frozen model;
+- association rather than causation;
+- limits on generalization.
+
+Every numerical value must trace to a named artifact.
+
+## Part G: Draft The AI-Use Entry
+
+Record the task given to the LLM, the paragraph received, the checks performed,
+the five rejected or repaired claims, and the group member who reviewed the
+final wording.
+
+## Deliverable
+
+Submit the segmented paragraph, numerical verification table, completed claim
+audit, connector review, repaired caption, final conclusion, and AI-use entry.
+
+## Exit Question
+
+Complete this sentence:
+
+> A polished conclusion becomes evidence-based only when ...

@@ -1,30 +1,363 @@
 ---
-title: "Week 15: Visualization, Communication, and Synthesis"
+title: "Week 15: Communication, Evidence Reconciliation, and Synthesis"
+execute:
+  enabled: false
 ---
 
 ## Official Topic
 
-Additional topics in visualization and communication. Project 2 due.
+Additional topics in visualization and communication. Project 2 completion
+window; the exact date remains to be announced.
 
 ## Problem Focus
 
 What makes a computational result worth believing and worth reading?
 
-Students revise final reports for clarity, reproducibility, interpretation, and responsible documentation of AI assistance.
+Students turn a correct analysis into a coherent evidence bundle. They generate
+figures and machine-readable outputs from one R script, verify row-level and
+numerical agreement, connect each conclusion to evidence, state limitations,
+and rehearse the final Project 2 workflow from a clean R session.
 
-## In Class
+::: {.callout-note}
+Week 15 introduces no new statistical model and does not require students to
+write Quarto. The readable project deliverable remains a Word or Google Docs
+report exported to PDF, accompanied by the R source and required CSV files.
+:::
 
-- Improve figures and captions.
-- Separate evidence from speculation.
-- Audit reproducibility.
-- Prepare final project communication.
+## Learning Goals
 
-## AI-Aware Task
+By the end of the week, students should be able to:
 
-Ask an LLM to critique a draft conclusion. Keep only suggestions that are supported by the analysis and revise any vague or exaggerated claims.
+- assign a distinct role to source code, results CSVs, prediction rows,
+  figures, and report prose;
+- explain why all submitted artifacts should come from one checked analysis;
+- choose a figure that answers a declared question rather than decorating the
+  report;
+- label variables, units, populations, and subsets in a figure;
+- write a caption that states what is shown, how to read it, and one important
+  limitation;
+- distinguish exact stored values from rounded display values;
+- generate stable output filenames through code;
+- create a simple artifact manifest;
+- restart R and reproduce the complete bundle without hidden workspace state;
+- confirm that every validation observation has exactly one prediction;
+- compare numbers in the PDF with independently read CSV values;
+- treat mismatched row counts or identifiers as release-blocking errors;
+- build a claim-evidence-limitation table before writing the conclusion;
+- separate association, predictive performance, sensitivity, and causation;
+- describe average error without claiming that every prediction is accurate;
+- limit generalization to the population and period actually checked;
+- audit an AI-polished conclusion sentence by sentence;
+- document material AI assistance and the checks performed;
+- complete a group sign-off only after every member has reviewed the final
+  artifacts.
+
+## Supplied Material
+
+The classroom example uses the familiar built-in `airquality` data. May through
+August form a training set and September provides a small new-data check for a
+previously declared formula.
+
+```text
+week15/
+  week15-evidence-bundle.R
+  week15-cross-artifact-audit.R
+  week15-ai-conclusion-review.R
+```
+
+This miniature bundle illustrates the review process. It is not an additional
+Project 2 dataset, model, or submission requirement.
+
+## Meeting 1: Make Every Artifact Answerable
+
+**Question:** Can a reader trace every important visual and numerical statement
+back to a checked computational source?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Map each submission artifact to its role |
+| 10-22 min | Freeze the question, model, rows, and comparison before polishing |
+| 22-38 min | Build one honest observed-versus-predicted figure |
+| 38-50 min | Write a title, labels, and evidence-bearing caption |
+| 50-62 min | Generate results, predictions, figure, and manifest through code |
+| 62-70 min | Read the saved files back and run contract checks |
+| 70-75 min | Exit ticket: which artifact is authoritative for each claim? |
+
+### Five Artifacts, Five Roles
+
+| Artifact | Primary role | It does not establish by itself |
+|---|---|---|
+| R source | Reproducible computation | That the reported interpretation is valid |
+| Results CSV | Exact summary values | Row-level prediction alignment |
+| Prediction CSV | One prediction per validation row | A readable overall argument |
+| Figure | Visible pattern, error, or diagnostic | Causation or broad generalization |
+| PDF | Question, reasoning, limitations, and conclusion | Computational reproducibility |
+
+A defensible submission needs agreement across these roles.
+
+### Freeze Before Polishing
+
+Before revising prose or color choices, record:
+
+- the question and observation unit;
+- training and validation row rules;
+- response, predictors, formula, and units;
+- baseline, error metrics, and sensitivity rule;
+- required filenames and output columns.
+
+Polishing a changing analysis produces attractive contradictions.
+
+### One Figure, One Main Job
+
+The supplied example asks:
+
+> How closely do frozen-model predictions agree with observed September ozone?
+
+An observed-versus-predicted plot answers that question directly. A dashed
+identity line shows perfect agreement, while one label identifies the largest
+absolute error for investigation.
+
+### A Figure Contract
+
+Before saving a figure, check:
+
+- one point or mark has a stated meaning;
+- both axes name variables and units;
+- the displayed subset is identified;
+- scales do not conceal relevant variation;
+- reference lines are explained;
+- annotations trace back to source identifiers;
+- the figure is readable at report size;
+- the caption does not claim more than the plot shows.
+
+### A Caption Is Evidence, Not Decoration
+
+A useful caption answers four questions:
+
+1. What observations and variables are displayed?
+2. What does each mark or reference line mean?
+3. What pattern matters for the report question?
+4. What limitation prevents overinterpretation?
+
+For example:
+
+> Frozen-model predictions for 29 complete September observations. Each point
+> compares observed and predicted ozone in ppb; the dashed line marks perfect
+> agreement. Average error is lower than the mean baseline, but one observation
+> still has a large prediction error and the check covers September only.
+
+### Generate, Do Not Re-Type
+
+The source script should generate:
+
+```r
+write.csv(results, results_path, row.names = FALSE)
+write.csv(prediction_table, predictions_path, row.names = FALSE)
+ggsave(figure_path, validation_plot, width = 7, height = 6)
+```
+
+The PDF may show rounded values, but those values must come from the saved
+results rather than a separate hand calculation.
+
+### Add A Small Manifest
+
+```r
+manifest <- tibble(
+  artifact = c(
+    "week15-results.csv",
+    "week15-predictions.csv",
+    "week15-validation-figure.png"
+  ),
+  role = c(
+    "exact summary values",
+    "row-level validation evidence",
+    "visual prediction evidence"
+  )
+)
+```
+
+The manifest makes missing or unexplained files visible before submission.
+
+### Read Saved Files Back
+
+Do not assume that successful writing proves the correct content was saved.
+
+```r
+results_check <- read.csv(results_path, check.names = FALSE)
+predictions_check <- read.csv(predictions_path, check.names = FALSE)
+
+stopifnot(
+  nrow(results_check) == 1,
+  nrow(predictions_check) == nrow(validation),
+  identical(predictions_check$observation_id, validation$observation_id)
+)
+```
+
+## Meeting 2: Reconcile, Interpret, and Rehearse
+
+**Question:** Would a fresh reader and a fresh R session reconstruct the same
+result from the submitted files?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-12 min | Restart R and run the complete script in a clean project folder |
+| 12-27 min | Inventory required files and reject hidden dependencies |
+| 27-42 min | Reconcile row counts, identifiers, metrics, and displayed values |
+| 42-55 min | Build a claim-evidence-limitation table |
+| 55-65 min | Audit an AI-polished conclusion sentence by sentence |
+| 65-71 min | Review AI-use appendix and group contribution statement |
+| 71-75 min | Final release decision: ready, repair, or escalate |
+
+### The Clean-Run Rehearsal
+
+1. Put only the required source and assigned data in a new folder.
+2. Restart R so no objects remain in memory.
+3. Set the intended working project or folder once.
+4. Run the source file from its first line to its last.
+5. Confirm that every required output is newly generated.
+6. Read the outputs back and run the contract checks.
+7. Compare the generated evidence with the PDF.
+
+Code that works only after several console commands is not yet reproducible.
+
+### Cross-Artifact Reconciliation
+
+The supplied audit compares reported and computed values with declared
+tolerances:
+
+```r
+artifact_audit <- tibble(
+  item,
+  source_artifact,
+  reported_value,
+  computed_value,
+  tolerance,
+  status = if_else(
+    abs(reported_value - computed_value) <= tolerance,
+    "agrees",
+    "mismatch"
+  )
+)
+```
+
+Exact identifiers and row counts use tolerance zero. Rounded displayed metrics
+may use a small documented tolerance.
+
+### Not Every Mismatch Has The Same Consequence
+
+| Finding | Normal response |
+|---|---|
+| Display rounding within tolerance | Keep and document the display rule |
+| Typographical prose error | Repair the PDF and recheck |
+| Missing prediction row | Stop release and repair the analysis/output |
+| Different model formula across files | Stop release and determine the source |
+| Unexplained result after rerun | Preserve evidence and ask for review |
+
+Never edit a CSV value manually merely to make the files agree.
+
+### Build The Conclusion From A Ledger
+
+Before writing prose, prepare:
+
+| Claim | Direct evidence | Scope | Limitation |
+|---|---|---|---|
+| Model improves on baseline | Validation RMSE comparison | September complete cases | One period and dataset |
+| Temperature has an adjusted association | Fitted coefficient | Observed predictor range | Not causal |
+| Conclusion is sensitive or stable | Declared refit result | One sensitivity rule | Not model selection |
+
+If a sentence has no evidence row, weaken it, support it, or remove it.
+
+### Four Claim Types Must Stay Separate
+
+- **Description:** what the observed data contain.
+- **Association:** how variables vary together after adjustment.
+- **Prediction:** performance on declared observations or future-like data.
+- **Causation:** what would change under an intervention.
+
+A fitted regression and validation error do not automatically establish the
+fourth claim.
+
+### Average Error Is Not Every Error
+
+RMSE and MAE summarize performance across rows. They do not say that every
+prediction is close. Inspect the distribution of errors and identify important
+failure cases before writing “accurate.”
+
+### Sensitivity Is Not A Quiet Replacement Model
+
+The Project 2 sensitivity refit asks whether a conclusion survives one declared
+change. Even if its validation metric is lower, it does not silently replace
+the frozen primary model. Report both results and explain the contrast.
+
+### Audit AI At The Claim Level
+
+For each generated sentence, record:
+
+- the exact claim;
+- supporting or contradictory evidence;
+- verdict: supported, unsupported, or contradicted;
+- repair or deletion;
+- any number checked against the source artifact.
+
+Fluent prose is not independent evidence.
+
+### AI-Use Appendix
+
+Record material assistance such as:
+
+- task and tool used;
+- prompt or request;
+- generated code, figure advice, or prose used;
+- checks performed;
+- substantive changes or rejected claims;
+- group member who reviewed the final result.
+
+The appendix documents judgment; it is not a list of every autocomplete event.
+
+### Final Group Sign-Off
+
+Before submission, every member should be able to:
+
+- locate the code that creates each result and figure;
+- explain the question, model formula, and validation metric;
+- interpret one principal figure;
+- explain the largest limitation and sensitivity result;
+- describe their contribution and any material AI assistance.
+
+The possible brief verification policy remains unchanged: selection may be
+random or prompted by a material inconsistency, and is not itself an accusation.
+
+## Common Failure Modes
+
+- copying numbers into the PDF before the analysis is final;
+- presenting training error as validation evidence;
+- dropping a prediction row while keeping the summary metric;
+- labeling an axis without units or observation context;
+- writing a caption that repeats the title but adds no evidence;
+- changing the model after seeing validation outcomes without disclosure;
+- using a sensitivity refit as an undeclared replacement model;
+- trusting an AI conclusion because its numbers look plausible;
+- submitting code that depends on objects left in the workspace;
+- signing the contribution statement without reviewing the final bundle.
 
 ## Materials
 
 - [Slides](../slides/week-15.qmd)
+- [Exercises](week-15-exercises.qmd)
+- [Lab 15: Evidence bundle and submission rehearsal](../labs/lab-15-evidence-reconciliation.qmd)
+- [Lab 15B: AI conclusion review](../labs/lab-15-ai-conclusion-review.qmd)
+- [Evidence-bundle script](../code/r/week15-evidence-bundle.R)
+- [Cross-artifact audit](../code/r/week15-cross-artifact-audit.R)
+- [AI conclusion audit](../code/r/week15-ai-conclusion-review.R)
 - [Project 2](../projects/project-2-modeling.qmd)
+
+## End-Of-Course Standard
+
+A computational result is ready to communicate when another person can run the
+source, recover the same artifacts, trace every important claim to evidence,
+see the limitations, and understand what AI did and did not contribute.
 

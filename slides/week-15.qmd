@@ -1,31 +1,440 @@
 ---
-title: "Week 15: Communication and Synthesis"
+title: "Week 15: Communication, Evidence Reconciliation, and Synthesis"
 format:
   revealjs:
     theme: simple
     slide-number: true
     footer: "MATH 346"
+execute:
+  enabled: false
 ---
 
 ## Today's Question
 
 What makes a computational result worth believing and worth reading?
 
-## Final Report Checklist
+## This Week Is Not A New Method
 
-- Clear question
-- Traceable data source
-- Reproducible code
-- Honest figures
-- Validated results
-- Supported conclusion
-- AI-use appendix
+- No new statistical model
+- No new project dataset
+- No Quarto requirement
+- One final evidence-and-communication workflow
 
-## Communication
+## The Submission Is A System
 
-Readers should see what you did, why you did it, and why the conclusion follows.
+```text
+R source
+   ├── results CSV
+   ├── prediction CSV
+   └── figures
+           ↓
+        PDF claims
+```
 
-## AI Check
+All arrows must be checkable.
 
-AI can make prose smoother. It must not make claims stronger than the evidence.
+## Five Artifacts
 
+| Artifact | Primary role |
+|---|---|
+| Source | Reproduce computation |
+| Results CSV | Preserve exact values |
+| Predictions | Preserve row alignment |
+| Figure | Make evidence visible |
+| PDF | Explain reasoning and limits |
+
+## Correct Separately Is Not Enough
+
+A readable PDF and runnable script can still disagree.
+
+A plausible CSV can still omit a row.
+
+A clear figure can still support an overstrong caption.
+
+## Freeze Before Polishing
+
+- Question and observation unit
+- Training and validation rows
+- Formula and units
+- Baseline and metrics
+- Sensitivity rule
+- Required artifacts
+
+## Classroom Example
+
+- Familiar `airquality` data
+- May-August: training rows
+- September: validation rows
+- Frozen formula from prior weeks
+- Practice bundle, not Project 2 evidence
+
+## Checked Modeling Rows
+
+```r
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    month = factor(month.abb[Month]),
+    ozone_ppb = Ozone,
+    temperature_f = Temp,
+    wind_mph = Wind
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+```
+
+## Frozen Analysis
+
+```r
+training <- model_data |> filter(month != "Sep")
+validation <- model_data |> filter(month == "Sep")
+
+fit <- lm(
+  ozone_ppb ~ temperature_f + wind_mph,
+  data = training
+)
+```
+
+## First Reconciliation
+
+| Item | Checked value |
+|---|---:|
+| Training rows | 87 |
+| Validation rows | 29 |
+| Required predictions | 29 |
+| Frozen formula | temperature + wind |
+
+## One Figure, One Main Job
+
+> How closely do frozen-model predictions agree with observed September ozone?
+
+Choose the display after stating the question.
+
+## Observed Versus Predicted
+
+```r
+ggplot(prediction_table,
+       aes(observed_ozone_ppb, prediction_ppb)) +
+  geom_abline(
+    slope = 1, intercept = 0,
+    linetype = "dashed"
+  ) +
+  geom_point()
+```
+
+## The Identity Line
+
+- On line: observed equals predicted
+- Above line: model overpredicts
+- Below line: model underpredicts
+- Distance: visible prediction error
+
+## A Figure Contract
+
+- Meaning of one mark
+- Variables and units
+- Population or subset
+- Honest scale
+- Explained reference lines
+- Traceable annotations
+
+## Labels Carry Evidence
+
+```r
+labs(
+  x = "Observed ozone (ppb)",
+  y = "Predicted ozone (ppb)",
+  caption = paste(
+    "Each point is one of", nrow(validation),
+    "complete September observations."
+  )
+)
+```
+
+## Caption Test
+
+A useful caption states:
+
+1. What is displayed
+2. How to read it
+3. What pattern matters
+4. What limitation remains
+
+## Weak Caption
+
+> Figure 3. Model predictions.
+
+It names the object but carries almost no evidence.
+
+## Stronger Caption
+
+> Observed and predicted ozone for 29 complete September observations. The
+> dashed line marks perfect agreement. Average error is below the mean baseline,
+> but one error remains large and the check covers September only.
+
+## Generate, Do Not Re-Type
+
+```r
+write.csv(results, results_path, row.names = FALSE)
+write.csv(
+  prediction_table,
+  predictions_path,
+  row.names = FALSE
+)
+ggsave(figure_path, validation_plot)
+```
+
+## Exact And Display Values
+
+- CSV: full numeric precision
+- PDF: sensible rounding
+- Caption: same value and unit
+- Audit: declared tolerance
+
+Rounding is allowed; contradiction is not.
+
+## Artifact Manifest
+
+```r
+manifest <- tibble(
+  artifact = c(
+    "results.csv", "predictions.csv", "figure.png"
+  ),
+  role = c(
+    "exact values", "row evidence", "visual evidence"
+  )
+)
+```
+
+## Read It Back
+
+```r
+results_check <- read.csv(results_path)
+predictions_check <- read.csv(predictions_path)
+
+stopifnot(
+  nrow(results_check) == 1,
+  nrow(predictions_check) == nrow(validation)
+)
+```
+
+## Source Identifier Check
+
+```r
+stopifnot(identical(
+  predictions_check$observation_id,
+  validation$observation_id
+))
+```
+
+Order is evidence, not formatting.
+
+## Meeting 1 Exit Ticket
+
+Which artifact is authoritative for:
+
+- exact metrics?
+- row-level predictions?
+- interpretation and limitations?
+- reproducible computation?
+
+## Clean-Run Rehearsal
+
+1. New folder
+2. Required inputs only
+3. Restart R
+4. Run first line to last
+5. Inspect new outputs
+6. Read back and check
+
+## Hidden-State Failure
+
+```r
+# Works only because fit exists in the workspace
+predictions <- predict(fit, newdata = validation)
+```
+
+If `fit` is not created earlier in the script, the bundle is not reproducible.
+
+## Cross-Artifact Audit
+
+```r
+artifact_audit <- tibble(
+  item, reported_value, computed_value,
+  tolerance,
+  status = if_else(
+    abs(reported_value - computed_value) <= tolerance,
+    "agrees", "mismatch"
+  )
+)
+```
+
+## Tolerance Zero
+
+Use exact agreement for:
+
+- row counts
+- observation identifiers
+- prediction order
+- formula text
+- categorical labels
+
+## Small Display Tolerance
+
+| Exact CSV | PDF display | Difference |
+|---:|---:|---:|
+| 14.89114 | 14.89 | 0.00114 |
+
+A declared `0.01` tolerance accepts the display value.
+
+## Three Deliberate Mismatches
+
+- Training rows: 116 reported, 87 computed
+- Prediction rows: 28 reported, 29 computed
+- Validation RMSE: 15.80 reported, 17.94 computed
+
+Each needs a source and repair.
+
+## Release-Blocking Findings
+
+- Missing prediction row
+- Formula disagreement
+- Wrong training subset
+- Unexplained rerun difference
+- Manually edited generated output
+
+Stop and repair the source.
+
+## Never Repair Evidence By Hand
+
+Wrong:
+
+> Change the CSV cell until it matches the PDF.
+
+Right:
+
+> Find the generating code, rerun it, then update dependent artifacts.
+
+## Claim Ledger
+
+| Claim | Evidence | Scope | Limitation |
+|---|---|---|---|
+| Beats baseline | Validation RMSE | September | One period |
+| Adjusted association | Coefficient | Observed range | Not causal |
+| Sensitivity result | Declared refit | One rule | Not selection |
+
+## Four Different Claim Types
+
+- Description
+- Association
+- Prediction
+- Causation
+
+Do not move between them silently.
+
+## Average Error Is Not Every Error
+
+Validation RMSE: about 17.9 ppb
+
+Validation MAE: about 14.9 ppb
+
+Largest absolute error: over 40 ppb
+
+## Baseline Comparison
+
+The frozen model has lower validation RMSE than the mean-training-response
+baseline.
+
+This supports one comparative prediction claim—not universal accuracy.
+
+## Sensitivity Has A Declared Role
+
+The sensitivity refit has lower validation RMSE here.
+
+Report the contrast.
+
+Do not silently replace the frozen primary model.
+
+## AI-Polished Conclusion
+
+> The model proves that hot, calm weather causes high ozone. Its lower
+> validation RMSE means every day is predicted accurately and the model will
+> generalize to all seasons.
+
+Fluent, numerical, and wrong.
+
+## Split At Logical Connectors
+
+> RMSE is below baseline, **so** every day is accurate.
+
+The premise is supported.
+
+The conclusion does not follow.
+
+## Claim-Level AI Audit
+
+| Claim | Verdict |
+|---|---|
+| Causes high ozone | Unsupported |
+| RMSE below baseline | Supported |
+| Every day accurate | Contradicted |
+| All seasons | Unsupported |
+
+## Repair Rules
+
+- Retain supported claims
+- Add checked numbers and units
+- Weaken scope when evidence is narrow
+- State important failures
+- Delete unsupported causation
+
+## AI-Use Appendix
+
+- Task and tool
+- Prompt or request
+- Material output used
+- Checks performed
+- Changes and rejected claims
+- Human reviewer
+
+## Group Sign-Off
+
+Every member can:
+
+- locate producing code;
+- explain formula and metric;
+- interpret one figure;
+- state sensitivity and limitation;
+- describe contribution and AI use.
+
+## Project 2 Files
+
+```text
+group-01-project-2.pdf
+group-01-project2.R
+group-01-project2-results.csv
+group-01-validation-predictions.csv
+```
+
+Exact date remains to be announced.
+
+## Final Release Decision
+
+- **Ready:** all required evidence agrees
+- **Repair:** known source and bounded correction
+- **Escalate:** unexplained or material inconsistency
+
+Never choose “ready enough.”
+
+## End-Of-Course Standard
+
+Another person can:
+
+1. Run the source
+2. Recover the artifacts
+3. Trace every important claim
+4. See the limitations
+5. Understand the AI contribution
+
+## Final Exit Ticket
+
+Why can individually plausible artifacts still form an indefensible submission?

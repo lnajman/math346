@@ -58,6 +58,9 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 - [week14-many-models.R](r/week14-many-models.R)
 - [week14-grouped-sensitivity.R](r/week14-grouped-sensitivity.R)
 - [week14-ai-model-ranking-review.R](r/week14-ai-model-ranking-review.R)
+- [week15-evidence-bundle.R](r/week15-evidence-bundle.R)
+- [week15-cross-artifact-audit.R](r/week15-cross-artifact-audit.R)
+- [week15-ai-conclusion-review.R](r/week15-ai-conclusion-review.R)
 
 ## Project Starter Templates
 

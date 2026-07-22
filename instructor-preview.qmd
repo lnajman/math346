@@ -22,7 +22,7 @@ The site does not redistribute copyrighted slide decks, textbook PDFs, answer ke
 
 ## What To Review First
 
-Weeks 1-4 are the validated prototype. Weeks 5-14 have now been expanded
+Weeks 1-4 are the validated prototype. Weeks 5-15 have now been expanded
 using the same teaching pattern:
 
 | Week | Focus | Suggested review |
@@ -41,11 +41,12 @@ using the same teaching pattern:
 | [Week 12](weeks/week-12.qmd) | Vectorized thinking and visible iteration | Look at typed iteration, preallocated loops, complete batch status logs, and the AI dropped-failure audit. |
 | [Week 13](weeks/week-13.qmd) | Model claims and diagnostic evidence | Look at row accounting, contextual coefficients, baseline comparison, residual and influence flags, and the AI interpretation audit. |
 | [Week 14](weeks/week-14.qmd) | Many models and aligned evidence | Look at the fixed monthly model contract, retained fit objects, coefficient intervals, grouped sensitivity checks, and the AI model-ranking audit. |
+| [Week 15](weeks/week-15.qmd) | Communication and evidence reconciliation | Look at the generated evidence bundle, figure and caption contract, clean-run rehearsal, cross-artifact checks, and the AI conclusion audit. |
 
 Weeks 1-4 have now been validated as the prototype pattern for the course.
-Weeks 5-14 are developed and ready for review, but have not yet been
-designated as validated prototypes. Week 15 is still more schematic. It shows
-the intended end of the course, but it is not yet expanded to the same level.
+Weeks 5-15 are developed and ready for review, but have not yet been
+designated as validated prototypes. The full weekly arc is now available for a
+course-wide coherence and workload review.
 
 ## Useful Direct Links
 
@@ -85,12 +86,15 @@ I would especially appreciate feedback on these questions:
 - Does Week 14 make repeated modeling manageable without encouraging students
   to rank differently sized subsets by a single training metric or to hide
   sensitivity and uncertainty?
+- Does Week 15 make the relationship among R source, CSV outputs, figures, PDF
+  claims, clean-run reproducibility, and AI documentation manageable for a
+  beginner group completing Project 2?
 - Is the working assessment sequence realistic: quizzes in Weeks 3, 6, 9, and
   13, with the semester examination (midterm) in Week 8?
 - Is the balance right between MATLAB/R skills, mathematical thinking, and validation?
 - Do the LLM-related activities feel pedagogically useful rather than distracting?
-- Are there essential commands, concepts, habits, or warnings missing from the first fourteen weeks?
-- What should be adjusted before expanding Week 15 in the same style?
+- Are there essential commands, concepts, habits, or warnings missing from the full 15-week sequence?
+- Where should workload, repetition, or prerequisites be adjusted before the course-wide review is closed?
 
 ## The Intended Shift
 
