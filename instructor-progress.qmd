@@ -6,7 +6,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**Week 11 developed; vectorized thinking and iteration in Week 12 are the next content milestone.**
+**Week 12 developed; model basics and diagnostics in Week 13 are the next content milestone.**
 
 Last updated: **22 July 2026**
 :::
@@ -29,8 +29,8 @@ the motivation and the kind of feedback being requested.
 | Week 9: import and tidy data | **Developed; ready for review** | Supplied synthetic CSV, two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the import-contract and observation-key workload |
 | Week 10: relational and typed data | **Developed; ready for review** | Two supplied synthetic CSVs, two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the typed-cleaning and join-contract workload |
 | Week 11: pipelines and functions | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the contracts, tests, and AI-refactor workload |
-| Week 12: iteration and repeated workflows | Outline/early scaffold | Week and slide outlines | Expand vectorized thinking and iteration |
-| Weeks 13-15: modeling and synthesis | Outline | Week and slide outlines | Expand after the R foundations |
+| Week 12: iteration and repeated workflows | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the typed-iteration and visible-failure workload |
+| Weeks 13-15: modeling and synthesis | Outline | Week and slide outlines | Expand Week 13 model basics and diagnostics |
 | Quizzes and midterm | **Working placement restored** | Quizzes in Weeks 3, 6, 9, and 13; semester examination (midterm) in Week 8 | Decide exact dates, delivery, and formats later |
 | Projects | **Complete and privately backed up** | 20-group data, MATLAB/R starters, Word report templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Check the live Blackboard setup before release |
 | Executable code checks | Implemented | Local scripts and GitHub Actions | Extend checks as new code is added |
@@ -92,6 +92,14 @@ they can never be revised.
   how a plausible refactor can silently change inclusive-boundary,
   missing-value, and function-argument behavior. All three Week 11 R scripts
   pass the validation harness.
+- Week 12 returns to the familiar `airquality` data so that students can focus
+  on vectorization and iteration rather than import. It distinguishes
+  whole-vector work from repeating a checked function across variable names,
+  compares `lapply`, typed `vapply`, and a preallocated loop, and requires one
+  status row for every requested batch item. The AI activity shows how `NULL`
+  can erase failures and mixed return values can coerce numeric results to
+  text. Project 2 is introduced without moving modeling content ahead of Week
+  13. All three Week 12 R scripts pass the validation harness.
 - The course is expected to have about 60 students, so individual oral project
   defenses are not a practical default.
 - Project 1 uses MATLAB and Project 2 uses R.
@@ -167,6 +175,7 @@ architecture and the remaining implementation decisions.
 | 22 July 2026 | The original working assessment sequence was restored on the public pages: quizzes in Weeks 3, 6, 9, and 13, with the semester examination (midterm) in Week 8. Exact dates, delivery, and formats remain open. |
 | 22 July 2026 | Week 10 was expanded around a supplied synthetic building registry and service-event log, string and factor contracts, time-zone-aware parsing, unmatched-row audits, declared join relationships, composite keys, full slides, two labs, exercises, three checked R scripts, and an AI partial-key join audit. |
 | 22 July 2026 | Week 11 was expanded around readable pipelines with named checkpoints, small functions with explicit contracts, normal and edge-case tests, full slides, two labs, exercises, three checked R scripts, and an AI refactor audit for behavior drift. |
+| 22 July 2026 | Week 12 was expanded around vectorized operations, `lapply`, typed `vapply`, preallocated loops, complete batch status logs, full slides, two labs, exercises, three checked R scripts, and an AI audit for dropped failures and type coercion. Project 2 is assigned through the existing two-stage workflow; its due date remains deferred. |
 
 ## Next Decision Gate
 
@@ -182,13 +191,15 @@ The working student project package is complete:
 - **Completed:** exact-content checks for all 60 release ZIPs and a
   representative upload/download extraction rehearsal.
 
-The next development milestone is to expand **Week 12** around vectorized
-thinking, iteration, and repeated workflows while keeping computations
-inspectable and failures visible; Project 2 is introduced in the existing
-course sequence. The working quiz and midterm placement remains visible; exact
-dates, delivery, and formats can be decided later. The project date can also be
-decided later. The live Blackboard setup still needs a short final check before
-student release.
+The next development milestone is to expand **Week 13** around model basics and
+diagnostics: translating a contextual question into a formula, fitting and
+interpreting a first regression model, checking residual behavior, comparing a
+model with a simple baseline, and auditing an AI interpretation. Project 2 has
+been introduced, while its exact due date remains deferred. The working quiz
+and midterm placement remains visible; exact
+dates, delivery, and formats can be decided later. The MATLAB project date can
+also be decided later. The live Blackboard setup still needs a short final
+check before student release.
 
 Feedback on those choices is especially useful now. The original review
 questions remain available on the [instructor preview](instructor-preview.qmd).

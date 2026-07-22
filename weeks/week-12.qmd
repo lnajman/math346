@@ -1,5 +1,7 @@
 ---
-title: "Week 12: Vectors and Iteration"
+title: "Week 12: Vectorized Thinking And Visible Iteration"
+execute:
+  enabled: false
 ---
 
 ## Official Topic
@@ -8,23 +10,349 @@ Vectors and iteration. Project 2 assigned.
 
 ## Problem Focus
 
-How do we scale one analysis across many variables, groups, or files?
+How do we repeat a tested analysis across many inputs without losing track of
+what ran, what failed, and what shape the results should have?
 
-Students use vectorized thinking and iteration to repeat a workflow while keeping the logic clear.
+Students reuse R's familiar `airquality` data. They compare whole-vector
+operations, typed iteration, and a preallocated loop; then they build a batch
+workflow that records one status row for every requested variable.
 
-## In Class
+::: {.callout-note}
+Week 12 repeats descriptive workflows across known inputs. Statistical models
+and their diagnostics begin in Week 13. Project 2 is introduced now, but
+students are not expected to invent or fit its final model this week.
+:::
 
-- Distinguish vectorized operations from loops.
-- Use iteration for repeated tasks.
-- Store repeated results consistently.
-- Recognize when automation can amplify mistakes.
+## Learning Goals
 
-## AI-Aware Task
+By the end of the week, students should be able to:
 
-Ask an LLM to automate a repeated analysis. Then check whether it silently drops failures, changes variable types, or hides warnings.
+- recognize an elementwise calculation that should operate on a whole vector;
+- explain why a loop over individual observations is often unnecessary in R;
+- distinguish the data being processed from the inputs being iterated over;
+- use a character vector to declare an ordered set of variable names;
+- select a data-frame column programmatically with `data[[name]]`;
+- use `lapply` when each input may return an object;
+- use `vapply` when every input must return a specified type and length;
+- write an equivalent `for` loop with a preallocated named result;
+- preserve input order and names in repeated results;
+- combine one-row data-frame results with `bind_rows`;
+- require one result or status record for every requested input;
+- capture an error message without silently deleting the failed request;
+- distinguish successful analytical results from the complete batch log;
+- detect type coercion caused by over-simplified generated code;
+- test result count, names, order, type, and failure visibility;
+- identify which Week 12 habits support the Project 2 workflow.
+
+## Supplied Material
+
+Week 12 uses the built-in `airquality` data. No download is needed for the
+dataset.
+
+Recommended structure:
+
+```text
+week12/
+  week12-vectorized-iteration.R
+  week12-repeated-workflow.R
+```
+
+Project 2 is also assigned this week. Each group later receives its own
+training package through Blackboard; the public project page explains the
+common task and submission contract.
+
+## Meeting 1: Choose The Right Kind Of Repetition
+
+**Question:** Is the operation naturally applied to a whole vector, or must a
+workflow be repeated over distinct inputs?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Revisit vector input and function contracts from Week 11 |
+| 10-22 min | Replace an observation-by-observation loop with vectorized arithmetic |
+| 22-35 min | Declare variable names and inspect columns with `data[[name]]` |
+| 35-48 min | Use `lapply` for one result object per variable |
+| 48-60 min | Use `vapply` to require one numeric result per variable |
+| 60-70 min | Write and compare a preallocated `for` loop |
+| 70-75 min | Exit ticket: vectorization, `vapply`, or loop—and why? |
+
+### Vectorize Elementwise Work
+
+```r
+temperature_c <- (airquality$Temp - 32) * 5 / 9
+```
+
+The arithmetic is applied to the complete temperature vector. A loop over 153
+rows would repeat an operation R already defines element by element.
+
+Check the result contract:
+
+```r
+stopifnot(
+  length(temperature_c) == nrow(airquality),
+  !any(is.na(temperature_c))
+)
+```
+
+### Iteration Repeats A Workflow Over Inputs
+
+Suppose the same checked summary is needed for four variables:
+
+```r
+variables <- c("Ozone", "Solar.R", "Wind", "Temp")
+```
+
+The repeated inputs are variable names, not the 153 observations inside each
+variable.
+
+### Select A Column By Its Stored Name
+
+```r
+variable_name <- "Ozone"
+values <- airquality[[variable_name]]
+```
+
+Use `$Ozone` when the name is written directly in the code. Use `[[name]]`
+when the name is stored in an object and changes between iterations.
+
+### `lapply`: Preserve One Object Per Input
+
+```r
+summary_list <- lapply(
+  variables,
+  function(variable_name) {
+    summarize_numeric(airquality, variable_name)
+  }
+)
+```
+
+The result is a list with the same length and order as `variables`. Each list
+element contains the one-row result returned for one variable.
+
+```r
+summary_table <- bind_rows(summary_list)
+```
+
+Combine only after checking what each iteration returns.
+
+### `vapply`: State A Scalar Output Contract
+
+```r
+means <- vapply(
+  variables,
+  function(variable_name) {
+    mean(airquality[[variable_name]], na.rm = TRUE)
+  },
+  numeric(1)
+)
+```
+
+`numeric(1)` states that every iteration must return exactly one number. If a
+result has the wrong type or length, `vapply` stops instead of silently changing
+the output structure.
+
+### The Equivalent Preallocated Loop
+
+```r
+means_loop <- setNames(numeric(length(variables)), variables)
+
+for (variable_name in variables) {
+  means_loop[[variable_name]] <- mean(
+    airquality[[variable_name]],
+    na.rm = TRUE
+  )
+}
+```
+
+The loop is not inherently wrong. Preallocation makes the intended output type,
+length, and names visible before the first iteration.
+
+### Compare Implementations By Behavior
+
+```r
+stopifnot(
+  identical(names(means), variables),
+  isTRUE(all.equal(means, means_loop))
+)
+```
+
+Choose the clearest form whose output contract is explicit. Do not replace a
+working construct merely because another one is shorter.
+
+## Meeting 2: A Batch Run Needs An Audit Trail
+
+**Question:** When one repeated task fails, how do we keep that failure visible
+without losing the successful work?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | State the input/output contract for one variable summary |
+| 10-25 min | Iterate over valid numeric variables and combine results |
+| 25-40 min | Add a text variable and a missing name to the request list |
+| 40-53 min | Build a safe wrapper that returns one status row per request |
+| 53-63 min | Audit generated code that drops errors or coerces types |
+| 63-72 min | Open Project 2 package, task, and frozen-plan sequence |
+| 72-75 min | Exit ticket: the minimum batch-run evidence to retain |
+
+### Validate One Unit Before Repeating It
+
+The function should be trustworthy on one input before it is automated:
+
+```r
+summarize_numeric <- function(data, variable_name) {
+  if (!variable_name %in% names(data)) {
+    stop("requested variable is not present")
+  }
+
+  values <- data[[variable_name]]
+  if (!is.numeric(values)) {
+    stop("requested variable must be numeric")
+  }
+
+  tibble(
+    variable = variable_name,
+    n_missing = sum(is.na(values)),
+    mean = mean(values, na.rm = TRUE)
+  )
+}
+```
+
+Iteration amplifies the original function's behavior, including its mistakes.
+
+### Include Inputs That Should Fail
+
+```r
+requested_variables <- c(
+  "Ozone",
+  "month_label",
+  "not_a_column",
+  "Temp"
+)
+```
+
+The expected batch result has four records: two successes and two explicit
+failures.
+
+### Return A Status Row For Every Request
+
+```r
+safe_summarize_numeric <- function(data, variable_name) {
+  tryCatch(
+    summarize_numeric(data, variable_name),
+    error = function(error) {
+      tibble(
+        variable = variable_name,
+        status = "error",
+        mean = NA_real_,
+        error_message = conditionMessage(error)
+      )
+    }
+  )
+}
+```
+
+The complete classroom script also returns matching typed fields for successful
+and failed rows.
+
+### Check The Batch Contract
+
+```r
+stopifnot(
+  nrow(run_log) == length(requested_variables),
+  identical(run_log$variable, requested_variables),
+  sum(run_log$status == "error") == 2
+)
+```
+
+Filtering to successful results can happen later. The complete log must remain
+available to show what was attempted.
+
+### Two Dangerous Generated Shortcuts
+
+The AI-review script demonstrates:
+
+1. `error = function(error) NULL`, followed by `bind_rows`, silently removes
+   failed requests;
+2. returning numbers for success and text for failure through `sapply` coerces
+   every result to character.
+
+Both batches finish. Neither preserves a trustworthy result contract.
+
+## Project 2 Starts Here
+
+Project 2 uses R for a group-specific building-energy analysis. This week,
+students should:
+
+1. download the training ZIP assigned to their Blackboard group;
+2. confirm that the group identifier appears in the filenames and starter;
+3. read the data dictionary and fixed result contract;
+4. run the starter far enough to see its intentional `TODO` stop;
+5. identify where vectorized calculations, tested functions, and repeated
+   checks will be needed;
+6. keep the validation stage closed until the model plan is frozen.
+
+The exact due date remains deferred. The training package, group allocation,
+and later validation release are managed through Blackboard.
+
+## AI-Aware Task: Automation Must Not Erase Evidence
+
+For generated repeated-analysis code, check:
+
+1. Does every requested input appear in the output or status log?
+2. Are failures distinguishable from missing analytical values?
+3. Do successful numerical results remain numeric?
+4. Is input order preserved?
+5. Does the output retain stable column names and types?
+6. Are warnings and errors recorded rather than discarded?
+7. Does the same contract hold for one input and many inputs?
+
+## Survival Checklist
+
+### Commands And Patterns To Own
+
+| Pattern | Purpose |
+|---|---|
+| `f(x_vector)` | apply a vectorized operation to all elements |
+| `data[[name]]` | select the column whose name is stored in `name` |
+| `lapply(inputs, f)` | return one result object per input |
+| `vapply(inputs, f, numeric(1))` | require one numeric result per input |
+| `setNames(numeric(n), names)` | preallocate a named numeric loop result |
+| `for (name in names)` | repeat explicit statements over known inputs |
+| `bind_rows(results)` | combine compatible data-frame results |
+| `tryCatch(..., error = ...)` | convert a failure into an explicit record |
+| `conditionMessage(error)` | retain the readable error message |
+
+### Before Running A Batch
+
+- Test the single-input function on known valid and invalid cases.
+- Declare the complete input list and its intended order.
+- State how many output records are expected.
+- State the type and shape of one successful result.
+- Decide whether a failure should stop the batch or become a status record.
+
+### After Running A Batch
+
+- Compare output count with input count.
+- Compare output names and order with requested inputs.
+- Count successes, warnings, and errors.
+- Check column types after combining results.
+- Inspect at least one successful and one failed record.
+- Retain the complete log even if later analysis uses successes only.
+
+## Exercises
+
+Complete the [Week 12 exercises](week-12-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-12.qmd)
+- [Lab 12](../labs/lab-12-vectorized-iteration.qmd)
+- [AI batch-review lab](../labs/lab-12-ai-batch-review.qmd)
+- [week12-vectorized-iteration.R](../code/r/week12-vectorized-iteration.R)
+- [week12-repeated-workflow.R](../code/r/week12-repeated-workflow.R)
+- [week12-ai-batch-review.R](../code/r/week12-ai-batch-review.R)
 - [Project 2](../projects/project-2-modeling.qmd)
-

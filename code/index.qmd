@@ -49,6 +49,9 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 - [week11-readable-pipeline.R](r/week11-readable-pipeline.R)
 - [week11-function-contracts.R](r/week11-function-contracts.R)
 - [week11-ai-refactor-review.R](r/week11-ai-refactor-review.R)
+- [week12-vectorized-iteration.R](r/week12-vectorized-iteration.R)
+- [week12-repeated-workflow.R](r/week12-repeated-workflow.R)
+- [week12-ai-batch-review.R](r/week12-ai-batch-review.R)
 
 ## Project Starter Templates
 

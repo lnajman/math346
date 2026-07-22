@@ -52,10 +52,15 @@ course validation harness. Week 11 has now been expanded around readable
 pipelines with named checkpoints, small functions with explicit contracts,
 normal, boundary, missing, and invalid-input tests, and an AI refactor audit
 that exposes behavior drift. Its three R scripts pass the complete course
-validation harness. The next content milestone is Week 12 vectorized thinking,
-iteration, and repeated workflows.
+validation harness. Week 12 has now been expanded around vectorized thinking,
+typed iteration, preallocated loops, repeated workflows with one status row per
+request, and an AI batch audit that exposes silently dropped failures and type
+coercion. Its three R scripts pass the complete course validation harness.
+Project 2 is introduced through its existing public and Blackboard workflow;
+the exact due date remains deferred. The next content milestone is Week 13
+model basics and diagnostics.
 
-Weeks 12-15 remain outlines. They should not yet be described as complete course
+Weeks 13-15 remain outlines. They should not yet be described as complete course
 materials.
 
 ## Confirmed Progress
@@ -113,8 +118,12 @@ materials.
   slides, a main lab, an AI refactor-review lab, exercises, and three checked R
   scripts. It is developed and ready for review, but has not yet been
   designated a validated prototype.
-- Weeks 12-15 have short week pages and slide outlines, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-11.
+- Week 12 now has a two-meeting vectorization-and-iteration plan, full slides,
+  a main lab, an AI batch-review lab, exercises, and three checked R scripts. It
+  is developed and ready for review, but has not yet been designated a
+  validated prototype.
+- Weeks 13-15 have short week pages and slide outlines, but very little of the
+  supporting lab, exercise, and code material available for Weeks 1-12.
 
 ## Established Decisions and Constraints
 
@@ -179,7 +188,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 9 | `weeks/week-09.qmd`; `slides/week-09.qmd`; two labs; exercises; supplied CSV; three checked R scripts | Developed; ready for review |
 | Week 10 | `weeks/week-10.qmd`; `slides/week-10.qmd`; two labs; exercises; two supplied CSVs; three checked R scripts | Developed; ready for review |
 | Week 11 | `weeks/week-11.qmd`; `slides/week-11.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
-| Week 12 | week and slide pages | Outline/early scaffold |
+| Week 12 | `weeks/week-12.qmd`; `slides/week-12.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Weeks 13-15 | week and slide pages | Outline |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
@@ -188,7 +197,7 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 12 and then the remaining R sequence using the validated weekly
+2. Expand Week 13 and then the remaining R sequence using the validated weekly
    pattern.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
@@ -280,3 +289,9 @@ milestone:
   three R scripts, and an AI refactor audit that catches changed boundary,
   missing-value, and argument behavior. The complete R validation harness
   passed.
+- **2026-07-22:** Week 12 was expanded around vectorized operations,
+  programmatic column selection, `lapply`, typed `vapply`, preallocated loops,
+  complete batch status logs, two labs, exercises, three R scripts, and an AI
+  audit for silently dropped failures and type coercion. Project 2 is assigned
+  through the existing two-stage workflow; its due date remains deferred. The
+  complete R validation harness passed.

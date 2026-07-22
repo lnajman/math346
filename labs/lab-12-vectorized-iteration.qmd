@@ -1,0 +1,98 @@
+---
+title: "Lab 12: Vectorized Thinking And Visible Iteration"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Scale one tested descriptive workflow across several variables while preserving
+input order, output types, and evidence of every attempted task.
+
+## Setup
+
+Create:
+
+```text
+week12/
+  week12-vectorized-iteration.R
+  week12-repeated-workflow.R
+```
+
+Download:
+
+- [week12-vectorized-iteration.R](../code/r/week12-vectorized-iteration.R)
+- [week12-repeated-workflow.R](../code/r/week12-repeated-workflow.R)
+
+The scripts use R's built-in `airquality` data.
+
+## Part A: Identify The Repeated Unit
+
+For the temperature conversion, four variable means, and four one-row
+summaries, state whether the repeated unit is an observation, a vector, a
+variable name, or a function call.
+
+## Part B: Test The Single-Input Function
+
+Run `summarize_numeric` on `Ozone`. Record its accepted inputs, output columns
+and types, missing-value rule, and failure behavior.
+
+Test `Temp`, an absent column, and the character column `month_label` before
+automating the function.
+
+## Part C: Compare Three Implementations
+
+Calculate the four variable means using:
+
+1. `vapply` with `numeric(1)`;
+2. a preallocated named `for` loop;
+3. `lapply`, followed by an explicit simplification step.
+
+Compare values, names, order, type, and length. Explain which implementation
+communicates the scalar output contract most directly.
+
+## Part D: Extend The Summary
+
+Add the median, standard deviation, and observed count to `summarize_numeric`.
+Run the function across all four variables and combine the one-row outputs.
+
+Check that the table contains four rows, unique variable names, 153 total rows
+per variable, and the expected missing counts.
+
+## Part E: Make Failures Visible
+
+Run `week12-repeated-workflow.R`. Add one more valid numeric variable and one
+more invalid request. Update the expected status vector and all accounting
+checks.
+
+Keep a complete `run_log` and create a separate `successful_results` table.
+
+## Part F: Break The Contract Deliberately
+
+Change one error branch to return `NULL`. Confirm that the combined output has
+fewer rows than the request list. Restore the typed status row and confirm that
+the count check passes.
+
+## Part G: Project 2 Connection
+
+Open the [Project 2 page](../projects/project-2-modeling.qmd). Identify one
+vectorized calculation, one repeated check, and one batch log that could help
+make the future project script auditable.
+
+Do not select or fit the final model in this lab.
+
+## Deliverable
+
+Submit:
+
+- the vectorized temperature calculation and its checks;
+- three equivalent mean calculations;
+- the extended four-row summary table;
+- the complete run log with at least two explicit failures;
+- a short comparison of `lapply`, `vapply`, and the loop;
+- the Project 2 connection notes.
+
+## AI Use
+
+If an LLM proposes iteration code, record the requested inputs, expected result
+shape, generated output, missing or coerced results, and the repaired contract.

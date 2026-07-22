@@ -29,6 +29,8 @@ Labs are designed as studio activities. They should be completed with MATLAB or 
 | [Lab 10B](lab-10-ai-join-review.qmd) | AI-generated partial-key join review | Ready |
 | [Lab 11](lab-11-pipelines-functions.qmd) | Readable pipelines and tested function contracts | Ready |
 | [Lab 11B](lab-11-ai-refactor-review.qmd) | AI-generated refactor behavior review | Ready |
+| [Lab 12](lab-12-vectorized-iteration.qmd) | Vectorized thinking, typed iteration, and visible failures | Ready |
+| [Lab 12B](lab-12-ai-batch-review.qmd) | AI-generated batch automation review | Ready |
 
 ## Lab Routine
 

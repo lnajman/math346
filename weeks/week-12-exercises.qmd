@@ -1,0 +1,99 @@
+---
+title: "Week 12 Exercises"
+execute:
+  enabled: false
+---
+
+Use R's built-in `airquality` data and the supplied Week 12 scripts.
+
+## Exercise 1: Vectorize Or Iterate?
+
+For each task, choose vectorization, `lapply`, `vapply`, or a `for` loop and
+justify the choice:
+
+1. convert every Fahrenheit temperature to Celsius;
+2. calculate one mean for each of four named columns;
+3. produce one data-frame summary for each named column;
+4. run three dependent checks and stop at the first failure;
+5. label every wind observation as below or at least 10 mph.
+
+## Exercise 2: Remove An Unnecessary Loop
+
+Write a loop that converts `airquality$Temp` to Celsius one observation at a
+time. Replace it with one vectorized expression. Check that the two results are
+equal and explain which version better exposes the mathematical rule.
+
+## Exercise 3: Select Programmatically
+
+Set `variable_name <- "Wind"` and select the column with
+`airquality[[variable_name]]`. Then change only the stored name to `"Ozone"`.
+
+Explain why `$variable_name` does not mean the same thing.
+
+## Exercise 4: Typed Scalar Iteration
+
+Use `vapply` to calculate the number of missing observations for `Ozone`,
+`Solar.R`, `Wind`, and `Temp`.
+
+Require one integer per input. Check names, order, length, and the expected
+missing counts `37, 7, 0, 0`.
+
+## Exercise 5: Equivalent Preallocated Loop
+
+Repeat Exercise 4 using a named integer vector and a `for` loop. Preallocate
+before the loop. Compare the complete result with the `vapply` output.
+
+## Exercise 6: One-Row Function Results
+
+Modify `summarize_numeric` so that it also returns the median and interquartile
+range. Apply it to four variables with `lapply`, combine the rows, and verify
+that the output has four rows in the requested order.
+
+## Exercise 7: Stop Or Record?
+
+For each failure, decide whether the batch should stop or record a status row:
+
+1. a requested column does not exist;
+2. a plot cannot be saved because the output folder is absent;
+3. one variable contains missing observations;
+4. a result has the wrong number of columns;
+5. one of 20 group submissions cannot be opened.
+
+Explain what evidence must remain in either case.
+
+## Exercise 8: Build A Complete Run Log
+
+Request `Ozone`, `month_label`, `not_a_column`, and `Temp` from the modified
+Week 12 data. Return exactly one row per request with compatible column types,
+including a readable error message for each failure.
+
+Check count, order, status values, and the type of every column.
+
+## Exercise 9: Audit Generated Batch Code
+
+Run `week12-ai-batch-review.R`.
+
+1. Identify the two missing requests in the generated result.
+2. Explain how returning `NULL` erased evidence.
+3. Explain why mixed numeric and text results become character.
+4. Repair both workflows using a typed status table.
+
+## Exercise 10: Project 2 Orientation
+
+Using the public Project 2 page and your assigned training package, record:
+
+1. your group identifier and expected filenames;
+2. the training observation unit;
+3. the required cleaning counts;
+4. the files eventually submitted;
+5. the event that permits release of validation data;
+6. two Week 12 patterns that will support the project.
+
+Do not propose a final model yet.
+
+## Exit Ticket
+
+In 4-6 sentences, answer:
+
+> Why is a batch that reports only successful results less trustworthy than a
+> batch that retains one typed status record for every requested input?

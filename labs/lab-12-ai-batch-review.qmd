@@ -1,0 +1,80 @@
+---
+title: "Lab 12B: AI Batch Automation Review"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Audit generated repeated-analysis code that appears robust because it finishes,
+but silently drops failed requests or changes valid numerical results to text.
+
+## Scenario
+
+Download and run:
+
+- [week12-ai-batch-review.R](../code/r/week12-ai-batch-review.R)
+
+The requested inputs are `Ozone`, `month_label`, `not_a_column`, and `Temp`.
+Two should succeed and two should fail visibly.
+
+## Part A: Reconcile Requests And Results
+
+Complete:
+
+| Requested input | Expected status | Present in generated table? | Evidence retained? |
+|---|---|---|---|
+| `Ozone` |  |  |  |
+| `month_label` |  |  |  |
+| `not_a_column` |  |  |  |
+| `Temp` |  |  |  |
+
+Explain why two returned rows do not describe a four-request batch.
+
+## Part B: Locate The Evidence Loss
+
+Trace the generated `tryCatch` and `bind_rows` calls. Identify the exact return
+value that causes each failed request to disappear.
+
+Replace it temporarily with an error string. Explain why this makes the failure
+visible but breaks the numerical type contract.
+
+## Part C: Inspect Type Coercion
+
+Run the generated `sapply` result and inspect it with `typeof`, `class`, and
+`str`. Confirm that valid means are stored as text because other iterations
+return text error messages.
+
+## Part D: Repair With A Typed Status Row
+
+Return the same columns and types for success and failure:
+
+- `variable`: character;
+- `status`: character;
+- `mean`: double, using `NA_real_` for failure;
+- `error_message`: character, using `NA_character_` for success.
+
+Combine the four records and check count, order, status, and column types.
+
+## Part E: Minimal Batch Test Suite
+
+Write the smallest set of tests that reveals both generated problems. Include
+at least:
+
+- request/output count reconciliation;
+- exact variable-name order;
+- number of errors;
+- numerical type of successful means;
+- nonempty messages for failures.
+
+## Deliverable
+
+Submit the completed reconciliation table, the repaired batch function and log,
+the minimal tests, and a 5-7 sentence explanation of why “the batch finished”
+is not sufficient validation.
+
+## Exit Question
+
+Complete this sentence:
+
+> Repeated analysis is trustworthy only when every requested input ...

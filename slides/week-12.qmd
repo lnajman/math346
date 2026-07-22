@@ -1,29 +1,311 @@
 ---
-title: "Week 12: Vectors and Iteration"
+title: "Week 12: Vectorized Thinking And Visible Iteration"
 format:
   revealjs:
     theme: simple
     slide-number: true
     footer: "MATH 346"
+execute:
+  enabled: false
 ---
 
 ## Today's Question
 
-How do we scale one analysis across many variables, groups, or files?
+How do we repeat a tested analysis without losing track of what ran, what
+failed, and what the results should look like?
 
-## Vectorized Thinking
+## Week 12 Plan
 
-Operate on whole vectors when the operation is naturally elementwise.
+- Meeting 1: vectorization and typed iteration
+- Meeting 2: repeated workflows and failure logs
+- Project 2 assigned
 
-## Iteration
+## Week 12 Boundary
 
-Use iteration when a workflow must repeat across many inputs.
+Repeat descriptive workflows across known inputs.
 
-## Risk
+Statistical models begin in Week 13.
 
-Automation can repeat mistakes faster than manual work.
+## Vectorize Elementwise Work
 
-## AI Check
+```r
+temperature_c <-
+  (airquality$Temp - 32) * 5 / 9
+```
 
-Ask an LLM to automate a repeated task. Then make sure failures, warnings, and missing values are not hidden.
+No observation-by-observation loop is needed.
 
+## Check The Vector Contract
+
+```r
+stopifnot(
+  length(temperature_c) ==
+    nrow(airquality),
+  !any(is.na(temperature_c))
+)
+```
+
+## What Is Being Repeated?
+
+- Elementwise formula: operate on a vector
+- Same workflow for several inputs: iterate
+- Several dependent steps: a loop may be clearest
+
+## Declare The Inputs
+
+```r
+variables <- c(
+  "Ozone", "Solar.R",
+  "Wind", "Temp"
+)
+```
+
+Order is part of the batch contract.
+
+## Select By A Stored Name
+
+```r
+variable_name <- "Ozone"
+values <- airquality[[variable_name]]
+```
+
+The name changes across iterations.
+
+## Trust One Unit First
+
+```r
+summarize_numeric(
+  airquality,
+  "Ozone"
+)
+```
+
+Test the function before repeating it.
+
+## `lapply`: One Object Per Input
+
+```r
+results <- lapply(
+  variables,
+  function(name) {
+    summarize_numeric(airquality, name)
+  }
+)
+```
+
+## The List Contract
+
+```r
+stopifnot(
+  length(results) == length(variables)
+)
+```
+
+Inspect one element before combining.
+
+## Combine Compatible Results
+
+```r
+summary_table <- bind_rows(results)
+```
+
+Each function call returns one row with the same columns and types.
+
+## `vapply`: State The Type
+
+```r
+means <- vapply(
+  variables,
+  function(name) mean(
+    airquality[[name]], na.rm = TRUE
+  ),
+  numeric(1)
+)
+```
+
+## Output Template
+
+`numeric(1)` means:
+
+- exactly one result per input
+- every result numeric
+- stop on the wrong shape or type
+
+## Preallocate A Loop Result
+
+```r
+means_loop <- setNames(
+  numeric(length(variables)),
+  variables
+)
+```
+
+The result contract exists before iteration.
+
+## An Explicit Loop
+
+```r
+for (name in variables) {
+  means_loop[[name]] <- mean(
+    airquality[[name]], na.rm = TRUE
+  )
+}
+```
+
+## Compare Behavior
+
+```r
+stopifnot(
+  identical(names(means), variables),
+  isTRUE(all.equal(means, means_loop))
+)
+```
+
+## Choose For Clarity
+
+- Vectorize natural elementwise operations.
+- Use `vapply` for typed scalar results.
+- Use `lapply` for result objects.
+- Use a loop when explicit steps are clearer.
+
+## Meeting 2 Question
+
+When one repeated task fails, how do we keep the failure visible without
+losing successful work?
+
+## Include Expected Failures
+
+```r
+requested <- c(
+  "Ozone", "month_label",
+  "not_a_column", "Temp"
+)
+```
+
+Expected: four status records.
+
+## Failure Is A Result
+
+A batch should either:
+
+- stop clearly at the failed request; or
+- retain a typed status row for that request.
+
+It must not pretend the request never existed.
+
+## Dangerous Shortcut
+
+```r
+tryCatch(
+  summarize_numeric(data, name),
+  error = function(error) NULL
+)
+```
+
+`bind_rows` later drops the `NULL` evidence.
+
+## The Count Exposes It
+
+```r
+stopifnot(
+  nrow(run_log) == length(requested)
+)
+```
+
+Four requests cannot honestly become two unexplained rows.
+
+## Return A Typed Error Row
+
+```r
+tibble(
+  variable = name,
+  status = "error",
+  mean = NA_real_,
+  error_message = conditionMessage(error)
+)
+```
+
+## Check The Batch Log
+
+```r
+stopifnot(
+  identical(run_log$variable, requested),
+  sum(run_log$status == "error") == 2
+)
+```
+
+## Keep The Complete Log
+
+```r
+successful <- run_log |>
+  filter(status == "ok")
+```
+
+Use successes downstream; retain `run_log` as evidence.
+
+## Type Coercion Trap
+
+If one simplification mixes numeric means and text error messages, every result
+may become character.
+
+Check types after iteration.
+
+## AI Batch Audit
+
+- Same number of requests and records?
+- Names and order preserved?
+- Errors and warnings visible?
+- Numeric results still numeric?
+- Stable columns and types?
+
+## Project 2 Is Assigned
+
+- R building-energy analysis
+- group-specific training data
+- PDF plus source and result CSVs
+- validation data released later
+
+## Two-Stage Sequence
+
+1. Inspect and clean training data.
+2. Record the model plan.
+3. Receive validation data.
+4. Apply the frozen plan.
+5. Report performance and limitations.
+
+## This Week's Project Work
+
+- Confirm group and filenames.
+- Read the data dictionary.
+- Read the fixed result contract.
+- Run the starter to its intentional stop.
+- Do not fit the final model yet.
+
+## Week 12 Supports Project 2
+
+- vectorized metrics
+- repeated column checks
+- stable result structures
+- visible failed tasks
+- reproducible batch evidence
+
+## Before A Batch
+
+- Test one valid input.
+- Test one invalid input.
+- Declare all requested inputs.
+- State expected output count.
+- State result types.
+
+## After A Batch
+
+- Reconcile input and output counts.
+- Check names and order.
+- Count successes and failures.
+- Inspect types.
+- Retain the complete log.
+
+## Exit Ticket
+
+For one proposed repeated task, choose vectorization, `lapply`, `vapply`, or a
+loop and name the check that would reveal a missing iteration.
