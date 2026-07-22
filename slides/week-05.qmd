@@ -1,5 +1,5 @@
 ---
-title: "Week 5: Symbolic Math"
+title: "Week 5: Symbolic Mathematics and Verification"
 format:
   revealjs:
     theme: simple
@@ -9,36 +9,261 @@ format:
 
 ## Today's Question
 
-What changes when computation is symbolic rather than numerical?
+When does an exact expression tell us more than a decimal?
 
-## Symbolic Strengths
+## Week 5 Plan
 
-- Exact expressions
-- Algebraic manipulation
-- Derivatives and integrals
-- Closed-form solutions when available
+- Meeting 1: exact expressions, assumptions, and checks
+- Meeting 2: tank optimization from symbolic derivation to numerical evidence
 
-## Numerical Strengths
-
-- Measured data
-- Approximate answers
-- Large-scale computation
-- Direct plotting and simulation
-
-## MATLAB Pattern
+## Toolbox Check
 
 ```matlab
-syms x
-f = x^2 * exp(-x);
-df = diff(f, x);
-int_f = int(f, x);
+ver symbolic
 ```
 
-## Validation
+Week 5 requires Symbolic Math Toolbox.
 
-Check domains, assumptions, and whether the exact expression is useful for the original problem.
+## Symbolic And Numeric Objects
 
-## AI Check
+```matlab
+a = 1/3;
+b = sym(1)/3;
+```
 
-Symbolic-looking answers can hide missing assumptions.
+- `a` is a floating-point approximation.
+- `b` is the exact rational number $1/3$.
 
+## Exact Input Matters
+
+```matlab
+exact_value = sym(1)/3;
+finite_decimal = sym("0.3333333333333333");
+simplify(exact_value - finite_decimal)
+```
+
+A long decimal is still not the exact fraction.
+
+## Meeting 1 Question
+
+What information is preserved by a symbolic expression?
+
+## State Assumptions
+
+```matlab
+syms x real
+syms r V positive
+```
+
+Assumptions change which solutions are admissible.
+
+## Build An Expression
+
+```matlab
+syms x real
+f = x^2 * exp(-x);
+```
+
+`f` is an expression, not a list of sampled values.
+
+## Equivalent Forms
+
+```matlab
+expand((x - 1)*(x + 2))
+factor(x^2 + x - 2)
+simplify((x^2 - 1)/(x - 1))
+```
+
+Equivalent formulas can still have different domain restrictions.
+
+## Differentiate
+
+```matlab
+df = diff(f, x);
+```
+
+The result is exact. It still needs interpretation.
+
+## Integrate
+
+```matlab
+F = int(f, x);
+area = int(f, x, 0, 4);
+```
+
+MATLAB displays one antiderivative, not the arbitrary `+ C`.
+
+## Reverse-Operation Check
+
+```matlab
+check = simplify(diff(F, x) - f);
+```
+
+The check should simplify to zero.
+
+## Exact And Numerical Agreement
+
+```matlab
+area_exact = int(f, x, 0, 4);
+area_numeric = integral(@(x) x.^2.*exp(-x), 0, 4);
+difference = abs(double(area_exact) - area_numeric);
+```
+
+Independent agreement is evidence, not redundancy.
+
+## Form An Equation
+
+```matlab
+solutions = solve(x^2 == 9, x);
+```
+
+Use `==` for an equation and `=` for assignment.
+
+## Domain Changes The Answer
+
+```matlab
+syms y_positive positive
+solution = solve(y_positive^2 == 9, y_positive);
+```
+
+The positive-domain problem has only the admissible solution `3`.
+
+## Substitute To Check
+
+```matlab
+residual = simplify(subs(x^2 - 9, x, solutions));
+```
+
+Every proposed root should satisfy the original equation.
+
+## Exact Form Or Decimal?
+
+```matlab
+root_exact = solve(x^3 == 2, x);
+root_decimal = vpa(root_exact, 12);
+```
+
+Keep the exact form; add a decimal when it helps interpretation.
+
+## Numerical Symbolic Solve
+
+```matlab
+root = vpasolve(x^3 == 2, x, [1 2]);
+```
+
+The interval is part of the computational claim.
+
+## Meeting 2 Question
+
+Does solving the derivative equation prove that a design is optimal?
+
+## Tank Design
+
+A closed cylinder has fixed volume:
+
+$$V=\pi r^2h.$$
+
+Its material area is:
+
+$$S=2\pi r^2+2\pi rh.$$
+
+## Reduce To One Variable
+
+For $r>0$ and $V>0$:
+
+$$h=\frac{V}{\pi r^2},$$
+
+so
+
+$$S(r)=2\pi r^2+\frac{2V}{r}.$$
+
+## Symbolic Derivation
+
+```matlab
+syms r V positive
+h = V/(pi*r^2);
+S = simplify(2*pi*r^2 + 2*pi*r*h);
+dS = diff(S, r);
+r_star = solve(dS == 0, r);
+```
+
+## Check Stationarity
+
+```matlab
+stationarity = simplify(subs(dS, r, r_star));
+```
+
+The result must be zero.
+
+## Interpret The Exact Result
+
+$$
+r_* = \left(\frac{V}{2\pi}\right)^{1/3},
+\qquad h_* = 2r_*.
+$$
+
+The corresponding second derivative simplifies to $12\pi>0$.
+
+## Minimum Or Merely Stationary?
+
+```matlab
+d2S = diff(S, r, 2);
+curvature = simplify(subs(d2S, r, r_star));
+```
+
+Also inspect what happens as $r\to0^+$ and $r\to\infty$.
+
+## Convert For Numerical Work
+
+```matlab
+S_numeric = matlabFunction(S, 'Vars', [r V]);
+objective = @(radius) S_numeric(radius, 1);
+[r_check, S_check] = fminbnd(objective, 0.05, 2);
+```
+
+The numerical interval must cover the physically relevant candidate.
+
+## Plot The Claim
+
+```matlab
+r_grid = linspace(0.2, 1.4, 300);
+plot(r_grid, objective(r_grid))
+```
+
+The plot is an independent shape and boundary check.
+
+## Evidence For “Minimum”
+
+- correct one-variable objective;
+- positive-domain assumptions;
+- derivative residual equal to zero;
+- positive second derivative;
+- boundary behavior;
+- agreement with `fminbnd` and the plot;
+- dimensions reported with units.
+
+## Plausible But Weak AI Code
+
+```matlab
+syms r positive
+V = 1;
+S = 2*pi*r^2 + 2*V/r;
+r_opt = solve(diff(S, r) == 0, r);
+fprintf("Optimal radius: %.4f m\n", double(r_opt))
+```
+
+What has not been demonstrated?
+
+## AI Audit
+
+Ask:
+
+- Are the assumptions explicit?
+- Were all returned solutions checked?
+- Is the candidate actually a minimum?
+- Does an independent numerical method agree?
+- Are the units and corresponding height reported?
+
+## Exit Ticket
+
+A symbolic answer is trustworthy enough to report when ...

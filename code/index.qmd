@@ -23,6 +23,10 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 - [week04_ode_solver_check.m](matlab/week04_ode_solver_check.m)
 - [week04_surface_contour_visualization.m](matlab/week04_surface_contour_visualization.m)
 - [week04_ai_numeric_review.m](matlab/week04_ai_numeric_review.m)
+- [week05_symbolic_calculus_checks.m](matlab/week05_symbolic_calculus_checks.m)
+- [week05_tank_optimization.m](matlab/week05_tank_optimization.m)
+- [week05_symbolic_numeric_bridge.m](matlab/week05_symbolic_numeric_bridge.m)
+- [week05_ai_symbolic_review.m](matlab/week05_ai_symbolic_review.m)
 
 ## R
 

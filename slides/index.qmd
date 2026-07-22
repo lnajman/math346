@@ -10,7 +10,7 @@ Slides are written in Quarto RevealJS. They are intentionally short: each deck l
 | 2 | [MATLAB functions and debugging](week-02.qmd) |
 | 3 | [Curve fitting and interpolation](week-03.qmd) |
 | 4 | [Numerical methods and 3D plotting](week-04.qmd) |
-| 5 | [Symbolic math](week-05.qmd) |
+| 5 | [Symbolic mathematics and verification](week-05.qmd) |
 | 6 | [R Markdown and visualization](week-06.qmd) |
 | 7 | [Data transformation](week-07.qmd) |
 | 8 | [Exploratory data analysis](week-08.qmd) |
@@ -21,4 +21,3 @@ Slides are written in Quarto RevealJS. They are intentionally short: each deck l
 | 13 | [Model basics](week-13.qmd) |
 | 14 | [Many models](week-14.qmd) |
 | 15 | [Communication and synthesis](week-15.qmd) |
-

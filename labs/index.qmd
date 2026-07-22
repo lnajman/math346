@@ -15,6 +15,8 @@ Labs are designed as studio activities. They should be completed with MATLAB or 
 | [Lab 4](lab-04-numerical-checks.qmd) | Numerical methods and visual checks | Ready |
 | [Lab 4A](lab-04-ode-mini.qmd) | ODE solver checks | Ready |
 | [Lab 4B](lab-04-ai-numeric-review.qmd) | AI numerical answer review | Ready |
+| [Lab 5](lab-05-symbolic-validation.qmd) | Symbolic mathematics and independent checks | Ready |
+| [Lab 5B](lab-05-ai-symbolic-review.qmd) | AI symbolic answer review | Ready |
 | [Lab 6](lab-06-rmarkdown-eda.qmd) | First reproducible R report | Ready |
 
 ## Lab Routine

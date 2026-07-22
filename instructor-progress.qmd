@@ -6,7 +6,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**Project package complete; Week 5 is the next content milestone.**
+**Week 5 developed; the R transition is the next content milestone.**
 
 Last updated: **22 July 2026**
 :::
@@ -22,8 +22,8 @@ the motivation and the kind of feedback being requested.
 | Course framing and AI policy | Developed | [Syllabus](syllabus/index.qmd) and [AI policy](syllabus/ai-policy.qmd) | Revise after assessment decisions |
 | Colleague feedback | Requested | [Instructor preview](instructor-preview.qmd) shared for review | Record and synthesize responses |
 | Weeks 1-4: MATLAB prototype | **Validated prototype** | Week pages, slides, labs, exercises, and checked MATLAB code | Use as the pattern for later weeks |
-| Week 5: symbolic mathematics | **Next content milestone** | Week and slide outlines | Expand using the Weeks 1-4 pattern |
-| Weeks 6-12: R and data workflow | Outline/early scaffold | Week and slide outlines; limited R lab and starter code | Build the R teaching sequence |
+| Week 5: symbolic mathematics | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, four checked MATLAB scripts | Review as the final MATLAB teaching block |
+| Weeks 6-12: R and data workflow | Outline/early scaffold | Week and slide outlines; limited R lab and starter code | Expand Week 6 as the MATLAB-to-R transition |
 | Weeks 13-15: modeling and synthesis | Outline | Week and slide outlines | Expand after the R foundations |
 | Quizzes and midterm | Deferred | Assessment weights exist in the syllabus | Decide the detailed architecture later |
 | Projects | **Complete and privately backed up** | 20-group data, MATLAB/R starters, Word report templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Check the live Blackboard setup before release |
@@ -42,6 +42,10 @@ they can never be revised.
 - Students must be able to explain, test, and interpret computational results.
 - Weeks 1-4 demonstrate the intended weekly pattern and have been validated as
   the prototype.
+- Week 5 now follows that pattern with exact symbolic computation, domain and
+  assumption checks, a fixed-volume tank optimization problem, independent
+  numerical verification, and an AI-answer audit. All new scripts pass the
+  complete MATLAB validation harness.
 - The course is expected to have about 60 students, so individual oral project
   defenses are not a practical default.
 - Project 1 uses MATLAB and Project 2 uses R.
@@ -103,6 +107,7 @@ architecture and the remaining implementation decisions.
 | 22 July 2026 | MATLAB and R starters, fixed result contracts, 60 staged release ZIPs, and private batch checkers were completed; both checker suites passed 20/20 reference submissions. |
 | 22 July 2026 | Word/Google Docs report templates and a printable data dictionary were added to the student packages; all 60 release ZIP contracts and representative upload/download extractions passed rehearsal. |
 | 22 July 2026 | The complete assessment-sensitive package was backed up in a separate private GitHub repository. The project date and detailed quiz/midterm architecture were deferred; Week 5 became the next content milestone. |
+| 22 July 2026 | Week 5 was expanded with a two-meeting symbolic-mathematics sequence, full slides, two labs, exercises, four MATLAB examples, and an AI-answer audit; the complete MATLAB validation harness passed. |
 
 ## Next Decision Gate
 
@@ -118,11 +123,12 @@ The working student project package is complete:
 - **Completed:** exact-content checks for all 60 release ZIPs and a
   representative upload/download extraction rehearsal.
 
-The next development milestone is to expand **Week 5: symbolic mathematics** to
-the same depth as Weeks 1-4: teaching notes, slides, lab, exercises, MATLAB
-examples, an AI-verification activity, and executable checks. The project date
-and detailed quiz/midterm architecture can be decided later. The live
-Blackboard setup still needs a short final check before student release.
+The next development milestone is to expand **Week 6** as a deliberate
+MATLAB-to-R transition: first R scripts, objects and vectors, plotting, a
+reproducible report workflow, a lab, exercises, an AI-verification activity,
+and executable checks. The project date and detailed quiz/midterm architecture
+can be decided later. The live Blackboard setup still needs a short final check
+before student release.
 
 Feedback on those choices is especially useful now. The original review
 questions remain available on the [instructor preview](instructor-preview.qmd).

@@ -22,9 +22,10 @@ Each week has a problem focus, the official syllabus topic, the software tools i
 | [14](week-14.qmd) | Many models and grouped workflows | R |
 | [15](week-15.qmd) | Communication, visualization, and synthesis | R |
 
-## Model Week
+## Developed Weeks
 
-Weeks 1, 2, 3, and 4 are fully expanded model weeks. They include:
+Weeks 1-4 are the validated model. Week 5 has now been expanded using the same
+pattern and is ready for review. These weeks include:
 
 - a two-meeting teaching plan;
 - a detailed MATLAB lab;
@@ -32,7 +33,7 @@ Weeks 1, 2, 3, and 4 are fully expanded model weeks. They include:
 - a student exercise set;
 - multiple starter scripts.
 
-The other weeks will follow this pattern as the course site develops.
+Weeks 6-15 will follow this pattern as the course site develops.
 
 ## Weekly Pattern
 

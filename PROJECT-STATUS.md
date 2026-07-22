@@ -24,10 +24,11 @@ starters, fixed result contracts, editable report templates, customized release
 ZIPs, and batch checkers are implemented. The release contract has been
 rehearsed locally, and the complete assessment-sensitive package is backed up
 in a private GitHub repository. The MATLAB project date and the remaining quiz
-and midterm architecture are intentionally deferred. The next content milestone
-is expanding Week 5 using the validated Weeks 1-4 pattern.
+and midterm architecture are intentionally deferred. Week 5 has now been
+expanded using the validated Weeks 1-4 pattern and passes the complete MATLAB
+validation harness. The next content milestone is the transition to R in Week 6.
 
-Weeks 5-15 remain outlines. They should not yet be described as complete course
+Weeks 6-15 remain outlines. They should not yet be described as complete course
 materials.
 
 ## Confirmed Progress
@@ -57,8 +58,12 @@ materials.
 - All 60 release ZIPs pass exact-content and source-fingerprint checks. Project
   2 training ZIPs contain no validation outcomes, and representative ZIPs pass
   a simulated Blackboard upload/download extraction cycle.
-- Weeks 5-15 have short week pages and slide outlines, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-4.
+- Week 5 now has a two-meeting teaching plan, full slides, a main lab, an AI
+  review lab, exercises, four MATLAB examples, and executable symbolic and
+  numerical checks. It is developed and ready for review, but has not yet been
+  designated a validated prototype.
+- Weeks 6-15 have short week pages and slide outlines, but very little of the
+  supporting lab, exercise, and code material available for Weeks 1-5.
 
 ## Established Decisions and Constraints
 
@@ -110,7 +115,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Colleague review gateway | `instructor-preview.qmd` | Published and shared |
 | Colleague feedback | Responses are external to the repository | Requested; synthesis pending |
 | Weeks 1-4 | `weeks/`, `slides/`, `labs/`, `code/matlab/` | Validated prototype |
-| Week 5 | week and slide pages | Outline |
+| Week 5 | `weeks/week-05.qmd`; `slides/week-05.qmd`; two labs; exercises; four checked MATLAB scripts | Developed; ready for review |
 | Weeks 6-12 | week and slide pages; limited R lab/code | Outline/early scaffold |
 | Weeks 13-15 | week and slide pages | Outline |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
@@ -120,7 +125,7 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 5 and then the R sequence using the validated Weeks 1-4 pattern.
+2. Expand Week 6 and then the R sequence using the validated weekly pattern.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
 4. Decide the MATLAB project date later, when the teaching calendar is ready.
@@ -172,3 +177,7 @@ milestone:
   up in a separate private GitHub repository. Project scheduling and the
   remaining quiz and midterm architecture were intentionally deferred; Week 5
   became the next content milestone.
+- **2026-07-22:** Week 5 was expanded into a complete symbolic-mathematics unit
+  with a two-meeting plan, slides, two labs, exercises, four MATLAB scripts, an
+  AI-answer audit, and exact-versus-numerical verification. The full MATLAB
+  course harness passed.

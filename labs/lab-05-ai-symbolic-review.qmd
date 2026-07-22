@@ -1,0 +1,84 @@
+---
+title: "Lab 5B: AI Symbolic Answer Review"
+---
+
+## Goal
+
+Practice reviewing an AI-generated symbolic result that is plausible and
+numerically correct but does not yet justify its conclusion.
+
+## Scenario
+
+A student asks an LLM to find the material-minimizing dimensions of a closed
+cylindrical tank with volume `1 m^3`. The generated script resembles
+[week05_ai_symbolic_review.m](../code/matlab/week05_ai_symbolic_review.m).
+
+## Part A: Run And Name The Claim
+
+1. Open and run the script without editing it.
+2. Record the printed radius.
+3. Identify the surface-area formula used by the script.
+4. State precisely what the word “optimal” claims.
+5. Decide whether the script has supplied enough evidence for that word.
+
+## Part B: Add Symbolic Evidence
+
+Modify the script to compute and report:
+
+1. the derivative residual at the candidate;
+2. the second derivative at the candidate;
+3. the corresponding height;
+4. the exact radius formula before conversion to `double`.
+
+Keep the assumptions `r > 0` and `V > 0` explicit.
+
+## Part C: Add Independent Numerical Evidence
+
+Convert the objective with `matlabFunction`, then:
+
+1. plot it over a justified positive interval;
+2. mark the symbolic candidate;
+3. use `fminbnd` on that interval;
+4. compare the two radii and surface areas;
+5. inspect the behavior toward small and large positive radii.
+
+## Part D: Audit The Explanation
+
+Complete the table.
+
+| Missing evidence | Why it matters | Check added |
+|---|---|---|
+| Physical domain |  |  |
+| Derivative residual |  |  |
+| Minimum rather than stationary point |  |  |
+| Boundary behavior |  |  |
+| Independent numerical agreement |  |  |
+| Height and units |  |  |
+
+## Part E: Repair The Claim
+
+Rewrite the generated conclusion in 4-6 sentences. It should report:
+
+- the exact symbolic radius;
+- numerical radius and height with units;
+- the derivative and curvature checks;
+- the numerical comparison;
+- the domain over which the conclusion applies.
+
+## Deliverable
+
+Submit:
+
+- the original generated claim;
+- your repaired script;
+- the completed audit table;
+- one verification plot;
+- the repaired conclusion;
+- a short explanation of why a correct decimal answer can still be an
+  under-supported mathematical answer.
+
+## Exit Question
+
+Complete this sentence:
+
+> An AI-generated symbolic answer is not trustworthy until ...

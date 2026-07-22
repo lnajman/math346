@@ -1,30 +1,246 @@
 ---
-title: "Week 5: Symbolic Math"
+title: "Week 5: Symbolic Mathematics and Verification"
 ---
 
 ## Official Topic
 
-MATLAB symbolic math. Project 1 assigned.
+MATLAB symbolic mathematics. Project 1 introduced.
+
+::: {.callout-note}
+The Week 5 scripts require Symbolic Math Toolbox. Before the lab, run
+`ver symbolic` and confirm that the toolbox is listed.
+:::
 
 ## Problem Focus
 
-What changes when a computation is symbolic rather than numerical?
+When does an exact symbolic expression reveal more than a decimal answer, and
+what evidence is still required before we trust it?
 
-Students compare exact symbolic expressions with numerical approximations and learn when each representation is useful or misleading.
+Students move between exact expressions and numerical computation. The central
+application is the design of a closed cylindrical tank with fixed volume: derive
+the material-minimizing dimensions symbolically, then check the result with
+substitution, calculus, plotting, and numerical optimization.
 
-## In Class
+## Learning Goals
 
-- Define symbolic variables.
-- Differentiate, integrate, and solve symbolic expressions.
-- Convert symbolic results to numerical values.
-- Compare exact and approximate answers.
+By the end of the week, students should be able to:
+
+- distinguish symbolic objects from ordinary MATLAB numbers;
+- create symbolic variables with explicit real or positive assumptions;
+- preserve exact values such as `sym(1)/3` instead of introducing a decimal
+  approximation too early;
+- manipulate expressions with `simplify`, `expand`, and `factor`;
+- differentiate and integrate symbolic expressions with `diff` and `int`;
+- remember that an indefinite integral returned by MATLAB is one antiderivative
+  and does not display the arbitrary constant;
+- solve symbolic equations with `solve` and approximate them with `vpa`;
+- use `vpasolve` when an exact form is unavailable or unhelpful;
+- substitute values with `subs` and convert final quantities with `double`;
+- convert a symbolic expression into a numerical function with
+  `matlabFunction`;
+- verify roots by substitution and antiderivatives by differentiation;
+- reject mathematically valid solutions that violate the stated domain;
+- compare a symbolic result with an independent numerical calculation;
+- critique an AI-generated symbolic solution for hidden assumptions and missing
+  checks.
+
+## Meeting 1: Exact Expressions, Assumptions, And Checks
+
+**Question:** What information is preserved by a symbolic expression?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-8 min | Warm-up: compare `1/3`, `sym(1)/3`, and a finite decimal |
+| 8-20 min | Live coding: symbolic variables, expressions, and assumptions |
+| 20-35 min | Manipulation: `simplify`, `expand`, and `factor` |
+| 35-50 min | Calculus: `diff`, `int`, and verification by reversing the operation |
+| 50-62 min | Solving equations: domain restrictions and inadmissible roots |
+| 62-71 min | Student check: exact definite integral versus `integral` |
+| 71-75 min | Exit ticket: one assumption that must be written down |
+
+### Core MATLAB Patterns
+
+```matlab
+syms x real
+f = x^2 * exp(-x);
+df = diff(f, x);
+F = int(f, x);
+check = simplify(diff(F, x) - f);
+```
+
+```matlab
+area_exact = int(f, x, 0, 4);
+area_decimal = vpa(area_exact, 12);
+area_numeric = integral(@(x) x.^2 .* exp(-x), 0, 4);
+```
+
+The symbolic result and numerical result are not competing answers. Their
+agreement is evidence that the expression, conversion, and numerical method
+were used consistently.
+
+## Meeting 2: A Tank Design From Exact Formula To Numerical Check
+
+**Question:** Does solving the derivative equation prove that a design is
+optimal?
+
+A closed cylinder of radius $r$, height $h$, and fixed volume $V$ satisfies
+
+$$
+V = \pi r^2h,
+\qquad
+S = 2\pi r^2 + 2\pi rh.
+$$
+
+After substituting $h=V/(\pi r^2)$, the material area is
+
+$$
+S(r)=2\pi r^2+\frac{2V}{r}, \qquad r>0.
+$$
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Translate volume and surface area into symbolic expressions |
+| 10-25 min | Record the physical assumptions `r > 0` and `V > 0` |
+| 25-40 min | Differentiate, solve for a stationary point, and substitute back |
+| 40-52 min | Check the second derivative and behavior near domain boundaries |
+| 52-63 min | Convert with `matlabFunction`; compare with `fminbnd` and a plot |
+| 63-71 min | AI critique: correct-looking radius with no proof or domain statement |
+| 71-75 min | Exit ticket: list the evidence supporting the word “minimum” |
+
+### Symbolic-To-Numerical Pattern
+
+```matlab
+syms r V positive
+h = V / (pi*r^2);
+S = simplify(2*pi*r^2 + 2*pi*r*h);
+dS = diff(S, r);
+r_star = solve(dS == 0, r);
+```
+
+```matlab
+stationarity = simplify(subs(dS, r, r_star));
+d2S = diff(S, r, 2);
+curvature = simplify(subs(d2S, r, r_star));
+S_numeric = matlabFunction(S, 'Vars', [r V]);
+```
+
+With the positive assumptions, the exact candidate can be written as
+
+$$
+r_* = \left(\frac{V}{2\pi}\right)^{1/3},
+\qquad
+h_* = 2r_*.
+$$
+
+At this candidate, the second derivative simplifies to $12\pi>0$.
+
+The exact candidate must still be checked against the physical domain, the
+second derivative, boundary behavior, units, and an independent numerical
+calculation.
+
+## In-Class Checks
+
+- Use `class` to distinguish a symbolic expression from a `double`.
+- State whether each symbolic variable is real, positive, integer, or
+  unrestricted.
+- Use `==` to form an equation; do not confuse it with assignment using `=`.
+- Substitute every proposed root into the original equation.
+- Differentiate a symbolic antiderivative and simplify the difference from the
+  original integrand.
+- Keep exact expressions until a decimal value is needed for interpretation.
+- Check every returned solution against the physical or mathematical domain.
+- Do not assume that `simplify` produces a unique or automatically clearer
+  representation.
+- Check a stationary point before calling it a minimum.
+- Compare an exact definite integral with an independent numerical integral.
+- Use `matlabFunction` before evaluating symbolic expressions on numerical
+  vectors.
+- State units after numerical substitution.
 
 ## AI-Aware Task
 
-Ask an LLM for a symbolic solution and a numerical solution to the same problem. Compare assumptions, domains, and whether the answer is usable for computation.
+Ask an LLM to minimize the surface area of the fixed-volume tank. Require both
+an exact symbolic answer and a decimal answer for $V=1\text{ m}^3$. Then audit
+the response:
+
+1. Did it state that $r>0$ and $V>0$?
+2. Did it derive the one-variable surface-area expression correctly?
+3. Did it substitute the candidate into the derivative?
+4. Did it establish a minimum rather than merely a stationary point?
+5. Did it compare against an independent numerical calculation?
+6. Did it report the corresponding height and correct units?
+
+## Survival Checklist
+
+These are the Week 5 MATLAB habits you should be able to recognize, test, and
+repair without relying on AI.
+
+### Commands And Patterns To Own
+
+| Pattern | What you should know |
+|---|---|
+| `syms x real` | Creates a symbolic real variable and records a domain assumption. |
+| `syms r V positive` | Restricts both variables to positive values. |
+| `sym(1)/3` | Preserves the exact rational value one third. |
+| `simplify(expr)` | Searches for a simpler equivalent form; the output is not unique. |
+| `expand(expr)` | Expands products and powers. |
+| `factor(expr)` | Factors an expression when possible. |
+| `diff(expr, x)` | Differentiates with respect to `x`. |
+| `int(expr, x)` | Returns one symbolic antiderivative. |
+| `int(expr, x, a, b)` | Computes an exact definite integral when possible. |
+| `solve(eqn, x)` | Solves a symbolic equation, subject to assumptions. |
+| `vpasolve(eqn, x, [a b])` | Searches numerically for a solution in a specified interval. |
+| `subs(expr, x, value)` | Substitutes a value into an expression. |
+| `vpa(expr, n)` | Displays a variable-precision approximation with `n` significant digits. |
+| `double(expr)` | Converts a fully numerical symbolic result to an ordinary MATLAB number. |
+| `matlabFunction(expr)` | Converts a symbolic expression into a function for numerical evaluation. |
+| `isAlways(condition)` | Tests whether a symbolic condition follows from the expression and assumptions. |
+
+### Mistakes To Catch
+
+- Entering a decimal and later presenting it as exact.
+- Forgetting whether a variable was assumed real or positive.
+- Using `=` where an equation requires `==`.
+- Accepting every root returned by `solve` without checking the domain.
+- Discarding complex roots without explaining why the original problem is real.
+- Calling a stationary point a minimum without a curvature or boundary check.
+- Converting to `double` before the symbolic manipulation is complete.
+- Treating a very long closed form as automatically useful.
+- Forgetting that an indefinite integral omits the displayed `+ C`.
+- Assuming two different-looking symbolic expressions are different without
+  simplifying their difference.
+- Trusting an AI-generated derivation because its final decimal matches a
+  calculator.
+
+### Checks Before Trusting A Symbolic Answer
+
+- State the variable assumptions and admissible domain.
+- Preserve exact inputs when exactness matters.
+- Substitute solutions into the original equation.
+- Reverse the operation: differentiate an integral or integrate a derivative
+  when appropriate.
+- Simplify the difference between two expressions instead of comparing their
+  appearance.
+- Convert to decimals only at the reporting stage.
+- Compare with a plot, numerical solver, or sampled values.
+- Check units and boundary behavior in an applied problem.
+- Explain whether the exact form is actually useful for the original question.
+
+## Exercises
+
+Complete the [Week 5 exercises](week-05-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-05.qmd)
+- Symbolic calculus checks: [week05_symbolic_calculus_checks.m](../code/matlab/week05_symbolic_calculus_checks.m)
+- Tank optimization: [week05_tank_optimization.m](../code/matlab/week05_tank_optimization.m)
+- Symbolic/numerical bridge: [week05_symbolic_numeric_bridge.m](../code/matlab/week05_symbolic_numeric_bridge.m)
+- AI critique script: [week05_ai_symbolic_review.m](../code/matlab/week05_ai_symbolic_review.m)
+- [Lab 5](../labs/lab-05-symbolic-validation.qmd)
+- [AI symbolic-answer review](../labs/lab-05-ai-symbolic-review.qmd)
 - [Project 1](../projects/project-1-eda.qmd)
-

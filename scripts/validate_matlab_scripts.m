@@ -19,12 +19,16 @@ mustPass = {
     'code/matlab/week04_root_integration_checks.m'
     'code/matlab/week04_ode_solver_check.m'
     'code/matlab/week04_surface_contour_visualization.m'
+    'code/matlab/week05_symbolic_calculus_checks.m'
+    'code/matlab/week05_tank_optimization.m'
+    'code/matlab/week05_symbolic_numeric_bridge.m'
 };
 
 aiMustRun = {
     'code/matlab/week01_ai_plot_review.m'
     'code/matlab/week03_ai_overfit_review.m'
     'code/matlab/week04_ai_numeric_review.m'
+    'code/matlab/week05_ai_symbolic_review.m'
 };
 
 expectedFailures = {

@@ -1,0 +1,134 @@
+---
+title: "Lab 5: Symbolic Mathematics And Independent Checks"
+---
+
+## Goal
+
+Use exact symbolic computation without losing sight of assumptions, admissible
+domains, numerical interpretation, and independent verification.
+
+## Setup
+
+This lab requires MATLAB with Symbolic Math Toolbox. Work in a folder called
+`week05`. Start scripts from a clean workspace:
+
+```matlab
+clear; clc; close all;
+```
+
+## Part A: Exact Inputs And Assumptions
+
+Open [week05_symbolic_numeric_bridge.m](../code/matlab/week05_symbolic_numeric_bridge.m).
+
+Run the script and answer:
+
+1. Why are the two representations of one third not exactly equal?
+2. What assumption is attached to `x`?
+3. How many solutions does `y^2 = 9` have before positivity is assumed?
+4. Which solution remains after the positive assumption?
+5. What residual is checked after `vpasolve`?
+
+Modify the script to compare `sym(2)/7` with the symbolic finite decimal
+`sym("0.2857142857142857")`.
+
+## Part B: Differentiate, Integrate, And Reverse
+
+Open [week05_symbolic_calculus_checks.m](../code/matlab/week05_symbolic_calculus_checks.m).
+
+Identify:
+
+- the symbolic function;
+- its derivative;
+- one antiderivative;
+- the reverse-operation check;
+- the exact definite integral;
+- the independent numerical integral.
+
+Change the function to:
+
+```matlab
+f = x^3 * exp(-2*x);
+```
+
+Update the plot and confirm that both validation checks still pass.
+
+## Part C: Evaluate Without Converting Too Early
+
+For the modified function:
+
+1. compute the exact derivative at `x = 1`;
+2. display a 14-digit approximation;
+3. explain what information would be lost by converting the whole expression
+   to `double` before substitution;
+4. use `matlabFunction` to evaluate the function on a vector.
+
+## Part D: Derive The Tank Objective
+
+Open [week05_tank_optimization.m](../code/matlab/week05_tank_optimization.m).
+
+Before running it, derive on paper:
+
+$$
+h=\frac{V}{\pi r^2},
+\qquad
+S(r)=2\pi r^2+\frac{2V}{r}.
+$$
+
+Then run the script and answer:
+
+- Where are the positive-domain assumptions recorded?
+- What exact expression is obtained for the stationary radius?
+- How is the derivative residual checked?
+- What does the second derivative establish?
+- Why is boundary behavior still relevant?
+- How close is the `fminbnd` radius to the symbolic radius?
+- What relation holds between the optimal height and radius?
+
+## Part E: Change The Required Volume
+
+Change the tank volume from `1 m^3` to `2.5 m^3`.
+
+Record:
+
+1. the symbolic radius formula;
+2. the numerical radius and height;
+3. the surface area;
+4. the numerical-check difference;
+5. a plot marking the checked candidate.
+
+Explain why changing `V` does not require redoing the symbolic derivation from
+scratch.
+
+## Part F: Stress-Test The Numerical Check
+
+Change the interval supplied to `fminbnd` so that it does **not** contain the
+symbolic candidate.
+
+- What result is returned?
+- Does the numerical answer disprove the symbolic derivation?
+- What does this reveal about the claim made by an interval-based numerical
+  method?
+
+Restore a justified interval before preparing the deliverable.
+
+## Deliverable
+
+Submit a short note containing:
+
+- one example showing exact and decimal inputs are different;
+- one symbolic derivative or integral with a reverse-operation check;
+- the tank derivation for your modified volume;
+- numerical radius, height, and surface area with units;
+- the symbolic-versus-`fminbnd` comparison;
+- one plot supporting the minimum claim;
+- one paragraph explaining why the answer is more than the output of `solve`.
+
+## AI Use
+
+If you ask an LLM for help, include:
+
+- the prompt;
+- the assumptions it stated or omitted;
+- one symbolic step you checked by substitution or differentiation;
+- one independent numerical check;
+- one claim you changed or rejected.
