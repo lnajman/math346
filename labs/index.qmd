@@ -25,6 +25,8 @@ Labs are designed as studio activities. They should be completed with MATLAB or 
 | [Lab 8B](lab-08-ai-interpretation-review.qmd) | AI-generated plot interpretation review | Ready |
 | [Lab 9](lab-09-import-tidy-data.qmd) | Import contracts and tidy-data reshaping | Ready |
 | [Lab 9B](lab-09-ai-tidy-review.qmd) | AI-generated tidy-structure review | Ready |
+| [Lab 10](lab-10-relational-typed-data.qmd) | Strings, factors, date-times, and checked joins | Ready |
+| [Lab 10B](lab-10-ai-join-review.qmd) | AI-generated partial-key join review | Ready |
 
 ## Lab Routine
 

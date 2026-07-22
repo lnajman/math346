@@ -21,7 +21,7 @@ jobs:
 
       - name: Install R packages
         run: |
-          Rscript -e 'install.packages(c("dplyr", "ggplot2", "readr", "tidyr"), repos = "https://cloud.r-project.org")'
+          Rscript -e 'install.packages(c("dplyr", "ggplot2", "lubridate", "readr", "stringr", "tidyr"), repos = "https://cloud.r-project.org")'
 
       - name: Validate R scripts
         run: scripts/validate_course_code.sh --r-only

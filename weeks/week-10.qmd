@@ -1,5 +1,7 @@
 ---
-title: "Week 10: Relational Data, Strings, Factors, Dates, and Times"
+title: "Week 10: Relational And Typed Data"
+execute:
+  enabled: false
 ---
 
 ## Official Topic
@@ -8,22 +10,369 @@ Relational data, strings, factors, dates, and times.
 
 ## Problem Focus
 
-Why is real data difficult even before modeling begins?
+How do we combine related tables without silently changing what one row means?
 
-Students handle joins, labels, categorical variables, and dates as sources of both insight and error.
+Students receive a fictional building registry and service-event log. Before
+joining them, they normalize key strings, standardize labels, create an ordered
+severity factor, parse timestamps with an explicit time zone, and state the key
+and row meaning of each table. They then audit unmatched rows and require the
+join to preserve every service event exactly once.
 
-## In Class
+::: {.callout-note}
+Both Week 10 files are synthetic teaching data. Their buildings, events,
+timestamps, labels, and response durations are invented and must not be
+described as observations from a real campus.
+:::
 
-- Join related tables.
-- Clean strings.
-- Use factors for categorical variables.
-- Parse and use dates and times.
+## Learning Goals
 
-## AI-Aware Task
+By the end of the week, students should be able to:
 
-Ask an LLM to join two tables. Then check keys, duplicated rows, unmatched rows, and whether the join changes the meaning of the analysis.
+- state what one row represents in each table before joining;
+- distinguish a primary key from a foreign key;
+- identify the intended one-to-one, one-to-many, or many-to-many relationship;
+- normalize key strings using case and whitespace rules;
+- standardize inconsistent text labels without erasing meaningful differences;
+- inspect category values before converting them to factors;
+- create an ordered factor with explicit levels;
+- parse date-time text with a declared time zone;
+- extract dates, hours, and month values from parsed timestamps;
+- check that parsing and factor conversion did not create unexpected missing
+  values;
+- verify lookup-key uniqueness before a join;
+- use `anti_join` to expose unmatched rows in both directions;
+- use a many-to-one `left_join` that retains every event;
+- check row count and event-key uniqueness after joining;
+- recognize when a partial join key multiplies observations;
+- repair a building-only join by using the full building-month key;
+- critique AI-generated join code that runs but changes the analytical unit.
+
+## Supplied Files
+
+Download:
+
+- [week10-building-registry.csv](../data/week10-building-registry.csv)
+- [week10-service-events.csv](../data/week10-service-events.csv)
+
+The Week 9 energy file is reused only in the AI join audit:
+
+- [week09-campus-energy-wide.csv](../data/week09-campus-energy-wide.csv)
+
+Recommended structure:
+
+```text
+week10/
+  week10-clean-types.R
+  week10-join-audit.R
+  data/
+    week09-campus-energy-wide.csv
+    week10-building-registry.csv
+    week10-service-events.csv
+```
+
+## The Two Row Meanings
+
+| Table | One row represents | Key |
+|---|---|---|
+| building registry | one fictional building | `building_id` |
+| service-event log | one reported service event | `event_id` |
+
+`building_key` in the event log is intended to refer to `building_id`, but its
+case and whitespace are inconsistent. It is a foreign key, not the event-row
+key.
+
+## Meeting 1: Strings, Factors, And Date-Times
+
+**Question:** What must be repaired before the key and categories have stable
+meanings?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Inspect both CSV files and define their row meanings and keys |
+| 10-22 min | Inventory raw key, issue, and severity strings |
+| 22-35 min | Normalize case and whitespace with explicit rules |
+| 35-47 min | Inspect categories and create an ordered severity factor |
+| 47-60 min | Parse timestamps with a declared time zone |
+| 60-70 min | Extract date, hour, and month; run type and value checks |
+| 70-75 min | Exit ticket: one cleaning rule and the assumption it encodes |
+
+### Inspect Values Before Cleaning
+
+```r
+events_raw |>
+  count(building_key, sort = TRUE)
+
+events_raw |>
+  count(issue_label, severity, sort = TRUE)
+```
+
+First identify which differences are superficial and which might represent
+different categories. A cleaning rule is a claim about meaning.
+
+### Normalize The Foreign Key
+
+```r
+events <- events_raw |>
+  mutate(
+    building_id = str_to_upper(str_squish(building_key))
+  )
+```
+
+`str_squish` removes leading and trailing whitespace and reduces repeated
+internal spaces. `str_to_upper` makes the key case consistent.
+
+Check the repaired syntax:
+
+```r
+stopifnot(
+  all(str_detect(events$building_id, "^BLDG-[0-9]{2}$"))
+)
+```
+
+This confirms the key's shape. It does not confirm that every key exists in
+the registry; that requires a relational check in Meeting 2.
+
+### Standardize Text Labels
+
+```r
+events <- events |>
+  mutate(
+    issue = str_to_lower(str_squish(issue_label)),
+    severity_text = str_to_lower(str_squish(severity))
+  )
+```
+
+After cleaning, inspect the distinct values again. Do not automatically merge
+labels merely because they look similar.
+
+### Create An Ordered Factor
+
+```r
+severity_levels <- c("low", "medium", "high")
+
+events <- events |>
+  mutate(
+    severity = factor(
+      severity_text,
+      levels = severity_levels,
+      ordered = TRUE
+    )
+  )
+```
+
+The order is a domain decision. Alphabetical order would put `high` before
+`low`, which is not the intended severity progression.
+
+Check that no unexpected value became `NA`:
+
+```r
+stopifnot(
+  is.ordered(events$severity),
+  identical(levels(events$severity), severity_levels),
+  !any(is.na(events$severity))
+)
+```
+
+### Parse Date-Time Text Explicitly
+
+```r
+events <- events |>
+  mutate(
+    reported_at = ymd_hm(
+      reported_at,
+      tz = "Europe/Paris",
+      quiet = TRUE
+    )
+  )
+```
+
+A date-time needs both a clock reading and a time-zone interpretation. Parsing
+failure produces missing values, so check immediately:
+
+```r
+stopifnot(!any(is.na(events$reported_at)))
+```
+
+### Derive Useful Time Variables
+
+```r
+events <- events |>
+  mutate(
+    report_date = as_date(reported_at),
+    report_hour = hour(reported_at),
+    month = str_to_lower(format(reported_at, "%b"))
+  )
+```
+
+Retain the original parsed timestamp. A date alone would discard time-of-day
+information that may matter later.
+
+## Meeting 2: Join Contracts And Unmatched Rows
+
+**Question:** How do we prove that adding building information did not add,
+drop, or duplicate service events?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Restate each table's row meaning, key, and intended relationship |
+| 10-22 min | Check registry-key uniqueness before joining |
+| 22-35 min | Use two `anti_join` calls to expose unmatched rows |
+| 35-50 min | Perform a declared many-to-one `left_join` |
+| 50-60 min | Check event count, event-key uniqueness, and missing registry fields |
+| 60-70 min | Audit the AI building-only energy join and repair its composite key |
+| 70-75 min | Exit ticket: evidence that the join preserved the observation unit |
+
+### State The Intended Relationship
+
+One building may have many service events, but each known service event should
+refer to at most one registry row. From events to registry, the intended
+relationship is many-to-one.
+
+### Check The Lookup Key First
+
+```r
+registry_key_counts <- registry |>
+  count(building_id, name = "registry_rows")
+
+stopifnot(
+  nrow(registry_key_counts) == nrow(registry),
+  all(registry_key_counts$registry_rows == 1)
+)
+```
+
+If the lookup key is duplicated, a join can multiply event rows. Do not use
+`distinct` as an unexplained repair; determine why the duplicate exists.
+
+### Audit Unmatched Rows In Both Directions
+
+```r
+unmatched_events <- events |>
+  anti_join(registry, by = "building_id")
+
+buildings_without_events <- registry |>
+  anti_join(events, by = "building_id")
+```
+
+These answer different questions:
+
+- Which events refer to an unknown building?
+- Which registered buildings have no event in this log?
+
+Neither result is automatically an error. Both require interpretation.
+
+### Join Without Losing Events
+
+```r
+event_buildings <- events |>
+  left_join(
+    registry,
+    by = "building_id",
+    relationship = "many-to-one"
+  )
+```
+
+The left table defines the observation population: all nine reported events.
+The unmatched event remains present with missing registry fields.
+
+### Check The Post-Join Contract
+
+```r
+stopifnot(
+  nrow(event_buildings) == nrow(events),
+  n_distinct(event_buildings$event_id) == nrow(events),
+  sum(is.na(event_buildings$building_name)) == 1
+)
+```
+
+Successful execution is not evidence that the relationship was correct. The
+checks protect the event observation unit.
+
+## AI-Aware Task: A Plausible Partial Key
+
+An AI-generated pipeline joins service events to the Week 9 long energy table
+using only `building_id`. The energy table has four rows per building, one for
+each month. Eight matched events therefore appear four times, while the unknown
+event appears once:
+
+```text
+9 service events -> 33 joined rows
+```
+
+The result contains valid-looking building and energy values, but one output
+row no longer represents one service event.
+
+### Repair With The Full Key
+
+Derive event month from `reported_at`, then join on both variables:
+
+```r
+repaired_join <- events |>
+  left_join(
+    energy_long,
+    by = c("building_id", "month"),
+    relationship = "many-to-one"
+  )
+```
+
+The repaired join preserves nine event rows. The relevant energy-table key is
+`building_id + month`, not merely `building_id`.
+
+## Survival Checklist
+
+### Commands And Patterns To Own
+
+| Pattern | Purpose |
+|---|---|
+| `str_squish(x)` | normalize surrounding and repeated whitespace |
+| `str_to_lower(x)` / `str_to_upper(x)` | normalize case |
+| `str_detect(x, pattern)` | check a string rule |
+| `factor(x, levels = ..., ordered = TRUE)` | declare category levels and order |
+| `ymd_hm(x, tz = ...)` | parse year-month-day hour-minute text |
+| `as_date(x)` / `hour(x)` | extract date and hour components |
+| `count(key)` | inspect key multiplicity |
+| `anti_join(x, y, by = ...)` | expose rows without a match |
+| `left_join(x, y, by = ...)` | retain all observations from `x` |
+| `relationship = "many-to-one"` | declare the expected join relationship |
+
+### Questions Before Every Join
+
+1. What does one row represent in each table?
+2. What is the key of each table?
+3. Are the join fields stored in the same cleaned form?
+4. What relationship is expected?
+5. Are lookup keys unique where they should be?
+6. Which rows are unmatched in each direction?
+7. Which table defines the observations that must be retained?
+8. What row count and key properties must hold afterward?
+
+### Mistakes To Catch
+
+- Joining raw keys before normalizing case and whitespace.
+- Treating syntactically valid keys as confirmed registry matches.
+- Converting categories to factors before inspecting unexpected labels.
+- Accepting alphabetical order as a meaningful severity order.
+- Parsing timestamps without a time zone.
+- Keeping only a date when time of day is needed.
+- Using an inner join that silently drops unmatched events.
+- Joining on part of a composite key.
+- Checking only whether code runs, not whether rows multiplied.
+- Deleting unmatched rows before recording and explaining them.
+
+## Exercises
+
+Complete the [Week 10 exercises](week-10-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-10.qmd)
-
+- [Lab 10](../labs/lab-10-relational-typed-data.qmd)
+- [AI join-review lab](../labs/lab-10-ai-join-review.qmd)
+- [week10-building-registry.csv](../data/week10-building-registry.csv)
+- [week10-service-events.csv](../data/week10-service-events.csv)
+- [week10-clean-types.R](../code/r/week10-clean-types.R)
+- [week10-join-audit.R](../code/r/week10-join-audit.R)
+- [week10-ai-join-review.R](../code/r/week10-ai-join-review.R)

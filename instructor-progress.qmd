@@ -6,7 +6,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**Week 9 developed; relational and typed data in Week 10 is the next content milestone.**
+**Week 10 developed; pipes and reusable functions in Week 11 are the next content milestone.**
 
 Last updated: **22 July 2026**
 :::
@@ -27,7 +27,8 @@ the motivation and the kind of feedback being requested.
 | Week 7: data transformation | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the row-accounting and question-drift emphasis |
 | Week 8: exploratory data analysis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the finding/doubt/next-question discipline |
 | Week 9: import and tidy data | **Developed; ready for review** | Supplied synthetic CSV, two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the import-contract and observation-key workload |
-| Weeks 10-12: R data workflow | Outline/early scaffold | Week and slide outlines | Expand Week 10 relational and typed data |
+| Week 10: relational and typed data | **Developed; ready for review** | Two supplied synthetic CSVs, two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the typed-cleaning and join-contract workload |
+| Weeks 11-12: R data workflow | Outline/early scaffold | Week and slide outlines | Expand Week 11 pipes and reusable functions |
 | Weeks 13-15: modeling and synthesis | Outline | Week and slide outlines | Expand after the R foundations |
 | Quizzes and midterm | **Working placement restored** | Quizzes in Weeks 3, 6, 9, and 13; semester examination (midterm) in Week 8 | Decide exact dates, delivery, and formats later |
 | Projects | **Complete and privately backed up** | 20-group data, MATLAB/R starters, Word report templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Check the live Blackboard setup before release |
@@ -75,6 +76,13 @@ they can never be revised.
   accounting, and building-month key uniqueness are checked. The AI activity
   shows that a 24-row result can still lose identifiers, units, and numeric
   types. All three Week 9 R scripts pass the validation harness.
+- Week 10 supplies a synthetic building registry and service-event log. It
+  makes string normalization rules, ordered-factor levels, time zones,
+  timestamp parsing, primary and foreign keys, relationship cardinality, and
+  unmatched rows explicit before joining. The AI activity joins events to
+  monthly energy on only `building_id`, expanding nine events to 33 rows; the
+  repaired building-month join preserves all nine event observations. All
+  three Week 10 R scripts pass the validation harness.
 - The course is expected to have about 60 students, so individual oral project
   defenses are not a practical default.
 - Project 1 uses MATLAB and Project 2 uses R.
@@ -148,6 +156,7 @@ architecture and the remaining implementation decisions.
 | 22 July 2026 | Week 8 was expanded into a checked exploratory-data-analysis cycle using `diamonds`, with variable-type decisions, distributions, covariation, overplotting, conditional views, anomaly review, full slides, two labs, exercises, three checked R scripts, and an AI interpretation audit. |
 | 22 July 2026 | Week 9 was expanded around a supplied synthetic wide campus-energy CSV, explicit `readr` schemas, missing-value encodings, parsing diagnostics, `pivot_longer`, observation-key checks, full slides, two labs, exercises, three checked R scripts, and an AI tidy-structure audit. |
 | 22 July 2026 | The original working assessment sequence was restored on the public pages: quizzes in Weeks 3, 6, 9, and 13, with the semester examination (midterm) in Week 8. Exact dates, delivery, and formats remain open. |
+| 22 July 2026 | Week 10 was expanded around a supplied synthetic building registry and service-event log, string and factor contracts, time-zone-aware parsing, unmatched-row audits, declared join relationships, composite keys, full slides, two labs, exercises, three checked R scripts, and an AI partial-key join audit. |
 
 ## Next Decision Gate
 
@@ -163,12 +172,14 @@ The working student project package is complete:
 - **Completed:** exact-content checks for all 60 release ZIPs and a
   representative upload/download extraction rehearsal.
 
-The next development milestone is to expand **Week 10** around relational and
-typed data: join-key contracts, unmatched and duplicated keys, strings,
-factors, dates, and an AI join audit. The working quiz and midterm placement
-remains visible; exact dates, delivery, and formats can be decided later. The
-project date can also be decided later. The live Blackboard setup still needs
-a short final check before student release.
+The next development milestone is to expand **Week 11** around readable
+pipelines and reusable functions: deciding when a pipeline is clear, turning
+repeated transformations into small functions, defining input/output
+contracts, testing normal and edge cases, and auditing an AI refactor for
+behavior drift. The working quiz and midterm placement remains visible; exact
+dates, delivery, and formats can be decided later. The project date can also be
+decided later. The live Blackboard setup still needs a short final check before
+student release.
 
 Feedback on those choices is especially useful now. The original review
 questions remain available on the [instructor preview](instructor-preview.qmd).

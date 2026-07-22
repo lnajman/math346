@@ -1,0 +1,101 @@
+---
+title: "Lab 10: Relational And Typed Data"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Clean strings, categories, and timestamps; join the supplied service-event log
+to the building registry; and prove that every event remains exactly once.
+
+## Setup
+
+Create:
+
+```text
+week10/
+  week10-clean-types.R
+  week10-join-audit.R
+  data/
+    week10-building-registry.csv
+    week10-service-events.csv
+```
+
+Download:
+
+- [week10-building-registry.csv](../data/week10-building-registry.csv)
+- [week10-service-events.csv](../data/week10-service-events.csv)
+- [week10-clean-types.R](../code/r/week10-clean-types.R)
+- [week10-join-audit.R](../code/r/week10-join-audit.R)
+
+The tables contain invented teaching data.
+
+## Part A: Write The Data Contract
+
+Before coding, record each table's row meaning, key, expected row count, and
+intended relationship. Identify which table defines the observations that must
+remain after joining.
+
+## Part B: Inspect Raw Strings
+
+Count raw building keys, issue labels, and severity labels. Annotate the
+differences you believe are superficial. State each proposed normalization
+rule before applying it.
+
+## Part C: Clean And Validate Text
+
+Run `week10-clean-types.R`. Verify cleaned key syntax and the exact issue set.
+Add a table showing raw and cleaned values side by side.
+
+Explain why syntactically valid `BLDG-99` still requires a registry check.
+
+## Part D: Build The Severity Factor
+
+Confirm the factor order is low, medium, high. Deliberately introduce an
+unexpected severity label and show how the missing-value check exposes it.
+Restore the original data afterward.
+
+## Part E: Parse Date-Times
+
+Parse the full timestamp with the declared time zone, then derive date, hour,
+and month. Check all timestamps parsed and retain the full timestamp.
+
+Explain what information would be lost by replacing it with `as.Date` alone.
+
+## Part F: Check Keys Before Joining
+
+Confirm `building_id` is unique in the registry and `event_id` is unique in the
+event log. State what row multiplication a duplicated registry key could cause.
+
+## Part G: Audit Unmatched Rows
+
+Use `anti_join` in both directions. Record the unknown event key and the
+registered building without an event. Give a plausible investigation step for
+each without declaring either row wrong automatically.
+
+## Part H: Join And Verify
+
+Run the declared many-to-one left join. Verify row count, event-key uniqueness,
+matched and unmatched counts, and response-hour preservation.
+
+Create a zone summary that retains the unknown event under an `unmatched`
+label. Confirm its counts sum to nine.
+
+## Deliverable
+
+Submit:
+
+- one runnable `.R` script;
+- raw-to-clean value comparisons;
+- factor and timestamp checks;
+- both unmatched-row tables;
+- the joined event table and post-join contract;
+- the zone summary;
+- a short note explaining why the chosen join preserves the event population.
+
+## AI Use
+
+If you use an LLM, record its proposed row meanings, keys, relationship, join
+type, and cleaning rules. Verify all of these independently before accepting
+its code.

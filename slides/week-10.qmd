@@ -1,32 +1,297 @@
 ---
-title: "Week 10: Real Data Is Difficult"
+title: "Week 10: Relational And Typed Data"
 format:
   revealjs:
     theme: simple
     slide-number: true
     footer: "MATH 346"
+execute:
+  enabled: false
 ---
 
 ## Today's Question
 
-Why is real data difficult before modeling begins?
+How do we combine related tables without silently changing what one row means?
 
-## Common Problems
+## Week 10 Plan
 
-- Multiple tables
-- Inconsistent labels
-- Text fields
-- Ordered categories
-- Dates and times
+- Meeting 1: strings, factors, dates, and times
+- Meeting 2: keys, unmatched rows, and join contracts
 
-## Join Checklist
+## Supplied Synthetic Tables
 
-- What are the keys?
-- Are keys unique?
-- Are any rows unmatched?
-- Did the join duplicate observations?
+- building registry: 6 buildings
+- service log: 9 events
+- inconsistent key case and spaces
+- inconsistent category labels
+- one unknown building key
 
-## AI Check
+## Start With Row Meaning
 
-A join that runs is not necessarily a join that means what you think it means.
+| Table | One row | Key |
+|---|---|---|
+| registry | one building | `building_id` |
+| events | one service event | `event_id` |
 
+## A Foreign Key Is Not The Row Key
+
+`building_key` links an event to a building.
+
+Several events may share one building.
+
+## Raw Key Variants
+
+```text
+" bldg-01 "
+"BLDG-01"
+"bldg-02"
+```
+
+Do these intend the same key format?
+
+## Normalize With A Rule
+
+```r
+building_id = str_to_upper(
+  str_squish(building_key)
+)
+```
+
+Cleaning is a claim about meaning.
+
+## Check Key Shape
+
+```r
+stopifnot(
+  all(str_detect(
+    events$building_id,
+    "^BLDG-[0-9]{2}$"
+  ))
+)
+```
+
+## Shape Is Not Existence
+
+`BLDG-99` has the expected syntax.
+
+That does not prove it exists in the registry.
+
+## Raw Category Variants
+
+```text
+" HVAC "  "hvac"
+"Water leak"  "water  leak"
+"High"  "HIGH"  "high"
+```
+
+Inspect before merging labels.
+
+## Standardize Text
+
+```r
+issue = str_to_lower(
+  str_squish(issue_label)
+)
+```
+
+Recount distinct values afterward.
+
+## Factors Encode A Set
+
+A factor declares allowed category levels.
+
+An ordered factor also declares a progression.
+
+## Severity Order
+
+```r
+severity_levels <- c(
+  "low", "medium", "high"
+)
+```
+
+Alphabetical order is not severity order.
+
+## Build And Check The Factor
+
+```r
+severity = factor(
+  severity_text,
+  levels = severity_levels,
+  ordered = TRUE
+)
+```
+
+Check that conversion creates no `NA`.
+
+## Date-Time Text Is Not A Time
+
+```text
+2026-03-14 12:00
+```
+
+It needs a format and time-zone interpretation.
+
+## Parse Explicitly
+
+```r
+reported_at = ymd_hm(
+  reported_at,
+  tz = "Europe/Paris",
+  quiet = TRUE
+)
+```
+
+## Check Parsing Immediately
+
+```r
+stopifnot(
+  !any(is.na(events$reported_at))
+)
+```
+
+Parsing failure must not hide downstream.
+
+## Derive Without Discarding
+
+```r
+report_date = as_date(reported_at)
+report_hour = hour(reported_at)
+month = str_to_lower(
+  format(reported_at, "%b")
+)
+```
+
+Keep the full timestamp too.
+
+## Meeting 1 Exit Ticket
+
+Name one cleaning rule and the meaning it assumes.
+
+## Meeting 2 Question
+
+How do we prove that a join preserved every event exactly once?
+
+## State The Relationship
+
+One building may have many events.
+
+Each known event should match at most one registry row.
+
+Events to registry: many-to-one.
+
+## Check Registry Uniqueness
+
+```r
+registry |>
+  count(building_id) |>
+  filter(n != 1)
+```
+
+Resolve unexpected output before joining.
+
+## Audit Unmatched Events
+
+```r
+unmatched_events <- events |>
+  anti_join(
+    registry,
+    by = "building_id"
+  )
+```
+
+## Audit The Other Direction
+
+```r
+buildings_without_events <- registry |>
+  anti_join(
+    events,
+    by = "building_id"
+  )
+```
+
+## The Two Questions Differ
+
+- Which events refer to unknown buildings?
+- Which registered buildings have no event?
+
+Neither result is automatically an error.
+
+## Join With A Contract
+
+```r
+event_buildings <- events |>
+  left_join(
+    registry,
+    by = "building_id",
+    relationship = "many-to-one"
+  )
+```
+
+## Why `left_join` Here?
+
+The event log defines the observation population.
+
+All nine reported events must remain visible.
+
+## Post-Join Checks
+
+```r
+stopifnot(
+  nrow(event_buildings) == 9,
+  n_distinct(event_buildings$event_id) == 9,
+  sum(is.na(event_buildings$building_name)) == 1
+)
+```
+
+## A Plausible AI Join
+
+Join events to monthly energy using only:
+
+```text
+building_id
+```
+
+The code runs and values look plausible.
+
+## The Missing Key Component
+
+The energy-table key is:
+
+```text
+building_id + month
+```
+
+Each matched event otherwise finds four energy rows.
+
+## Row Multiplication
+
+```text
+9 events -> 33 joined rows
+```
+
+Eight events repeat four times; one remains unmatched.
+
+## Repair The Join
+
+```r
+left_join(
+  events,
+  energy_long,
+  by = c("building_id", "month"),
+  relationship = "many-to-one"
+)
+```
+
+## Join Audit
+
+- state row meanings and keys
+- normalize fields before matching
+- check lookup-key multiplicity
+- expose unmatched rows both ways
+- declare the relationship
+- check rows and keys afterward
+
+## Exit Ticket
+
+What evidence shows that a join preserved the intended observation unit?

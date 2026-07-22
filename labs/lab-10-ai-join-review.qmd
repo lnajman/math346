@@ -1,0 +1,82 @@
+---
+title: "Lab 10B: AI Join Review"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Audit generated join code that uses a valid-looking but incomplete key and
+therefore changes one service event into several rows.
+
+## Scenario
+
+Download:
+
+- [week10-ai-join-review.R](../code/r/week10-ai-join-review.R)
+- [week10-service-events.csv](../data/week10-service-events.csv)
+- [week09-campus-energy-wide.csv](../data/week09-campus-energy-wide.csv)
+
+Keep both CSV files in a `data` folder, then run the review script.
+
+The generated code joins nine service events to the Week 9 long energy table
+using only `building_id`. It explicitly accepts a many-to-many relationship and
+returns 33 rows.
+
+## Part A: Predict Before Inspecting
+
+The energy table has four monthly rows per known building. Predict how many
+rows each matched event and the unknown event should produce.
+
+Explain the calculation leading to 33 rows.
+
+## Part B: Audit The Generated Join
+
+Complete:
+
+| Contract question | Generated result | Consequence |
+|---|---|---|
+| What does one output row represent? |  |  |
+| Is `event_id` still unique? |  |  |
+| What is the energy-table key? |  |  |
+| Which key component is absent? |  |  |
+| Are unmatched events visible? |  |  |
+| Did the code declare the real relationship? |  |  |
+
+## Part C: Inspect Multiplicity Directly
+
+Count rows by `event_id`. Confirm eight event identifiers occur four times and
+the unknown event occurs once.
+
+Explain why plausible energy values do not make those duplicated event rows
+valid observations.
+
+## Part D: Repair The Composite Key
+
+Derive the month of each event from its parsed timestamp. Join using both
+`building_id` and `month` with a many-to-one relationship.
+
+Check nine rows, nine unique event identifiers, and exactly one event without a
+matching building-month energy record.
+
+## Part E: Compare Meanings
+
+Write 5-7 sentences comparing:
+
+- the row meaning before joining;
+- the generated row meaning;
+- the repaired row meaning;
+- the partial and complete keys;
+- unmatched-row behavior;
+- the evidence required before interpretation.
+
+## Deliverable
+
+Submit the generated row-count audit, completed contract table, repaired join,
+post-join checks, and written comparison.
+
+## Exit Question
+
+Complete this sentence:
+
+> A join key is sufficient only when ...

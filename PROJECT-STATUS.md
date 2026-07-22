@@ -43,10 +43,15 @@ interpretation audit. Its three R scripts pass the course validation harness.
 Week 9 has now been expanded around a supplied synthetic campus-energy CSV,
 explicit import schemas, parsing diagnostics, tidy observation structure,
 `pivot_longer`, observation-key checks, and an AI reshape audit. Its three R
-scripts and data contract pass the course validation harness. The next content
-milestone is Week 10 relational data, strings, factors, and dates.
+scripts and data contract pass the course validation harness. Week 10 has now
+been expanded around a supplied synthetic building registry and service-event
+log, explicit string normalization, ordered factors, time-zone-aware parsing,
+unmatched-row audits, declared join relationships, composite keys, and an AI
+row-multiplication audit. Its three R scripts and two data contracts pass the
+course validation harness. The next content milestone is Week 11 pipes and
+reusable functions.
 
-Weeks 10-15 remain outlines. They should not yet be described as complete course
+Weeks 11-15 remain outlines. They should not yet be described as complete course
 materials.
 
 ## Confirmed Progress
@@ -96,8 +101,12 @@ materials.
   full slides, a main lab, an AI tidy-structure lab, exercises, and three
   checked R scripts. It is developed and ready for review, but has not yet been
   designated a validated prototype.
-- Weeks 10-15 have short week pages and slide outlines, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-9.
+- Week 10 now has a two-meeting relational-and-typed-data plan, two supplied
+  synthetic CSVs, full slides, a main lab, an AI join-review lab, exercises,
+  and three checked R scripts. It is developed and ready for review, but has
+  not yet been designated a validated prototype.
+- Weeks 11-15 have short week pages and slide outlines, but very little of the
+  supporting lab, exercise, and code material available for Weeks 1-10.
 
 ## Established Decisions and Constraints
 
@@ -160,7 +169,8 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 7 | `weeks/week-07.qmd`; `slides/week-07.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 8 | `weeks/week-08.qmd`; `slides/week-08.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 9 | `weeks/week-09.qmd`; `slides/week-09.qmd`; two labs; exercises; supplied CSV; three checked R scripts | Developed; ready for review |
-| Weeks 10-12 | week and slide pages | Outline/early scaffold |
+| Week 10 | `weeks/week-10.qmd`; `slides/week-10.qmd`; two labs; exercises; two supplied CSVs; three checked R scripts | Developed; ready for review |
+| Weeks 11-12 | week and slide pages | Outline/early scaffold |
 | Weeks 13-15 | week and slide pages | Outline |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
@@ -169,7 +179,7 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 10 and then the remaining R sequence using the validated weekly
+2. Expand Week 11 and then the remaining R sequence using the validated weekly
    pattern.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
@@ -249,3 +259,9 @@ milestone:
   made explicit on the public course pages: quizzes in Weeks 3, 6, 9, and 13,
   with the semester examination (midterm) in Week 8. Exact dates, delivery,
   and formats remain open for later discussion.
+- **2026-07-22:** Week 10 was expanded around a supplied synthetic building
+  registry and service-event log, string and factor contracts, time-zone-aware
+  date-time parsing, key uniqueness, unmatched rows in both directions,
+  declared many-to-one joins, composite building-month keys, two labs,
+  exercises, three R scripts, and an AI partial-key join audit. The complete R
+  validation harness passed.

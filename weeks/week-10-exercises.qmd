@@ -1,0 +1,102 @@
+---
+title: "Week 10 Exercises"
+execute:
+  enabled: false
+---
+
+Use the supplied synthetic building registry and service-event log. Keep both
+files inside a `data` folder and use relative paths.
+
+## Exercise 1: Define Rows And Keys
+
+For each table, state:
+
+1. what one row represents;
+2. its row key;
+3. whether the building field is a primary or foreign key;
+4. the expected relationship from events to registry;
+5. which table defines the observations that must be retained.
+
+## Exercise 2: Inventory Raw Strings
+
+List and count distinct raw values of `building_key`, `issue_label`, and
+`severity`.
+
+Classify each difference as likely whitespace, case, repeated internal space,
+or a potentially meaningful category difference. Do not clean yet.
+
+## Exercise 3: Normalize And Check Keys
+
+Create `building_id` using `str_squish` and `str_to_upper`. Check every cleaned
+value against `^BLDG-[0-9]{2}$`.
+
+Explain why that pattern check accepts `BLDG-99` even though the registry does
+not contain it.
+
+## Exercise 4: Standardize Categories
+
+Create a cleaned issue variable using explicit whitespace and case rules.
+Confirm the result contains exactly `access`, `hvac`, `lighting`, and
+`water leak`.
+
+Describe one string-cleaning rule that would be too aggressive for these data.
+
+## Exercise 5: Create An Ordered Factor
+
+Create severity levels `low`, `medium`, and `high` in that order. Check that
+the result is ordered, its levels are exact, and no value became missing.
+
+Temporarily omit `medium` from the declared levels. Record what happens and
+explain why an `NA` check is essential after factor conversion.
+
+## Exercise 6: Parse Date-Times
+
+Parse `reported_at` in the `Europe/Paris` time zone. Add `report_date`,
+`report_hour`, and lowercase abbreviated `month` variables.
+
+Check that all nine timestamps parsed, hours lie between 0 and 23, and months
+are January through April.
+
+## Exercise 7: Audit Registry Keys
+
+Count rows for every registry `building_id`. Verify every lookup key occurs
+once.
+
+Duplicate one registry row temporarily and predict which event rows would
+multiply after a join. Do not repair the duplicate with unexplained `distinct`.
+
+## Exercise 8: Find Unmatched Rows
+
+Use `anti_join` in both directions. Report:
+
+- the unknown event and its cleaned building key;
+- the registered building without an event;
+- why these are different questions;
+- what should be investigated before deleting either row.
+
+## Exercise 9: Join With A Declared Relationship
+
+Use a many-to-one `left_join` from events to registry. Check:
+
+- nine output rows;
+- nine unique event identifiers;
+- one event with missing registry fields;
+- eight matched events;
+- unchanged response-hour values.
+
+Explain why `inner_join` would answer a different question.
+
+## Exercise 10: Audit The AI Join
+
+Run `week10-ai-join-review.R`. Explain why joining events to long monthly
+energy using only `building_id` creates 33 rows.
+
+Repair the join using `building_id + month`. Verify nine rows, nine unique
+events, and one unmatched building.
+
+## Exit Ticket
+
+In 4-6 sentences, answer:
+
+> Why can every value in a joined table look plausible even when the join has
+> changed the meaning of one row?
