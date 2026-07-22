@@ -37,5 +37,18 @@ source(args[[1]], chdir = FALSE)
   fi
 done
 
+report_validator="scripts/validate_week06_report.R"
+if [ -f "$report_validator" ]; then
+  echo "RUN $report_validator"
+  Rscript --vanilla "$report_validator"
+  rc=$?
+  if [ "$rc" -eq 0 ]; then
+    echo "PASS $report_validator"
+  else
+    echo "FAIL $report_validator" >&2
+    status=1
+  fi
+fi
+
 rm -f Rplots.pdf
 exit "$status"

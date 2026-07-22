@@ -1,35 +1,136 @@
 ---
 title: "Week 6 Starter Report"
-format: html
+format:
+  html:
+    embed-resources: true
+execute:
+  echo: true
+  warning: true
+  message: false
 ---
 
 ## Question
 
-How is car weight related to fuel efficiency in the `mtcars` dataset?
+How is vehicle weight associated with fuel efficiency among the 32 car models
+in the `mtcars` dataset?
 
-## Code
+This is an observational question. The report can describe an association, but
+it cannot establish that weight alone causes a difference in fuel efficiency.
+
+## Setup And Data
 
 ```{r}
+#| label: setup
+
 library(ggplot2)
 
-ggplot(mtcars, aes(x = wt, y = mpg)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  labs(
-    title = "Fuel efficiency decreases as car weight increases",
-    x = "Weight (1000 lbs)",
-    y = "Miles per gallon"
-  )
+cars <- mtcars
+cars$car <- rownames(mtcars)
+rownames(cars) <- NULL
 ```
 
-## Summary
+## Data Checks
 
 ```{r}
-model <- lm(mpg ~ wt, data = mtcars)
-summary(model)
+#| label: data-checks
+
+data_checks <- data.frame(
+  quantity = c(
+    "rows",
+    "variables",
+    "missing weight values",
+    "missing mpg values"
+  ),
+  value = c(
+    nrow(cars),
+    ncol(cars),
+    sum(is.na(cars$wt)),
+    sum(is.na(cars$mpg))
+  )
+)
+
+data_checks
+
+stopifnot(
+  nrow(cars) == 32,
+  sum(is.na(cars$wt)) == 0,
+  sum(is.na(cars$mpg)) == 0,
+  all(cars$wt > 0),
+  all(cars$mpg > 0)
+)
 ```
 
-## Validation
+## Numerical Summary
 
-The plot suggests a negative relationship between weight and miles per gallon. Before trusting this conclusion, inspect residuals and remember that this is an observational dataset.
+```{r}
+#| label: numerical-summary
 
+median_weight <- median(cars$wt)
+lighter <- cars$wt <= median_weight
+heavier <- cars$wt > median_weight
+
+comparison <- data.frame(
+  group = c("at or below median weight", "above median weight"),
+  n = c(sum(lighter), sum(heavier)),
+  mean_mpg = c(
+    mean(cars$mpg[lighter]),
+    mean(cars$mpg[heavier])
+  )
+)
+
+comparison
+
+stopifnot(sum(comparison$n) == nrow(cars))
+```
+
+## Visualization
+
+```{r}
+#| label: weight-mpg-plot
+#| fig-cap: "Vehicle weight and fuel efficiency for 32 car models in mtcars. The figure shows an association and does not establish causation."
+
+scatter_plot <- ggplot(cars, aes(x = wt, y = mpg)) +
+  geom_point(size = 2.4, alpha = 0.8, color = "#2A6F97") +
+  labs(
+    title = "Heavier cars tend to have lower fuel efficiency",
+    x = "Weight (1000 lb)",
+    y = "Fuel efficiency (miles per US gallon)"
+  ) +
+  theme_minimal(base_size = 12)
+
+scatter_plot
+```
+
+## Plot Validation
+
+```{r}
+#| label: plot-validation
+
+plotted_points <- ggplot_build(scatter_plot)$data[[1]]
+nrow(plotted_points)
+
+stopifnot(
+  nrow(plotted_points) == nrow(cars),
+  sum(plotted_points$x == cars$wt) == nrow(cars),
+  sum(plotted_points$y == cars$mpg) == nrow(cars)
+)
+```
+
+## Interpretation
+
+Replace this paragraph with 4-6 sentences. Describe the direction of the
+association, use the units from the axes, identify the 32 car models represented
+by the data, compare the two group means, avoid causal language, and state one
+limitation of `mtcars`.
+
+## Reproducibility Check
+
+Before submitting, restart R and render this document from beginning to end.
+Confirm that the report does not depend on objects created manually in the
+console and that every statement agrees with regenerated output.
+
+## AI Use
+
+State whether generative AI was used. If it was, record the prompt, the part of
+the response used, what was changed or rejected, and the check performed before
+accepting it.

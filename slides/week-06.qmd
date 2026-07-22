@@ -1,5 +1,5 @@
 ---
-title: "Week 6: R Markdown and Visualization"
+title: "Week 6: From MATLAB to R"
 format:
   revealjs:
     theme: simple
@@ -9,37 +9,263 @@ format:
 
 ## Today's Question
 
-How do code, plots, and explanation become a reproducible report?
+How do familiar computational ideas move into R and a reproducible report?
 
-## Reproducible Report
+## Week 6 Plan
 
-A report should include:
+- Meeting 1: objects, vectors, data frames, and checks
+- Meeting 2: ggplot2 and a supplied reproducible-report template
 
-- question;
-- data;
-- code;
-- output;
-- interpretation;
-- checks.
+## Start With A Script
 
-## R Pattern
+The console is useful for experiments.
+
+The saved script is the reproducible record.
+
+## Assignment
+
+MATLAB:
+
+```matlab
+x = 3;
+```
+
+R:
+
+```r
+x <- 3
+```
+
+## Vectors
+
+MATLAB:
+
+```matlab
+x = [1 2 3 4];
+```
+
+R:
+
+```r
+x <- c(1, 2, 3, 4)
+```
+
+## Vectorized Arithmetic
+
+```r
+x <- c(1, 2, 3, 4)
+y <- x^2 - 1
+```
+
+Ordinary R arithmetic is vectorized.
+
+## One-Based Indexing, Different Brackets
+
+```r
+x[1]
+x[c(1, 3)]
+x[x > 2]
+```
+
+R and MATLAB both start counting at one.
+
+## Inspect Before Using
+
+```r
+class(x)
+length(x)
+str(x)
+```
+
+Do not infer an object's structure from its name.
+
+## Data Frames
+
+```r
+cars <- mtcars
+nrow(cars)
+names(cars)
+str(cars)
+```
+
+A data frame stores variables of equal row length.
+
+## Select A Variable
+
+```r
+mpg <- cars$mpg
+weight <- cars$wt
+```
+
+Each selected variable is a vector.
+
+## Missing Values
+
+```r
+sum(is.na(cars$mpg))
+```
+
+Count and understand missing values before removing them.
+
+## Summaries
+
+```r
+mean(cars$mpg)
+median(cars$wt)
+range(cars$mpg)
+```
+
+Always retain the units and population in the interpretation.
+
+## Logical Selection
+
+```r
+median_weight <- median(cars$wt)
+lighter <- cars$wt <= median_weight
+mean(cars$mpg[lighter])
+```
+
+The selector must align with the vector being selected.
+
+## Executable Expectations
+
+```r
+stopifnot(
+  nrow(cars) == 32,
+  sum(is.na(cars$mpg)) == 0,
+  all(cars$wt > 0)
+)
+```
+
+A failed expectation should stop the analysis.
+
+## Meeting 1 Exit Ticket
+
+One idea that transfers from MATLAB is ...
+
+One syntax change I must remember is ...
+
+## Meeting 2 Question
+
+How do code, figures, and explanation become one reproducible argument?
+
+## Grammar Of Graphics
+
+A ggplot contains:
+
+1. data;
+2. mappings;
+3. geometry;
+4. labels;
+5. optional scales and themes.
+
+## Scatterplot Pattern
 
 ```r
 library(ggplot2)
 
-ggplot(mtcars, aes(x = wt, y = mpg)) +
-  geom_point() +
-  labs(x = "Weight", y = "Miles per gallon")
+ggplot(cars, aes(x = wt, y = mpg)) +
+  geom_point()
 ```
 
-## Plot Checklist
+## Add Meaningful Labels
 
-- Clear labels
-- Appropriate geometry
-- Honest scale
-- Interpretable caption
+```r
++ labs(
+    x = "Weight (1000 lb)",
+    y = "Fuel efficiency (miles per US gallon)"
+  )
+```
 
-## AI Check
+Variable names alone are not complete labels.
 
-An LLM can improve wording. It cannot decide whether your plot supports the conclusion unless you verify it.
+## Histogram Pattern
 
+```r
+ggplot(cars, aes(x = mpg)) +
+  geom_histogram(binwidth = 3)
+```
+
+Change the bin width and inspect whether the story changes.
+
+## Check The Plot Data
+
+```r
+built <- ggplot_build(scatter_plot)
+nrow(built$data[[1]])
+```
+
+The plot should contain the expected observations.
+
+## Association Is Not Causation
+
+Supported:
+
+> Heavier cars tend to have lower fuel efficiency in these data.
+
+Not established:
+
+> Weight alone causes the observed difference.
+
+## Reproducible Report
+
+A report combines:
+
+- question;
+- data checks;
+- code;
+- output and figures;
+- interpretation;
+- limitations.
+
+## Source And Rendered Output
+
+- `.qmd`: editable source, code, and prose
+- `.html`: rendered report for reading
+
+Edit the source, then render again.
+
+## Code Chunk
+
+````markdown
+```{r}
+mean(mtcars$mpg)
+```
+````
+
+The rendered result is generated from the code.
+
+## Beginner Workflow
+
+1. Download the supplied template.
+2. Save it with the `.qmd` extension.
+3. Render it unchanged.
+4. Change one section.
+5. Render again from a clean session.
+
+## Plausible But Weak AI Plot
+
+```r
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point(color = "red") +
+  labs(
+    title = "Heavy cars cause poor fuel economy",
+    x = "Weight",
+    y = "Efficiency"
+  )
+```
+
+The code runs. What is still wrong?
+
+## AI Audit
+
+- Are the mapped variables correct?
+- Are units present?
+- Is the title causal?
+- Were rows and missing values checked?
+- Does the caption identify the data?
+- Can the script run from a clean session?
+
+## Exit Ticket
+
+A reproducible R report is trustworthy enough to share when ...

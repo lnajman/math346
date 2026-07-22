@@ -30,6 +30,9 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 
 ## R
 
+- [week06-r-basics.R](r/week06-r-basics.R)
+- [week06-ggplot-checks.R](r/week06-ggplot-checks.R)
+- [week06-ai-plot-review.R](r/week06-ai-plot-review.R)
 - <a href="r/week06-first-report.qmd.txt" download>week06-first-report.qmd template</a>
 - [week07-dplyr-eda.R](r/week07-dplyr-eda.R)
 

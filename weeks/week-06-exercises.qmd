@@ -1,0 +1,142 @@
+---
+title: "Week 6 Exercises"
+---
+
+These exercises practice the transition from MATLAB to R, first data checks,
+ggplot2, reproducible reports, and AI critique. Use AI only after writing a
+first attempt yourself.
+
+## Exercise 1: Translate Familiar Syntax
+
+Translate each MATLAB line into R.
+
+```matlab
+x = [1 2 3 4 5];
+y = x.^2 - 1;
+first = x(1);
+large = x(x > 3);
+n = numel(x);
+```
+
+Then run both versions and compare the results.
+
+## Exercise 2: Predict Object Types
+
+Predict the result of `class(...)` and `length(...)` for each object before
+running the code.
+
+```r
+a <- 4
+b <- c(4, 7, 9)
+c <- c(TRUE, FALSE, TRUE)
+d <- c("MATLAB", "R")
+e <- mtcars
+```
+
+Explain the difference between a vector and a data frame.
+
+## Exercise 3: Inspect A Data Frame
+
+Using `mtcars`, report:
+
+1. the number of rows;
+2. the number of variables;
+3. all variable names;
+4. the class of `mtcars`;
+5. the class and length of `mtcars$mpg`;
+6. the first six values of `wt`.
+
+Which command gave the most useful overview: `class`, `names`, `head`, or
+`str`? Explain.
+
+## Exercise 4: Logical Selection
+
+Create a logical vector identifying cars with `mpg >= 25`.
+
+Use it to:
+
+1. count those cars;
+2. display their `mpg` values;
+3. compute their mean weight;
+4. verify that the selector has one value per row;
+5. verify that the selected count is neither zero nor the full dataset.
+
+## Exercise 5: Summaries And Missingness
+
+For `mtcars$hp`:
+
+1. count missing values;
+2. compute the minimum, median, mean, and maximum;
+3. check that the mean lies between the minimum and maximum;
+4. create `hp_with_missing <- mtcars$hp` and replace its first value with `NA`;
+5. observe what `mean(hp_with_missing)` returns;
+6. use `na.rm = TRUE`, but explain what information that option discards.
+
+## Exercise 6: Build A Scatterplot
+
+Create a scatterplot of horsepower (`hp`) against fuel efficiency (`mpg`).
+
+Your plot must include:
+
+- the intended data and mappings;
+- readable points;
+- a descriptive but noncausal title;
+- axis labels with units;
+- a caption identifying `mtcars` as 32 car models from 1973-1974.
+
+Write two sentences describing the association without claiming causation.
+
+## Exercise 7: Histogram Choices
+
+Create three histograms of `mpg` using bin widths `1`, `3`, and `8`.
+
+1. Which view is most useful for this small dataset?
+2. How does bin width change the apparent shape?
+3. Use `ggplot_build` to confirm that every car is counted.
+4. Explain why a histogram is not simply a neutral picture of the data.
+
+## Exercise 8: Read A Reproducible Report
+
+Open the supplied `week06-first-report.qmd` source and identify:
+
+1. the YAML header;
+2. one prose section;
+3. the setup chunk;
+4. the data checks;
+5. the plot-producing chunk;
+6. the interpretation;
+7. the validation check.
+
+Change one axis label, render again, and explain why editing the generated HTML
+would not be reproducible.
+
+## Exercise 9: Critique Generated R Code
+
+An LLM produced:
+
+```r
+library(ggplot2)
+
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "red") +
+  labs(
+    title = "Heavy cars cause poor fuel economy",
+    x = "Weight",
+    y = "Efficiency"
+  )
+```
+
+Find at least five weaknesses. Your answer should discuss:
+
+- units;
+- association versus causation;
+- which observations are represented;
+- data checks;
+- whether color communicates anything;
+- a defensible replacement title or caption.
+
+## Exit Ticket
+
+Write 3-5 sentences answering:
+
+> What must be checked before a working R plot becomes evidence in a report?

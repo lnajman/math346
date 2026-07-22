@@ -1,0 +1,85 @@
+---
+title: "Lab 6B: AI R Plot Review"
+---
+
+## Goal
+
+Practice reviewing AI-generated R code that runs successfully but produces an
+under-checked plot and an overconfident claim.
+
+## Scenario
+
+A student asks an LLM to show how vehicle weight affects fuel economy. The
+generated script resembles
+[week06-ai-plot-review.R](../code/r/week06-ai-plot-review.R).
+
+## Part A: Run The Generated Script
+
+1. Open and run the script without editing it.
+2. Record the plot title and axis labels.
+3. Identify the mapped variables.
+4. State whether the code produces an error.
+5. Explain why “the code runs” is not enough to accept the plot.
+
+## Part B: Inspect The Data First
+
+Add code that reports:
+
+- object class;
+- row count;
+- variable names;
+- missing values in `wt` and `mpg`;
+- ranges of both variables;
+- the number of rows represented in the built plot.
+
+Turn at least three of those expectations into `stopifnot` checks.
+
+## Part C: Repair The Figure
+
+Revise the plot so that it includes:
+
+1. axis labels with complete units;
+2. a noncausal title;
+3. a caption identifying the observations;
+4. a point style that is readable without implying a nonexistent category;
+5. a minimal theme or other restrained formatting choice.
+
+## Part D: Audit The Claim
+
+Complete the table.
+
+| Weakness | Why it matters | Repair |
+|---|---|---|
+| Causal title |  |  |
+| Missing units |  |  |
+| Unidentified observations |  |  |
+| No row or missingness checks |  |  |
+| No limitation |  |  |
+
+## Part E: Write A Defensible Interpretation
+
+Write 4-6 sentences that:
+
+- describe the direction of the association;
+- identify the dataset and sample size;
+- use the correct units;
+- avoid causal language;
+- mention one important limitation.
+
+## Deliverable
+
+Submit:
+
+- the original generated claim;
+- your repaired R script;
+- the completed audit table;
+- the repaired plot;
+- the defensible interpretation;
+- one sentence explaining why successful execution is weaker evidence than a
+  reproducible, checked analysis.
+
+## Exit Question
+
+Complete this sentence:
+
+> An AI-generated R visualization is not trustworthy until ...

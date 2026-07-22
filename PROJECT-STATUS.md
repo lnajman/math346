@@ -26,9 +26,13 @@ rehearsed locally, and the complete assessment-sensitive package is backed up
 in a private GitHub repository. The MATLAB project date and the remaining quiz
 and midterm architecture are intentionally deferred. Week 5 has now been
 expanded using the validated Weeks 1-4 pattern and passes the complete MATLAB
-validation harness. The next content milestone is the transition to R in Week 6.
+validation harness. Week 6 has now been expanded into a beginner-safe
+MATLAB-to-R transition with ordinary R scripts, checked visualizations, a
+supplied reproducible-report scaffold, and an AI plot-review activity. Its R
+scripts and embedded report code pass the course validation harness. The next
+content milestone is Week 7 data transformation.
 
-Weeks 6-15 remain outlines. They should not yet be described as complete course
+Weeks 7-15 remain outlines. They should not yet be described as complete course
 materials.
 
 ## Confirmed Progress
@@ -62,8 +66,12 @@ materials.
   review lab, exercises, four MATLAB examples, and executable symbolic and
   numerical checks. It is developed and ready for review, but has not yet been
   designated a validated prototype.
-- Weeks 6-15 have short week pages and slide outlines, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-5.
+- Week 6 now has a two-meeting MATLAB-to-R transition plan, full slides, a main
+  lab, an AI plot-review lab, exercises, three R scripts, and a supplied report
+  scaffold whose code is checked automatically. It is developed and ready for
+  review, but has not yet been designated a validated prototype.
+- Weeks 7-15 have short week pages and slide outlines, but very little of the
+  supporting lab, exercise, and code material available for Weeks 1-6.
 
 ## Established Decisions and Constraints
 
@@ -116,7 +124,8 @@ agreed core project architecture is incorporated into the syllabus.
 | Colleague feedback | Responses are external to the repository | Requested; synthesis pending |
 | Weeks 1-4 | `weeks/`, `slides/`, `labs/`, `code/matlab/` | Validated prototype |
 | Week 5 | `weeks/week-05.qmd`; `slides/week-05.qmd`; two labs; exercises; four checked MATLAB scripts | Developed; ready for review |
-| Weeks 6-12 | week and slide pages; limited R lab/code | Outline/early scaffold |
+| Week 6 | `weeks/week-06.qmd`; `slides/week-06.qmd`; two labs; exercises; three checked R scripts; checked report scaffold | Developed; ready for review |
+| Weeks 7-12 | week and slide pages; limited R code | Outline/early scaffold |
 | Weeks 13-15 | week and slide pages | Outline |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
@@ -125,7 +134,8 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 6 and then the R sequence using the validated weekly pattern.
+2. Expand Week 7 and then the remaining R sequence using the validated weekly
+   pattern.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
 4. Decide the MATLAB project date later, when the teaching calendar is ready.
@@ -181,3 +191,7 @@ milestone:
   with a two-meeting plan, slides, two labs, exercises, four MATLAB scripts, an
   AI-answer audit, and exact-versus-numerical verification. The full MATLAB
   course harness passed.
+- **2026-07-22:** Week 6 was expanded into a deliberate MATLAB-to-R transition
+  with first-script foundations, `ggplot2`, two labs, exercises, three R
+  scripts, a supplied reproducible-report scaffold, and an AI plot-claim
+  audit. The R scripts and report code pass the course validation harness.

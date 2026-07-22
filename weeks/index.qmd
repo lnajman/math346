@@ -11,7 +11,7 @@ Each week has a problem focus, the official syllabus topic, the software tools i
 | [3](week-03.qmd) | Curve fitting, interpolation, and residual checks | MATLAB |
 | [4](week-04.qmd) | Numerical methods and 3D visualization | MATLAB |
 | [5](week-05.qmd) | Symbolic and numerical computation | MATLAB |
-| [6](week-06.qmd) | R Markdown and visualization | R |
+| [6](week-06.qmd) | MATLAB-to-R transition and reproducible reports | R |
 | [7](week-07.qmd) | Data transformation as question-answering | R |
 | [8](week-08.qmd) | Exploratory data analysis | R |
 | [9](week-09.qmd) | Import, tibbles, and tidy data | R |
@@ -24,16 +24,16 @@ Each week has a problem focus, the official syllabus topic, the software tools i
 
 ## Developed Weeks
 
-Weeks 1-4 are the validated model. Week 5 has now been expanded using the same
-pattern and is ready for review. These weeks include:
+Weeks 1-4 are the validated model. Weeks 5 and 6 have now been expanded using
+the same pattern and are ready for review. These weeks include:
 
 - a two-meeting teaching plan;
-- a detailed MATLAB lab;
+- a detailed MATLAB or R lab;
 - an AI code critique activity;
 - a student exercise set;
 - multiple starter scripts.
 
-Weeks 6-15 will follow this pattern as the course site develops.
+Weeks 7-15 will follow this pattern as the course site develops.
 
 ## Weekly Pattern
 

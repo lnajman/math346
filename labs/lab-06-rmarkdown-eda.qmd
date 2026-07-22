@@ -1,23 +1,137 @@
 ---
-title: "Lab 6: First Reproducible R Report"
+title: "Lab 6: First R Script And Reproducible Report"
 ---
 
 ## Goal
 
-Create a short reproducible report with a question, code, plots, and interpretation.
+Translate familiar computational habits from MATLAB into R, then use a supplied
+template to create a short reproducible report with data checks, figures, and a
+cautious interpretation.
 
-## Tasks
+## Setup
 
-1. Download <a href="../code/r/week06-first-report.qmd.txt" download>week06-first-report.qmd template</a> and save it as `week06-first-report.qmd`.
-2. Render the report.
-3. Replace one plot with a plot of your own.
-4. Add a one-paragraph interpretation.
-5. Add a short validation section.
+Create a folder called `week06`. Download these files into it:
+
+- [week06-r-basics.R](../code/r/week06-r-basics.R)
+- [week06-ggplot-checks.R](../code/r/week06-ggplot-checks.R)
+- <a href="../code/r/week06-first-report.qmd.txt" download>week06-first-report.qmd template</a>
+
+Save the template as `week06-first-report.qmd`. The report is supplied because
+this is a first guided exercise; you do not need to create the document
+structure from scratch.
+
+## Part A: Run And Inspect A First R Script
+
+Open `week06-r-basics.R` and run it from beginning to end.
+
+Record:
+
+1. the class of `cars`;
+2. its number of rows and variables;
+3. the class and length of `mpg`;
+4. the number of missing `mpg` values;
+5. the two group means printed by the script;
+6. every condition checked by `stopifnot`.
+
+Explain which ideas were familiar from MATLAB and which syntax was new.
+
+## Part B: Modify A Logical Question
+
+Replace the median-weight comparison with a fuel-efficiency question:
+
+```r
+efficient <- cars$mpg >= 25
+```
+
+Then compute and check:
+
+- the number of efficient cars;
+- their mean weight;
+- the number of other cars;
+- whether both counts add to 32;
+- whether the selector has one value for every row.
+
+## Part C: Build And Check ggplot Objects
+
+Open `week06-ggplot-checks.R` and run it.
+
+For the scatterplot, identify:
+
+- data;
+- `x` mapping;
+- `y` mapping;
+- geometry;
+- units;
+- caption;
+- the check that confirms all 32 rows were plotted.
+
+For the histogram, identify the bin width and the check that confirms all cars
+were counted.
+
+## Part D: Make One Controlled Plot Change
+
+Change the scatterplot to show horsepower (`hp`) against fuel efficiency
+(`mpg`). Update every label and the interpretation so they match the new
+question.
+
+Add checks that:
+
+1. both variables contain 32 values;
+2. neither variable contains missing values;
+3. all horsepower values are positive;
+4. the built plot contains 32 points.
+
+## Part E: Render The Supplied Report
+
+Open `week06-first-report.qmd`.
+
+1. Render it unchanged.
+2. Confirm that one HTML file is created.
+3. Locate the question, code, summaries, figures, interpretation, and checks.
+4. Restart R and render again.
+5. Confirm that the report does not depend on objects created manually in the
+   console.
+
+If rendering fails, read the first error message and identify the chunk in
+which it occurred before asking for help.
+
+## Part F: Adapt The Report
+
+Modify the report to use the horsepower-versus-fuel-efficiency plot from Part
+D. Replace every placeholder instruction. Your interpretation must state:
+
+- what the plot shows in these data;
+- what the plot does not establish;
+- which observations are represented;
+- one limitation of the dataset.
+
+## Part G: Reproducibility Check
+
+Before submitting:
+
+1. save all source files;
+2. restart R;
+3. render the report from beginning to end;
+4. compare the reported row counts and summaries with the console output;
+5. verify that the HTML plot has the intended variables and units.
 
 ## Deliverable
 
-Submit the rendered HTML report and the source `.qmd` file.
+Submit:
+
+- `week06-first-report.qmd`;
+- the rendered HTML file;
+- the modified R script;
+- one short note naming a failed check or error you encountered and how you
+  resolved it.
 
 ## AI Use
 
-You may ask an LLM for help improving the caption of one figure. You must check that the caption describes only what the plot supports.
+You may ask an LLM for help explaining an R error or revising a caption. If you
+do, include:
+
+- the prompt;
+- the suggestion used;
+- the output or code you checked;
+- the check that established whether the suggestion was correct;
+- one claim or edit you rejected.

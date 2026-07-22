@@ -1,29 +1,255 @@
 ---
-title: "Week 6: R Markdown and Visualization"
+title: "Week 6: From MATLAB to R and Reproducible Reports"
 ---
 
 ## Official Topic
 
-R Markdown and data visualization. Quiz 2.
+R Markdown and data visualization.
 
 ## Problem Focus
 
-How do we turn code, figures, and explanation into a reproducible report?
+How do we express a familiar computational question in a new language and turn
+the evidence into a reproducible report?
 
-Students write a first Quarto/R Markdown-style report and use `ggplot2` to create honest, labeled visualizations.
+Students begin with ordinary R scripts, not a blank report. They translate
+familiar ideas—vectors, indexing, logical conditions, summaries, plots, and
+checks—from MATLAB into R. They then edit and render a supplied Quarto/R
+Markdown-style template containing code, output, figures, and interpretation.
 
-## In Class
+::: {.callout-note}
+The `.qmd` document is a scaffolded Week 6 learning activity. Students are not
+expected to author it from scratch, and the course projects still use a
+Word/Google Docs report exported to PDF.
+:::
 
-- Create a computational document.
-- Use code chunks and narrative text.
-- Create scatterplots and histograms.
-- Interpret a plot in words.
+## Learning Goals
+
+By the end of the week, students should be able to:
+
+- run a saved R script from a clean session;
+- create objects with `<-` and inspect them with `class`, `length`, and `str`;
+- create vectors with `c(...)` and apply arithmetic element by element;
+- recognize numeric, character, and logical vectors;
+- distinguish a vector from a data frame;
+- select data-frame variables with `$` and rows or elements with brackets;
+- use logical vectors to select observations;
+- recognize missing values as `NA` and check them with `is.na`;
+- compute simple summaries such as `mean`, `median`, `min`, and `max`;
+- turn an expectation into an executable check with `stopifnot`;
+- build scatterplots and histograms using the `ggplot2` layer pattern;
+- label variables with meaningful units;
+- distinguish association from causation in a plot caption;
+- render a supplied `.qmd` report and identify its prose, code, output, and
+  figure components;
+- critique AI-generated R code and plot claims for nearby-but-wrong answers.
+
+## Meeting 1: Familiar Ideas In A New Language
+
+**Question:** Which programming ideas transfer from MATLAB, and which syntax
+changes?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Orientation: console, script, environment, help, and clean sessions |
+| 10-25 min | Objects and vectors: assignment, `c`, types, and vectorized arithmetic |
+| 25-40 min | Data frames: `mtcars`, `$`, brackets, `names`, `nrow`, and `str` |
+| 40-53 min | Missing values and summaries: `NA`, `is.na`, `mean`, and `median` |
+| 53-65 min | Logical selection: compare lighter and heavier cars |
+| 65-72 min | Validation: turn expectations into `stopifnot` checks |
+| 72-75 min | Exit ticket: one MATLAB habit that transfers and one that does not |
+
+### MATLAB-To-R Translation Table
+
+| Idea | MATLAB | R |
+|---|---|---|
+| Comment | `% note` | `# note` |
+| Assignment | `x = 3` | `x <- 3` |
+| Row vector | `x = [1 2 3]` | `x <- c(1, 2, 3)` |
+| First element | `x(1)` | `x[1]` |
+| Number of elements | `numel(x)` | `length(x)` |
+| Elementwise square | `x.^2` | `x^2` |
+| Named table variable | `T.mpg` | `cars$mpg` |
+| Missing value | `NaN` or `missing` | `NA` |
+| Missing-value check | `ismissing(x)` | `is.na(x)` |
+| Executable check | `assert(condition)` | `stopifnot(condition)` |
+
+R uses one-based indexing like MATLAB, but brackets and object types must still
+be read carefully.
+
+### Core R Pattern
+
+```r
+cars <- mtcars
+cars$car <- rownames(mtcars)
+rownames(cars) <- NULL
+
+mpg <- cars$mpg
+weight <- cars$wt
+
+stopifnot(
+  nrow(cars) == 32,
+  length(mpg) == nrow(cars),
+  sum(is.na(mpg)) == 0,
+  all(weight > 0)
+)
+```
+
+The checks state what must be true before a plot is interpreted.
+
+## Meeting 2: Plots And A Reproducible Report
+
+**Question:** How do code, output, figures, and explanation become one
+reproducible argument?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Review: inspect objects and rerun checks from Meeting 1 |
+| 10-25 min | Grammar of graphics: data, mappings, geometry, and labels |
+| 25-38 min | Build and inspect a scatterplot |
+| 38-48 min | Build a histogram and check that all observations were counted |
+| 48-60 min | Open the supplied `.qmd`; identify prose, chunks, and output |
+| 60-68 min | Render, make one controlled change, and render again |
+| 68-73 min | AI critique: a causal title and missing units |
+| 73-75 min | Exit ticket: one check that belongs before interpretation |
+
+### ggplot2 Layer Pattern
+
+```r
+library(ggplot2)
+
+ggplot(cars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  labs(
+    x = "Weight (1000 lb)",
+    y = "Fuel efficiency (miles per US gallon)"
+  )
+```
+
+Read the code from the inside out:
+
+1. `cars` supplies the observations;
+2. `aes(...)` maps variables to visual properties;
+3. `geom_point()` chooses a scatterplot;
+4. `labs(...)` supplies the words and units needed for interpretation.
+
+### Reproducible-Report Pattern
+
+````markdown
+## Question
+
+What relationship are we investigating?
+
+```{r}
+# code that produces the evidence
+```
+
+## Interpretation
+
+What does the output support, and what does it not establish?
+````
+
+The source `.qmd` contains the instructions, code, and prose. Rendering creates
+the readable output. If the data or code changes, the report can be regenerated.
+
+## In-Class Checks
+
+- Restart R and confirm that the saved script still runs.
+- Use `class`, `str`, `names`, `nrow`, and `length` before assuming an object's
+  structure.
+- Check missing values before calculating summaries.
+- Confirm that a logical selector has the same length as the vector it selects.
+- Verify that selected group counts add back to the full row count.
+- Check that plotted `x` and `y` variables are the intended columns.
+- Include units in axis labels whenever the variable has units.
+- Check that a histogram counts every nonmissing observation.
+- Use captions that describe association rather than asserting causation.
+- Render the report from a clean session after saving the source.
+- Read warnings rather than hiding them before understanding their cause.
+- Keep the source file as well as the rendered report.
 
 ## AI-Aware Task
 
-Ask an LLM to improve a plot. Evaluate whether the suggested labels, scales, and conclusion are statistically honest.
+An LLM generates a working scatterplot titled “Heavy cars cause poor fuel
+economy.” Audit the code and claim:
+
+1. Does the plot map the intended variables?
+2. Are the units stated?
+3. Does the dataset establish causation?
+4. Were row count, missingness, and variable ranges checked?
+5. Does the caption say which observations are represented?
+6. Can the code run from a clean session?
+
+## Survival Checklist
+
+These are the Week 6 R habits you should be able to recognize, test, and repair
+without relying on AI.
+
+### Commands And Patterns To Own
+
+| Pattern | What you should know |
+|---|---|
+| `x <- value` | Assigns a value to a named object. |
+| `c(1, 2, 3)` | Combines values into a vector. |
+| `class(x)` | Reports the main object class. |
+| `str(x)` | Gives a compact view of an object's structure. |
+| `length(x)` | Counts elements in a vector. |
+| `names(df)` | Lists data-frame variable names. |
+| `nrow(df)` | Counts data-frame rows. |
+| `df$variable` | Selects one named variable as a vector. |
+| `x[condition]` | Selects elements where a logical condition is `TRUE`. |
+| `is.na(x)` | Identifies missing values. |
+| `sum(is.na(x))` | Counts missing values. |
+| `mean(x)` | Computes a mean; use `na.rm = TRUE` only after deciding why values are missing. |
+| `stopifnot(condition)` | Stops execution when an expected condition is false. |
+| `ggplot(data, aes(...))` | Starts a plot with data and aesthetic mappings. |
+| `geom_point()` | Adds a scatterplot layer. |
+| `geom_histogram()` | Adds a histogram layer; bin width is a modeling choice. |
+| `labs(...)` | Adds titles, captions, axis labels, and units. |
+| `+` | Adds a layer to a ggplot object; it must remain at the end of the preceding line. |
+
+### Mistakes To Catch
+
+- Typing commands only in the console and losing the reproducible script.
+- Assuming MATLAB and R use the same brackets everywhere.
+- Forgetting that `NA` can propagate through a summary.
+- Using `na.rm = TRUE` without first counting or explaining missing values.
+- Selecting a data-frame variable that does not exist because of a spelling or
+  capitalization error.
+- Confusing the number of rows with the number of variables.
+- Treating a logical vector as data rather than as a selector.
+- Mapping the wrong variable to an axis.
+- Omitting units from labels.
+- Choosing a histogram bin width without checking how it changes the view.
+- Writing a causal title for observational evidence.
+- Editing rendered HTML instead of the source `.qmd`.
+- Hiding an R warning before understanding it.
+
+### Checks Before Trusting An R Report
+
+- Restart R and run the source from beginning to end.
+- Confirm object classes, row counts, column names, and missingness.
+- Compare important summaries with a second simple calculation.
+- Check that every plot uses the intended data and variables.
+- State the population represented by the data.
+- Include units and a cautious caption.
+- Make sure prose values agree with regenerated output.
+- Save both source and rendered files.
+- Document any AI assistance and the check performed before accepting it.
+
+## Exercises
+
+Complete the [Week 6 exercises](week-06-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-06.qmd)
+- R basics: [week06-r-basics.R](../code/r/week06-r-basics.R)
+- Checked ggplot workflow: [week06-ggplot-checks.R](../code/r/week06-ggplot-checks.R)
+- AI plot review: [week06-ai-plot-review.R](../code/r/week06-ai-plot-review.R)
 - Starter report: <a href="../code/r/week06-first-report.qmd.txt" download>week06-first-report.qmd template</a>
+- [Lab 6](../labs/lab-06-rmarkdown-eda.qmd)
+- [AI plot review](../labs/lab-06-ai-plot-review.qmd)
