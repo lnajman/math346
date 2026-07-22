@@ -48,10 +48,14 @@ been expanded around a supplied synthetic building registry and service-event
 log, explicit string normalization, ordered factors, time-zone-aware parsing,
 unmatched-row audits, declared join relationships, composite keys, and an AI
 row-multiplication audit. Its three R scripts and two data contracts pass the
-course validation harness. The next content milestone is Week 11 pipes and
-reusable functions.
+course validation harness. Week 11 has now been expanded around readable
+pipelines with named checkpoints, small functions with explicit contracts,
+normal, boundary, missing, and invalid-input tests, and an AI refactor audit
+that exposes behavior drift. Its three R scripts pass the complete course
+validation harness. The next content milestone is Week 12 vectorized thinking,
+iteration, and repeated workflows.
 
-Weeks 11-15 remain outlines. They should not yet be described as complete course
+Weeks 12-15 remain outlines. They should not yet be described as complete course
 materials.
 
 ## Confirmed Progress
@@ -105,8 +109,12 @@ materials.
   synthetic CSVs, full slides, a main lab, an AI join-review lab, exercises,
   and three checked R scripts. It is developed and ready for review, but has
   not yet been designated a validated prototype.
-- Weeks 11-15 have short week pages and slide outlines, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-10.
+- Week 11 now has a two-meeting readable-pipelines-and-functions plan, full
+  slides, a main lab, an AI refactor-review lab, exercises, and three checked R
+  scripts. It is developed and ready for review, but has not yet been
+  designated a validated prototype.
+- Weeks 12-15 have short week pages and slide outlines, but very little of the
+  supporting lab, exercise, and code material available for Weeks 1-11.
 
 ## Established Decisions and Constraints
 
@@ -170,7 +178,8 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 8 | `weeks/week-08.qmd`; `slides/week-08.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 9 | `weeks/week-09.qmd`; `slides/week-09.qmd`; two labs; exercises; supplied CSV; three checked R scripts | Developed; ready for review |
 | Week 10 | `weeks/week-10.qmd`; `slides/week-10.qmd`; two labs; exercises; two supplied CSVs; three checked R scripts | Developed; ready for review |
-| Weeks 11-12 | week and slide pages | Outline/early scaffold |
+| Week 11 | `weeks/week-11.qmd`; `slides/week-11.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
+| Week 12 | week and slide pages | Outline/early scaffold |
 | Weeks 13-15 | week and slide pages | Outline |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
@@ -179,7 +188,7 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 11 and then the remaining R sequence using the validated weekly
+2. Expand Week 12 and then the remaining R sequence using the validated weekly
    pattern.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
@@ -265,3 +274,9 @@ milestone:
   declared many-to-one joins, composite building-month keys, two labs,
   exercises, three R scripts, and an AI partial-key join audit. The complete R
   validation harness passed.
+- **2026-07-22:** Week 11 was expanded around readable pipelines with named
+  checkpoints, explicit row and key invariants, small reusable functions,
+  input/output contracts, normal and edge-case tests, two labs, exercises,
+  three R scripts, and an AI refactor audit that catches changed boundary,
+  missing-value, and argument behavior. The complete R validation harness
+  passed.

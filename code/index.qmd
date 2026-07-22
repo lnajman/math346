@@ -46,6 +46,9 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 - [week10-clean-types.R](r/week10-clean-types.R)
 - [week10-join-audit.R](r/week10-join-audit.R)
 - [week10-ai-join-review.R](r/week10-ai-join-review.R)
+- [week11-readable-pipeline.R](r/week11-readable-pipeline.R)
+- [week11-function-contracts.R](r/week11-function-contracts.R)
+- [week11-ai-refactor-review.R](r/week11-ai-refactor-review.R)
 
 ## Project Starter Templates
 

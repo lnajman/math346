@@ -16,7 +16,7 @@ Each week has a problem focus, the official syllabus topic, the software tools i
 | [8](week-08.qmd) | Variation, covariation, and question refinement | R | Semester examination (midterm) |
 | [9](week-09.qmd) | Import contracts and tidy observation structure | R | Quiz 3 |
 | [10](week-10.qmd) | Relational contracts, strings, factors, and date-times | R | — |
-| [11](week-11.qmd) | Pipes and reusable functions | R | — |
+| [11](week-11.qmd) | Readable pipelines and tested function contracts | R | — |
 | [12](week-12.qmd) | Vectors, iteration, and repeated analysis | R | — |
 | [13](week-13.qmd) | Model basics and diagnostics | R | Quiz 4 |
 | [14](week-14.qmd) | Many models and grouped workflows | R | — |
@@ -27,7 +27,7 @@ delivery arrangements, and formats can still be discussed later.
 
 ## Developed Weeks
 
-Weeks 1-4 are the validated model. Weeks 5-10 have now been expanded using the
+Weeks 1-4 are the validated model. Weeks 5-11 have now been expanded using the
 same pattern and are ready for review. These weeks include:
 
 - a two-meeting teaching plan;
@@ -36,7 +36,7 @@ same pattern and are ready for review. These weeks include:
 - a student exercise set;
 - multiple starter scripts.
 
-Weeks 11-15 will follow this pattern as the course site develops.
+Weeks 12-15 will follow this pattern as the course site develops.
 
 ## Weekly Pattern
 

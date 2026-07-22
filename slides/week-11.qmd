@@ -1,36 +1,315 @@
 ---
-title: "Week 11: Pipes and Functions"
+title: "Week 11: Readable Pipelines And Function Contracts"
 format:
   revealjs:
     theme: simple
     slide-number: true
     footer: "MATH 346"
+execute:
+  enabled: false
 ---
 
 ## Today's Question
 
-How do we turn an analysis into a reusable workflow?
+How do we make a working analysis easier to read, reuse, and test without
+changing its behavior?
 
-## Pipes
+## Week 11 Plan
 
-Pipes make the sequence of transformations readable.
+- Meeting 1: readable pipelines and checkpoints
+- Meeting 2: small functions and behavior tests
+
+## Reuse Familiar Data
+
+The Week 10 synthetic service-event log:
+
+- nine event observations
+- messy strings and timestamps
+- known cleaning contracts
+
+## Read A Pipe Top To Bottom
 
 ```r
-data |>
-  clean_step() |>
-  summarize_step() |>
-  plot_step()
+events_raw |>
+  transmute(
+    event_id,
+    response_hours
+  ) |>
+  arrange(event_id)
 ```
 
-## Functions
+## What Moves Through The Pipe?
 
-Use a function when the same logic appears more than once.
+The complete object on the left becomes the first argument of the next call.
 
-## Validation
+Name the object after every step.
 
-Test a function on a tiny dataset where you know the answer.
+## Nested Calls
 
-## AI Check
+```r
+arrange(
+  transmute(events_raw, event_id, response_hours),
+  event_id
+)
+```
 
-Generated refactors must preserve behavior. Refactoring is not improvement unless tests still pass.
+Correct can still be hard to scan.
 
+## Pipes Are Not Automatically Clear
+
+A chain can hide:
+
+- a changed observation unit
+- dropped rows
+- type conversion
+- an important intermediate result
+- where a check belongs
+
+## Use Named Checkpoints
+
+```r
+events_clean <- events_raw |>
+  transmute(...)
+
+stopifnot(...)
+
+events_analysis <- events_clean |>
+  mutate(...)
+```
+
+## Name The Data State
+
+- `events_raw`
+- `events_clean`
+- `events_analysis`
+- `issue_summary`
+
+Avoid `data2` and `final_final`.
+
+## Check The Observation Unit
+
+```r
+stopifnot(
+  nrow(events_clean) == nrow(events_raw),
+  n_distinct(events_clean$event_id) == 9
+)
+```
+
+## Add The Target Rule
+
+```r
+within_12_hours =
+  !is.na(response_hours) &
+  response_hours <= 12
+```
+
+The boundary is part of the rule.
+
+## Check The Derived Variable
+
+```r
+stopifnot(
+  sum(events_analysis$within_12_hours) == 5,
+  !any(is.na(events_analysis$within_12_hours))
+)
+```
+
+## Summarize Last
+
+```r
+events_analysis |>
+  group_by(issue) |>
+  summarize(
+    n_events = n(),
+    within_target_rate = mean(within_12_hours),
+    .groups = "drop"
+  )
+```
+
+## Check Group Accounting
+
+```r
+stopifnot(
+  sum(issue_summary$n_events) == 9
+)
+```
+
+All observations remain accounted for.
+
+## Meeting 1 Exit Ticket
+
+Where should this pipeline pause for a named checkpoint, and why?
+
+## Meeting 2 Question
+
+How do we reuse one rule while making its assumptions testable?
+
+## When A Function Helps
+
+- a meaningful rule repeats
+- the rule has a clear name
+- inputs and output are precise
+- small independent tests are possible
+- the main analysis becomes clearer
+
+## Function Anatomy
+
+```r
+within_target <- function(
+  response_hours,
+  target_hours = 12
+) {
+  response_hours <= target_hours
+}
+```
+
+## Start With A Contract Sentence
+
+Accept a numeric vector and one nonnegative target.
+
+Return a same-length logical vector with no missing values.
+
+## Validate Input Type
+
+```r
+if (!is.numeric(response_hours)) {
+  stop("response_hours must be numeric")
+}
+```
+
+## Validate A Default Argument
+
+```r
+if (length(target_hours) != 1 ||
+    target_hours < 0) {
+  stop("invalid target_hours")
+}
+```
+
+## Calculate Then Check
+
+```r
+result <- !is.na(response_hours) &
+  response_hours <= target_hours
+
+stopifnot(
+  length(result) == length(response_hours),
+  !any(is.na(result))
+)
+```
+
+## The Last Expression Returns
+
+```r
+within_target <- function(x, target = 12) {
+  result <- !is.na(x) & x <= target
+  result
+}
+```
+
+No explicit `return` is required here.
+
+## Known-Answer Test
+
+```r
+stopifnot(
+  identical(
+    within_target(c(4, 18)),
+    c(TRUE, FALSE)
+  )
+)
+```
+
+## Boundary And Missing Test
+
+```r
+stopifnot(
+  identical(
+    within_target(c(12, 13, NA_real_)),
+    c(TRUE, FALSE, FALSE)
+  )
+)
+```
+
+## Test Expected Failure
+
+```r
+invalid <- tryCatch(
+  clean_building_id("room 5"),
+  error = function(error) error
+)
+
+stopifnot(inherits(invalid, "error"))
+```
+
+## A Data-Frame Function
+
+```r
+summarize_issue <- function(data, issue_name) {
+  data |>
+    filter(issue == issue_name) |>
+    summarize(n_events = n())
+}
+```
+
+## Check Required Columns
+
+```r
+required <- c("issue", "response_hours")
+
+if (!all(required %in% names(data))) {
+  stop("required columns are missing")
+}
+```
+
+## Test Two Arguments
+
+```r
+summarize_issue(events, "hvac")
+summarize_issue(events, "access")
+```
+
+A hard-coded value may pass only one.
+
+## Plausible AI Refactor 1
+
+```r
+within_target_ai <- function(x, target = 12) {
+  x < target
+}
+```
+
+It passes `4.5` but fails `12` and `NA`.
+
+## Plausible AI Refactor 2
+
+```r
+summarize_issue_ai <- function(data, issue_name) {
+  data |>
+    filter(issue == "hvac") |>
+    summarize(n_events = n())
+}
+```
+
+The argument is never used.
+
+## Refactor Audit
+
+- same accepted inputs?
+- same defaults?
+- same boundaries?
+- same missing-value policy?
+- same output type and shape?
+- same invalid-input behavior?
+- same results for different arguments?
+
+## Week 12 Boundary
+
+This week: call functions directly on known inputs.
+
+Next week: repeat them across many inputs and audit automation.
+
+## Exit Ticket
+
+State one function's input, output, boundary, missing-value, and failure
+contract in one sentence.

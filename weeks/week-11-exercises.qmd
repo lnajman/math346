@@ -1,0 +1,103 @@
+---
+title: "Week 11 Exercises"
+execute:
+  enabled: false
+---
+
+Use the Week 10 synthetic service-event log and the supplied Week 11 scripts.
+
+## Exercise 1: Trace A Pipe
+
+For each line of a three-step pipeline, state:
+
+1. the object entering the step;
+2. the function receiving it;
+3. the columns and rows leaving the step;
+4. the observation represented by one output row.
+
+Rewrite the pipeline as nested calls and compare readability.
+
+## Exercise 2: Choose Checkpoints
+
+Divide the event workflow into `events_raw`, `events_clean`,
+`events_analysis`, and `issue_summary`.
+
+For each checkpoint, write at least two invariants involving row count, key
+uniqueness, column types, factor levels, missingness, or group accounting.
+
+## Exercise 3: Refactor An Opaque Chain
+
+Take a pipeline that cleans keys and labels, parses timestamps, adds a response
+target, and summarizes by issue. Rewrite it using named stages and checks.
+
+Explain why each break occurs at a meaningful change in the data contract.
+
+## Exercise 4: Write A Vector Function
+
+Write `within_target(response_hours, target_hours = 12)`.
+
+Require numeric response values, one finite nonnegative target, a same-length
+logical result, and no missing output. Test below, exactly at, and above the
+target, plus missing input.
+
+## Exercise 5: Clean Building Keys
+
+Write `clean_building_id(x)`. Require character input, normalize spaces and
+case, preserve length, and reject results outside `BLDG-` plus two digits.
+
+Test valid scalar, valid vector, mixed case, surrounding spaces, and invalid
+text.
+
+## Exercise 6: Parse Timestamps
+
+Write `parse_reported_at(x, tz = "Europe/Paris")`. Require character input,
+one time-zone string, successful parsing for every element, and preserved
+length.
+
+Test a valid vector and at least two invalid strings expected to fail.
+
+## Exercise 7: Write A Data-Frame Function
+
+Write `summarize_issue(data, issue_name, target_hours = 12)` that returns one
+row containing issue, event count, observed-response count, mean response, and
+within-target rate.
+
+Validate required columns, argument type and length, absent categories, and an
+all-missing response group.
+
+## Exercise 8: Build A Test Table
+
+Create a table with columns `test`, `input`, `expected`, `actual`, and `pass`
+for at least:
+
+- one ordinary value;
+- one exact boundary;
+- one missing value;
+- one vector input;
+- one invalid input;
+- two distinct issue arguments.
+
+## Exercise 9: Audit Generated Refactors
+
+Run `week11-ai-refactor-review.R`. Explain why each generated function passes
+one convenient test and fails a broader contract.
+
+Repair both functions and rerun all boundary, missing, and argument tests.
+
+## Exercise 10: Decide Whether To Extract A Function
+
+For each case, decide whether a function improves the analysis and justify the
+decision:
+
+1. a one-line calculation used once;
+2. the same cleaning rule used in three scripts;
+3. ten lines of code whose purpose is unclear;
+4. a threshold rule used with several target values;
+5. a complete analysis with many unrelated responsibilities.
+
+## Exit Ticket
+
+In 4-6 sentences, answer:
+
+> Why can refactored code be shorter and more reusable while being less
+> trustworthy than the original?

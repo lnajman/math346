@@ -1,0 +1,78 @@
+---
+title: "Lab 11B: AI Refactor Review"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Audit generated functions that appear reusable and pass convenient examples
+but do not preserve boundary, missing-value, or argument behavior.
+
+## Scenario
+
+Download:
+
+- [week11-ai-refactor-review.R](../code/r/week11-ai-refactor-review.R)
+- [week10-service-events.csv](../data/week10-service-events.csv)
+
+Keep the CSV inside a `data` folder, then run the review script.
+
+## Part A: Threshold Function
+
+The intended rule counts a response at exactly the target as within target and
+maps missing response time to `FALSE`. The generated function uses `<` and
+returns `NA` for missing input.
+
+Complete:
+
+| Input | Intended | Generated | Contract exposed |
+|---|---:|---:|---|
+| `4.5` |  |  | ordinary case |
+| `12` |  |  | exact boundary |
+| `13` |  |  | above boundary |
+| `NA` |  |  | missing-value policy |
+
+## Part B: Unused Argument
+
+The generated summary accepts `issue_name` but always filters to `"hvac"`.
+
+Compare intended and generated results for `"hvac"`, `"access"`, and
+`"lighting"`. Explain why testing only HVAC gives false confidence.
+
+## Part C: Repair Both Functions
+
+Restore the inclusive threshold and explicit missing-value behavior. Replace
+the hard-coded issue with the argument and validate that the requested category
+exists.
+
+## Part D: Behavior-Preservation Table
+
+Complete:
+
+| Contract dimension | Original | Generated | Repaired |
+|---|---|---|---|
+| accepted inputs |  |  |  |
+| default target |  |  |  |
+| threshold boundary |  |  |  |
+| missing-value output |  |  |  |
+| argument actually used |  |  |  |
+| output type and shape |  |  |  |
+| invalid-input behavior |  |  |  |
+
+## Part E: Write A Minimal Test Suite
+
+Create the smallest set of tests that catches both generated errors. Explain
+why each test is necessary and which redundant tests could be removed.
+
+## Deliverable
+
+Submit the completed tables, repaired functions, minimal test suite, and a
+5-7 sentence explanation of why passing examples do not prove that a refactor
+preserves behavior.
+
+## Exit Question
+
+Complete this sentence:
+
+> A refactor is trustworthy only when ...

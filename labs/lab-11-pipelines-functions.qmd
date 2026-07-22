@@ -1,0 +1,92 @@
+---
+title: "Lab 11: Readable Pipelines And Function Contracts"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Turn a working event-data analysis into readable pipeline stages and small,
+independently tested R functions without changing its behavior.
+
+## Setup
+
+Create:
+
+```text
+week11/
+  week11-readable-pipeline.R
+  week11-function-contracts.R
+  data/
+    week10-service-events.csv
+```
+
+Download:
+
+- [week10-service-events.csv](../data/week10-service-events.csv)
+- [week11-readable-pipeline.R](../code/r/week11-readable-pipeline.R)
+- [week11-function-contracts.R](../code/r/week11-function-contracts.R)
+
+## Part A: Trace The Pipeline
+
+For each step in `week11-readable-pipeline.R`, record the input object, output
+object, row meaning, row count, key, and new or removed columns.
+
+## Part B: Evaluate Stage Names
+
+Explain what `events_raw`, `events_clean`, `events_analysis`, and
+`issue_summary` promise. Propose one worse name for each and explain what
+information it would hide.
+
+## Part C: Add Checkpoints
+
+Add checks after each stage for row count, event-key uniqueness, parsed
+timestamps, factor levels, target counts, and summary group accounting.
+
+Break one check deliberately, confirm the script stops at the intended stage,
+then restore it.
+
+## Part D: Write Contract Sentences
+
+Before editing the functions, write one sentence each for:
+
+- `clean_building_id`;
+- `parse_reported_at`;
+- `within_target`;
+- `summarize_issue`.
+
+Each sentence must specify inputs, output, and invalid-input behavior.
+
+## Part E: Run Known And Boundary Tests
+
+Run `week11-function-contracts.R`. Add tests for a different building key, a
+different time zone, target zero, target equality, and a second issue category.
+
+## Part F: Test Expected Errors
+
+Use `tryCatch` to verify errors for non-character keys, invalid key syntax,
+unparseable timestamps, a negative target, missing required columns, and an
+absent issue category.
+
+## Part G: Compare Before And After
+
+Use the original pipeline and function-based pipeline on the same event data.
+Compare row count, event identifiers, cleaned values, target flags, and issue
+summaries.
+
+## Deliverable
+
+Submit:
+
+- the staged pipeline with checks;
+- four function contract sentences;
+- four implemented functions;
+- known, boundary, missing, vector, and invalid-input tests;
+- original-versus-refactored comparison;
+- a short explanation of one place where a function improved readability and
+  one place where a named checkpoint was preferable.
+
+## AI Use
+
+If an LLM proposes a refactor, record the original behavior, generated code,
+test cases, any behavior drift, and the repaired function.

@@ -1,5 +1,7 @@
 ---
-title: "Week 11: Pipes and Functions"
+title: "Week 11: Readable Pipelines And Function Contracts"
+execute:
+  enabled: false
 ---
 
 ## Official Topic
@@ -8,22 +10,373 @@ Pipes and functions.
 
 ## Problem Focus
 
-How do we turn an analysis into a reusable workflow?
+How do we make a working analysis easier to read, reuse, and test without
+changing its behavior?
 
-Students use pipes for readable analysis and write functions when repetition begins to hide the logic of the work.
+Students reuse the Week 10 synthetic service-event log. They first reorganize
+a transformation into named pipeline stages with checks between them. They
+then extract repeated rules into small R functions with explicit inputs,
+outputs, failure behavior, and tests.
 
-## In Class
+::: {.callout-note}
+Week 11 calls each function directly on known inputs. Repeating a function over
+many variables, groups, or files is reserved for Week 12 iteration.
+:::
 
-- Read and write pipelines.
-- Identify repeated code.
-- Write simple functions.
-- Test functions on small cases.
+## Learning Goals
 
-## AI-Aware Task
+By the end of the week, students should be able to:
 
-Ask an LLM to refactor repeated R code into a function. Then test whether the function preserves the original behavior.
+- read the base R pipe `|>` as a sequence of value transformations;
+- identify the object passed from one pipeline step to the next;
+- distinguish a readable pipeline from an opaque chain;
+- insert named checkpoints where row meaning, types, or keys should be tested;
+- preserve row-count and key invariants across transformations;
+- decide when repeated logic should become a function;
+- define a small R function with named arguments and one clear output;
+- distinguish a vector function from a data-frame function;
+- use a default argument without hiding an important assumption;
+- validate input types, lengths, ranges, and required columns;
+- return an object whose type and length match the stated contract;
+- test known answers, boundaries, missing values, and invalid input;
+- use `tryCatch` to verify that invalid input produces an error;
+- compare a refactored function with the original behavior;
+- detect an unused argument and a changed boundary condition in generated code;
+- explain why code reuse is trustworthy only when behavior is preserved.
+
+## Supplied Material
+
+Week 11 reuses:
+
+- [week10-service-events.csv](../data/week10-service-events.csv)
+
+Recommended structure:
+
+```text
+week11/
+  week11-readable-pipeline.R
+  week11-function-contracts.R
+  data/
+    week10-service-events.csv
+```
+
+## Meeting 1: A Pipeline Is A Sequence Of Claims
+
+**Question:** Where should a long transformation be divided so that its
+meaning remains inspectable?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Trace a short pipe and name the value passed at each step |
+| 10-22 min | Compare nested calls, one long pipe, and named stages |
+| 22-38 min | Build the import-to-clean pipeline from Week 10 |
+| 38-50 min | Insert row, key, type, and missingness checks |
+| 50-62 min | Add response targets and a checked issue summary |
+| 62-70 min | Refactor an opaque chain into readable stages |
+| 70-75 min | Exit ticket: where the pipeline should pause and why |
+
+### Read A Pipe From Top To Bottom
+
+```r
+events_raw |>
+  transmute(
+    event_id,
+    issue = str_to_lower(str_squish(issue_label)),
+    response_hours
+  ) |>
+  arrange(event_id)
+```
+
+The value on the left becomes the first argument of the next call. Each step
+should have a clear input and output meaning.
+
+### Nested Calls Hide The Sequence
+
+```r
+arrange(
+  transmute(
+    events_raw,
+    event_id,
+    response_hours
+  ),
+  event_id
+)
+```
+
+This can be correct, but the transformation order is harder to scan. Pipes are
+useful when they make the sequence more visible, not merely because they are
+shorter.
+
+### A Pipe Can Still Be Too Long
+
+A single chain that imports, cleans, joins, summarizes, and plots can hide
+where the observation meaning changes. Use named checkpoints when a new
+contract should be checked.
+
+```r
+events_clean <- events_raw |>
+  transmute(...)
+
+stopifnot(...)
+
+events_analysis <- events_clean |>
+  mutate(...)
+```
+
+### Name Stages By Meaning
+
+Prefer names that describe the state of the data:
+
+- `events_raw`: imported fields as supplied;
+- `events_clean`: normalized keys, labels, and types;
+- `events_analysis`: derived variables for the question;
+- `issue_summary`: one row per issue category.
+
+Names such as `data2` and `final_final` do not communicate a contract.
+
+### Preserve The Observation Unit
+
+After cleaning:
+
+```r
+stopifnot(
+  nrow(events_clean) == nrow(events_raw),
+  n_distinct(events_clean$event_id) == nrow(events_clean)
+)
+```
+
+The pipeline changes columns but should still contain one row per event.
+
+### Add A Target Variable
+
+```r
+events_analysis <- events_clean |>
+  mutate(
+    within_12_hours =
+      !is.na(response_hours) & response_hours <= 12,
+    response_days = response_hours / 24
+  )
+```
+
+The threshold includes exactly 12 hours. This boundary is part of the rule,
+not a formatting detail.
+
+### Check The Derived Meaning
+
+```r
+stopifnot(
+  nrow(events_analysis) == nrow(events_clean),
+  sum(events_analysis$within_12_hours) == 5,
+  !any(is.na(events_analysis$within_12_hours))
+)
+```
+
+The logical result deliberately maps missing response time to `FALSE`. If a
+different policy is intended, state and test it.
+
+### Summarize At The End Of The Pipeline
+
+```r
+issue_summary <- events_analysis |>
+  group_by(issue) |>
+  summarize(
+    n_events = n(),
+    mean_response_hours = mean(response_hours),
+    within_target_rate = mean(within_12_hours),
+    .groups = "drop"
+  )
+```
+
+Check that group counts still account for all nine events.
+
+## Meeting 2: Small Functions With Contracts
+
+**Question:** How do we reuse one rule while making its assumptions testable?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Identify repeated rules in the Week 10 workflow |
+| 10-25 min | Write a vector function with one input and one output |
+| 25-38 min | Add input validation and a default argument |
+| 38-50 min | Write a data-frame summary function |
+| 50-62 min | Test known, boundary, missing, and invalid cases |
+| 62-70 min | Audit an AI refactor for behavior drift |
+| 70-75 min | Exit ticket: the function contract in one sentence |
+
+### Function Anatomy
+
+```r
+within_target <- function(response_hours, target_hours = 12) {
+  result <- !is.na(response_hours) &
+    response_hours <= target_hours
+
+  result
+}
+```
+
+The last expression is returned. The contract should say what inputs are
+accepted, what output is returned, and what happens for invalid input.
+
+### Start With A Contract Sentence
+
+> `within_target` accepts a numeric vector and one nonnegative target; it
+> returns a same-length logical vector with no missing values.
+
+That sentence suggests the checks and tests the function needs.
+
+### Validate Inputs Before Calculating
+
+```r
+if (!is.numeric(response_hours)) {
+  stop("response_hours must be numeric")
+}
+
+if (length(target_hours) != 1 || target_hours < 0) {
+  stop("target_hours must be one nonnegative number")
+}
+```
+
+Rejecting unsupported input is safer than returning a plausible object with an
+unclear meaning.
+
+### Check The Output Contract
+
+```r
+stopifnot(
+  length(result) == length(response_hours),
+  is.logical(result),
+  !any(is.na(result))
+)
+```
+
+Output checks protect later code that depends on a stable type and shape.
+
+### Test A Boundary And Missing Input
+
+```r
+stopifnot(
+  identical(
+    within_target(c(11, 12, 13, NA_real_), 12),
+    c(TRUE, TRUE, FALSE, FALSE)
+  )
+)
+```
+
+Testing only `4.5` would not reveal a strict-versus-inclusive threshold error.
+
+### Test Expected Failure
+
+```r
+invalid_key <- tryCatch(
+  clean_building_id("room 5"),
+  error = function(error) error
+)
+
+stopifnot(inherits(invalid_key, "error"))
+```
+
+An invalid-input test confirms not just the answer, but the function's failure
+behavior.
+
+### A Data-Frame Function
+
+```r
+summarize_issue <- function(data, issue_name) {
+  data |>
+    filter(issue == issue_name) |>
+    summarize(
+      n_events = n(),
+      mean_response_hours = mean(response_hours)
+    )
+}
+```
+
+Before filtering, check that the required columns exist and `issue_name` is one
+character value. Decide what an absent category should do.
+
+### Test More Than The Convenient Argument
+
+```r
+summarize_issue(events, "hvac")
+summarize_issue(events, "access")
+```
+
+A function that accidentally hard-codes `"hvac"` passes the first call and
+fails the second.
+
+## AI-Aware Task: Refactoring Can Change Behavior
+
+The generated threshold function changes `<=` to `<` and leaves missing input
+as `NA`. It passes an ordinary value below the target but fails both the exact
+boundary and missing-value tests.
+
+The generated summary function accepts `issue_name` but filters on the literal
+value `"hvac"`. Its HVAC output matches the intended function, so a single
+convenient test misses the unused argument.
+
+### Behavior-Preservation Audit
+
+For an original and refactored function, compare:
+
+1. accepted input types and shapes;
+2. default values;
+3. boundary operators;
+4. missing-value behavior;
+5. output type, length, names, and row meaning;
+6. errors for unsupported input;
+7. results for at least two distinct argument values.
+
+## Survival Checklist
+
+### Commands And Patterns To Own
+
+| Pattern | Purpose |
+|---|---|
+| `x |> f()` | pass `x` as the first argument to `f` |
+| `stage <- data |> ...` | create a named pipeline checkpoint |
+| `name <- function(arg) { ... }` | define a function |
+| `arg = value` | provide a default argument |
+| `stop("message")` | reject unsupported input clearly |
+| `stopifnot(condition)` | enforce a contract or test |
+| `tryCatch(..., error = ...)` | capture an expected error for testing |
+| `identical(actual, expected)` | require exact type and value equality |
+| `all.equal(actual, expected)` | compare objects with numerical tolerance |
+
+### When To Write A Function
+
+- The same meaningful rule appears more than once.
+- The rule can be named clearly.
+- Inputs and output can be stated precisely.
+- The rule can be tested independently on small cases.
+- Extracting it makes the main analysis easier to read.
+
+Do not write a function merely to hide code that is not yet understood.
+
+### Tests Before Trusting A Refactor
+
+- one known answer;
+- one exact boundary;
+- one missing-value case;
+- one invalid input expected to fail;
+- a vector input when vector support is claimed;
+- at least two different parameter values;
+- output type, length, names, and row count;
+- comparison with the original behavior.
+
+## Exercises
+
+Complete the [Week 11 exercises](week-11-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-11.qmd)
-
+- [Lab 11](../labs/lab-11-pipelines-functions.qmd)
+- [AI refactor-review lab](../labs/lab-11-ai-refactor-review.qmd)
+- [week10-service-events.csv](../data/week10-service-events.csv)
+- [week11-readable-pipeline.R](../code/r/week11-readable-pipeline.R)
+- [week11-function-contracts.R](../code/r/week11-function-contracts.R)
+- [week11-ai-refactor-review.R](../code/r/week11-ai-refactor-review.R)
