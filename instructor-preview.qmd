@@ -22,7 +22,7 @@ The site does not redistribute copyrighted slide decks, textbook PDFs, answer ke
 
 ## What To Review First
 
-Weeks 1-4 are the validated prototype. Weeks 5 and 6 have now been expanded
+Weeks 1-4 are the validated prototype. Weeks 5-7 have now been expanded
 using the same teaching pattern:
 
 | Week | Focus | Suggested review |
@@ -33,10 +33,11 @@ using the same teaching pattern:
 | [Week 4](weeks/week-04.qmd) | Numerical methods and 3D plotting | Look at the numerical checks, surface plots, and AI answer review. |
 | [Week 5](weeks/week-05.qmd) | Symbolic mathematics and verification | Look at domain assumptions, the tank-design problem, and the independent numerical check. |
 | [Week 6](weeks/week-06.qmd) | MATLAB-to-R transition and reproducible reports | Look at the syntax bridge, supplied report scaffold, checked plots, and AI causal-claim review. |
+| [Week 7](weeks/week-07.qmd) | Data transformation as question-answering | Look at one-verb invariants, missing-row accounting, grouped denominators, and the AI question-drift audit. |
 
 Weeks 1-4 have now been validated as the prototype pattern for the course.
-Weeks 5 and 6 are developed and ready for review, but have not yet been
-designated as validated prototypes. Weeks 7-15 are still more schematic. They show the
+Weeks 5-7 are developed and ready for review, but have not yet been
+designated as validated prototypes. Weeks 8-15 are still more schematic. They show the
 intended arc of the course, but they are not yet expanded to the same level.
 
 ## Useful Direct Links
@@ -60,10 +61,12 @@ I would especially appreciate feedback on these questions:
   its fixed-volume tank example and verification workload?
 - Does Week 6 give students with little programming experience enough support
   when moving from MATLAB to R and editing their first supplied `.qmd` report?
+- Does Week 7 make the meaning of each `dplyr` transformation and its row-count
+  consequences sufficiently explicit for beginners?
 - Is the balance right between MATLAB/R skills, mathematical thinking, and validation?
 - Do the LLM-related activities feel pedagogically useful rather than distracting?
-- Are there essential commands, concepts, habits, or warnings missing from the first six weeks?
-- What should be adjusted before expanding Weeks 7-15 in the same style?
+- Are there essential commands, concepts, habits, or warnings missing from the first seven weeks?
+- What should be adjusted before expanding Weeks 8-15 in the same style?
 
 ## The Intended Shift
 

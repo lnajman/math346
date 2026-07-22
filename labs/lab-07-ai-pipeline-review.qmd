@@ -1,0 +1,91 @@
+---
+title: "Lab 7B: AI Pipeline Review"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Diagnose an AI-generated `dplyr` pipeline that runs and returns plausible
+numbers but answers a different question from the prompt.
+
+## Scenario
+
+The prompt was:
+
+> Compare observed ozone on cooler and warmer days.
+
+Download and run
+[week07-ai-pipeline-review.R](../code/r/week07-ai-pipeline-review.R).
+
+## Part A: State What The Code Actually Does
+
+Without repairing it yet, identify:
+
+1. the input rows;
+2. rows removed by `filter`;
+3. the grouping variable;
+4. what one output row represents;
+5. the unit of the calculated mean;
+6. the question the pipeline actually answers.
+
+## Part B: Build A Row-Flow Audit
+
+Create a table with one row for each stage:
+
+| Stage | Rows | Groups | Meaning of one row |
+|---|---:|---:|---|
+| Raw `airquality` |  |  |  |
+| Recorded ozone only |  |  |  |
+| Generated warmer-day filter |  |  |  |
+| Generated monthly summary |  |  |  |
+
+Turn the raw, missing, and retained counts into executable checks.
+
+## Part C: Locate The Question Drift
+
+Complete the audit.
+
+| Requested element | Generated choice | Consequence | Repair |
+|---|---|---|---|
+| Cooler and warmer days |  |  |  |
+| Compare two groups |  |  |  |
+| Observed ozone |  |  |  |
+| Denominators |  |  |  |
+| Missingness |  |  |  |
+| Units and limitation |  |  |  |
+
+## Part D: Repair The Pipeline
+
+Create a `temperature_band` variable using the supplied 80 F rule. Then group,
+count, and summarize both groups.
+
+Your checks must establish that:
+
+- 153 rows entered the workflow;
+- 37 rows lacked ozone;
+- 116 usable rows remained;
+- exactly two group labels were produced;
+- both group counts add to 116;
+- no summary is missing or infinite.
+
+## Part E: Compare Generated And Repaired Answers
+
+Write 4-6 sentences explaining:
+
+- why the generated numbers were not necessarily arithmetically wrong;
+- why they did not answer the requested question;
+- how the repaired grouping changes the meaning of one output row;
+- why successful execution is weaker evidence than semantic correctness.
+
+## Deliverable
+
+Submit the original pipeline, row-flow audit, question-drift table, repaired
+script, checked summary, and written comparison.
+
+## Exit Question
+
+Complete this sentence:
+
+> Before accepting an AI-generated pipeline, I must translate every verb back
+> into ...

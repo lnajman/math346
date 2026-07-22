@@ -19,6 +19,8 @@ Labs are designed as studio activities. They should be completed with MATLAB or 
 | [Lab 5B](lab-05-ai-symbolic-review.qmd) | AI symbolic answer review | Ready |
 | [Lab 6](lab-06-rmarkdown-eda.qmd) | R foundations and a first reproducible report | Ready |
 | [Lab 6B](lab-06-ai-plot-review.qmd) | AI-generated plot and claim review | Ready |
+| [Lab 7](lab-07-data-transformation.qmd) | Checked data-transformation pipelines | Ready |
+| [Lab 7B](lab-07-ai-pipeline-review.qmd) | AI-generated pipeline and question-drift review | Ready |
 
 ## Lab Routine
 

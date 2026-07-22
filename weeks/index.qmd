@@ -24,8 +24,8 @@ Each week has a problem focus, the official syllabus topic, the software tools i
 
 ## Developed Weeks
 
-Weeks 1-4 are the validated model. Weeks 5 and 6 have now been expanded using
-the same pattern and are ready for review. These weeks include:
+Weeks 1-4 are the validated model. Weeks 5-7 have now been expanded using the
+same pattern and are ready for review. These weeks include:
 
 - a two-meeting teaching plan;
 - a detailed MATLAB or R lab;
@@ -33,7 +33,7 @@ the same pattern and are ready for review. These weeks include:
 - a student exercise set;
 - multiple starter scripts.
 
-Weeks 7-15 will follow this pattern as the course site develops.
+Weeks 8-15 will follow this pattern as the course site develops.
 
 ## Weekly Pattern
 

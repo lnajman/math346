@@ -1,37 +1,281 @@
 ---
-title: "Week 7: Data Transformation"
+title: "Week 7: Data Transformation As Question-Answering"
 format:
   revealjs:
     theme: simple
     slide-number: true
     footer: "MATH 346"
+execute:
+  enabled: false
 ---
 
 ## Today's Question
 
-How do data verbs become a language for answering questions?
+How do we turn a statistical question into a sequence of transparent data
+transformations?
 
-## Core Verbs
+## Week 7 Plan
 
-- `filter()` keeps rows.
-- `select()` keeps columns.
-- `mutate()` creates variables.
-- `group_by()` defines groups.
-- `summarize()` reduces rows.
+- Meeting 1: one transformation verb at a time
+- Meeting 2: groups, summaries, checks, and AI pipeline review
 
-## R Pattern
+## The Data
+
+`airquality` contains 153 daily New York measurements from May through
+September 1973.
+
+No file import is required this week.
+
+## Variables We Need
+
+- ozone: parts per billion
+- maximum daily temperature: degrees Fahrenheit
+- wind speed: miles per hour
+- month and day
+
+## The Main Question
+
+Among days with recorded ozone and temperature, how did observed ozone differ
+between days below 80 F and days at least 80 F?
+
+## Transformation Is Part Of The Answer
+
+Every verb encodes a decision about:
+
+- observations;
+- variables;
+- groups;
+- derived quantities;
+- what one output row means.
+
+## Load And Inspect
 
 ```r
-mtcars |>
-  group_by(cyl) |>
-  summarize(mean_mpg = mean(mpg), .groups = "drop")
+library(dplyr)
+
+air <- airquality |> as_tibble()
+nrow(air)
+names(air)
 ```
 
-## Validation
+## Rename With Units
 
-After a transformation, check row counts, column names, groups, and units.
+```r
+air <- air |>
+  rename(
+    ozone_ppb = Ozone,
+    wind_mph = Wind,
+    temp_f = Temp
+  )
+```
 
-## AI Check
+Names support correct interpretation.
 
-Generated pipelines often answer a nearby question. Check the exact question.
+## Read The Pipe
 
+```r
+result <- data |>
+  first_step() |>
+  second_step()
+```
+
+Read from left to right. Each step receives the previous result.
+
+## `select`: Keep Variables
+
+```r
+selected <- air |>
+  select(Month, Day, ozone_ppb, temp_f, wind_mph)
+```
+
+Expected invariant: row count is unchanged.
+
+## `filter`: Keep Rows
+
+```r
+usable <- selected |>
+  filter(!is.na(ozone_ppb), !is.na(temp_f))
+```
+
+Expected change: 153 rows become 116 rows.
+
+## Missingness Is A Decision
+
+- 37 days have no ozone measurement.
+- Temperature is complete.
+- The exclusion must appear in code and interpretation.
+
+`na.rm = TRUE` alone does not document the row flow.
+
+## `mutate`: Create Variables
+
+```r
+usable <- usable |>
+  mutate(temp_c = (temp_f - 32) * 5 / 9)
+```
+
+Expected invariant: row count is unchanged.
+
+## Create The Groups
+
+```r
+usable <- usable |>
+  mutate(
+    temperature_band = if_else(
+      temp_f >= 80,
+      "80 F or warmer",
+      "below 80 F"
+    )
+  )
+```
+
+## `arrange`: Change Order
+
+```r
+largest_first <- usable |>
+  arrange(desc(ozone_ppb))
+```
+
+Expected invariant: the same rows and variables remain.
+
+## One-Verb Checks
+
+```r
+stopifnot(
+  nrow(selected) == nrow(air),
+  nrow(usable) == 116,
+  !anyNA(usable$ozone_ppb)
+)
+```
+
+Check before composing a long pipeline.
+
+## Meeting 1 Exit Ticket
+
+For `select`, `filter`, `mutate`, and `arrange`:
+
+1. what changes?
+2. what should remain invariant?
+
+## Meeting 2 Question
+
+How do many daily rows become a defensible two-group comparison?
+
+## `group_by`: Define Units Of Comparison
+
+```r
+grouped <- usable |>
+  group_by(temperature_band)
+```
+
+Grouping changes how the next operation behaves.
+
+## `summarize`: Reduce Rows
+
+```r
+temperature_summary <- grouped |>
+  summarize(
+    n_days = n(),
+    mean_ozone_ppb = mean(ozone_ppb),
+    .groups = "drop"
+  )
+```
+
+One output row now represents one temperature group.
+
+## Keep The Denominator
+
+Never report a grouped mean without the group count.
+
+```r
+n_days = n()
+```
+
+Here the groups contain 59 and 57 usable days.
+
+## Validate The Reduction
+
+```r
+stopifnot(
+  nrow(temperature_summary) == 2,
+  sum(temperature_summary$n_days) == 116,
+  !anyNA(temperature_summary)
+)
+```
+
+## Descriptive Result
+
+- Below 80 F: mean observed ozone about 22.6 ppb
+- At least 80 F: mean observed ozone about 62.4 ppb
+
+The warmer group is higher in these observations.
+
+## What Is Not Established
+
+The comparison does not establish that temperature alone caused the difference.
+
+The threshold is chosen, and 37 ozone measurements are missing.
+
+## A Summary Plot
+
+```r
+ggplot(temperature_summary,
+       aes(temperature_band, mean_ozone_ppb)) +
+  geom_point(size = 4) +
+  labs(
+    x = "Maximum daily temperature group",
+    y = "Mean ozone (parts per billion)"
+  )
+```
+
+## Question-Pipeline Agreement
+
+| Question requires | Pipeline must contain |
+|---|---|
+| usable observations | explicit missing-value filter |
+| two temperature groups | derived grouping variable |
+| observed ozone comparison | grouped ozone summary |
+| defensible denominator | `n()` and row accounting |
+
+## Plausible AI Pipeline
+
+```r
+airquality |>
+  filter(Temp >= 80, !is.na(Ozone)) |>
+  group_by(Month) |>
+  summarize(mean_ozone = mean(Ozone))
+```
+
+It runs. Does it answer the prompt?
+
+## Locate The Question Drift
+
+- Cooler days were removed.
+- Month replaced the requested grouping variable.
+- The result cannot compare the two temperature groups.
+- Excluded-row counts and units are absent.
+
+## Repair Pattern
+
+```r
+airquality |>
+  filter(!is.na(Ozone), !is.na(Temp)) |>
+  mutate(band = if_else(Temp >= 80, "warmer", "cooler")) |>
+  group_by(band) |>
+  summarize(n_days = n(),
+            mean_ozone_ppb = mean(Ozone),
+            .groups = "drop")
+```
+
+## AI Audit Questions
+
+- Which rows enter and leave?
+- Which variables are created?
+- What are the groups?
+- What does one result row mean?
+- Do counts reconcile?
+- Does the output answer the exact prompt?
+
+## Exit Ticket
+
+A trustworthy transformation pipeline must make visible ...

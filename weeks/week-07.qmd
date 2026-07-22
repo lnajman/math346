@@ -1,5 +1,7 @@
 ---
-title: "Week 7: Workflow and Data Transformation"
+title: "Week 7: Data Transformation As Question-Answering"
+execute:
+  enabled: false
 ---
 
 ## Official Topic
@@ -8,23 +10,321 @@ R workflow, visualization, and data transformation.
 
 ## Problem Focus
 
-How do data transformation verbs become a language for answering questions?
+How do we turn a statistical question into a sequence of transparent data
+transformations?
 
-Students use filtering, selecting, mutating, grouping, and summarizing to turn raw rows into interpretable evidence.
+Students work with R's built-in `airquality` data: 153 daily New York
+measurements from May through September 1973. They use one transformation verb
+at a time, record how rows and variables change, and then combine the steps into
+a readable pipeline.
 
-## In Class
+::: {.callout-note}
+The data are built into R, so no file import is required this week. Importing,
+checking column types, and tidying external files belong to Week 9. Week 7
+concentrates on the meaning and validation of transformations.
+:::
 
-- Use a consistent project workflow.
-- Read code pipelines from left to right.
-- Use `dplyr` verbs to answer questions.
-- Check row counts and variable definitions after each transformation.
+## Learning Goals
+
+By the end of the week, students should be able to:
+
+- load `dplyr` and recognize a tibble;
+- read the native R pipe `|>` from left to right;
+- explain the input and output of each step in a pipeline;
+- use `rename` to give variables meaningful names and units;
+- use `select` to keep variables needed for a question;
+- use `filter` to keep observations satisfying explicit conditions;
+- use `mutate` to create a derived variable without changing the row count;
+- use `arrange` to order rows for inspection;
+- use `group_by` and `summarize` to produce one row per group;
+- use `n()` to retain the denominator behind every grouped summary;
+- handle missing values explicitly rather than silently;
+- check how many rows enter and leave each transformation;
+- verify that group counts add back to the usable number of rows;
+- distinguish a descriptive comparison from a causal conclusion;
+- diagnose an AI-generated pipeline that answers a nearby question.
+
+## The Data And Question
+
+`airquality` contains daily measurements from New York between May and
+September 1973. Variables include mean afternoon ozone in parts per billion,
+maximum daily temperature in degrees Fahrenheit, wind speed in miles per hour,
+month, and day.
+
+The main question is:
+
+> Among days with recorded ozone and temperature, how did observed ozone differ
+> between days below 80 F and days at least 80 F?
+
+This is a descriptive comparison. The threshold is a chosen definition, and
+the observations do not establish that temperature alone caused the ozone
+difference.
+
+## Meeting 1: One Verb At A Time
+
+**Question:** What does each transformation change, and what should remain
+unchanged?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Inspect `airquality`: rows, names, units, and missing values |
+| 10-20 min | Rename variables so their meaning and units remain visible |
+| 20-30 min | Use `select` and verify that the row count is preserved |
+| 30-43 min | Use `filter` and record exactly which rows remain |
+| 43-55 min | Use `mutate` to convert Fahrenheit to Celsius |
+| 55-65 min | Use `arrange` to inspect large observed ozone values |
+| 65-72 min | Combine the steps with `|>` and annotate the row flow |
+| 72-75 min | Exit ticket: state one invariant for each verb |
+
+### Start By Naming The Data
+
+```r
+library(dplyr)
+
+air <- airquality |>
+  as_tibble() |>
+  rename(
+    ozone_ppb = Ozone,
+    wind_mph = Wind,
+    temp_f = Temp,
+    month = Month,
+    day = Day
+  )
+```
+
+Names such as `ozone_ppb` and `wind_mph` carry information needed for later
+interpretation.
+
+### Read The Pipe As A Sequence
+
+```r
+result <- data |>
+  first_step() |>
+  second_step()
+```
+
+Read this as:
+
+1. start with `data`;
+2. pass its result into `first_step`;
+3. pass that result into `second_step`;
+4. save the final result as `result`.
+
+During learning and debugging, save important intermediate objects instead of
+hiding every operation inside one long pipeline.
+
+### What Each Verb Changes
+
+| Verb | Main effect | Useful check |
+|---|---|---|
+| `rename` | changes variable names | compare `names()` before and after |
+| `select` | keeps or removes variables | row count should normally stay fixed |
+| `filter` | keeps rows meeting conditions | result cannot have more rows than input |
+| `mutate` | creates or changes variables | row count should normally stay fixed |
+| `arrange` | changes row order | rows and variables should otherwise be preserved |
+| `group_by` | records groups for later operations | inspect `group_vars()` |
+| `summarize` | reduces rows to summaries | know what one output row represents |
+
+### Select Only What The Question Needs
+
+```r
+selected <- air |>
+  select(month, day, ozone_ppb, temp_f, wind_mph)
+
+stopifnot(
+  nrow(selected) == nrow(air),
+  ncol(selected) == 5
+)
+```
+
+`select` does not repair or remove observations. It changes the variables
+available for later steps.
+
+### Filter Explicitly
+
+```r
+analysis_days <- selected |>
+  filter(!is.na(ozone_ppb), !is.na(temp_f))
+```
+
+The raw data have 153 rows. Ozone is missing on 37 days, while temperature is
+complete, so 116 rows remain for this question.
+
+```r
+stopifnot(
+  nrow(analysis_days) == 116,
+  nrow(selected) - nrow(analysis_days) == 37,
+  !anyNA(analysis_days$ozone_ppb)
+)
+```
+
+Write the missing-value rule in the code and report the number excluded.
+
+### Create A Derived Variable
+
+```r
+analysis_days <- analysis_days |>
+  mutate(
+    temp_c = (temp_f - 32) * 5 / 9,
+    temperature_band = if_else(
+      temp_f >= 80,
+      "80 F or warmer",
+      "below 80 F"
+    )
+  )
+```
+
+Check the formula and the row invariant:
+
+```r
+stopifnot(
+  nrow(analysis_days) == 116,
+  all(abs(analysis_days$temp_c -
+    (analysis_days$temp_f - 32) * 5 / 9) < 1e-12)
+)
+```
+
+## Meeting 2: Groups, Summaries, And Evidence
+
+**Question:** How do we reduce many rows into a defensible comparison without
+losing the denominator or the meaning of each group?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Reconstruct the usable-row count from the raw data |
+| 10-22 min | Create and inspect the temperature grouping variable |
+| 22-38 min | Use `group_by`, `summarize`, and `n` |
+| 38-48 min | Validate group counts and summary units |
+| 48-58 min | Arrange the summary and make a checked comparison plot |
+| 58-70 min | Audit an AI pipeline that answers a different question |
+| 70-75 min | Exit ticket: question, pipeline, result, and one limitation |
+
+### Group And Summarize
+
+```r
+temperature_summary <- analysis_days |>
+  group_by(temperature_band) |>
+  summarize(
+    n_days = n(),
+    mean_ozone_ppb = mean(ozone_ppb),
+    median_ozone_ppb = median(ozone_ppb),
+    .groups = "drop"
+  )
+```
+
+The output should contain one row per temperature group. `n_days` preserves the
+denominator behind each mean and median.
+
+```r
+stopifnot(
+  nrow(temperature_summary) == 2,
+  sum(temperature_summary$n_days) == nrow(analysis_days),
+  !anyNA(temperature_summary)
+)
+```
+
+### What The Result Supports
+
+For this dataset and threshold, the checked script finds:
+
+- 59 usable days below 80 F, with mean observed ozone about 22.6 ppb;
+- 57 usable days at least 80 F, with mean observed ozone about 62.4 ppb.
+
+The warmer-day group has the larger descriptive mean in these observations.
+This does not establish a causal effect, and the 37 days without ozone
+measurements may matter.
+
+### The Question-Pipeline-Check Contract
+
+| Question element | Pipeline element | Check |
+|---|---|---|
+| Days with both measurements | explicit `filter` | retained plus excluded equals 153 |
+| Below 80 F versus at least 80 F | `mutate` defining the group | exactly two intended labels |
+| Compare observed ozone | `group_by` then `summarize` | one row per group |
+| Retain denominators | `n()` | group counts sum to 116 |
+| Report correct units | variable names and labels | ozone is in parts per billion |
 
 ## AI-Aware Task
 
-Ask an LLM for a `dplyr` pipeline. Then inspect whether it grouped by the correct variable, used the correct summary, and preserved the intended rows.
+An LLM receives the prompt “Compare observed ozone on cooler and warmer days”
+and produces this working pipeline:
+
+```r
+airquality |>
+  filter(Temp >= 80, !is.na(Ozone)) |>
+  group_by(Month) |>
+  summarize(mean_ozone = mean(Ozone))
+```
+
+The output is numerically plausible, but the pipeline:
+
+1. removes every cooler day;
+2. groups by month instead of temperature group;
+3. cannot produce the requested comparison;
+4. does not report the original or excluded row counts;
+5. omits the measurement unit and limitation.
+
+Repair the pipeline, then verify the row flow and both group counts.
+
+## Survival Checklist
+
+### Commands And Patterns To Own
+
+| Pattern | What you should know |
+|---|---|
+| `data |> verb()` | passes the result on the left into the next function |
+| `as_tibble(data)` | produces a compact data-frame representation |
+| `rename(new = old)` | changes a variable name |
+| `select(a, b)` | keeps specified variables |
+| `filter(condition)` | keeps rows where the condition is `TRUE` |
+| `mutate(new = expression)` | creates or changes a variable |
+| `if_else(condition, yes, no)` | creates values from a logical condition |
+| `arrange(variable)` | sorts rows in ascending order |
+| `arrange(desc(variable))` | sorts rows in descending order |
+| `group_by(variable)` | defines groups for later operations |
+| `summarize(...)` | produces group-level or whole-data summaries |
+| `n()` | counts rows inside the current group |
+| `.groups = "drop"` | returns an ungrouped summary |
+
+### Mistakes To Catch
+
+- Writing a long pipeline without checking intermediate row counts.
+- Filtering before deciding which observations the question requires.
+- Forgetting that a missing logical condition is not `TRUE` in `filter`.
+- Using `na.rm = TRUE` without reporting how many values were missing.
+- Changing the question accidentally by grouping on the wrong variable.
+- Reporting a mean without its denominator or units.
+- Assuming `mutate` changed only columns without checking the output.
+- Forgetting that `summarize` changes what one row represents.
+- Treating a chosen threshold such as 80 F as a natural law.
+- Turning a descriptive group difference into a causal claim.
+
+### Checks Before Trusting A Pipeline
+
+- State the question before writing verbs.
+- Inspect raw rows, names, types, units, and missingness.
+- Record the row count after every filter.
+- Verify that `select`, `mutate`, and `arrange` preserve the expected rows.
+- Check derived-variable formulas against known values or identities.
+- Keep `n()` beside group summaries.
+- Confirm that group counts add to the usable row count.
+- Inspect group labels and remove unintended grouping after summarizing.
+- Match every result column to the wording and units of the question.
+- Rerun from a clean session and document any AI assistance.
+
+## Exercises
+
+Complete the [Week 7 exercises](week-07-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-07.qmd)
-- Starter code: [week07-dplyr-eda.R](../code/r/week07-dplyr-eda.R)
-
+- Complete checked workflow: [week07-dplyr-eda.R](../code/r/week07-dplyr-eda.R)
+- One-verb checks: [week07-verb-checks.R](../code/r/week07-verb-checks.R)
+- AI pipeline review: [week07-ai-pipeline-review.R](../code/r/week07-ai-pipeline-review.R)
+- [Lab 7](../labs/lab-07-data-transformation.qmd)
+- [AI pipeline review lab](../labs/lab-07-ai-pipeline-review.qmd)

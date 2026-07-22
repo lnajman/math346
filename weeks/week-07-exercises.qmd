@@ -1,0 +1,137 @@
+---
+title: "Week 7 Exercises"
+execute:
+  enabled: false
+---
+
+These exercises practice turning precise questions into checked `dplyr`
+pipelines. Use `airquality`, and keep the original object unchanged.
+
+## Exercise 1: Read A Pipeline
+
+For each line, state the object entering the verb, what changes, and what one
+row represents afterward.
+
+```r
+warmest <- airquality |>
+  filter(Temp >= 85) |>
+  select(Month, Day, Temp, Ozone) |>
+  arrange(desc(Temp))
+```
+
+Predict whether each verb changes the row count, column count, order, or values
+before running the code.
+
+## Exercise 2: Rename With Units
+
+Convert `airquality` to a tibble and rename:
+
+- `Ozone` to `ozone_ppb`;
+- `Wind` to `wind_mph`;
+- `Temp` to `temp_f`;
+- `Month` to `month`;
+- `Day` to `day`.
+
+Use `stopifnot` to confirm that the row count is still 153 and that all five new
+names exist.
+
+## Exercise 3: Select And Account For Rows
+
+Keep only `month`, `day`, `ozone_ppb`, `temp_f`, and `wind_mph`.
+
+Then create a second object containing rows with recorded ozone and
+temperature. Report:
+
+1. rows before filtering;
+2. rows after filtering;
+3. rows excluded;
+4. missing ozone values remaining;
+5. a check that retained plus excluded equals the original count.
+
+## Exercise 4: Mutate And Verify
+
+Create `temp_c` using
+
+\[
+C = (F - 32)\frac{5}{9}.
+\]
+
+Verify the conversion in two ways:
+
+1. check that 32 F would map to 0 C and 212 F to 100 C;
+2. check the formula for every row in the transformed data.
+
+Explain why `mutate` should not change the row count here.
+
+## Exercise 5: Filter Versus Arrange
+
+Create:
+
+- all days with `temp_f >= 80`;
+- the same rows ordered from largest to smallest observed ozone.
+
+Check that `arrange` did not change the number of rows. Explain why rows with
+missing ozone still require attention even after ordering.
+
+## Exercise 6: Grouped Comparison
+
+Create a two-level variable:
+
+- `"below 80 F"`;
+- `"80 F or warmer"`.
+
+For rows with observed ozone, calculate for each group:
+
+- `n_days`;
+- mean ozone;
+- median ozone;
+- minimum and maximum ozone.
+
+Confirm that the group counts sum to 116 and that the result has exactly two
+rows. Write a two-sentence descriptive comparison with units and no causal
+claim.
+
+## Exercise 7: Threshold Sensitivity
+
+Repeat the grouped mean comparison using thresholds of 75 F, 80 F, and 85 F.
+
+For each threshold, retain both group counts. Explain:
+
+1. how changing the threshold changes the question;
+2. whether the direction of the descriptive comparison is stable;
+3. why a convenient threshold should not be presented as uniquely correct.
+
+## Exercise 8: A Monthly Summary
+
+Among days with recorded ozone, calculate the count and mean ozone for each
+month. Arrange the months chronologically.
+
+Add checks that:
+
+- there are five month rows;
+- every group count is positive;
+- monthly counts add to the usable row count;
+- the summary contains no missing values.
+
+Explain why this pipeline answers a different question from the temperature-
+group comparison.
+
+## Exercise 9: Critique Generated Code
+
+An LLM was asked to compare cooler and warmer days and returned:
+
+```r
+airquality |>
+  filter(Temp >= 80, !is.na(Ozone)) |>
+  group_by(Month) |>
+  summarize(mean_ozone = mean(Ozone))
+```
+
+Identify at least five problems or omissions. Repair the pipeline and add
+checks for raw rows, excluded rows, group labels, group counts, and units.
+
+## Exit Ticket
+
+In 3-5 sentences, answer:
+
+> How can a pipeline run successfully and still answer the wrong question?

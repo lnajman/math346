@@ -29,10 +29,13 @@ expanded using the validated Weeks 1-4 pattern and passes the complete MATLAB
 validation harness. Week 6 has now been expanded into a beginner-safe
 MATLAB-to-R transition with ordinary R scripts, checked visualizations, a
 supplied reproducible-report scaffold, and an AI plot-review activity. Its R
-scripts and embedded report code pass the course validation harness. The next
-content milestone is Week 7 data transformation.
+scripts and embedded report code pass the course validation harness. Week 7 has
+now been expanded around data transformation as question-answering using R's
+built-in `airquality` data, explicit row accounting, grouped summaries, and an
+AI question-drift audit. Its three R scripts pass the course validation
+harness. The next content milestone is Week 8 exploratory data analysis.
 
-Weeks 7-15 remain outlines. They should not yet be described as complete course
+Weeks 8-15 remain outlines. They should not yet be described as complete course
 materials.
 
 ## Confirmed Progress
@@ -70,8 +73,12 @@ materials.
   lab, an AI plot-review lab, exercises, three R scripts, and a supplied report
   scaffold whose code is checked automatically. It is developed and ready for
   review, but has not yet been designated a validated prototype.
-- Weeks 7-15 have short week pages and slide outlines, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-6.
+- Week 7 now has a two-meeting data-transformation plan, full slides, a main
+  lab, an AI pipeline-review lab, exercises, and three checked R scripts. It is
+  developed and ready for review, but has not yet been designated a validated
+  prototype.
+- Weeks 8-15 have short week pages and slide outlines, but very little of the
+  supporting lab, exercise, and code material available for Weeks 1-7.
 
 ## Established Decisions and Constraints
 
@@ -125,7 +132,8 @@ agreed core project architecture is incorporated into the syllabus.
 | Weeks 1-4 | `weeks/`, `slides/`, `labs/`, `code/matlab/` | Validated prototype |
 | Week 5 | `weeks/week-05.qmd`; `slides/week-05.qmd`; two labs; exercises; four checked MATLAB scripts | Developed; ready for review |
 | Week 6 | `weeks/week-06.qmd`; `slides/week-06.qmd`; two labs; exercises; three checked R scripts; checked report scaffold | Developed; ready for review |
-| Weeks 7-12 | week and slide pages; limited R code | Outline/early scaffold |
+| Week 7 | `weeks/week-07.qmd`; `slides/week-07.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
+| Weeks 8-12 | week and slide pages | Outline/early scaffold |
 | Weeks 13-15 | week and slide pages | Outline |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
@@ -134,7 +142,7 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 7 and then the remaining R sequence using the validated weekly
+2. Expand Week 8 and then the remaining R sequence using the validated weekly
    pattern.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
@@ -195,3 +203,7 @@ milestone:
   with first-script foundations, `ggplot2`, two labs, exercises, three R
   scripts, a supplied reproducible-report scaffold, and an AI plot-claim
   audit. The R scripts and report code pass the course validation harness.
+- **2026-07-22:** Week 7 was expanded around data transformation as
+  question-answering with one-verb invariants, explicit missing-row accounting,
+  grouped summaries, two labs, exercises, three R scripts, and an AI pipeline
+  question-drift audit. The complete R validation harness passed.

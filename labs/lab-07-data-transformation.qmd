@@ -1,0 +1,138 @@
+---
+title: "Lab 7: Data Transformation As Question-Answering"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Build and validate an R pipeline that compares observed ozone between cooler
+and warmer days while keeping the missing-data rule, group definitions, units,
+and denominators visible.
+
+## Setup
+
+Create a folder called `week07` and download:
+
+- [week07-verb-checks.R](../code/r/week07-verb-checks.R)
+- [week07-dplyr-eda.R](../code/r/week07-dplyr-eda.R)
+
+The data are built into R as `airquality`; no external file is needed.
+
+## Part A: Inspect Before Transforming
+
+Create an object called `air` from `airquality`. Record:
+
+1. class;
+2. row and column counts;
+3. variable names;
+4. missing values in every variable;
+5. units for ozone, temperature, and wind;
+6. the months represented.
+
+Write checks for the 153 raw rows and 37 missing ozone values.
+
+## Part B: Trace One Verb At A Time
+
+Run `week07-verb-checks.R`. For each intermediate object, complete the table.
+
+| Object | Rows | Columns | What one row represents | What changed |
+|---|---:|---:|---|---|
+| `air` |  |  |  |  |
+| `selected` |  |  |  |  |
+| `warm_days` |  |  |  |  |
+| `with_celsius` |  |  |  |  |
+| `ordered_ozone` |  |  |  |  |
+
+Explain why `select`, `mutate`, and `arrange` preserve rows in this workflow,
+while `filter` does not.
+
+## Part C: Define The Analysis Rows
+
+Keep only rows with recorded ozone and temperature.
+
+Create a row-accounting table containing:
+
+- raw rows;
+- usable rows;
+- excluded rows;
+- missing ozone rows;
+- missing temperature rows.
+
+Add checks that usable plus excluded equals raw and that required variables
+contain no missing values after filtering.
+
+## Part D: Create And Check The Groups
+
+Use `mutate` and `if_else` to create:
+
+- `"below 80 F"`;
+- `"80 F or warmer"`.
+
+Use `count` to inspect the new variable before calculating any mean. Confirm
+that there are two intended labels and that their counts add to 116.
+
+## Part E: Produce The Comparison
+
+For each temperature group, calculate:
+
+- number of days;
+- mean ozone in ppb;
+- median ozone in ppb;
+- minimum ozone in ppb;
+- maximum ozone in ppb.
+
+Use `.groups = "drop"`. Verify the result has two rows, positive counts, finite
+summaries, and a total count of 116.
+
+## Part F: Make A Checked Figure
+
+Create a point plot of mean ozone by temperature group. Include:
+
+- a noncausal title;
+- complete axis labels and units;
+- a subtitle identifying the place and period;
+- a caption stating that 37 missing ozone measurements were excluded.
+
+Use `ggplot_build` to confirm that the plot contains one point per summary row.
+
+## Part G: Ask A New Question
+
+Replace the fixed 80 F split with two groups based on the median observed wind
+speed among usable rows. Compare mean ozone between the groups.
+
+Before interpreting, check:
+
+1. how the median is calculated;
+2. that both group labels are present;
+3. that counts add to 116;
+4. that wind units appear in the group definition or explanation;
+5. that the conclusion remains descriptive.
+
+## Part H: Clean-Session Check
+
+Restart R and run your saved script from beginning to end. Confirm that it:
+
+- creates every object it uses;
+- prints the row-accounting and grouped-summary tables;
+- creates the intended plot;
+- stops if an expected count or formula is wrong;
+- contains no manually typed result values.
+
+## Deliverable
+
+Submit:
+
+- one runnable `.R` script;
+- the completed object-tracing table;
+- the temperature-group summary and plot;
+- the wind-group summary;
+- a 4-6 sentence interpretation with units, denominators, missingness, and one
+  limitation;
+- a note identifying one check that would catch a nearby-but-wrong answer.
+
+## AI Use
+
+If you use an LLM, record the prompt, the proposed pipeline, what question the
+pipeline actually answers, what you changed or rejected, and the checks used
+before accepting any result.
