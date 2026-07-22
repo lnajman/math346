@@ -6,7 +6,7 @@ execute:
 
 ## Official Topic
 
-R Markdown and data visualization.
+R Markdown and data visualization. Quiz 2.
 
 ## Problem Focus
 

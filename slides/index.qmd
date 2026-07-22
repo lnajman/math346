@@ -14,7 +14,7 @@ Slides are written in Quarto RevealJS. They are intentionally short: each deck l
 | 6 | [MATLAB-to-R transition and reproducible reports](week-06.qmd) |
 | 7 | [Data transformation as question-answering](week-07.qmd) |
 | 8 | [Exploratory data analysis and question refinement](week-08.qmd) |
-| 9 | [Import and tidy data](week-09.qmd) |
+| 9 | [Import contracts and tidy data](week-09.qmd) |
 | 10 | [Relational data and messy variables](week-10.qmd) |
 | 11 | [Pipes and functions](week-11.qmd) |
 | 12 | [Vectors and iteration](week-12.qmd) |

@@ -1,5 +1,7 @@
 ---
-title: "Week 9: Import, Tibbles, and Tidy Data"
+title: "Week 9: Import Contracts And Tidy Data"
+execute:
+  enabled: false
 ---
 
 ## Official Topic
@@ -8,21 +10,350 @@ Tibbles, data import, and tidy data. Quiz 3.
 
 ## Problem Focus
 
-How do we turn a messy file into data that is ready for analysis?
+How do we turn an external file into a trustworthy table whose rows, variables,
+values, types, units, and missingness match the intended analysis?
 
-Students practice importing data, checking types, identifying missing values, and reshaping data into tidy form.
+Students receive a small synthetic campus-energy CSV. It contains six
+fictional buildings, four monthly energy columns, one `missing` marker, and one
+blank cell. They import it using an explicit contract, diagnose the wide
+structure, reshape it into one building-month observation per row, and verify
+the result.
 
-## In Class
+::: {.callout-note}
+The dataset is supplied by the instructor; students do not find or collect
+data. It is synthetic teaching data and must not be described as measurements
+from a real campus.
+:::
 
-- Import tabular data.
-- Inspect column types.
-- Identify one row per observation.
-- Reshape data when variable names or values are stored in the wrong place.
+## Learning Goals
+
+By the end of the week, students should be able to:
+
+- organize a script and data file using a reproducible relative path;
+- check that an expected file exists before import;
+- use `readr::read_csv` to import a CSV as a tibble;
+- specify missing-value encodings explicitly;
+- specify and verify expected column types;
+- inspect parsing diagnostics instead of ignoring warnings;
+- distinguish character, numeric, and missing values after import;
+- state what one row represents before and after reshaping;
+- apply the tidy-data principles of one variable per column, one observation
+  per row, and one value per cell;
+- identify the variables encoded inside wide column names;
+- use `tidyr::pivot_longer` to create a month variable and energy-value column;
+- define and check an observation key;
+- verify the expected row multiplication after reshaping;
+- retain missing values as explicit `NA` rather than silently inventing data;
+- keep denominators beside summaries based on incomplete observations;
+- export and re-import a cleaned file as a reproducibility check;
+- critique an AI-generated reshape that has the correct row count but loses
+  identifiers, units, and numeric types.
+
+## The Supplied File
+
+Download
+[week09-campus-energy-wide.csv](../data/week09-campus-energy-wide.csv).
+
+The recommended folder structure is:
+
+```text
+week09/
+  week09-import-contract.R
+  week09-tidy-energy.R
+  data/
+    week09-campus-energy-wide.csv
+```
+
+Both supplied scripts use this relative path:
+
+```r
+data_path <- "data/week09-campus-energy-wide.csv"
+```
+
+Do not rely on a path that exists only on one computer, such as a personal
+Desktop or Downloads folder.
+
+## Meeting 1: Import Is A Contract
+
+**Question:** What must be true immediately after an external file enters R?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Inspect the CSV as text and state what one raw row represents |
+| 10-20 min | Build the reproducible folder structure and check the path |
+| 20-33 min | Import once with automatic guessing and inspect the result |
+| 33-48 min | Declare missing markers and explicit column types |
+| 48-60 min | Audit names, rows, types, identifiers, ranges, and missingness |
+| 60-70 min | Inspect parsing problems and turn expectations into checks |
+| 70-75 min | Exit ticket: one import assumption that must become code |
+
+### Look At The Raw Structure First
+
+The first line contains seven column names:
+
+```text
+building_id,building_type,area_m2,jan_kwh,feb_kwh,mar_kwh,apr_kwh
+```
+
+One raw row represents one building with four monthly energy values. Month is
+encoded in the column names rather than stored as a variable.
+
+### Check The Path Before Parsing
+
+```r
+data_path <- "data/week09-campus-energy-wide.csv"
+stopifnot(file.exists(data_path))
+```
+
+If this fails, repair the folder structure or path. Changing the working
+directory manually until the code happens to run is not a reproducible fix.
+
+### Automatic Guessing Is A Hypothesis
+
+```r
+library(readr)
+
+guessed <- read_csv(data_path)
+spec(guessed)
+problems(guessed)
+```
+
+Because `feb_kwh` contains the text `missing`, automatic import may treat that
+whole column differently from other energy columns. Inspect the guessed schema
+before calculating anything.
+
+### Declare The Import Contract
+
+```r
+energy_wide <- read_csv(
+  data_path,
+  na = c("", "missing"),
+  col_types = cols(
+    building_id = col_character(),
+    building_type = col_character(),
+    area_m2 = col_double(),
+    jan_kwh = col_double(),
+    feb_kwh = col_double(),
+    mar_kwh = col_double(),
+    apr_kwh = col_double()
+  ),
+  show_col_types = FALSE
+)
+```
+
+This code documents both missing-value encodings and the expected meaning of
+each field.
+
+### Check The Imported Object
+
+```r
+expected_columns <- c(
+  "building_id", "building_type", "area_m2",
+  "jan_kwh", "feb_kwh", "mar_kwh", "apr_kwh"
+)
+
+stopifnot(
+  identical(names(energy_wide), expected_columns),
+  nrow(energy_wide) == 6,
+  n_distinct(energy_wide$building_id) == 6,
+  all(energy_wide$area_m2 > 0),
+  sum(is.na(energy_wide)) == 2,
+  nrow(problems(energy_wide)) == 0
+)
+```
+
+The absence of an import error is weaker evidence than an explicit contract
+that passes.
+
+## Meeting 2: Make The Observation Structure Explicit
+
+**Question:** How should the table change when the intended observation is one
+building in one month?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Restate the raw row meaning and identify variables in names |
+| 10-22 min | Apply the tidy-data principles to the building-month question |
+| 22-38 min | Use `pivot_longer` to create `month` and `energy_kwh` |
+| 38-50 min | Check the 6-by-4 row contract and observation key |
+| 50-60 min | Audit missing building-month values and denominators |
+| 60-67 min | Produce a checked monthly summary and plot |
+| 67-72 min | Audit an AI reshape that loses identifiers and numeric types |
+| 72-75 min | Exit ticket: define one tidy row and its key |
+
+### Tidy Depends On The Analytical Unit
+
+For the building-month analysis:
+
+- each variable is a column;
+- each building-month observation is a row;
+- each value occupies one cell;
+- `building_id` plus `month` identifies an observation.
+
+The original wide file is useful for human reading, but month is embedded in
+four column names. Reshaping makes the intended observation explicit.
+
+### Reshape The Monthly Columns
+
+```r
+library(tidyr)
+
+energy_tidy <- energy_wide |>
+  pivot_longer(
+    cols = ends_with("_kwh"),
+    names_to = "month",
+    names_pattern = "(.*)_kwh",
+    values_to = "energy_kwh"
+  )
+```
+
+`names_pattern` removes the `_kwh` suffix because the unit belongs in the
+value-column name. The month values become `jan`, `feb`, `mar`, and `apr`.
+
+### Check The Row Contract
+
+Six buildings multiplied by four months should produce 24 rows.
+
+```r
+stopifnot(
+  nrow(energy_tidy) == 6 * 4,
+  n_distinct(energy_tidy$building_id) == 6,
+  n_distinct(energy_tidy$month) == 4,
+  sum(is.na(energy_tidy$energy_kwh)) == 2
+)
+```
+
+The two missing values must remain visible after reshaping.
+
+### Check The Observation Key
+
+```r
+key_counts <- energy_tidy |>
+  count(building_id, month, name = "key_count")
+
+stopifnot(
+  nrow(key_counts) == nrow(energy_tidy),
+  all(key_counts$key_count == 1)
+)
+```
+
+A 24-row result can still be wrong if some building-month keys are duplicated
+and others are absent. Row count and key uniqueness are separate checks.
+
+### Preserve Denominators With Missing Data
+
+```r
+monthly_summary <- energy_tidy |>
+  group_by(month) |>
+  summarize(
+    expected_buildings = n(),
+    observed_buildings = sum(!is.na(energy_kwh)),
+    missing_buildings = sum(is.na(energy_kwh)),
+    total_energy_kwh = sum(energy_kwh, na.rm = TRUE),
+    .groups = "drop"
+  )
+```
+
+The total is based only on observed values. Keep the observed and missing
+counts beside it rather than presenting every month as equally complete.
+
+### Export And Re-Import
+
+```r
+write_csv(energy_tidy, "week09-campus-energy-tidy.csv")
+round_trip <- read_csv(
+  "week09-campus-energy-tidy.csv",
+  show_col_types = FALSE
+)
+```
+
+After re-importing, check names, rows, key uniqueness, numeric energy type, and
+the two missing values. A saved file is not trustworthy merely because it can
+be opened.
 
 ## AI-Aware Task
 
-Ask an LLM to propose a tidy-data structure for a messy table. Then check whether each row, column, and cell has the intended meaning.
+An LLM produces a 24-row table by pivoting the monthly columns, but it:
+
+- stores all energy values as character text;
+- calls the new column `measurement`, leaving values such as `jan_kwh`;
+- drops `building_id` and `area_m2`;
+- checks only the final row count.
+
+The result looks long and the code runs. Audit whether:
+
+1. one row has a clear meaning;
+2. the observation key is preserved;
+3. units are separated from month values;
+4. energy is numeric;
+5. missing values remain distinguishable;
+6. later intensity or building-level questions are still possible;
+7. duplicate and missing keys can be detected.
+
+## Survival Checklist
+
+### Commands And Patterns To Own
+
+| Pattern | What you should know |
+|---|---|
+| `file.exists(path)` | checks whether the expected file is available |
+| `read_csv(path)` | imports a CSV as a tibble |
+| `na = c(...)` | declares text encodings that should become `NA` |
+| `col_types = cols(...)` | declares the expected import schema |
+| `col_character()` | requires a character field |
+| `col_double()` | requires a numeric double field |
+| `spec(data)` | displays the column specification |
+| `problems(data)` | reports parsing problems retained by `readr` |
+| `pivot_longer(...)` | moves information from column names into rows |
+| `ends_with("_kwh")` | selects columns with a shared name pattern |
+| `names_to` | names the variable created from old column names |
+| `values_to` | names the variable containing old cell values |
+| `write_csv(data, path)` | exports a rectangular table |
+
+### Mistakes To Catch
+
+- Using an absolute path from one person's computer.
+- Assuming automatic type guessing is always correct.
+- Letting one text marker turn an intended numeric column into character data.
+- Hiding parse warnings without inspecting `problems`.
+- Treating blank and `missing` as different valid energy values.
+- Applying `pivot_longer` before stating what one output row should represent.
+- Pivoting identifier columns together with measurements.
+- Losing units when cleaning column names.
+- Checking only the final row count and not the observation key.
+- Replacing missing energy with zero without justification.
+- Summing incomplete months without reporting observed denominators.
+- Describing synthetic teaching data as real campus measurements.
+
+### Checks Before Trusting Imported Tidy Data
+
+- Verify the relative file path and filename.
+- Inspect the raw header and a few raw rows.
+- Declare names, types, missing markers, and expected row count.
+- Confirm there are no parsing problems.
+- State what one raw row and one tidy row represent.
+- Predict the row count after reshaping.
+- Check identifier uniqueness before and after reshaping.
+- Confirm measurement variables remain numeric and units remain explicit.
+- Count missing values before and after reshaping.
+- Keep observed denominators with incomplete summaries.
+- Export, re-import, and check the cleaned file when it will be shared.
+- Record any AI assistance and the semantic checks applied to it.
+
+## Exercises
+
+Complete the [Week 9 exercises](week-09-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-09.qmd)
+- Data: [week09-campus-energy-wide.csv](../data/week09-campus-energy-wide.csv)
+- Import contract: [week09-import-contract.R](../code/r/week09-import-contract.R)
+- Tidy workflow: [week09-tidy-energy.R](../code/r/week09-tidy-energy.R)
+- AI tidy review: [week09-ai-tidy-review.R](../code/r/week09-ai-tidy-review.R)
+- [Lab 9](../labs/lab-09-import-tidy-data.qmd)
+- [AI tidy-structure review lab](../labs/lab-09-ai-tidy-review.qmd)

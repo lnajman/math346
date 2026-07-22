@@ -40,6 +40,9 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 - [week08-eda-cycle.R](r/week08-eda-cycle.R)
 - [week08-plot-checks.R](r/week08-plot-checks.R)
 - [week08-ai-interpretation-review.R](r/week08-ai-interpretation-review.R)
+- [week09-import-contract.R](r/week09-import-contract.R)
+- [week09-tidy-energy.R](r/week09-tidy-energy.R)
+- [week09-ai-tidy-review.R](r/week09-ai-tidy-review.R)
 
 ## Project Starter Templates
 

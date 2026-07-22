@@ -1,0 +1,131 @@
+---
+title: "Week 9 Exercises"
+execute:
+  enabled: false
+---
+
+Use the supplied synthetic
+[`week09-campus-energy-wide.csv`](../data/week09-campus-energy-wide.csv). Keep
+the file inside a `data` folder and use a relative path.
+
+## Exercise 1: Inspect Before Importing
+
+Open the CSV as plain text and record:
+
+1. the header fields;
+2. the number of data rows;
+3. what one raw row represents;
+4. which variable is encoded in multiple column names;
+5. all visible missing-value encodings;
+6. the expected type and unit of every column.
+
+## Exercise 2: Compare Guessed And Declared Import
+
+Import once with automatic type guessing and once with the supplied explicit
+contract.
+
+Compare:
+
+- `spec` output;
+- column classes;
+- missing-value counts;
+- parsing problems;
+- whether every monthly energy column is numeric.
+
+Explain why successful automatic import does not guarantee the intended
+schema.
+
+## Exercise 3: Write An Import Contract
+
+Create executable checks for:
+
+- exact filename and path;
+- seven exact column names in order;
+- six rows;
+- six unique building identifiers;
+- positive floor areas;
+- four numeric energy columns;
+- two missing energy values;
+- zero parsing problems.
+
+Break one column name temporarily and confirm that the contract stops.
+
+## Exercise 4: Define The Tidy Observation
+
+Before writing code, answer:
+
+1. What does one raw row represent?
+2. What should one tidy row represent?
+3. Which columns identify a tidy observation?
+4. Which value is stored in `jan_kwh`?
+5. Which part of that name is a variable value and which part is a unit?
+6. How many tidy rows should be produced?
+
+## Exercise 5: Reshape With `pivot_longer`
+
+Create `month` and `energy_kwh` from the four monthly columns. Remove `_kwh`
+from the month values without losing the unit from the energy variable name.
+
+Check:
+
+- 24 rows;
+- six buildings;
+- four month values;
+- numeric `energy_kwh`;
+- two missing energy values.
+
+## Exercise 6: Validate The Observation Key
+
+Count every `building_id`-`month` combination. Confirm every key occurs exactly
+once.
+
+Then deliberately duplicate one tidy row. Show why the total row count changes,
+and write a key check that identifies the duplicated observation directly.
+
+## Exercise 7: Summaries With Incomplete Months
+
+For each month, calculate:
+
+- expected buildings;
+- observed buildings;
+- missing buildings;
+- total recorded energy;
+- mean recorded energy.
+
+Explain why `na.rm = TRUE` must be accompanied by the observed and missing
+counts.
+
+## Exercise 8: Export And Round Trip
+
+Export the tidy table to `week09-campus-energy-tidy.csv`, re-import it, and
+recheck:
+
+- names and order;
+- row count;
+- key uniqueness;
+- numeric energy type;
+- missing-value count.
+
+Record any type that changed during the round trip.
+
+## Exercise 9: Critique Generated Tidy Data
+
+Run `week09-ai-tidy-review.R`. Identify at least six weaknesses involving:
+
+- row meaning;
+- missing observation keys;
+- discarded area;
+- energy stored as text;
+- month and unit fused together;
+- insufficient checks;
+- inability to detect duplicated keys;
+- limitations on later analysis.
+
+Repair the pipeline and add a complete post-reshape contract.
+
+## Exit Ticket
+
+In 3-5 sentences, answer:
+
+> How can a table have the expected number of rows and still not be tidy or
+> trustworthy?

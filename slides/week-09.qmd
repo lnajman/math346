@@ -1,38 +1,299 @@
 ---
-title: "Week 9: Import and Tidy Data"
+title: "Week 9: Import Contracts And Tidy Data"
 format:
   revealjs:
     theme: simple
     slide-number: true
     footer: "MATH 346"
+execute:
+  enabled: false
 ---
 
 ## Today's Question
 
-How do we turn a messy file into data ready for analysis?
+How do we turn an external file into trustworthy data whose structure matches
+the intended analysis?
 
-## Tidy Data
+## Week 9 Plan
+
+- Meeting 1: file paths, parsing, types, and import contracts
+- Meeting 2: observation meaning, `pivot_longer`, keys, and AI review
+
+## The Supplied Data
+
+- six fictional campus buildings
+- four monthly energy columns
+- two missing-value encodings
+- synthetic teaching data
+
+Students do not find a dataset.
+
+## Recommended Folder
+
+```text
+week09/
+  week09-import-contract.R
+  week09-tidy-energy.R
+  data/
+    week09-campus-energy-wide.csv
+```
+
+## Use A Relative Path
+
+```r
+data_path <- "data/week09-campus-energy-wide.csv"
+stopifnot(file.exists(data_path))
+```
+
+Avoid personal Desktop or Downloads paths.
+
+## Inspect Raw Text First
+
+```text
+building_id,building_type,area_m2,
+jan_kwh,feb_kwh,mar_kwh,apr_kwh
+```
+
+What does one raw row represent?
+
+## One Raw Row
+
+One building with four monthly energy measurements.
+
+Month is encoded inside four column names.
+
+## Automatic Guessing Is A Hypothesis
+
+```r
+guessed <- read_csv(data_path)
+spec(guessed)
+problems(guessed)
+```
+
+Inspect guessed types before analysis.
+
+## Why Guessing Can Differ
+
+- `feb_kwh` contains the word `missing`.
+- one April cell is blank.
+- intended energy values are numeric.
+
+Text can change a whole column's guessed type.
+
+## Declare Missing Markers
+
+```r
+read_csv(
+  data_path,
+  na = c("", "missing")
+)
+```
+
+Missing encodings become R's `NA`.
+
+## Declare Column Types
+
+```r
+col_types = cols(
+  building_id = col_character(),
+  building_type = col_character(),
+  area_m2 = col_double(),
+  jan_kwh = col_double()
+)
+```
+
+Continue the contract for every column.
+
+## Inspect Parsing Problems
+
+```r
+parse_issues <- problems(energy_wide)
+stopifnot(nrow(parse_issues) == 0)
+```
+
+Do not hide parsing warnings before understanding them.
+
+## Check Names And Rows
+
+```r
+stopifnot(
+  identical(names(energy_wide), expected_columns),
+  nrow(energy_wide) == 6,
+  ncol(energy_wide) == 7
+)
+```
+
+## Check Identifiers And Values
+
+```r
+stopifnot(
+  n_distinct(energy_wide$building_id) == 6,
+  all(energy_wide$area_m2 > 0),
+  sum(is.na(energy_wide)) == 2
+)
+```
+
+## Import Success Is Not Validation
+
+A file can open while containing:
+
+- wrong types;
+- unexpected names;
+- missing identifiers;
+- unrecognized missing markers;
+- parsing problems.
+
+## Meeting 1 Exit Ticket
+
+Name one import assumption that should become executable code.
+
+## Meeting 2 Question
+
+How should the table change when one observation means one building in one
+month?
+
+## Tidy Data Principles
 
 - Each variable is a column.
 - Each observation is a row.
 - Each value is a cell.
 
-## Import Checklist
+Tidy is defined relative to the analytical unit.
 
-- Are column names meaningful?
-- Are types correct?
-- Are missing values encoded consistently?
-- Is one row one observation?
+## The Intended Tidy Row
 
-## From MATLAB Data to R Data
+One row represents one building-month.
 
-The same habits used in the MATLAB project still matter:
+The observation key is:
 
-- know what one row represents;
-- check types, units, and missing values;
-- generate results through code;
-- verify before interpreting.
+```text
+building_id + month
+```
 
-## AI Check
+## Wide Names Store Values
 
-Ask for a tidy structure, then decide whether the proposed structure matches the scientific meaning of the data.
+```text
+jan_kwh  feb_kwh  mar_kwh  apr_kwh
+```
+
+- `jan`, `feb`, `mar`, `apr`: month values
+- `kwh`: measurement unit
+
+## `pivot_longer` Pattern
+
+```r
+energy_tidy <- energy_wide |>
+  pivot_longer(
+    cols = ends_with("_kwh"),
+    names_to = "month",
+    names_pattern = "(.*)_kwh",
+    values_to = "energy_kwh"
+  )
+```
+
+## Predict The Row Count
+
+```text
+6 buildings × 4 months = 24 rows
+```
+
+Predict before running the reshape.
+
+## Check The Tidy Contract
+
+```r
+stopifnot(
+  nrow(energy_tidy) == 24,
+  n_distinct(energy_tidy$building_id) == 6,
+  n_distinct(energy_tidy$month) == 4,
+  sum(is.na(energy_tidy$energy_kwh)) == 2
+)
+```
+
+## Check The Observation Key
+
+```r
+key_counts <- energy_tidy |>
+  count(building_id, month)
+
+stopifnot(
+  nrow(key_counts) == 24,
+  all(key_counts$n == 1)
+)
+```
+
+## Row Count Is Not Key Integrity
+
+A 24-row table can still contain:
+
+- a duplicated building-month;
+- a missing building-month;
+- the wrong identifiers.
+
+Check both count and key.
+
+## Missing Values Survive Reshaping
+
+The two missing monthly measurements should remain `NA`.
+
+Do not replace them with zero without a justified rule.
+
+## Keep Denominators
+
+```r
+summarize(
+  expected_buildings = n(),
+  observed_buildings = sum(!is.na(energy_kwh)),
+  missing_buildings = sum(is.na(energy_kwh)),
+  total_energy_kwh = sum(energy_kwh, na.rm = TRUE)
+)
+```
+
+## Round-Trip Check
+
+```r
+write_csv(energy_tidy, "week09-campus-energy-tidy.csv")
+round_trip <- read_csv(
+  "week09-campus-energy-tidy.csv"
+)
+```
+
+Recheck the contract after re-import.
+
+## Plausible AI Reshape
+
+The generated table:
+
+- has 24 rows;
+- drops `building_id` and `area_m2`;
+- stores energy as character text;
+- leaves values such as `jan_kwh` in `measurement`.
+
+## Why It Is Not Trustworthy
+
+- One row has no traceable building key.
+- Numeric calculations are unsafe.
+- Month and unit remain fused.
+- Duplicate keys cannot be detected.
+- Later intensity questions are impossible.
+
+## AI Tidy Audit
+
+- What does one row represent?
+- What is the observation key?
+- Are measurements numeric?
+- Are units explicit?
+- Which context was discarded?
+- Do missing and duplicate checks pass?
+
+## Repair Order
+
+1. Repair the import schema.
+2. State the intended tidy observation.
+3. Reshape only measurement columns.
+4. Preserve identifiers and context.
+5. Validate rows, types, missingness, and keys.
+
+## Exit Ticket
+
+A table is tidy and trustworthy for a question when ...

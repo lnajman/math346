@@ -23,10 +23,13 @@ project package is complete: private synthetic data, beginner-oriented code
 starters, fixed result contracts, editable report templates, customized release
 ZIPs, and batch checkers are implemented. The release contract has been
 rehearsed locally, and the complete assessment-sensitive package is backed up
-in a private GitHub repository. The MATLAB project date and the remaining quiz
-and midterm architecture are intentionally deferred. Week 5 has now been
-expanded using the validated Weeks 1-4 pattern and passes the complete MATLAB
-validation harness. Week 6 has now been expanded into a beginner-safe
+in a private GitHub repository. The working assessment sequence remains visible
+on the public site: Quiz 1 in Week 3, Quiz 2 in Week 6, the semester examination
+(midterm) in Week 8, Quiz 3 in Week 9, and Quiz 4 in Week 13. Exact dates,
+delivery arrangements, quiz formats, and the detailed midterm architecture are
+intentionally deferred. The MATLAB project date is also deferred. Week 5 has
+now been expanded using the validated Weeks 1-4 pattern and passes the complete
+MATLAB validation harness. Week 6 has now been expanded into a beginner-safe
 MATLAB-to-R transition with ordinary R scripts, checked visualizations, a
 supplied reproducible-report scaffold, and an AI plot-review activity. Its R
 scripts and embedded report code pass the course validation harness. Week 7 has
@@ -37,9 +40,13 @@ harness. Week 8 has now been expanded into a checked exploratory-data-analysis
 cycle using `ggplot2::diamonds`: variable-type decisions, distributions,
 covariation, overplotting, conditional views, data-quality anomalies, and an AI
 interpretation audit. Its three R scripts pass the course validation harness.
-The next content milestone is Week 9 data import and tidy data.
+Week 9 has now been expanded around a supplied synthetic campus-energy CSV,
+explicit import schemas, parsing diagnostics, tidy observation structure,
+`pivot_longer`, observation-key checks, and an AI reshape audit. Its three R
+scripts and data contract pass the course validation harness. The next content
+milestone is Week 10 relational data, strings, factors, and dates.
 
-Weeks 9-15 remain outlines. They should not yet be described as complete course
+Weeks 10-15 remain outlines. They should not yet be described as complete course
 materials.
 
 ## Confirmed Progress
@@ -85,8 +92,12 @@ materials.
   main lab, an AI interpretation-review lab, exercises, and three checked R
   scripts. It is developed and ready for review, but has not yet been
   designated a validated prototype.
-- Weeks 9-15 have short week pages and slide outlines, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-8.
+- Week 9 now has a two-meeting import-and-tidy plan, a supplied synthetic CSV,
+  full slides, a main lab, an AI tidy-structure lab, exercises, and three
+  checked R scripts. It is developed and ready for review, but has not yet been
+  designated a validated prototype.
+- Weeks 10-15 have short week pages and slide outlines, but very little of the
+  supporting lab, exercise, and code material available for Weeks 1-9.
 
 ## Established Decisions and Constraints
 
@@ -108,6 +119,10 @@ materials.
 - Projects are assessed as group work. Individual competence is established by
   quizzes, the semester examination, and the final examination, totaling 80%
   of the course grade.
+- The public working schedule retains Quiz 1 in Week 3, Quiz 2 in Week 6, the
+  semester examination (midterm) in Week 8, Quiz 3 in Week 9, and Quiz 4 in
+  Week 13. These placements remain visible while detailed arrangements are
+  discussed.
 - There is no mandatory individual project examination. A brief verification
   may be requested for a small random sample or when submitted evidence contains
   a material inconsistency.
@@ -120,8 +135,10 @@ materials.
 
 These ideas have been discussed but are **not yet approved course policy**:
 
-1. The number, timing, and exact format of the quizzes.
-2. The balance of code reading, implementation, and validation in the midterm.
+1. The exact calendar dates, delivery arrangements, duration, and format of the
+   four quizzes; their working Week 3, 6, 9, and 13 placement remains visible.
+2. The exact timing and balance of code reading, implementation, and validation
+   in the Week 8 semester examination (midterm).
 3. The exact due date for the MATLAB project and its relationship to the quiz
    schedule.
 
@@ -142,7 +159,8 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 6 | `weeks/week-06.qmd`; `slides/week-06.qmd`; two labs; exercises; three checked R scripts; checked report scaffold | Developed; ready for review |
 | Week 7 | `weeks/week-07.qmd`; `slides/week-07.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 8 | `weeks/week-08.qmd`; `slides/week-08.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
-| Weeks 9-12 | week and slide pages | Outline/early scaffold |
+| Week 9 | `weeks/week-09.qmd`; `slides/week-09.qmd`; two labs; exercises; supplied CSV; three checked R scripts | Developed; ready for review |
+| Weeks 10-12 | week and slide pages | Outline/early scaffold |
 | Weeks 13-15 | week and slide pages | Outline |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
@@ -151,12 +169,13 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 9 and then the remaining R sequence using the validated weekly
+2. Expand Week 10 and then the remaining R sequence using the validated weekly
    pattern.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
 4. Decide the MATLAB project date later, when the teaching calendar is ready.
-5. Decide the remaining quiz and midterm architecture later.
+5. Decide the exact quiz and midterm dates, delivery arrangements, and formats
+   later without removing their working weekly placement from the public site.
 6. Update the syllabus after the remaining assessment decisions are approved.
 7. Update both this record and `instructor-progress.qmd` after each decision or
    major milestone.
@@ -221,3 +240,12 @@ milestone:
   plots, overplotting, conditional comparisons, anomaly review, two labs,
   exercises, three R scripts, and an AI interpretation audit. The complete R
   validation harness passed.
+- **2026-07-22:** Week 9 was expanded around a supplied synthetic wide campus-
+  energy CSV, explicit `readr` schemas, missing-value encodings, parsing
+  diagnostics, `pivot_longer`, observation-key checks, two labs, exercises,
+  three R scripts, and an AI tidy-structure audit. The complete R validation
+  harness passed.
+- **2026-07-22:** The original working assessment sequence was restored and
+  made explicit on the public course pages: quizzes in Weeks 3, 6, 9, and 13,
+  with the semester examination (midterm) in Week 8. Exact dates, delivery,
+  and formats remain open for later discussion.

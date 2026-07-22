@@ -1,0 +1,78 @@
+---
+title: "Lab 9B: AI Tidy-Structure Review"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Audit an AI-generated reshape that runs and returns the predicted 24 rows but
+does not preserve a trustworthy observation structure.
+
+## Scenario
+
+Download and run
+[week09-ai-tidy-review.R](../code/r/week09-ai-tidy-review.R).
+
+The generated table looks long. Row count alone is not enough to establish that
+it is tidy or useful.
+
+## Part A: Describe The Generated Table
+
+State:
+
+1. what one generated row appears to represent;
+2. which original columns remain;
+3. which identifier and measurement-context columns disappeared;
+4. the class of `energy_kwh`;
+5. the values stored in `measurement`;
+6. whether a unique building-month key can be checked.
+
+## Part B: Complete A Semantic Audit
+
+| Intended element | Generated result | Consequence | Repair |
+|---|---|---|---|
+| One building-month per row |  |  |  |
+| `building_id` retained |  |  |  |
+| `area_m2` retained |  |  |  |
+| Month separate from unit |  |  |  |
+| Numeric energy |  |  |  |
+| Explicit missingness |  |  |  |
+| Unique key check |  |  |  |
+
+## Part C: Repair Import First
+
+Before changing `pivot_longer`, repair the import:
+
+- declare blank and `missing` as `NA`;
+- declare every column type;
+- require zero parsing problems;
+- check exact names, rows, identifiers, and missing counts.
+
+Explain why reshaping an incorrectly typed table can preserve or amplify the
+import error.
+
+## Part D: Repair The Reshape
+
+Create one row per building-month, retain building identifiers, type, and area,
+separate month from `_kwh`, and keep energy numeric.
+
+Add checks for 24 rows, six buildings, four months, two missing values, and one
+occurrence of every building-month key.
+
+## Part E: Compare Correct Row Count With Correct Meaning
+
+Write 4-6 sentences explaining why both generated and repaired tables can have
+24 rows while only one preserves the intended observation, key, numeric
+measurement, units, and future analytical possibilities.
+
+## Deliverable
+
+Submit the original result, semantic audit, repaired import, repaired reshape,
+complete contract, and written comparison.
+
+## Exit Question
+
+Complete this sentence:
+
+> A table is tidy for a particular question only when ...

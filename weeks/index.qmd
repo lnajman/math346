@@ -4,27 +4,30 @@ title: "Weekly Materials"
 
 Each week has a problem focus, the official syllabus topic, the software tools involved, and an AI-aware validation task.
 
-| Week | Focus | Main Tool |
-|---:|---|---|
-| [1](week-01.qmd) | Arrays, scripts, and plots as computational objects | MATLAB |
-| [2](week-02.qmd) | Functions, control flow, and debugging | MATLAB |
-| [3](week-03.qmd) | Curve fitting, interpolation, and residual checks | MATLAB |
-| [4](week-04.qmd) | Numerical methods and 3D visualization | MATLAB |
-| [5](week-05.qmd) | Symbolic and numerical computation | MATLAB |
-| [6](week-06.qmd) | MATLAB-to-R transition and reproducible reports | R |
-| [7](week-07.qmd) | Data transformation as question-answering | R |
-| [8](week-08.qmd) | Variation, covariation, and question refinement | R |
-| [9](week-09.qmd) | Import, tibbles, and tidy data | R |
-| [10](week-10.qmd) | Joins, strings, factors, and dates | R |
-| [11](week-11.qmd) | Pipes and reusable functions | R |
-| [12](week-12.qmd) | Vectors, iteration, and repeated analysis | R |
-| [13](week-13.qmd) | Model basics and diagnostics | R |
-| [14](week-14.qmd) | Many models and grouped workflows | R |
-| [15](week-15.qmd) | Communication, visualization, and synthesis | R |
+| Week | Focus | Main Tool | Planned assessment marker |
+|---:|---|---|---|
+| [1](week-01.qmd) | Arrays, scripts, and plots as computational objects | MATLAB | — |
+| [2](week-02.qmd) | Functions, control flow, and debugging | MATLAB | — |
+| [3](week-03.qmd) | Curve fitting, interpolation, and residual checks | MATLAB | Quiz 1 |
+| [4](week-04.qmd) | Numerical methods and 3D visualization | MATLAB | — |
+| [5](week-05.qmd) | Symbolic and numerical computation | MATLAB | — |
+| [6](week-06.qmd) | MATLAB-to-R transition and reproducible reports | R | Quiz 2 |
+| [7](week-07.qmd) | Data transformation as question-answering | R | — |
+| [8](week-08.qmd) | Variation, covariation, and question refinement | R | Semester examination (midterm) |
+| [9](week-09.qmd) | Import contracts and tidy observation structure | R | Quiz 3 |
+| [10](week-10.qmd) | Joins, strings, factors, and dates | R | — |
+| [11](week-11.qmd) | Pipes and reusable functions | R | — |
+| [12](week-12.qmd) | Vectors, iteration, and repeated analysis | R | — |
+| [13](week-13.qmd) | Model basics and diagnostics | R | Quiz 4 |
+| [14](week-14.qmd) | Many models and grouped workflows | R | — |
+| [15](week-15.qmd) | Communication, visualization, and synthesis | R | — |
+
+These markers preserve the working assessment sequence. Exact calendar dates,
+delivery arrangements, and formats can still be discussed later.
 
 ## Developed Weeks
 
-Weeks 1-4 are the validated model. Weeks 5-8 have now been expanded using the
+Weeks 1-4 are the validated model. Weeks 5-9 have now been expanded using the
 same pattern and are ready for review. These weeks include:
 
 - a two-meeting teaching plan;
@@ -33,7 +36,7 @@ same pattern and are ready for review. These weeks include:
 - a student exercise set;
 - multiple starter scripts.
 
-Weeks 9-15 will follow this pattern as the course site develops.
+Weeks 10-15 will follow this pattern as the course site develops.
 
 ## Weekly Pattern
 

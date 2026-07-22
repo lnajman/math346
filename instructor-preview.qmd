@@ -22,7 +22,7 @@ The site does not redistribute copyrighted slide decks, textbook PDFs, answer ke
 
 ## What To Review First
 
-Weeks 1-4 are the validated prototype. Weeks 5-8 have now been expanded
+Weeks 1-4 are the validated prototype. Weeks 5-9 have now been expanded
 using the same teaching pattern:
 
 | Week | Focus | Suggested review |
@@ -35,10 +35,11 @@ using the same teaching pattern:
 | [Week 6](weeks/week-06.qmd) | MATLAB-to-R transition and reproducible reports | Look at the syntax bridge, supplied report scaffold, checked plots, and AI causal-claim review. |
 | [Week 7](weeks/week-07.qmd) | Data transformation as question-answering | Look at one-verb invariants, missing-row accounting, grouped denominators, and the AI question-drift audit. |
 | [Week 8](weeks/week-08.qmd) | Exploratory data analysis | Look at variation, covariation, overplotting, anomaly handling, the EDA log, and the AI interpretation audit. |
+| [Week 9](weeks/week-09.qmd) | Import contracts and tidy data | Look at the supplied synthetic CSV, explicit schemas, observation keys, and the AI reshape audit. |
 
 Weeks 1-4 have now been validated as the prototype pattern for the course.
-Weeks 5-8 are developed and ready for review, but have not yet been
-designated as validated prototypes. Weeks 9-15 are still more schematic. They show the
+Weeks 5-9 are developed and ready for review, but have not yet been
+designated as validated prototypes. Weeks 10-15 are still more schematic. They show the
 intended arc of the course, but they are not yet expanded to the same level.
 
 ## Useful Direct Links
@@ -66,10 +67,14 @@ I would especially appreciate feedback on these questions:
   consequences sufficiently explicit for beginners?
 - Does Week 8 keep exploratory work disciplined enough by requiring findings,
   doubts, limitations, and next questions rather than polished conclusions?
+- Does Week 9 make file paths, import schemas, row meaning, and observation-key
+  checks manageable for beginners while still resembling real data work?
+- Is the working assessment sequence realistic: quizzes in Weeks 3, 6, 9, and
+  13, with the semester examination (midterm) in Week 8?
 - Is the balance right between MATLAB/R skills, mathematical thinking, and validation?
 - Do the LLM-related activities feel pedagogically useful rather than distracting?
-- Are there essential commands, concepts, habits, or warnings missing from the first eight weeks?
-- What should be adjusted before expanding Weeks 9-15 in the same style?
+- Are there essential commands, concepts, habits, or warnings missing from the first nine weeks?
+- What should be adjusted before expanding Weeks 10-15 in the same style?
 
 ## The Intended Shift
 

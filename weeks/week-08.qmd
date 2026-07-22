@@ -6,7 +6,7 @@ execute:
 
 ## Official Topic
 
-Exploratory data analysis.
+Exploratory data analysis. Semester examination (midterm).
 
 ## Problem Focus
 

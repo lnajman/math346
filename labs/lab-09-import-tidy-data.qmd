@@ -1,0 +1,130 @@
+---
+title: "Lab 9: Import Contracts And Tidy Data"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Import a supplied external CSV with an explicit schema, reshape it into one
+building-month observation per row, and verify the resulting tidy-data
+contract.
+
+## Setup
+
+Create this structure:
+
+```text
+week09/
+  week09-import-contract.R
+  week09-tidy-energy.R
+  data/
+    week09-campus-energy-wide.csv
+```
+
+Download:
+
+- [week09-campus-energy-wide.csv](../data/week09-campus-energy-wide.csv)
+- [week09-import-contract.R](../code/r/week09-import-contract.R)
+- [week09-tidy-energy.R](../code/r/week09-tidy-energy.R)
+
+The CSV is synthetic teaching data describing six fictional buildings.
+
+## Part A: Inspect The File As Text
+
+Before importing, record the header, row count, raw-row meaning, monthly-column
+pattern, visible missing markers, expected types, and units.
+
+Predict which column automatic guessing may interpret incorrectly and why.
+
+## Part B: Test The Relative Path
+
+Set:
+
+```r
+data_path <- "data/week09-campus-energy-wide.csv"
+```
+
+Use `file.exists`. If it fails, repair the folder or filename without using an
+absolute personal path or repeated `setwd` calls.
+
+## Part C: Compare Two Imports
+
+Import once using automatic guessing. Inspect `spec`, `glimpse`, `problems`,
+and missing counts.
+
+Then run the explicit import in `week09-import-contract.R`. Complete:
+
+| Feature | Guessed import | Contract import | Intended |
+|---|---|---|---|
+| `feb_kwh` type |  |  | numeric |
+| blank April value |  |  | missing |
+| `missing` February value |  |  | missing |
+| parsing problems |  |  | zero |
+
+## Part D: Validate The Imported Wide Table
+
+Add checks for exact names, six rows, unique building identifiers, positive
+areas, numeric energy columns, two missing energy values, and zero parsing
+problems.
+
+Temporarily set the expected row count to seven and confirm that the script
+stops. Restore the correct contract afterward.
+
+## Part E: State The Tidy Structure
+
+Write complete sentences defining:
+
+- one raw row;
+- one tidy row;
+- the tidy observation key;
+- variables encoded in monthly column names;
+- the measurement unit.
+
+Predict the tidy row count before reshaping.
+
+## Part F: Reshape And Check
+
+Run `week09-tidy-energy.R`. Locate the `pivot_longer` arguments and explain each
+one.
+
+Verify:
+
+1. 24 rows and six columns;
+2. six buildings and four months;
+3. one occurrence of every building-month key;
+4. numeric energy values;
+5. two retained missing values;
+6. explicit month order for summaries and plots.
+
+## Part G: Summarize Without Hiding Missingness
+
+Create a monthly table containing expected, observed, and missing building
+counts beside total and mean recorded energy.
+
+Make a plot of recorded monthly totals. Its subtitle or caption must state that
+the data are synthetic and incomplete values were not imputed.
+
+## Part H: Export And Re-Import
+
+Write the tidy table to CSV, re-import it, and rerun the post-reshape contract.
+Do not treat successful file creation as validation.
+
+## Deliverable
+
+Submit:
+
+- one runnable import-and-tidy `.R` script;
+- the tidy CSV;
+- the guessed-versus-contract import table;
+- the wide and tidy row definitions;
+- the key check;
+- the monthly summary and plot;
+- a short note explaining one import or reshape error encountered and how the
+  contract exposed it.
+
+## AI Use
+
+If you use an LLM, record the prompt, its proposed row meaning and key, the
+reshape code, what information it lost or misclassified, and the checks used
+before accepting the repaired result.

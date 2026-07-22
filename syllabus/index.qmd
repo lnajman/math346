@@ -47,19 +47,23 @@ By the end of the course, students should be able to:
 |---:|---|
 | 1 | MATLAB arrays, scripts, and 2D plotting |
 | 2 | MATLAB programming and user functions |
-| 3 | MATLAB curve fitting and interpolation |
+| 3 | MATLAB curve fitting and interpolation; Quiz 1 |
 | 4 | MATLAB numerical analysis and 3D plotting |
 | 5 | MATLAB symbolic math |
-| 6 | R Markdown and data visualization |
+| 6 | R Markdown and data visualization; Quiz 2 |
 | 7 | R workflow and data transformation |
-| 8 | Exploratory data analysis |
-| 9 | Tibbles, data import, and tidy data |
+| 8 | Exploratory data analysis; semester examination (midterm) |
+| 9 | Tibbles, data import, and tidy data; Quiz 3 |
 | 10 | Relational data, strings, factors, dates, and times |
 | 11 | Pipes and functions |
 | 12 | Vectors and iteration |
-| 13 | Model basics and model building |
+| 13 | Model basics and model building; Quiz 4 |
 | 14 | Handling many models |
 | 15 | Visualization, communication, and project synthesis |
+
+The assessment markers above preserve the current working sequence. Exact
+calendar dates, delivery arrangements, and formats remain subject to later
+discussion.
 
 ## Project Structure
 
