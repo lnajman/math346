@@ -5,6 +5,8 @@ format:
     theme: simple
     slide-number: true
     footer: "MATH 346"
+execute:
+  enabled: false
 ---
 
 ## Today's Question

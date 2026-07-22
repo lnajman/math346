@@ -1,5 +1,7 @@
 ---
 title: "Week 6: From MATLAB to R and Reproducible Reports"
+execute:
+  enabled: false
 ---
 
 ## Official Topic
