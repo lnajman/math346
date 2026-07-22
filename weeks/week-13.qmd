@@ -1,29 +1,365 @@
 ---
-title: "Week 13: Model Basics and Model Building"
+title: "Week 13: Model Claims And Diagnostic Evidence"
+execute:
+  enabled: false
 ---
 
 ## Official Topic
 
-Model basics and model building. Quiz 4.
+Model basics and model building. Quiz 4 remains the working assessment marker
+for this week; its exact date, duration, delivery, and format are still open.
 
 ## Problem Focus
 
-What does a statistical model claim, and how do we know when that claim is weak?
+What does a fitted regression model claim, and what evidence would make that
+claim weak or misleading?
 
-Students fit simple models, interpret coefficients, inspect residuals, and discuss assumptions.
+Students reuse R's familiar `airquality` data. They fit a simple relationship
+between ozone and temperature, interpret coefficients in context, compare the
+fit with a mean baseline, inspect residual and influence diagnostics, and add
+wind as a second explanatory variable without treating a better training fit
+as proof of future performance.
 
-## In Class
+::: {.callout-note}
+Week 13 fits and diagnoses a small number of declared models. Repeating the
+same modeling workflow across many groups or formulas is reserved for Week 14.
+:::
 
-- Fit a simple linear model.
-- Interpret slope and intercept in context.
-- Compare fitted values and residuals.
-- Discuss prediction limits.
+## Learning Goals
 
-## AI-Aware Task
+By the end of the week, students should be able to:
 
-Ask an LLM to interpret a regression output. Then identify overclaims, missing assumptions, and conclusions not supported by the model.
+- state the observation unit, response, explanatory variables, and question;
+- create one explicit complete-case modeling table;
+- record how many observations were excluded and why;
+- read an R model formula as a claim about an average relationship;
+- fit a linear model with `lm`;
+- interpret a slope using response and predictor units;
+- explain when the intercept is outside the meaningful data range;
+- distinguish association from causation;
+- calculate fitted values and residuals;
+- verify that every model row receives one fitted value and one residual;
+- compare training RMSE with a mean-prediction baseline on the same rows;
+- explain what R-squared does and does not measure;
+- inspect residuals versus fitted values for remaining structure;
+- use standardized residuals and Cook's distance as investigation flags;
+- avoid deleting an observation solely because a diagnostic threshold is met;
+- interpret an additive coefficient as conditional on the other predictor;
+- compare two models only when their response, rows, and metric align;
+- distinguish training performance from performance on new data;
+- audit an AI interpretation for causal, extrapolative, and validation claims.
+
+## Supplied Material
+
+Week 13 uses the built-in `airquality` data. No dataset download is needed.
+
+Recommended structure:
+
+```text
+week13/
+  week13-simple-linear-model.R
+  week13-model-diagnostics.R
+```
+
+## Meeting 1: Translate A Question Into A Model
+
+**Question:** What exactly does the fitted line describe?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | State observation unit, response, predictor, units, and scope |
+| 10-22 min | Build and check the complete-case modeling table |
+| 22-35 min | Plot ozone against temperature and write the formula |
+| 35-48 min | Fit with `lm` and interpret slope and intercept |
+| 48-60 min | Add fitted values and residuals with row-alignment checks |
+| 60-70 min | Compare model training RMSE with a mean baseline |
+| 70-75 min | Exit ticket: one supported claim and one unsupported claim |
+
+### State The Modeling Contract First
+
+- **Observation:** one recorded day in New York, May through September 1973.
+- **Response:** ozone concentration in parts per billion.
+- **Explanatory variable:** maximum daily temperature in degrees Fahrenheit.
+- **Question:** how does mean ozone vary with temperature in these observed
+  conditions?
+
+This is an observational relationship, not a controlled intervention.
+
+### Build One Modeling Table
+
+```r
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    ozone_ppb = Ozone,
+    temperature_f = Temp
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f))
+```
+
+Check the accounting:
+
+```r
+stopifnot(
+  nrow(airquality) == 153,
+  nrow(model_data) == 116,
+  !anyNA(model_data)
+)
+```
+
+Thirty-seven days are excluded because ozone is missing. This changes the
+population represented by the fitted model and must remain visible.
+
+### Plot Before Fitting
+
+```r
+ggplot(model_data, aes(temperature_f, ozone_ppb)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+The plot reveals direction, spread, possible curvature, and unusual points that
+a coefficient table alone cannot show.
+
+### Read The Formula As A Claim
+
+```r
+ozone_fit <- lm(
+  ozone_ppb ~ temperature_f,
+  data = model_data
+)
+```
+
+The response is on the left of `~`. The explanatory variable is on the right.
+The fitted equation has the form
+
+\[
+\widehat{\text{ozone}} = b_0 + b_1\,\text{temperature}.
+\]
+
+### Interpret The Temperature Slope
+
+The fitted slope is about 2.43 ppb per degree Fahrenheit.
+
+> Within the observed data, a one-degree Fahrenheit increase in temperature is
+> associated with an estimated 2.43 ppb increase in mean ozone.
+
+“Associated with” respects the observational design. “Causes” is not supported
+by this model alone.
+
+### Treat The Intercept Carefully
+
+The fitted intercept is about -147 ppb, the line's value at 0 F. Observed
+temperatures range from 57 F to 97 F, so 0 F is far outside the data.
+
+The intercept is needed to position the fitted line but is not a meaningful
+ozone estimate for the observed setting.
+
+### Fitted Values And Residuals
+
+For observation \(i\):
+
+\[
+e_i = y_i - \hat{y}_i.
+\]
+
+```r
+model_data <- model_data |>
+  mutate(
+    fitted_ozone_ppb = fitted(ozone_fit),
+    residual_ppb = residuals(ozone_fit)
+  )
+```
+
+A positive residual means observed ozone was higher than the model predicted.
+
+### Compare With A Baseline
+
+The simplest baseline predicts the same training mean for every modeling row.
+
+```r
+baseline_prediction <- mean(model_data$ozone_ppb)
+```
+
+For the same 116 rows:
+
+- mean baseline training RMSE: about 32.8 ppb;
+- temperature-model training RMSE: about 23.5 ppb.
+
+The model fits these training rows better than the baseline. This is not yet
+evidence about new days.
+
+### What R-Squared Says
+
+The model R-squared is about 0.488.
+
+It describes the proportion of response variation accounted for by the fitted
+linear relationship on these modeling rows. It is not the percentage of
+observations predicted correctly, a causal effect, or a validation score.
+
+## Meeting 2: Look For What The Model Missed
+
+**Question:** Does the residual evidence support using the fitted model for the
+intended claim?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Reconstruct observed = fitted + residual |
+| 10-25 min | Build and read a residual-versus-fitted plot |
+| 25-38 min | Flag large standardized residuals and Cook's distances |
+| 38-50 min | Add wind and interpret conditional coefficients |
+| 50-60 min | Compare baseline, simple, and additive training RMSE fairly |
+| 60-70 min | Audit a fluent AI model interpretation |
+| 70-75 min | Exit ticket: diagnostic evidence that changes confidence |
+
+### Residual Plot
+
+```r
+ggplot(model_data, aes(additive_prediction, additive_residual)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point()
+```
+
+Look for curvature, changing vertical spread, clusters, and isolated points.
+A residual mean near zero is an algebraic property of this fitted model, not a
+complete diagnostic.
+
+### Standardized Residuals
+
+```r
+model_data$standardized_residual <-
+  rstandard(additive_fit)
+```
+
+Values beyond approximately -2 or 2 deserve investigation. The threshold is a
+screening rule, not an automatic deletion instruction.
+
+### Cook's Distance
+
+```r
+model_data$cooks_distance <-
+  cooks.distance(additive_fit)
+```
+
+A classroom flag such as \(4/n\) identifies observations whose presence has a
+comparatively strong effect on the fitted coefficients. Inspect the source row,
+context, and measurement validity before deciding what to do.
+
+### Add Wind As A Second Predictor
+
+```r
+additive_fit <- lm(
+  ozone_ppb ~ temperature_f + wind_mph,
+  data = model_data
+)
+```
+
+The temperature coefficient is now interpreted for two days with the same
+wind speed. The wind coefficient is interpreted for two days with the same
+temperature. These are adjusted associations, not isolated causal effects.
+
+### Compare On Identical Rows
+
+Using the same 116 observations:
+
+| Model | Training RMSE (ppb) | R-squared |
+|---|---:|---:|
+| Mean baseline | 32.8 | — |
+| Temperature | 23.5 | 0.488 |
+| Temperature + wind | 21.6 | 0.569 |
+
+The additive model fits the training data better. Added predictors commonly
+improve training fit, so this comparison alone does not establish superior
+future prediction.
+
+### Diagnostic Flags Are Questions
+
+For this additive classroom model:
+
+- four standardized residuals exceed 2 in absolute value;
+- seven observations exceed the classroom Cook's-distance threshold;
+- the most influential row has unusually high ozone relative to its fitted
+  value.
+
+These facts motivate investigation and sensitivity analysis. They do not prove
+that the observations are errors.
+
+## Project 2 Connection
+
+Week 13 provides the language needed to understand the Project 2 model plan:
+
+1. response and predictors;
+2. formula;
+3. coefficient selected for interpretation;
+4. mean-prediction baseline;
+5. training metric;
+6. residual and influence evidence;
+7. conditions under which the planned claim could fail.
+
+The validation file remains withheld until the group records its plan. Training
+fit must not be described as validation performance.
+
+## AI-Aware Task: Fluent Interpretation Is Not Evidence
+
+The generated interpretation in the review script makes five mistakes:
+
+1. converts association into causation;
+2. treats the intercept at 0 F as meaningful despite the observed range;
+3. defines R-squared as a percentage predicted correctly;
+4. calls training error proof of future performance;
+5. claims there are no unusual observations without checking diagnostics.
+
+For every sentence, locate the exact output or design fact that supports,
+qualifies, or contradicts it.
+
+## Survival Checklist
+
+### Commands And Objects To Own
+
+| Pattern | Purpose |
+|---|---|
+| `lm(y ~ x, data = d)` | fit a linear model |
+| `coef(fit)` | extract fitted coefficients |
+| `summary(fit)$r.squared` | extract training R-squared |
+| `predict(fit)` | calculate fitted values on modeling rows |
+| `predict(fit, newdata = d2)` | predict for declared new inputs |
+| `residuals(fit)` | calculate observed minus fitted values |
+| `rstandard(fit)` | scale residuals for screening |
+| `cooks.distance(fit)` | measure influence on the fitted model |
+
+### Before Fitting
+
+- State observation unit, response, predictors, and units.
+- Define the population and time scope.
+- Create one explicit modeling table.
+- Reconcile original and retained row counts.
+- Plot the main relationship.
+- Separate associational from causal questions.
+
+### Before Reporting
+
+- Interpret coefficients in units and within observed ranges.
+- Reconcile fitted values and residuals with model rows.
+- Compare against a declared baseline on identical observations.
+- Label training metrics as training metrics.
+- Inspect residual and influence evidence.
+- Investigate flags before excluding any observation.
+- State what new-data evidence is still missing.
+
+## Exercises
+
+Complete the [Week 13 exercises](week-13-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-13.qmd)
-
+- [Lab 13](../labs/lab-13-model-basics.qmd)
+- [AI interpretation-review lab](../labs/lab-13-ai-model-review.qmd)
+- [week13-simple-linear-model.R](../code/r/week13-simple-linear-model.R)
+- [week13-model-diagnostics.R](../code/r/week13-model-diagnostics.R)
+- [week13-ai-model-interpretation-review.R](../code/r/week13-ai-model-interpretation-review.R)
+- [Project 2](../projects/project-2-modeling.qmd)

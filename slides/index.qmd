@@ -18,6 +18,6 @@ Slides are written in Quarto RevealJS. They are intentionally short: each deck l
 | 10 | [Relational and typed data](week-10.qmd) |
 | 11 | [Readable pipelines and function contracts](week-11.qmd) |
 | 12 | [Vectorized thinking and visible iteration](week-12.qmd) |
-| 13 | [Model basics](week-13.qmd) |
+| 13 | [Model claims and diagnostic evidence](week-13.qmd) |
 | 14 | [Many models](week-14.qmd) |
 | 15 | [Communication and synthesis](week-15.qmd) |

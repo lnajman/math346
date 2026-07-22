@@ -1,0 +1,87 @@
+---
+title: "Lab 13B: AI Model Interpretation Review"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Audit a confident generated regression interpretation for causal language,
+extrapolation, incorrect metric definitions, training/validation confusion,
+and missing diagnostic evidence.
+
+## Scenario
+
+Download and run:
+
+- [week13-ai-model-interpretation-review.R](../code/r/week13-ai-model-interpretation-review.R)
+
+The script fits `Ozone ~ Temp` on the 116 complete modeling rows and prints a
+generated interpretation containing five unsupported or incorrect claims.
+
+## Part A: Claim-Evidence Table
+
+Complete:
+
+| Generated claim | Exact evidence checked | Verdict | Defensible rewrite |
+|---|---|---|---|
+| Temperature causes ozone to rise |  |  |  |
+| Intercept is meaningful at 0 F |  |  |  |
+| R-squared is percent predicted correctly |  |  |  |
+| Training error proves new-day performance |  |  |  |
+| No observations are unusual |  |  |  |
+
+## Part B: Separate Three Kinds Of Evidence
+
+Classify each item as design evidence, fitted-model output, or diagnostic
+evidence:
+
+- observational data collection;
+- coefficient estimate;
+- observed temperature range;
+- R-squared;
+- training RMSE;
+- standardized residuals;
+- Cook's distances;
+- absence of new-data evaluation.
+
+Explain why no single category is enough for a complete model claim.
+
+## Part C: Repair The Interpretation
+
+Write one paragraph that correctly states:
+
+- the modeling rows and variables;
+- the fitted slope with units;
+- the associational limitation;
+- the intercept-range limitation;
+- the meaning of R-squared;
+- the training baseline comparison;
+- the diagnostic flags;
+- the need for new-data evidence.
+
+## Part D: Test The Claims Programmatically
+
+Add checks for the observed temperature range, modeling row count, slope,
+R-squared, baseline and model training RMSE, standardized-residual count, and
+Cook's-distance count.
+
+Explain which claim cannot be validated by a numerical check because it depends
+on study design.
+
+## Part E: Project 2 Transfer
+
+List five generated statements about a Project 2 model that would require the
+same audit. Include one each about causation, a coefficient, training fit,
+validation performance, and an influential observation.
+
+## Deliverable
+
+Submit the claim-evidence table, repaired interpretation, programmatic checks,
+and Project 2 transfer list.
+
+## Exit Question
+
+Complete this sentence:
+
+> A regression interpretation is defensible only when each sentence ...

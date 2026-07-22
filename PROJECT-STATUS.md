@@ -57,10 +57,15 @@ typed iteration, preallocated loops, repeated workflows with one status row per
 request, and an AI batch audit that exposes silently dropped failures and type
 coercion. Its three R scripts pass the complete course validation harness.
 Project 2 is introduced through its existing public and Blackboard workflow;
-the exact due date remains deferred. The next content milestone is Week 13
-model basics and diagnostics.
+the exact due date remains deferred. Week 13 has now been expanded around an
+explicit complete-case modeling table, contextual regression formulas,
+coefficient interpretation, baseline training comparisons, residual and
+influence diagnostics, an additive model, and an AI interpretation audit. Its
+three R scripts pass the complete course validation harness. Quiz 4 remains
+visible as the working Week 13 marker without resolving its exact format. The
+next content milestone is Week 14 many models and grouped workflows.
 
-Weeks 13-15 remain outlines. They should not yet be described as complete course
+Weeks 14-15 remain outlines. They should not yet be described as complete course
 materials.
 
 ## Confirmed Progress
@@ -122,8 +127,12 @@ materials.
   a main lab, an AI batch-review lab, exercises, and three checked R scripts. It
   is developed and ready for review, but has not yet been designated a
   validated prototype.
-- Weeks 13-15 have short week pages and slide outlines, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-12.
+- Week 13 now has a two-meeting model-claims-and-diagnostics plan, full slides,
+  a main lab, an AI interpretation-review lab, exercises, and three checked R
+  scripts. It is developed and ready for review, but has not yet been
+  designated a validated prototype.
+- Weeks 14-15 have short week pages and slide outlines, but very little of the
+  supporting lab, exercise, and code material available for Weeks 1-13.
 
 ## Established Decisions and Constraints
 
@@ -189,7 +198,8 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 10 | `weeks/week-10.qmd`; `slides/week-10.qmd`; two labs; exercises; two supplied CSVs; three checked R scripts | Developed; ready for review |
 | Week 11 | `weeks/week-11.qmd`; `slides/week-11.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 12 | `weeks/week-12.qmd`; `slides/week-12.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
-| Weeks 13-15 | week and slide pages | Outline |
+| Week 13 | `weeks/week-13.qmd`; `slides/week-13.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
+| Weeks 14-15 | week and slide pages | Outline |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
 
@@ -197,7 +207,7 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 13 and then the remaining R sequence using the validated weekly
+2. Expand Week 14 and then the remaining R sequence using the validated weekly
    pattern.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
@@ -295,3 +305,10 @@ milestone:
   audit for silently dropped failures and type coercion. Project 2 is assigned
   through the existing two-stage workflow; its due date remains deferred. The
   complete R validation harness passed.
+- **2026-07-22:** Week 13 was expanded around complete-case row accounting,
+  regression formulas, slope and intercept interpretation, mean-baseline
+  comparisons, residual and influence diagnostics, an additive model, two
+  labs, exercises, three R scripts, and an AI audit for causal language,
+  extrapolation, R-squared misuse, and training/validation confusion. Quiz 4
+  remains the working Week 13 marker with its details deferred. The complete R
+  validation harness passed.

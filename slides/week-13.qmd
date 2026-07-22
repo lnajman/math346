@@ -1,34 +1,290 @@
 ---
-title: "Week 13: Model Basics"
+title: "Week 13: Model Claims And Diagnostic Evidence"
 format:
   revealjs:
     theme: simple
     slide-number: true
     footer: "MATH 346"
+execute:
+  enabled: false
 ---
 
 ## Today's Question
 
-What does a statistical model claim?
+What does a fitted regression model claim, and what evidence would make that
+claim weak?
 
-## Linear Model
+## Week 13 Plan
 
-A simple linear model describes an average relationship between a response and an explanatory variable.
+- Meeting 1: formula, coefficients, fitted values, baseline
+- Meeting 2: residuals, influence, additive model
+- AI interpretation audit
+
+## Working Assessment Marker
+
+Quiz 4 remains in Week 13.
+
+Its exact date, duration, delivery, and format are still open.
+
+## Modeling Contract
+
+- Observation: one recorded day
+- Response: ozone concentration (ppb)
+- Predictor: temperature (degrees F)
+- Scope: observed New York summer conditions
+
+## Observational Question
+
+How does mean ozone vary with temperature in the observed data?
+
+This is not a controlled intervention.
+
+## Build The Modeling Table
 
 ```r
-fit <- lm(mpg ~ wt, data = mtcars)
-summary(fit)
+model_data <- airquality |>
+  transmute(
+    ozone_ppb = Ozone,
+    temperature_f = Temp
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f))
 ```
 
-## Interpretation
+## Account For Exclusions
 
-Coefficients need context, units, and uncertainty.
+```r
+stopifnot(
+  nrow(airquality) == 153,
+  nrow(model_data) == 116,
+  !anyNA(model_data)
+)
+```
 
-## Diagnostics
+## Plot Before Fitting
 
-Residuals help reveal structure the model did not explain.
+```r
+ggplot(model_data, aes(temperature_f, ozone_ppb)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
 
-## AI Check
+## Read The Formula
 
-Generated model interpretations often sound confident. Check assumptions and supported claims.
+```r
+ozone_fit <- lm(
+  ozone_ppb ~ temperature_f,
+  data = model_data
+)
+```
 
+Response left; explanatory variable right.
+
+## Fitted Equation
+
+\[
+\widehat{\text{ozone}}
+= -147.0 + 2.43\,\text{temperature}
+\]
+
+Units and observed range determine interpretation.
+
+## Interpret The Slope
+
+Within the observed data, one additional degree Fahrenheit is associated with
+an estimated 2.43 ppb increase in mean ozone.
+
+## Do Not Claim Causation
+
+“Associated with” is supported by the fitted observational relationship.
+
+“Causes” requires a stronger design and assumptions.
+
+## Intercept Warning
+
+- Intercept: fitted ozone at 0 F
+- Observed temperatures: 57 F to 97 F
+- 0 F is far outside the data
+- Algebraically necessary; not contextually meaningful
+
+## Fitted Plus Residual
+
+\[
+y_i = \hat{y}_i + e_i
+\]
+
+A positive residual means the observed response exceeds the fitted value.
+
+## Preserve Row Alignment
+
+```r
+model_data <- model_data |>
+  mutate(
+    fitted = fitted(ozone_fit),
+    residual = residuals(ozone_fit)
+  )
+```
+
+## Check The Alignment
+
+```r
+stopifnot(
+  length(fitted(ozone_fit)) == nrow(model_data),
+  length(residuals(ozone_fit)) == nrow(model_data)
+)
+```
+
+## Mean Baseline
+
+```r
+baseline <- mean(model_data$ozone_ppb)
+```
+
+Predict the same training mean for every modeling row.
+
+## Fair Training Comparison
+
+| Predictor | Training RMSE |
+|---|---:|
+| Mean baseline | 32.8 ppb |
+| Temperature model | 23.5 ppb |
+
+Same response, rows, and metric.
+
+## Training Is Not Validation
+
+The model was fitted and evaluated on the same 116 observations.
+
+Lower training error does not prove performance on new days.
+
+## R-Squared
+
+About 0.488 of the response variation is accounted for by the fitted linear
+relationship on these modeling rows.
+
+## R-Squared Is Not
+
+- percent of observations predicted correctly
+- causal strength
+- validation performance
+- proof that assumptions hold
+
+## Meeting 2 Question
+
+What remains in the data after the fitted model has made its prediction?
+
+## Residual Plot
+
+```r
+ggplot(model_data, aes(prediction, residual)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point()
+```
+
+## Look For Structure
+
+- curvature
+- changing vertical spread
+- clusters
+- isolated points
+
+A residual mean near zero is not enough.
+
+## Standardized Residuals
+
+```r
+model_data$standardized_residual <-
+  rstandard(additive_fit)
+```
+
+Values beyond approximately -2 or 2 invite investigation.
+
+## Cook's Distance
+
+```r
+model_data$cooks_distance <-
+  cooks.distance(additive_fit)
+```
+
+The classroom threshold `4 / n` is a flag, not a deletion rule.
+
+## Diagnostic Flags Ask Questions
+
+- Is the source observation correct?
+- Is the context unusual but real?
+- Does the conclusion depend on it?
+- Would a different model structure help?
+
+## Add Wind
+
+```r
+additive_fit <- lm(
+  ozone_ppb ~ temperature_f + wind_mph,
+  data = model_data
+)
+```
+
+## Conditional Coefficients
+
+- Temperature: compare days at the same wind speed.
+- Wind: compare days at the same temperature.
+
+These remain adjusted associations.
+
+## Same-Row Comparison
+
+| Model | Training RMSE | R-squared |
+|---|---:|---:|
+| Mean baseline | 32.8 | — |
+| Temperature | 23.5 | 0.488 |
+| Temperature + wind | 21.6 | 0.569 |
+
+## Do Not Declare A Winner Yet
+
+Adding predictors commonly improves training fit.
+
+New-data evidence is still missing.
+
+## AI Claim Audit
+
+- Causal language from association?
+- Intercept outside the data range?
+- R-squared misdefined?
+- Training called validation?
+- Diagnostics ignored?
+
+## Project 2 Connection
+
+- response and predictors
+- frozen formula
+- coefficient interpretation
+- mean baseline
+- residual evidence
+- later validation metric
+
+## Before Fitting
+
+- State observation and variables.
+- Define scope and units.
+- Reconcile modeling rows.
+- Plot the relationship.
+- State whether the question is causal.
+
+## Before Reporting
+
+- Interpret within observed ranges.
+- Compare with a baseline fairly.
+- Label training metrics.
+- Inspect diagnostics.
+- Investigate before deleting.
+- State missing new-data evidence.
+
+## Week 14 Boundary
+
+Week 13 fits and diagnoses declared models.
+
+Week 14 repeats modeling workflows across groups or formulas.
+
+## Exit Ticket
+
+Write one supported model claim, one unsupported claim, and one diagnostic that
+would change your confidence.

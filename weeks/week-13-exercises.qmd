@@ -1,0 +1,100 @@
+---
+title: "Week 13 Exercises"
+execute:
+  enabled: false
+---
+
+Use R's built-in `airquality` data and the supplied Week 13 scripts.
+
+## Exercise 1: State The Modeling Contract
+
+For the model `Ozone ~ Temp`, state the observation unit, response, explanatory
+variable, units, population, time scope, and whether the intended question is
+associational or causal.
+
+## Exercise 2: Reconcile Modeling Rows
+
+Create the complete-case table for `Ozone`, `Temp`, and `Wind`. Report original,
+retained, and excluded rows. Identify which required variable causes the
+exclusions.
+
+Explain why fitting first and discovering the row count later is unsafe.
+
+## Exercise 3: Read Formulas
+
+For each formula, identify response, explanatory variables, and the verbal
+claim being modeled:
+
+1. `Ozone ~ Temp`;
+2. `Ozone ~ Wind`;
+3. `Ozone ~ Temp + Wind`;
+4. `Temp ~ Ozone`.
+
+Explain why reversing a formula changes the question.
+
+## Exercise 4: Interpret Coefficients
+
+Fit `Ozone ~ Temp`. Write a contextual interpretation of the slope using ppb
+and degrees Fahrenheit. Then explain why the intercept at 0 F should not be
+presented as a realistic ozone prediction.
+
+## Exercise 5: Reconstruct Observations
+
+Add fitted values and residuals to the modeling table. Check that
+`observed = fitted + residual` for every row within numerical tolerance.
+
+Find the largest positive and largest negative residual and interpret each in
+one sentence.
+
+## Exercise 6: Compare With A Baseline
+
+Calculate training RMSE for the mean baseline and the temperature model on the
+same 116 rows. State exactly what the comparison supports and what it does not
+say about a future day.
+
+## Exercise 7: Explain R-Squared
+
+Write one correct explanation of the fitted R-squared and repair each claim:
+
+1. “About 49% of days are predicted correctly.”
+2. “Temperature causes 49% of ozone.”
+3. “The model will be 49% accurate on new data.”
+
+## Exercise 8: Read Diagnostics
+
+For the additive temperature-plus-wind model:
+
+1. count standardized residuals beyond -2 or 2;
+2. count Cook's distances exceeding `4 / n`;
+3. inspect the most influential source row;
+4. state two possible explanations other than data-entry error;
+5. explain why the row should not be deleted automatically.
+
+## Exercise 9: Compare Models Fairly
+
+Fit the mean baseline, temperature model, and temperature-plus-wind model on
+identical rows. Compare training RMSE and R-squared.
+
+Explain why the additive model's lower training RMSE is useful evidence but not
+enough to declare it the better predictor for new observations.
+
+## Exercise 10: Audit Generated Interpretation
+
+Run `week13-ai-model-interpretation-review.R`. For each generated claim, cite
+the design fact, observed range, fitted output, or diagnostic that contradicts
+or qualifies it. Rewrite the complete interpretation in defensible language.
+
+## Project 2 Connection
+
+In your group's model-plan section, locate the fields for response, predictors,
+formula, principal coefficient, baseline, validation metric, and expected
+failure condition. Explain how each connects to a Week 13 check.
+
+Do not use withheld validation outcomes while choosing or revising the plan.
+
+## Exit Ticket
+
+In 4-6 sentences, answer:
+
+> Why can a model have a lower training RMSE and a higher R-squared while still
+> requiring diagnostic and new-data evidence?

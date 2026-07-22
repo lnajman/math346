@@ -1,0 +1,101 @@
+---
+title: "Lab 13: Model Claims And Diagnostic Evidence"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Fit, interpret, and diagnose a small regression model while keeping row
+accounting, units, baseline comparison, and evidential limits explicit.
+
+## Setup
+
+Create:
+
+```text
+week13/
+  week13-simple-linear-model.R
+  week13-model-diagnostics.R
+```
+
+Download:
+
+- [week13-simple-linear-model.R](../code/r/week13-simple-linear-model.R)
+- [week13-model-diagnostics.R](../code/r/week13-model-diagnostics.R)
+
+The scripts use R's built-in `airquality` data.
+
+## Part A: Write The Contract Before Code
+
+Record the observation unit, response, predictor, units, population, time
+scope, and associational question for `Ozone ~ Temp`.
+
+## Part B: Build And Check Model Data
+
+Create a table containing the original row identifier, ozone, temperature, and
+wind. Keep rows complete for all three variables so later models use identical
+observations.
+
+Check original, retained, and excluded row counts and confirm the retained key
+is unique.
+
+## Part C: Plot And Fit
+
+Plot ozone against temperature, then fit the simple model. Extract the two
+coefficients and R-squared without copying them manually from console output.
+
+Write a slope interpretation with units and associational language. Explain
+why the intercept is outside the useful observed range.
+
+## Part D: Preserve Row Alignment
+
+Add fitted values and residuals to the modeling table. Check lengths, missing
+values, and the identity `observed = fitted + residual` within tolerance.
+
+Inspect the rows with the largest positive and negative residuals.
+
+## Part E: Compare With A Baseline
+
+Write a tested RMSE function. Compare the mean baseline and simple model on the
+same observations. Label both values as training RMSE.
+
+## Part F: Add Wind
+
+Fit `Ozone ~ Temp + Wind`. Interpret the two slopes conditionally and compare
+its training RMSE with the baseline and simple model.
+
+Explain why the comparison is fair and why it is still not validation.
+
+## Part G: Diagnose
+
+Create a residual-versus-fitted plot. Add standardized residuals and Cook's
+distance. Apply the classroom flags `abs(standardized residual) > 2` and
+`Cook's distance > 4 / n`.
+
+Inspect, but do not automatically remove, the most influential observation.
+Write two follow-up questions suggested by the diagnostics.
+
+## Part H: Project 2 Connection
+
+Map the lab objects to the Project 2 model plan: response, predictors, formula,
+principal coefficient, baseline, metric, and failure condition. State which
+evidence must wait for the withheld validation file.
+
+## Deliverable
+
+Submit:
+
+- the modeling contract and row-accounting table;
+- relationship and residual plots;
+- fitted coefficients with contextual interpretations;
+- baseline and two model training metrics;
+- a diagnostic flag table linked to source row identifiers;
+- a supported claim, limitation, and next-data need;
+- the Project 2 mapping notes.
+
+## AI Use
+
+If an LLM interprets the model, annotate every sentence with the output or
+design fact that supports it. Mark causal, extrapolative, and validation claims
+that the fitted training model cannot support.

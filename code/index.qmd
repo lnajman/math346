@@ -52,6 +52,9 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 - [week12-vectorized-iteration.R](r/week12-vectorized-iteration.R)
 - [week12-repeated-workflow.R](r/week12-repeated-workflow.R)
 - [week12-ai-batch-review.R](r/week12-ai-batch-review.R)
+- [week13-simple-linear-model.R](r/week13-simple-linear-model.R)
+- [week13-model-diagnostics.R](r/week13-model-diagnostics.R)
+- [week13-ai-model-interpretation-review.R](r/week13-ai-model-interpretation-review.R)
 
 ## Project Starter Templates
 

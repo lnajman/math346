@@ -31,6 +31,8 @@ Labs are designed as studio activities. They should be completed with MATLAB or 
 | [Lab 11B](lab-11-ai-refactor-review.qmd) | AI-generated refactor behavior review | Ready |
 | [Lab 12](lab-12-vectorized-iteration.qmd) | Vectorized thinking, typed iteration, and visible failures | Ready |
 | [Lab 12B](lab-12-ai-batch-review.qmd) | AI-generated batch automation review | Ready |
+| [Lab 13](lab-13-model-basics.qmd) | Regression claims, baseline comparison, and diagnostics | Ready |
+| [Lab 13B](lab-13-ai-model-review.qmd) | AI-generated regression interpretation review | Ready |
 
 ## Lab Routine
 
