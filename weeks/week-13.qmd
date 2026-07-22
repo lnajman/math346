@@ -300,8 +300,10 @@ Week 13 provides the language needed to understand the Project 2 model plan:
 6. residual and influence evidence;
 7. conditions under which the planned claim could fail.
 
-The validation file remains withheld until the group records its plan. Training
-fit must not be described as validation performance.
+The frozen-plan checkpoint follows the Week 13 model instruction. Validation
+files remain withheld until that gate closes and are then released in a common
+Week 14 window. Training fit must not be described as validation performance.
+See the [project milestone map](../projects/project-milestones.qmd).
 
 ## AI-Aware Task: Fluent Interpretation Is Not Evidence
 
@@ -366,3 +368,4 @@ work.
 - [week13-model-diagnostics.R](../code/r/week13-model-diagnostics.R)
 - [week13-ai-model-interpretation-review.R](../code/r/week13-ai-model-interpretation-review.R)
 - [Project 2](../projects/project-2-modeling.qmd)
+- [Project milestones](../projects/project-milestones.qmd)

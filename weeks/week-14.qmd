@@ -326,6 +326,12 @@ Week 14 reinforces Project 2 habits:
 The monthly many-model analysis is a teaching example, not an additional
 Project 2 requirement.
 
+The group-specific validation ZIP is released in a common Week 14 window after
+the frozen-plan gate. Students apply the recorded formula, preserve one
+prediction per validation row, and report deviations rather than silently
+rewriting the plan. See the
+[project milestone map](../projects/project-milestones.qmd).
+
 ## Survival Checklist
 
 ### Commands And Patterns To Own
@@ -374,3 +380,4 @@ work.
 - [week14-grouped-sensitivity.R](../code/r/week14-grouped-sensitivity.R)
 - [week14-ai-model-ranking-review.R](../code/r/week14-ai-model-ranking-review.R)
 - [Project 2](../projects/project-2-modeling.qmd)
+- [Project milestones](../projects/project-milestones.qmd)

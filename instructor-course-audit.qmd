@@ -15,7 +15,7 @@ The audit's principal workload concern has now been addressed through an
 approved [student workload guide](weeks/workload-guide.qmd): one guided main
 lab workflow, 4-6 core exercises, selected AI audits, and explicit guided and
 extension material. The course is **not yet ready to freeze its calendar**
-because assessment displacement and project milestones remain unresolved.
+because assessment displacement and exact calendar dates remain unresolved.
 :::
 
 Audit completed: **22 July 2026**
@@ -48,7 +48,7 @@ audit; the remaining recommendations are proposals, not approved policy.
 | AI integration | Activities progress from code defects to question drift, statistical claims, automation, and communication | Strong but must not become a second weekly assignment |
 | Workload clarity | The full resource bank is now separated into core, guided, and extension work | Resolved through the [student workload guide](weeks/workload-guide.qmd) |
 | Assessment-week feasibility | Only Quiz 1 has time explicitly reserved; Weeks 6, 8, 9, and 13 retain full plans beside assessments | Calendar-critical |
-| Project sequencing | Project tasks align well with course content, but their visible assignment windows are compressed | Needs milestone planning |
+| Project sequencing | Preview, group release, checkpoint, validation, and completion stages now follow prerequisite instruction | Resolved through the [project milestone map](projects/project-milestones.qmd); exact dates remain open |
 | Software readiness | Course code and site are healthy; student-facing required versus optional software is not fully distinguished | Needs clarification |
 | Navigation and publication | Weekly pages, exercises, labs, slides, code, and projects are linked and publish correctly | Strong |
 
@@ -151,9 +151,10 @@ ordinary week, excluding separately announced project and examination work.
   time exists.
 - **Week 5** is a coherent symbolic capstone, but student machines must have
   the required MATLAB symbolic capability before the week begins.
-- Project 1 is first made visible in Week 5 even though most required techniques
-  are learned in Weeks 1-4. An earlier preview would distribute reading and
-  group organization without fixing the final due date.
+- Project 1 previously became visible only in Week 5 even though most required
+  techniques are learned in Weeks 1-4. The approved milestone map now previews
+  it in Week 3 and releases the group package in Week 4 without fixing the final
+  due date.
 
 ### Weeks 6-10: R transition and data
 
@@ -197,15 +198,16 @@ The working placements remain internally consistent with the syllabus: quizzes
 in Weeks 3, 6, 9, and 13; the semester examination in Week 8; Project 2 around
 Week 15. However, only Week 3 reserves quiz time in its meeting plan.
 
-Before final workload approval, the course needs one calendar table recording:
+Before final calendar approval, the course needs one table recording:
 
 - whether each quiz is in class, in Blackboard outside class, or completed in
   another scheduled period;
 - how many teaching minutes it displaces;
 - whether the Week 8 examination replaces one or both meetings;
-- the Project 1 preview, release, workshop, and due milestones;
-- the Project 2 training release, frozen-plan deadline, validation release, and
-  completion milestones;
+- exact dates for the approved Project 1 preview, release, readiness, and
+  completion gates;
+- exact dates for the approved Project 2 training release, frozen-plan,
+  validation release, and completion gates;
 - where cumulative final-examination review occurs.
 
 The assessment formats may remain deferred, but the amount of displaced
@@ -217,21 +219,26 @@ Both projects are unusually well scaffolded: students receive data, starters,
 result schemas, Word templates, and fixed checks. That makes ambitious work
 possible for groups with limited programming experience.
 
-The remaining concern is timing rather than architecture:
+The audit originally identified timing rather than architecture as the
+remaining concern:
 
-- Project 1 has 12 visible starter `TODO` markers and is introduced only in
-  Week 5.
-- Project 2 has 14 visible starter `TODO` markers, is formally assigned in Week
-  12, depends on modeling taught in Weeks 13-14, and completes around Week 15.
+- Project 1 has 12 visible starter `TODO` markers and previously became visible
+  only in Week 5.
+- Project 2 has 14 visible starter `TODO` markers, depends on modeling taught in
+  Weeks 13-14, and completes around Week 15.
 - Each project is worth 10%, so required report length, figure count, and
   expected group effort should be bounded explicitly.
 
-A possible nonbinding milestone pattern is:
+The recommended pattern has now been approved:
 
 | Project | Earlier orientation | Technical milestone | Completion window |
 |---|---|---|---|
-| Project 1 | Preview the question and files in Week 3 | Release/workshop after fitting methods are known | Set later around the MATLAB-to-R transition |
-| Project 2 | Preview data and filenames in Weeks 9-10 | Assign in Week 12; freeze the model plan after Week 13; release validation after the freeze | Complete around Week 15 |
+| Project 1 | Preview in Week 3 | Group package in Week 4; readiness checkpoint in Week 5 | Opens after Week 5; exact deadline set later with Quiz 2 |
+| Project 2 | Preview in Weeks 9-10 | Training release in Week 12; frozen plan after Week 13; common validation release in Week 14 | Week 15; exact deadline set later |
+
+The [student-facing milestone map](projects/project-milestones.qmd) and
+instructor Blackboard release map make the order explicit without deciding
+calendar dates or assessment formats.
 
 ## AI Activity Coherence
 
@@ -308,8 +315,8 @@ rechecked shortly before the teaching term.
    materials are now identified in the student workload guide.
 2. **Resolve assessment displacement:** especially Week 8 and quizzes in Weeks
    6, 9, and 13.
-3. **Set project milestones:** preview, release, frozen plan, validation, and
-   completion—not only final due dates.
+3. **Completed: set project milestones:** preview, release, frozen plan,
+   validation, and completion are now fixed relative to course weeks.
 4. **Publish the student software matrix** and run a live lab-machine check.
 5. **Add glossary and recovery checkpoints** at the three phase boundaries.
 6. **Build an assessment blueprint** after quiz and examination formats are
@@ -321,5 +328,6 @@ rechecked shortly before the teaching term.
 
 This audit recommends no deletion of the resource bank and does not change
 approved assessment policy. Its workload recommendation has been implemented;
-the assessment calendar, project milestones, software matrix, and recovery
-supports remain to be resolved.
+its project milestone recommendation has also been implemented. The assessment
+calendar, exact project dates, software matrix, and recovery supports remain to
+be resolved.

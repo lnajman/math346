@@ -17,7 +17,25 @@ Students move from the numerical relationship studied in MATLAB to a statistical
 analysis that includes additional operating conditions.
 
 The training and validation data remain group-specific. The validation file is
-withheld until the group has recorded its model plan.
+withheld until the group has recorded its model plan and the common Week 14
+release gate opens.
+
+## Milestones
+
+- **Weeks 9-10 preview:** inspect the question, template, file contract, and
+  training/validation separation; no project analysis is due.
+- **Week 12 training release:** download the group training ZIP and begin
+  code-based cleaning, summaries, and exploratory figures.
+- **After Week 13 frozen-plan gate:** record the required model choices on
+  Blackboard before seeing validation outcomes.
+- **Week 14 validation release:** receive the group validation ZIP in a common
+  release window and apply the frozen plan.
+- **Week 15 completion window:** rehearse a clean run, reconcile all artifacts,
+  and submit one group package. The exact deadline is announced later.
+
+The complete [project milestone map](project-milestones.qmd) defines the
+Blackboard gates. Students are not expected to choose the final model before
+the Week 13 modeling instruction.
 
 ## Files Provided
 
@@ -32,7 +50,8 @@ project2-report-template.docx
 data-dictionary.pdf
 ```
 
-After the model plan is frozen, the team receives:
+At the common Week 14 release gate, after the model plan is frozen, the team
+receives:
 
 ```text
 group-01-r-validation.csv
@@ -119,6 +138,9 @@ group-01-project2.R
 group-01-project2-results.csv
 group-01-validation-predictions.csv
 ```
+
+Submit these files together through the Blackboard Group Assignment. One group
+member uploads the package and all group members verify the Blackboard receipt.
 
 The R script must run from beginning to end with the assigned training and
 validation datasets. It must produce the figures, results, and predictions used

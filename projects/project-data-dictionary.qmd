@@ -55,8 +55,9 @@ Each validation file contains 65 complete daily records from 28 October through
 31 December 2025. It uses the same variables and units as the training file and
 contains one row for every required prediction.
 
-The validation file is released only after the group has submitted its frozen
-model plan. Students apply the recorded model to these observations, calculate
+The validation file is released in the common Week 14 window only after the
+group has submitted its frozen model plan. Students apply the recorded model
+to these observations, calculate
 the required validation metrics, and save one prediction per
 `observation_id`.
 

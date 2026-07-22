@@ -6,7 +6,7 @@ execute:
 
 ## Official Topic
 
-Vectors and iteration. Project 2 assigned.
+Vectors and iteration. Project 2 training package released.
 
 ## Problem Focus
 
@@ -57,9 +57,9 @@ week12/
   week12-repeated-workflow.R
 ```
 
-Project 2 is also assigned this week. Each group later receives its own
+Project 2 enters its training stage this week. Each group receives its own
 training package through Blackboard; the public project page explains the
-common task and submission contract.
+common task and submission contract. Validation data remain closed.
 
 ## Meeting 1: Choose The Right Kind Of Repetition
 
@@ -296,7 +296,8 @@ students should:
 6. keep the validation stage closed until the model plan is frozen.
 
 The exact due date remains deferred. The training package, group allocation,
-and later validation release are managed through Blackboard.
+frozen-plan gate, and later validation release are managed through Blackboard
+according to the [project milestone map](../projects/project-milestones.qmd).
 
 ## AI-Aware Task: Automation Must Not Erase Evidence
 
@@ -359,3 +360,4 @@ work; Project 2 has separate instructions.
 - [week12-repeated-workflow.R](../code/r/week12-repeated-workflow.R)
 - [week12-ai-batch-review.R](../code/r/week12-ai-batch-review.R)
 - [Project 2](../projects/project-2-modeling.qmd)
+- [Project milestones](../projects/project-milestones.qmd)

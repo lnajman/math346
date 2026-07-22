@@ -19,6 +19,22 @@ between outdoor temperature and daily heating-energy consumption.
 The problem is realistic, but the data are generated for this course. Different
 teams will obtain different coefficients, prediction errors, and conclusions.
 
+## Milestones
+
+- **Week 3 preview:** inspect the question, template, and file contract; no
+  project analysis is due.
+- **Week 4 release:** download the assigned group ZIP from Blackboard and check
+  that the group identifier and files are correct.
+- **Week 5 readiness checkpoint:** demonstrate a working data path, the tested
+  RMSE function, and at least one reproducible fit or figure.
+- **After Week 5 completion window:** finish, clean-run, reconcile, and submit
+  one group package. The exact deadline is announced later in coordination
+  with Quiz 2.
+
+The complete [project milestone map](project-milestones.qmd) distinguishes each
+Blackboard release and checkpoint. No new Project 1 technical requirement is
+introduced after Week 5.
+
 ## Files Provided
 
 Each team receives files following this pattern:
@@ -110,6 +126,9 @@ group_01_project1.m
 model_rmse.m
 group-01-project1-results.csv
 ```
+
+Submit these files together through the Blackboard Group Assignment. One group
+member uploads the package and all group members verify the Blackboard receipt.
 
 The MATLAB script must run from beginning to end using the assigned dataset. It
 must generate the figures and results reported in the PDF.

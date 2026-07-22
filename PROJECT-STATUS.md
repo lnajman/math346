@@ -85,8 +85,8 @@ recommendation is now approved and published: one guided main-lab workflow,
 4-6 core exercises per week, selected AI audits, explicit guided and extension
 material, and approximately 90-120 minutes of routine website-based practice
 outside class in an ordinary week. The remaining barriers to freezing the
-student experience are assessment displacement, project milestones, software
-requirements, and recovery support.
+student experience are assessment displacement, exact calendar placement of
+the approved project gates, software requirements, and recovery support.
 
 ## Confirmed Progress
 
@@ -165,6 +165,9 @@ requirements, and recovery support.
 - The student workload guide resolves the first audit finding without deleting
   the resource bank. Every exercise set now identifies core, guided, and where
   useful extension work; main labs and AI labs have distinct workload roles.
+- The public project milestone map now fixes the preview, package release,
+  readiness or frozen-plan gate, validation release, and completion sequence
+  for both projects without fixing calendar dates.
 
 ## Established Decisions and Constraints
 
@@ -207,6 +210,17 @@ requirements, and recovery support.
   minutes in an ordinary week, excluding separately announced project and
   quiz/examination preparation. Assessment weeks receive a reduced selection
   when an assessment displaces class time.
+- Project 1 is previewed in Week 3, its group MATLAB package is released in Week
+  4, and its readiness checkpoint occurs in Week 5. Its completion window opens
+  after Week 5; the exact deadline remains coordinated with Quiz 2.
+- Project 2 is previewed in Weeks 9-10, its group training package is released
+  in Week 12, its model plan is frozen after Week 13, its validation package is
+  released in a common Week 14 window, and its completion window is Week 15.
+  Exact Blackboard closing times remain deferred.
+- Project 2 validation data are never included in the training package and are
+  not released before the common frozen-plan gate. Later changes are recorded
+  as deviations or sensitivity analysis rather than silently replacing the
+  frozen plan.
 
 ## Open Decisions
 
@@ -217,10 +231,10 @@ These ideas have been discussed but are **not yet approved course policy**:
 2. The exact timing and balance of code reading, implementation, and validation
    in the Week 8 semester examination (midterm), including whether it replaces
    one or both normal teaching meetings.
-3. The exact due date for the MATLAB project and its relationship to the quiz
-   schedule.
-4. The Project 2 training release, frozen-plan deadline, validation release,
-   and completion milestones around Weeks 12-15.
+3. The exact due date for the MATLAB project within its approved post-Week-5
+   completion window and its relationship to Quiz 2.
+4. The exact Blackboard opening and closing times for the approved Project 2
+   training, frozen-plan, validation, and completion gates.
 5. Which software is required on student machines, provided in laboratories,
    used only with a scaffold, or optional.
 
@@ -238,6 +252,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Colleague feedback | Responses are external to the repository | Requested; synthesis pending |
 | Course-wide audit | `instructor-course-audit.qmd` | Completed; workload recommendation implemented, other recommendations remain open |
 | Student workload contract | `weeks/workload-guide.qmd`; 15 exercise pages; `labs/index.qmd` | Approved and published |
+| Project milestones | `projects/project-milestones.qmd`; both project pages; weekly markers; instructor implementation | Approved week-relative sequence; exact dates deferred |
 | Weeks 1-4 | `weeks/`, `slides/`, `labs/`, `code/matlab/` | Validated prototype |
 | Week 5 | `weeks/week-05.qmd`; `slides/week-05.qmd`; two labs; exercises; four checked MATLAB scripts | Developed; ready for review |
 | Week 6 | `weeks/week-06.qmd`; `slides/week-06.qmd`; two labs; exercises; three checked R scripts; checked report scaffold | Developed; ready for review |
@@ -259,8 +274,8 @@ agreed core project architecture is incorporated into the syllabus.
    the repository.
 2. Reconcile quiz and semester-examination delivery with the teaching minutes
    available in Weeks 3, 6, 8, 9, and 13.
-3. Set Project 1 and Project 2 preview, release, workshop, frozen-plan,
-   validation, and completion milestones without prematurely fixing dates.
+3. Place the approved project gates on exact Blackboard dates only after the
+   assessment-time conflicts are resolved.
 4. Publish a student software-requirement matrix and perform a short setup check
    on lab machines and in the live Blackboard course.
 5. Add a compact glossary and phase-recovery checkpoints using the approved
@@ -386,3 +401,9 @@ milestone:
   week practice target, and proportional reduction in assessment weeks. All 15
   exercise sets and the lab index expose these roles while preserving the full
   resource bank.
+- **2026-07-22:** A week-relative project milestone map was approved and
+  published. Project 1 now moves from Week 3 preview to Week 4 package release,
+  Week 5 readiness, and a post-Week-5 completion window. Project 2 moves from
+  Weeks 9-10 preview to Week 12 training release, a post-Week-13 frozen-plan
+  gate, common Week 14 validation release, and Week 15 completion. Exact dates
+  remain deferred.

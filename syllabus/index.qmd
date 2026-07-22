@@ -90,6 +90,18 @@ MATLAB block.
 **Project 2:** R data analysis, modeling, and validation using richer training
 data and a withheld validation file, due around Week 15.
 
+The project stages are fixed relative to the teaching sequence:
+
+| Project | Preview | Group package | Checkpoint and later release | Completion window |
+|---|---|---|---|---|
+| Project 1 | Week 3 | MATLAB package in Week 4 | Readiness check in Week 5 | After Week 5; exact date announced later |
+| Project 2 | Weeks 9-10 | R training package in Week 12 | Frozen plan after Week 13; validation in Week 14 | Week 15; exact date announced later |
+
+The [project milestone map](../projects/project-milestones.qmd) explains what is
+released through Blackboard and what students do at each gate. These
+week-relative stages do not settle the deferred quiz, midterm, or calendar
+details.
+
 Students submit a PDF report together with executable source code and required
 machine-readable results. They are not required to find or collect a dataset,
 write Quarto, or write HTML. All synthetic data must be identified as synthetic,

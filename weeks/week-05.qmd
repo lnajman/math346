@@ -4,7 +4,7 @@ title: "Week 5: Symbolic Mathematics and Verification"
 
 ## Official Topic
 
-MATLAB symbolic mathematics. Project 1 introduced.
+MATLAB symbolic mathematics. Project 1 readiness checkpoint.
 
 ::: {.callout-note}
 The Week 5 scripts require Symbolic Math Toolbox. Before the lab, run
@@ -229,6 +229,16 @@ repair without relying on AI.
 - Compare with a plot, numerical solver, or sampled values.
 - Check units and boundary behavior in an applied problem.
 - Explain whether the exact form is actually useful for the original question.
+
+## Project 1 Readiness Checkpoint
+
+Before moving into the completion window, each group checks that its main
+script finds the assigned data, `model_rmse.m` passes a hand-checkable test, and
+at least one fitted relationship or figure can be reproduced. This is a guided
+progress check, not a second report or separate graded submission. The exact
+final deadline remains coordinated with the Quiz 2 calendar decision.
+
+See the [project milestone map](../projects/project-milestones.qmd).
 
 ## Exercises
 

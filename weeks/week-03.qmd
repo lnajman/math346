@@ -135,6 +135,15 @@ These are the Week 3 MATLAB habits you should be able to recognize, test, and re
 - Avoid making claims beyond the observed data unless the course question explicitly asks for extrapolation.
 - Save a short note explaining why the selected model is adequate for the question.
 
+## Project 1 Preview
+
+Project 1 is previewed this week because curve fitting, residuals, and RMSE are
+its principal technical foundation. Students inspect the public question,
+report template, data dictionary, and required filenames, and confirm their
+group number. No group-specific data or project analysis is due at this stage.
+
+See the [project milestone map](../projects/project-milestones.qmd).
+
 ## Exercises
 
 After the lab, attempt the core selection in the

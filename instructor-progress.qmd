@@ -6,7 +6,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**The workload contract is approved and published; assessment displacement and project milestones are the next decisions.**
+**The workload and project-milestone contracts are approved; assessment displacement and exact calendar placement remain open.**
 
 Last updated: **22 July 2026**
 :::
@@ -33,9 +33,9 @@ the motivation and the kind of feedback being requested.
 | Week 13: model claims and diagnostics | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the interpretation and diagnostic workload |
 | Week 14: many models and grouped evidence | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the alignment, uncertainty, and sensitivity workload |
 | Week 15: communication and synthesis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the evidence-reconciliation and clean-run workload |
-| Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time and project milestones |
+| Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time with the approved workload |
 | Quizzes and midterm | **Working placement restored** | Quizzes in Weeks 3, 6, 9, and 13; semester examination (midterm) in Week 8 | Decide exact dates, delivery, and formats later |
-| Projects | **Complete and privately backed up** | 20-group data, MATLAB/R starters, Word report templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Check the live Blackboard setup before release |
+| Projects | **Packages complete; milestone sequence approved** | [Milestone map](projects/project-milestones.qmd), 20-group data, starters, templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Set exact dates later and check the live Blackboard setup |
 | Executable code checks | Implemented | Local scripts and GitHub Actions | Extend checks as new code is added |
 
 “Validated prototype” means that Weeks 1-4 are sufficiently developed and
@@ -145,6 +145,15 @@ they can never be revised.
   class in an ordinary week, excluding separately announced project and
   examination preparation. Assessment weeks receive a reduced selection when
   an assessment displaces class time.
+- The [project milestone map](projects/project-milestones.qmd) fixes the release
+  order without fixing dates. Project 1 has a Week 3 preview, Week 4 group
+  package release, Week 5 readiness checkpoint, and post-Week-5 completion
+  window. Project 2 has a Weeks 9-10 preview, Week 12 training release,
+  post-Week-13 frozen-plan gate, common Week 14 validation release, and Week 15
+  completion window.
+- Blackboard keeps previews public, group packages restricted to the
+  corresponding group, and Project 2 validation closed until the common
+  frozen-plan gate. Exact opening and closing times remain deferred.
 - The course is expected to have about 60 students, so individual oral project
   defenses are not a practical default.
 - Project 1 uses MATLAB and Project 2 uses R.
@@ -187,10 +196,10 @@ architecture, but they block approval of the final calendar and release plan:
    Week 3, 6, 9, and 13 placement?
 2. How should the Week 8 midterm combine code reading, implementation, and
    validation, and how much normal teaching time will it replace?
-3. When should the MATLAB project be due relative to the quizzes and transition
-   to R?
-4. When should Project 2 training, the frozen plan, validation data, and final
-   submission be released or due?
+3. What exact date should close the MATLAB project's approved post-Week-5
+   completion window relative to Quiz 2 and the transition to R?
+4. What exact Blackboard opening and closing times should implement the
+   approved Project 2 training, frozen-plan, validation, and completion gates?
 5. Which software must students install, which is supplied in laboratories,
    and which is optional?
 
@@ -230,6 +239,7 @@ architecture and the remaining implementation decisions.
 | 22 July 2026 | Week 15 was expanded around checked figures and captions, generated evidence bundles, clean-run rehearsal, cross-artifact reconciliation, claim-evidence-limitation ledgers, group sign-off, full slides, two labs, exercises, three checked R scripts, and an AI conclusion audit. This completes the developed 15-week sequence. |
 | 22 July 2026 | The [course-wide coherence and beginner-workload audit](instructor-course-audit.qmd) confirmed the cumulative teaching spine and technical health, while identifying workload labels, assessment displacement, project milestones, and software requirements as the remaining pre-release decisions. |
 | 22 July 2026 | The [student workload guide](weeks/workload-guide.qmd) was approved and implemented: one guided main-lab workflow, 4-6 core exercises, selected AI audits, explicit guided/extension work, a 90-120 minute ordinary-week practice target, and reduced selections when assessments displace class time. |
+| 22 July 2026 | The [project milestone map](projects/project-milestones.qmd) was approved and published: Project 1 now has Week 3 preview, Week 4 package release, Week 5 readiness, and a post-Week-5 completion window; Project 2 has Weeks 9-10 preview, Week 12 training release, a post-Week-13 frozen-plan gate, common Week 14 validation release, and Week 15 completion. Exact dates remain deferred. |
 
 ## Next Decision Gate
 
@@ -245,14 +255,13 @@ The working student project package is complete:
 - **Completed:** exact-content checks for all 60 release ZIPs and a
   representative upload/download extraction rehearsal.
 
-The audit and student workload contract are complete. The next decision gate is
-to reconcile that contract with the assessment calendar. Week 8 cannot be
-judged feasible until the semester examination's use of class time is known;
-Quiz 2, Quiz 3, and Quiz 4 also have no reserved time in their weekly plans.
-Project preview, release, frozen-plan, validation, and completion milestones
-should then be set. Exact dates and formats may remain deferred. A student
-software matrix and the live Blackboard setup still need final checks before
-release.
+The audit, student workload contract, and week-relative project milestone map
+are complete. The next decision gate is to reconcile those contracts with the
+assessment calendar. Week 8 cannot be judged feasible until the semester
+examination's use of class time is known; Quiz 2, Quiz 3, and Quiz 4 also have
+no reserved time in their weekly plans. Exact project and assessment dates and
+formats may remain deferred. A student software matrix and the live Blackboard
+setup still need final checks before release.
 
 Feedback on those choices is especially useful now. The original review
 questions remain available on the [instructor preview](instructor-preview.qmd).

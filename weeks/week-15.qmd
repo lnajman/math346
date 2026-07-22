@@ -361,6 +361,7 @@ Project 2 remains separately scheduled.
 - [Cross-artifact audit](../code/r/week15-cross-artifact-audit.R)
 - [AI conclusion audit](../code/r/week15-ai-conclusion-review.R)
 - [Project 2](../projects/project-2-modeling.qmd)
+- [Project milestones](../projects/project-milestones.qmd)
 
 ## End-Of-Course Standard
 

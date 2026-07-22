@@ -84,8 +84,8 @@ will say in class or on Blackboard which work, if any, must be uploaded.
   or assigned selectively rather than added as a second full weekly lab.
 - [Lab 4A: ODE solver checks](../labs/lab-04-ode-mini.qmd) is an **extension or
   alternate** activity.
-- Project work has its own instructions and milestones. It is not hidden inside
-  the weekly lab expectation.
+- Project work has its own [instructions and milestones](../projects/project-milestones.qmd).
+  It is not hidden inside the weekly lab expectation.
 
 ## If You Are Behind
 

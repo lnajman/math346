@@ -8,9 +8,21 @@ description: "Two scaffolded projects using MATLAB first and R second."
 
 Project 1 is completed in **MATLAB**. Project 2 is completed in **R**. Students
 submit a PDF report together with executable source code and machine-readable
-results. Exact dates and final rubrics remain under review; the project
-verification policy is established below.
+results. The [week-relative milestone sequence](project-milestones.qmd) is now
+established; exact calendar dates and final rubrics remain under review. The
+project verification policy is established below.
 :::
+
+## Milestone Sequence At A Glance
+
+| Project | Preview | Package release | Required gate | Completion window |
+|---|---|---|---|---|
+| Project 1 | Week 3 | Group MATLAB ZIP in Week 4 | Guided readiness checkpoint in Week 5 | After Week 5; exact deadline announced later |
+| Project 2 | Weeks 9-10 | Group R training ZIP in Week 12 | Frozen model plan after Week 13; validation release in Week 14 | Week 15; exact deadline announced later |
+
+See [Project Milestones](project-milestones.qmd) for what students receive,
+what they do at each gate, and how Blackboard separates the group-specific
+training and validation files.
 
 ## A Two-Language Project Sequence
 
@@ -106,6 +118,7 @@ grades.
 ## Resources
 
 - [Project submission templates](project-templates.qmd)
+- [Project milestones and Blackboard release stages](project-milestones.qmd)
 - [Project 1 Word report template](templates/project1-report-template.docx)
 - [Project 2 Word report template](templates/project2-report-template.docx)
 - [Printable project data dictionary](handouts/data-dictionary.pdf)

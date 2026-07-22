@@ -148,6 +148,15 @@ These are the Week 4 MATLAB habits you should be able to recognize, test, and re
 - Avoid overclaiming precision beyond the evidence.
 - Save a short note explaining what could make the numerical result unreliable.
 
+## Project 1 Package Release
+
+Each Blackboard group receives its assigned MATLAB starter ZIP this week.
+Students check the group identifier, extract the package without renaming its
+contents, open the assigned data, and run the starter to its first marked task.
+This setup check is not an additional Week 4 lab or a project submission.
+
+See the [project milestone map](../projects/project-milestones.qmd).
+
 ## Exercises
 
 After the lab, attempt the core selection in the

@@ -1,0 +1,105 @@
+---
+title: "Project Milestones"
+description: "Week-relative preview, release, checkpoint, validation, and submission stages for both course projects."
+execute:
+  enabled: false
+---
+
+::: {.callout-important}
+## The sequence is fixed; calendar dates come later
+
+The milestones below are anchored to the course content students need before
+each stage. They do not set calendar dates or change the working quiz and
+midterm placements. Exact Blackboard opening and closing times will be
+announced after the assessment calendar is finalized.
+:::
+
+## Why The Projects Use Stages
+
+Each project is worth 10% of the course grade and is completed by a group.
+Staging prevents students from receiving every file and requirement at once,
+gives beginners a concrete next action, and keeps Project 2 validation genuinely
+unseen until the model plan is recorded.
+
+A week label identifies the intended course stage, not an additional weekly
+assignment. Project work is separate from the routine 90-120 minute practice
+target in the [weekly workload guide](../weeks/workload-guide.qmd).
+
+## Project 1: MATLAB Numerical Investigation
+
+| Course stage | Milestone | Students receive | Student action or evidence |
+|---|---|---|---|
+| **Week 3** | Preview | Public project page, data dictionary, report template, required filenames, and a view of the building-energy question | Confirm the group and group number; inspect the task and file structure. No project analysis is due. |
+| **Week 4** | Assigned package release | One group-specific MATLAB ZIP through Blackboard | Extract the ZIP without renaming its contents; check the group identifier; open the data and starter files; run the starter far enough to reach its first marked task. |
+| **Week 5** | Guided readiness checkpoint | Instructor-selected support using the released package | Show that the main script finds the assigned data, the supplied RMSE function passes its hand-checkable test, and at least one checked fit or figure can be reproduced. This is a progress checkpoint, not a second project submission. |
+| **After Week 5** | Completion window | Blackboard group submission area and final checklist | Complete the analysis, PDF, source, and generated results CSV; rerun from a clean folder; submit one group package. The exact deadline is set later in coordination with Quiz 2. |
+
+No new Project 1 technical requirement is introduced after Week 5. The
+completion window is for finishing, checking, reconciling the PDF with the
+generated results, and submitting—not for adding another analysis method.
+
+### Project 1 Blackboard Gates
+
+1. The preview is public and contains no group-specific data.
+2. The assigned ZIP is visible only to the corresponding Blackboard group.
+3. The readiness checkpoint checks setup and progress; no extra report is
+   created for it.
+4. The final Blackboard Group Assignment contains one upload per group with the
+   exact files listed on the [Project 1 page](project-1-eda.qmd).
+
+## Project 2: R Modeling And Validation
+
+| Course stage | Milestone | Students receive | Student action or evidence |
+|---|---|---|---|
+| **Weeks 9-10** | Preview | Public project page, data dictionary, report template, required filenames, and explanation of the training/validation split | Confirm the group; inspect the task and file structure. No model is selected and no project analysis is due. |
+| **Week 12** | Training package release | One group-specific R training ZIP through Blackboard; no validation outcomes | Extract the ZIP; verify the group identifier; run the starter to its first marked task; begin code-based cleaning, row checks, summaries, and exploratory figures. Do not invent the final model before Week 13 instruction. |
+| **After Week 13** | Frozen-model-plan gate | A short Blackboard group checkpoint containing the required plan fields | Record the response, predictors, formula, primary coefficient, baseline, validation metric, and one expected failure condition. The plan is frozen before any validation file is opened. |
+| **Week 14** | Validation release and application | One group-specific validation ZIP, released in a common window after the frozen-plan gate | Apply the frozen training model; save one prediction per validation row; calculate MAE and RMSE; run the declared sensitivity check. Explain any later deviation rather than silently replacing the frozen plan. |
+| **Week 15** | Rehearsal and completion window | Final checklist and Blackboard group submission area | Run the complete workflow from a clean folder; reconcile the PDF, R source, results CSV, and prediction CSV; complete the AI-use appendix and contribution statement; submit one group package. The exact deadline is announced later. |
+
+The validation ZIP is not released early to an individual group. At the common
+release gate, only groups with a recorded model plan should receive it; a missed
+checkpoint requires instructor follow-up rather than an informal early or late
+release.
+
+### The Frozen Plan Is Short
+
+The checkpoint records only the choices needed to protect the validation stage:
+
+1. numeric response;
+2. selected predictors;
+3. exact R formula;
+4. coefficient chosen for interpretation;
+5. mean-response baseline;
+6. validation metric;
+7. one condition under which the planned conclusion may fail.
+
+This checkpoint does not require a polished report or finished model
+diagnostics. Those are completed after the relevant Week 13-14 teaching.
+
+## Blackboard Release Map
+
+| Blackboard item | Visibility | Opens when | Closes or locks when |
+|---|---|---|---|
+| Project 1 preview | All students | Week 3 preview | Remains available |
+| Project 1 assigned ZIP | Corresponding group only | Week 4 release gate | Remains available through submission |
+| Project 1 group assignment | Corresponding group | Completion window opens | Exact deadline announced later |
+| Project 2 preview | All students | Weeks 9-10 preview | Remains available |
+| Project 2 training ZIP | Corresponding group only | Week 12 release gate | Remains available through submission |
+| Frozen-model-plan checkpoint | Corresponding group | After Week 13 model instruction | Locks before validation release |
+| Project 2 validation ZIP | Corresponding group only | Common Week 14 release gate after the plan checkpoint | Remains available through submission |
+| Project 2 group assignment | Corresponding group | Week 15 completion window | Exact deadline announced later |
+
+For each final group submission, one student uploads the package and every group
+member checks the Blackboard receipt and retains a local copy. Group membership,
+release visibility, filenames, and downloaded ZIP contents are checked in the
+live Blackboard course before student release.
+
+## What Remains Deferred
+
+- exact calendar dates and times;
+- the exact length and delivery of the quizzes and midterm;
+- the final Project 1 deadline within its post-Week-5 completion window;
+- the exact Blackboard closing times for the Project 2 plan and final package.
+
+The order of the gates is established even while those dates remain open.

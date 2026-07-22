@@ -8,7 +8,8 @@ For the current development state, decisions, and next milestone, see the
 [instructor progress page](instructor-progress.qmd). The completed
 [course-wide coherence and workload audit](instructor-course-audit.qmd)
 led to an approved [student workload guide](weeks/workload-guide.qmd). The
-remaining calendar and project-milestone questions are recorded separately.
+approved [project milestone map](projects/project-milestones.qmd) now fixes the
+release order while leaving exact calendar dates open.
 :::
 
 ## Why This Prototype Exists
@@ -57,6 +58,7 @@ course-wide coherence and workload review.
 - [Development progress](instructor-progress.qmd)
 - [Course-wide coherence and workload audit](instructor-course-audit.qmd)
 - [Student workload guide](weeks/workload-guide.qmd)
+- [Project milestones and Blackboard release stages](projects/project-milestones.qmd)
 - [AI use policy](syllabus/ai-policy.qmd)
 - [Weekly materials](weeks/index.qmd)
 - [Slides index](slides/index.qmd)
@@ -102,6 +104,9 @@ I would especially appreciate feedback on these questions:
 - Does the approved [core/guided/extension workload model](weeks/workload-guide.qmd)
   make the 15-week resource bank realistic for beginners, and are any core
   selections still too ambitious?
+- Does the [week-relative project sequence](projects/project-milestones.qmd)
+  give beginners enough time to start without allowing Project 1 or Project 2
+  to crowd out the transition weeks?
 
 ## The Intended Shift
 

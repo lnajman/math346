@@ -94,6 +94,7 @@ website:
         - slides/index.qmd
         - labs/index.qmd
         - projects/index.qmd
+        - projects/project-milestones.qmd
         - code/index.qmd
         - resources/index.qmd
 

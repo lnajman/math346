@@ -77,7 +77,9 @@ the count check passes.
 
 Open the [Project 2 page](../projects/project-2-modeling.qmd). Identify one
 vectorized calculation, one repeated check, and one batch log that could help
-make the future project script auditable.
+make the released training-stage script auditable. Confirm the group identifier
+and filenames against the
+[project milestone map](../projects/project-milestones.qmd).
 
 Do not select or fit the final model in this lab.
 

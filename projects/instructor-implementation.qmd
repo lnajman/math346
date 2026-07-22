@@ -99,6 +99,41 @@ For Project 2:
 - training file;
 - later validation file.
 
+## Week-Relative Milestones
+
+The public [project milestone map](project-milestones.qmd) fixes the release
+order while leaving exact calendar dates open.
+
+| Course stage | Instructor action | Release source | Required control |
+|---|---|---|---|
+| Week 3 | Preview Project 1 and confirm groups | Public project pages and templates | Do not release group data as part of the preview |
+| Week 4 | Release each Project 1 MATLAB ZIP | `release-project-1/` | Match ZIP and Blackboard Group identifier |
+| Week 5 | Run the Project 1 readiness checkpoint | Already released files | Check data path, RMSE test, and one reproducible fit or figure; do not collect a second report |
+| After Week 5 | Open the Project 1 Group Assignment | Blackboard | Exact deadline follows the Quiz 2 calendar decision |
+| Weeks 9-10 | Preview Project 2 and confirm groups | Public project pages and templates | Explain the training/validation separation; do not release validation data |
+| Week 12 | Release each Project 2 training ZIP | `release-project-2-training/` | Confirm that no validation outcome or file is present |
+| After Week 13 | Collect one frozen model plan per group | Blackboard group checkpoint | Record the seven required plan fields before validation release |
+| Week 14 | Release each Project 2 validation ZIP in one common window | `release-project-2-validation/` | Release only after the plan gate; do not give individual groups an early window |
+| Week 15 | Open the final Project 2 Group Assignment and clean-run rehearsal | Blackboard and Week 15 materials | Exact deadline remains deferred; collect one group package |
+
+The Project 1 completion window begins only after its Week 5 checkpoint. The
+Project 2 validation gate is one-way: a later model change is documented as a
+deviation or sensitivity analysis, not rewritten into the frozen plan.
+
+### Blackboard Setup Checklist By Gate
+
+- confirm the active group roster and group number before each package release;
+- restrict every group-specific ZIP to the corresponding Blackboard Group;
+- keep public previews separate from private data releases;
+- use a short group checkpoint for the Project 2 plan, recording response,
+  predictors, formula, primary coefficient, baseline, metric, and failure
+  condition;
+- release validation packages in one common window after the checkpoint closes;
+- use one Blackboard Group Assignment per final project submission;
+- require one group upload and ask all members to verify the receipt;
+- download representative group 01, 10, and 20 files from the live course and
+  compare filenames and ZIP contents with the private release manifest.
+
 ## Submission Intake
 
 Create the teams as Blackboard Groups and use a Blackboard Group Assignment for
@@ -106,8 +141,9 @@ each project. Require fixed filenames and one ZIP file per team. A first-pass
 checker should report missing files, unexpected filenames, unreadable PDFs, and
 CSV schema errors before grading begins.
 
-Release the group-specific data and starter files through Blackboard. Release
-the Project 2 validation file only after the model-plan deadline.
+Release the group-specific data and starter files through Blackboard according
+to the milestone map. Release Project 2 validation files in a common Week 14
+window only after the frozen-model-plan checkpoint closes.
 
 The final release contract has been rehearsed locally with all 60 ZIPs. An
 exact allowlist check confirms the contents of every Project 1, Project 2

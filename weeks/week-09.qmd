@@ -344,6 +344,14 @@ The result looks long and the code runs. Audit whether:
 - Export, re-import, and check the cleaned file when it will be shared.
 - Record any AI assistance and the semantic checks applied to it.
 
+## Project 2 Preview Begins
+
+Students inspect the public Project 2 question, report template, file contract,
+and training/validation separation. This preview asks for no model choice and
+releases no group-specific training or validation data.
+
+See the [project milestone map](../projects/project-milestones.qmd).
+
 ## Exercises
 
 After the lab, attempt the core selection in the

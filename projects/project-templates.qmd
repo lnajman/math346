@@ -14,6 +14,10 @@ Students do not create Quarto or HTML documents. For each project they:
 5. export the report as PDF;
 6. submit the PDF, source code, and generated CSV outputs.
 
+The [project milestone map](project-milestones.qmd) explains when the public
+preview, group-specific starter package, frozen-plan checkpoint, validation
+data, and final Blackboard submission become available.
+
 ## Download the Report Templates
 
 - [Project 1 Word template](templates/project1-report-template.docx)

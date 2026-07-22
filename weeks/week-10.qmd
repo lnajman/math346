@@ -362,6 +362,15 @@ The repaired join preserves nine event rows. The relevant energy-table key is
 - Checking only whether code runs, not whether rows multiplied.
 - Deleting unmatched rows before recording and explaining them.
 
+## Project 2 Preview Continues
+
+Students connect this week's row, type, and join contracts to the future
+Project 2 data checks. The group-specific training package still remains closed
+until Week 12, and the validation package remains closed until after the frozen
+model-plan gate.
+
+See the [project milestone map](../projects/project-milestones.qmd).
+
 ## Exercises
 
 After the lab, attempt the core selection in the

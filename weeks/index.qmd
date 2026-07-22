@@ -16,18 +16,18 @@ guided practice, extension work, and the role of each lab.
 |---:|---|---|---|
 | [1](week-01.qmd) | Arrays, scripts, and plots as computational objects | MATLAB | — |
 | [2](week-02.qmd) | Functions, control flow, and debugging | MATLAB | — |
-| [3](week-03.qmd) | Curve fitting, interpolation, and residual checks | MATLAB | Quiz 1 |
-| [4](week-04.qmd) | Numerical methods and 3D visualization | MATLAB | — |
-| [5](week-05.qmd) | Symbolic and numerical computation | MATLAB | — |
+| [3](week-03.qmd) | Curve fitting, interpolation, and residual checks | MATLAB | Quiz 1; Project 1 preview |
+| [4](week-04.qmd) | Numerical methods and 3D visualization | MATLAB | Project 1 group package release |
+| [5](week-05.qmd) | Symbolic and numerical computation | MATLAB | Project 1 readiness checkpoint |
 | [6](week-06.qmd) | MATLAB-to-R transition and reproducible reports | R | Quiz 2 |
 | [7](week-07.qmd) | Data transformation as question-answering | R | — |
 | [8](week-08.qmd) | Variation, covariation, and question refinement | R | Semester examination (midterm) |
-| [9](week-09.qmd) | Import contracts and tidy observation structure | R | Quiz 3 |
-| [10](week-10.qmd) | Relational contracts, strings, factors, and date-times | R | — |
+| [9](week-09.qmd) | Import contracts and tidy observation structure | R | Quiz 3; Project 2 preview begins |
+| [10](week-10.qmd) | Relational contracts, strings, factors, and date-times | R | Project 2 preview continues |
 | [11](week-11.qmd) | Readable pipelines and tested function contracts | R | — |
-| [12](week-12.qmd) | Vectorized thinking, iteration, and visible batch evidence | R | Project 2 assigned |
-| [13](week-13.qmd) | Regression claims, baseline comparison, and diagnostics | R | Quiz 4 |
-| [14](week-14.qmd) | Repeated models, aligned evidence, and sensitivity | R | — |
+| [12](week-12.qmd) | Vectorized thinking, iteration, and visible batch evidence | R | Project 2 training package release |
+| [13](week-13.qmd) | Regression claims, baseline comparison, and diagnostics | R | Quiz 4; Project 2 frozen-plan gate follows |
+| [14](week-14.qmd) | Repeated models, aligned evidence, and sensitivity | R | Project 2 validation release window |
 | [15](week-15.qmd) | Communication, evidence reconciliation, and synthesis | R | Project 2 completion window |
 
 These markers preserve the working assessment sequence. Exact calendar dates,

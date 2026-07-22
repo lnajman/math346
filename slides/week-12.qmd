@@ -18,7 +18,7 @@ failed, and what the results should look like?
 
 - Meeting 1: vectorization and typed iteration
 - Meeting 2: repeated workflows and failure logs
-- Project 2 assigned
+- Project 2 training package released
 
 ## Week 12 Boundary
 
@@ -258,12 +258,12 @@ Check types after iteration.
 - Numeric results still numeric?
 - Stable columns and types?
 
-## Project 2 Is Assigned
+## Project 2 Training Stage Opens
 
 - R building-energy analysis
-- group-specific training data
+- group-specific training ZIP released through Blackboard
 - PDF plus source and result CSVs
-- validation data released later
+- validation ZIP withheld until after the frozen-plan gate
 
 ## Two-Stage Sequence
 
