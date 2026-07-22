@@ -1,0 +1,71 @@
+---
+title: "Project Data Dictionary"
+description: "Variables, units, file sizes, and controlled data-quality features for the synthetic building-energy projects."
+---
+
+## Scenario and Unit of Analysis
+
+Each file describes a different **synthetic university teaching building**.
+One row represents one calendar day. The values are simulated for this course;
+they are not observations from an actual campus building or actual people.
+
+All teams receive the same variables and a comparable amount of missingness,
+noise, and unusual behavior. Building characteristics, weather realizations,
+model coefficients, and numerical answers differ by group.
+
+## Project 1: MATLAB File
+
+Each MATLAB file contains 121 daily records from 1 January through 30 April
+2024. One heating-energy value is missing, and a small number of observations
+are deliberately unusual. These features are part of the data-checking and
+sensitivity work; students should handle them through code rather than editing
+the CSV manually.
+
+| Variable | Type | Unit | Meaning |
+|---|---|---|---|
+| `observation_id` | text | none | Unique record identifier, such as `P1-001` |
+| `date` | date | `YYYY-MM-DD` | Calendar date of the daily observation |
+| `outdoor_temp_c` | numeric | degrees Celsius | Simulated mean outdoor temperature |
+| `heating_energy_kwh` | numeric | kilowatt-hours | Simulated daily heating-energy consumption; one value is missing |
+
+The accompanying assignment file contains the group identifier and the
+temperature at which the fitted model must make a prediction. The assigned
+temperature lies inside the observed temperature range.
+
+## Project 2: R Training File
+
+Each training file contains 301 rows representing 300 distinct days from
+1 January through 27 October 2025. It contains one repeated record and a small,
+controlled number of missing values. Identifying and handling these records is
+part of the required R workflow.
+
+| Variable | Type | Unit or values | Meaning |
+|---|---|---|---|
+| `observation_id` | text | none | Daily record identifier; expected to be unique after cleaning |
+| `date` | date | `YYYY-MM-DD` | Calendar date of the daily observation |
+| `outdoor_temp_c` | numeric | degrees Celsius | Simulated mean outdoor temperature |
+| `occupancy_count` | numeric | people | Simulated daily building occupancy |
+| `wind_speed_m_s` | numeric | metres per second | Simulated mean wind speed |
+| `day_type` | category | `weekday`, `weekend` | Building operating-day category |
+| `heating_energy_kwh` | numeric | kilowatt-hours | Simulated daily heating-energy consumption |
+
+## Project 2: R Validation File
+
+Each validation file contains 65 complete daily records from 28 October through
+31 December 2025. It uses the same variables and units as the training file and
+contains one row for every required prediction.
+
+The validation file is released only after the group has submitted its frozen
+model plan. Students apply the recorded model to these observations, calculate
+the required validation metrics, and save one prediction per
+`observation_id`.
+
+## Interpretation Boundaries
+
+- The data support association and prediction, not causal claims.
+- The response is heating energy, not total building electricity use.
+- Occupancy values are simulated counts and contain no personal information.
+- A model that fits one synthetic building need not transfer to another.
+- Unusual observations should be investigated and included in a documented
+  sensitivity analysis; they should not be deleted merely because they are
+  inconvenient.

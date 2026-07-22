@@ -13,6 +13,9 @@ project:
   resources:
     - code/
     - data/
+    - projects/handouts/
+    - projects/schemas/
+    - projects/templates/
 
 website:
   title: "MATH 346"

@@ -8,7 +8,8 @@ description: "Two scaffolded projects using MATLAB first and R second."
 
 Project 1 is completed in **MATLAB**. Project 2 is completed in **R**. Students
 submit a PDF report together with executable source code and machine-readable
-results. Exact dates, rubrics, and verification details remain under review.
+results. Exact dates and final rubrics remain under review; the project
+verification policy is established below.
 :::
 
 ## A Two-Language Project Sequence
@@ -34,6 +35,9 @@ management problem but are not actual campus measurements.
 Each team receives data for a different synthetic building. All teams use the
 same variable definitions and comparable tasks, but the numerical relationships
 and conclusions differ by group.
+
+The finalized variables, units, file sizes, and controlled data-quality
+features are listed in the [project data dictionary](project-data-dictionary.qmd).
 
 The instructor provides:
 
@@ -102,6 +106,11 @@ grades.
 ## Resources
 
 - [Project submission templates](project-templates.qmd)
+- [Project 1 Word report template](templates/project1-report-template.docx)
+- [Project 2 Word report template](templates/project2-report-template.docx)
+- [Printable project data dictionary](handouts/data-dictionary.pdf)
+- [Project data dictionary](project-data-dictionary.qmd)
+- [Project result contracts](project-result-contracts.qmd)
 - [Project 1: MATLAB Numerical Investigation](project-1-eda.qmd)
 - [Project 2: R Modeling and Validation](project-2-modeling.qmd)
 - [Instructor implementation notes](instructor-implementation.qmd)

@@ -6,9 +6,9 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**Prototype validated; project implementation in progress.**
+**Project package complete; Week 5 is the next content milestone.**
 
-Last updated: **10 July 2026**
+Last updated: **22 July 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -22,11 +22,11 @@ the motivation and the kind of feedback being requested.
 | Course framing and AI policy | Developed | [Syllabus](syllabus/index.qmd) and [AI policy](syllabus/ai-policy.qmd) | Revise after assessment decisions |
 | Colleague feedback | Requested | [Instructor preview](instructor-preview.qmd) shared for review | Record and synthesize responses |
 | Weeks 1-4: MATLAB prototype | **Validated prototype** | Week pages, slides, labs, exercises, and checked MATLAB code | Use as the pattern for later weeks |
-| Week 5: symbolic mathematics | Outline | Week and slide outlines | Expand after assessment design |
+| Week 5: symbolic mathematics | **Next content milestone** | Week and slide outlines | Expand using the Weeks 1-4 pattern |
 | Weeks 6-12: R and data workflow | Outline/early scaffold | Week and slide outlines; limited R lab and starter code | Build the R teaching sequence |
 | Weeks 13-15: modeling and synthesis | Outline | Week and slide outlines | Expand after the R foundations |
-| Quizzes and midterm | **Active design** | Assessment weights exist in the syllabus | Decide format, timing, and validation tasks |
-| Projects | **Core architecture agreed** | MATLAB Project 1, R Project 2, synthetic group data, PDF plus source files | Generate data, starters, and checkers |
+| Quizzes and midterm | Deferred | Assessment weights exist in the syllabus | Decide the detailed architecture later |
+| Projects | **Complete and privately backed up** | 20-group data, MATLAB/R starters, Word report templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Check the live Blackboard setup before release |
 | Executable code checks | Implemented | Local scripts and GitHub Actions | Extend checks as new code is added |
 
 “Validated prototype” means that Weeks 1-4 are sufficiently developed and
@@ -47,6 +47,21 @@ they can never be revised.
 - Project 1 uses MATLAB and Project 2 uses R.
 - Each group receives a distinct synthetic building-energy dataset supplied by
   the instructor.
+- The private deterministic generator now produces 20 MATLAB datasets, 20 R
+  training datasets, and 20 withheld validation datasets. All 20 packages pass
+  structural, plausibility, distinctness, and comparability checks.
+- Beginner-oriented MATLAB and R starters, fixed results schemas, and separate
+  Project 2 validation releases are assembled automatically for every group.
+- The private MATLAB and R batch checkers each pass all 20 known-good reference
+  submissions and produce a one-row-per-group review table.
+- Supplied Word templates guide students through both PDF reports without
+  requiring Quarto or HTML. The files can also be edited in Google Docs.
+- All 60 release ZIPs pass exact allowlist and fingerprint checks. Project 2
+  training packages contain no validation outcomes, and representative ZIPs
+  pass a local Blackboard-style upload/download extraction rehearsal.
+- The complete generator, hidden reference material, withheld validation data,
+  solutions, checker evidence, and release packages are backed up in a separate
+  private GitHub repository.
 - Students submit PDF reports with executable source code and machine-readable
   results; Quarto and HTML are not required.
 - Projects are group-assessed. The remaining 80% of the course establishes
@@ -55,10 +70,10 @@ they can never be revised.
   may occur for a small random sample or when submitted evidence requires
   clarification.
 
-## Current Design Questions
+## Deferred Design Questions
 
-The current work is not further expansion of the weekly content. It is to make
-the assessment system coherent before that expansion continues:
+The following questions remain open but do not block further development of the
+weekly content:
 
 1. What should the quizzes measure, and how should they prepare students for
    the midterm?
@@ -84,18 +99,30 @@ architecture and the remaining implementation decisions.
 | 10 July 2026 | A detailed two-stage project design and implementation workflow were drafted for review. |
 | 10 July 2026 | The core project architecture was agreed: MATLAB first, R second, group-specific synthetic building data, and PDF reports accompanied by executable source and results files. |
 | 10 July 2026 | Projects were confirmed as group-assessed; mandatory individual project examinations were replaced by limited random or evidence-triggered verification. |
+| 22 July 2026 | The private synthetic-data package for 20 groups was generated and quality-checked; private reference results and row-level ground truth were retained for automated checking. |
+| 22 July 2026 | MATLAB and R starters, fixed result contracts, 60 staged release ZIPs, and private batch checkers were completed; both checker suites passed 20/20 reference submissions. |
+| 22 July 2026 | Word/Google Docs report templates and a printable data dictionary were added to the student packages; all 60 release ZIP contracts and representative upload/download extractions passed rehearsal. |
+| 22 July 2026 | The complete assessment-sensitive package was backed up in a separate private GitHub repository. The project date and detailed quiz/midterm architecture were deferred; Week 5 became the next content milestone. |
 
 ## Next Decision Gate
 
-Before Weeks 5-15 are expanded to the same depth, the next milestone is a
-working project package containing:
+The working student project package is complete:
 
-- 20 quality-checked group datasets;
-- withheld validation datasets;
-- scaffolded MATLAB and R scripts;
-- fixed results-file schemas and batch checkers;
-- a PDF report template;
-- a decision on the MATLAB project date.
+- **Completed:** 20 quality-checked group datasets and withheld validation
+  datasets;
+- **Completed:** private reference results and row-level ground truth;
+- **Completed:** scaffolded MATLAB and R scripts;
+- **Completed:** fixed results-file schemas and batch checkers;
+- **Completed:** Word/Google Docs report templates for PDF export and an offline
+  data dictionary;
+- **Completed:** exact-content checks for all 60 release ZIPs and a
+  representative upload/download extraction rehearsal.
+
+The next development milestone is to expand **Week 5: symbolic mathematics** to
+the same depth as Weeks 1-4: teaching notes, slides, lab, exercises, MATLAB
+examples, an AI-verification activity, and executable checks. The project date
+and detailed quiz/midterm architecture can be decided later. The live
+Blackboard setup still needs a short final check before student release.
 
 Feedback on those choices is especially useful now. The original review
 questions remain available on the [instructor preview](instructor-preview.qmd).

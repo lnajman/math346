@@ -25,8 +25,10 @@ Each team receives files following this pattern:
 
 ```text
 group-01-matlab-data.csv
-project1-starter.m
-model_rmse_starter.m
+group-01-project-1-assignment.csv
+group_01_project1.m
+model_rmse.m
+project-1-results-schema.csv
 project1-report-template.docx
 data-dictionary.pdf
 ```
@@ -34,6 +36,15 @@ data-dictionary.pdf
 The starter files contain the required structure, comments, filenames, and
 partially completed code. Students complete specified sections rather than
 starting from an empty program.
+
+[Download the Project 1 report template](templates/project1-report-template.docx)
+and the [printable data dictionary](handouts/data-dictionary.pdf). The assigned
+starter ZIP contains the same two files.
+
+The data file contains 121 daily observations from a synthetic building. One
+heating-energy value is missing, and a small number of observations are
+deliberately unusual. The [project data dictionary](project-data-dictionary.qmd)
+defines every variable and unit.
 
 ## Required MATLAB Work
 
@@ -77,24 +88,26 @@ For each fit:
 
 ### 5. Make and check a prediction
 
-Use the selected fit to calculate a prediction at an assigned temperature.
-Check that the temperature lies within a defensible range and explain why
-extrapolation may be unsafe.
+Use the quadratic fit to calculate the contract prediction at the assigned
+temperature. Check that the temperature lies within a defensible range and
+explain why extrapolation may be unsafe. You may still conclude that the linear
+fit is preferable for describing the overall relationship.
 
 ### 6. Perform a numerical sensitivity check
 
-Repeat one calculation after a specified change, such as removing the most
-unusual observation or restricting the data to a temperature range. State
-whether the main conclusion survives.
+Identify the largest absolute residual from the quadratic fit, remove only that
+observation, refit the quadratic model, and repeat the assigned prediction.
+State whether the main conclusion survives.
 
 ## Required Submission
 
-Use the exact group identifier in each filename:
+Use these exact filenames. The MATLAB code uses underscores because MATLAB
+identifiers cannot contain hyphens:
 
 ```text
 group-01-project-1.pdf
-group-01-project1.m
-group-01-model-rmse.m
+group_01_project1.m
+model_rmse.m
 group-01-project1-results.csv
 ```
 
@@ -130,7 +143,8 @@ the quantities required for automated checking, such as:
 - result of the sensitivity check.
 
 Students must generate this file from MATLAB code rather than typing its values
-manually.
+manually. The exact fields and calculation conventions are defined in the
+[Project 1 result contract](project-result-contracts.qmd).
 
 ## Possible Project Verification
 

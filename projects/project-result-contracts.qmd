@@ -1,0 +1,102 @@
+---
+title: "Project Result Contracts"
+description: "Exact cleaning rules, calculations, filenames, and CSV fields used for automated project checks."
+---
+
+## Why the Contracts Are Fixed
+
+The result files connect each report to executable code. They allow the
+instructor to rerun approximately 20 submissions and identify discrepancies
+without turning automated output into the whole grade.
+
+Students generate these files from their MATLAB or R script. They must not type
+or edit calculated values manually.
+
+## Project 1 Calculation Rules
+
+1. Keep rows with nonmissing `outdoor_temp_c` and `heating_energy_kwh` for all
+   summaries and models.
+2. Fit the linear and quadratic temperature models with `polyfit`.
+3. Calculate RMSE using the supplied `model_rmse.m` function.
+4. Define the sensitivity observation as the row with the largest absolute
+   residual from the quadratic fit.
+5. Remove only that row, refit the quadratic model, and repeat the assigned
+   prediction.
+
+The MATLAB code filenames use underscores because MATLAB identifiers cannot
+contain hyphens:
+
+```text
+group_01_project1.m
+model_rmse.m
+```
+
+The result file retains the Blackboard group identifier:
+
+```text
+group-01-project1-results.csv
+```
+
+Download the header-only
+[Project 1 result schema](schemas/project-1-results-schema.csv).
+
+| Field | Meaning |
+|---|---|
+| `group_id` | Assigned identifier such as `group-01` |
+| `n_rows_raw`, `n_rows_usable` | Rows before and after removing incomplete response/temperature rows |
+| `mean_outdoor_temp_c`, `mean_heating_energy_kwh` | Complete-case means |
+| `linear_intercept`, `linear_temp_coefficient` | Linear fit coefficients in mathematical order |
+| `linear_rmse_kwh`, `linear_r_squared` | Linear in-sample diagnostics |
+| `quadratic_intercept`, `quadratic_temp_coefficient`, `quadratic_temp2_coefficient` | Quadratic fit coefficients in mathematical order |
+| `quadratic_rmse_kwh`, `quadratic_r_squared` | Quadratic in-sample diagnostics |
+| `assigned_prediction_temp_c`, `assigned_prediction_kwh` | Required interpolation input and quadratic prediction |
+| `sensitivity_removed_observation_id`, `sensitivity_prediction_kwh` | Fixed sensitivity removal and repeated prediction |
+
+## Project 2 Cleaning and Modeling Rules
+
+1. Remove repeated `observation_id` values, keeping the first occurrence.
+2. Remove rows incomplete in any of the seven supplied training variables.
+3. Treat `day_type` as a category with `weekday` as the reference level.
+4. Fit one frozen `lm` formula using `heating_energy_kwh` as the response.
+5. Use only `outdoor_temp_c`, `occupancy_count`, `wind_speed_m_s`, `day_type`,
+   approved transformations (`I`, `poly`, `log`, or `sqrt`), and defensible
+   interactions.
+6. Define the baseline as the mean cleaned training response.
+7. Use RMSE and MAE on both the training and validation data.
+8. For sensitivity, remove the training row with the largest absolute
+   standardized residual, refit the same formula, and recalculate validation
+   RMSE.
+
+The model plan is frozen before the validation file is released. The formula
+may differ by group, but the cleaning, metrics, and sensitivity procedure do
+not.
+
+The checker flags a model for human review when it improves validation RMSE by
+less than 45% relative to the mean-response baseline. A flag is not an automatic
+grade or misconduct decision; it identifies a result that needs inspection.
+
+Download the header-only [Project 2 result
+schema](schemas/project-2-results-schema.csv) and [validation-prediction
+schema](schemas/project-2-validation-predictions-schema.csv).
+
+| Field | Meaning |
+|---|---|
+| `group_id` | Assigned identifier |
+| `n_training_rows_raw`, `n_training_rows_unique`, `n_training_rows_usable` | Fixed cleaning checkpoints |
+| `n_validation_rows` | Number of released validation observations |
+| `model_formula` | Frozen R formula converted to one line of text |
+| `primary_coefficient_name`, `primary_coefficient_estimate` | One coefficient selected for interpretation, using its exact R name |
+| `baseline_value_kwh`, `baseline_validation_rmse_kwh` | Mean-training-response baseline and its validation error |
+| `training_rmse_kwh`, `training_mae_kwh`, `training_r_squared` | Training diagnostics |
+| `validation_rmse_kwh`, `validation_mae_kwh` | Validation diagnostics |
+| `sensitivity_removed_observation_id` | Largest standardized-residual training row |
+| `sensitivity_validation_rmse_kwh` | Validation RMSE after the fixed sensitivity refit |
+
+The prediction file contains exactly one row per validation
+`observation_id`, in validation-file order, and one numeric `prediction_kwh`.
+
+## What the Automated Checker Does Not Grade
+
+Passing the file contract does not establish a good project. The instructor
+still reviews figures, interpretation, modeling judgment, limitations,
+communication, and the AI-use appendix in the PDF.

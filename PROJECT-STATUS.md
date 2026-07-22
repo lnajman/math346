@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-07-10
+Last updated: 2026-07-22
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -18,9 +18,14 @@ describe pedagogical progress.
 ## Current Phase
 
 The developed Weeks 1-4 prototype has been sent to colleagues for feedback and
-is now considered validated as the model for the course. The active work is
-implementing the agreed project architecture and preparing synthetic datasets,
-starter files, and checkers.
+is now considered validated as the model for the course. The agreed student
+project package is complete: private synthetic data, beginner-oriented code
+starters, fixed result contracts, editable report templates, customized release
+ZIPs, and batch checkers are implemented. The release contract has been
+rehearsed locally, and the complete assessment-sensitive package is backed up
+in a private GitHub repository. The MATLAB project date and the remaining quiz
+and midterm architecture are intentionally deferred. The next content milestone
+is expanding Week 5 using the validated Weeks 1-4 pattern.
 
 Weeks 5-15 remain outlines. They should not yet be described as complete course
 materials.
@@ -35,6 +40,23 @@ materials.
 - Weeks 1-4 have been validated as the prototype pattern to continue.
 - A validation harness checks the executable MATLAB and R course code and runs
   in GitHub Actions.
+- A deterministic private generator now produces 20 distinct Project 1 data
+  files, 20 Project 2 training files, 20 withheld validation files, private
+  reference results, and row-level ground truth.
+- An independent quality report confirms that all 20 group packages meet the
+  fixed schema, plausibility, distinctness, and comparability checks.
+- Beginner-oriented MATLAB and R starter templates are customized into 20
+  Project 1 ZIPs, 20 Project 2 training ZIPs, and 20 separately staged
+  validation ZIPs.
+- Fixed Project 1 and Project 2 result contracts are published. Private batch
+  checkers rerun source code and independently verify results and predictions;
+  both pass all 20 known-good reference submissions.
+- Word templates for both project reports and an offline PDF data dictionary
+  are complete, included in the appropriate starter ZIPs, and available from
+  the public project pages.
+- All 60 release ZIPs pass exact-content and source-fingerprint checks. Project
+  2 training ZIPs contain no validation outcomes, and representative ZIPs pass
+  a simulated Blackboard upload/download extraction cycle.
 - Weeks 5-15 have short week pages and slide outlines, but very little of the
   supporting lab, exercise, and code material available for Weeks 1-4.
 
@@ -75,9 +97,9 @@ These ideas have been discussed but are **not yet approved course policy**:
 3. The exact due date for the MATLAB project and its relationship to the quiz
    schedule.
 
-A detailed implementation draft is available in `projects/`. The agreed core
-architecture is incorporated into the syllabus; the MATLAB project date remains
-open.
+These decisions remain open and are intentionally deferred until later course
+planning. A detailed implementation draft is available in `projects/`, and the
+agreed core project architecture is incorporated into the syllabus.
 
 ## Evidence Map
 
@@ -91,23 +113,20 @@ open.
 | Week 5 | week and slide pages | Outline |
 | Weeks 6-12 | week and slide pages; limited R lab/code | Outline/early scaffold |
 | Weeks 13-15 | week and slide pages | Outline |
-| Projects | `projects/` | Core architecture agreed; data and starter implementation pending |
+| Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
 
 ## Next Actions
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Generate and quality-check the 20 synthetic building datasets and withheld
-   validation files.
-3. Build scaffolded MATLAB and R starter scripts, fixed result schemas, and
-   batch checkers.
-4. Create the Word/Google Docs report template used to export PDF.
-5. Decide the MATLAB project date.
-6. Decide the remaining quiz and midterm architecture.
-7. Update the syllabus after the remaining assessment decisions are approved.
-8. Expand Week 5 and then the R sequence using the validated Weeks 1-4 pattern.
-9. Update both this record and `instructor-progress.qmd` after each decision or
+2. Expand Week 5 and then the R sequence using the validated Weeks 1-4 pattern.
+3. Perform a short setup check in the live Blackboard course before student
+   release, including Groups, staged availability, and downloaded filenames.
+4. Decide the MATLAB project date later, when the teaching calendar is ready.
+5. Decide the remaining quiz and midterm architecture later.
+6. Update the syllabus after the remaining assessment decisions are approved.
+7. Update both this record and `instructor-progress.qmd` after each decision or
    major milestone.
 
 ## Update Protocol
@@ -138,3 +157,18 @@ milestone:
 - **2026-07-10:** Projects were confirmed as group-assessed. Mandatory
   individual project examinations were removed; brief random or evidence-
   triggered verification remains available when needed.
+- **2026-07-22:** The deterministic private project-data package was generated
+  for 20 groups. All MATLAB, R training, and withheld validation files passed
+  structural, plausibility, distinctness, and comparability checks; private
+  reference results and row-level ground truth were retained for checking.
+- **2026-07-22:** Beginner-oriented MATLAB and R starters, fixed CSV result
+  contracts, 60 staged release ZIPs, and private batch checkers were completed.
+  MATLAB and R checker suites each passed all 20 known-good submissions.
+- **2026-07-22:** Word/Google Docs report templates and an offline PDF data
+  dictionary were completed and added to every appropriate starter ZIP. All 60
+  release ZIPs passed exact-content checks, validation-separation checks, and a
+  representative upload/download extraction rehearsal.
+- **2026-07-22:** The complete assessment-sensitive project package was backed
+  up in a separate private GitHub repository. Project scheduling and the
+  remaining quiz and midterm architecture were intentionally deferred; Week 5
+  became the next content milestone.

@@ -28,14 +28,33 @@ Each group represents a different building with its own simulated base load,
 temperature sensitivity, operating effects, noise level, and unusual
 observations. All datasets share variable names and units.
 
-The private instructor package should contain:
+The private instructor package is generated locally under the Git-ignored
+`instructor-private/project-data/` directory. It contains:
 
 ```text
 generator/
   generate-project-data.R
-  simulation-manifest.csv
+  check-project-data.R
+  assemble-project-packages.R
+  check-project-packages.R
+simulation-manifest.csv
+quality-report.csv
+student-packages/
+  project-1/group-01/
+  project-2-training/group-01/
+  project-2-validation/group-01/
+  zips/
+checkers/
+  check_project_1_submissions.m
+  check-project-2-submissions.R
+hidden/
+  project-1-reference-results.csv
+  project-2-data-issues.csv
+  project-2-reference-results.csv
+  project-2-reference-predictions.csv
 release-project-1/
   group-01-matlab-data.csv
+  group-01-project-1-assignment.csv
   ...
 release-project-2-training/
   group-01-r-training.csv
@@ -45,8 +64,19 @@ release-project-2-validation/
   ...
 ```
 
-The generator, manifest, and validation files must remain outside the public
-repository until their scheduled LMS release.
+The package now generates 20 deterministic but distinct group assignments. The
+generator, manifest, quality report, row-level truth, reference results, and
+validation files must remain outside the public repository. The local package
+must be backed up in an access-controlled location before the course begins.
+
+The quality checker verifies schemas, row counts, identifiers, missingness,
+allowed categories, plausible ranges, temperature coverage, model signal, and
+comparable prediction difficulty. The current generated package passes all
+checks for all 20 groups; file fingerprints were also confirmed to be distinct.
+
+The package assembler creates 20 customized MATLAB starter ZIPs, 20 R training
+starter ZIPs, and 20 separate validation ZIPs. The validation ZIPs must not be
+released before the frozen model-plan deadline.
 
 ## Starter Materials
 
@@ -57,14 +87,14 @@ For Project 1:
 
 - partially completed main MATLAB script;
 - a small function starter and function test;
-- PDF/Word report template;
+- Word/Google Docs report template for PDF export;
 - common data dictionary;
 - assigned data file.
 
 For Project 2:
 
 - partially completed R script;
-- PDF/Word report template;
+- Word/Google Docs report template for PDF export;
 - common data dictionary;
 - training file;
 - later validation file.
@@ -78,6 +108,14 @@ CSV schema errors before grading begins.
 
 Release the group-specific data and starter files through Blackboard. Release
 the Project 2 validation file only after the model-plan deadline.
+
+The final release contract has been rehearsed locally with all 60 ZIPs. An
+exact allowlist check confirms the contents of every Project 1, Project 2
+training, and Project 2 validation ZIP; the training ZIPs contain no validation
+outcomes. Representative group 01, 10, and 20 ZIPs were also copied through an
+upload/download staging cycle and extracted successfully. This rehearsal checks
+the files and workflow contract; the live Blackboard course still requires a
+short instructor setup check before student release.
 
 ## Automated Checking
 
@@ -105,9 +143,15 @@ Run every R script using its assigned training and validation files. Check:
 - agreement between predictions and the results CSV;
 - sensitivity result.
 
-The checker should produce one instructor table with a row per group and columns
-for reproducibility, numerical discrepancies, warnings, and items needing human
-review.
+The implemented checkers produce one instructor CSV row per group with file,
+schema, execution, reproducibility, numerical-discrepancy, figure, and review
+flags. Both checkers pass all 20 private reference submissions.
+
+The Project 1 checker runs each MATLAB script in an isolated temporary folder,
+tests `model_rmse.m` on row and column vectors, regenerates outputs, and compares
+them with the hidden reference. The Project 2 checker runs each R script,
+restricts the submitted formula to the approved variables and transformations,
+independently refits it, and reproduces every result and validation prediction.
 
 ## PDF Review
 

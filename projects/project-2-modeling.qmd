@@ -25,7 +25,9 @@ Each team receives:
 
 ```text
 group-01-r-training.csv
-project2-starter.R
+group-01-project2.R
+project-2-results-schema.csv
+project-2-validation-predictions-schema.csv
 project2-report-template.docx
 data-dictionary.pdf
 ```
@@ -36,8 +38,18 @@ After the model plan is frozen, the team receives:
 group-01-r-validation.csv
 ```
 
+[Download the Project 2 report template](templates/project2-report-template.docx)
+and the [printable data dictionary](handouts/data-dictionary.pdf). The training
+starter ZIP contains the same two files.
+
 The training data may contain variables such as outdoor temperature, occupancy,
 wind speed, weekday/weekend status, and heating energy.
+
+The finalized training file contains 301 rows representing 300 distinct days;
+it includes one repeated record and a small number of missing values. The later
+validation file contains 65 complete observations. See the
+[project data dictionary](project-data-dictionary.qmd) for exact variables,
+units, and dates.
 
 ## Required R Work
 
@@ -70,6 +82,11 @@ Before receiving the validation data, record:
 - the validation metric;
 - one expected failure condition.
 
+Complete the frozen-model-plan page in the report template and submit it before
+the validation ZIP is released. Do not revise the plan after seeing the
+validation outcomes; later deviations should instead be identified and
+explained in the report.
+
 ### 5. Fit and diagnose the model
 
 - Fit the planned model using only training data.
@@ -84,15 +101,15 @@ After the validation file is released:
 
 - apply the frozen model without redesigning it around the new outcomes;
 - save one prediction for every validation row;
-- calculate MAE, RMSE, or another approved metric;
+- calculate both MAE and RMSE;
 - compare training, baseline, and validation performance;
 - investigate where predictions fail.
 
 ### 7. Perform a sensitivity check
 
-Repeat the analysis after one consequential change, such as removing an
-influential observation, excluding a condition, or changing a defensible
-modeling choice. Explain whether the conclusion survives.
+Remove the training observation with the largest absolute standardized
+residual, refit the frozen formula, and repeat the validation calculation.
+Explain whether the conclusion survives.
 
 ## Required Submission
 
@@ -132,6 +149,10 @@ allow the instructor to verify:
 - training, baseline, and validation errors;
 - one-to-one alignment of predictions with validation rows;
 - the reported sensitivity result.
+
+The [Project 2 result contract](project-result-contracts.qmd) fixes the cleaning
+rules, output fields, metrics, prediction alignment, and sensitivity procedure
+while preserving a limited choice of defensible model formula.
 
 ## Possible Project Verification
 
