@@ -6,7 +6,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**Week 7 developed; exploratory data analysis in Week 8 is the next content milestone.**
+**Week 8 developed; data import and tidy data in Week 9 is the next content milestone.**
 
 Last updated: **22 July 2026**
 :::
@@ -25,7 +25,8 @@ the motivation and the kind of feedback being requested.
 | Week 5: symbolic mathematics | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, four checked MATLAB scripts | Review as the final MATLAB teaching block |
 | Week 6: MATLAB-to-R transition | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, three checked R scripts, and a checked report scaffold | Review the transition workload for beginners |
 | Week 7: data transformation | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the row-accounting and question-drift emphasis |
-| Weeks 8-12: R data workflow | Outline/early scaffold | Week and slide outlines | Expand Week 8 exploratory data analysis |
+| Week 8: exploratory data analysis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the finding/doubt/next-question discipline |
+| Weeks 9-12: R data workflow | Outline/early scaffold | Week and slide outlines | Expand Week 9 data import and tidy data |
 | Weeks 13-15: modeling and synthesis | Outline | Week and slide outlines | Expand after the R foundations |
 | Quizzes and midterm | Deferred | Assessment weights exist in the syllabus | Decide the detailed architecture later |
 | Projects | **Complete and privately backed up** | 20-group data, MATLAB/R starters, Word report templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Check the live Blackboard setup before release |
@@ -61,6 +62,12 @@ they can never be revised.
   conclusions remain visible. The AI activity diagnoses a pipeline that runs
   but answers a nearby question. All three Week 7 R scripts pass the validation
   harness.
+- Week 8 uses `ggplot2::diamonds` to separate quantitative and categorical
+  variation, investigate covariation and overplotting, inspect nonpositive
+  recorded dimensions, and refine marginal comparisons. Students maintain an
+  EDA log that separates findings, doubts, limitations, and next questions.
+  The AI activity audits a fluent but causal and anomaly-blind plot
+  interpretation. All three Week 8 R scripts pass the validation harness.
 - The course is expected to have about 60 students, so individual oral project
   defenses are not a practical default.
 - Project 1 uses MATLAB and Project 2 uses R.
@@ -125,6 +132,7 @@ architecture and the remaining implementation decisions.
 | 22 July 2026 | Week 5 was expanded with a two-meeting symbolic-mathematics sequence, full slides, two labs, exercises, four MATLAB examples, and an AI-answer audit; the complete MATLAB validation harness passed. |
 | 22 July 2026 | Week 6 was expanded as a beginner-safe MATLAB-to-R transition with first-script foundations, checked `ggplot2` figures, a supplied reproducible-report scaffold, two labs, exercises, three R scripts, and an AI plot-claim audit; all R and report-code checks passed. |
 | 22 July 2026 | Week 7 was expanded around data transformation as question-answering with one-verb invariants, explicit missing-row accounting, grouped summaries, full slides, two labs, exercises, three checked R scripts, and an AI pipeline question-drift audit. |
+| 22 July 2026 | Week 8 was expanded into a checked exploratory-data-analysis cycle using `diamonds`, with variable-type decisions, distributions, covariation, overplotting, conditional views, anomaly review, full slides, two labs, exercises, three checked R scripts, and an AI interpretation audit. |
 
 ## Next Decision Gate
 
@@ -140,12 +148,12 @@ The working student project package is complete:
 - **Completed:** exact-content checks for all 60 release ZIPs and a
   representative upload/download extraction rehearsal.
 
-The next development milestone is to expand **Week 8** around exploratory data
-analysis: variable types, distributions, covariation, unusual observations,
-missingness, question refinement, checked visualizations, and an AI plot-
-interpretation audit. The project date and detailed quiz/midterm architecture
-can be decided later. The live Blackboard setup still needs a short final check
-before student release.
+The next development milestone is to expand **Week 9** around external data
+import and tidy data: file-path discipline, column-type checks, missing-value
+encodings, one-row/one-observation meaning, reshaping, post-import contracts,
+and an AI tidy-structure audit. The project date and detailed quiz/midterm
+architecture can be decided later. The live Blackboard setup still needs a
+short final check before student release.
 
 Feedback on those choices is especially useful now. The original review
 questions remain available on the [instructor preview](instructor-preview.qmd).

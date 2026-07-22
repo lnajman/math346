@@ -5,29 +5,272 @@ format:
     theme: simple
     slide-number: true
     footer: "MATH 346"
+execute:
+  enabled: false
 ---
 
 ## Today's Question
 
-How do we discover patterns without fooling ourselves?
+How do we discover useful patterns, anomalies, and better questions without
+fooling ourselves?
 
-## EDA Cycle
+## Week 8 Plan
+
+- Meeting 1: variation and data quality
+- Meeting 2: covariation, refinement, and AI interpretation review
+
+## Exploration Is Not A Final Verdict
+
+EDA can produce:
+
+- a supported observation;
+- an anomaly to investigate;
+- a limitation;
+- a refined question.
+
+## The Data
+
+`ggplot2::diamonds` contains prices and attributes for 53,940 diamonds.
+
+No external file import is required.
+
+## What One Row Represents
+
+One row represents one diamond.
+
+Price, weight, quality grades, and recorded dimensions describe that diamond.
+
+## Variable Types
+
+- quantitative: `price`, `carat`, `x`, `y`, `z`
+- ordered categorical: `cut`, `color`, `clarity`
+
+Plot choice depends on variable type.
+
+## The EDA Cycle
 
 1. Ask a question.
-2. Visualize or transform.
-3. Notice a pattern or problem.
-4. Refine the question.
-5. Record uncertainty.
+2. Inspect the relevant data.
+3. Summarize or visualize.
+4. Validate the output.
+5. Record a pattern, doubt, or anomaly.
+6. Refine the question.
 
-## Variation
+## Start With An Audit
 
-How does one variable change across observations?
+```r
+diamonds_eda <- diamonds |> as_tibble()
 
-## Covariation
+nrow(diamonds_eda)
+names(diamonds_eda)
+glimpse(diamonds_eda)
+colSums(is.na(diamonds_eda))
+```
 
-How do two or more variables change together?
+## No `NA` Does Not Mean Clean
 
-## AI Check
+The dataset contains no missing values.
 
-Generated summaries often overstate patterns. Look for uncertainty, outliers, and missing context.
+Twenty rows have at least one recorded dimension at or below zero.
 
+## Locate Dimension Questions
+
+```r
+dimension_issues <- diamonds_eda |>
+  filter(x <= 0 | y <= 0 | z <= 0)
+
+nrow(dimension_issues)
+```
+
+Unusual does not automatically mean erroneous.
+
+## Numerical Summaries
+
+```r
+diamonds_eda |>
+  summarize(
+    median_price = median(price),
+    mean_price = mean(price),
+    maximum_price = max(price)
+  )
+```
+
+Mean above median suggests right skew.
+
+## Histogram Pattern
+
+```r
+ggplot(diamonds_eda, aes(x = price)) +
+  geom_histogram(binwidth = 500, boundary = 0) +
+  labs(
+    x = "Price (US dollars)",
+    y = "Number of diamonds"
+  )
+```
+
+## Bin Width Is A Choice
+
+Compare bin widths of:
+
+- $100;
+- $500;
+- $2,000.
+
+Detail changes even though observations do not.
+
+## Validate Histogram Counts
+
+```r
+built <- ggplot_build(price_histogram)
+sum(built$data[[1]]$count)
+```
+
+The bins should account for all 53,940 prices.
+
+## Categorical Variation
+
+```r
+diamonds_eda |>
+  count(cut, name = "n_diamonds")
+```
+
+A bar chart displays category frequencies, not prices.
+
+## Meeting 1 Exit Ticket
+
+Record:
+
+- one observed distribution pattern;
+- one anomaly;
+- one limitation;
+- one next question.
+
+## Meeting 2 Question
+
+How do variables vary together, and when must a simple question be refined?
+
+## Quantitative Covariation
+
+```r
+ggplot(diamonds_eda,
+       aes(x = carat, y = price)) +
+  geom_point()
+```
+
+With 53,940 opaque points, many observations cover one another.
+
+## Overplotting Hides Density
+
+Two figures can contain the same rows but communicate very different amounts
+of evidence.
+
+Row count is necessary, not sufficient, for a readable plot.
+
+## Use Transparency
+
+```r
+carat_price_plot <- ggplot(
+  diamonds_eda, aes(carat, price)
+) +
+  geom_point(alpha = 0.08, size = 0.7)
+```
+
+## Check The Scatterplot Layer
+
+```r
+scatter_data <- ggplot_build(
+  carat_price_plot
+)$data[[1]]
+
+stopifnot(nrow(scatter_data) == 53940)
+```
+
+## Supported Overall Pattern
+
+Larger diamonds tend to have higher prices in these data.
+
+Substantial price variation remains among diamonds with similar carat values.
+
+## What Is Not Established
+
+The plot does not prove:
+
+- causation;
+- a fixed price increase per carat;
+- that other attributes do not matter;
+- a prediction rule for new diamonds.
+
+## Categorical And Quantitative
+
+```r
+ggplot(diamonds_eda,
+       aes(x = cut, y = price)) +
+  geom_boxplot(outlier.alpha = 0.15)
+```
+
+Keep category counts beside the comparison.
+
+## A Marginal Comparison Can Mislead
+
+Carat distributions also differ across cut categories.
+
+Do not interpret a marginal price difference as a cut effect without refining
+the question.
+
+## Refine With Conditional Views
+
+```r
+ggplot(diamonds_eda,
+       aes(carat, price)) +
+  geom_point(alpha = 0.06, size = 0.5) +
+  facet_wrap(~ cut)
+```
+
+## Maintain An EDA Log
+
+| Record | Purpose |
+|---|---|
+| Question | fixes the target |
+| Evidence | names the summary or plot |
+| Pattern or anomaly | states what was observed |
+| Limitation or doubt | prevents overclaiming |
+| Next question | makes exploration iterative |
+
+## Weak AI Plot
+
+```r
+ggplot(diamonds, aes(carat, price)) +
+  geom_point() +
+  labs(title = "Carat determines diamond price")
+```
+
+It runs. Its title and opacity still require review.
+
+## Weak AI Interpretation
+
+> Carat causes price to rise by a fixed amount. All diamonds follow the same
+> pattern, and other attributes do not matter. There are no anomalies.
+
+Which words exceed the evidence?
+
+## AI Interpretation Audit
+
+- Association or causation?
+- Pattern or fixed rate?
+- What variation remains?
+- What does overplotting hide?
+- Which variables were ignored?
+- Which anomalies need inspection?
+
+## Repair The Output
+
+Produce:
+
+- two supported observations;
+- two limitations;
+- two next questions;
+- one statement requiring modeling or external evidence.
+
+## Exit Ticket
+
+An exploratory pattern should become a finding, doubt, or next question when ...

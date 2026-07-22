@@ -33,9 +33,13 @@ scripts and embedded report code pass the course validation harness. Week 7 has
 now been expanded around data transformation as question-answering using R's
 built-in `airquality` data, explicit row accounting, grouped summaries, and an
 AI question-drift audit. Its three R scripts pass the course validation
-harness. The next content milestone is Week 8 exploratory data analysis.
+harness. Week 8 has now been expanded into a checked exploratory-data-analysis
+cycle using `ggplot2::diamonds`: variable-type decisions, distributions,
+covariation, overplotting, conditional views, data-quality anomalies, and an AI
+interpretation audit. Its three R scripts pass the course validation harness.
+The next content milestone is Week 9 data import and tidy data.
 
-Weeks 8-15 remain outlines. They should not yet be described as complete course
+Weeks 9-15 remain outlines. They should not yet be described as complete course
 materials.
 
 ## Confirmed Progress
@@ -77,8 +81,12 @@ materials.
   lab, an AI pipeline-review lab, exercises, and three checked R scripts. It is
   developed and ready for review, but has not yet been designated a validated
   prototype.
-- Weeks 8-15 have short week pages and slide outlines, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-7.
+- Week 8 now has a two-meeting exploratory-data-analysis plan, full slides, a
+  main lab, an AI interpretation-review lab, exercises, and three checked R
+  scripts. It is developed and ready for review, but has not yet been
+  designated a validated prototype.
+- Weeks 9-15 have short week pages and slide outlines, but very little of the
+  supporting lab, exercise, and code material available for Weeks 1-8.
 
 ## Established Decisions and Constraints
 
@@ -133,7 +141,8 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 5 | `weeks/week-05.qmd`; `slides/week-05.qmd`; two labs; exercises; four checked MATLAB scripts | Developed; ready for review |
 | Week 6 | `weeks/week-06.qmd`; `slides/week-06.qmd`; two labs; exercises; three checked R scripts; checked report scaffold | Developed; ready for review |
 | Week 7 | `weeks/week-07.qmd`; `slides/week-07.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
-| Weeks 8-12 | week and slide pages | Outline/early scaffold |
+| Week 8 | `weeks/week-08.qmd`; `slides/week-08.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
+| Weeks 9-12 | week and slide pages | Outline/early scaffold |
 | Weeks 13-15 | week and slide pages | Outline |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
@@ -142,7 +151,7 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 8 and then the remaining R sequence using the validated weekly
+2. Expand Week 9 and then the remaining R sequence using the validated weekly
    pattern.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
@@ -207,3 +216,8 @@ milestone:
   question-answering with one-verb invariants, explicit missing-row accounting,
   grouped summaries, two labs, exercises, three R scripts, and an AI pipeline
   question-drift audit. The complete R validation harness passed.
+- **2026-07-22:** Week 8 was expanded into a checked EDA cycle using the
+  `diamonds` data, with variable-type decisions, distribution and covariation
+  plots, overplotting, conditional comparisons, anomaly review, two labs,
+  exercises, three R scripts, and an AI interpretation audit. The complete R
+  validation harness passed.

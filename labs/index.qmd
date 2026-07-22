@@ -21,6 +21,8 @@ Labs are designed as studio activities. They should be completed with MATLAB or 
 | [Lab 6B](lab-06-ai-plot-review.qmd) | AI-generated plot and claim review | Ready |
 | [Lab 7](lab-07-data-transformation.qmd) | Checked data-transformation pipelines | Ready |
 | [Lab 7B](lab-07-ai-pipeline-review.qmd) | AI-generated pipeline and question-drift review | Ready |
+| [Lab 8](lab-08-exploratory-data-analysis.qmd) | Checked exploratory data analysis | Ready |
+| [Lab 8B](lab-08-ai-interpretation-review.qmd) | AI-generated plot interpretation review | Ready |
 
 ## Lab Routine
 

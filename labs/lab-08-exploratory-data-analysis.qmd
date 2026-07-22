@@ -1,0 +1,126 @@
+---
+title: "Lab 8: A Checked Exploratory Data Analysis"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Conduct a reproducible exploratory analysis of diamond price and attributes
+while separating observed patterns, data-quality questions, limitations, and
+next questions.
+
+## Setup
+
+Create a folder called `week08` and download:
+
+- [week08-eda-cycle.R](../code/r/week08-eda-cycle.R)
+- [week08-plot-checks.R](../code/r/week08-plot-checks.R)
+
+The data are available as `ggplot2::diamonds`; no external file is needed.
+
+## Part A: Create An EDA Log
+
+Create a table with these headings:
+
+| Question | Evidence | Pattern or anomaly | Limitation or doubt | Next question |
+|---|---|---|---|---|
+
+Add a row after every major section. A blank limitation column is not an
+acceptable completed entry.
+
+## Part B: Audit Structure And Quality
+
+Record:
+
+1. what one row represents;
+2. row and variable counts;
+3. classes, units, and factor levels;
+4. missing values;
+5. ranges of quantitative variables;
+6. counts of nonpositive `x`, `y`, or `z` dimensions.
+
+Turn expected row, category, and anomaly counts into `stopifnot` checks.
+
+## Part C: Explore Price Variation
+
+Calculate minimum, quartiles, mean, median, and maximum price. Create price
+histograms with at least three bin widths.
+
+For the selected figure:
+
+- label price in US dollars;
+- identify the bin width;
+- verify that histogram counts sum to 53,940;
+- describe skewness without claiming a probability model;
+- record a limitation and next question.
+
+## Part D: Explore Categorical Variation
+
+Create count and proportion tables for both `cut` and `color`. Make one checked
+bar chart.
+
+Confirm category counts add to the full dataset and explain why sample
+frequencies do not automatically describe another market or time period.
+
+## Part E: Explore Carat And Price Together
+
+Create an opaque scatterplot, then a transparent scatterplot. Compare them.
+
+Your preferred plot must include:
+
+- units on both axes;
+- transparency appropriate for 53,940 observations;
+- a noncausal title;
+- a caption naming the dataset;
+- a `ggplot_build` check for the plotted row count.
+
+Record the overall pattern and the variation that remains among similar carat
+values.
+
+## Part F: Refine The Question
+
+Use two approaches:
+
+1. facet the carat-price plot by cut;
+2. restrict to a narrow carat range of your choice and compare price by cut.
+
+Record the range and the number of rows retained. Explain how each refinement
+changes the question and which comparison becomes more defensible.
+
+## Part G: Investigate Anomalies
+
+Inspect the 20 rows with at least one nonpositive dimension. Do not delete them
+from the main analysis merely because they are unusual.
+
+Explain:
+
+- why the issue matters for a dimension-based question;
+- why it may not change a carat-price plot directly;
+- what source verification would be useful;
+- how a sensitivity analysis could be performed.
+
+## Part H: Clean-Session Check
+
+Restart R and run the script from beginning to end. Confirm that all summaries,
+plots, row counts, and EDA-log evidence can be regenerated without console-only
+objects or manually typed results.
+
+## Deliverable
+
+Submit:
+
+- one runnable `.R` script;
+- the completed EDA log;
+- one price-distribution figure;
+- one categorical-frequency figure;
+- the transparent and refined carat-price figures;
+- the anomaly table;
+- a 5-7 sentence synthesis containing supported patterns, limitations, and next
+  questions rather than a final causal explanation.
+
+## AI Use
+
+If you use an LLM, record the prompt, the suggested finding, the exact plot or
+summary used to check it, what was weakened or rejected, and one next question
+the generated response overlooked.

@@ -37,6 +37,9 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 - [week07-dplyr-eda.R](r/week07-dplyr-eda.R)
 - [week07-verb-checks.R](r/week07-verb-checks.R)
 - [week07-ai-pipeline-review.R](r/week07-ai-pipeline-review.R)
+- [week08-eda-cycle.R](r/week08-eda-cycle.R)
+- [week08-plot-checks.R](r/week08-plot-checks.R)
+- [week08-ai-interpretation-review.R](r/week08-ai-interpretation-review.R)
 
 ## Project Starter Templates
 

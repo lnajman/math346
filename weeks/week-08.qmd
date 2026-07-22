@@ -1,5 +1,7 @@
 ---
 title: "Week 8: Exploratory Data Analysis"
+execute:
+  enabled: false
 ---
 
 ## Official Topic
@@ -8,22 +10,324 @@ Exploratory data analysis.
 
 ## Problem Focus
 
-How do we generate useful questions from data without fooling ourselves?
+How do we discover useful patterns, anomalies, and better questions without
+turning exploration into unsupported conclusions?
 
-Students use variation, covariation, visualization, and transformation to discover patterns and data-quality problems.
+Students examine `ggplot2::diamonds`, a built-in dataset containing prices and
+attributes for 53,940 diamonds. They study variation in individual variables,
+covariation between variables, overplotting, conditional comparisons, and
+unusual recorded dimensions.
 
-## In Class
+::: {.callout-note}
+No external file is imported this week. This keeps attention on exploratory
+reasoning and checked visualization. File import and tidy-data repair begin in
+Week 9; statistical models begin in Week 13.
+:::
 
-- Separate variable types.
-- Visualize distributions.
-- Investigate relationships between variables.
-- Record questions, findings, and doubts.
+## Learning Goals
+
+By the end of the week, students should be able to:
+
+- describe the purpose and limits of exploratory data analysis;
+- distinguish quantitative, categorical, and ordered categorical variables;
+- inspect row counts, variable types, units, ranges, and missingness;
+- distinguish a missing value from an implausible recorded value;
+- use numerical summaries to describe center, spread, and range;
+- use a histogram to investigate a quantitative distribution;
+- explain how histogram bin width changes the displayed pattern;
+- use a bar chart to investigate categorical frequencies;
+- interpret a boxplot as a compact distribution comparison;
+- use a scatterplot to investigate covariation between two quantitative
+  variables;
+- recognize overplotting and use transparency to reveal density;
+- refine a marginal comparison by conditioning on another variable;
+- treat unusual observations as questions to investigate, not automatic errors;
+- validate that a figure contains the intended observations and groups;
+- maintain an EDA log separating findings, doubts, and next questions;
+- critique an AI-generated plot interpretation for causal language,
+  overgeneralization, and ignored anomalies.
+
+## The EDA Cycle
+
+Exploratory data analysis is an iterative cycle:
+
+1. state a question;
+2. inspect the variables and observations involved;
+3. transform, summarize, or visualize;
+4. check that the output represents the intended data;
+5. record a pattern, anomaly, or limitation;
+6. refine the question and repeat.
+
+The result of exploration may be a finding, but it may also be a better
+question or a data-quality concern.
+
+## Meeting 1: Variation And Data Quality
+
+**Question:** What does each variable look like on its own, and what should be
+investigated before using it?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Introduce the EDA cycle and inspect `diamonds` |
+| 10-20 min | Classify quantitative and categorical variables |
+| 20-32 min | Audit rows, types, units, ranges, and missingness |
+| 32-47 min | Investigate price using summaries and histograms |
+| 47-57 min | Change histogram bin width and compare the resulting views |
+| 57-66 min | Investigate cut using counts and a bar chart |
+| 66-72 min | Locate nonpositive recorded dimensions and frame questions |
+| 72-75 min | Exit ticket: finding, anomaly, and next question |
+
+### Know What One Row Represents
+
+Each row represents one diamond. Important variables include:
+
+| Variable | Type | Meaning |
+|---|---|---|
+| `price` | quantitative | price in US dollars |
+| `carat` | quantitative | diamond weight in carats |
+| `cut` | ordered categorical | cut quality from Fair to Ideal |
+| `color` | ordered categorical | color grade from D to J |
+| `clarity` | ordered categorical | clarity grade |
+| `x`, `y`, `z` | quantitative | recorded dimensions in millimeters |
+
+### Start With A Structure Audit
+
+```r
+library(dplyr)
+library(ggplot2)
+
+diamonds_eda <- diamonds |> as_tibble()
+
+nrow(diamonds_eda)
+names(diamonds_eda)
+glimpse(diamonds_eda)
+colSums(is.na(diamonds_eda))
+```
+
+The dataset has 53,940 rows, 10 variables, and no `NA` values. That does not
+prove that every recorded value is plausible.
+
+### Missing Is Not The Same As Implausible
+
+```r
+dimension_issues <- diamonds_eda |>
+  filter(x <= 0 | y <= 0 | z <= 0)
+
+nrow(dimension_issues)
+```
+
+Twenty rows contain at least one nonpositive recorded dimension even though
+carat and price are positive. These rows deserve inspection. Exploration alone
+does not establish whether they are measurement errors, encoding choices, or
+something else, so do not silently delete them.
+
+### Numerical Summaries Are A First View
+
+```r
+diamonds_eda |>
+  summarize(
+    minimum = min(price),
+    first_quartile = quantile(price, 0.25),
+    median = median(price),
+    mean = mean(price),
+    third_quartile = quantile(price, 0.75),
+    maximum = max(price)
+  )
+```
+
+The mean price is much larger than the median, suggesting a right-skewed
+distribution. A plot should test and refine that impression.
+
+### Histograms Depend On A Choice
+
+```r
+ggplot(diamonds_eda, aes(x = price)) +
+  geom_histogram(binwidth = 500, boundary = 0) +
+  labs(
+    x = "Price (US dollars)",
+    y = "Number of diamonds"
+  )
+```
+
+Change the bin width to 100, 500, and 2,000 dollars. The data do not change,
+but visible detail does. Record the bin width in the code or caption.
+
+### Categorical Variation Uses Counts
+
+```r
+cut_counts <- diamonds_eda |>
+  count(cut, name = "n_diamonds")
+
+stopifnot(
+  nrow(cut_counts) == 5,
+  sum(cut_counts$n_diamonds) == nrow(diamonds_eda)
+)
+```
+
+A bar chart displays these frequencies. It does not show price or prove that
+the sample represents all diamonds sold in another place or period.
+
+## Meeting 2: Covariation And Question Refinement
+
+**Question:** How do variables vary together, and when does a simple pattern
+need a more careful question?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Revisit the EDA log from Meeting 1 |
+| 10-23 min | Build a carat-price scatterplot and diagnose overplotting |
+| 23-35 min | Add transparency and validate plotted observations |
+| 35-47 min | Compare price distributions across cut categories |
+| 47-57 min | Examine carat within cut and identify a confounding explanation |
+| 57-65 min | Refine the question using facets or grouped summaries |
+| 65-72 min | Audit an AI-generated interpretation of the scatterplot |
+| 72-75 min | Exit ticket: supported pattern, unresolved question, limitation |
+
+### Covariation Between Quantitative Variables
+
+```r
+carat_price_plot <- ggplot(
+  diamonds_eda,
+  aes(x = carat, y = price)
+) +
+  geom_point(alpha = 0.08, size = 0.7) +
+  labs(
+    x = "Weight (carats)",
+    y = "Price (US dollars)"
+  )
+```
+
+The plot shows a strong positive association: larger diamonds tend to have
+higher prices. It also shows substantial variation among diamonds of similar
+weight. A scatterplot does not establish causation or a fixed rate of change.
+
+### Overplotting Can Hide Evidence
+
+With 53,940 points, opaque marks cover one another. Transparency helps reveal
+density, but it does not solve every display problem.
+
+```r
+scatter_data <- ggplot_build(carat_price_plot)$data[[1]]
+stopifnot(nrow(scatter_data) == nrow(diamonds_eda))
+```
+
+This check confirms how many plotted rows entered the layer. It does not prove
+that the visual design communicates them well.
+
+### Categorical And Quantitative Covariation
+
+```r
+ggplot(diamonds_eda, aes(x = cut, y = price)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  labs(
+    x = "Cut quality",
+    y = "Price (US dollars)"
+  )
+```
+
+A marginal comparison of price by cut can be surprising because carat also
+varies across cut groups. Before explaining a price difference as a cut effect,
+inspect the carat distributions or compare more similar carat ranges.
+
+### Refine Rather Than Overclaim
+
+Possible next questions include:
+
+- Does the carat-price association look similar within each cut category?
+- How do price distributions compare inside a restricted carat range?
+- Are the apparent gaps or bands recording artifacts or market patterns?
+- Do the 20 nonpositive dimension records affect a dimension-based analysis?
+- Which claims require a model or external evidence rather than EDA alone?
+
+These are next questions, not conclusions already established by one plot.
+
+### Maintain An EDA Log
+
+| Question | Evidence produced | Pattern or anomaly | Limitation or doubt | Next question |
+|---|---|---|---|---|
+| How does price vary? | summary and histogram | right-skewed distribution | bin width changes detail | inspect high-price observations |
+| How do carat and price vary together? | transparent scatterplot | positive association with spread | other attributes vary too | condition on cut or carat range |
+| Are dimensions plausible? | filtered anomaly table | 20 rows have a nonpositive dimension | cause is unknown | verify source or sensitivity |
+
+The log prevents a provisional observation from becoming an unsupported final
+claim.
 
 ## AI-Aware Task
 
-Ask an LLM to summarize a plot. Decide whether it overclaims, ignores uncertainty, or misses data-quality issues.
+An LLM views an opaque carat-price scatterplot and writes:
+
+> The plot proves that increasing carat causes price to rise by a fixed amount.
+> All diamonds follow the same pattern, so cut, color, and clarity do not matter.
+> There are no unusual observations or data-quality concerns.
+
+Audit each sentence:
+
+1. Which words claim causation or certainty?
+2. Does the plot show a fixed rate of change?
+3. What variation remains at similar carat values?
+4. What does overplotting hide?
+5. Which variables and anomalies were ignored?
+6. Which statements should become questions or limitations?
+
+## Survival Checklist
+
+### Commands And Patterns To Own
+
+| Pattern | What you should know |
+|---|---|
+| `glimpse(data)` | compactly displays variables and types |
+| `summary(variable)` | gives a first numerical overview |
+| `quantile(variable, p)` | returns a selected quantile |
+| `count(category)` | counts categorical observations |
+| `geom_histogram(binwidth = ...)` | displays a quantitative distribution using a chosen bin width |
+| `geom_bar()` | counts and displays categorical observations |
+| `geom_boxplot()` | compares compact distribution summaries |
+| `geom_point(alpha = ...)` | displays covariation while reducing overplotting |
+| `facet_wrap(~ category)` | creates conditional panels by category |
+| `ggplot_build(plot)` | exposes the data passed to plot layers for checking |
+
+### Mistakes To Catch
+
+- Starting with a plot before identifying variable meanings and units.
+- Assuming no `NA` values means the data have no quality problems.
+- Calling every unusual value an error or deleting it silently.
+- Treating histogram bin width as a neutral automatic choice.
+- Using a bar chart for a quantitative variable or a histogram for categories.
+- Ignoring group sizes when comparing distributions.
+- Plotting tens of thousands of opaque points and overlooking overplotting.
+- Interpreting a marginal group difference without checking another related
+  variable.
+- Describing association as causation.
+- Treating an exploratory pattern as a fitted model or prediction rule.
+- Reporting only findings and omitting doubts, anomalies, and next questions.
+
+### Checks Before Trusting An EDA Result
+
+- State what one row and every used variable represent.
+- Check types, units, ranges, missingness, and implausible values.
+- Record all filtering or anomaly rules.
+- Match plot type to variable types.
+- Try defensible alternative bin widths or display choices.
+- Confirm plotted rows and groups with counts or `ggplot_build`.
+- Keep group denominators beside comparisons.
+- Inspect variation that remains after a visible overall pattern.
+- Separate description, possible explanation, and unsupported conclusion.
+- Record at least one limitation and next question.
+- Rerun the saved script from a clean session.
+
+## Exercises
+
+Complete the [Week 8 exercises](week-08-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-08.qmd)
-
+- Checked EDA cycle: [week08-eda-cycle.R](../code/r/week08-eda-cycle.R)
+- Checked plot collection: [week08-plot-checks.R](../code/r/week08-plot-checks.R)
+- AI interpretation review: [week08-ai-interpretation-review.R](../code/r/week08-ai-interpretation-review.R)
+- [Lab 8](../labs/lab-08-exploratory-data-analysis.qmd)
+- [AI interpretation review lab](../labs/lab-08-ai-interpretation-review.qmd)

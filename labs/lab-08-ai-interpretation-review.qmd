@@ -1,0 +1,78 @@
+---
+title: "Lab 8B: AI Plot-Interpretation Review"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Audit an AI-generated interpretation that converts a dense exploratory plot
+into causal, universal, and anomaly-free claims.
+
+## Scenario
+
+Download and run
+[week08-ai-interpretation-review.R](../code/r/week08-ai-interpretation-review.R).
+
+The script produces a valid ggplot object and a fluent interpretation. The task
+is to decide what the evidence actually supports.
+
+## Part A: Audit The Plot Design
+
+Record:
+
+1. mapped variables;
+2. variable units;
+3. number of plotted rows;
+4. point size and opacity;
+5. labels or context that are missing;
+6. patterns hidden by overplotting.
+
+Create a revised figure using meaningful labels, transparency, and a cautious
+title. Confirm both figures contain the same number of plotted rows.
+
+## Part B: Classify Every Claim
+
+For each generated sentence, classify each assertion as:
+
+- directly observed;
+- possible explanation;
+- unsupported causal claim;
+- unsupported universal claim;
+- contradicted or left unresolved by the data.
+
+Quote only the short phrase being classified.
+
+## Part C: Seek Counterevidence
+
+Use code and plots to investigate:
+
+- variation in price among diamonds with similar carat;
+- price and carat distributions across cut groups;
+- the 20 rows with nonpositive recorded dimensions;
+- whether the relationship looks identical in every cut panel.
+
+For each investigation, state whether it supports, weakens, or simply does not
+address the generated claim.
+
+## Part D: Repair The Interpretation
+
+Write:
+
+- two observations supported directly by the figures;
+- two limitations;
+- two unresolved questions;
+- one statement describing what would require modeling or external evidence.
+
+Use units and identify `ggplot2::diamonds` as the analyzed dataset.
+
+## Deliverable
+
+Submit the original plot and interpretation, revised plot, claim-classification
+table, counterevidence, and repaired interpretation.
+
+## Exit Question
+
+Complete this sentence:
+
+> A fluent AI interpretation becomes defensible only after ...

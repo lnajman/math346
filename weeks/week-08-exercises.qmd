@@ -1,0 +1,120 @@
+---
+title: "Week 8 Exercises"
+execute:
+  enabled: false
+---
+
+Use `ggplot2::diamonds`. Keep an EDA log with columns for question, evidence,
+pattern or anomaly, limitation, and next question.
+
+## Exercise 1: Classify Variables
+
+For `carat`, `cut`, `color`, `clarity`, `depth`, `price`, and `x`, record:
+
+1. R class;
+2. quantitative, categorical, or ordered categorical type;
+3. units or level meaning;
+4. one suitable plot type;
+5. one unsuitable plot type and why.
+
+## Exercise 2: Audit Before Plotting
+
+Report:
+
+- row and variable counts;
+- variable names and classes;
+- missing values in each variable;
+- minimum and maximum for every quantitative variable;
+- counts for each cut category;
+- a check that cut counts add to 53,940.
+
+Identify at least two values or ranges that deserve further inspection.
+
+## Exercise 3: Histogram Choices
+
+Plot price histograms using bin widths of 100, 500, and 2,000 US dollars.
+
+For each plot:
+
+1. confirm all observations were counted;
+2. record which features become visible or hidden;
+3. identify the bin width in the caption;
+4. explain which version best supports a first overview.
+
+## Exercise 4: Categorical Variation
+
+Create a count and proportion table for `cut`, followed by a bar chart.
+
+Check that:
+
+- there are five categories;
+- counts sum to 53,940;
+- proportions sum to one;
+- axis labels describe counts rather than prices.
+
+Write one observation and one limitation.
+
+## Exercise 5: Unusual Dimensions
+
+Find all rows where `x <= 0`, `y <= 0`, or `z <= 0`.
+
+1. Count rows satisfying each condition.
+2. Count rows satisfying at least one condition.
+3. Display their carat, price, cut, and dimensions.
+4. Explain why `NA` checks did not reveal this issue.
+5. Propose a verification or sensitivity step without declaring the rows errors.
+
+## Exercise 6: Covariation And Overplotting
+
+Create two carat-price scatterplots:
+
+- opaque points at the default size;
+- small points with substantial transparency.
+
+Use `ggplot_build` to confirm that both layers contain 53,940 rows. Explain why
+equal row counts do not make the two plots equally readable.
+
+## Exercise 7: Conditional Views
+
+Create a carat-price scatterplot faceted by cut. For each panel, record:
+
+- approximate direction of association;
+- visible spread at similar carat values;
+- areas with dense or sparse observations;
+- one reason comparisons between panels remain difficult.
+
+Do not fit a model or report a causal effect.
+
+## Exercise 8: A Surprising Marginal Comparison
+
+Compare price distributions across cut categories using boxplots and grouped
+medians. Then compare carat distributions across the same categories.
+
+Explain why a simple statement such as “better cut always means higher price”
+is not supported by the marginal price boxplots. Retain group counts in every
+summary.
+
+## Exercise 9: Critique Generated Interpretation
+
+Review the output of `week08-ai-interpretation-review.R`.
+
+Identify at least six weaknesses involving:
+
+- causation;
+- fixed-rate language;
+- variation at similar carat values;
+- overplotting;
+- ignored diamond attributes;
+- nonpositive recorded dimensions;
+- scope and representativeness;
+- absence of uncertainty or next questions.
+
+Write a replacement consisting of two supported observations, two limitations,
+and two next questions.
+
+## Exit Ticket
+
+In 3-5 sentences, answer:
+
+> When should an exploratory pattern be recorded as a finding, a doubt, or a
+> next question?
