@@ -1,0 +1,77 @@
+---
+title: "Lab 14B: AI Model Ranking Review"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Audit a generated ranking that treats models fitted to different groups as a
+single competition and ignores sample size, uncertainty, sensitivity, and
+new-data evidence.
+
+## Scenario
+
+Download and run:
+
+- [week14-ai-model-ranking-review.R](../code/r/week14-ai-model-ranking-review.R)
+
+The generated output sorts monthly models by training R-squared, declares
+September best, treats June's positive wind coefficient as causal, and promises
+that the ranking will persist.
+
+## Part A: Reconstruct The Ranking Rule
+
+Identify the exact variable and direction used for sorting. List all evidence
+columns that were available but excluded from the generated ranking.
+
+## Part B: Claim-Evidence Table
+
+Complete:
+
+| Generated claim | Missing or contradictory evidence | Verdict | Repair |
+|---|---|---|---|
+| September is the best model |  |  |  |
+| Wind increases ozone in June |  |  |  |
+| The ranking will hold on future observations |  |  |  |
+| Diagnostics do not affect the conclusion |  |  |  |
+
+## Part C: Inspect June
+
+Record June's sample size, wind point estimate, wind interval, diagnostic flag
+count, and temperature-slope sensitivity change.
+
+Explain separately why the causal claim and the certainty claim fail.
+
+## Part D: Ask Whether Ranking Is Defined
+
+For each comparison, decide whether a winner can be defined and why:
+
+1. monthly models fitted to different subsets;
+2. two formulas evaluated on the same training rows;
+3. two frozen formulas evaluated on the same validation rows;
+4. training and validation errors from different row sets.
+
+## Part E: Replace Ranking With An Evidence Display
+
+Create a table or plot retaining month, sample size, coefficient interval,
+training metric, diagnostic flags, and sensitivity change. Write three cautious
+pattern statements without ordinal ranks.
+
+## Part F: Minimal Audit Tests
+
+Add tests for group completeness, identical formula text, June's sample size,
+its wind interval crossing zero, nonzero diagnostic flags for every month, and
+the number of large sensitivity changes.
+
+## Deliverable
+
+Submit the completed claim-evidence table, June audit, comparison decisions,
+replacement evidence display, minimal tests, and a 5-7 sentence repaired
+interpretation.
+
+## Exit Question
+
+Complete this sentence:
+
+> A model ranking is meaningful only when ...

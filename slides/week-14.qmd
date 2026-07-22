@@ -1,30 +1,328 @@
 ---
-title: "Week 14: Handling Many Models"
+title: "Week 14: Many Models Without Losing The Evidence"
 format:
   revealjs:
     theme: simple
     slide-number: true
     footer: "MATH 346"
+execute:
+  enabled: false
 ---
 
 ## Today's Question
 
-How do we compare many models without losing the question?
+How do we repeat one model across groups without turning different contexts
+into a misleading ranking?
 
-## Many Models
+## Week 14 Plan
 
-Repeated models are useful when groups differ.
+- Meeting 1: split, fit, retain, summarize
+- Meeting 2: diagnostics and sensitivity by group
+- AI model-ranking audit
 
-They are dangerous when automation hides failures.
+## Hold The Contract Fixed
 
-## Workflow
+- Response and predictors
+- Formula
+- Units
+- Complete-case rule
+- Result schema
+- Diagnostic rules
 
-- Split or group data.
-- Fit one model per group.
-- Extract comparable summaries.
-- Inspect failures and diagnostics.
+## What Changes?
 
-## AI Check
+Only the monthly subset changes.
 
-Model ranking without diagnostics is incomplete.
+May through September receive the same modeling workflow.
 
+## Checked Modeling Table
+
+```r
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    month = factor(month.abb[Month], levels = month.abb[5:9]),
+    ozone_ppb = Ozone,
+    temperature_f = Temp, wind_mph = Wind
+  )
+```
+
+## Split By Group
+
+```r
+month_data <- split(
+  model_data,
+  model_data$month
+)
+```
+
+One named data frame per month.
+
+## Reconcile The Split
+
+```r
+stopifnot(
+  identical(names(month_data), month.abb[5:9]),
+  sum(vapply(month_data, nrow, integer(1))) ==
+    nrow(model_data)
+)
+```
+
+## Freeze The Formula
+
+```r
+fixed_formula <-
+  ozone_ppb ~ temperature_f + wind_mph
+```
+
+Do not change group and formula simultaneously.
+
+## One-Group Contract
+
+Require:
+
+- declared columns
+- one month
+- at least five rows
+- predictor variation
+- fixed formula
+
+## Return More Than A Number
+
+```r
+list(
+  month = month_name,
+  formula = model_formula,
+  fit = fit,
+  summary = summary_row
+)
+```
+
+## Test May First
+
+```r
+may_result <- fit_one_month(
+  month_data[["May"]],
+  "May",
+  fixed_formula
+)
+```
+
+Inspect before automating.
+
+## Repeat The Checked Unit
+
+```r
+model_results <- lapply(
+  names(month_data),
+  function(month_name) {
+    fit_one_month(month_data[[month_name]],
+                  month_name, fixed_formula)
+  }
+)
+```
+
+## Name The Results
+
+```r
+names(model_results) <- names(month_data)
+```
+
+Requested group and returned model stay aligned.
+
+## Extract Summary Rows
+
+```r
+model_summary <- bind_rows(lapply(
+  model_results,
+  function(result) result$summary
+))
+```
+
+## Retain Beside Every Estimate
+
+- group name
+- sample size
+- coefficient interval
+- training RMSE
+- training R-squared
+- diagnostic evidence
+
+## Check The Batch
+
+```r
+stopifnot(
+  nrow(model_summary) == 5,
+  identical(model_summary$month, names(month_data)),
+  sum(model_summary$n_observations) == 116
+)
+```
+
+## Plot Estimate And Interval
+
+```r
+ggplot(model_summary, aes(month, temperature_slope)) +
+  geom_errorbar(aes(
+    ymin = temperature_low,
+    ymax = temperature_high
+  )) +
+  geom_point()
+```
+
+## Why Intervals Matter
+
+Point estimates differ.
+
+Intervals and sample sizes show how uncertain those differences are.
+
+## Different Rows, Different Questions
+
+Each month-specific model describes a different subset.
+
+They are not competitors predicting the same observations.
+
+## Meeting 2 Question
+
+Does automation preserve the evidence that would make one group result fragile?
+
+## One Diagnostic Record Per Group
+
+- standardized-residual flag count
+- Cook's-distance flag count
+- selected source observation ID
+- original coefficient
+- sensitivity coefficient
+- both training errors
+
+## Preserve Source Identity
+
+```r
+removed_index <- which.max(
+  abs(rstandard(fit))
+)
+
+removed_id <-
+  data$observation_id[[removed_index]]
+```
+
+## Sensitivity Refit
+
+```r
+sensitivity_data <-
+  data[-removed_index, , drop = FALSE]
+
+sensitivity_fit <- lm(
+  fixed_formula,
+  data = sensitivity_data
+)
+```
+
+## Sensitivity Is A Question
+
+How much does the coefficient change when one declared high-residual row is
+removed?
+
+It is not a deletion instruction.
+
+## Classroom Result
+
+Three of five monthly temperature slopes change by more than 40%.
+
+June changes by about 73% and uses only nine observations.
+
+## Why Training Error Falls
+
+The removed row was selected because it was difficult for the original fit.
+
+Lower error on the changed training data is not validation.
+
+## Useful Cross-Group Questions
+
+- Are directions broadly consistent?
+- Which intervals are wide?
+- Which groups are small?
+- Where are diagnostics fragile?
+- What context might explain differences?
+
+## Misleading Question
+
+“Which monthly model wins?”
+
+The models do not predict the same observations or answer one competition.
+
+## Generated Ranking
+
+```r
+generated_ranking <- model_summary |>
+  arrange(desc(r_squared))
+```
+
+Sorting is computationally correct; the conclusion may not be.
+
+## AI Claim: September Is Best
+
+Highest monthly training R-squared does not define a common predictive contest.
+
+Different rows and conditions are being modeled.
+
+## AI Claim: Wind Raises June Ozone
+
+- June has nine rows.
+- The wind interval includes zero.
+- The coefficient is associational.
+- The group fit is sensitivity-fragile.
+
+## AI Claim: Ranking Will Persist
+
+All metrics were calculated on training subsets.
+
+No future-observation evidence was used.
+
+## AI Claim: Diagnostics Do Not Matter
+
+Every month has at least one flag.
+
+Three slopes change by over 40% under the declared sensitivity refit.
+
+## Project 2 Transfer
+
+- frozen formula
+- one record per requested task
+- source identifiers
+- declared sensitivity
+- training versus validation
+- reported instability
+
+## Not A New Project Requirement
+
+The monthly many-model workflow is a teaching example.
+
+Project 2 retains its existing fixed requirements.
+
+## Before Repeating Models
+
+- Fix question and formula.
+- Check groups and row counts.
+- Test one group.
+- Declare output schema.
+- Keep failures visible.
+
+## Before Comparing
+
+- Retain sample size and intervals.
+- Label training metrics.
+- Keep diagnostics and IDs.
+- Inspect sensitivity.
+- Ask whether rows align.
+- State absent new-data evidence.
+
+## Week 15 Boundary
+
+Week 14 builds and audits repeated evidence.
+
+Week 15 communicates the final result clearly and reproducibly.
+
+## Exit Ticket
+
+Name one piece of evidence that prevents a high training R-squared from becoming
+an automatic “best model” claim.

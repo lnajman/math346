@@ -22,7 +22,7 @@ The site does not redistribute copyrighted slide decks, textbook PDFs, answer ke
 
 ## What To Review First
 
-Weeks 1-4 are the validated prototype. Weeks 5-13 have now been expanded
+Weeks 1-4 are the validated prototype. Weeks 5-14 have now been expanded
 using the same teaching pattern:
 
 | Week | Focus | Suggested review |
@@ -40,11 +40,12 @@ using the same teaching pattern:
 | [Week 11](weeks/week-11.qmd) | Readable pipelines and function contracts | Look at named checkpoints, normal and edge-case tests, and the AI refactor behavior-drift audit. |
 | [Week 12](weeks/week-12.qmd) | Vectorized thinking and visible iteration | Look at typed iteration, preallocated loops, complete batch status logs, and the AI dropped-failure audit. |
 | [Week 13](weeks/week-13.qmd) | Model claims and diagnostic evidence | Look at row accounting, contextual coefficients, baseline comparison, residual and influence flags, and the AI interpretation audit. |
+| [Week 14](weeks/week-14.qmd) | Many models and aligned evidence | Look at the fixed monthly model contract, retained fit objects, coefficient intervals, grouped sensitivity checks, and the AI model-ranking audit. |
 
 Weeks 1-4 have now been validated as the prototype pattern for the course.
-Weeks 5-13 are developed and ready for review, but have not yet been
-designated as validated prototypes. Weeks 14-15 are still more schematic. They show the
-intended arc of the course, but they are not yet expanded to the same level.
+Weeks 5-14 are developed and ready for review, but have not yet been
+designated as validated prototypes. Week 15 is still more schematic. It shows
+the intended end of the course, but it is not yet expanded to the same level.
 
 ## Useful Direct Links
 
@@ -81,12 +82,15 @@ I would especially appreciate feedback on these questions:
   clearly enough while making failed batch items impossible to overlook?
 - Does Week 13 introduce regression interpretation and diagnostics without
   encouraging causal claims, automatic deletion, or trust in training fit?
+- Does Week 14 make repeated modeling manageable without encouraging students
+  to rank differently sized subsets by a single training metric or to hide
+  sensitivity and uncertainty?
 - Is the working assessment sequence realistic: quizzes in Weeks 3, 6, 9, and
   13, with the semester examination (midterm) in Week 8?
 - Is the balance right between MATLAB/R skills, mathematical thinking, and validation?
 - Do the LLM-related activities feel pedagogically useful rather than distracting?
-- Are there essential commands, concepts, habits, or warnings missing from the first thirteen weeks?
-- What should be adjusted before expanding Weeks 14-15 in the same style?
+- Are there essential commands, concepts, habits, or warnings missing from the first fourteen weeks?
+- What should be adjusted before expanding Week 15 in the same style?
 
 ## The Intended Shift
 

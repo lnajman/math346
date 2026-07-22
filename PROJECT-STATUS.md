@@ -62,11 +62,19 @@ explicit complete-case modeling table, contextual regression formulas,
 coefficient interpretation, baseline training comparisons, residual and
 influence diagnostics, an additive model, and an AI interpretation audit. Its
 three R scripts pass the complete course validation harness. Quiz 4 remains
-visible as the working Week 13 marker without resolving its exact format. The
-next content milestone is Week 14 many models and grouped workflows.
+visible as the working Week 13 marker without resolving its exact format. Week
+14 has now been expanded around applying one fixed regression contract across
+monthly subsets, retaining each fitted model with an aligned summary, and
+comparing sample size, coefficient intervals, training metrics, diagnostics,
+and sensitivity evidence without declaring a model winner. Its grouped
+sensitivity workflow and AI model-ranking audit expose conclusions that change
+after one difficult observation and rankings that ignore uncertainty and
+validation. Its three R scripts pass the complete course validation harness.
+The next content milestone is Week 15 communication, visualization, and
+synthesis.
 
-Weeks 14-15 remain outlines. They should not yet be described as complete course
-materials.
+Week 15 remains an outline. It should not yet be described as complete course
+material.
 
 ## Confirmed Progress
 
@@ -131,8 +139,11 @@ materials.
   a main lab, an AI interpretation-review lab, exercises, and three checked R
   scripts. It is developed and ready for review, but has not yet been
   designated a validated prototype.
-- Weeks 14-15 have short week pages and slide outlines, but very little of the
-  supporting lab, exercise, and code material available for Weeks 1-13.
+- Week 14 now has a two-meeting many-models plan, full slides, a main lab, an AI
+  model-ranking lab, exercises, and three checked R scripts. It is developed
+  and ready for review, but has not yet been designated a validated prototype.
+- Week 15 has a short week page and slide outline, but very little of the
+  supporting lab, exercise, and code material available for Weeks 1-14.
 
 ## Established Decisions and Constraints
 
@@ -199,7 +210,8 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 11 | `weeks/week-11.qmd`; `slides/week-11.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 12 | `weeks/week-12.qmd`; `slides/week-12.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 13 | `weeks/week-13.qmd`; `slides/week-13.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
-| Weeks 14-15 | week and slide pages | Outline |
+| Week 14 | `weeks/week-14.qmd`; `slides/week-14.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
+| Week 15 | week and slide pages | Outline |
 | Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
 
@@ -207,8 +219,8 @@ agreed core project architecture is incorporated into the syllabus.
 
 1. Record and synthesize the colleague feedback that is not currently stored in
    the repository.
-2. Expand Week 14 and then the remaining R sequence using the validated weekly
-   pattern.
+2. Expand Week 15 around visualization, communication, and synthesis using the
+   validated weekly pattern.
 3. Perform a short setup check in the live Blackboard course before student
    release, including Groups, staged availability, and downloaded filenames.
 4. Decide the MATLAB project date later, when the teaching calendar is ready.
@@ -312,3 +324,8 @@ milestone:
   extrapolation, R-squared misuse, and training/validation confusion. Quiz 4
   remains the working Week 13 marker with its details deferred. The complete R
   validation harness passed.
+- **2026-07-22:** Week 14 was expanded around a fixed model contract applied to
+  monthly subsets, named split/list workflows, aligned summaries, coefficient
+  intervals, training metrics, diagnostics, and grouped sensitivity checks.
+  Two labs, exercises, three R scripts, and an AI audit for unsupported model
+  ranking were added. The complete R validation harness passed.

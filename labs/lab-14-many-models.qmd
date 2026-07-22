@@ -1,0 +1,97 @@
+---
+title: "Lab 14: Many Models Without Losing The Evidence"
+execute:
+  enabled: false
+---
+
+## Goal
+
+Apply one checked model contract across five monthly subsets while retaining
+every fit, result, uncertainty interval, diagnostic, and source identifier.
+
+## Setup
+
+Create:
+
+```text
+week14/
+  week14-many-models.R
+  week14-grouped-sensitivity.R
+```
+
+Download:
+
+- [week14-many-models.R](../code/r/week14-many-models.R)
+- [week14-grouped-sensitivity.R](../code/r/week14-grouped-sensitivity.R)
+
+The scripts use R's built-in `airquality` data.
+
+## Part A: State What Stays Fixed
+
+Write the shared model contract: observation, response, predictors, formula,
+units, complete-case rule, minimum group size, summary schema, diagnostic
+thresholds, and sensitivity rule.
+
+## Part B: Check The Grouped Inputs
+
+Create the ordered month factor, split the data, and produce an input audit with
+group name, row count, and predictor ranges.
+
+Reconcile the group names, order, and total rows before fitting.
+
+## Part C: Test One Fit
+
+Run `fit_one_month` on May. Confirm its input checks, `lm` object, formula,
+coefficient names, interval bounds, training RMSE, and R-squared.
+
+Trigger one expected failure, then restore the valid input.
+
+## Part D: Retain Every Model
+
+Apply the function to all five months. Name the result list and combine the
+one-row summaries. Check that no group disappeared and every model uses the
+same formula text.
+
+## Part E: Visualize Coefficients Honestly
+
+Plot temperature coefficients with 95% intervals. Annotate or accompany the
+plot with monthly sample sizes. Write two observations that respect uncertainty
+and do not name a winner.
+
+## Part F: Repeat Diagnostics
+
+Run `week14-grouped-sensitivity.R`. Check one diagnostic record per month and
+trace every selected sensitivity row back to its original observation ID.
+
+Inspect the three groups whose temperature coefficients change by more than
+40%.
+
+## Part G: Explain The Training-Error Trap
+
+All sensitivity training RMSE values fall after removing the selected row.
+Explain why selection and changed row sets make this an unfair basis for a
+predictive improvement claim.
+
+## Part H: Project 2 Transfer
+
+Map the grouped workflow habits to Project 2: frozen formula, result schema,
+source identifiers, sensitivity record, and validation evidence. Identify
+which classroom monthly results are not required by the project.
+
+## Deliverable
+
+Submit:
+
+- fixed contract and grouped-input audit;
+- named list of five complete model results;
+- aligned coefficient and metric table;
+- coefficient plot with intervals and sample sizes;
+- grouped diagnostic and sensitivity table;
+- two supported cross-group observations and one rejected ranking claim;
+- Project 2 transfer notes.
+
+## AI Use
+
+If an LLM automates or ranks the models, record the full group list, expected
+result schema, omitted evidence, generated ranking rule, and repaired
+interpretation.

@@ -1,0 +1,92 @@
+---
+title: "Week 14 Exercises"
+execute:
+  enabled: false
+---
+
+Use R's built-in `airquality` data and the supplied Week 14 scripts.
+
+## Exercise 1: Freeze The Contract
+
+Before fitting monthly models, record the response, predictors, formula, units,
+complete-case rule, minimum group size, result columns, diagnostic thresholds,
+and sensitivity rule.
+
+Explain why changing formulas between months would weaken the comparison.
+
+## Exercise 2: Audit The Split
+
+Split the complete modeling table by ordered month. Produce a table containing
+each group name, row count, minimum and maximum temperature, and minimum and
+maximum wind speed.
+
+Check that the group counts sum to 116 and that both predictors vary within
+every group.
+
+## Exercise 3: Test One Group Function
+
+Run `fit_one_month` on May. Inspect every returned component. Then test expected
+failure for a table missing `wind_mph`, a two-row table, and a group with
+constant temperature.
+
+## Exercise 4: Preserve All Five Fits
+
+Apply the function to May through September. Check that the result list and
+summary table have exactly the requested names and order, every fit inherits
+from `lm`, and every formula is identical.
+
+## Exercise 5: Add Uncertainty
+
+Extract the temperature coefficient and 95% interval from every model. Plot the
+five point estimates with intervals. Identify which group has the smallest
+sample and discuss why its point estimate should not be read alone.
+
+## Exercise 6: Compare Without Ranking
+
+Write three defensible statements about similarities or differences across the
+monthly coefficient table. Each statement must mention sample size, interval,
+or diagnostics.
+
+Then write one tempting “winner” statement and explain why the evidence does
+not support it.
+
+## Exercise 7: Grouped Diagnostics
+
+For every month, retain counts of standardized residuals beyond -2 or 2 and
+Cook's distances above `4 / n`. Check that all five months remain in the table,
+including months with several flags.
+
+## Exercise 8: Link Back To Source Rows
+
+For each month, find the largest absolute standardized residual and record its
+original observation identifier. Retrieve the corresponding source values and
+write one investigation question per group.
+
+## Exercise 9: Repeat A Sensitivity Rule
+
+Remove the declared high-residual observation from each group, refit the same
+formula, and calculate the percentage change in the temperature coefficient.
+
+Identify groups exceeding a 40% change. Explain why a lower refitted training
+RMSE is not evidence that deletion improved future prediction.
+
+## Exercise 10: Audit Generated Ranking
+
+Run `week14-ai-model-ranking-review.R`. Repair the generated conclusion so it
+describes patterns and uncertainty without naming a best monthly model,
+claiming causation, or promising future performance.
+
+## Project 2 Connection
+
+For the declared Project 2 sensitivity check, list the fields needed to keep
+the original and refitted results traceable. Distinguish training metrics from
+the later validation metric.
+
+The monthly modeling analysis is not an additional Project 2 requirement.
+
+## Exit Ticket
+
+In 4-6 sentences, answer:
+
+> Why can sorting a correct summary table by R-squared produce a misleading
+> scientific conclusion?

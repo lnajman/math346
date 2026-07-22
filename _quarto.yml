@@ -86,6 +86,7 @@ website:
             - weeks/week-13.qmd
             - weeks/week-13-exercises.qmd
             - weeks/week-14.qmd
+            - weeks/week-14-exercises.qmd
             - weeks/week-15.qmd
         - slides/index.qmd
         - labs/index.qmd

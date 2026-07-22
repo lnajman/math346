@@ -1,5 +1,7 @@
 ---
-title: "Week 14: Handling Many Models"
+title: "Week 14: Many Models Without Losing The Evidence"
+execute:
+  enabled: false
 ---
 
 ## Official Topic
@@ -8,22 +10,364 @@ Handling many models.
 
 ## Problem Focus
 
-How do we compare many models without losing sight of the question?
+How do we repeat one declared modeling workflow across groups without turning
+different contexts into a misleading ranking?
 
-Students apply the same modeling workflow across groups and summarize patterns while preserving diagnostics.
+Students extend the Week 13 `airquality` model across May through September.
+They split one checked modeling table, fit the same formula to every month,
+retain each model object, extract aligned summaries, preserve uncertainty and
+diagnostic evidence, and repeat a sensitivity calculation.
 
-## In Class
+::: {.callout-note}
+Week 14 changes the group subset while holding the formula and result contract
+fixed. It does not search a large space of formulas or choose a winner by one
+training metric. Week 15 returns to communication and synthesis.
+:::
 
-- Nest or split data by group.
-- Fit repeated models.
-- Extract comparable summaries.
-- Identify groups where the model fails.
+## Learning Goals
 
-## AI-Aware Task
+By the end of the week, students should be able to:
 
-Ask an LLM to rank several models. Then decide whether the ranking uses an appropriate metric and whether diagnostics were considered.
+- explain why a many-model workflow needs a fixed question and contract;
+- create a checked grouping variable with an intentional order;
+- split one modeling table into a named list of group tables;
+- reconcile the number and names of groups before fitting;
+- define a one-group modeling function with explicit input requirements;
+- return the model object and one-row summary together;
+- apply the function once per group with `lapply`;
+- preserve one result record for every requested group;
+- verify that every group used the same formula and variable meanings;
+- extract aligned sample size, coefficient, interval, training metric, and
+  diagnostic fields;
+- compare point estimates while retaining uncertainty and group size;
+- explain why models fitted to different subsets are not direct competitors;
+- repeat standardized-residual and Cook's-distance checks by group;
+- link every flagged diagnostic to the original observation identifier;
+- perform one declared sensitivity refit per group;
+- explain why lower error after deleting a difficult training row is not
+  validation evidence;
+- identify small-group instability in a repeated result table;
+- audit an AI ranking that ignores sample size, uncertainty, diagnostics, and
+  new-data evidence.
+
+## Supplied Material
+
+Week 14 uses the built-in `airquality` data and the Week 13 formula
+
+```r
+ozone_ppb ~ temperature_f + wind_mph
+```
+
+Recommended structure:
+
+```text
+week14/
+  week14-many-models.R
+  week14-grouped-sensitivity.R
+```
+
+## Meeting 1: One Contract, Several Groups
+
+**Question:** Which parts of the workflow must remain identical before monthly
+model summaries can be placed in the same table?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Restate the Week 13 model and comparison limits |
+| 10-22 min | Build an ordered month factor and checked modeling table |
+| 22-35 min | Split data and reconcile group names and row counts |
+| 35-50 min | Write and test `fit_one_month` on May |
+| 50-62 min | Apply the function to all five months and retain model objects |
+| 62-70 min | Combine aligned summaries and plot coefficients with intervals |
+| 70-75 min | Exit ticket: what must stay fixed across all five fits? |
+
+### Start From One Checked Table
+
+```r
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    month = factor(month.abb[Month], levels = month.abb[5:9]),
+    ozone_ppb = Ozone,
+    temperature_f = Temp,
+    wind_mph = Wind
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+```
+
+The observation unit and complete-case rule are identical to Week 13.
+
+### Split Into A Named List
+
+```r
+month_data <- split(model_data, model_data$month)
+```
+
+The list has five elements named `May`, `Jun`, `Jul`, `Aug`, and `Sep`. Each
+element is a data frame containing one month's observations.
+
+Check before modeling:
+
+```r
+stopifnot(
+  identical(names(month_data), month.abb[5:9]),
+  sum(vapply(month_data, nrow, integer(1))) == nrow(model_data)
+)
+```
+
+### Freeze The Formula
+
+```r
+fixed_formula <-
+  ozone_ppb ~ temperature_f + wind_mph
+```
+
+Changing both subset and formula would make the source of differences harder
+to identify. Week 14 holds the formula fixed.
+
+### One-Group Function Contract
+
+`fit_one_month` requires:
+
+- a data frame with the declared columns;
+- exactly one month;
+- at least five complete observations;
+- variation in both predictors;
+- the fixed formula.
+
+It returns a list containing the month name, formula, fitted `lm` object, and
+one-row summary.
+
+### Test One Group Before Repeating
+
+```r
+may_result <- fit_one_month(
+  month_data[["May"]],
+  "May",
+  fixed_formula
+)
+```
+
+Inspect the fit class, row count, coefficient names, interval bounds, and
+training metric before running all groups.
+
+### Repeat The Checked Unit
+
+```r
+model_results <- lapply(
+  names(month_data),
+  function(month_name) {
+    fit_one_month(
+      month_data[[month_name]],
+      month_name,
+      fixed_formula
+    )
+  }
+)
+names(model_results) <- names(month_data)
+```
+
+The outer list preserves one complete modeling result for each requested month.
+
+### Extract Comparable Summaries
+
+```r
+model_summary <- bind_rows(lapply(
+  model_results,
+  function(result) result$summary
+))
+```
+
+Each row retains:
+
+- month and sample size;
+- temperature coefficient and 95% interval;
+- wind coefficient;
+- training RMSE;
+- training R-squared.
+
+### Check Group Accounting
+
+```r
+stopifnot(
+  nrow(model_summary) == length(month_data),
+  identical(model_summary$month, names(month_data)),
+  sum(model_summary$n_observations) == nrow(model_data)
+)
+```
+
+Five requested fits must produce five complete model records.
+
+### Plot Estimates With Uncertainty
+
+```r
+ggplot(model_summary, aes(month, temperature_slope)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_errorbar(
+    aes(ymin = temperature_low, ymax = temperature_high)
+  ) +
+  geom_point()
+```
+
+Point estimates without intervals invite overconfident comparisons.
+
+### Different Subsets Are Not Competitors
+
+The monthly fits describe different subsets and have sample sizes from 9 to 29.
+A higher monthly R-squared does not mean that month “won” a common prediction
+contest. The models did not predict the same observations.
+
+## Meeting 2: Repeat Diagnostics And Sensitivity
+
+**Question:** Does automation preserve the evidence that would make a monthly
+coefficient fragile?
+
+Suggested 75-minute rhythm:
+
+| Time | Activity |
+|---:|---|
+| 0-10 min | Reconcile one model record per month |
+| 10-25 min | Extract standardized-residual and Cook's-distance flags |
+| 25-38 min | Link flags to original observation identifiers |
+| 38-52 min | Remove one declared high-residual row and refit each month |
+| 52-62 min | Compare original and sensitivity slopes and training RMSE |
+| 62-70 min | Audit an AI ranking based only on training R-squared |
+| 70-75 min | Exit ticket: evidence that prevents a false winner |
+
+### One Diagnostic Record Per Group
+
+For every month, retain:
+
+- number of observations;
+- count of standardized residuals beyond -2 or 2;
+- count above the classroom Cook's-distance threshold;
+- original identifier of the selected sensitivity row;
+- original and sensitivity coefficients;
+- original and sensitivity training RMSE.
+
+Do not keep only the months that look well behaved.
+
+### Preserve Source Identifiers
+
+```r
+removed_index <- which.max(abs(rstandard(fit)))
+removed_id <- data$observation_id[[removed_index]]
+```
+
+List positions change after filtering or splitting. The original identifier is
+the durable link back to the source observation.
+
+### Declared Sensitivity Refit
+
+```r
+sensitivity_data <- data[-removed_index, , drop = FALSE]
+sensitivity_fit <- lm(fixed_formula, data = sensitivity_data)
+```
+
+This is a deliberate “what changes?” calculation, not a rule that the removed
+observation was wrong.
+
+### Interpret Sensitivity, Not Just Fit
+
+In three of the five monthly models, the temperature slope changes by more than
+40% after removing the largest absolute standardized residual. June changes by
+about 73% and has only nine complete observations.
+
+That instability is evidence to report. It is not repaired merely because the
+refitted training RMSE is lower.
+
+### Why Training Error Falls
+
+The sensitivity model omits a row selected because it was difficult for the
+original fit. Lower training error on the smaller, changed dataset is expected
+and is not a fair new-data comparison.
+
+### Compare Patterns, Not Winners
+
+Useful cross-group questions include:
+
+- Are coefficient directions broadly consistent?
+- Which intervals are wide?
+- Which groups have small samples?
+- Where do diagnostics or sensitivity reveal fragility?
+- Which group differences merit contextual investigation?
+
+“Which model is best?” is not well-defined when each model addresses a
+different subset.
+
+## AI-Aware Task: Ranking Can Destroy The Question
+
+The generated review ranks months only by training R-squared and declares
+September the best. It then treats June's positive wind coefficient as causal
+and claims the ranking will hold on future observations.
+
+The audit checks that:
+
+1. monthly models use different observations;
+2. June has only nine rows;
+3. June's wind interval includes zero;
+4. every month has at least one diagnostic flag;
+5. three temperature slopes change by more than 40% in sensitivity fits;
+6. no new-data evidence appears in the ranking.
+
+## Project 2 Connection
+
+Week 14 reinforces Project 2 habits:
+
+- keep the declared formula stable after the plan is frozen;
+- preserve one result record for each requested task;
+- link diagnostics and predictions to source identifiers;
+- run the declared sensitivity procedure;
+- distinguish training changes from validation evidence;
+- report instability instead of hiding it.
+
+The monthly many-model analysis is a teaching example, not an additional
+Project 2 requirement.
+
+## Survival Checklist
+
+### Commands And Patterns To Own
+
+| Pattern | Purpose |
+|---|---|
+| `split(data, data$group)` | create one named data frame per group |
+| `lapply(groups, fit_function)` | run one checked fit per group |
+| `list(fit = fit, summary = row)` | retain model and aligned evidence |
+| `confint(fit)` | calculate coefficient intervals |
+| `bind_rows(summary_list)` | combine compatible one-row summaries |
+| `vapply(results, ..., character(1))` | verify a scalar contract across fits |
+| `which.max(abs(rstandard(fit)))` | locate a declared sensitivity row |
+
+### Before Repeating Models
+
+- Fix the question, formula, variables, units, and cleaning rule.
+- Check group names, order, row counts, and predictor variation.
+- Test the one-group function on a known group.
+- Declare the complete result schema.
+- Decide how a failed group will remain visible.
+
+### Before Comparing Results
+
+- Reconcile requested groups and returned records.
+- Retain sample size and uncertainty beside coefficients.
+- Label all training metrics explicitly.
+- Preserve diagnostic counts and source identifiers.
+- Inspect sensitivity changes, not just refitted error.
+- Ask whether models use the same observations before ranking them.
+- State what new-data evidence is absent.
+
+## Exercises
+
+Complete the [Week 14 exercises](week-14-exercises.qmd) after the lab.
 
 ## Materials
 
 - [Slides](../slides/week-14.qmd)
-
+- [Lab 14](../labs/lab-14-many-models.qmd)
+- [AI model-ranking lab](../labs/lab-14-ai-model-ranking.qmd)
+- [week14-many-models.R](../code/r/week14-many-models.R)
+- [week14-grouped-sensitivity.R](../code/r/week14-grouped-sensitivity.R)
+- [week14-ai-model-ranking-review.R](../code/r/week14-ai-model-ranking-review.R)
+- [Project 2](../projects/project-2-modeling.qmd)

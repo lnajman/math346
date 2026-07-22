@@ -6,7 +6,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**Week 13 developed; many models and grouped workflows in Week 14 are the next content milestone.**
+**Week 14 developed; communication, visualization, and synthesis in Week 15 are the next content milestone.**
 
 Last updated: **22 July 2026**
 :::
@@ -31,7 +31,8 @@ the motivation and the kind of feedback being requested.
 | Week 11: pipelines and functions | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the contracts, tests, and AI-refactor workload |
 | Week 12: iteration and repeated workflows | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the typed-iteration and visible-failure workload |
 | Week 13: model claims and diagnostics | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the interpretation and diagnostic workload |
-| Weeks 14-15: modeling and synthesis | Outline | Week and slide outlines | Expand Week 14 many-model workflows |
+| Week 14: many models and grouped evidence | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the alignment, uncertainty, and sensitivity workload |
+| Week 15: communication and synthesis | Outline | Week and slide outlines | Expand the final communication and reproducibility sequence |
 | Quizzes and midterm | **Working placement restored** | Quizzes in Weeks 3, 6, 9, and 13; semester examination (midterm) in Week 8 | Decide exact dates, delivery, and formats later |
 | Projects | **Complete and privately backed up** | 20-group data, MATLAB/R starters, Word report templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Check the live Blackboard setup before release |
 | Executable code checks | Implemented | Local scripts and GitHub Actions | Extend checks as new code is added |
@@ -110,6 +111,15 @@ they can never be revised.
   extrapolation, R-squared misuse, training/validation confusion, and ignored
   diagnostics. Quiz 4 remains visible in Week 13 while its detailed design is
   deferred. All three Week 13 R scripts pass the validation harness.
+- Week 14 applies the same temperature-plus-wind model to the five monthly
+  subsets of `airquality`. A named split and checked list retain every fitted
+  model, while one aligned table reports sample size, coefficient intervals,
+  training error, fit, and diagnostic evidence. A grouped sensitivity analysis
+  shows when one difficult observation materially changes a slope and explains
+  why lower error after deleting that row is not validation. The AI activity
+  audits a fluent ranking that ignores unequal sample sizes, uncertainty,
+  diagnostics, row alignment, and performance on new data. All three Week 14 R
+  scripts pass the validation harness.
 - The course is expected to have about 60 students, so individual oral project
   defenses are not a practical default.
 - Project 1 uses MATLAB and Project 2 uses R.
@@ -187,6 +197,7 @@ architecture and the remaining implementation decisions.
 | 22 July 2026 | Week 11 was expanded around readable pipelines with named checkpoints, small functions with explicit contracts, normal and edge-case tests, full slides, two labs, exercises, three checked R scripts, and an AI refactor audit for behavior drift. |
 | 22 July 2026 | Week 12 was expanded around vectorized operations, `lapply`, typed `vapply`, preallocated loops, complete batch status logs, full slides, two labs, exercises, three checked R scripts, and an AI audit for dropped failures and type coercion. Project 2 is assigned through the existing two-stage workflow; its due date remains deferred. |
 | 22 July 2026 | Week 13 was expanded around complete-case row accounting, regression formulas, coefficient interpretation, mean-baseline comparison, residual and influence diagnostics, an additive model, full slides, two labs, exercises, three checked R scripts, and an AI model-interpretation audit. Quiz 4 remains the working Week 13 marker with its details deferred. |
+| 22 July 2026 | Week 14 was expanded around one fixed regression contract across monthly subsets, retained model objects, aligned summaries, coefficient intervals, diagnostic and sensitivity evidence, full slides, two labs, exercises, three checked R scripts, and an AI audit of unsupported model ranking. |
 
 ## Next Decision Gate
 
@@ -202,15 +213,15 @@ The working student project package is complete:
 - **Completed:** exact-content checks for all 60 release ZIPs and a
   representative upload/download extraction rehearsal.
 
-The next development milestone is to expand **Week 14** around many models and
-grouped workflows: applying one declared model contract across subsets or
-formulas, preserving the data used and diagnostics for every fit, comparing
-results on aligned evidence, and auditing automated model selection. Project 2
+The next development milestone is to expand **Week 15** around communication,
+visualization, and synthesis: selecting a final figure that answers a declared
+question, writing a conclusion whose strength matches the evidence, reproducing
+report artifacts from source, reconciling code, results files, figures, and
+prose, and auditing an AI-polished conclusion for unsupported claims. Project 2
 has been introduced, while its exact due date remains deferred. The working
-quiz and midterm placement remains visible; exact
-dates, delivery, and formats can be decided later. The MATLAB project date can
-also be decided later. The live Blackboard setup still needs a short final
-check before student release.
+quiz and midterm placement remains visible; exact dates, delivery, and formats
+can be decided later. The MATLAB project date can also be decided later. The
+live Blackboard setup still needs a short final check before student release.
 
 Feedback on those choices is especially useful now. The original review
 questions remain available on the [instructor preview](instructor-preview.qmd).
