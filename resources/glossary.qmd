@@ -1,0 +1,43 @@
+---
+title: "Course Glossary"
+description: "Plain-language definitions of recurring MATH 346 terms."
+---
+
+Use this page when a term in a weekly page, lab, or project is unfamiliar. The
+definition here gives the course meaning; the surrounding mathematical context
+still matters.
+
+| Term | Plain-language meaning |
+|---|---|
+| AI assistance | Help produced by a generative AI tool. It must be checked and disclosed when the course policy requires it. |
+| Baseline | A simple reference method that a more complicated method should improve upon. |
+| Causal claim | A statement that changing one thing produces a change in another; association alone does not establish it. |
+| Clean run | Running the saved workflow from its intended starting state without relying on hidden workspace objects or manual fixes. |
+| Coefficient | A number multiplying a term in a mathematical model, such as the slope in a linear model. |
+| Contract | An explicit statement of required inputs, outputs, types, dimensions, names, or behavior. |
+| Data validation | Checks that data have the expected schema, types, ranges, keys, and missing-value pattern. |
+| Diagnostic | Evidence used to test whether a computation or model is behaving as expected. |
+| Extrapolation | Predicting outside the range of the observed input data. |
+| Figure contract | The required variables, geometry, labels, units, scales, and other features of a plot. |
+| Key | One or more columns intended to identify a row or connect records across tables. |
+| Machine-readable | Stored in a consistent structure that software can reliably parse, rather than only in visual prose. |
+| Missing value | A value that is absent or unknown, commonly represented by `NA` in R. |
+| Model | A simplified mathematical or statistical representation used to describe or predict a pattern. |
+| Observation | One measured or recorded case in a dataset. |
+| Observation unit | What a single row represents, such as one student, one day, or one measurement. |
+| Prediction | A model's estimated outcome for a specified input. |
+| Reproducibility | The ability to rerun the recorded workflow and obtain the same result from the same inputs. |
+| Residual | Observed value minus fitted or predicted value: what the model missed for one case. |
+| RMSE | Root mean squared error, a summary of typical residual magnitude that gives larger errors extra weight. |
+| Scaffold | A supplied starting structure, such as a script or report template, that students complete and verify. |
+| Sensitivity analysis | Repeating an analysis under reasonable alternative choices to see whether the conclusion changes. |
+| Synthetic data | Artificial data designed to resemble the structure of a real problem without representing real people or confidential records. |
+| Tidy data | A table structure in which each variable is a column, each observation is a row, and each value is a cell. |
+| Training data | Data used to estimate or fit a model. |
+| Validation data | Separate data used to assess how a fitted model behaves on cases not used for fitting. |
+| Vectorization | Expressing a computation over a collection of values rather than manually repeating scalar steps. |
+
+If a term needs a course-specific example, bring the sentence where it appears
+to class or office hours. The glossary may grow as the class identifies useful
+additions.
+

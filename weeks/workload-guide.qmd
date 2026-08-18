@@ -44,10 +44,11 @@ The target for routine website-based practice outside class is approximately
 announced project work or preparation for a quiz, midterm, or final
 examination.
 
-Assessment weeks will use a reduced teaching and practice selection when an
-assessment displaces normal class time. The detailed quiz and midterm formats
-are still to be announced; students will not be expected to complete a full
-ordinary week on top of displaced class time.
+Assessment weeks use a reduced teaching and practice selection when an
+assessment displaces normal class time. The [Quiz 1 guide](../assessments/quiz-01.qmd)
+is available now; later assessment formats will be announced before they are
+needed. Students will not be expected to complete a full ordinary week on top
+of displaced class time.
 
 ## Weekly Exercise Selection
 
@@ -101,3 +102,13 @@ Do the work in this order:
 Ask for help when a core task remains blocked after one serious attempt. The
 goal is a checked workflow that you understand, not completion of every page on
 the site.
+
+## Phase Recovery Checkpoints
+
+At three transitions, use a short recovery page to check the minimum foundation
+for the next phase. These are optional catch-up routes, not extra assignments,
+unless the instructor says otherwise.
+
+- [After Week 5: ready for R](recovery-after-week-05.qmd)
+- [After Week 10: ready for reusable R workflows](recovery-after-week-10.qmd)
+- [After Week 12: ready for modeling](recovery-after-week-12.qmd)

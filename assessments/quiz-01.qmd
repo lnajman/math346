@@ -1,0 +1,58 @@
+---
+title: "Quiz 1 Student Guide"
+description: "Format, scope, rules, and preparation for the first MATH 346 quiz."
+---
+
+## At A Glance
+
+| Item | Quiz 1 arrangement |
+|---|---|
+| When | In class during Week 3; the calendar date appears in Blackboard |
+| Duration | 12 minutes |
+| Delivery | Blackboard, one attempt |
+| Format | 6 short code-reading and validation items |
+| Work mode | Individual |
+| Software | You do not need to run MATLAB |
+
+## What The Quiz Measures
+
+Quiz 1 checks whether you can read a short MATLAB fragment, predict or inspect
+its result, and choose an appropriate validation step. It does not ask you to
+write a long program from a blank page.
+
+The six items sample these ideas:
+
+- array dimensions, indexing, and vector orientation;
+- matrix operators versus element-wise operators;
+- scripts, plots, and evidence from a clean run;
+- function inputs and outputs, logical conditions, and simple tests;
+- polynomial coefficient vectors, fitted values, residuals, and RMSE;
+- the distinction between interpolation, fitting, and extrapolation.
+
+Material from Week 4 onward and detailed project work are not included.
+
+## Rules During The Quiz
+
+Quiz 1 is closed-resource and individual. Do not use AI tools, notes, websites,
+messaging, another student, or MATLAB. Scratch paper is allowed. Use the
+classroom computer unless the instructor announces another arrangement.
+
+If Blackboard is unavailable, the instructor may use an equivalent paper
+version. Approved accommodations are configured through the usual course
+arrangements.
+
+## How To Prepare
+
+1. Review the survival checklists for [Week 1](../weeks/week-01.qmd),
+   [Week 2](../weeks/week-02.qmd), and [Week 3](../weeks/week-03.qmd).
+2. Revisit core Exercises 1, 2, 3, 4, 6, and 7 from
+   [Week 1](../weeks/week-01-exercises.qmd); Exercises 1, 2, 3, 4, and 6 from
+   [Week 2](../weeks/week-02-exercises.qmd); and Exercises 1, 2, 4, 5, and 6
+   from [Week 3](../weeks/week-03-exercises.qmd).
+3. Practice explaining why an answer is trustworthy, not only naming a command.
+
+Typical prompts ask you to predict a size or value, choose the correct operator,
+identify a test that would fail, interpret a residual, or decide whether a
+query is interpolation or extrapolation. The actual quiz questions and answers
+are not published on this site.
+

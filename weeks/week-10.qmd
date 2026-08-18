@@ -388,3 +388,7 @@ work.
 - [week10-clean-types.R](../code/r/week10-clean-types.R)
 - [week10-join-audit.R](../code/r/week10-join-audit.R)
 - [week10-ai-join-review.R](../code/r/week10-ai-join-review.R)
+
+Before reusable R workflows, use
+[Recovery Checkpoint 2](recovery-after-week-10.qmd) if import, observation
+structure, types, or joins still feel insecure.

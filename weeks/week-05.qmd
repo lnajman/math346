@@ -258,3 +258,6 @@ work.
 - [Lab 5](../labs/lab-05-symbolic-validation.qmd)
 - [AI symbolic-answer review](../labs/lab-05-ai-symbolic-review.qmd)
 - [Project 1](../projects/project-1-eda.qmd)
+
+Before the R transition, use [Recovery Checkpoint 1](recovery-after-week-05.qmd)
+if any MATLAB foundation still feels insecure.

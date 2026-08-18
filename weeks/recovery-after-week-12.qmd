@@ -1,0 +1,36 @@
+---
+title: "Recovery Checkpoint 3: Ready for Modeling"
+description: "A short optional recovery route before the modeling phase."
+---
+
+This checkpoint consolidates reusable functions, vectorization, iteration, and
+batch evidence before modeling begins. It is not an extra assignment unless
+the instructor says otherwise.
+
+## Minimum Foundation
+
+You should be able to:
+
+- turn repeated code into a function with a clear input-output contract;
+- test normal, boundary, and failure cases;
+- separate import, cleaning, analysis, and reporting stages;
+- choose vectorized operations or iteration without hiding errors;
+- retain a status record for every requested file, group, or model;
+- produce named outputs whose rows stay aligned with their inputs;
+- rerun the workflow from a clean session.
+
+## A 45-60 Minute Recovery Route
+
+1. Rerun the [Week 12 repeated workflow](../code/r/week12-repeated-workflow.R).
+2. Complete core Exercises 1, 2, and 4 from [Week 11](week-11-exercises.qmd)
+   and Exercises 1, 2, and 4 from [Week 12](week-12-exercises.qmd).
+3. Choose one repeated task and write its contract: accepted input, returned
+   output, one boundary case, and one informative failure.
+4. Confirm that every requested input produces either a result row or an
+   explicit failure-status row.
+
+## Ready To Continue?
+
+You are ready when another person can run your saved workflow, trace one output
+back to its input, and see failures without reconstructing your working memory.
+

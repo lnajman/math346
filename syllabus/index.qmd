@@ -41,6 +41,11 @@ By the end of the course, students should be able to:
 | Semester examination | 25% | Around Week 8 |
 | Final examination | 35% | Cumulative |
 
+[Quiz 1](../assessments/quiz-01.qmd) is an individual, 12-minute, in-class
+Blackboard quiz with six short code-reading and validation items. It is
+closed-resource and does not require students to run MATLAB. Details for later
+quizzes and examinations will be published before the relevant units.
+
 ## Tentative Weekly Plan
 
 | Week | Topic |
@@ -61,9 +66,9 @@ By the end of the course, students should be able to:
 | 14 | Handling many models |
 | 15 | Visualization, communication, and project synthesis |
 
-The assessment markers above preserve the current working sequence. Exact
-calendar dates, delivery arrangements, and formats remain subject to later
-discussion.
+The assessment markers above preserve the current working sequence. The Quiz 1
+format is fixed; its calendar date and the formats and dates of later
+assessments will be announced through Blackboard.
 
 ## Weekly Workload
 

@@ -50,7 +50,7 @@ audit; the remaining recommendations are proposals, not approved policy.
 | Assessment-week feasibility | Only Quiz 1 has time explicitly reserved; Weeks 6, 8, 9, and 13 retain full plans beside assessments | Calendar-critical |
 | Project sequencing | Preview, group release, checkpoint, validation, and completion stages now follow prerequisite instruction | Resolved through the [project milestone map](projects/project-milestones.qmd); exact dates remain open |
 | Software readiness | Required access, scaffolded use, and optional tools are explicit; live institutional systems still require verification | Matrix resolved; live check pending |
-| Navigation and publication | Weekly pages, exercises, labs, slides, code, and projects are linked and publish correctly | Strong |
+| Navigation and publication | Student-first home and navigation, weekly pages, exercises, labs, slides, code, assessments, and projects are linked and publish correctly | Strong |
 
 ## The Coherent Course Spine
 
@@ -333,5 +333,6 @@ rechecked shortly before the teaching term.
 This audit recommends no deletion of the resource bank and does not change
 approved assessment policy. Its workload recommendation has been implemented;
 its project milestone and software-matrix recommendations have also been
-implemented. The assessment calendar, exact project dates, live institutional
-setup verification, and recovery supports remain to be resolved.
+implemented. Recovery supports were added during the student-launch pass. The
+later assessment calendar, exact project dates, and live institutional setup
+verification remain to be resolved.

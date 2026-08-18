@@ -6,8 +6,9 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**The workload, project-milestone, and software contracts are approved;
-assessment displacement and exact calendar placement remain open.**
+**The student-facing launch shell, Weeks 1-4, and Quiz 1 are ready. Later
+teaching blocks remain deliberately adaptable; later assessment design and
+exact calendar placement remain open.**
 
 Last updated: **18 August 2026**
 :::
@@ -20,6 +21,7 @@ the motivation and the kind of feedback being requested.
 
 | Workstream | Status | Evidence | Next step |
 |---|---|---|---|
+| Student-facing launch | **Ready** | Student-first [home](index.qmd), navigation, [weekly roadmap](weeks/index.qmd), [glossary](resources/glossary.qmd), and three recovery checkpoints | Test with students in Weeks 1-4 and record revisions |
 | Course framing and AI policy | Developed | [Syllabus](syllabus/index.qmd) and [AI policy](syllabus/ai-policy.qmd) | Revise after assessment decisions |
 | Colleague feedback | Requested | [Instructor preview](instructor-preview.qmd) shared for review | Record and synthesize responses |
 | Weeks 1-4: MATLAB prototype | **Validated prototype** | Week pages, slides, labs, exercises, and checked MATLAB code | Use as the pattern for later weeks |
@@ -35,7 +37,7 @@ the motivation and the kind of feedback being requested.
 | Week 14: many models and grouped evidence | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the alignment, uncertainty, and sensitivity workload |
 | Week 15: communication and synthesis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the evidence-reconciliation and clean-run workload |
 | Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time with the approved workload |
-| Quizzes and midterm | **Working placement restored** | Quizzes in Weeks 3, 6, 9, and 13; semester examination (midterm) in Week 8 | Decide exact dates, delivery, and formats later |
+| Quizzes and midterm | **Quiz 1 ready; later design deferred** | [Quiz 1 student guide](assessments/quiz-01.qmd), private Blackboard blueprint and bank; later markers remain visible | Dry-run Quiz 1 in Blackboard; decide Quiz 2-4 and midterm later |
 | Projects | **Packages complete; milestone sequence approved** | [Milestone map](projects/project-milestones.qmd), 20-group data, starters, templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Set exact dates later and check the live Blackboard setup |
 | Software and access | **Requirements approved; live systems pending** | [Student matrix](resources/software-requirements.qmd), two runnable setup checks, and [instructor checklist](resources/instructor-setup-checklist.qmd) | Run and record the checks on student laboratory accounts and in Blackboard |
 | Executable code checks | Implemented | Local scripts and GitHub Actions | Extend checks as new code is added |
@@ -58,6 +60,14 @@ they can never be revised.
 - Students must be able to explain, test, and interpret computational results.
 - Weeks 1-4 demonstrate the intended weekly pattern and have been validated as
   the prototype.
+- The public home and primary navigation now address students first. Weeks 1-4
+  are the launch-ready block; Weeks 5-15 are explicitly presented as an
+  evolving roadmap that can respond to opening-week feedback.
+- Quiz 1 is fixed as an individual 12-minute in-class Blackboard quiz with six
+  code-reading and validation items. It is closed-resource, requires no MATLAB
+  execution, and now has a public guide plus a private two-form question bank.
+- A plain-language glossary and optional recovery checkpoints after Weeks 5,
+  10, and 12 provide beginner support without adding required work.
 - Week 5 now follows that pattern with exact symbolic computation, domain and
   assumption checks, a fixed-volume tank optimization problem, independent
   numerical verification, and an AI-answer audit. All new scripts pass the
@@ -188,7 +198,7 @@ they can never be revised.
 - The public weekly plan retains the original working assessment sequence:
   Quiz 1 in Week 3, Quiz 2 in Week 6, the semester examination (midterm) in
   Week 8, Quiz 3 in Week 9, and Quiz 4 in Week 13. The sequence stays visible
-  while its detailed implementation remains open for discussion.
+  while the implementation after Quiz 1 remains open for discussion.
 - There is no mandatory individual project examination. A brief verification
   may occur for a small random sample or when submitted evidence requires
   clarification.
@@ -198,9 +208,9 @@ they can never be revised.
 The following questions remain open. They do not change the confirmed core
 architecture, but they block approval of the final calendar and release plan:
 
-1. What should the four quizzes measure, how should they be delivered, and how
+1. What should Quizzes 2-4 measure, how should they be delivered, and how
    should they prepare students for the midterm while retaining their working
-   Week 3, 6, 9, and 13 placement?
+   Week 6, 9, and 13 placement?
 2. How should the Week 8 midterm combine code reading, implementation, and
    validation, and how much normal teaching time will it replace?
 3. What exact date should close the MATLAB project's approved post-Week-5
@@ -217,6 +227,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 18 August 2026 | The website became student-first: Weeks 1-4 were designated launch-ready, later weeks were presented as an adaptable roadmap, Quiz 1 received a public guide and private Blackboard question bank, a glossary and three recovery checkpoints were added, and the broken Quarto link was corrected. |
 | 8 July 2026 | The [instructor preview](instructor-preview.qmd) was added as the entry point for colleague review. |
 | 8-9 July 2026 | Weeks 1-4 were expanded with fuller notes, slides, labs, exercises, and MATLAB examples. |
 | 9 July 2026 | Automated MATLAB and R course-code checks were added. |

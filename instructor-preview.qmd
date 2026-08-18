@@ -4,6 +4,10 @@ description: "A short guide for colleagues reviewing the MATH 346 redesign proto
 ---
 
 ::: {.callout-tip}
+The primary website navigation is now student-facing. Weeks 1-4 and Quiz 1 are
+the launch-ready block; later materials remain visible for review and can be
+refined from opening-week student feedback.
+
 For the current development state, decisions, and next milestone, see the
 [instructor progress page](instructor-progress.qmd). The completed
 [course-wide coherence and workload audit](instructor-course-audit.qmd)

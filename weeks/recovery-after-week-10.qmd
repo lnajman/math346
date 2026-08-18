@@ -1,0 +1,37 @@
+---
+title: "Recovery Checkpoint 2: Ready for Reusable R Workflows"
+description: "A short optional recovery route after data import, tidying, and joins."
+---
+
+This checkpoint is for students who need to consolidate the first R phase
+before writing more reusable workflows. It is not an extra assignment unless
+the instructor says otherwise.
+
+## Minimum Foundation
+
+You should be able to:
+
+- state the observation unit and identify a candidate key;
+- inspect column names, types, dimensions, and missing values after import;
+- use filtering, selection, mutation, grouping, and summarising intentionally;
+- explain how a pivot changes the observation structure;
+- predict whether a join can duplicate or drop rows;
+- check parsing of strings, factors, and date-times;
+- compare row counts and unmatched keys before and after a join.
+
+## A 45-60 Minute Recovery Route
+
+1. Run the [R setup check](../code/setup/check-r-setup.R).
+2. Rerun the [Week 10 join audit](../code/r/week10-join-audit.R) and locate the
+   checks for key uniqueness and unmatched records.
+3. Complete core Exercises 1 and 4 from [Week 9](week-09-exercises.qmd) and
+   Exercises 1, 3, and 6 from [Week 10](week-10-exercises.qmd).
+4. For one table, write: “one row is…”, “the key is…”, and “a failed join would
+   be visible because…”.
+
+## Ready To Continue?
+
+You are ready when you can import a table, state what one row means, explain a
+join's expected cardinality, and name checks that would expose silent data
+loss or duplication.
+

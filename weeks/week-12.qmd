@@ -361,3 +361,6 @@ work; Project 2 has separate instructions.
 - [week12-ai-batch-review.R](../code/r/week12-ai-batch-review.R)
 - [Project 2](../projects/project-2-modeling.qmd)
 - [Project milestones](../projects/project-milestones.qmd)
+
+Before modeling, use [Recovery Checkpoint 3](recovery-after-week-12.qmd) if
+functions, iteration, or visible batch evidence still feel insecure.

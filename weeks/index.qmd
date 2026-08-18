@@ -12,6 +12,15 @@ The [weekly workload guide](workload-guide.qmd) identifies core exercises,
 guided practice, extension work, and the role of each lab.
 :::
 
+::: {.callout-important}
+## Launch block and roadmap
+
+Weeks 1-4 are ready for the start of the semester. Weeks 5-15 show the planned
+direction of the course and may be refined after the class has worked through
+the opening block. For assigned work and dates, use the current week and the
+latest Blackboard announcement.
+:::
+
 | Week | Focus | Main Tool | Planned assessment marker |
 |---:|---|---|---|
 | [1](week-01.qmd) | Arrays, scripts, and plots as computational objects | MATLAB | — |
@@ -30,13 +39,13 @@ guided practice, extension work, and the role of each lab.
 | [14](week-14.qmd) | Repeated models, aligned evidence, and sensitivity | R | Project 2 validation release window |
 | [15](week-15.qmd) | Communication, evidence reconciliation, and synthesis | R | Project 2 completion window |
 
-These markers preserve the working assessment sequence. Exact calendar dates,
-delivery arrangements, and formats can still be discussed later.
+Quiz 1 has a published [student guide](../assessments/quiz-01.qmd). The later
+markers show the intended course rhythm; their exact dates and formats will be
+announced before the relevant units.
 
-## Developed Weeks
+## Course Roadmap
 
-Weeks 1-4 are the validated model. Weeks 5-15 have now been expanded using the
-same pattern and are ready for review. These weeks include:
+Every week includes:
 
 - a two-meeting teaching plan;
 - a detailed MATLAB or R lab;
@@ -44,9 +53,16 @@ same pattern and are ready for review. These weeks include:
 - a student exercise set;
 - multiple starter scripts.
 
-The full 15-week sequence now follows this pattern. The
-[workload guide](workload-guide.qmd) defines the default student selection.
-Exact assessment dates and formats remain open where noted.
+The [workload guide](workload-guide.qmd) defines the default student selection.
+
+## Phase Recovery Checkpoints
+
+These optional pages collect the minimum knowledge needed before a transition.
+They are not additional assignments unless announced in class.
+
+- [After Week 5: ready for R](recovery-after-week-05.qmd)
+- [After Week 10: ready for reusable R workflows](recovery-after-week-10.qmd)
+- [After Week 12: ready for modeling](recovery-after-week-12.qmd)
 
 ## Weekly Pattern
 

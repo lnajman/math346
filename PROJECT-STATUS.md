@@ -17,6 +17,18 @@ describe pedagogical progress.
 
 ## Current Phase
 
+The public site now has a student-first launch shell. Weeks 1-4 are the
+launch-ready block; Weeks 5-15 remain visible as an evolving roadmap that can
+be refined from student feedback during the opening weeks. Instructor review
+and progress pages remain available by direct link but are no longer in the
+primary navigation. Quiz 1 is the only assessment instrument finalized for
+launch: it is an individual, 12-minute, in-class Blackboard quiz in Week 3
+with six short code-reading and validation items, no AI or collaboration, and
+no requirement to run MATLAB. Its calendar date remains a Blackboard
+announcement. Later quiz and examination details are intentionally deferred.
+The student glossary and three optional phase-recovery checkpoints are now
+published, and the previously broken Quarto documentation link is corrected.
+
 The developed Weeks 1-4 prototype has been sent to colleagues for feedback and
 is now considered validated as the model for the course. The agreed student
 project package is complete: private synthetic data, beginner-oriented code
@@ -25,9 +37,9 @@ ZIPs, and batch checkers are implemented. The release contract has been
 rehearsed locally, and the complete assessment-sensitive package is backed up
 in a private GitHub repository. The working assessment sequence remains visible
 on the public site: Quiz 1 in Week 3, Quiz 2 in Week 6, the semester examination
-(midterm) in Week 8, Quiz 3 in Week 9, and Quiz 4 in Week 13. Exact dates,
-delivery arrangements, quiz formats, and the detailed midterm architecture are
-intentionally deferred. The MATLAB project date is also deferred. Week 5 has
+(midterm) in Week 8, Quiz 3 in Week 9, and Quiz 4 in Week 13. Quiz 1 now has a
+fixed student contract; its date and the arrangements for later quizzes and
+the midterm remain intentionally deferred. The MATLAB project date is also deferred. Week 5 has
 now been expanded using the validated Weeks 1-4 pattern and passes the complete
 MATLAB validation harness. Week 6 has now been expanded into a beginner-safe
 MATLAB-to-R transition with ordinary R scripts, checked visualizations, a
@@ -85,10 +97,10 @@ recommendation is now approved and published: one guided main-lab workflow,
 4-6 core exercises per week, selected AI audits, explicit guided and extension
 material, and approximately 90-120 minutes of routine website-based practice
 outside class in an ordinary week. The remaining barriers to freezing the
-student experience are assessment displacement, exact calendar placement of
-the approved project gates, completion of the live laboratory/Blackboard
-readiness check, and recovery support. The student software contract itself is
-now approved and published.
+later course calendar are assessment displacement, exact calendar placement of
+the approved project gates, and completion of the live laboratory/Blackboard
+readiness check. Recovery support and the student software contract are now
+approved and published.
 
 ## Confirmed Progress
 
@@ -199,6 +211,16 @@ now approved and published.
   semester examination (midterm) in Week 8, Quiz 3 in Week 9, and Quiz 4 in
   Week 13. These placements remain visible while detailed arrangements are
   discussed.
+- The primary public navigation and home page are student-facing. Instructor
+  review pages remain published only as direct-link resources.
+- Weeks 1-4 are the launch-ready teaching block. Weeks 5-15 remain a visible
+  roadmap and may be refined from student feedback before their use.
+- Quiz 1 is an individual, 12-minute, in-class Blackboard quiz in Week 3. It
+  contains six short code-reading and validation items, requires no MATLAB
+  execution, and permits no AI, collaboration, notes, or web resources. The
+  calendar date is announced in Blackboard.
+- Only Quiz 1 must be operational at launch. Quiz 2-4 and examination
+  architectures remain deferred.
 - There is no mandatory individual project examination. A brief verification
   may be requested for a small random sample or when submitted evidence contains
   a material inconsistency.
@@ -242,8 +264,10 @@ now approved and published.
 
 These ideas have been discussed but are **not yet approved course policy**:
 
-1. The exact calendar dates, delivery arrangements, duration, and format of the
-   four quizzes; their working Week 3, 6, 9, and 13 placement remains visible.
+1. The exact calendar dates, delivery arrangements, duration, and format of
+   Quizzes 2-4; their working Week 6, 9, and 13 placement remains visible. The
+   exact calendar date of the approved Week 3 Quiz 1 also remains to be placed
+   in Blackboard.
 2. The exact timing and balance of code reading, implementation, and validation
    in the Week 8 semester examination (midterm), including whether it replaces
    one or both normal teaching meetings.
@@ -260,6 +284,9 @@ agreed core project architecture is incorporated into the syllabus.
 | Area | Evidence | State |
 |---|---|---|
 | Course purpose | `index.qmd`, `syllabus/index.qmd` | Developed |
+| Student launch shell | `index.qmd`; `_quarto.yml`; `weeks/index.qmd` | Weeks 1-4 launch-ready; Weeks 5-15 presented as an evolving roadmap |
+| Quiz 1 | `assessments/quiz-01.qmd`; private Blackboard blueprint and question bank | Student contract and private instrument complete; live Blackboard rehearsal pending |
+| Glossary and recovery | `resources/glossary.qmd`; three `weeks/recovery-*.qmd` pages | Published as optional support |
 | Responsible AI policy | `syllabus/ai-policy.qmd` | Developed; still revisable |
 | Colleague review gateway | `instructor-preview.qmd` | Published and shared |
 | Colleague feedback | Responses are external to the repository | Requested; synthesis pending |
@@ -284,16 +311,16 @@ agreed core project architecture is incorporated into the syllabus.
 
 ## Next Actions
 
-1. Record and synthesize the colleague feedback that is not currently stored in
-   the repository.
-2. Reconcile quiz and semester-examination delivery with the teaching minutes
-   available in Weeks 3, 6, 8, 9, and 13.
-3. Place the approved project gates on exact Blackboard dates only after the
+1. Perform the live laboratory check and build/dry-run Quiz 1 in Blackboard,
+   including Student Preview, timer, feedback, and accommodations.
+2. Collect student feedback during Weeks 1-4 and record concrete changes before
+   freezing each later block.
+3. Reconcile Quizzes 2-4 and semester-examination delivery with the teaching
+   minutes available in Weeks 6, 8, 9, and 13.
+4. Place the approved project gates on exact Blackboard dates only after the
    assessment-time conflicts are resolved.
-4. Perform and record the published setup check on lab machines and in the live
-   Blackboard course.
-5. Add a compact glossary and phase-recovery checkpoints using the approved
-   core selections.
+5. Record and synthesize colleague feedback that is not currently stored in
+   the repository.
 6. Update the syllabus after the remaining assessment decisions are approved.
 7. Update both this record and `instructor-progress.qmd` after each decision or
    major milestone.
@@ -310,6 +337,12 @@ milestone:
   colleagues to see.
 
 ## History
+
+- **2026-08-18:** The public site was converted to a student-first launch
+  presentation. Weeks 1-4 were designated launch-ready, later weeks were
+  presented as an evolving roadmap, Quiz 1 received a public contract and
+  private Blackboard question bank, three recovery checkpoints and a glossary
+  were added, and the broken Quarto documentation link was corrected.
 
 - **2026-07-08:** Instructor preview added and used as the colleague-review
   entry point.

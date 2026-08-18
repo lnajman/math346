@@ -35,17 +35,44 @@ This course uses MATLAB and R, with generative AI treated as a professional assi
 
 ## Start Here
 
-- Colleagues reviewing the prototype can start with the [instructor preview](instructor-preview.qmd).
-- Follow the redesign through the [instructor progress page](instructor-progress.qmd).
-- Read the [syllabus](syllabus/index.qmd).
-- Read the [AI use policy](syllabus/ai-policy.qmd).
-- Check the [software and access requirements](resources/software-requirements.qmd)
-  and run the setup scripts before the relevant teaching block.
-- Follow the [weekly materials](weeks/index.qmd).
-- Check the [weekly workload guide](weeks/workload-guide.qmd) before assuming
-  that every visible exercise or lab is assigned.
-- Use the [labs](labs/index.qmd) for guided practice.
-- Use the [projects](projects/index.qmd) pages for the two major submissions.
+Before the first class:
+
+1. Read the [syllabus](syllabus/index.qmd) and [AI use policy](syllabus/ai-policy.qmd).
+2. Check the [software requirements](resources/software-requirements.qmd) and
+   run the MATLAB setup check.
+3. Open [Week 1](weeks/week-01.qmd) and its [exercise set](weeks/week-01-exercises.qmd).
+4. Read the [workload guide](weeks/workload-guide.qmd): material visible on the
+   site is not automatically assigned.
+
+::: {.callout-important}
+## What is ready now
+
+Weeks 1-4 and the [Quiz 1 guide](assessments/quiz-01.qmd) form the launch-ready
+part of the course. Later weeks remain visible as a course roadmap and may be
+refined in response to what students find difficult during the opening weeks.
+The current week's page and Blackboard announcements are the authoritative
+instructions for work and dates.
+:::
+
+## Website And Blackboard
+
+Use this website for course explanations, weekly materials, labs, exercises,
+code, project instructions, and the [glossary](resources/glossary.qmd). Use
+Blackboard for announcements, calendar dates, submissions, grades, and Quiz 1.
+If the two ever appear inconsistent, follow the latest Blackboard announcement
+and tell the instructor.
+
+## The Weekly Rhythm
+
+1. Begin with the week's mathematical or statistical question.
+2. Follow the selected in-class lab checkpoints.
+3. Attempt the core exercises in the [workload guide](weeks/workload-guide.qmd).
+4. Check your output, explain what it means, and record any AI assistance.
+5. Use a [recovery checkpoint](weeks/workload-guide.qmd#phase-recovery-checkpoints)
+   if an earlier phase still feels insecure.
+
+Assessment information begins with [Quiz 1](assessments/quiz-01.qmd). Later
+quiz and examination details will be published before they are needed.
 
 ## Course Question
 
@@ -58,3 +85,9 @@ It is:
 ## Public Materials Policy
 
 This website contains original course materials and links to references. It does not redistribute textbook PDFs, publisher slide decks, answer keys, exams, or private student work.
+
+## For Colleagues And Instructors
+
+The [instructor preview](instructor-preview.qmd) and
+[progress record](instructor-progress.qmd) remain available by direct link, but
+are not part of the main student navigation.

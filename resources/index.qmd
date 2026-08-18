@@ -15,11 +15,13 @@ Laboratory availability is not assumed until that check is recorded.
 
 ## References
 
+Use the [course glossary](glossary.qmd) when a technical term is unfamiliar.
+
 - MATLAB documentation: <https://www.mathworks.com/help/matlab/>
 - R for Data Science, 2e: <https://r4ds.hadley.nz/>
 - ggplot2 documentation: <https://ggplot2.tidyverse.org/>
 - dplyr documentation: <https://dplyr.tidyverse.org/>
-- Quarto documentation: <https://quarto.org/docs/>
+- Quarto documentation: <https://quarto.org/>
 
 ## Setup Checklist
 

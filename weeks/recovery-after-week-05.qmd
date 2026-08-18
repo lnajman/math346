@@ -1,0 +1,39 @@
+---
+title: "Recovery Checkpoint 1: Ready for R"
+description: "A short optional recovery route after the MATLAB phase."
+---
+
+This checkpoint is for students who missed part of Weeks 1-5 or are unsure
+which MATLAB habits must carry into R. It is not an extra assignment unless the
+instructor says otherwise.
+
+## Minimum Foundation
+
+Before moving on, you should be able to:
+
+- distinguish a scalar, row vector, column vector, and matrix;
+- choose element-wise operations when values should be paired component by component;
+- run a saved script from a clean state and interpret an error message;
+- describe a function's inputs, outputs, and one boundary test;
+- check a plot or numerical result against the original question;
+- distinguish interpolation, fitting, and extrapolation;
+- explain what residuals reveal;
+- record and verify any AI assistance.
+
+## A 45-60 Minute Recovery Route
+
+1. Run the [MATLAB setup check](../code/setup/check-matlab-setup.m).
+2. Rerun [the Week 2 function tests](../code/matlab/week02_function_tests.m)
+   and explain what each test is protecting against.
+3. Complete core Exercises 1 and 2 from [Week 2](week-02-exercises.qmd) and
+   Exercise 4 from [Week 3](week-03-exercises.qmd).
+4. Write three sentences translating MATLAB habits into neutral language:
+   data have shapes, functions have contracts, and results need checks.
+
+## Ready To Continue?
+
+You are ready when you can predict the shape of a short calculation, identify
+one useful test before running code, and explain why a visible result is not by
+itself proof that the code is correct. If not, bring one specific failed check
+to class or office hours.
+

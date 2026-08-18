@@ -62,14 +62,14 @@ Suggested 75-minute rhythm:
 
 | Time | Activity |
 |---:|---|
-| 0-12 min | Quiz 1 or short retrieval check |
+| 0-12 min | Quiz 1: individual in-class Blackboard quiz |
 | 12-25 min | Interpolation: `interp1` and method choice |
 | 25-40 min | Compare interpolation with polynomial fitting |
 | 40-58 min | AI critique: high-degree polynomial overclaim |
 | 58-70 min | Repair: choose a simpler model and write validation notes |
 | 70-75 min | Exit ticket: interpolate, fit, or reject? |
 
-If Quiz 1 is administered outside the class meeting, use the first 12 minutes for a short residual-reading warm-up.
+Read the [Quiz 1 student guide](../assessments/quiz-01.qmd) before this meeting.
 
 ## In-Class Checks
 

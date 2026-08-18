@@ -3,6 +3,7 @@ project:
   output-dir: _site
   render:
     - "*.qmd"
+    - "assessments/*.qmd"
     - "code/index.qmd"
     - "labs/*.qmd"
     - "projects/*.qmd"
@@ -29,14 +30,12 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: instructor-preview.qmd
-        text: Preview
-      - href: instructor-progress.qmd
-        text: Progress
       - href: syllabus/index.qmd
         text: Syllabus
       - href: weeks/index.qmd
         text: Weeks
+      - href: assessments/index.qmd
+        text: Assessments
       - href: slides/index.qmd
         text: Slides
       - href: labs/index.qmd
@@ -52,14 +51,15 @@ website:
       style: "docked"
       contents:
         - index.qmd
-        - instructor-preview.qmd
-        - instructor-progress.qmd
-        - instructor-course-audit.qmd
         - syllabus/index.qmd
         - syllabus/ai-policy.qmd
+        - resources/software-requirements.qmd
         - weeks/index.qmd
         - weeks/workload-guide.qmd
-        - section: "Weeks 1-15"
+        - assessments/index.qmd
+        - assessments/quiz-01.qmd
+        - resources/glossary.qmd
+        - section: "Launch block: Weeks 1-4"
           contents:
             - weeks/week-01.qmd
             - weeks/week-01-exercises.qmd
@@ -69,8 +69,11 @@ website:
             - weeks/week-03-exercises.qmd
             - weeks/week-04.qmd
             - weeks/week-04-exercises.qmd
+        - section: "Later roadmap: Weeks 5-10"
+          contents:
             - weeks/week-05.qmd
             - weeks/week-05-exercises.qmd
+            - weeks/recovery-after-week-05.qmd
             - weeks/week-06.qmd
             - weeks/week-06-exercises.qmd
             - weeks/week-07.qmd
@@ -81,10 +84,14 @@ website:
             - weeks/week-09-exercises.qmd
             - weeks/week-10.qmd
             - weeks/week-10-exercises.qmd
+            - weeks/recovery-after-week-10.qmd
+        - section: "Later roadmap: Weeks 11-15"
+          contents:
             - weeks/week-11.qmd
             - weeks/week-11-exercises.qmd
             - weeks/week-12.qmd
             - weeks/week-12-exercises.qmd
+            - weeks/recovery-after-week-12.qmd
             - weeks/week-13.qmd
             - weeks/week-13-exercises.qmd
             - weeks/week-14.qmd
@@ -97,8 +104,6 @@ website:
         - projects/project-milestones.qmd
         - code/index.qmd
         - resources/index.qmd
-        - resources/software-requirements.qmd
-        - resources/instructor-setup-checklist.qmd
 
 format:
   html:

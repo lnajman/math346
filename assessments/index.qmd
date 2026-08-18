@@ -1,0 +1,32 @@
+---
+title: "Assessments"
+description: "Student-facing assessment information for MATH 346."
+---
+
+## Available Now
+
+- [Quiz 1](quiz-01.qmd): an individual, 12-minute, in-class Blackboard quiz
+  during Week 3.
+
+The syllabus shows the planned assessment rhythm. Details for later quizzes,
+the semester examination, final examination, and project submission windows
+will be published before the relevant part of the course.
+
+::: {.callout-note}
+## Where to look
+
+This website explains what an assessment measures and how to prepare.
+Blackboard gives the calendar date, access window, submission link, grades, and
+any individual accommodation. The latest Blackboard announcement is
+authoritative for logistics.
+:::
+
+## General Expectations
+
+- Follow the permitted-use statement on the assessment page.
+- Ask before the assessment if an instruction or accommodation is unclear.
+- Keep project work reproducible and disclose AI assistance as required by the
+  [AI policy](../syllabus/ai-policy.qmd).
+- A short oral verification may be requested when there is a substantial and
+  unexplained mismatch between project work and individually assessed work.
+
