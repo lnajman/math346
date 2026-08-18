@@ -97,6 +97,8 @@ website:
         - projects/project-milestones.qmd
         - code/index.qmd
         - resources/index.qmd
+        - resources/software-requirements.qmd
+        - resources/instructor-setup-checklist.qmd
 
 format:
   html:

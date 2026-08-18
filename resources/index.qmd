@@ -4,11 +4,14 @@ title: "Resources"
 
 ## Software
 
-- MATLAB
-- R
-- RStudio or Positron
-- Quarto
-- Git and GitHub
+Start with the [software and access requirements](software-requirements.qmd).
+They distinguish required access from personal installation, identify the six
+R packages actually used by the course, and link to runnable MATLAB and R setup
+checks.
+
+Instructors preparing a teaching room or the live course should use the
+[laboratory and Blackboard readiness checklist](instructor-setup-checklist.qmd).
+Laboratory availability is not assumed until that check is recorded.
 
 ## References
 
@@ -20,10 +23,9 @@ title: "Resources"
 
 ## Setup Checklist
 
-1. Confirm that MATLAB opens and can run a script.
-2. Confirm that R opens and can install/load packages.
-3. Install Quarto.
-4. Render a small `.qmd` document.
-5. Create a folder for course work.
-6. Keep code, data, and reports organized.
-
+1. Run the [MATLAB setup check](../code/setup/check-matlab-setup.m) before
+   Week 1 and confirm the separate symbolic status before Week 5.
+2. Run the [R setup check](../code/setup/check-r-setup.R) before Week 6.
+3. Confirm that Quarto can render the supplied Week 6 scaffold.
+4. Create a persistent folder for course work and test ZIP extraction.
+5. Confirm that a project template can be exported to PDF.

@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-07-22
+Last updated: 2026-08-18
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -86,7 +86,9 @@ recommendation is now approved and published: one guided main-lab workflow,
 material, and approximately 90-120 minutes of routine website-based practice
 outside class in an ordinary week. The remaining barriers to freezing the
 student experience are assessment displacement, exact calendar placement of
-the approved project gates, software requirements, and recovery support.
+the approved project gates, completion of the live laboratory/Blackboard
+readiness check, and recovery support. The student software contract itself is
+now approved and published.
 
 ## Confirmed Progress
 
@@ -168,6 +170,10 @@ the approved project gates, software requirements, and recovery support.
 - The public project milestone map now fixes the preview, package release,
   readiness or frozen-plan gate, validation release, and completion sequence
   for both projects without fixing calendar dates.
+- A public software matrix now distinguishes required access, the scaffolded
+  one-week Quarto use, and optional tools. Runnable MATLAB and R checks cover
+  the actual toolbox/package dependencies, and an instructor checklist defines
+  the remaining live laboratory and Blackboard verification.
 
 ## Established Decisions and Constraints
 
@@ -221,6 +227,16 @@ the approved project gates, software requirements, and recovery support.
   not released before the common frozen-plan gate. Later changes are recorded
   as deviations or sensitivity analysis rather than silently replacing the
   frozen plan.
+- Students need reliable access—not necessarily a personal installation—to
+  MATLAB for Weeks 1-5 and Project 1 and R for Weeks 6-15 and Project 2.
+- Symbolic Math Toolbox is required for Week 5. The R block requires `dplyr`,
+  `ggplot2`, `readr`, `tidyr`, `stringr`, and `lubridate` plus one supported R
+  editor.
+- Quarto is required only to edit and render the supplied Week 6 scaffold.
+  Word/Google Docs-compatible editing and PDF export are used for project
+  reports. Git/GitHub and paid generative-AI accounts are not required.
+- Institutional access routes and installed versions must be verified on the
+  live student systems before they are announced as available.
 
 ## Open Decisions
 
@@ -235,9 +251,6 @@ These ideas have been discussed but are **not yet approved course policy**:
    completion window and its relationship to Quiz 2.
 4. The exact Blackboard opening and closing times for the approved Project 2
    training, frozen-plan, validation, and completion gates.
-5. Which software is required on student machines, provided in laboratories,
-   used only with a scaffold, or optional.
-
 These decisions remain open and are intentionally deferred until later course
 planning. A detailed implementation draft is available in `projects/`, and the
 agreed core project architecture is incorporated into the syllabus.
@@ -253,6 +266,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Course-wide audit | `instructor-course-audit.qmd` | Completed; workload recommendation implemented, other recommendations remain open |
 | Student workload contract | `weeks/workload-guide.qmd`; 15 exercise pages; `labs/index.qmd` | Approved and published |
 | Project milestones | `projects/project-milestones.qmd`; both project pages; weekly markers; instructor implementation | Approved week-relative sequence; exact dates deferred |
+| Software and access | `resources/software-requirements.qmd`; `resources/instructor-setup-checklist.qmd`; `code/setup/` | Requirements approved and published; live systems not yet verified |
 | Weeks 1-4 | `weeks/`, `slides/`, `labs/`, `code/matlab/` | Validated prototype |
 | Week 5 | `weeks/week-05.qmd`; `slides/week-05.qmd`; two labs; exercises; four checked MATLAB scripts | Developed; ready for review |
 | Week 6 | `weeks/week-06.qmd`; `slides/week-06.qmd`; two labs; exercises; three checked R scripts; checked report scaffold | Developed; ready for review |
@@ -276,8 +290,8 @@ agreed core project architecture is incorporated into the syllabus.
    available in Weeks 3, 6, 8, 9, and 13.
 3. Place the approved project gates on exact Blackboard dates only after the
    assessment-time conflicts are resolved.
-4. Publish a student software-requirement matrix and perform a short setup check
-   on lab machines and in the live Blackboard course.
+4. Perform and record the published setup check on lab machines and in the live
+   Blackboard course.
 5. Add a compact glossary and phase-recovery checkpoints using the approved
    core selections.
 6. Update the syllabus after the remaining assessment decisions are approved.
@@ -407,3 +421,9 @@ milestone:
   Weeks 9-10 preview to Week 12 training release, a post-Week-13 frozen-plan
   gate, common Week 14 validation release, and Week 15 completion. Exact dates
   remain deferred.
+- **2026-08-18:** The student software and access contract was approved and
+  published. It requires reliable MATLAB and R access, Symbolic Math Toolbox
+  for Week 5, six named R packages, one R editor, and scaffolded Quarto access
+  for Week 6; it makes Git/GitHub and paid AI accounts optional. Runnable setup
+  checks and a live laboratory/Blackboard readiness checklist were added. Live
+  institutional availability remains to be verified rather than assumed.

@@ -4,6 +4,15 @@ title: "Code"
 
 Starter code is intentionally small. Students should run it, modify it, and add checks.
 
+## Setup Checks
+
+- [MATLAB and Symbolic Math Toolbox check](setup/check-matlab-setup.m)
+- [R, required packages, and Quarto check](setup/check-r-setup.R)
+
+Run these on the computer you intend to use. The
+[software requirements page](../resources/software-requirements.qmd) explains
+the expected results and deadlines.
+
 ## MATLAB
 
 - [week01_arrays_plotting.m](matlab/week01_arrays_plotting.m)

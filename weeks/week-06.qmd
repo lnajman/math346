@@ -24,6 +24,13 @@ expected to author it from scratch, and the course projects still use a
 Word/Google Docs report exported to PDF.
 :::
 
+::: {.callout-important}
+Before beginning, run the [R setup check](../code/setup/check-r-setup.R) and
+confirm that both the required-package and Quarto lines say `PASS`. See the
+[software requirements](../resources/software-requirements.qmd) for installation
+order and support guidance.
+:::
+
 ## Learning Goals
 
 By the end of the week, students should be able to:

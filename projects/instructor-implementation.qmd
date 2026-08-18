@@ -18,6 +18,9 @@ description: "Synthetic-data release, submission, and checking workflow for appr
 - Projects are group-assessed; individual competence is established through the
   quizzes, semester examination, and final examination.
 
+Before creating the live releases, complete the
+[laboratory and Blackboard readiness checklist](../resources/instructor-setup-checklist.qmd).
+
 ## Synthetic Building-Energy Data
 
 The scenario is a real facilities-management problem represented by simulated

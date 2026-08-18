@@ -16,8 +16,8 @@ usage() {
 Usage: scripts/validate_course_code.sh [--r-only|--matlab-only|--skip-r|--skip-matlab]
 
 Runs the executable course-code checks:
-  - R scripts in code/r
-  - MATLAB starter scripts in code/matlab
+  - R scripts in code/r and the student R setup check
+  - MATLAB starter scripts in code/matlab and the student MATLAB setup check
 
 The MATLAB validator separates ordinary starter scripts from intentionally
 weak AI critique scripts.

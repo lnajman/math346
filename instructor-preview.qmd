@@ -65,12 +65,16 @@ course-wide coherence and workload review.
 - [Labs index](labs/index.qmd)
 - [Code index](code/index.qmd)
 - [Projects](projects/index.qmd)
+- [Student software and access requirements](resources/software-requirements.qmd)
+- [Laboratory and Blackboard readiness checklist](resources/instructor-setup-checklist.qmd)
 
 ## What Feedback Would Help
 
 I would especially appreciate feedback on these questions:
 
 - Does the redesign still respect the spirit and content of the existing course?
+- Is the required/scaffolded/optional software boundary realistic for the
+  laboratories and student access routes you know?
 - Are Weeks 1-4 realistic for two 75-minute meetings per week?
 - Is the new Week 5 symbolic unit a realistic final MATLAB block, especially
   its fixed-volume tank example and verification workload?

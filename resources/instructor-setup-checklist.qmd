@@ -1,0 +1,127 @@
+---
+title: "Instructor Laboratory and Blackboard Readiness Checklist"
+description: "A pre-course verification record for the MATH 346 computing environment."
+---
+
+::: {.callout-warning}
+## Current status
+
+The required software contract is fixed, but the **live laboratory and
+Blackboard checks have not yet been recorded**. Do not tell students that an
+access route is available until the corresponding evidence below has been
+captured.
+:::
+
+This checklist verifies the [student software requirements](software-requirements.qmd)
+on the actual systems students will use. It contains no passwords, private
+student data, answer keys, or withheld project outcomes.
+
+## Record the Test Context
+
+| Field | Record |
+|---|---|
+| Date and tester | To be completed |
+| Laboratory room and machine identifier | To be completed |
+| Student-account type used | To be completed |
+| MATLAB version and license route | To be completed |
+| R, RStudio, and Quarto versions | To be completed |
+| Browser and operating system | To be completed |
+| Blackboard sandbox or live-course section | To be completed |
+
+Use an ordinary student account wherever possible. Administrator access can
+hide permission, installation, path, storage, or Blackboard-visibility
+problems.
+
+## Laboratory Check: MATLAB Block
+
+- [ ] Sign in as a student and open MATLAB using the route that will be
+  announced to the class.
+- [ ] Download and run
+  [the MATLAB setup check](../code/setup/check-matlab-setup.m).
+- [ ] Record the exact MATLAB version and `MATLAB core check: PASS` output.
+- [ ] Record `Symbolic Math Toolbox check: PASS`; do not infer toolbox access
+  from MATLAB access alone.
+- [ ] Open, edit, save, close, and reopen a `.m` file in a student-writable
+  folder.
+- [ ] Read a CSV and create a figure from that folder.
+- [ ] Confirm that a student can preserve files after sign-out or document the
+  required external/cloud-storage procedure.
+- [ ] Run one representative Week 1 script and one Week 5 symbolic script.
+
+If MATLAB Online is the fallback, repeat the check in a supported browser with
+the institutional student license and confirm that Symbolic Math Toolbox is
+included.
+
+## Laboratory Check: R Block
+
+- [ ] Open RStudio Desktop or the selected supported R editor as a student.
+- [ ] Download and run [the R setup check](../code/setup/check-r-setup.R).
+- [ ] Record `R and required package check: PASS` and the six printed package
+  versions.
+- [ ] Record `Quarto check: PASS`.
+- [ ] Confirm that students may install/update packages in a personal library,
+  or document the managed update process.
+- [ ] Open, edit, save, close, and reopen an `.R` file and a `.qmd` file in a
+  student-writable folder.
+- [ ] Render the supplied Week 6 scaffold and open its HTML output.
+- [ ] Run one representative Week 9 import script and the public Project 2
+  starter against non-sensitive sample data.
+
+The goal is one supported beginner workflow. Do not require students to learn
+both RStudio and Positron.
+
+## File and Report Workflow
+
+- [ ] Download a ZIP from the course site, extract it without renaming its
+  contents, and run a starter file from the extracted folder.
+- [ ] Open the project report template in the supported document editor.
+- [ ] Export the report to PDF and reopen the PDF.
+- [ ] Confirm that the exported PDF, source file, CSV results, and ZIP fit the
+  Blackboard assignment limits and permitted file types.
+- [ ] Check filenames containing spaces, hyphens, and a student group code.
+- [ ] Confirm that the accessibility tools students are expected to use work
+  with the website, Blackboard, code editor, and report template.
+
+## Blackboard Dry Run
+
+Use a sandbox course or a temporary test group before touching the live student
+groups.
+
+- [ ] Create a test group with the same settings planned for the 20 groups.
+- [ ] As a test student, confirm that only the assigned group ZIP is visible.
+- [ ] Confirm that Project 2 training ZIPs contain no validation outcomes.
+- [ ] Test the Project 1 group assignment with one submission per group.
+- [ ] Test the Project 2 frozen-plan checkpoint and record all seven plan
+  fields described in the project milestone map.
+- [ ] Verify that the common Project 2 validation release remains hidden until
+  the frozen-plan gate closes.
+- [ ] Test replacement/resubmission policy, due-date display, time zone,
+  receipt generation, and instructor download.
+- [ ] Download a submitted package, extract it, and run the relevant checker on
+  a local copy.
+- [ ] Preview every item as a student and verify group membership with the
+  registrar list before release.
+- [ ] Record a backup release/submission route in case Blackboard is
+  unavailable; do not publish withheld validation outcomes on the public site.
+
+The full release order is in the
+[project milestone map](../projects/project-milestones.qmd) and the
+[instructor implementation guide](../projects/instructor-implementation.qmd).
+
+## Completion Record
+
+| Gate | Status | Evidence location | Owner |
+|---|---|---|---|
+| MATLAB core and writable files | Not yet verified | — | — |
+| Symbolic Math Toolbox | Not yet verified | — | — |
+| R and six packages | Not yet verified | — | — |
+| R editor and Quarto render | Not yet verified | — | — |
+| Document-to-PDF workflow | Not yet verified | — | — |
+| Blackboard group visibility | Not yet verified | — | — |
+| Blackboard submission/receipt | Not yet verified | — | — |
+| Project 2 validation separation | Not yet verified | — | — |
+
+When the checks are complete, replace each status with the date and result,
+store non-sensitive evidence in the agreed course-planning location, and update
+the instructor progress page. Failures should name an owner, workaround, and
+retest date before students receive setup instructions.

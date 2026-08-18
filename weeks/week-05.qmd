@@ -7,8 +7,9 @@ title: "Week 5: Symbolic Mathematics and Verification"
 MATLAB symbolic mathematics. Project 1 readiness checkpoint.
 
 ::: {.callout-note}
-The Week 5 scripts require Symbolic Math Toolbox. Before the lab, run
-`ver symbolic` and confirm that the toolbox is listed.
+The Week 5 scripts require Symbolic Math Toolbox. Before the lab, run the
+[MATLAB setup check](../code/setup/check-matlab-setup.m) and confirm that its
+separate symbolic status says `PASS`.
 :::
 
 ## Problem Focus

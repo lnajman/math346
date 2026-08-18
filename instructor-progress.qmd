@@ -6,9 +6,10 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ::: {.callout-note}
 ## Current phase
 
-**The workload and project-milestone contracts are approved; assessment displacement and exact calendar placement remain open.**
+**The workload, project-milestone, and software contracts are approved;
+assessment displacement and exact calendar placement remain open.**
 
-Last updated: **22 July 2026**
+Last updated: **18 August 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -36,6 +37,7 @@ the motivation and the kind of feedback being requested.
 | Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time with the approved workload |
 | Quizzes and midterm | **Working placement restored** | Quizzes in Weeks 3, 6, 9, and 13; semester examination (midterm) in Week 8 | Decide exact dates, delivery, and formats later |
 | Projects | **Packages complete; milestone sequence approved** | [Milestone map](projects/project-milestones.qmd), 20-group data, starters, templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Set exact dates later and check the live Blackboard setup |
+| Software and access | **Requirements approved; live systems pending** | [Student matrix](resources/software-requirements.qmd), two runnable setup checks, and [instructor checklist](resources/instructor-setup-checklist.qmd) | Run and record the checks on student laboratory accounts and in Blackboard |
 | Executable code checks | Implemented | Local scripts and GitHub Actions | Extend checks as new code is added |
 
 “Validated prototype” means that Weeks 1-4 are sufficiently developed and
@@ -46,6 +48,11 @@ they can never be revised.
 
 - The course remains a mathematical and statistical software course using
   MATLAB and R.
+- The [software matrix](resources/software-requirements.qmd) now distinguishes
+  reliable required access from personal installation, scaffolded Quarto use,
+  and optional tools. MATLAB plus Symbolic Math Toolbox, R plus six named
+  packages, one R editor, PDF export, Blackboard, and ZIP handling are the
+  supported student workflow. Git/GitHub and paid AI accounts are not required.
 - LLM use is treated as a normal part of the environment, with an emphasis on
   verification rather than trust.
 - Students must be able to explain, test, and interpret computational results.
@@ -200,9 +207,6 @@ architecture, but they block approval of the final calendar and release plan:
    completion window relative to Quiz 2 and the transition to R?
 4. What exact Blackboard opening and closing times should implement the
    approved Project 2 training, frozen-plan, validation, and completion gates?
-5. Which software must students install, which is supplied in laboratories,
-   and which is optional?
-
 Projects have no mandatory individual examination. The approved policy permits
 only limited random or evidence-triggered verification of submitted work.
 
@@ -240,6 +244,7 @@ architecture and the remaining implementation decisions.
 | 22 July 2026 | The [course-wide coherence and beginner-workload audit](instructor-course-audit.qmd) confirmed the cumulative teaching spine and technical health, while identifying workload labels, assessment displacement, project milestones, and software requirements as the remaining pre-release decisions. |
 | 22 July 2026 | The [student workload guide](weeks/workload-guide.qmd) was approved and implemented: one guided main-lab workflow, 4-6 core exercises, selected AI audits, explicit guided/extension work, a 90-120 minute ordinary-week practice target, and reduced selections when assessments displace class time. |
 | 22 July 2026 | The [project milestone map](projects/project-milestones.qmd) was approved and published: Project 1 now has Week 3 preview, Week 4 package release, Week 5 readiness, and a post-Week-5 completion window; Project 2 has Weeks 9-10 preview, Week 12 training release, a post-Week-13 frozen-plan gate, common Week 14 validation release, and Week 15 completion. Exact dates remain deferred. |
+| 18 August 2026 | The [student software matrix](resources/software-requirements.qmd) was approved and published with runnable MATLAB and R checks. It makes the Week 5 symbolic dependency and six R packages explicit, limits Quarto to the supplied Week 6 scaffold, and makes Git/GitHub and paid AI accounts optional. The [instructor checklist](resources/instructor-setup-checklist.qmd) records the still-pending live laboratory and Blackboard verification. |
 
 ## Next Decision Gate
 
@@ -255,13 +260,16 @@ The working student project package is complete:
 - **Completed:** exact-content checks for all 60 release ZIPs and a
   representative upload/download extraction rehearsal.
 
-The audit, student workload contract, and week-relative project milestone map
-are complete. The next decision gate is to reconcile those contracts with the
-assessment calendar. Week 8 cannot be judged feasible until the semester
+The audit, student workload contract, week-relative project milestone map, and
+student software matrix are complete. The next decision gate is to reconcile
+those contracts with the assessment calendar. Week 8 cannot be judged feasible
+until the semester
 examination's use of class time is known; Quiz 2, Quiz 3, and Quiz 4 also have
 no reserved time in their weekly plans. Exact project and assessment dates and
-formats may remain deferred. A student software matrix and the live Blackboard
-setup still need final checks before release.
+formats may remain deferred. The student software matrix is now published; the
+next operational gate is to run its checks with a real student laboratory
+account and complete the live Blackboard dry run before those access routes are
+announced.
 
 Feedback on those choices is especially useful now. The original review
 questions remain available on the [instructor preview](instructor-preview.qmd).

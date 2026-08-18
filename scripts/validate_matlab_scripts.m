@@ -6,6 +6,7 @@ cd(repoRoot);
 set(0, 'DefaultFigureVisible', 'off');
 
 mustPass = {
+    'code/setup/check-matlab-setup.m'
     'code/matlab/week01_arrays_plotting.m'
     'code/matlab/week01_matrix_systems.m'
     'code/matlab/week01_temperature_matrix.m'

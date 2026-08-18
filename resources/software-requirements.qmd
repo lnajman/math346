@@ -1,0 +1,88 @@
+---
+title: "Software and Access Requirements"
+description: "What MATH 346 students need, when they need it, and how to check it."
+---
+
+::: {.callout-important}
+## The short version
+
+You need **reliable access** to MATLAB for Weeks 1-5 and Project 1, and to R
+for Weeks 6-15 and Project 2. Reliable access may be a verified laboratory
+computer, an institutionally licensed online service, or your own computer. A
+personal installation is recommended, but it is not a separate course
+requirement if another reliable option is available outside scheduled class.
+:::
+
+## Requirement Matrix
+
+| Software or service | Course use | Requirement | What the course provides |
+|---|---|---|---|
+| MATLAB | Weeks 1-5; Project 1 | **Required access** | Code examples, starter files, and a setup check |
+| Symbolic Math Toolbox | Week 5 | **Required access for one teaching block** | Symbolic examples and a setup check; availability on the intended computer must be confirmed |
+| R | Weeks 6-15; Project 2 | **Required access** | Code examples, starter files, and a setup check |
+| RStudio Desktop or another instructor-approved R editor | Running and editing R scripts | **One R editor required**; RStudio is the recommended beginner option | In-class orientation uses the same basic script/console/files/plots workflow |
+| `dplyr`, `ggplot2`, `readr`, `tidyr`, `stringr`, `lubridate` | Course R examples and Project 2 | **Required R packages** | The R setup check verifies all six |
+| Quarto | Editing and rendering the supplied Week 6 report scaffold | **Required for the scaffolded Week 6 activity only** | A complete `.qmd` scaffold; students do not author a report from scratch |
+| Word, Google Docs, or a compatible editor | Writing project reports | **One document editor required** | Editable project report templates |
+| PDF export and a PDF reader | Both project submissions | **Required** | PDF is the readable report format |
+| Current web browser, Blackboard access, and ZIP extraction | Materials, group files, and submission | **Required** | Group-specific ZIP packages and Blackboard submission instructions |
+| Generative AI tool | Optional practice and permitted, documented project support | **Optional**; no paid AI account is required | Candidate AI answers are supplied when an activity needs one |
+| Git and GitHub | Not used for student submission | **Optional** | The public course site can be used without Git |
+
+Only access is required: students are not expected to purchase MATLAB,
+Symbolic Math Toolbox, Microsoft Word, or an AI subscription. The instructor
+will announce the verified institutional access routes before Week 1.
+
+## Before Week 1: MATLAB
+
+1. Open MATLAB on the computer you intend to use. This may be a local
+   installation or [MATLAB Online](https://www.mathworks.com/products/matlab-online.html)
+   if the institutional license provides the necessary access.
+2. Download [the MATLAB setup check](../code/setup/check-matlab-setup.m).
+3. In MATLAB, open the downloaded file and select **Run**.
+4. Confirm that the output contains `MATLAB core check: PASS`.
+5. Confirm before Week 5 that it also contains
+   `Symbolic Math Toolbox check: PASS`.
+
+If personal installation is the selected access route, use the
+[official MathWorks installation instructions](https://www.mathworks.com/help/install/install-products.html)
+and include Symbolic Math Toolbox. A basic MATLAB installation that does not
+include that toolbox is insufficient for Week 5.
+
+## Before Week 6: R and Quarto
+
+Install in this order:
+
+1. [R](https://cran.r-project.org/) itself;
+2. [RStudio Desktop](https://posit.co/downloads) or another approved R editor;
+3. [Quarto](https://quarto.org/docs/get-started/);
+4. the six required R packages.
+
+Then download [the R setup check](../code/setup/check-r-setup.R), open it in
+your R editor, and run the complete script. The final output must show:
+
+- `R and required package check: PASS`; and
+- `Quarto check: PASS`.
+
+If packages are missing, the check prints the exact `install.packages(...)`
+command to run. Quarto is used to render a supplied Week 6 scaffold; it is not
+the required authoring format for either project.
+
+## Project Reports
+
+Both projects require:
+
+- one PDF report created from the supplied Word/Google Docs-compatible
+  template;
+- executable MATLAB or R source code;
+- the required machine-readable result files.
+
+You do **not** need to write HTML or a project report in Quarto. See the
+[project overview](../projects/index.qmd) for the complete submission contract.
+
+## If Something Fails
+
+Save the setup-check output or take a screenshot, record whether you used a
+laboratory or personal computer, and contact the instructor before the relevant
+week. Do not wait until a project deadline. The setup scripts test only small
+temporary files and remove them when finished.

@@ -37,6 +37,19 @@ source(args[[1]], chdir = FALSE)
   fi
 done
 
+setup_check="code/setup/check-r-setup.R"
+if [ -f "$setup_check" ]; then
+  echo "RUN $setup_check"
+  Rscript --vanilla "$setup_check"
+  rc=$?
+  if [ "$rc" -eq 0 ]; then
+    echo "PASS $setup_check"
+  else
+    echo "FAIL $setup_check" >&2
+    status=1
+  fi
+fi
+
 report_validator="scripts/validate_week06_report.R"
 if [ -f "$report_validator" ]; then
   echo "RUN $report_validator"

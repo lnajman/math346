@@ -49,7 +49,7 @@ audit; the remaining recommendations are proposals, not approved policy.
 | Workload clarity | The full resource bank is now separated into core, guided, and extension work | Resolved through the [student workload guide](weeks/workload-guide.qmd) |
 | Assessment-week feasibility | Only Quiz 1 has time explicitly reserved; Weeks 6, 8, 9, and 13 retain full plans beside assessments | Calendar-critical |
 | Project sequencing | Preview, group release, checkpoint, validation, and completion stages now follow prerequisite instruction | Resolved through the [project milestone map](projects/project-milestones.qmd); exact dates remain open |
-| Software readiness | Course code and site are healthy; student-facing required versus optional software is not fully distinguished | Needs clarification |
+| Software readiness | Required access, scaffolded use, and optional tools are explicit; live institutional systems still require verification | Matrix resolved; live check pending |
 | Navigation and publication | Weekly pages, exercises, labs, slides, code, and projects are linked and publish correctly | Strong |
 
 ## The Coherent Course Spine
@@ -276,19 +276,22 @@ downstream dependency.
 
 ## Software And Access
 
-The resources page currently lists MATLAB, R, RStudio or Positron, Quarto, Git,
-and GitHub together. The weekly and project materials imply a more nuanced
-requirement:
+This audit finding is now resolved at the policy and publication level. The
+[student software matrix](resources/software-requirements.qmd) distinguishes:
 
-- MATLAB and R are required;
-- an R IDE and the listed R packages are required;
-- Quarto is needed to render the supplied Week 6 scaffold, but students do not
-  author project reports in Quarto;
-- Git and GitHub are not used as student submission requirements;
-- MATLAB symbolic capability is needed in Week 5.
+- reliable MATLAB and R access from mandatory personal installation;
+- the Week 5 Symbolic Math Toolbox dependency;
+- one supported R editor and the six packages actually used by the course;
+- Quarto as a required, scaffolded Week 6 activity rather than a project-report
+  format;
+- Word/Google Docs-compatible editing, PDF export, Blackboard, and ZIP handling
+  as operational requirements; and
+- Git/GitHub and paid generative-AI accounts as optional.
 
-A student-facing setup matrix should distinguish **required**, **provided on
-lab machines**, **used once with a scaffold**, and **optional** software.
+The two runnable setup scripts test the real computational workflow. The
+[instructor readiness checklist](resources/instructor-setup-checklist.qmd)
+separates this approved contract from the still-unverified claim that a
+particular laboratory, license route, or Blackboard configuration provides it.
 
 ## Technical And Publication QA
 
@@ -317,7 +320,8 @@ rechecked shortly before the teaching term.
    6, 9, and 13.
 3. **Completed: set project milestones:** preview, release, frozen plan,
    validation, and completion are now fixed relative to course weeks.
-4. **Publish the student software matrix** and run a live lab-machine check.
+4. **Completed: publish the student software matrix;** now run and record the
+   separate live lab-machine and Blackboard check.
 5. **Add glossary and recovery checkpoints** at the three phase boundaries.
 6. **Build an assessment blueprint** after quiz and examination formats are
    chosen, including a place for cumulative final-examination review.
@@ -328,6 +332,6 @@ rechecked shortly before the teaching term.
 
 This audit recommends no deletion of the resource bank and does not change
 approved assessment policy. Its workload recommendation has been implemented;
-its project milestone recommendation has also been implemented. The assessment
-calendar, exact project dates, software matrix, and recovery supports remain to
-be resolved.
+its project milestone and software-matrix recommendations have also been
+implemented. The assessment calendar, exact project dates, live institutional
+setup verification, and recovery supports remain to be resolved.

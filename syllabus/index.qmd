@@ -81,6 +81,21 @@ quiz or examination preparation. See the
 and the meaning of core, guided, and extension work. Assessment weeks receive
 a reduced selection when an assessment displaces normal class time.
 
+## Software and Access
+
+Students need reliable access to MATLAB for Weeks 1-5 and Project 1, and to R
+for Weeks 6-15 and Project 2. Symbolic Math Toolbox is required for Week 5. The
+R block uses `dplyr`, `ggplot2`, `readr`, `tidyr`, `stringr`, and `lubridate`.
+Quarto is required only to edit and render a supplied Week 6 scaffold; students
+do not author either project report in Quarto.
+
+Reliable access may be provided by a verified laboratory, an institutionally
+licensed online route, or a personal installation. Students are not required
+to purchase software or a paid generative-AI account. Git and GitHub are
+optional and are not submission tools. See the
+[software and access requirements](../resources/software-requirements.qmd) for
+the complete matrix and runnable setup checks.
+
 ## Project Structure
 
 **Project 1:** MATLAB numerical investigation using a group-specific synthetic
