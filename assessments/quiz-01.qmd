@@ -41,6 +41,10 @@ If Blackboard is unavailable, the instructor may use an equivalent paper
 version. Approved accommodations are configured through the usual course
 arrangements.
 
+A student arriving after the quiz has begun may take it only while it remains
+available; the common closing time is not extended because of late arrival.
+A missed quiz follows the [syllabus policy on missed assessments](../syllabus/index.qmd#missed-assessments-and-late-project-submissions).
+
 ## How To Prepare
 
 1. Review the survival checklists for [Week 1](../weeks/week-01.qmd),
@@ -55,4 +59,3 @@ Typical prompts ask you to predict a size or value, choose the correct operator,
 identify a test that would fail, interpret a residual, or decide whether a
 query is interpolation or extrapolation. The actual quiz questions and answers
 are not published on this site.
-

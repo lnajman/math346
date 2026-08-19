@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-08-18
+Last updated: 2026-08-19
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -28,6 +28,10 @@ no requirement to run MATLAB. Its calendar date remains a Blackboard
 announcement. Later quiz and examination details are intentionally deferred.
 The student glossary and three optional phase-recovery checkpoints are now
 published, and the previously broken Quarto documentation link is corrected.
+The student home and syllabus now also publish the instructor contact,
+Banner/Blackboard/website roles, office-hour arrangement, missed-assessment
+rules, late-project penalty, and the approved five-minute classroom lateness
+threshold.
 
 The developed Weeks 1-4 prototype has been sent to colleagues for feedback and
 is now considered validated as the model for the course. The agreed student
@@ -259,6 +263,17 @@ approved and published.
   reports. Git/GitHub and paid generative-AI accounts are not required.
 - Institutional access routes and installed versions must be verified on the
   live student systems before they are announced as available.
+- Laurent Alain Najman is the instructor; class meetings and rooms follow
+  Banner on the Main Campus, and office hours are arranged on demand because
+  the instructor's office is on the SAN Campus.
+- A student arriving more than five minutes after the scheduled class start is
+  recorded absent but should enter quietly and participate in the remainder.
+- There are no make-up quizzes or semester examination. Unapproved absences
+  receive zero; Registrar-approved quiz absences use the midterm grade before
+  the midterm and the final grade afterward, while an approved midterm absence
+  uses the final grade. At most 40% of the course grade can be compensated by
+  these substitutions.
+- Late projects lose 10% per day or part of a day, with late days rounded up.
 
 ## Open Decisions
 
@@ -284,6 +299,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Area | Evidence | State |
 |---|---|---|
 | Course purpose | `index.qmd`, `syllabus/index.qmd` | Developed |
+| Course administration and classroom policy | `index.qmd`; `syllabus/index.qmd`; `assessments/quiz-01.qmd` | Instructor/contact/platform roles and approved attendance, missed-assessment, and late-project rules published |
 | Student launch shell | `index.qmd`; `_quarto.yml`; `weeks/index.qmd` | Weeks 1-4 launch-ready; Weeks 5-15 presented as an evolving roadmap |
 | Quiz 1 | `assessments/quiz-01.qmd`; private Blackboard blueprint and question bank | Student contract and private instrument complete; live Blackboard rehearsal pending |
 | Glossary and recovery | `resources/glossary.qmd`; three `weeks/recovery-*.qmd` pages | Published as optional support |
@@ -337,6 +353,10 @@ milestone:
   colleagues to see.
 
 ## History
+
+- **2026-08-19:** Instructor contact and office-hour information, platform
+  roles, missed-assessment substitutions, the late-project penalty, and the
+  five-minute lateness/absence rule were added to the student website.
 
 - **2026-08-18:** The public site was converted to a student-first launch
   presentation. Weeks 1-4 were designated launch-ready, later weeks were

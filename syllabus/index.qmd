@@ -9,6 +9,27 @@ title: "Syllabus"
 **Contact hours:** 3 lecture hours per week  
 **Prerequisites:** COSC 114; MATH 204 or MATH 211; MATH 242 or MATH 243 or MATH 244
 
+**Instructor:** Laurent Alain Najman
+
+**Email:** [laurentalain.najman@ku.ac.ae](mailto:laurentalain.najman@ku.ac.ae)
+
+**Class meetings:** Consult Banner for the official days, times, and classroom;
+classes take place on the Main Campus.
+
+**Office hours:** On demand, by appointment. The instructor's office is on the
+SAN Campus; contact the instructor by email to arrange a meeting.
+
+## Course Platforms
+
+| Platform | Purpose |
+|---|---|
+| **Banner** | Official class days, times, and classroom |
+| **Blackboard** | Announcements, dates, quizzes, submissions, private group files, feedback, and grades |
+| **Course website** | Syllabus, weekly materials, slides, labs, exercises, code, projects, and assessment guides |
+
+If information on the course website and Blackboard appears inconsistent,
+follow the most recent Blackboard announcement and contact the instructor.
+
 ## Catalog Description
 
 This course introduces mathematical and statistical programming using MATLAB and R. Topics include data science, numerical computation, tidy data, exploratory data analysis, plotting, and symbolic computation.
@@ -133,3 +154,58 @@ quizzes, semester examination, and final examination. Any group member may be
 invited to a brief project verification, selected randomly or because submitted
 work requires clarification. Selection does not imply suspected misconduct, and
 a project–examination grade difference is not evidence by itself.
+
+## Missed Assessments And Late Project Submissions
+
+### Quizzes
+
+- There are no make-up quizzes.
+- A student who misses a scheduled quiz without an absence approved by the
+  Registrar's Office receives a grade of zero for that quiz.
+- If the Registrar's Office confirms that the absence is approved, the quiz
+  grade is replaced by:
+  - the semester-examination (midterm) grade when the quiz took place before
+    the semester examination;
+  - the final-examination grade when the quiz took place after the semester
+    examination.
+
+### Semester Examination (Midterm)
+
+- There is no make-up semester examination.
+- A student who misses the scheduled semester examination without an absence
+  approved by the Registrar's Office receives a grade of zero for it.
+- If the Registrar's Office confirms that the absence is approved, the final-
+  examination grade is also assigned as the semester-examination grade.
+
+A maximum of **40% of the course grade** can be compensated through the
+approved-absence substitutions above.
+
+### Projects
+
+Late project submissions are penalized at **10% per day or part of a day**.
+The number of late days is rounded up.
+
+## Classroom Policies
+
+Discipline and punctuality are important components of academic and
+professional success. Students should make every effort to arrive before the
+class begins at the time shown in Banner. Late arrival distracts both the
+instructor and other students.
+
+A student who arrives **more than five minutes after the scheduled beginning
+of class will be recorded as absent for that class**. The student should
+nevertheless enter quietly, avoid interrupting the class, and participate in
+the remainder of the session.
+
+If a student is absent from, or late to, a class, the student is responsible
+for reviewing the missed material, checking Blackboard for announcements, and
+obtaining any instructions provided during the class. The instructor is not
+responsible for repeating an entire missed class individually.
+
+A student arriving after an in-class quiz has begun may take it only while it
+remains available. The common closing time is not extended because of late
+arrival, except for an approved accommodation or an officially approved
+exceptional circumstance.
+
+Exceptional circumstances are handled in accordance with applicable university
+procedures.

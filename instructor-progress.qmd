@@ -10,7 +10,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 teaching blocks remain deliberately adaptable; later assessment design and
 exact calendar placement remain open.**
 
-Last updated: **18 August 2026**
+Last updated: **19 August 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -22,6 +22,7 @@ the motivation and the kind of feedback being requested.
 | Workstream | Status | Evidence | Next step |
 |---|---|---|---|
 | Student-facing launch | **Ready** | Student-first [home](index.qmd), navigation, [weekly roadmap](weeks/index.qmd), [glossary](resources/glossary.qmd), and three recovery checkpoints | Test with students in Weeks 1-4 and record revisions |
+| Course administration and classroom policy | **Published** | [Home](index.qmd), [syllabus](syllabus/index.qmd), and [Quiz 1 guide](assessments/quiz-01.qmd) | Keep Banner and Blackboard logistics current |
 | Course framing and AI policy | Developed | [Syllabus](syllabus/index.qmd) and [AI policy](syllabus/ai-policy.qmd) | Revise after assessment decisions |
 | Colleague feedback | Requested | [Instructor preview](instructor-preview.qmd) shared for review | Record and synthesize responses |
 | Weeks 1-4: MATLAB prototype | **Validated prototype** | Week pages, slides, labs, exercises, and checked MATLAB code | Use as the pattern for later weeks |
@@ -68,6 +69,11 @@ they can never be revised.
   execution, and now has a public guide plus a private two-form question bank.
 - A plain-language glossary and optional recovery checkpoints after Weeks 5,
   10, and 12 provide beginner support without adding required work.
+- The student pages now identify Laurent Alain Najman, the instructor email,
+  Banner as the official meeting source, Main Campus classes, SAN Campus
+  office, and on-demand appointments. They also publish the approved
+  five-minute lateness threshold, Registrar-based absence substitutions, the
+  40% compensation ceiling, and the 10%-per-day late-project penalty.
 - Week 5 now follows that pattern with exact symbolic computation, domain and
   assumption checks, a fixed-volume tank optimization problem, independent
   numerical verification, and an AI-answer audit. All new scripts pass the
@@ -227,6 +233,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 19 August 2026 | Instructor contact and platform roles were published with the approved classroom punctuality, missed-assessment, and late-project policies. Students arriving more than five minutes late are recorded absent but remain expected to enter quietly and participate. |
 | 18 August 2026 | The website became student-first: Weeks 1-4 were designated launch-ready, later weeks were presented as an adaptable roadmap, Quiz 1 received a public guide and private Blackboard question bank, a glossary and three recovery checkpoints were added, and the broken Quarto link was corrected. |
 | 8 July 2026 | The [instructor preview](instructor-preview.qmd) was added as the entry point for colleague review. |
 | 8-9 July 2026 | Weeks 1-4 were expanded with fuller notes, slides, labs, exercises, and MATLAB examples. |

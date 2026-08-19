@@ -44,6 +44,23 @@ Before the first class:
 4. Read the [workload guide](weeks/workload-guide.qmd): material visible on the
    site is not automatically assigned.
 
+::: {.callout-note}
+## Instructor And Class Information
+
+**Instructor:** Laurent Alain Najman
+
+**Email:** [laurentalain.najman@ku.ac.ae](mailto:laurentalain.najman@ku.ac.ae)
+
+**Class meetings:** Consult Banner for the official days, times, and classroom;
+classes take place on the Main Campus.
+
+**Office hours:** On demand, by appointment. The instructor's office is on the
+SAN Campus; arrange a meeting by email.
+
+See the [syllabus](syllabus/index.qmd#course-information) for the complete
+course and classroom policies.
+:::
+
 ::: {.callout-important}
 ## What is ready now
 
@@ -61,6 +78,12 @@ code, project instructions, and the [glossary](resources/glossary.qmd). Use
 Blackboard for announcements, calendar dates, submissions, grades, and Quiz 1.
 If the two ever appear inconsistent, follow the latest Blackboard announcement
 and tell the instructor.
+
+| Platform | Use it for |
+|---|---|
+| **Banner** | Official class days, times, and classroom |
+| **Blackboard** | Announcements, dates, quizzes, submissions, private group files, feedback, and grades |
+| **Course website** | Syllabus, weekly materials, slides, labs, exercises, code, projects, and assessment guides |
 
 ## The Weekly Rhythm
 
