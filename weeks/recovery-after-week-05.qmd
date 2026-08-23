@@ -22,7 +22,7 @@ Before moving on, you should be able to:
 
 ## A 45-60 Minute Recovery Route
 
-1. Run the [MATLAB setup check](../code/setup/check-matlab-setup.m).
+1. Run the [MATLAB setup check](../code/setup/check_matlab_setup.m).
 2. Rerun [the Week 2 function tests](../code/matlab/week02_function_tests.m)
    and explain what each test is protecting against.
 3. Complete core Exercises 1 and 2 from [Week 2](week-02-exercises.qmd) and
@@ -36,4 +36,3 @@ You are ready when you can predict the shape of a short calculation, identify
 one useful test before running code, and explain why a visible result is not by
 itself proof that the code is correct. If not, bring one specific failed check
 to class or office hours.
-

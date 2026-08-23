@@ -25,7 +25,7 @@ Use the [course glossary](glossary.qmd) when a technical term is unfamiliar.
 
 ## Setup Checklist
 
-1. Run the [MATLAB setup check](../code/setup/check-matlab-setup.m) before
+1. Run the [MATLAB setup check](../code/setup/check_matlab_setup.m) before
    Week 1 and confirm the separate symbolic status before Week 5.
 2. Run the [R setup check](../code/setup/check-r-setup.R) before Week 6.
 3. Confirm that Quarto can render the supplied Week 6 scaffold.

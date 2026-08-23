@@ -6,7 +6,7 @@ Starter code is intentionally small. Students should run it, modify it, and add 
 
 ## Setup Checks
 
-- [MATLAB and Symbolic Math Toolbox check](setup/check-matlab-setup.m)
+- [MATLAB and Symbolic Math Toolbox check](setup/check_matlab_setup.m)
 - [R, required packages, and Quarto check](setup/check-r-setup.R)
 
 Run these on the computer you intend to use. The

@@ -37,7 +37,7 @@ problems.
 - [ ] Sign in as a student and open MATLAB using the route that will be
   announced to the class.
 - [ ] Download and run
-  [the MATLAB setup check](../code/setup/check-matlab-setup.m).
+  [the MATLAB setup check](../code/setup/check_matlab_setup.m).
 - [ ] Record the exact MATLAB version and `MATLAB core check: PASS` output.
 - [ ] Record `Symbolic Math Toolbox check: PASS`; do not infer toolbox access
   from MATLAB access alone.

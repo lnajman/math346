@@ -38,7 +38,7 @@ will announce the verified institutional access routes before Week 1.
 1. Open MATLAB on the computer you intend to use. This may be a local
    installation or [MATLAB Online](https://www.mathworks.com/products/matlab-online.html)
    if the institutional license provides the necessary access.
-2. Download [the MATLAB setup check](../code/setup/check-matlab-setup.m).
+2. Download [the MATLAB setup check](../code/setup/check_matlab_setup.m).
 3. In MATLAB, open the downloaded file and select **Run**.
 4. Confirm that the output contains `MATLAB core check: PASS`.
 5. Confirm before Week 5 that it also contains

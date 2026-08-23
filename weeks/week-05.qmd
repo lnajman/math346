@@ -8,7 +8,7 @@ MATLAB symbolic mathematics. Project 1 readiness checkpoint.
 
 ::: {.callout-note}
 The Week 5 scripts require Symbolic Math Toolbox. Before the lab, run the
-[MATLAB setup check](../code/setup/check-matlab-setup.m) and confirm that its
+[MATLAB setup check](../code/setup/check_matlab_setup.m) and confirm that its
 separate symbolic status says `PASS`.
 :::
 

@@ -8,7 +8,7 @@ MATLAB arrays, script files, and 2D plotting.
 
 ::: {.callout-important}
 Before beginning, run the
-[MATLAB setup check](../code/setup/check-matlab-setup.m) on the computer you
+[MATLAB setup check](../code/setup/check_matlab_setup.m) on the computer you
 intend to use. The [software requirements](../resources/software-requirements.qmd)
 explain what a passing result means.
 :::
