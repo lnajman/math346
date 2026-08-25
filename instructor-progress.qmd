@@ -10,7 +10,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 teaching blocks remain deliberately adaptable; later assessment design and
 exact calendar placement remain open.**
 
-Last updated: **19 August 2026**
+Last updated: **25 August 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -71,7 +71,8 @@ they can never be revised.
   10, and 12 provide beginner support without adding required work.
 - The student pages now identify Laurent Alain Najman, the instructor email,
   Banner as the official meeting source, Main Campus classes, SAN Campus
-  office, and on-demand appointments. They also publish the approved
+  office, and on-demand appointments whose time and location are agreed by
+  email. They also publish the approved
   five-minute lateness threshold, Registrar-based absence substitutions, the
   40% compensation ceiling, and the 10%-per-day late-project penalty.
 - Week 5 now follows that pattern with exact symbolic computation, domain and
@@ -233,6 +234,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 25 August 2026 | The office-hours wording was clarified on the student home page and syllabus: classes meet on the Main Campus, the instructor's office is on the SAN Campus, and both the appointment time and meeting location are agreed by email. |
 | 19 August 2026 | Instructor contact and platform roles were published with the approved classroom punctuality, missed-assessment, and late-project policies. Students arriving more than five minutes late are recorded absent but remain expected to enter quietly and participate. |
 | 18 August 2026 | The website became student-first: Weeks 1-4 were designated launch-ready, later weeks were presented as an adaptable roadmap, Quiz 1 received a public guide and private Blackboard question bank, a glossary and three recovery checkpoints were added, and the broken Quarto link was corrected. |
 | 8 July 2026 | The [instructor preview](instructor-preview.qmd) was added as the entry point for colleague review. |

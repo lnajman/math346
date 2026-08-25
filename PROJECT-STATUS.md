@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-08-19
+Last updated: 2026-08-25
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -264,8 +264,9 @@ approved and published.
 - Institutional access routes and installed versions must be verified on the
   live student systems before they are announced as available.
 - Laurent Alain Najman is the instructor; class meetings and rooms follow
-  Banner on the Main Campus, and office hours are arranged on demand because
-  the instructor's office is on the SAN Campus.
+  Banner on the Main Campus. Office hours are arranged on demand; because the
+  instructor's office is on the SAN Campus, the meeting time and location are
+  agreed by email for each appointment.
 - A student arriving more than five minutes after the scheduled class start is
   recorded absent but should enter quietly and participate in the remainder.
 - There are no make-up quizzes or semester examination. Unapproved absences
@@ -353,6 +354,11 @@ milestone:
   colleagues to see.
 
 ## History
+
+- **2026-08-25:** The office-hours wording on the student home page and syllabus
+  was clarified: classes meet on the Main Campus, the instructor's office is on
+  the SAN Campus, and both the appointment time and meeting location are agreed
+  by email.
 
 - **2026-08-19:** Instructor contact and office-hour information, platform
   roles, missed-assessment substitutions, the late-project penalty, and the

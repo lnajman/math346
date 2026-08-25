@@ -54,8 +54,9 @@ Before the first class:
 **Class meetings:** Consult Banner for the official days, times, and classroom;
 classes take place on the Main Campus.
 
-**Office hours:** On demand, by appointment. The instructor's office is on the
-SAN Campus; arrange a meeting by email.
+**Office hours:** On demand, by appointment. Classes meet on the Main Campus,
+while the instructor's office is on the SAN Campus. Contact the instructor by
+email to arrange both the time and the meeting location.
 
 See the [syllabus](syllabus/index.qmd#course-information) for the complete
 course and classroom policies.
