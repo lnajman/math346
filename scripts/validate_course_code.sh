@@ -17,9 +17,9 @@ Usage: scripts/validate_course_code.sh [--r-only|--matlab-only|--skip-r|--skip-m
 
 Runs the executable course-code checks:
   - R scripts in code/r and the student R setup check
-  - MATLAB starter scripts in code/matlab and the student MATLAB setup check
+  - MATLAB worked solutions in code/matlab and the student MATLAB setup check
 
-The MATLAB validator separates ordinary starter scripts from intentionally
+The MATLAB validator separates ordinary worked solutions from intentionally
 weak AI critique scripts.
 USAGE
 }
@@ -53,6 +53,9 @@ for arg in "$@"; do
 done
 
 status=0
+
+echo "== Starter/solution pair validation =="
+python3 scripts/validate_lab_code_pairs.py || status=1
 
 if [ "$run_r" -eq 1 ]; then
   echo "== R validation =="

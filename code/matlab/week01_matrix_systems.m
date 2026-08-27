@@ -1,35 +1,27 @@
-% MATH 346 - Week 1
+% MATH 346 - guided lab starter
 % Matrix operations and linear-system checks
+% This file is intentionally incomplete. Follow the lab page and replace
+% every TODO with your own code before consulting the worked solution.
 
 clear; clc; close all;
 
+%% Given setup
 A = [2 1; 1 3];
 b = [1; 2];
-
-x = A\b;
-residual = A*x - b;
-
-disp("Solution of A*x = b:");
-disp(table((1:numel(x)).', x, 'VariableNames', {'Index', 'SolutionValue'}));
-fprintf("Residual norm: %.3e\n\n", norm(residual));
-
 B = [1 2; 3 4];
 C = [10 20; 30 40];
 
-matrix_product = B*C;
-elementwise_product = B.*C;
+%% Task 1
+% Solve A*x = b without forming inv(A).
+% TODO: write and check your code here.
 
-disp("Matrix product B*C:");
-disp(matrix_product);
+%% Task 2
+% Compute and interpret a residual norm.
+% TODO: write and check your code here.
 
-disp("Elementwise product B.*C:");
-disp(elementwise_product);
+%% Task 3
+% Compare B*C with B.*C and select one row and one column.
+% TODO: write and check your code here.
 
-row = B(1, :);
-column = B(:, 2);
-
-fprintf("First row of B has %d entries.\n", numel(row));
-fprintf("Second column of B has %d entries.\n", numel(column));
-
-identity_matrix = eye(2);
-fprintf("Check eye(2)*B equals B: %d\n", isequal(identity_matrix*B, B));
+%% Reflection
+% TODO: explain which evidence makes the result trustworthy.

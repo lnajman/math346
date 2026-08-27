@@ -7,22 +7,22 @@ set(0, 'DefaultFigureVisible', 'off');
 
 mustPass = {
     'code/setup/check_matlab_setup.m'
-    'code/matlab/week01_arrays_plotting.m'
-    'code/matlab/week01_matrix_systems.m'
-    'code/matlab/week01_temperature_matrix.m'
-    'code/matlab/week02_function_tests.m'
-    'code/matlab/week02_piecewise_validation.m'
-    'code/matlab/week02_loop_patterns.m'
-    'code/matlab/week02_logical_indexing_switch.m'
-    'code/matlab/week03_curve_fitting_validation.m'
-    'code/matlab/week03_polynomial_tools.m'
-    'code/matlab/week03_interpolation_vs_fit.m'
-    'code/matlab/week04_root_integration_checks.m'
-    'code/matlab/week04_ode_solver_check.m'
-    'code/matlab/week04_surface_contour_visualization.m'
-    'code/matlab/week05_symbolic_calculus_checks.m'
-    'code/matlab/week05_tank_optimization.m'
-    'code/matlab/week05_symbolic_numeric_bridge.m'
+    'code/matlab/solutions/week01_arrays_plotting.m'
+    'code/matlab/solutions/week01_matrix_systems.m'
+    'code/matlab/solutions/week01_temperature_matrix.m'
+    'code/matlab/solutions/week02_function_tests.m'
+    'code/matlab/solutions/week02_piecewise_validation.m'
+    'code/matlab/solutions/week02_loop_patterns.m'
+    'code/matlab/solutions/week02_logical_indexing_switch.m'
+    'code/matlab/solutions/week03_curve_fitting_validation.m'
+    'code/matlab/solutions/week03_polynomial_tools.m'
+    'code/matlab/solutions/week03_interpolation_vs_fit.m'
+    'code/matlab/solutions/week04_root_integration_checks.m'
+    'code/matlab/solutions/week04_ode_solver_check.m'
+    'code/matlab/solutions/week04_surface_contour_visualization.m'
+    'code/matlab/solutions/week05_symbolic_calculus_checks.m'
+    'code/matlab/solutions/week05_tank_optimization.m'
+    'code/matlab/solutions/week05_symbolic_numeric_bridge.m'
 };
 
 aiMustRun = {
@@ -38,7 +38,7 @@ expectedFailures = {
 
 failures = {};
 
-fprintf('MATLAB executable starter scripts\n');
+fprintf('MATLAB executable worked solutions\n');
 for k = 1:numel(mustPass)
     file = mustPass{k};
     [ok, report] = runOne(file);

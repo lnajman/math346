@@ -2,6 +2,8 @@
 title: "Lab 5: Symbolic Mathematics And Independent Checks"
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Use exact symbolic computation without losing sight of assumptions, admissible

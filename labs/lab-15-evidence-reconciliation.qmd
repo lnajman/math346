@@ -4,6 +4,8 @@ execute:
   enabled: false
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Generate a small analysis bundle, verify its saved artifacts, reconcile report

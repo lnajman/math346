@@ -1,37 +1,25 @@
-% MATH 346 - Week 2
+% MATH 346 - guided lab starter
 % Piecewise rules and boundary tests
+% This file is intentionally incomplete. Follow the lab page and replace
+% every TODO with your own code before consulting the worked solution.
 
-clear; clc;
+clear; clc; close all;
 
+%% Given setup
 test_ages = [0 5 6 17 18 64 65];
 expected_prices = [0 0 20 20 35 35 25];
-actual_prices = arrayfun(@ticket_price, test_ages);
 
-disp(table(test_ages.', actual_prices.', expected_prices.', ...
-    'VariableNames', ["age", "actual_price", "expected_price"]));
+%% Task 1
+% Write the ticket_price local function.
+% TODO: write and check your code here.
 
-assert(isequal(actual_prices, expected_prices), "Boundary price test failed.");
-disp("Boundary price tests passed.");
+%% Task 2
+% Evaluate every boundary case.
+% TODO: write and check your code here.
 
-negative_age_rejected = false;
-try
-    ticket_price(-1);
-catch
-    negative_age_rejected = true;
-end
-assert(negative_age_rejected, "Negative age test failed: function should reject -1.");
-disp("Negative age test passed.");
+%% Task 3
+% Compare actual and expected outputs and reject invalid input.
+% TODO: write and check your code here.
 
-function price = ticket_price(age)
-    if age < 0
-        error("Age must be nonnegative.");
-    elseif age <= 5
-        price = 0;
-    elseif age <= 17
-        price = 20;
-    elseif age <= 64
-        price = 35;
-    else
-        price = 25;
-    end
-end
+%% Reflection
+% TODO: explain which evidence makes the result trustworthy.

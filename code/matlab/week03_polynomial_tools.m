@@ -1,40 +1,24 @@
-% MATH 346 - Week 3
+% MATH 346 - guided lab starter
 % Polynomial utility commands and checks
+% This file is intentionally incomplete. Follow the lab page and replace
+% every TODO with your own code before consulting the worked solution.
 
 clear; clc; close all;
 
+%% Given setup
 roots_expected = [1 2 3];
-p = poly(roots_expected);
-roots_computed = roots(p);
 
-disp("Coefficients built from roots 1, 2, and 3:");
-disp(p);
+%% Task 1
+% Build polynomial coefficients from the roots and recover the roots.
+% TODO: write and check your code here.
 
-disp("Roots recovered from the coefficient vector:");
-disp(roots_computed.');
+%% Task 2
+% Evaluate the polynomial at the expected roots.
+% TODO: write and check your code here.
 
-factor1 = [1 -1];
-factor2 = [1 -2];
-factor3 = [1 -3];
-p_from_factors = conv(conv(factor1, factor2), factor3);
+%% Task 3
+% Differentiate and integrate the coefficient vector and check a known value.
+% TODO: write and check your code here.
 
-assert(norm(p - p_from_factors) < 1e-12);
-
-dp = polyder(p);
-slope_at_2 = polyval(dp, 2);
-
-fprintf("Derivative coefficients:\n");
-disp(dp);
-fprintf("Derivative evaluated at x = 2: %.3f\n", slope_at_2);
-
-x = linspace(0, 4, 200);
-y = polyval(p, x);
-
-figure;
-plot(x, y, "LineWidth", 1.5);
-hold on;
-plot(roots_expected, zeros(size(roots_expected)), "o", "MarkerSize", 8);
-grid on;
-xlabel("x");
-ylabel("p(x)");
-title("Polynomial Built From Roots");
+%% Reflection
+% TODO: explain which evidence makes the result trustworthy.

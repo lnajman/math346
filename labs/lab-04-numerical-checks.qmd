@@ -2,6 +2,8 @@
 title: "Lab 4: Numerical Methods And Visual Checks"
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Use MATLAB numerical methods responsibly by pairing every computed answer with a visual or residual check.

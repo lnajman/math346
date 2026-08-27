@@ -10,7 +10,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 teaching blocks remain deliberately adaptable; later assessment design and
 exact calendar placement remain open.**
 
-Last updated: **25 August 2026**
+Last updated: **26 August 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -41,7 +41,8 @@ the motivation and the kind of feedback being requested.
 | Quizzes and midterm | **Quiz 1 ready; later design deferred** | [Quiz 1 student guide](assessments/quiz-01.qmd), private Blackboard blueprint and bank; later markers remain visible | Dry-run Quiz 1 in Blackboard; decide Quiz 2-4 and midterm later |
 | Projects | **Packages complete; milestone sequence approved** | [Milestone map](projects/project-milestones.qmd), 20-group data, starters, templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Set exact dates later and check the live Blackboard setup |
 | Software and access | **Requirements approved; live systems pending** | [Student matrix](resources/software-requirements.qmd), two runnable setup checks, and [instructor checklist](resources/instructor-setup-checklist.qmd) | Run and record the checks on student laboratory accounts and in Blackboard |
-| Executable code checks | Implemented | Local scripts and GitHub Actions | Extend checks as new code is added |
+| Lab starter/solution separation | **Implemented** | 16 MATLAB and 20 R starter/solution pairs; guided lab links begin with incomplete starters | Release possible solutions after students attempt the selected work |
+| Executable code checks | Implemented | Local scripts and GitHub Actions, including pair/label validation | Extend checks as new code is added |
 
 “Validated prototype” means that Weeks 1-4 are sufficiently developed and
 reviewed to serve as the model for the remaining course. It does not mean that
@@ -61,6 +62,11 @@ they can never be revised.
 - Students must be able to explain, test, and interpret computational results.
 - Weeks 1-4 demonstrate the intended weekly pattern and have been validated as
   the prototype.
+- Every guided MATLAB and R workflow now has an intentionally incomplete
+  starter at its original public URL and a separately labeled possible solution
+  under a dedicated `solutions/` path. Main lab and week links lead to starters;
+  the code library pairs both versions for later comparison. AI-review scripts
+  remain deliberately weak critique targets rather than answer keys.
 - The public home and primary navigation now address students first. Weeks 1-4
   are the launch-ready block; Weeks 5-15 are explicitly presented as an
   evolving roadmap that can respond to opening-week feedback.
@@ -234,6 +240,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 26 August 2026 | Guided lab code was separated into 16 MATLAB and 20 R starter/solution pairs. Original public script URLs now deliver incomplete starters; completed versions moved under dedicated `solutions/` paths. Lab and week pages lead to starters, the code library labels possible solutions for later comparison, AI-review scripts remain critique targets, and automated checks enforce the pairing contract. |
 | 25 August 2026 | The office-hours wording was clarified on the student home page and syllabus: classes meet on the Main Campus, the instructor's office is on the SAN Campus, and both the appointment time and meeting location are agreed by email. |
 | 19 August 2026 | Instructor contact and platform roles were published with the approved classroom punctuality, missed-assessment, and late-project policies. Students arriving more than five minutes late are recorded absent but remain expected to enter quietly and participate. |
 | 18 August 2026 | The website became student-first: Weeks 1-4 were designated launch-ready, later weeks were presented as an adaptable roadmap, Quiz 1 received a public guide and private Blackboard question bank, a glossary and three recovery checkpoints were added, and the broken Quarto link was corrected. |

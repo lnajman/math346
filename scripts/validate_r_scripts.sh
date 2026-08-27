@@ -13,7 +13,7 @@ if ! command -v Rscript >/dev/null 2>&1; then
   exit 1
 fi
 
-scripts=(code/r/*.R)
+scripts=(code/r/solutions/*.R code/r/week*-ai-*.R)
 if [ ! -e "${scripts[0]}" ]; then
   echo "No R scripts found in code/r."
   exit 0

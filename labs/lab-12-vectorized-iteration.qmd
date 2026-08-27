@@ -4,6 +4,8 @@ execute:
   enabled: false
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Scale one tested descriptive workflow across several variables while preserving

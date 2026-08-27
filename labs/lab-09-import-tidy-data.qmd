@@ -4,6 +4,8 @@ execute:
   enabled: false
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Import a supplied external CSV with an explicit schema, reshape it into one

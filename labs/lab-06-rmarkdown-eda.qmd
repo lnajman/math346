@@ -2,6 +2,8 @@
 title: "Lab 6: First R Script And Reproducible Report"
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Translate familiar computational habits from MATLAB into R, then use a supplied

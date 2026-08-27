@@ -1,33 +1,24 @@
-% MATH 346 - Week 2
+% MATH 346 - guided lab starter
 % Logical indexing and switch patterns
+% This file is intentionally incomplete. Follow the lab page and replace
+% every TODO with your own code before consulting the worked solution.
 
 clear; clc; close all;
 
+%% Given setup
 temperatures = [18 21 25 29 34 31 22];
 
-hot_mask = temperatures >= 30;
-hot_values = temperatures(hot_mask);
+%% Task 1
+% Create a logical selector for hot days and extract the values.
+% TODO: write and check your code here.
 
-fprintf("Number of hot days: %d\n", nnz(hot_mask));
-disp("Hot temperatures:");
-disp(hot_values);
+%% Task 2
+% Check the selector has one value per observation.
+% TODO: write and check your code here.
 
-adjusted = temperatures;
-adjusted(hot_mask) = 30;
+%% Task 3
+% Use switch to produce a message for a supplied category.
+% TODO: write and check your code here.
 
-disp(table(temperatures.', hot_mask.', adjusted.', ...
-    'VariableNames', {'Original', 'IsHot', 'Capped'}));
-
-unit = "F";
-value = 77;
-
-switch unit
-    case "C"
-        celsius = value;
-    case "F"
-        celsius = (value - 32) * 5/9;
-    otherwise
-        error("Unknown unit.");
-end
-
-fprintf("%.1f %s is %.2f C\n", value, unit, celsius);
+%% Reflection
+% TODO: explain which evidence makes the result trustworthy.

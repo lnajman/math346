@@ -4,6 +4,8 @@ execute:
   enabled: false
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Fit, interpret, and diagnose a small regression model while keeping row

@@ -1,54 +1,24 @@
-% MATH 346 - Week 2
-% Loop patterns, accumulators, and vectorization checks
+% MATH 346 - guided lab starter
+% Loops, accumulators, and vectorization checks
+% This file is intentionally incomplete. Follow the lab page and replace
+% every TODO with your own code before consulting the worked solution.
 
 clear; clc; close all;
 
+%% Given setup
 values = [1 2 3 4 5];
 
-% Pattern 1: for loop with preallocation
-squares_loop = zeros(size(values));
+%% Task 1
+% Preallocate and fill a vector of squares with a for loop.
+% TODO: write and check your code here.
 
-for k = 1:numel(values)
-    squares_loop(k) = values(k)^2;
-end
+%% Task 2
+% Compute the same result vectorially and compare it.
+% TODO: write and check your code here.
 
-squares_vectorized = values.^2;
-assert(isequal(squares_loop, squares_vectorized));
+%% Task 3
+% Use an accumulator, then test a while-loop stopping condition.
+% TODO: write and check your code here.
 
-disp("Squares computed with a loop:");
-disp(squares_loop);
-disp("Squares computed with vectorized MATLAB:");
-disp(squares_vectorized);
-
-% Pattern 2: accumulator
-total = 0;
-
-for k = 1:numel(values)
-    total = total + values(k);
-end
-
-assert(total == sum(values));
-fprintf("Accumulator total: %d\n", total);
-
-% Pattern 3: while loop with a guard
-target = 100;
-sum_of_squares = 0;
-n = 0;
-max_steps = 1000;
-
-while sum_of_squares < target && n < max_steps
-    n = n + 1;
-    sum_of_squares = sum_of_squares + n^2;
-end
-
-if n == max_steps && sum_of_squares < target
-    error("The while loop reached max_steps before the target.");
-end
-
-fprintf("Smallest n with 1^2 + ... + n^2 >= %d is %d.\n", target, n);
-fprintf("Final sum: %d\n", sum_of_squares);
-
-% Reflection questions:
-% 1. Which loop has a known number of repetitions?
-% 2. Which loop stops because a condition changes?
-% 3. Which calculation is clearer without a loop?
+%% Reflection
+% TODO: explain which evidence makes the result trustworthy.

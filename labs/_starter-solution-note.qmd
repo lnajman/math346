@@ -1,0 +1,13 @@
+::: {.callout-tip}
+## Try before comparing
+
+The code links in this guided lab download intentionally incomplete **starter
+files**. Complete the requested work and run your own checks first. After you
+have made a serious attempt, use the paired [possible solutions in the code
+library](../code/index.qmd) to compare approaches. The possible solution is not
+the only correct program.
+
+The starter supplies only the given setup and `TODO` prompts. When a lab says
+to run or inspect a result, first complete the corresponding `TODO`, then run
+your version.
+:::

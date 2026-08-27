@@ -1,34 +1,24 @@
-% MATH 346 - Week 2
-% Functions, vectorized formulas, and basic tests
+% MATH 346 - guided lab starter
+% Functions, vectorized formulas, and tests
+% This file is intentionally incomplete. Follow the lab page and replace
+% every TODO with your own code before consulting the worked solution.
 
-clear; clc;
+clear; clc; close all;
 
-values = [-2, -1, 0, 1, 2];
-outputs = quadratic_value(1, 0, -1, values);
+%% Given setup
+values = [-2 -1 0 1 2];
 
-disp(table(values.', outputs.', 'VariableNames', ["x", "x_squared_minus_1"]));
+%% Task 1
+% Write a local quadratic-value function that accepts vector input.
+% TODO: write and check your code here.
 
-expected_at_zero = -1;
-actual_at_zero = quadratic_value(1, 0, -1, 0);
+%% Task 2
+% Call it on values and check a known value.
+% TODO: write and check your code here.
 
-assert_close(actual_at_zero, expected_at_zero, "quadratic at x = 0");
+%% Task 3
+% Add normal, boundary, and vector-shape tests.
+% TODO: write and check your code here.
 
-assert_close(quadratic_value(1, 0, -1, 1), 0, "quadratic at x = 1");
-assert_close(quadratic_value(1, 0, -1, -1), 0, "quadratic at x = -1");
-assert_close(quadratic_value(0, 2, 3, [0 1 2]), [3 5 7], "linear vector case");
-
-disp("All Week 2 function tests passed.");
-
-function y = quadratic_value(a, b, c, x)
-    y = a .* x.^2 + b .* x + c;
-end
-
-function assert_close(actual, expected, test_name)
-    tolerance = 1e-12;
-    if max(abs(actual - expected), [], "all") > tolerance
-        error("Test failed: %s", test_name);
-    else
-        fprintf("Test passed: %s\n", test_name);
-    end
-end
-
+%% Reflection
+% TODO: explain which evidence makes the result trustworthy.

@@ -1,39 +1,26 @@
-% MATH 346 - Week 4
-% ODE solver pattern and initial-condition checks
+% MATH 346 - guided lab starter
+% ODE solver and initial-condition checks
+% This file is intentionally incomplete. Follow the lab page and replace
+% every TODO with your own code before consulting the worked solution.
 
 clear; clc; close all;
 
+%% Given setup
 f = @(t, y) -y + sin(t);
 tspan = [0 10];
 y0 = 1;
 
-[t, y] = ode45(f, tspan, y0);
+%% Task 1
+% Solve with ode45 and verify the initial condition.
+% TODO: write and check your code here.
 
-initial_error = abs(y(1) - y0);
-fprintf("Initial condition error: %.3e\n", initial_error);
-assert(initial_error < 1e-12);
+%% Task 2
+% Plot the solution with labels.
+% TODO: write and check your code here.
 
-figure;
-plot(t, y, "o-", "LineWidth", 1.2);
-grid on;
-xlabel("t");
-ylabel("y(t)");
-title("ODE45 Solution For y' = -y + sin(t)");
+%% Task 3
+% Request a specified output grid and compare the final values.
+% TODO: write and check your code here.
 
-t_requested = linspace(0, 10, 21);
-[t_grid, y_grid] = ode45(f, t_requested, y0);
-
-figure;
-plot(t, y, "o", "MarkerSize", 5);
-hold on;
-plot(t_grid, y_grid, "-", "LineWidth", 1.5);
-hold off;
-grid on;
-xlabel("t");
-ylabel("y(t)");
-title("ODE45 Output Times");
-legend("automatic output", "requested output grid", "Location", "best");
-
-fprintf("Final value with automatic output: %.4f\n", y(end));
-fprintf("Final value with requested output grid: %.4f\n", y_grid(end));
-fprintf("Requested output times do not directly set the solver's internal step size.\n");
+%% Reflection
+% TODO: explain which evidence makes the result trustworthy.

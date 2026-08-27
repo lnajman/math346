@@ -1,45 +1,25 @@
-% MATH 346 - Week 4
+% MATH 346 - guided lab starter
 % Surface and contour visualization checks
+% This file is intentionally incomplete. Follow the lab page and replace
+% every TODO with your own code before consulting the worked solution.
 
 clear; clc; close all;
 
+%% Given setup
 x = linspace(-3, 3, 121);
 y = linspace(-3, 3, 121);
-[X, Y] = meshgrid(x, y);
 
-Z = sin(X).*cos(Y).*exp(-0.08*(X.^2 + Y.^2));
+%% Task 1
+% Use meshgrid to form compatible coordinate arrays.
+% TODO: write and check your code here.
 
-figure;
-surf(X, Y, Z);
-shading interp;
-colorbar;
-grid on;
-xlabel("x");
-ylabel("y");
-zlabel("z");
-title("Surface plot of z = sin(x) cos(y) exp(-0.08(x^2+y^2))");
+%% Task 2
+% Evaluate the supplied surface formula from the lab.
+% TODO: write and check your code here.
 
-figure;
-contourf(X, Y, Z, 20);
-colorbar;
-axis equal tight;
-xlabel("x");
-ylabel("y");
-title("Filled contour plot of the same surface");
+%% Task 3
+% Create labeled surface and contour plots and check all array sizes.
+% TODO: write and check your code here.
 
-[z_max, max_index] = max(Z(:));
-[row, col] = ind2sub(size(Z), max_index);
-x_max = X(row, col);
-y_max = Y(row, col);
-
-[z_min, min_index] = min(Z(:));
-[row_min, col_min] = ind2sub(size(Z), min_index);
-x_min = X(row_min, col_min);
-y_min = Y(row_min, col_min);
-
-fprintf("Approximate maximum: z = %.4f at x = %.3f, y = %.3f\n", ...
-    z_max, x_max, y_max);
-fprintf("Approximate minimum: z = %.4f at x = %.3f, y = %.3f\n", ...
-    z_min, x_min, y_min);
-
-fprintf("These locations depend on the grid spacing.\n");
+%% Reflection
+% TODO: explain which evidence makes the result trustworthy.

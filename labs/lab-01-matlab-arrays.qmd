@@ -2,6 +2,8 @@
 title: "Lab 1: MATLAB Arrays, Scripts, and Plots"
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Create a reproducible MATLAB script that samples, plots, and checks a mathematical function.

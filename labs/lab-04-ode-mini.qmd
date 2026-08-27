@@ -2,6 +2,8 @@
 title: "Lab 4 Mini: ODE Solver Checks"
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Solve a first-order initial-value problem with `ode45` and record the checks that make the numerical solution credible.

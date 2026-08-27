@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-08-25
+Last updated: 2026-08-26
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -32,6 +32,15 @@ The student home and syllabus now also publish the instructor contact,
 Banner/Blackboard/website roles, office-hour arrangement, missed-assessment
 rules, late-project penalty, and the approved five-minute classroom lateness
 threshold.
+
+All 36 guided lab workflows now use a two-file teaching contract. The original,
+canonical script URLs deliver intentionally incomplete starters; completed
+versions live only under dedicated `solutions/` paths. Students therefore
+download a starter first, then compare their attempt with a separately labeled
+possible solution. The 15 AI-review programs remain deliberately weak critique
+targets rather than answer keys. Lab pages and weekly material links point to
+the canonical starters, the code library pairs both versions, and the
+validation harness checks that every pair and label remains present.
 
 The developed Weeks 1-4 prototype has been sent to colleagues for feedback and
 is now considered validated as the model for the course. The agreed student
@@ -116,6 +125,9 @@ approved and published.
 - Weeks 1-4 have been validated as the prototype pattern to continue.
 - A validation harness checks the executable MATLAB and R course code and runs
   in GitHub Actions.
+- Sixteen MATLAB and twenty R guided workflows now have paired incomplete
+  starters and labeled possible solutions; all main lab pages lead with the
+  starters, while AI-review scripts remain unpaired critique material.
 - A deterministic private generator now produces 20 distinct Project 1 data
   files, 20 Project 2 training files, 20 withheld validation files, private
   reference results, and row-level ground truth.
@@ -238,6 +250,9 @@ approved and published.
   lab, 4-6 core exercises, and a short in-class exit check.
 - AI-review labs are embedded or assigned selectively and are not an automatic
   second weekly submission. Lab 4A is an extension or alternate activity.
+- Guided lab code is released in two versions: an incomplete starter for the
+  attempt and a separately labeled possible solution for comparison afterward.
+  Possible solutions are examples, not unique required implementations.
 - Routine website-based practice outside class targets approximately 90-120
   minutes in an ordinary week, excluding separately announced project and
   quiz/examination preparation. Assessment weeks receive a reduced selection
@@ -354,6 +369,13 @@ milestone:
   colleagues to see.
 
 ## History
+
+- **2026-08-26:** All guided lab code was separated into 16 MATLAB and 20 R
+  starter/solution pairs. Existing public script URLs now contain the
+  incomplete starters, while completed files moved into dedicated `solutions/`
+  paths. Student-facing lab and week links therefore open starters first,
+  possible solutions are explicitly labeled for later comparison, and
+  automated checks enforce the pairing contract.
 
 - **2026-08-25:** The office-hours wording on the student home page and syllabus
   was clarified: classes meet on the Main Campus, the instructor's office is on

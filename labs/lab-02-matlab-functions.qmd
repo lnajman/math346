@@ -2,6 +2,8 @@
 title: "Lab 2: MATLAB Functions And Tests"
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Write small MATLAB functions and build a habit of testing them before reuse.

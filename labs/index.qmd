@@ -4,6 +4,11 @@ title: "Labs"
 
 Labs are designed as studio activities. They should be completed with MATLAB or R open, not just read.
 
+Guided main labs now provide two code versions: an incomplete starter to use
+first and a separately labeled possible solution for comparison afterward.
+The AI-audit files are intentionally weak programs to critique, so they are
+not solution files.
+
 ::: {.callout-tip}
 ## Lab workload
 
@@ -52,8 +57,8 @@ the [weekly workload guide](../weeks/workload-guide.qmd) for the full policy.
 
 For each assigned lab or selected checkpoint:
 
-1. Run the starter code.
-2. Predict what each section should produce.
-3. Modify the code for a new question.
-4. Add at least one validation check.
+1. Download the starter code linked from the lab page.
+2. Complete the selected tasks and predict what each section should produce.
+3. Run, modify, and validate your own program.
+4. Only then compare it with the separately labeled possible solution.
 5. Record any AI assistance and whether it was correct.

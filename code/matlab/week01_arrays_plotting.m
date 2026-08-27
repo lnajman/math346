@@ -1,24 +1,25 @@
-% MATH 346 - Week 1
+% MATH 346 - guided lab starter
 % Arrays, scripts, and 2D plotting
+% This file is intentionally incomplete. Follow the lab page and replace
+% every TODO with your own code before consulting the worked solution.
 
 clear; clc; close all;
 
-x = linspace(0, 2*pi, 200);
-y1 = sin(x);
-y2 = cos(x);
+%% Given setup
+n_points = 200;
+% TODO: create x on [0, 2*pi], then compute sin(x) and cos(x).
 
-figure;
-plot(x, y1, "LineWidth", 1.5);
-hold on;
-plot(x, y2, "LineWidth", 1.5);
-hold off;
+%% Task 1
+% Plot both functions against x with labels and a legend.
+% TODO: write and check your code here.
 
-xlabel("x");
-ylabel("function value");
-title("Sine and cosine on [0, 2pi]");
-legend("sin(x)", "cos(x)", "Location", "best");
-grid on;
+%% Task 2
+% Compute the maximum error in sin(x)^2 + cos(x)^2 = 1.
+% TODO: write and check your code here.
 
-identity_error = max(abs(y1.^2 + y2.^2 - 1));
-fprintf("Maximum error in sin^2(x) + cos^2(x) = 1: %.3e\n", identity_error);
+%% Task 3
+% Repeat with a different domain and sample count.
+% TODO: write and check your code here.
 
+%% Reflection
+% TODO: explain which evidence makes the result trustworthy.

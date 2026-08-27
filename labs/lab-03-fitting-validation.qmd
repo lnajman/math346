@@ -2,6 +2,8 @@
 title: "Lab 3: Fitting, Interpolation, and Residuals"
 ---
 
+{{< include _starter-solution-note.qmd >}}
+
 ## Goal
 
 Compare a fitted model with measured data and decide whether the model is credible.

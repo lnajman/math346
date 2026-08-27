@@ -1,65 +1,24 @@
-# MATH 346 - Week 6
-# First R objects, vectors, data frames, and explicit checks
+# MATH 346 - guided lab starter
+# First R objects and checks
+# This file is intentionally incomplete. Follow the lab page and replace
+# every TODO with your own code before consulting the worked solution.
 
+# Given setup
 cars <- mtcars
 cars$car <- rownames(mtcars)
 rownames(cars) <- NULL
 
-cat("Object class:", class(cars), "\n")
-cat("Rows:", nrow(cars), "Columns:", ncol(cars), "\n")
-print(names(cars))
+# Task 1
+# Inspect class, dimensions, names, and missing values.
+# TODO: write and check your code here.
 
-mpg <- cars$mpg
-weight <- cars$wt
+# Task 2
+# Create and check a logical selector.
+# TODO: write and check your code here.
 
-summary_values <- data.frame(
-  quantity = c(
-    "number of cars",
-    "missing mpg values",
-    "mean mpg",
-    "median weight (1000 lb)"
-  ),
-  value = c(
-    length(mpg),
-    sum(is.na(mpg)),
-    mean(mpg),
-    median(weight)
-  )
-)
+# Task 3
+# Compute transparent group summaries and verify row accounting.
+# TODO: write and check your code here.
 
-print(summary_values)
-
-median_weight <- median(weight)
-lighter <- weight <= median_weight
-heavier <- weight > median_weight
-
-mean_mpg_lighter <- mean(mpg[lighter])
-mean_mpg_heavier <- mean(mpg[heavier])
-
-comparison <- data.frame(
-  group = c("at or below median weight", "above median weight"),
-  n = c(sum(lighter), sum(heavier)),
-  mean_mpg = c(mean_mpg_lighter, mean_mpg_heavier)
-)
-
-print(comparison)
-
-stopifnot(
-  nrow(cars) == 32,
-  length(mpg) == nrow(cars),
-  sum(is.na(mpg)) == 0,
-  all(weight > 0),
-  sum(lighter) + sum(heavier) == nrow(cars),
-  mean_mpg_lighter > mean_mpg_heavier
-)
-
-plot(
-  weight,
-  mpg,
-  pch = 19,
-  xlab = "Weight (1000 lb)",
-  ylab = "Fuel efficiency (miles per US gallon)",
-  main = "Fuel Efficiency And Vehicle Weight"
-)
-
-cat("All Week 6 basic R checks passed.\n")
+# Reflection
+# TODO: explain which evidence makes the result trustworthy.
