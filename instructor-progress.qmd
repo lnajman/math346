@@ -72,6 +72,9 @@ they can never be revised.
   main and AI-review lab now describes what students should have completed and
   retained. Only an explicitly announced Blackboard checkpoint is collected;
   short in-class exit checks remain separate.
+- Muhammad Ismail Yunus is identified on the public home, syllabus, and lab
+  pages as the course Teaching Assistant. He supports students during class and
+  outside class; students arrange outside-class support with him by email.
 - The public home and primary navigation now address students first. Weeks 1-4
   are the launch-ready block; Weeks 5-15 are explicitly presented as an
   evolving roadmap that can respond to opening-week feedback.
@@ -245,6 +248,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 27 August 2026 | Muhammad Ismail Yunus was added to the student-facing home, syllabus, and lab pages as the Teaching Assistant. His published role includes supporting students during class and outside class, with outside-class arrangements made by email. |
 | 27 August 2026 | Routine lab submission was removed from the course contract. Every main and AI-review lab now uses a `What You Should Have Completed` checklist; students retain the work unless a particular checkpoint is explicitly announced in Blackboard. |
 | 27 August 2026 | Direct possible-solution links were added to every guided lab page. Students are told to attempt and validate the starter first, but can now obtain the relevant comparison file without navigating through the general code library. |
 | 26 August 2026 | Guided lab code was separated into 16 MATLAB and 20 R starter/solution pairs. Original public script URLs now deliver incomplete starters; completed versions moved under dedicated `solutions/` paths. Lab and week pages lead to starters, the code library labels possible solutions for later comparison, AI-review scripts remain critique targets, and automated checks enforce the pairing contract. |

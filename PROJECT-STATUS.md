@@ -294,6 +294,9 @@ approved and published.
   Banner on the Main Campus. Office hours are arranged on demand; because the
   instructor's office is on the SAN Campus, the meeting time and location are
   agreed by email for each appointment.
+- Muhammad Ismail Yunus is the Teaching Assistant. He supports students during
+  class and outside class; students arrange outside-class support by email at
+  `100063760@ku.ac.ae`.
 - A student arriving more than five minutes after the scheduled class start is
   recorded absent but should enter quietly and participate in the remainder.
 - There are no make-up quizzes or semester examination. Unapproved absences
@@ -382,6 +385,10 @@ milestone:
 
 ## History
 
+- **2026-08-27:** Muhammad Ismail Yunus was added to the public home, syllabus,
+  and lab pages as the course Teaching Assistant. His role includes student
+  support during class and outside class, with outside-class arrangements made
+  by email at `100063760@ku.ac.ae`.
 - **2026-08-27:** Routine lab submission was removed from the public course
   contract. All main and AI-review lab `Deliverable` sections became
   `What You Should Have Completed` checklists, and the lab index now states

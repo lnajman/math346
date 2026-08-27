@@ -18,6 +18,10 @@ collected only if the instructor explicitly announces it in Blackboard. Short
 in-class exit checks may still be collected separately.
 :::
 
+The instructor and Teaching Assistant support students during lab work in
+class. For help outside class, contact Muhammad Ismail Yunus at
+[100063760@ku.ac.ae](mailto:100063760@ku.ac.ae) to arrange support.
+
 ::: {.callout-tip}
 ## Lab workload
 
