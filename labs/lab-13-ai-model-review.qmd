@@ -75,9 +75,9 @@ List five generated statements about a Project 2 model that would require the
 same audit. Include one each about causation, a coefficient, training fit,
 validation performance, and an influential observation.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit the claim-evidence table, repaired interpretation, programmatic checks,
+By the end of the activity, you should have the claim-evidence table, repaired interpretation, programmatic checks,
 and Project 2 transfer list.
 
 ## Exit Question

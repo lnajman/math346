@@ -41,7 +41,7 @@ the motivation and the kind of feedback being requested.
 | Quizzes and midterm | **Quiz 1 ready; later design deferred** | [Quiz 1 student guide](assessments/quiz-01.qmd), private Blackboard blueprint and bank; later markers remain visible | Dry-run Quiz 1 in Blackboard; decide Quiz 2-4 and midterm later |
 | Projects | **Packages complete; milestone sequence approved** | [Milestone map](projects/project-milestones.qmd), 20-group data, starters, templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Set exact dates later and check the live Blackboard setup |
 | Software and access | **Requirements approved; live systems pending** | [Student matrix](resources/software-requirements.qmd), two runnable setup checks, and [instructor checklist](resources/instructor-setup-checklist.qmd) | Run and record the checks on student laboratory accounts and in Blackboard |
-| Lab starter/solution separation | **Implemented** | 16 MATLAB and 20 R starter/solution pairs; each guided lab begins with starters and ends with direct solution links | Reinforce the attempt-first sequence in class |
+| Guided lab workflow | **Implemented; formative** | 16 MATLAB and 20 R starter/solution pairs; completion checklists replace routine submission language | Collect only explicitly announced Blackboard checkpoints and short exit checks |
 | Executable code checks | Implemented | Local scripts and GitHub Actions, including pair/label validation | Extend checks as new code is added |
 
 “Validated prototype” means that Weeks 1-4 are sufficiently developed and
@@ -68,6 +68,10 @@ they can never be revised.
   each guided lab ends with direct solution links, and the code library also
   pairs both versions for later comparison. AI-review scripts remain
   deliberately weak critique targets rather than answer keys.
+- Labs are formative practice rather than routine graded submissions. Every
+  main and AI-review lab now describes what students should have completed and
+  retained. Only an explicitly announced Blackboard checkpoint is collected;
+  short in-class exit checks remain separate.
 - The public home and primary navigation now address students first. Weeks 1-4
   are the launch-ready block; Weeks 5-15 are explicitly presented as an
   evolving roadmap that can respond to opening-week feedback.
@@ -241,6 +245,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 27 August 2026 | Routine lab submission was removed from the course contract. Every main and AI-review lab now uses a `What You Should Have Completed` checklist; students retain the work unless a particular checkpoint is explicitly announced in Blackboard. |
 | 27 August 2026 | Direct possible-solution links were added to every guided lab page. Students are told to attempt and validate the starter first, but can now obtain the relevant comparison file without navigating through the general code library. |
 | 26 August 2026 | Guided lab code was separated into 16 MATLAB and 20 R starter/solution pairs. Original public script URLs now deliver incomplete starters; completed versions moved under dedicated `solutions/` paths. Lab and week pages lead to starters, the code library labels possible solutions for later comparison, AI-review scripts remain critique targets, and automated checks enforce the pairing contract. |
 | 25 August 2026 | The office-hours wording was clarified on the student home page and syllabus: classes meet on the Main Campus, the instructor's office is on the SAN Campus, and both the appointment time and meeting location are agreed by email. |

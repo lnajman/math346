@@ -64,9 +64,9 @@ Add tests for group completeness, identical formula text, June's sample size,
 its wind interval crossing zero, nonzero diagnostic flags for every month, and
 the number of large sensitivity changes.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit the completed claim-evidence table, June audit, comparison decisions,
+By the end of the activity, you should have the completed claim-evidence table, June audit, comparison decisions,
 replacement evidence display, minimal tests, and a 5-7 sentence repaired
 interpretation.
 

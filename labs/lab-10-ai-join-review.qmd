@@ -70,9 +70,9 @@ Write 5-7 sentences comparing:
 - unmatched-row behavior;
 - the evidence required before interpretation.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit the generated row-count audit, completed contract table, repaired join,
+By the end of the activity, you should have the generated row-count audit, completed contract table, repaired join,
 post-join checks, and written comparison.
 
 ## Exit Question

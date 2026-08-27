@@ -44,6 +44,11 @@ validation harness checks that every pair and label remains present.
 Each guided lab page also provides direct possible-solution download links at
 the end of the activity, with an explicit instruction to attempt and validate
 the starter first.
+Labs are now explicitly formative: their former `Deliverable` and `Submit`
+language has been replaced by `What You Should Have Completed`. Students keep
+the resulting scripts and notes unless a particular checkpoint is explicitly
+announced in Blackboard; short in-class exit checks remain separately
+collectable.
 
 The developed Weeks 1-4 prototype has been sent to colleagues for feedback and
 is now considered validated as the model for the course. The agreed student
@@ -254,6 +259,9 @@ approved and published.
   lab, 4-6 core exercises, and a short in-class exit check.
 - AI-review labs are embedded or assigned selectively and are not an automatic
   second weekly submission. Lab 4A is an extension or alternate activity.
+- Labs are formative practice and are not routinely submitted or graded. A
+  lab checkpoint is collected only when explicitly announced in Blackboard;
+  ordinary lab pages describe what students should have completed and retained.
 - Guided lab code is released in two versions: an incomplete starter for the
   attempt and a separately labeled possible solution for comparison afterward.
   Possible solutions are examples, not unique required implementations.
@@ -373,6 +381,12 @@ milestone:
   colleagues to see.
 
 ## History
+
+- **2026-08-27:** Routine lab submission was removed from the public course
+  contract. All main and AI-review lab `Deliverable` sections became
+  `What You Should Have Completed` checklists, and the lab index now states
+  that students retain their work unless a checkpoint is explicitly announced
+  in Blackboard.
 
 - **2026-08-27:** Direct possible-solution download links were added to every
   guided lab page. Students are instructed to attempt and validate the starter

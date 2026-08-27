@@ -117,9 +117,9 @@ Before submitting:
 4. compare the reported row counts and summaries with the console output;
 5. verify that the HTML plot has the intended variables and units.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - `week06-first-report.qmd`;
 - the rendered HTML file;

@@ -65,9 +65,9 @@ Rewrite the generated conclusion in 4-6 sentences. It should report:
 - the numerical comparison;
 - the domain over which the conclusion applies.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - the original generated claim;
 - your repaired script;

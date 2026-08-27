@@ -66,9 +66,9 @@ Write 4-6 sentences that:
 - avoid causal language;
 - mention one important limitation.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - the original generated claim;
 - your repaired R script;

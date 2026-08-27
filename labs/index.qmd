@@ -9,6 +9,15 @@ first and a separately labeled possible solution for comparison afterward.
 The AI-audit files are intentionally weak programs to critique, so they are
 not solution files.
 
+::: {.callout-important}
+## Labs are formative practice
+
+Labs are not routinely submitted or graded. Keep your completed scripts,
+notes, and checks for study and project preparation. A lab checkpoint is
+collected only if the instructor explicitly announces it in Blackboard. Short
+in-class exit checks may still be collected separately.
+:::
+
 ::: {.callout-tip}
 ## Lab workload
 

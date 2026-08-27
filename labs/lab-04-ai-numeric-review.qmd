@@ -51,9 +51,9 @@ Rewrite the generated conclusion so that it is mathematically honest. It should 
 - the residuals;
 - the interval you inspected.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - the original generated claim in one sentence;
 - the repaired claim;

@@ -66,9 +66,9 @@ Write 4-6 sentences explaining why both generated and repaired tables can have
 24 rows while only one preserves the intended observation, key, numeric
 measurement, units, and future analytical possibilities.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit the original result, semantic audit, repaired import, repaired reshape,
+By the end of the activity, you should have the original result, semantic audit, repaired import, repaired reshape,
 complete contract, and written comparison.
 
 ## Exit Question

@@ -86,9 +86,9 @@ Run the script and answer:
 
 Modify the script so that it caps values above `28` instead of values at least `30`.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit one MATLAB script containing:
+By the end of the activity, you should have one MATLAB script containing:
 
 - at least one function;
 - at least five tests;

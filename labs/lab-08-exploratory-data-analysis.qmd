@@ -108,9 +108,9 @@ Restart R and run the script from beginning to end. Confirm that all summaries,
 plots, row counts, and EDA-log evidence can be regenerated without console-only
 objects or manually typed results.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - one runnable `.R` script;
 - the completed EDA log;

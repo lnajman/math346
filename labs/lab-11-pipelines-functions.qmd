@@ -76,9 +76,9 @@ Use the original pipeline and function-based pipeline on the same event data.
 Compare row count, event identifiers, cleaned values, target flags, and issue
 summaries.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - the staged pipeline with checks;
 - four function contract sentences;

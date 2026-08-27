@@ -121,9 +121,9 @@ Restart R and run your saved script from beginning to end. Confirm that it:
 - stops if an expected count or formula is wrong;
 - contains no manually typed result values.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - one runnable `.R` script;
 - the completed object-tracing table;

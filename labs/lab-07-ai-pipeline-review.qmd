@@ -78,9 +78,9 @@ Write 4-6 sentences explaining:
 - how the repaired grouping changes the meaning of one output row;
 - why successful execution is weaker evidence than semantic correctness.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit the original pipeline, row-flow audit, question-drift table, repaired
+By the end of the activity, you should have the original pipeline, row-flow audit, question-drift table, repaired
 script, checked summary, and written comparison.
 
 ## Exit Question

@@ -63,9 +63,9 @@ Answer:
 - Does requesting more output points prove that the solver used smaller internal steps?
 - Why should we be careful when interpreting the plotted markers?
 
-## Deliverable
+## What You Should Have Completed
 
-Submit a short note containing:
+By the end of the activity, you should have a short note containing:
 
 - the ODE you solved;
 - the values of `tspan` and `y0`;

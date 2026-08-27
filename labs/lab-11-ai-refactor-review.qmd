@@ -65,9 +65,9 @@ Complete:
 Create the smallest set of tests that catches both generated errors. Explain
 why each test is necessary and which redundant tests could be removed.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit the completed tables, repaired functions, minimal test suite, and a
+By the end of the activity, you should have the completed tables, repaired functions, minimal test suite, and a
 5-7 sentence explanation of why passing examples do not prove that a refactor
 preserves behavior.
 

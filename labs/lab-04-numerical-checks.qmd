@@ -99,9 +99,9 @@ Then:
 2. Find the approximate maximum value.
 3. Record the approximate `(x, y)` location of that maximum.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit a short note containing:
+By the end of the activity, you should have a short note containing:
 
 - one root-finding result with residual;
 - one integration comparison;

@@ -113,9 +113,9 @@ symbolic candidate.
 
 Restore a justified interval before preparing the deliverable.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit a short note containing:
+By the end of the activity, you should have a short note containing:
 
 - one example showing exact and decimal inputs are different;
 - one symbolic derivative or integral with a reverse-operation check;

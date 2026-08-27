@@ -66,9 +66,9 @@ Write:
 
 Use units and identify `ggplot2::diamonds` as the analyzed dataset.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit the original plot and interpretation, revised plot, claim-classification
+By the end of the activity, you should have the original plot and interpretation, revised plot, claim-classification
 table, counterevidence, and repaired interpretation.
 
 ## Exit Question

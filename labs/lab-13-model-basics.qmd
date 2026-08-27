@@ -84,9 +84,9 @@ Map the lab objects to the Project 2 model plan: response, predictors, formula,
 principal coefficient, baseline, metric, and failure condition. State which
 evidence must wait for the withheld validation file.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - the modeling contract and row-accounting table;
 - relationship and residual plots;

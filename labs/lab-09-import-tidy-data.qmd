@@ -112,9 +112,9 @@ the data are synthetic and incomplete values were not imputed.
 Write the tidy table to CSV, re-import it, and rerun the post-reshape contract.
 Do not treat successful file creation as validation.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - one runnable import-and-tidy `.R` script;
 - the tidy CSV;

@@ -99,9 +99,9 @@ Answer:
 - Is this interpolation, fitting, or extrapolation?
 - Would you report this number? Why or why not?
 
-## Deliverable
+## What You Should Have Completed
 
-Submit a short note containing:
+By the end of the activity, you should have a short note containing:
 
 - the selected model degree;
 - one plot of the data and fitted curve;

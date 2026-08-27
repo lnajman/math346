@@ -60,9 +60,9 @@ Create a revised script or note that:
 3. Labels `x = 12` as extrapolation.
 4. Refuses or qualifies the prediction if the evidence is weak.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - the original generated claim in one sentence;
 - one residual plot;

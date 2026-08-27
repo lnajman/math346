@@ -67,9 +67,9 @@ at least:
 - numerical type of successful means;
 - nonempty messages for failures.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit the completed reconciliation table, the repaired batch function and log,
+By the end of the activity, you should have the completed reconciliation table, the repaired batch function and log,
 the minimal tests, and a 5-7 sentence explanation of why “the batch finished”
 is not sufficient validation.
 

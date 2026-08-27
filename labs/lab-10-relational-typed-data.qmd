@@ -84,9 +84,9 @@ matched and unmatched counts, and response-hour preservation.
 Create a zone summary that retains the unknown event under an `unmatched`
 label. Confirm its counts sum to nine.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - one runnable `.R` script;
 - raw-to-clean value comparisons;

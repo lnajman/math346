@@ -80,9 +80,9 @@ Map the grouped workflow habits to Project 2: frozen formula, result schema,
 source identifiers, sensitivity record, and validation evidence. Identify
 which classroom monthly results are not required by the project.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - fixed contract and grouped-input audit;
 - named list of five complete model results;

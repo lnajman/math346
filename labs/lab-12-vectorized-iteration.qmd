@@ -85,9 +85,9 @@ and filenames against the
 
 Do not select or fit the final model in this lab.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - the vectorized temperature calculation and its checks;
 - three equivalent mean calculations;

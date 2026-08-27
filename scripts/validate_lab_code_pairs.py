@@ -71,6 +71,17 @@ for stem in matlab:
     expected = f"../code/matlab/solutions/{stem}.m"
     if expected not in main_lab_text:
         errors.append(f"guided labs do not link directly to solution: {expected}")
+
+for lab in sorted((ROOT / "labs").glob("lab-*.qmd")):
+    lines = lab.read_text(encoding="utf-8").splitlines()
+    if "## Deliverable" in lines:
+        errors.append(f"lab retains routine deliverable heading: {lab.relative_to(ROOT)}")
+    if any(line.startswith("Submit") for line in lines):
+        errors.append(f"lab retains routine submission instruction: {lab.relative_to(ROOT)}")
+
+lab_index = (ROOT / "labs" / "index.qmd").read_text(encoding="utf-8")
+if "Labs are not routinely submitted or graded" not in lab_index:
+    errors.append("lab index does not state the formative non-submission policy")
 for stem in r_scripts:
     expected = f"../code/r/solutions/{stem}.R"
     if expected not in main_lab_text:

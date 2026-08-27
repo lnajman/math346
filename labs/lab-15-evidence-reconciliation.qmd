@@ -73,7 +73,7 @@ one must concern sensitivity.
 
 ## Part H: Rehearse The Project 2 Bundle
 
-Without using private group data in this lab submission, prepare a checklist
+Without using private group data in this lab activity, prepare a checklist
 for the four actual Project 2 filenames. Map each file to the code that creates
 or supports it and the checks that must pass.
 
@@ -82,9 +82,9 @@ or supports it and the checks that must pass.
 Choose `ready`, `repair`, or `escalate`. List every unresolved item, assign a
 reviewer, and state the exact evidence needed to change the decision.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit:
+By the end of the activity, you should have:
 
 - artifact-role table;
 - clean-run record and generated-file inventory;

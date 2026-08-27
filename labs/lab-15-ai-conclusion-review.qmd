@@ -74,9 +74,9 @@ Record the task given to the LLM, the paragraph received, the checks performed,
 the five rejected or repaired claims, and the group member who reviewed the
 final wording.
 
-## Deliverable
+## What You Should Have Completed
 
-Submit the segmented paragraph, numerical verification table, completed claim
+By the end of the activity, you should have the segmented paragraph, numerical verification table, completed claim
 audit, connector review, repaired caption, final conclusion, and AI-use entry.
 
 ## Exit Question
