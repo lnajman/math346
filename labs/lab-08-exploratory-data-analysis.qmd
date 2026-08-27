@@ -126,3 +126,10 @@ Submit:
 If you use an LLM, record the prompt, the suggested finding, the exact plot or
 summary used to check it, what was weakened or rejected, and one next question
 the generated response overlooked.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Checked EDA cycle](../code/r/solutions/week08-eda-cycle.R)
+- [Plot checks](../code/r/solutions/week08-plot-checks.R)

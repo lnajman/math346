@@ -114,3 +114,11 @@ Submit a short note containing:
 Ask an LLM: "How do I decide whether a polynomial fit is overfitting?" Then evaluate whether the answer mentions residuals, extrapolation, and model complexity.
 
 Include the prompt and the part of the answer that changed or challenged your model choice.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Curve fitting and validation](../code/matlab/solutions/week03_curve_fitting_validation.m)
+- [Interpolation versus fitting](../code/matlab/solutions/week03_interpolation_vs_fit.m)
+- [Polynomial tools](../code/matlab/solutions/week03_polynomial_tools.m)

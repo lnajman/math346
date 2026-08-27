@@ -100,3 +100,10 @@ Submit:
 If an LLM helps with a caption, checklist, or reconciliation code, retain its
 output and record which numerical, row-level, visual, and claim checks you
 performed.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Evidence bundle](../code/r/solutions/week15-evidence-bundle.R)
+- [Cross-artifact audit](../code/r/solutions/week15-cross-artifact-audit.R)

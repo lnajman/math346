@@ -112,3 +112,12 @@ If you ask an LLM for a function, include:
 - the prompt;
 - the generated code;
 - at least two tests that caught or could have caught a mistake.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Functions and tests](../code/matlab/solutions/week02_function_tests.m)
+- [Piecewise validation](../code/matlab/solutions/week02_piecewise_validation.m)
+- [Loop patterns](../code/matlab/solutions/week02_loop_patterns.m)
+- [Logical indexing and switch](../code/matlab/solutions/week02_logical_indexing_switch.m)

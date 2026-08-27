@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-08-26
+Last updated: 2026-08-27
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -41,6 +41,9 @@ possible solution. The 15 AI-review programs remain deliberately weak critique
 targets rather than answer keys. Lab pages and weekly material links point to
 the canonical starters, the code library pairs both versions, and the
 validation harness checks that every pair and label remains present.
+Each guided lab page also provides direct possible-solution download links at
+the end of the activity, with an explicit instruction to attempt and validate
+the starter first.
 
 The developed Weeks 1-4 prototype has been sent to colleagues for feedback and
 is now considered validated as the model for the course. The agreed student
@@ -127,7 +130,8 @@ approved and published.
   in GitHub Actions.
 - Sixteen MATLAB and twenty R guided workflows now have paired incomplete
   starters and labeled possible solutions; all main lab pages lead with the
-  starters, while AI-review scripts remain unpaired critique material.
+  starters and provide direct solution links afterward, while AI-review scripts
+  remain unpaired critique material.
 - A deterministic private generator now produces 20 distinct Project 1 data
   files, 20 Project 2 training files, 20 withheld validation files, private
   reference results, and row-level ground truth.
@@ -369,6 +373,11 @@ milestone:
   colleagues to see.
 
 ## History
+
+- **2026-08-27:** Direct possible-solution download links were added to every
+  guided lab page. Students are instructed to attempt and validate the starter
+  first, but no longer need to navigate through the general code library to
+  locate the comparison file.
 
 - **2026-08-26:** All guided lab code was separated into 16 MATLAB and 20 R
   starter/solution pairs. Existing public script URLs now contain the

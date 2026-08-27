@@ -92,3 +92,10 @@ Submit:
 
 If an LLM proposes a refactor, record the original behavior, generated code,
 test cases, any behavior drift, and the repaired function.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Readable pipeline](../code/r/solutions/week11-readable-pipeline.R)
+- [Function contracts](../code/r/solutions/week11-function-contracts.R)

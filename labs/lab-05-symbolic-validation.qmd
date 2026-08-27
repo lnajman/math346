@@ -134,3 +134,11 @@ If you ask an LLM for help, include:
 - one symbolic step you checked by substitution or differentiation;
 - one independent numerical check;
 - one claim you changed or rejected.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Symbolic and numerical bridge](../code/matlab/solutions/week05_symbolic_numeric_bridge.m)
+- [Symbolic calculus checks](../code/matlab/solutions/week05_symbolic_calculus_checks.m)
+- [Tank optimization](../code/matlab/solutions/week05_tank_optimization.m)

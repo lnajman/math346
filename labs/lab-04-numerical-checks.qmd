@@ -117,3 +117,11 @@ If you ask an LLM for help, include:
 - the generated code or explanation;
 - the check you used before trusting it;
 - one thing the LLM did not verify.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Roots and integration](../code/matlab/solutions/week04_root_integration_checks.m)
+- [ODE solver checks](../code/matlab/solutions/week04_ode_solver_check.m)
+- [Surface and contour visualization](../code/matlab/solutions/week04_surface_contour_visualization.m)

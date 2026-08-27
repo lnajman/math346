@@ -97,3 +97,10 @@ Submit:
 If an LLM automates or ranks the models, record the full group list, expected
 result schema, omitted evidence, generated ranking rule, and repaired
 interpretation.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Many models](../code/r/solutions/week14-many-models.R)
+- [Grouped sensitivity](../code/r/solutions/week14-grouped-sensitivity.R)

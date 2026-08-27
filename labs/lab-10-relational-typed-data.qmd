@@ -101,3 +101,10 @@ Submit:
 If you use an LLM, record its proposed row meanings, keys, relationship, join
 type, and cleaning rules. Verify all of these independently before accepting
 its code.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Clean and type data](../code/r/solutions/week10-clean-types.R)
+- [Join audit](../code/r/solutions/week10-join-audit.R)

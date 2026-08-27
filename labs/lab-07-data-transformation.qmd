@@ -138,3 +138,10 @@ Submit:
 If you use an LLM, record the prompt, the proposed pipeline, what question the
 pipeline actually answers, what you changed or rejected, and the checks used
 before accepting any result.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [One-verb checks](../code/r/solutions/week07-verb-checks.R)
+- [Checked transformation workflow](../code/r/solutions/week07-dplyr-eda.R)

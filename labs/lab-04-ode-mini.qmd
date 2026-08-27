@@ -76,3 +76,9 @@ Submit a short note containing:
 ## AI Use
 
 If you ask an LLM for ODE help, include the prompt and the check you used before trusting the generated code.
+
+## Possible Solution
+
+Open this only after attempting the starter:
+
+- [ODE solver checks](../code/matlab/solutions/week04_ode_solver_check.m)

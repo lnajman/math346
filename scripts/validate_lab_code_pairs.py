@@ -61,10 +61,20 @@ main_labs = [
     for path in sorted((ROOT / "labs").glob("lab-*.qmd"))
     if "-ai-" not in path.name
 ]
+main_lab_text = "\n".join(path.read_text(encoding="utf-8") for path in main_labs)
 for lab in main_labs:
     text = lab.read_text(encoding="utf-8")
     if "include _starter-solution-note.qmd" not in text:
         errors.append(f"guided lab lacks starter/solution note: {lab.relative_to(ROOT)}")
+
+for stem in matlab:
+    expected = f"../code/matlab/solutions/{stem}.m"
+    if expected not in main_lab_text:
+        errors.append(f"guided labs do not link directly to solution: {expected}")
+for stem in r_scripts:
+    expected = f"../code/r/solutions/{stem}.R"
+    if expected not in main_lab_text:
+        errors.append(f"guided labs do not link directly to solution: {expected}")
 
 if errors:
     print("Starter/solution validation failed:")

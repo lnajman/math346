@@ -101,3 +101,10 @@ Submit:
 If an LLM interprets the model, annotate every sentence with the output or
 design fact that supports it. Mark causal, extrapolative, and validation claims
 that the fitted training model cannot support.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Simple linear model](../code/r/solutions/week13-simple-linear-model.R)
+- [Model diagnostics](../code/r/solutions/week13-model-diagnostics.R)

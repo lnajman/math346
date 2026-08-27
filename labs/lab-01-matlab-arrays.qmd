@@ -113,3 +113,11 @@ You may ask an LLM for help with MATLAB plotting syntax. If you do, record:
 - the prompt;
 - the useful suggestion;
 - the check you performed before trusting it.
+
+## Possible Solutions
+
+Open these only after attempting the corresponding starter:
+
+- [Arrays and plotting](../code/matlab/solutions/week01_arrays_plotting.m)
+- [Measured data](../code/matlab/solutions/week01_temperature_matrix.m)
+- [Matrices and linear systems](../code/matlab/solutions/week01_matrix_systems.m)
