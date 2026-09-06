@@ -75,9 +75,13 @@ reproducible and allow numerical checking across all groups.
 
 ## Teams and Individual Competence
 
-Teams normally contain three students, giving approximately 20 submissions in
-a class of 60. Group members may collaborate on the take-home analysis and may
-use documented AI assistance.
+Each project team may contain **one, two, or three students**. Three students is
+the maximum. Groups of two are allowed, and a student may choose to work alone
+as a one-person team. The same project requirements, deadlines, and grading
+criteria apply to every team size.
+
+Group members may collaborate on the take-home analysis and may use documented
+AI assistance.
 
 The projects are assessed as group work. Individual competence is established
 through the quizzes, semester examination, and final examination, which together

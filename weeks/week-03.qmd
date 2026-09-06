@@ -4,7 +4,7 @@ title: "Week 3: Curve Fitting and Interpolation"
 
 ## Official Topic
 
-MATLAB curve fitting and interpolation. Quiz 1.
+MATLAB curve fitting and interpolation.
 
 ## Problem Focus
 
@@ -62,14 +62,12 @@ Suggested 75-minute rhythm:
 
 | Time | Activity |
 |---:|---|
-| 0-12 min | Quiz 1: individual in-class Blackboard quiz |
-| 12-25 min | Interpolation: `interp1` and method choice |
-| 25-40 min | Compare interpolation with polynomial fitting |
-| 40-58 min | AI critique: high-degree polynomial overclaim |
-| 58-70 min | Repair: choose a simpler model and write validation notes |
-| 70-75 min | Exit ticket: interpolate, fit, or reject? |
-
-Read the [Quiz 1 student guide](../assessments/quiz-01.qmd) before this meeting.
+| 0-8 min | Retrieval: residual evidence and the three question types |
+| 8-22 min | Interpolation: input checks, `interp1`, and method choice |
+| 22-37 min | Compare interpolation with polynomial fitting |
+| 37-57 min | Student task: complete and explain the interpolation starter |
+| 57-69 min | AI critique and repair: high-degree polynomial overclaim |
+| 69-75 min | Exit ticket: interpolate, fit, or reject? |
 
 ## In-Class Checks
 

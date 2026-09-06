@@ -16,6 +16,11 @@ Project 1 brings together the MATLAB portion of the course. Each team analyzes
 data for a different synthetic building and investigates the relationship
 between outdoor temperature and daily heating-energy consumption.
 
+::: {.callout-note title="Team size"}
+A team may contain one, two, or three students. Three students is the maximum;
+groups of two and students working alone are also allowed.
+:::
+
 The problem is realistic, but the data are generated for this course. Different
 teams will obtain different coefficients, prediction errors, and conclusions.
 

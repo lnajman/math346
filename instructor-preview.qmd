@@ -104,7 +104,7 @@ I would especially appreciate feedback on these questions:
 - Does Week 15 make the relationship among R source, CSV outputs, figures, PDF
   claims, clean-run reproducibility, and AI documentation manageable for a
   beginner group completing Project 2?
-- Is the working assessment sequence realistic: quizzes in Weeks 3, 6, 9, and
+- Is the working assessment sequence realistic: quizzes in Weeks 4, 6, 9, and
   13, with the semester examination (midterm) in Week 8?
 - Is the balance right between MATLAB/R skills, mathematical thinking, and validation?
 - Do the LLM-related activities feel pedagogically useful rather than distracting?

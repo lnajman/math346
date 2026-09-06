@@ -10,7 +10,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 teaching blocks remain deliberately adaptable; later assessment design and
 exact calendar placement remain open.**
 
-Last updated: **27 August 2026**
+Last updated: **6 September 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -39,7 +39,7 @@ the motivation and the kind of feedback being requested.
 | Week 15: communication and synthesis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the evidence-reconciliation and clean-run workload |
 | Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time with the approved workload |
 | Quizzes and midterm | **Quiz 1 ready; later design deferred** | [Quiz 1 student guide](assessments/quiz-01.qmd), private Blackboard blueprint and bank; later markers remain visible | Dry-run Quiz 1 in Blackboard; decide Quiz 2-4 and midterm later |
-| Projects | **Packages complete; milestone sequence approved** | [Milestone map](projects/project-milestones.qmd), 20-group data, starters, templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Set exact dates later and check the live Blackboard setup |
+| Projects | **20-group package validated; enrollment expansion pending** | [Milestone map](projects/project-milestones.qmd), 20-group data, starters, templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Collect team choices, extend the package to the final team count, then set exact dates and check Blackboard |
 | Software and access | **Requirements approved; live systems pending** | [Student matrix](resources/software-requirements.qmd), two runnable setup checks, and [instructor checklist](resources/instructor-setup-checklist.qmd) | Run and record the checks on student laboratory accounts and in Blackboard |
 | Guided lab workflow | **Implemented; formative** | 16 MATLAB and 20 R starter/solution pairs; completion checklists replace routine submission language | Collect only explicitly announced Blackboard checkpoints and short exit checks |
 | Executable code checks | Implemented | Local scripts and GitHub Actions, including pair/label validation | Extend checks as new code is added |
@@ -78,7 +78,7 @@ they can never be revised.
 - The public home and primary navigation now address students first. Weeks 1-4
   are the launch-ready block; Weeks 5-15 are explicitly presented as an
   evolving roadmap that can respond to opening-week feedback.
-- Quiz 1 is fixed as an individual 12-minute in-class Blackboard quiz with six
+- Quiz 1 is fixed as an individual 12-minute in-class Blackboard quiz in Week 4 with six
   code-reading and validation items. It is closed-resource, requires no MATLAB
   execution, and now has a public guide plus a private two-form question bank.
 - A plain-language glossary and optional recovery checkpoints after Weeks 5,
@@ -192,8 +192,11 @@ they can never be revised.
 - Blackboard keeps previews public, group packages restricted to the
   corresponding group, and Project 2 validation closed until the common
   frozen-plan gate. Exact opening and closing times remain deferred.
-- The course is expected to have about 60 students, so individual oral project
-  defenses are not a practical default.
+- The current enrollment is 66 students: 37 in one section and 29 in the other,
+  so individual oral project defenses are not a practical default.
+- Project teams may contain one, two, or three students. Three is the maximum;
+  pairs and one-person teams are allowed. The final number of group-specific
+  packages will be determined after team registration.
 - Project 1 uses MATLAB and Project 2 uses R.
 - Each group receives a distinct synthetic building-energy dataset supplied by
   the instructor.
@@ -216,8 +219,8 @@ they can never be revised.
   results; Quarto and HTML are not required.
 - Projects are group-assessed. The remaining 80% of the course establishes
   individual competence through quizzes and examinations.
-- The public weekly plan retains the original working assessment sequence:
-  Quiz 1 in Week 3, Quiz 2 in Week 6, the semester examination (midterm) in
+- The public weekly plan now uses this working assessment sequence:
+  Quiz 1 in Week 4, Quiz 2 in Week 6, the semester examination (midterm) in
   Week 8, Quiz 3 in Week 9, and Quiz 4 in Week 13. The sequence stays visible
   while the implementation after Quiz 1 remains open for discussion.
 - There is no mandatory individual project examination. A brief verification
@@ -248,6 +251,8 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 6 September 2026 | Project teams were limited to a maximum of three students; pairs and one-person teams were explicitly allowed. With 66 students across sections of 37 and 29, the existing 20-group data package will be expanded after the final team choices are registered. |
+| 6 September 2026 | Quiz 1 was moved from Week 3 to Week 4 without changing its approved 12-minute individual Blackboard format. Its exact Week 4 date and meeting remain a Blackboard announcement, and Week 3 Meeting 2 is now a full teaching session. |
 | 27 August 2026 | Muhammad Ismail Yunus was added to the student-facing home, syllabus, and lab pages as the Teaching Assistant. His published role includes supporting students during class and outside class, with outside-class arrangements made by email. |
 | 27 August 2026 | Routine lab submission was removed from the course contract. Every main and AI-review lab now uses a `What You Should Have Completed` checklist; students retain the work unless a particular checkpoint is explicitly announced in Blackboard. |
 | 27 August 2026 | Direct possible-solution links were added to every guided lab page. Students are told to attempt and validate the starter first, but can now obtain the relevant comparison file without navigating through the general code library. |
@@ -286,7 +291,7 @@ architecture and the remaining implementation decisions.
 
 ## Next Decision Gate
 
-The working student project package is complete:
+The original 20-group student project package is validated:
 
 - **Completed:** 20 quality-checked group datasets and withheld validation
   datasets;
@@ -297,6 +302,11 @@ The working student project package is complete:
   data dictionary;
 - **Completed:** exact-content checks for all 60 release ZIPs and a
   representative upload/download extraction rehearsal.
+
+With 66 students and permitted team sizes of one to three, the final number of
+teams may exceed 20. Team choices must be registered and the generator,
+releases, and checker coverage extended to that final count before the Week 4
+Project 1 package release.
 
 The audit, student workload contract, week-relative project milestone map, and
 student software matrix are complete. The next decision gate is to reconcile

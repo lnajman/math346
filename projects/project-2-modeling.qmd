@@ -16,6 +16,11 @@ Project 2 returns to the building-energy problem using R and a richer dataset.
 Students move from the numerical relationship studied in MATLAB to a statistical
 analysis that includes additional operating conditions.
 
+::: {.callout-note title="Team size"}
+A team may contain one, two, or three students. Three students is the maximum;
+groups of two and students working alone are also allowed.
+:::
+
 The training and validation data remain group-specific. The validation file is
 withheld until the group has recorded its model plan and the common Week 14
 release gate opens.

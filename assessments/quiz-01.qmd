@@ -7,7 +7,7 @@ description: "Format, scope, rules, and preparation for the first MATH 346 quiz.
 
 | Item | Quiz 1 arrangement |
 |---|---|
-| When | In class during Week 3; the calendar date appears in Blackboard |
+| When | In class during Week 4; the calendar date and meeting appear in Blackboard |
 | Duration | 12 minutes |
 | Delivery | Blackboard, one attempt |
 | Format | 6 short code-reading and validation items |

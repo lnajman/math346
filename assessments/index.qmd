@@ -6,7 +6,7 @@ description: "Student-facing assessment information for MATH 346."
 ## Available Now
 
 - [Quiz 1](quiz-01.qmd): an individual, 12-minute, in-class Blackboard quiz
-  during Week 3.
+  during Week 4.
 
 The syllabus shows the planned assessment rhythm. Details for later quizzes,
 the semester examination, final examination, and project submission windows
@@ -29,4 +29,3 @@ authoritative for logistics.
   [AI policy](../syllabus/ai-policy.qmd).
 - A short oral verification may be requested when there is a substantial and
   unexplained mismatch between project work and individually assessed work.
-

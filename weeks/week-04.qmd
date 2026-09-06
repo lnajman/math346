@@ -4,13 +4,22 @@ title: "Week 4: Numerical Analysis and 3D Plotting"
 
 ## Official Topic
 
-MATLAB built-in numerical analysis and 3D plotting.
+MATLAB built-in numerical analysis and 3D plotting. Quiz 1.
 
 ## Problem Focus
 
 When exact solutions are hard or impossible, how do we compute approximate answers responsibly?
 
 Students use root-finding, numerical integration, ODE solvers, and 3D plotting as tools for understanding approximation.
+
+::: {.callout-important}
+## Quiz 1 this week
+
+[Quiz 1](../assessments/quiz-01.qmd) is completed in class during Week 4. The
+calendar date and meeting are announced in Blackboard. The normal teaching
+selection is reduced in the quiz meeting so students are not expected to fit a
+full 75-minute plan around the assessment.
+:::
 
 ## Learning Goals
 

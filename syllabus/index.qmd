@@ -82,8 +82,8 @@ quizzes and examinations will be published before the relevant units.
 |---:|---|
 | 1 | MATLAB arrays, scripts, and 2D plotting |
 | 2 | MATLAB programming and user functions |
-| 3 | MATLAB curve fitting and interpolation; Quiz 1 |
-| 4 | MATLAB numerical analysis and 3D plotting |
+| 3 | MATLAB curve fitting and interpolation |
+| 4 | MATLAB numerical analysis and 3D plotting; Quiz 1 |
 | 5 | MATLAB symbolic math |
 | 6 | R Markdown and data visualization; Quiz 2 |
 | 7 | R workflow and data transformation |
@@ -96,9 +96,10 @@ quizzes and examinations will be published before the relevant units.
 | 14 | Handling many models |
 | 15 | Visualization, communication, and project synthesis |
 
-The assessment markers above preserve the current working sequence. The Quiz 1
-format is fixed; its calendar date and the formats and dates of later
-assessments will be announced through Blackboard.
+The assessment markers above preserve the current working sequence. Quiz 1 is
+placed in Week 4 and its format is fixed; its calendar date and meeting, and
+the formats and dates of later assessments, will be announced through
+Blackboard.
 
 ## Weekly Workload
 
@@ -132,6 +133,11 @@ optional and are not submission tools. See the
 the complete matrix and runnable setup checks.
 
 ## Project Structure
+
+Each project team may contain one, two, or three students. Three students is the
+maximum. Groups of two are allowed, and a student may choose to work alone as a
+one-person team. The same project requirements, deadlines, and grading criteria
+apply to every team size.
 
 **Project 1:** MATLAB numerical investigation using a group-specific synthetic
 building-energy dataset. The exact due date is being aligned with the end of the

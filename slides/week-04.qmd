@@ -16,6 +16,13 @@ When exact answers are unavailable, how do we compute responsibly?
 - Meeting 1: roots, integrals, and checks
 - Meeting 2: surfaces, contours, and AI claims
 
+## Quiz 1 This Week
+
+Quiz 1 takes place in class during Week 4.
+
+Use Blackboard for the exact calendar date and meeting. The teaching and
+practice selection will be reduced in the quiz meeting.
+
 ## Approximation Is A Claim
 
 Numerical answers depend on:

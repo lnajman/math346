@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-08-27
+Last updated: 2026-09-06
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -22,10 +22,10 @@ launch-ready block; Weeks 5-15 remain visible as an evolving roadmap that can
 be refined from student feedback during the opening weeks. Instructor review
 and progress pages remain available by direct link but are no longer in the
 primary navigation. Quiz 1 is the only assessment instrument finalized for
-launch: it is an individual, 12-minute, in-class Blackboard quiz in Week 3
+launch: it is an individual, 12-minute, in-class Blackboard quiz in Week 4
 with six short code-reading and validation items, no AI or collaboration, and
-no requirement to run MATLAB. Its calendar date remains a Blackboard
-announcement. Later quiz and examination details are intentionally deferred.
+no requirement to run MATLAB. Its Week 4 calendar date and meeting remain a
+Blackboard announcement. Later quiz and examination details are intentionally deferred.
 The student glossary and three optional phase-recovery checkpoints are now
 published, and the previously broken Quarto documentation link is corrected.
 The student home and syllabus now also publish the instructor contact,
@@ -51,13 +51,15 @@ announced in Blackboard; short in-class exit checks remain separately
 collectable.
 
 The developed Weeks 1-4 prototype has been sent to colleagues for feedback and
-is now considered validated as the model for the course. The agreed student
-project package is complete: private synthetic data, beginner-oriented code
-starters, fixed result contracts, editable report templates, customized release
-ZIPs, and batch checkers are implemented. The release contract has been
-rehearsed locally, and the complete assessment-sensitive package is backed up
-in a private GitHub repository. The working assessment sequence remains visible
-on the public site: Quiz 1 in Week 3, Quiz 2 in Week 6, the semester examination
+is now considered validated as the model for the course. The original 20-group
+student project package is validated: private synthetic data, beginner-oriented
+code starters, fixed result contracts, editable report templates, customized
+release ZIPs, and batch checkers are implemented. The release contract has been
+rehearsed locally, and the assessment-sensitive package is backed up in a
+private GitHub repository. Because current enrollment and the approved team-size
+policy can produce more than 20 teams, the package must be expanded after team
+registration. The working assessment sequence remains visible
+on the public site: Quiz 1 in Week 4, Quiz 2 in Week 6, the semester examination
 (midterm) in Week 8, Quiz 3 in Week 9, and Quiz 4 in Week 13. Quiz 1 now has a
 fixed student contract; its date and the arrangements for later quizzes and
 the midterm remain intentionally deferred. The MATLAB project date is also deferred. Week 5 has
@@ -220,7 +222,9 @@ approved and published.
   including results produced with AI assistance.
 - Assessment must establish individual competence as well as support
   authentic project work.
-- The anticipated enrollment is about 60 students.
+- The current enrollment is 66 students: 37 in one section and 29 in the other.
+- Project teams may contain one, two, or three students. Three is the maximum;
+  pairs and one-person teams are allowed.
 - Individual oral project defenses are not operationally reasonable at that
   enrollment.
 - Project 1 uses MATLAB and Project 2 uses R.
@@ -232,7 +236,8 @@ approved and published.
 - Projects are assessed as group work. Individual competence is established by
   quizzes, the semester examination, and the final examination, totaling 80%
   of the course grade.
-- The public working schedule retains Quiz 1 in Week 3, Quiz 2 in Week 6, the
+- The public working schedule places Quiz 1 in Week 4 and retains Quiz 2 in
+  Week 6, the
   semester examination (midterm) in Week 8, Quiz 3 in Week 9, and Quiz 4 in
   Week 13. These placements remain visible while detailed arrangements are
   discussed.
@@ -240,10 +245,10 @@ approved and published.
   review pages remain published only as direct-link resources.
 - Weeks 1-4 are the launch-ready teaching block. Weeks 5-15 remain a visible
   roadmap and may be refined from student feedback before their use.
-- Quiz 1 is an individual, 12-minute, in-class Blackboard quiz in Week 3. It
+- Quiz 1 is an individual, 12-minute, in-class Blackboard quiz in Week 4. It
   contains six short code-reading and validation items, requires no MATLAB
   execution, and permits no AI, collaboration, notes, or web resources. The
-  calendar date is announced in Blackboard.
+  Week 4 calendar date and meeting are announced in Blackboard.
 - Only Quiz 1 must be operational at launch. Quiz 2-4 and examination
   architectures remain deferred.
 - There is no mandatory individual project examination. A brief verification
@@ -311,9 +316,9 @@ approved and published.
 These ideas have been discussed but are **not yet approved course policy**:
 
 1. The exact calendar dates, delivery arrangements, duration, and format of
-   Quizzes 2-4; their working Week 6, 9, and 13 placement remains visible. The
-   exact calendar date of the approved Week 3 Quiz 1 also remains to be placed
-   in Blackboard.
+   Quizzes 2-4; their working Week 6, 9, and 13 placement remains visible. Quiz
+   1 is approved for Week 4; its exact calendar date and meeting remain to be
+   placed in Blackboard.
 2. The exact timing and balance of code reading, implementation, and validation
    in the Week 8 semester examination (midterm), including whether it replaces
    one or both normal teaching meetings.
@@ -353,7 +358,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 13 | `weeks/week-13.qmd`; `slides/week-13.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 14 | `weeks/week-14.qmd`; `slides/week-14.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 15 | `weeks/week-15.qmd`; `slides/week-15.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
-| Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Complete student release package; all 60 ZIP contracts and both checker suites rehearsed and backed up |
+| Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | The original 20-group package and all 60 ZIP contracts are validated; expansion to the final team count is pending team registration for 66 students |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
 
 ## Next Actions
@@ -364,12 +369,15 @@ agreed core project architecture is incorporated into the syllabus.
    freezing each later block.
 3. Reconcile Quizzes 2-4 and semester-examination delivery with the teaching
    minutes available in Weeks 6, 8, 9, and 13.
-4. Place the approved project gates on exact Blackboard dates only after the
+4. Collect project-team choices, determine the final number of teams, and
+   extend the current 20-group generator, releases, and checker coverage before
+   the Week 4 package release.
+5. Place the approved project gates on exact Blackboard dates only after the
    assessment-time conflicts are resolved.
-5. Record and synthesize colleague feedback that is not currently stored in
+6. Record and synthesize colleague feedback that is not currently stored in
    the repository.
-6. Update the syllabus after the remaining assessment decisions are approved.
-7. Update both this record and `instructor-progress.qmd` after each decision or
+7. Update the syllabus after the remaining assessment decisions are approved.
+8. Update both this record and `instructor-progress.qmd` after each decision or
    major milestone.
 
 ## Update Protocol
@@ -384,6 +392,16 @@ milestone:
   colleagues to see.
 
 ## History
+
+- **2026-09-06:** Project teams were limited to a maximum of three students.
+  Teams of two and one-person teams were explicitly approved. With 66 students
+  across sections of 37 and 29, the final dataset-package count will be fixed
+  after team registration; the existing 20-group package must then be expanded.
+
+- **2026-09-06:** Quiz 1 was moved from Week 3 to Week 4. Its approved
+  12-minute individual Blackboard format is unchanged; the exact Week 4
+  calendar date and meeting remain a Blackboard announcement. Week 3 Meeting 2
+  was restored to a full interpolation, fitting, and AI-claim review session.
 
 - **2026-08-27:** Muhammad Ismail Yunus was added to the public home, syllabus,
   and lab pages as the course Teaching Assistant. His role includes student

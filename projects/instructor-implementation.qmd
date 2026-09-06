@@ -1,11 +1,16 @@
 ---
 title: "Instructor Project Implementation"
-description: "Synthetic-data release, submission, and checking workflow for approximately 60 students."
+description: "Synthetic-data release, submission, and checking workflow for the current enrollment."
 ---
 
 ## Operating Assumptions
 
-- Approximately 60 students form about 20 teams of three.
+- The current enrollment is 66 students: 37 in one section and 29 in the other.
+- A project team may contain one, two, or three students; three is the maximum,
+  while pairs and one-person teams are explicitly allowed.
+- If teams remain within their sections and no student works alone, at least 23
+  distinct group packages are required. The final package count is determined
+  after students register their team choices.
 - Project 1 uses MATLAB; Project 2 uses R.
 - Students receive instructor-generated data rather than finding or collecting
   data themselves.
@@ -226,7 +231,7 @@ documented verification rather than applying an immediate penalty. Follow the
 university's academic-integrity procedure if the concern remains.
 
 The contribution statement and automated checks should resolve ordinary group-
-work issues without requiring oral verification for all 60 students.
+work issues without requiring oral verification for all 66 students.
 
 ## Privacy and Repository Policy
 

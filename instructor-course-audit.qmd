@@ -47,7 +47,7 @@ audit; the remaining recommendations are proposals, not approved policy.
 | Validation culture | Row counts, residuals, baselines, identifiers, tests, sensitivity, and clean runs recur meaningfully | Strong |
 | AI integration | Activities progress from code defects to question drift, statistical claims, automation, and communication | Strong but must not become a second weekly assignment |
 | Workload clarity | The full resource bank is now separated into core, guided, and extension work | Resolved through the [student workload guide](weeks/workload-guide.qmd) |
-| Assessment-week feasibility | Only Quiz 1 has time explicitly reserved; Weeks 6, 8, 9, and 13 retain full plans beside assessments | Calendar-critical |
+| Assessment-week feasibility | Quiz 1 is now placed in Week 4, but its exact meeting and displaced teaching block still require Blackboard placement; Weeks 6, 8, 9, and 13 retain full plans beside assessments | Calendar-critical |
 | Project sequencing | Preview, group release, checkpoint, validation, and completion stages now follow prerequisite instruction | Resolved through the [project milestone map](projects/project-milestones.qmd); exact dates remain open |
 | Software readiness | Required access, scaffolded use, and optional tools are explicit; live institutional systems still require verification | Matrix resolved; live check pending |
 | Navigation and publication | Student-first home and navigation, weekly pages, exercises, labs, slides, code, assessments, and projects are linked and publish correctly | Strong |
@@ -82,8 +82,8 @@ student could reasonably interpret as expected work.
 |---:|---:|---:|---:|---:|---|
 | 1 | 10 | 18 | 2 | 7 | Balanced, but software startup is fragile |
 | 2 | 12 | 25 | 2 | 9 | High breadth: functions, conditions, masks, two loop forms, and tests |
-| 3 | 11 | 25 | 2 | 6 | Balanced; Quiz 1 time is already acknowledged |
-| 4 | 12 | 25 | 3 | 8 | High: roots, integration, ODEs, optimization, and 3D views |
+| 3 | 11 | 25 | 2 | 6 | Balanced; full curve-fitting and interpolation week |
+| 4 | 12 | 25 | 3 | 8 | Calendar-critical: high numerical-methods breadth plus Quiz 1 |
 | 5 | 14 | 31 | 2 | 9 | High but coherent MATLAB capstone; toolbox dependency matters |
 | 6 | 15 | 29 | 2 | 9 | Calendar-critical R transition plus Quiz 2 |
 | 7 | 15 | 31 | 2 | 9 | Coherent but needs core-versus-extension labels |
@@ -194,9 +194,10 @@ ordinary week, excluding separately announced project and examination work.
 
 ## Assessment And Calendar Coherence
 
-The working placements remain internally consistent with the syllabus: quizzes
-in Weeks 3, 6, 9, and 13; the semester examination in Week 8; Project 2 around
-Week 15. However, only Week 3 reserves quiz time in its meeting plan.
+The current placements are Quiz 1 in Week 4, later quizzes in Weeks 6, 9, and
+13, the semester examination in Week 8, and Project 2 around Week 15. Quiz 1's
+format and week are fixed, but its exact meeting and the corresponding Week 4
+teaching reduction remain to be placed in Blackboard.
 
 Before final calendar approval, the course needs one table recording:
 
