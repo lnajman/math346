@@ -51,14 +51,14 @@ announced in Blackboard; short in-class exit checks remain separately
 collectable.
 
 The developed Weeks 1-4 prototype has been sent to colleagues for feedback and
-is now considered validated as the model for the course. The original 20-group
-student project package is validated: private synthetic data, beginner-oriented
+is now considered validated as the model for the course. The student project
+package now provides 66 configurable candidate groups: private synthetic data,
+beginner-oriented
 code starters, fixed result contracts, editable report templates, customized
 release ZIPs, and batch checkers are implemented. The release contract has been
 rehearsed locally, and the assessment-sensitive package is backed up in a
-private GitHub repository. Because current enrollment and the approved team-size
-policy can produce more than 20 teams, the package must be expanded after team
-registration. The working assessment sequence remains visible
+private GitHub repository. The actual registered teams will use only the first
+required packages. The working assessment sequence remains visible
 on the public site: Quiz 1 in Week 4, Quiz 2 in Week 6, the semester examination
 (midterm) in Week 8, Quiz 3 in Week 9, and Quiz 4 in Week 13. Quiz 1 now has a
 fixed student contract; its date and the arrangements for later quizzes and
@@ -143,21 +143,22 @@ approved and published.
   starters and labeled possible solutions; all main lab pages lead with the
   starters and provide direct solution links afterward, while AI-review scripts
   remain unpaired critique material.
-- A deterministic private generator now produces 20 distinct Project 1 data
-  files, 20 Project 2 training files, 20 withheld validation files, private
+- A configurable deterministic private generator now produces 66 distinct
+  Project 1 data files, 66 Project 2 training files, 66 withheld validation
+  files, private
   reference results, and row-level ground truth.
-- An independent quality report confirms that all 20 group packages meet the
+- An independent quality report confirms that all 66 candidate packages meet the
   fixed schema, plausibility, distinctness, and comparability checks.
-- Beginner-oriented MATLAB and R starter templates are customized into 20
-  Project 1 ZIPs, 20 Project 2 training ZIPs, and 20 separately staged
+- Beginner-oriented MATLAB and R starter templates are customized into 66
+  Project 1 ZIPs, 66 Project 2 training ZIPs, and 66 separately staged
   validation ZIPs.
 - Fixed Project 1 and Project 2 result contracts are published. Private batch
   checkers rerun source code and independently verify results and predictions;
-  both pass all 20 known-good reference submissions.
+  both pass all 66 known-good reference submissions.
 - Word templates for both project reports and an offline PDF data dictionary
   are complete, included in the appropriate starter ZIPs, and available from
   the public project pages.
-- All 60 release ZIPs pass exact-content and source-fingerprint checks. Project
+- All 198 release ZIPs pass exact-content and source-fingerprint checks. Project
   2 training ZIPs contain no validation outcomes, and representative ZIPs pass
   a simulated Blackboard upload/download extraction cycle.
 - Week 5 now has a two-meeting teaching plan, full slides, a main lab, an AI
@@ -229,6 +230,9 @@ approved and published.
 - The current enrollment is 66 students: 37 in one section and 29 in the other.
 - Project teams may contain one, two, or three students. Three is the maximum;
   pairs and one-person teams are allowed.
+- Project teams may include students from either class session. Each
+  cross-session team uses one course-wide group identifier, dataset,
+  submission, and group grade; students still attend their registered session.
 - Individual oral project defenses are not operationally reasonable at that
   enrollment.
 - Project 1 uses MATLAB and Project 2 uses R.
@@ -362,7 +366,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 13 | `weeks/week-13.qmd`; `slides/week-13.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 14 | `weeks/week-14.qmd`; `slides/week-14.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 15 | `weeks/week-15.qmd`; `slides/week-15.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
-| Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | The original 20-group package and all 60 ZIP contracts are validated; expansion to the final team count is pending team registration for 66 students |
+| Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | 66 candidate groups and all 198 ZIP contracts are validated; final team registration determines which packages are released |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
 
 ## Next Actions
@@ -373,9 +377,9 @@ agreed core project architecture is incorporated into the syllabus.
    freezing each later block.
 3. Reconcile Quizzes 2-4 and semester-examination delivery with the teaching
    minutes available in Weeks 6, 8, 9, and 13.
-4. Collect project-team choices, determine the final number of teams, and
-   extend the current 20-group generator, releases, and checker coverage before
-   the Week 4 package release.
+4. Collect course-wide project-team choices, including cross-session teams,
+   determine the final number of teams, and map those teams to the already
+   validated candidate packages before the Week 4 release.
 5. Place the approved project gates on exact Blackboard dates only after the
    assessment-time conflicts are resolved.
 6. Record and synthesize colleague feedback that is not currently stored in
@@ -396,6 +400,19 @@ milestone:
   colleagues to see.
 
 ## History
+
+- **2026-09-07:** The private project system was made configurable through one
+  group-count setting and expanded to 66 candidate groups. All 66 synthetic
+  datasets passed the structural, plausibility, distinctness, and comparability
+  gates; all 198 staged ZIPs passed allowlist and validation-separation checks;
+  and both the MATLAB and R checker suites passed 66/66 known-good submissions.
+
+- **2026-09-07:** Cross-session project teams were approved. Students from the
+  two class sessions may form one team, which receives one course-wide group
+  identifier, dataset, submission, and grade. Students continue attending their
+  registered sessions. The Blackboard dry run must verify cross-session access
+  or, if the sessions use separate course shells, the manual cross-shell
+  workflow.
 
 - **2026-09-07:** Week 3 overfitting instruction was made evidentially precise.
   Residual plots, model complexity, and instability are now described as

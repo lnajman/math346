@@ -8,9 +8,11 @@ description: "Synthetic-data release, submission, and checking workflow for the 
 - The current enrollment is 66 students: 37 in one section and 29 in the other.
 - A project team may contain one, two, or three students; three is the maximum,
   while pairs and one-person teams are explicitly allowed.
-- If teams remain within their sections and no student works alone, at least 23
-  distinct group packages are required. The final package count is determined
-  after students register their team choices.
+- Team members may come from either class session. Number teams course-wide and
+  give each cross-session team one identifier, dataset, submission, and grade.
+- With 66 students and no one-person teams, at least 22 distinct group packages
+  are required. The final package count is determined after students register
+  their course-wide team choices.
 - Project 1 uses MATLAB; Project 2 uses R.
 - Students receive instructor-generated data rather than finding or collecting
   data themselves.
@@ -20,6 +22,9 @@ description: "Synthetic-data release, submission, and checking workflow for the 
   submitted separately.
 - Quarto and HTML are not required.
 - Blackboard is used for group formation, file release, submission, and grades.
+  If the sessions use separate Blackboard course shells, retain one master
+  course-wide roster and verify the manual cross-shell release, receipt, and
+  grade workflow before accepting cross-session registrations.
 - Projects are group-assessed; individual competence is established through the
   quizzes, semester examination, and final examination.
 
@@ -72,7 +77,10 @@ release-project-2-validation/
   ...
 ```
 
-The package now generates 20 deterministic but distinct group assignments. The
+The package now generates 66 deterministic but distinct candidate group
+assignments. A single private configuration setting controls the count, and
+group parameters are independently seeded so an existing group identifier does
+not change when the count changes. The
 generator, manifest, quality report, row-level truth, reference results, and
 validation files must remain outside the public repository. The local package
 must be backed up in an access-controlled location before the course begins.
@@ -80,10 +88,12 @@ must be backed up in an access-controlled location before the course begins.
 The quality checker verifies schemas, row counts, identifiers, missingness,
 allowed categories, plausible ranges, temperature coverage, model signal, and
 comparable prediction difficulty. The current generated package passes all
-checks for all 20 groups; file fingerprints were also confirmed to be distinct.
+checks for all 66 candidate groups; file fingerprints were also confirmed to be
+distinct.
 
-The package assembler creates 20 customized MATLAB starter ZIPs, 20 R training
-starter ZIPs, and 20 separate validation ZIPs. The validation ZIPs must not be
+The package assembler creates 66 customized MATLAB starter ZIPs, 66 R training
+starter ZIPs, and 66 separate validation ZIPs. Only the packages required by
+the final registered team count are released. The validation ZIPs must not be
 released before the frozen model-plan deadline.
 
 ## Starter Materials
@@ -130,6 +140,11 @@ deviation or sensitivity analysis, not rewritten into the frozen plan.
 
 ### Blackboard Setup Checklist By Gate
 
+- determine whether both sessions share one Blackboard course shell; if they do
+  not, rehearse the cross-session roster, file-release, submission, receipt,
+  and grade workflow before group registration closes;
+- export and retain one master course-wide group roster, including session and
+  student identifiers for every member;
 - confirm the active group roster and group number before each package release;
 - restrict every group-specific ZIP to the corresponding Blackboard Group;
 - keep public previews separate from private data releases;
@@ -153,10 +168,10 @@ Release the group-specific data and starter files through Blackboard according
 to the milestone map. Release Project 2 validation files in a common Week 14
 window only after the frozen-model-plan checkpoint closes.
 
-The final release contract has been rehearsed locally with all 60 ZIPs. An
+The final release contract has been rehearsed locally with all 198 ZIPs. An
 exact allowlist check confirms the contents of every Project 1, Project 2
 training, and Project 2 validation ZIP; the training ZIPs contain no validation
-outcomes. Representative group 01, 10, and 20 ZIPs were also copied through an
+outcomes. Representative group 01, 33, and 66 ZIPs were also copied through an
 upload/download staging cycle and extracted successfully. This rehearsal checks
 the files and workflow contract; the live Blackboard course still requires a
 short instructor setup check before student release.
@@ -189,7 +204,7 @@ Run every R script using its assigned training and validation files. Check:
 
 The implemented checkers produce one instructor CSV row per group with file,
 schema, execution, reproducibility, numerical-discrepancy, figure, and review
-flags. Both checkers pass all 20 private reference submissions.
+flags. Both checkers pass all 66 private reference submissions.
 
 The Project 1 checker runs each MATLAB script in an isolated temporary folder,
 tests `model_rmse.m` on row and column vectors, regenerates outputs, and compares

@@ -80,6 +80,11 @@ the maximum. Groups of two are allowed, and a student may choose to work alone
 as a one-person team. The same project requirements, deadlines, and grading
 criteria apply to every team size.
 
+Team members may be enrolled in either of the two class sessions. A
+cross-session team is treated as one project group: it receives one group
+identifier, one assigned dataset, and one group grade. Students continue to
+attend their own registered class session.
+
 Group members may collaborate on the take-home analysis and may use documented
 AI assistance.
 

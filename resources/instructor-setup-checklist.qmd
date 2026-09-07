@@ -87,7 +87,11 @@ both RStudio and Positron.
 Use a sandbox course or a temporary test group before touching the live student
 groups.
 
-- [ ] Create a test group with the same settings planned for the 20 groups.
+- [ ] Create a test group with the same settings planned for the final
+  course-wide group set.
+- [ ] Verify whether both sessions share one Blackboard course shell. If they
+  do not, test the complete manual workflow for a cross-session team, including
+  file access, submission receipt, and recording the grade for every member.
 - [ ] As a test student, confirm that only the assigned group ZIP is visible.
 - [ ] Confirm that Project 2 training ZIPs contain no validation outcomes.
 - [ ] Test the Project 1 group assignment with one submission per group.
@@ -118,6 +122,7 @@ The full release order is in the
 | R editor and Quarto render | Not yet verified | — | — |
 | Document-to-PDF workflow | Not yet verified | — | — |
 | Blackboard group visibility | Not yet verified | — | — |
+| Blackboard cross-session team workflow | Not yet verified | — | — |
 | Blackboard submission/receipt | Not yet verified | — | — |
 | Project 2 validation separation | Not yet verified | — | — |
 

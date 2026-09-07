@@ -137,7 +137,10 @@ the complete matrix and runnable setup checks.
 Each project team may contain one, two, or three students. Three students is the
 maximum. Groups of two are allowed, and a student may choose to work alone as a
 one-person team. The same project requirements, deadlines, and grading criteria
-apply to every team size.
+apply to every team size. Team members may be enrolled in either class session.
+A cross-session team receives one group identifier, one assigned dataset, and
+one group grade; each student continues to attend their registered class
+session.
 
 **Project 1:** MATLAB numerical investigation using a group-specific synthetic
 building-energy dataset. The exact due date is being aligned with the end of the

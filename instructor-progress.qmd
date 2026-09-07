@@ -39,7 +39,7 @@ the motivation and the kind of feedback being requested.
 | Week 15: communication and synthesis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the evidence-reconciliation and clean-run workload |
 | Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time with the approved workload |
 | Quizzes and midterm | **Quiz 1 ready; later design deferred** | [Quiz 1 student guide](assessments/quiz-01.qmd), private Blackboard blueprint and bank; later markers remain visible | Dry-run Quiz 1 in Blackboard; decide Quiz 2-4 and midterm later |
-| Projects | **20-group package validated; enrollment expansion pending** | [Milestone map](projects/project-milestones.qmd), 20-group data, starters, templates, fixed result contracts, 60 checked ZIPs, and tested batch checkers | Collect team choices, extend the package to the final team count, then set exact dates and check Blackboard |
+| Projects | **66 candidate groups validated** | [Milestone map](projects/project-milestones.qmd), configurable data generation, starters, templates, fixed result contracts, 198 checked ZIPs, and tested batch checkers | Collect team choices, map registered teams to packages, then set exact dates and check Blackboard |
 | Software and access | **Requirements approved; live systems pending** | [Student matrix](resources/software-requirements.qmd), two runnable setup checks, and [instructor checklist](resources/instructor-setup-checklist.qmd) | Run and record the checks on student laboratory accounts and in Blackboard |
 | Guided lab workflow | **Implemented; formative** | 16 MATLAB and 20 R starter/solution pairs; completion checklists replace routine submission language | Collect only explicitly announced Blackboard checkpoints and short exit checks |
 | Executable code checks | Implemented | Local scripts and GitHub Actions, including pair/label validation | Extend checks as new code is added |
@@ -200,20 +200,24 @@ they can never be revised.
   so individual oral project defenses are not a practical default.
 - Project teams may contain one, two, or three students. Three is the maximum;
   pairs and one-person teams are allowed. The final number of group-specific
-  packages will be determined after team registration.
+  packages used for release will be determined after team registration.
+- Students from either class session may form one project team. Cross-session
+  teams use one course-wide identifier, dataset, submission, and grade, while
+  students continue attending their registered sessions. Blackboard access
+  across the two sessions remains part of the live dry run.
 - Project 1 uses MATLAB and Project 2 uses R.
 - Each group receives a distinct synthetic building-energy dataset supplied by
   the instructor.
-- The private deterministic generator now produces 20 MATLAB datasets, 20 R
-  training datasets, and 20 withheld validation datasets. All 20 packages pass
+- The private configurable generator now produces 66 MATLAB datasets, 66 R
+  training datasets, and 66 withheld validation datasets. All 66 packages pass
   structural, plausibility, distinctness, and comparability checks.
 - Beginner-oriented MATLAB and R starters, fixed results schemas, and separate
   Project 2 validation releases are assembled automatically for every group.
-- The private MATLAB and R batch checkers each pass all 20 known-good reference
+- The private MATLAB and R batch checkers each pass all 66 known-good reference
   submissions and produce a one-row-per-group review table.
 - Supplied Word templates guide students through both PDF reports without
   requiring Quarto or HTML. The files can also be edited in Google Docs.
-- All 60 release ZIPs pass exact allowlist and fingerprint checks. Project 2
+- All 198 release ZIPs pass exact allowlist and fingerprint checks. Project 2
   training packages contain no validation outcomes, and representative ZIPs
   pass a local Blackboard-style upload/download extraction rehearsal.
 - The complete generator, hidden reference material, withheld validation data,
@@ -255,6 +259,8 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 7 September 2026 | The private project generator, assemblers, and checker defaults were made configurable and expanded to 66 candidate groups. All datasets passed the quality gates, all 198 release ZIPs passed exact-content and validation-separation checks, and both MATLAB and R known-good suites passed 66/66. |
+| 7 September 2026 | Cross-session project teams were approved. Students from either class session may form one team with one course-wide identifier, dataset, submission, and grade; they continue attending their registered sessions. Blackboard cross-session access will be verified in the live dry run. |
 | 7 September 2026 | Week 3 Meeting 2 gained a fixed fit/check demonstration of overfitting. Training residuals are now presented as warning evidence rather than proof; students compare separate fit and withheld-observation RMSE values before the formal training/validation terminology in Weeks 12-13. |
 | 6 September 2026 | Project teams were limited to a maximum of three students; pairs and one-person teams were explicitly allowed. With 66 students across sections of 37 and 29, the existing 20-group data package will be expanded after the final team choices are registered. |
 | 6 September 2026 | Quiz 1 was moved from Week 3 to Week 4 without changing its approved 12-minute individual Blackboard format. Its exact Week 4 date and meeting remain a Blackboard announcement, and Week 3 Meeting 2 is now a full teaching session. |
@@ -296,22 +302,21 @@ architecture and the remaining implementation decisions.
 
 ## Next Decision Gate
 
-The original 20-group student project package is validated:
+The 66-candidate-group student project package is validated:
 
-- **Completed:** 20 quality-checked group datasets and withheld validation
+- **Completed:** 66 quality-checked group datasets and withheld validation
   datasets;
 - **Completed:** private reference results and row-level ground truth;
 - **Completed:** scaffolded MATLAB and R scripts;
 - **Completed:** fixed results-file schemas and batch checkers;
 - **Completed:** Word/Google Docs report templates for PDF export and an offline
   data dictionary;
-- **Completed:** exact-content checks for all 60 release ZIPs and a
+- **Completed:** exact-content checks for all 198 release ZIPs and a
   representative upload/download extraction rehearsal.
 
-With 66 students and permitted team sizes of one to three, the final number of
-teams may exceed 20. Team choices must be registered and the generator,
-releases, and checker coverage extended to that final count before the Week 4
-Project 1 package release.
+With 66 students and permitted team sizes of one to three, 66 candidate
+packages cover every possible team count. Team choices must still be registered
+and mapped to group identifiers before the Week 4 Project 1 package release.
 
 The audit, student workload contract, week-relative project milestone map, and
 student software matrix are complete. The next decision gate is to reconcile

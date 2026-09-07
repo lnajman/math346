@@ -25,6 +25,15 @@ A week label identifies the intended course stage, not an additional weekly
 assignment. Project work is separate from the routine 90-120 minute practice
 target in the [weekly workload guide](../weeks/workload-guide.qmd).
 
+## Teams Across Class Sessions
+
+A project team may contain one, two, or three students, and its members may
+come from either class session. A cross-session team has one course-wide group
+identifier, one assigned dataset, one submission, and one group grade. Each
+student continues to attend their registered class session. The brief
+in-class project checks provide support to whichever members are present and
+do not require the complete team to attend one session together.
+
 ## Project 1: MATLAB Numerical Investigation
 
 | Course stage | Milestone | Students receive | Student action or evidence |
