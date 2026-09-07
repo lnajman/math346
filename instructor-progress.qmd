@@ -10,7 +10,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 teaching blocks remain deliberately adaptable; later assessment design and
 exact calendar placement remain open.**
 
-Last updated: **6 September 2026**
+Last updated: **7 September 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -62,6 +62,10 @@ they can never be revised.
 - Students must be able to explain, test, and interpret computational results.
 - Weeks 1-4 demonstrate the intended weekly pattern and have been validated as
   the prototype.
+- Week 3 Meeting 2 now distinguishes warning signs from a genuine new-data
+  check: students fit the same candidate degrees on one fixed subset and
+  compare RMSE on withheld observations. The activity uses plain-language
+  fit/check terminology before Weeks 12-13 formalize training and validation.
 - Every guided MATLAB and R workflow now has an intentionally incomplete
   starter at its original public URL and a separately labeled possible solution
   under a dedicated `solutions/` path. Main lab and week links lead to starters;
@@ -251,6 +255,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 7 September 2026 | Week 3 Meeting 2 gained a fixed fit/check demonstration of overfitting. Training residuals are now presented as warning evidence rather than proof; students compare separate fit and withheld-observation RMSE values before the formal training/validation terminology in Weeks 12-13. |
 | 6 September 2026 | Project teams were limited to a maximum of three students; pairs and one-person teams were explicitly allowed. With 66 students across sections of 37 and 29, the existing 20-group data package will be expanded after the final team choices are registered. |
 | 6 September 2026 | Quiz 1 was moved from Week 3 to Week 4 without changing its approved 12-minute individual Blackboard format. Its exact Week 4 date and meeting remain a Blackboard announcement, and Week 3 Meeting 2 is now a full teaching session. |
 | 27 August 2026 | Muhammad Ismail Yunus was added to the student-facing home, syllabus, and lab pages as the Teaching Assistant. His published role includes supporting students during class and outside class, with outside-class arrangements made by email. |

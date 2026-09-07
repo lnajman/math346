@@ -38,3 +38,4 @@ fprintf("The best polynomial predicts y = %.3f when x = %.1f.\n", ...
 % 2. What degree did the code choose, and why?
 % 3. Does the plot justify the word "best"?
 % 4. Add residuals and compare this model with degree 2.
+% 5. Were any observations kept out of fitting to provide a new-data check?

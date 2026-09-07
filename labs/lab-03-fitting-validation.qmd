@@ -33,7 +33,7 @@ Run the script and answer:
 Modify the script so it compares:
 
 ```matlab
-degrees = [1 2 3 5];
+degrees = [1 2 3 7];
 ```
 
 Then answer:
@@ -42,7 +42,33 @@ Then answer:
 2. Did the residual plot become easier or harder to interpret?
 3. Which degree would you report to someone who cares about the underlying trend?
 
-## Part C: Interpolation Versus Fit
+## Part C: Check On Observations Not Used For Fitting
+
+Return to `week03_curve_fitting_validation.m`. Use alternating observations to
+make one fixed split:
+
+```matlab
+fit_idx = 1:2:numel(x);
+check_idx = 2:2:numel(x);
+```
+
+For each candidate degree:
+
+1. Fit the polynomial using only the fit observations.
+2. Calculate RMSE on the fit observations.
+3. Without refitting, predict the withheld check observations.
+4. Calculate RMSE on the check observations.
+
+Then answer:
+
+- Which degree has the smallest fit RMSE?
+- Which degree has the smallest check RMSE?
+- Why can residuals on the fit observations alone fail to reveal overfitting?
+- Why must every candidate use the same split?
+- Why is this one small split stronger evidence, but not a guarantee of future
+  performance?
+
+## Part D: Interpolation Versus Fit
 
 Open [week03_interpolation_vs_fit.m](../code/matlab/week03_interpolation_vs_fit.m).
 
@@ -55,7 +81,7 @@ Run the script and compare the estimates at the query points.
 | Which method would you use to estimate between trusted measurements? |  |
 | Which method would you use to describe an approximate trend? |  |
 
-## Part D: Polynomial Tool Check
+## Part E: Polynomial Tool Check
 
 Open [week03_polynomial_tools.m](../code/matlab/week03_polynomial_tools.m).
 
@@ -66,7 +92,7 @@ Run the script and answer:
 3. How does the script check the polynomial built with `conv`?
 4. What does `polyder` compute?
 
-## Part E: Interpolation Input Check
+## Part F: Interpolation Input Check
 
 Before using `interp1`, add checks that:
 
@@ -75,7 +101,7 @@ Before using `interp1`, add checks that:
 
 Explain what should happen if either check fails.
 
-## Part F: Residual Notes
+## Part G: Residual Notes
 
 For your selected polynomial degree, write 4-6 sentences:
 
@@ -85,7 +111,7 @@ For your selected polynomial degree, write 4-6 sentences:
 - State whether the residuals show a pattern.
 - Decide whether the model is adequate for the question.
 
-## Part G: Stress Test
+## Part H: Stress Test
 
 For one selected degree, add this line after computing its coefficient vector `p`:
 
@@ -106,12 +132,15 @@ By the end of the activity, you should have a short note containing:
 - the selected model degree;
 - one plot of the data and fitted curve;
 - one residual plot;
-- the RMSE values you compared;
+- a table of fit and check RMSE values;
 - a justification based on the residuals, not only visual appearance.
 
 ## AI Use
 
-Ask an LLM: "How do I decide whether a polynomial fit is overfitting?" Then evaluate whether the answer mentions residuals, extrapolation, and model complexity.
+Ask an LLM: "How do I decide whether a polynomial fit is overfitting?" Then
+evaluate whether the answer distinguishes error on fitted observations from
+error on observations not used for fitting, as well as mentioning residuals,
+extrapolation, and model complexity.
 
 Include the prompt and the part of the answer that changed or challenged your model choice.
 

@@ -10,7 +10,9 @@ MATLAB curve fitting and interpolation.
 
 Given imperfect measurements, should we interpolate the data, fit a model, or reject the question?
 
-Students compare interpolation and polynomial fitting, then use residual plots to detect overfitting or a poor model choice.
+Students compare interpolation and polynomial fitting, then use residual plots,
+model complexity, stability, and observations not used for fitting to identify
+overfitting risk or a poor model choice.
 
 ## Learning Goals
 
@@ -23,6 +25,9 @@ By the end of the week, students should be able to:
 - explain the role of the degree in a polynomial fit;
 - compute and plot residuals;
 - use RMSE as one simple summary of fit quality;
+- explain why training residuals alone cannot confirm that a model will work on
+  new observations;
+- compare candidate models on observations deliberately withheld from fitting;
 - use `interp1` for one-dimensional interpolation;
 - check that interpolation inputs are ordered and query points are inside the measured range;
 - distinguish interpolation, fitting, and extrapolation;
@@ -40,7 +45,7 @@ Suggested 75-minute rhythm:
 | 8-20 min | Live coding: evaluate and plot a polynomial with `polyval` |
 | 20-35 min | Paired data: fit degree 1 and degree 2 models with `polyfit` |
 | 35-50 min | Residuals: compute observed minus fitted values |
-| 50-65 min | Student task: compare degree 1, 2, and 5 fits |
+| 50-65 min | Student task: compare degree 1, 2, and 7 fits |
 | 65-75 min | Exit ticket: what evidence makes a fit believable? |
 
 ### Core MATLAB Pattern
@@ -63,11 +68,40 @@ Suggested 75-minute rhythm:
 | Time | Activity |
 |---:|---|
 | 0-8 min | Retrieval: residual evidence and the three question types |
-| 8-22 min | Interpolation: input checks, `interp1`, and method choice |
-| 22-37 min | Compare interpolation with polynomial fitting |
-| 37-57 min | Student task: complete and explain the interpolation starter |
-| 57-69 min | AI critique and repair: high-degree polynomial overclaim |
-| 69-75 min | Exit ticket: interpolate, fit, or reject? |
+| 8-20 min | Interpolation: input checks, `interp1`, and method choice |
+| 20-32 min | Compare interpolation with polynomial fitting |
+| 32-47 min | Student task: complete and explain the interpolation starter |
+| 47-62 min | New-data check: fit on one subset and check on withheld observations |
+| 62-70 min | AI critique and repair: high-degree polynomial overclaim |
+| 70-75 min | Exit ticket: why is the smallest fit RMSE insufficient, and what check is stronger? |
+
+### A First New-Data Check
+
+Residuals calculated on the observations used to fit a model describe training
+fit. They can reveal structure that the model missed, but they cannot by
+themselves establish that a flexible model will work on new observations.
+
+In Meeting 2, students return to the curve-fitting starter and divide the
+observations *before fitting*:
+
+```matlab
+fit_idx = 1:2:numel(x);
+check_idx = 2:2:numel(x);
+```
+
+Each candidate degree is fitted using only `x(fit_idx)` and `y(fit_idx)`. Its
+RMSE is then calculated separately on the fit observations and on the withheld
+check observations. The same split must be used for every candidate model.
+
+One small split provides stronger evidence than training residuals alone, but
+it is not a guarantee: the conclusion can depend on which observations were
+held back. Students must not repeatedly redesign the model to make this one
+check set look favorable.
+
+For now, the course calls these **fit data** and **check data not used for
+fitting**. Weeks 12-13 introduce the formal terms **training data** and
+**validation data** and explain why the model plan must be frozen before the
+validation outcomes are seen.
 
 ## In-Class Checks
 
@@ -77,6 +111,8 @@ Suggested 75-minute rhythm:
 - Fit several polynomial degrees to the same data.
 - Plot data and fitted curves on the same axes.
 - Plot residuals and interpret visible patterns.
+- Explain that residuals on the fitted observations are not a new-data check.
+- Compare fit and check RMSE using a split declared before model fitting.
 - Use interpolation only inside the measured data range unless extrapolation is explicitly justified.
 - Explain why a high-degree fit can be less trustworthy than a simpler fit.
 
@@ -129,6 +165,8 @@ These are the Week 3 MATLAB habits you should be able to recognize, test, and re
 - Check that query points satisfy `min(x) <= xq <= max(x)`.
 - Compare at least two reasonable model degrees.
 - Plot residuals against `x`.
+- When the question concerns new observations, reserve check observations
+  before fitting and report their error separately from training error.
 - Check whether the model behaves sensibly near the ends of the data range.
 - Avoid making claims beyond the observed data unless the course question explicitly asks for extrapolation.
 - Save a short note explaining why the selected model is adequate for the question.

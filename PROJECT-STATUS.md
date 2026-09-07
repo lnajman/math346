@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-09-06
+Last updated: 2026-09-07
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -133,6 +133,10 @@ approved and published.
   feedback.
 - Weeks 1-4 have developed week pages, slides, labs, exercises, and MATLAB code.
 - Weeks 1-4 have been validated as the prototype pattern to continue.
+- Week 3 Meeting 2 now introduces a fixed fit/check split before the later
+  training/validation terminology. Students see that training residuals are
+  warning evidence rather than proof: a degree-7 polynomial can minimize fit
+  error while a degree-2 polynomial performs better on withheld observations.
 - A validation harness checks the executable MATLAB and R course code and runs
   in GitHub Actions.
 - Sixteen MATLAB and twenty R guided workflows now have paired incomplete
@@ -392,6 +396,13 @@ milestone:
   colleagues to see.
 
 ## History
+
+- **2026-09-07:** Week 3 overfitting instruction was made evidentially precise.
+  Residual plots, model complexity, and instability are now described as
+  warning signs rather than proof of overfitting. Meeting 2 adds a fixed
+  fit/check split, separate RMSE calculations, a MATLAB starter/solution
+  extension, lab questions, and slides that bridge to the formal Week 12-13
+  training/validation terminology.
 
 - **2026-09-06:** Project teams were limited to a maximum of three students.
   Teams of two and one-person teams were explicitly approved. With 66 students

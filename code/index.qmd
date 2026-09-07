@@ -27,7 +27,7 @@ the expected results and deadlines.
 | Week 2 piecewise validation | [Starter](matlab/week02_piecewise_validation.m) | [Possible solution](matlab/solutions/week02_piecewise_validation.m) |
 | Week 2 loop patterns | [Starter](matlab/week02_loop_patterns.m) | [Possible solution](matlab/solutions/week02_loop_patterns.m) |
 | Week 2 logical indexing | [Starter](matlab/week02_logical_indexing_switch.m) | [Possible solution](matlab/solutions/week02_logical_indexing_switch.m) |
-| Week 3 fitting and residuals | [Starter](matlab/week03_curve_fitting_validation.m) | [Possible solution](matlab/solutions/week03_curve_fitting_validation.m) |
+| Week 3 fitting, residuals, and new-data check | [Starter](matlab/week03_curve_fitting_validation.m) | [Possible solution](matlab/solutions/week03_curve_fitting_validation.m) |
 | Week 3 interpolation and fitting | [Starter](matlab/week03_interpolation_vs_fit.m) | [Possible solution](matlab/solutions/week03_interpolation_vs_fit.m) |
 | Week 3 polynomial tools | [Starter](matlab/week03_polynomial_tools.m) | [Possible solution](matlab/solutions/week03_polynomial_tools.m) |
 | Week 4 roots and integration | [Starter](matlab/week04_root_integration_checks.m) | [Possible solution](matlab/solutions/week04_root_integration_checks.m) |

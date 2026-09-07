@@ -126,6 +126,9 @@ Ask:
 - Are residuals random-looking?
 - Is the degree justified by the question?
 
+These are warning signs. Residuals on the data used for fitting cannot, by
+themselves, prove that the model will work on new observations.
+
 ## Meeting 2 Question
 
 What question are we actually answering between or beyond measured points?
@@ -177,6 +180,49 @@ Use interpolation when the measured values are trusted and the question is betwe
 
 Use fitting when the data are noisy and the question is about a trend.
 
+## Can Training Residuals Prove Overfitting?
+
+No.
+
+A flexible model can have tiny residuals on the observations it was fitted to
+and still perform poorly on new observations.
+
+## Hold Back Check Observations
+
+Split before fitting:
+
+```matlab
+fit_idx = 1:2:numel(x);
+check_idx = 2:2:numel(x);
+```
+
+Fit each candidate using only the fit observations. Do not use the check
+observations to estimate its coefficients.
+
+## Compare Two Errors
+
+| Degree | Fit RMSE | Check RMSE |
+|---:|---:|---:|
+| 1 | 0.373 | 0.311 |
+| 2 | 0.080 | 0.056 |
+| 7 | approximately 0 | 0.225 |
+
+Degree 7 wins on fit error. Degree 2 works better on observations not used for
+fitting.
+
+One small split is stronger evidence than fit error alone, not a guarantee.
+Do not repeatedly redesign the model to make the check data look favorable.
+
+## Vocabulary Bridge
+
+For now:
+
+- **fit data:** used to estimate the polynomial;
+- **check data:** not used to estimate it.
+
+Later, we call these **training data** and **validation data** and impose a
+frozen model plan before validation.
+
 ## Extrapolation
 
 Extrapolation is a separate claim.
@@ -197,12 +243,12 @@ What is the hidden claim?
 
 Does the generated solution explain the difference between interpolation and fitting?
 
-Does it check residuals, degree choice, and extrapolation risk?
+Does it check residuals, degree choice, observations not used for fitting, and
+extrapolation risk?
 
 ## Exit Ticket
 
-For a new data set, what would make you choose:
+A degree-7 polynomial has the smallest RMSE on the observations used to fit it.
 
-- interpolation;
-- curve fitting;
-- rejection of the question?
+Why is that insufficient evidence that it is the best model, and what check
+would provide stronger evidence?

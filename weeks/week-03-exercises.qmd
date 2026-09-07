@@ -110,6 +110,7 @@ Find at least four issues or missing checks. Your answer should mention:
 
 - degree choice;
 - residuals;
+- the absence of observations reserved for a new-data check;
 - extrapolation;
 - whether the word "prediction" is justified.
 

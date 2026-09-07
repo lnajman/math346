@@ -37,7 +37,7 @@ using the same teaching pattern:
 |---:|---|---|
 | [Week 1](weeks/week-01.qmd) | MATLAB arrays, scripts, and plots | Look at the survival checklist, lab, and AI critique activity. |
 | [Week 2](weeks/week-02.qmd) | Functions, conditions, and tests | Look at the testing emphasis and AI debugging activity. |
-| [Week 3](weeks/week-03.qmd) | Curve fitting, interpolation, and residual checks | Look at the model validation and overfitting critique. |
+| [Week 3](weeks/week-03.qmd) | Curve fitting, interpolation, and residual checks | Look at the held-out new-data check and overfitting critique in Meeting 2. |
 | [Week 4](weeks/week-04.qmd) | Numerical methods and 3D plotting | Look at the numerical checks, surface plots, and AI answer review. |
 | [Week 5](weeks/week-05.qmd) | Symbolic mathematics and verification | Look at domain assumptions, the tank-design problem, and the independent numerical check. |
 | [Week 6](weeks/week-06.qmd) | MATLAB-to-R transition and reproducible reports | Look at the syntax bridge, supplied report scaffold, checked plots, and AI causal-claim review. |

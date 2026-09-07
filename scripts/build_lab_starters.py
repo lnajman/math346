@@ -45,8 +45,8 @@ MATLAB = {
     ),
     "week03_curve_fitting_validation": (
         "Polynomial fits and residual evidence",
-        "x = 0:10;\ny = [2.0 2.8 3.6 5.1 6.9 8.2 9.1 10.2 10.7 11.1 11.4];\ndegrees = [1 2 5];",
-        ["Fit each candidate degree and retain predictions and residuals.", "Compute RMSE for each model.", "Plot the fits and residuals, then state why smallest training RMSE is insufficient."],
+        "x = linspace(-1, 1, 15);\ny = [0.03 0.58 1.15 1.50 1.86 2.31 2.70 3.02 3.24 3.59 ...\n     3.86 3.94 3.88 3.99 4.04];\ndegrees = [1 2 7];",
+        ["Fit each candidate degree and retain predictions and residuals.", "Compute RMSE for each model.", "Plot the fits and residuals, then state why smallest training RMSE is insufficient.", "Make a fixed alternating fit/check split; refit each degree on fit observations only and compare fit with check RMSE."],
     ),
     "week03_interpolation_vs_fit": (
         "Interpolation compared with fitting",

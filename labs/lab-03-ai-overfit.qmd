@@ -50,6 +50,7 @@ Answer:
 - Did the high-degree model have small residuals at the measured points?
 - Does that make the prediction at `x = 12` trustworthy?
 - What other degree should you compare against?
+- What observations, if any, were kept out of the fitting process?
 
 ## Part D: Repair The Analysis
 
@@ -57,8 +58,9 @@ Create a revised script or note that:
 
 1. Compares at least two polynomial degrees.
 2. Plots residuals for each degree.
-3. Labels `x = 12` as extrapolation.
-4. Refuses or qualifies the prediction if the evidence is weak.
+3. Separates fit error from error on observations not used for fitting.
+4. Labels `x = 12` as extrapolation.
+5. Refuses or qualifies the prediction if the evidence is weak.
 
 ## What You Should Have Completed
 

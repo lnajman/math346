@@ -6,9 +6,10 @@
 clear; clc; close all;
 
 %% Given setup
-x = 0:10;
-y = [2.0 2.8 3.6 5.1 6.9 8.2 9.1 10.2 10.7 11.1 11.4];
-degrees = [1 2 5];
+x = linspace(-1, 1, 15);
+y = [0.03 0.58 1.15 1.50 1.86 2.31 2.70 3.02 3.24 3.59 ...
+     3.86 3.94 3.88 3.99 4.04];
+degrees = [1 2 7];
 
 %% Task 1
 % Fit each candidate degree and retain predictions and residuals.
@@ -20,6 +21,12 @@ degrees = [1 2 5];
 
 %% Task 3
 % Plot the fits and residuals, then state why smallest training RMSE is insufficient.
+% TODO: write and check your code here.
+
+%% Task 4 - Meeting 2: observations not used for fitting
+% Make one fixed alternating split before fitting any candidate model.
+% Fit each degree on the fit observations only, then calculate separate fit
+% and check RMSE values without refitting on the check observations.
 % TODO: write and check your code here.
 
 %% Reflection
