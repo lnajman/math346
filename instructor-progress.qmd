@@ -10,7 +10,7 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 teaching blocks remain deliberately adaptable; later assessment design and
 exact calendar placement remain open.**
 
-Last updated: **7 September 2026**
+Last updated: **12 September 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -38,7 +38,7 @@ the motivation and the kind of feedback being requested.
 | Week 14: many models and grouped evidence | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the alignment, uncertainty, and sensitivity workload |
 | Week 15: communication and synthesis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the evidence-reconciliation and clean-run workload |
 | Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time with the approved workload |
-| Quizzes and midterm | **Quiz 1 ready; later design deferred** | [Quiz 1 student guide](assessments/quiz-01.qmd), private Blackboard blueprint and bank; later markers remain visible | Dry-run Quiz 1 in Blackboard; decide Quiz 2-4 and midterm later |
+| Quizzes and midterm | **Quiz 1 forms ready; later design deferred** | [Quiz 1 student guide](assessments/quiz-01.qmd), two private 12-point forms, rationales, calibration notes, and Blackboard checklist; later markers remain visible | Build and dry-run both Quiz 1 forms in Blackboard; decide Quiz 2-4 and midterm later |
 | Projects | **66 candidate groups validated** | [Milestone map](projects/project-milestones.qmd), configurable data generation, starters, templates, fixed result contracts, 198 checked ZIPs, and tested batch checkers | Collect team choices, map registered teams to packages, then set exact dates and check Blackboard |
 | Software and access | **Requirements approved; live systems pending** | [Student matrix](resources/software-requirements.qmd), two runnable setup checks, and [instructor checklist](resources/instructor-setup-checklist.qmd) | Run and record the checks on student laboratory accounts and in Blackboard |
 | Guided lab workflow | **Implemented; formative** | 16 MATLAB and 20 R starter/solution pairs; completion checklists replace routine submission language | Collect only explicitly announced Blackboard checkpoints and short exit checks |
@@ -82,9 +82,14 @@ they can never be revised.
 - The public home and primary navigation now address students first. Weeks 1-4
   are the launch-ready block; Weeks 5-15 are explicitly presented as an
   evolving roadmap that can respond to opening-week feedback.
-- Quiz 1 is fixed as an individual 12-minute in-class Blackboard quiz in Week 4 with six
-  code-reading and validation items. It is closed-resource, requires no MATLAB
-  execution, and now has a public guide plus a private two-form question bank.
+- Quiz 1 is fixed as an individual 12-minute in-class Blackboard quiz in Week
+  4. Its six content blocks each contain two independently scored one-point
+  questions: ten multiple-choice and two one-sentence responses. The class
+  groups receive different but equivalent forms. Each student may use one A4
+  sheet, handwritten by them on both
+  sides, but no other reference material. The quiz requires no MATLAB
+  execution and now has a public guide plus two equivalent private forms with
+  answer rationales and build checks.
 - A plain-language glossary and optional recovery checkpoints after Weeks 5,
   10, and 12 provide beginner support without adding required work.
 - The student pages now identify Laurent Alain Najman, the instructor email,
@@ -259,6 +264,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 12 September 2026 | Quiz 1 was calibrated without a grade quota: each form has ten multiple-choice questions and two distinct one-sentence responses across six content blocks, with every question worth one point. The class groups receive different but equivalent forms. Students may use one A4 sheet, handwritten by them on both sides, but no other reference material. Two equivalent 12-point forms, answer rationales, written-response rubrics, calibration notes, and a Blackboard build checklist are complete; a live rehearsal remains pending. |
 | 7 September 2026 | The private project generator, assemblers, and checker defaults were made configurable and expanded to 66 candidate groups. All datasets passed the quality gates, all 198 release ZIPs passed exact-content and validation-separation checks, and both MATLAB and R known-good suites passed 66/66. |
 | 7 September 2026 | Cross-session project teams were approved. Students from either class session may form one team with one course-wide identifier, dataset, submission, and grade; they continue attending their registered sessions. Blackboard cross-session access will be verified in the live dry run. |
 | 7 September 2026 | Week 3 Meeting 2 gained a fixed fit/check demonstration of overfitting. Training residuals are now presented as warning evidence rather than proof; students compare separate fit and withheld-observation RMSE values before the formal training/validation terminology in Weeks 12-13. |

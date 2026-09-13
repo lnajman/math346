@@ -72,8 +72,12 @@ By the end of the course, students should be able to:
 | Final examination | 35% | Cumulative |
 
 [Quiz 1](../assessments/quiz-01.qmd) is an individual, 12-minute, in-class
-Blackboard quiz with six short code-reading and validation items. It is
-closed-resource and does not require students to run MATLAB. Details for later
+Blackboard quiz with six short content blocks and two one-point questions in
+each block. Ten questions are multiple-choice and two require a one-sentence
+written response. The two class groups receive different but equivalent forms.
+Students may use one A4 sheet, handwritten by them on both sides; no other
+reference material is permitted. The quiz does not require students to run
+MATLAB. Details for later
 quizzes and examinations will be published before the relevant units.
 
 ## Tentative Weekly Plan

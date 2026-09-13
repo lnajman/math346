@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-09-07
+Last updated: 2026-09-12
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -23,9 +23,14 @@ be refined from student feedback during the opening weeks. Instructor review
 and progress pages remain available by direct link but are no longer in the
 primary navigation. Quiz 1 is the only assessment instrument finalized for
 launch: it is an individual, 12-minute, in-class Blackboard quiz in Week 4
-with six short code-reading and validation items, no AI or collaboration, and
-no requirement to run MATLAB. Its Week 4 calendar date and meeting remain a
-Blackboard announcement. Later quiz and examination details are intentionally deferred.
+with six content blocks and two independently scored one-point questions per
+block (ten multiple-choice and two one-sentence responses), one
+student-prepared handwritten A4 sheet (both sides), no AI or collaboration,
+and no requirement to run MATLAB. Two
+equivalent private forms, answer rationales, calibration notes, and a
+Blackboard build checklist are complete. Its Week 4 calendar date and meeting
+remain a Blackboard announcement. Later quiz and examination details are
+intentionally deferred.
 The student glossary and three optional phase-recovery checkpoints are now
 published, and the previously broken Quarto documentation link is corrected.
 The student home and syllabus now also publish the instructor contact,
@@ -253,10 +258,15 @@ approved and published.
   review pages remain published only as direct-link resources.
 - Weeks 1-4 are the launch-ready teaching block. Weeks 5-15 remain a visible
   roadmap and may be refined from student feedback before their use.
-- Quiz 1 is an individual, 12-minute, in-class Blackboard quiz in Week 4. It
-  contains six short code-reading and validation items, requires no MATLAB
-  execution, and permits no AI, collaboration, notes, or web resources. The
-  Week 4 calendar date and meeting are announced in Blackboard.
+- Quiz 1 is an individual, 12-minute, in-class Blackboard quiz in Week 4. Its
+  six content blocks each contain two independently scored one-point questions:
+  ten multiple-choice and two one-sentence responses (12 questions and 12
+  points in total). Each student may use one A4 sheet,
+  handwritten by them on both sides, but no printed or additional reference
+  material. The quiz requires no MATLAB execution and permits no AI,
+  collaboration, or web resources. Two equivalent forms and their answer
+  rationales are complete. The Week 4 calendar date and meeting are announced
+  in Blackboard.
 - Only Quiz 1 must be operational at launch. Quiz 2-4 and examination
   architectures remain deferred.
 - There is no mandatory individual project examination. A brief verification
@@ -345,7 +355,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Course purpose | `index.qmd`, `syllabus/index.qmd` | Developed |
 | Course administration and classroom policy | `index.qmd`; `syllabus/index.qmd`; `assessments/quiz-01.qmd` | Instructor/contact/platform roles and approved attendance, missed-assessment, and late-project rules published |
 | Student launch shell | `index.qmd`; `_quarto.yml`; `weeks/index.qmd` | Weeks 1-4 launch-ready; Weeks 5-15 presented as an evolving roadmap |
-| Quiz 1 | `assessments/quiz-01.qmd`; private Blackboard blueprint and question bank | Student contract and private instrument complete; live Blackboard rehearsal pending |
+| Quiz 1 | `assessments/quiz-01.qmd`; two private forms, answer-keyed bank, calibration notes, and Blackboard checklist | Student contract and two equivalent 12-point instruments complete; live Blackboard rehearsal pending |
 | Glossary and recovery | `resources/glossary.qmd`; three `weeks/recovery-*.qmd` pages | Published as optional support |
 | Responsible AI policy | `syllabus/ai-policy.qmd` | Developed; still revisable |
 | Colleague review gateway | `instructor-preview.qmd` | Published and shared |
@@ -401,6 +411,16 @@ milestone:
 
 ## History
 
+- **2026-09-12:** Quiz 1 was calibrated against the undergraduate grade bands
+  without imposing a distribution quota. Its six content blocks now contain
+  two independently scored one-point questions each, avoiding coarse score
+  jumps while preserving the 12-minute limit. Two equivalent Week 4 forms,
+  answer rationales, calibration notes, and exact Blackboard checks are
+  complete. Each form now uses ten multiple-choice questions and two distinct
+  one-sentence responses, with simple 0/1 rubrics, so students must produce as
+  well as recognize validation reasoning. Students may use one self-prepared
+  handwritten A4 sheet, both sides, but no other reference material. The live
+  Blackboard rehearsal remains pending.
 - **2026-09-07:** The private project system was made configurable through one
   group-count setting and expanded to 66 candidate groups. All 66 synthetic
   datasets passed the structural, plausibility, distinctness, and comparability

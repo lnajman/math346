@@ -10,17 +10,19 @@ description: "Format, scope, rules, and preparation for the first MATH 346 quiz.
 | When | In class during Week 4; the calendar date and meeting appear in Blackboard |
 | Duration | 12 minutes |
 | Delivery | Blackboard, one attempt |
-| Format | 6 short code-reading and validation items |
+| Format | 10 multiple-choice and 2 one-sentence questions across 6 content blocks |
 | Work mode | Individual |
 | Software | You do not need to run MATLAB |
 
 ## What The Quiz Measures
 
 Quiz 1 checks whether you can read a short MATLAB fragment, predict or inspect
-its result, and choose an appropriate validation step. It does not ask you to
-write a long program from a blank page.
+its result, and choose an appropriate validation step. Each of the six content
+blocks contains two short questions, for 12 questions and 12 points in total.
+Ten questions are multiple-choice; two ask for a response of at most one
+sentence. It does not ask you to write a long program from a blank page.
 
-The six items sample these ideas:
+The six content blocks sample these ideas:
 
 - array dimensions, indexing, and vector orientation;
 - matrix operators versus element-wise operators;
@@ -33,9 +35,11 @@ Material from Week 4 onward and detailed project work are not included.
 
 ## Rules During The Quiz
 
-Quiz 1 is closed-resource and individual. Do not use AI tools, notes, websites,
-messaging, another student, or MATLAB. Scratch paper is allowed. Use the
-classroom computer unless the instructor announces another arrangement.
+Quiz 1 is individual. You may bring **one A4 sheet, handwritten by you, using
+both sides**. Printed material and additional reference sheets are not allowed.
+Do not use AI tools, websites, messaging, another student, or MATLAB. Blank
+scratch paper is allowed. Use the classroom computer unless the instructor
+announces another arrangement.
 
 If Blackboard is unavailable, the instructor may use an equivalent paper
 version. Approved accommodations are configured through the usual course
@@ -57,5 +61,7 @@ A missed quiz follows the [syllabus policy on missed assessments](../syllabus/in
 
 Typical prompts ask you to predict a size or value, choose the correct operator,
 identify a test that would fail, interpret a residual, or decide whether a
-query is interpolation or extrapolation. The actual quiz questions and answers
-are not published on this site.
+query is interpolation or extrapolation. For a one-sentence response, state the
+essential reason directly; polished or extended writing is not expected. The
+two class groups receive different but equivalent questions. The actual quiz
+questions and answers are not published on this site.
