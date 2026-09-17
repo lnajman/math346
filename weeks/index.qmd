@@ -38,10 +38,10 @@ use the current week's page and the latest Blackboard announcement.
 | [14](week-14.qmd) | Repeated models, aligned evidence, and sensitivity | R | Project 2 validation release window |
 | [15](week-15.qmd) | Communication, evidence reconciliation, and synthesis | R | Project 2 completion window |
 
-Quiz 1 has a published [student guide](../assessments/quiz-01.qmd). Confirmed
-project and assessment dates are shown on their relevant pages. Blackboard is
-authoritative for section-specific logistics, rooms, access windows, and
-individual accommodations.
+Quiz 1 and Quiz 2 have published [student guides](../assessments/index.qmd).
+Confirmed project and assessment dates are shown on their relevant pages.
+Blackboard is authoritative for section-specific logistics, rooms, access
+windows, and individual accommodations.
 
 ## Weekly Materials
 

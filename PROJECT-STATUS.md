@@ -32,10 +32,14 @@ complete. Its Week 4 calendar date and meeting remain a Blackboard
 announcement. Quiz 2 is now fixed for Week 6 on Wednesday, 30 September, and
 Thursday, 1 October, with the section order reversed relative to Quiz 1. It is
 a 15-minute in-class quiz near the beginning of the meeting and covers material
-through Week 5, not material first taught in Week 6. The common midterm is fixed
+through Week 5, not material first taught in Week 6. Its public student guide,
+two equivalent private 12-point forms, answer rationales, 0/0.5/1 written
+rubrics, two validated QTI 2.1 banks, and Blackboard checklist are complete.
+Each form has nine conceptual/code-reading multiple-choice questions and three
+one-sentence written responses. The common midterm is fixed
 for Saturday, 10 October 2026, from 12:00 to 13:30, outside normal class hours
-so both sections sit it simultaneously. The detailed Quiz 2 form and midterm
-architecture remain to be prepared.
+so both sections sit it simultaneously. The detailed midterm architecture
+remains to be prepared.
 The student glossary and three optional phase-recovery checkpoints are now
 published, and the previously broken Quarto documentation link is corrected.
 The student home and syllabus now also publish the instructor contact,
@@ -300,7 +304,8 @@ approved and published.
 - Quiz 2 is a 15-minute in-class assessment near the beginning of the meeting.
   It covers material through Week 5; Week 6 material is excluded because both
   sections must have completed all assessed teaching before either form is
-  administered. Its two section forms still need to be prepared.
+  administered. Its public guide and two equivalent section packages are
+  complete; live Blackboard import and Student Preview remain.
 - The midterm runs for 90 minutes outside regular class hours and therefore
   does not replace either normal Week 7 teaching meeting. Its detailed content
   and question architecture remain to be prepared.
@@ -369,9 +374,9 @@ approved and published.
 
 These ideas have been discussed but are **not yet approved course policy**:
 
-1. The exact formats and content of Quizzes 3-4 remain open. Quiz 2 timing,
-   duration, coverage boundary, and reversed section order are approved, but
-   its two equivalent forms still need to be designed and checked.
+1. The exact formats and content of Quizzes 3-4 remain open. Quiz 2 is fully
+   specified; its live Blackboard import and Student Preview remain operational
+   checks rather than design decisions.
 2. The exact balance of code reading, implementation, and validation in the
    common Saturday midterm remains open. Its date, 90-minute duration, and
    simultaneous two-section administration are approved; it does not replace
@@ -390,6 +395,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Course administration and classroom policy | `index.qmd`; `syllabus/index.qmd`; `assessments/quiz-01.qmd` | Instructor/contact/platform roles and approved attendance, missed-assessment, and late-project rules published |
 | Student-facing course site | `index.qmd`; `_quarto.yml`; `weeks/index.qmd` | Full 15-week sequence published; completed weeks retained for review; Blackboard authoritative for logistics |
 | Quiz 1 | `assessments/quiz-01.qmd`; two private forms, answer-keyed bank, calibration notes, two validated QTI 2.1 ZIPs, and Blackboard checklist | Student contract and two equivalent 12-point import packages complete; live Blackboard import and rehearsal pending |
+| Quiz 2 | `assessments/quiz-02.qmd`; two private forms, answer-keyed bank, calibration notes, two validated QTI 2.1 ZIPs, and Blackboard checklist | Student contract and two equivalent 12-point import packages complete; live Blackboard import and rehearsal pending |
 | Glossary and recovery | `resources/glossary.qmd`; three `weeks/recovery-*.qmd` pages | Published as optional support |
 | Responsible AI policy | `syllabus/ai-policy.qmd` | Developed; still revisable |
 | Colleague review gateway | `instructor-preview.qmd` | Published and shared |
@@ -421,9 +427,9 @@ agreed core project architecture is incorporated into the syllabus.
    before each upcoming block is taught.
 3. Deliver the two Week 5 sessions, collect their exit responses and Project 1
    readiness blockers, and record any revision needed before the R transition.
-4. Prepare two equivalent Quiz 2 forms for 30 September and 1 October, then
-   design the common 90-minute midterm for 10 October; retain both regular
-   Week 7 meetings for teaching and review.
+4. Import and rehearse both Quiz 2 forms in Blackboard for 30 September and 1
+   October, then design the common 90-minute midterm for 10 October; retain
+   both regular Week 7 meetings for teaching and review.
 5. Verify the Project 1 Blackboard Group Assignment, one-submission-per-group
    workflow, receipt visibility, and 24 September 9:00 AM UAE closing time.
 6. Place the remaining Project 2 gates on exact Blackboard dates after the
@@ -471,6 +477,13 @@ milestone:
   section order reversed relative to Quiz 1. It covers material through Week
   5. The common midterm was fixed for Saturday, 10 October 2026, from 12:00 to
   13:30, outside regular class hours so both sections take it simultaneously.
+- **2026-09-17:** Quiz 2 received a complete student and instructor package.
+  Each equivalent form has 12 independently scored one-point items: nine
+  conceptual/code-reading multiple-choice questions and three one-sentence
+  written responses across arrays, functions, fit/check evidence, numerical
+  validation, symbolic mathematics, and minimum evidence. The public guide,
+  private keys and 0/0.5/1 rubrics, two validated QTI 2.1 banks, and Blackboard
+  import/preview checklist are complete. Live Blackboard rehearsal remains.
 - **2026-09-16:** The project roster was finalized, subject only to correction
   of a confirmed clerical or roster error. All 66 students are assigned to 33
   groups with continuous identifiers from `group-01` through `group-33`, which

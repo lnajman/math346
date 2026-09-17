@@ -1,0 +1,73 @@
+---
+title: "Quiz 2 Student Guide"
+description: "Format, scope, rules, and preparation for the second MATH 346 quiz."
+---
+
+## At A Glance
+
+| Item | Quiz 2 arrangement |
+|---|---|
+| When | Wednesday, 30 September, or Thursday, 1 October 2026, according to section; the section order is reversed from Quiz 1 |
+| Duration | 15 minutes, near the beginning of class |
+| Delivery | Blackboard, one attempt |
+| Format | 9 conceptual/code-reading multiple-choice questions and 3 one-sentence written responses, grouped into 6 content blocks |
+| Points | 12 independently scored one-point questions |
+| Coverage | MATLAB material from Weeks 1-5; Week 6 R material is not included |
+| Work mode | Individual |
+| Software | You do not need to run MATLAB |
+
+Blackboard gives the authoritative date and access window for your section.
+
+## What The Quiz Measures
+
+Quiz 2 asks you to connect a MATLAB result to the evidence needed to trust or
+interpret it. It is more challenging than Quiz 1 because several questions
+require a conceptual decision, but it does not depend on obscure syntax or
+speed. You will not be asked to write a long program from a blank page.
+
+The six content blocks sample these ideas:
+
+- arrays, logical indexing, `end`, and row/column orientation;
+- functions, explicit inputs, workspace scope, and clean-run reliability;
+- polynomial fitting, residuals, fit/check RMSE, and overfitting evidence;
+- root finding, substituted residuals, numerical integration, and refinement
+  checks;
+- symbolic exactness, assumptions, and admissible solutions;
+- stationary points and the additional evidence needed to support a minimum.
+
+Some questions share a short code fragment or table, but each question is
+scored separately. The two sections receive different but equivalent forms.
+
+## Rules During The Quiz
+
+Quiz 2 is individual. You may bring **one A4 sheet, handwritten by you, using
+both sides**. Printed material and additional reference sheets are not allowed.
+Do not use MATLAB, AI tools, websites, messaging, another student, or other
+electronic resources. Blank scratch paper is allowed. Use the classroom
+computer unless the instructor announces another arrangement.
+
+If Blackboard is unavailable, the instructor may use an equivalent paper
+version. Approved accommodations follow the usual course arrangements.
+
+A student arriving after the quiz has begun may take it only while it remains
+available; the common closing time is not extended because of late arrival. A
+missed quiz follows the [syllabus policy on missed
+assessments](../syllabus/index.qmd#missed-assessments-and-late-project-submissions).
+
+## How To Prepare
+
+1. Review the survival checklists and core examples for [Week
+   1](../weeks/week-01.qmd), [Week 2](../weeks/week-02.qmd), [Week
+   3](../weeks/week-03.qmd), [Week 4](../weeks/week-04.qmd), and [Week
+   5](../weeks/week-05.qmd).
+2. For each calculation, practice answering two questions: “What did MATLAB
+   compute?” and “What does this result establish—and what does it not
+   establish?”
+3. Practice one-sentence explanations of a hidden input, poor check-set
+   performance, and a valid minimum check.
+4. Use the handwritten sheet to organize concepts and validation patterns;
+   copying long scripts is less useful than recording what each check means.
+
+For written responses, state the essential reason directly. Mathematically
+correct equivalent wording is accepted; polished or extended writing is not
+required. The actual questions and answers are not published on this site.

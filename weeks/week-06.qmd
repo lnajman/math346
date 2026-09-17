@@ -8,6 +8,16 @@ execute:
 
 R Markdown and data visualization. Quiz 2.
 
+::: {.callout-important}
+## Quiz 2 this week
+
+[Quiz 2](../assessments/quiz-02.qmd) is completed near the beginning of class
+on Wednesday, 30 September, or Thursday, 1 October, according to section. It
+covers MATLAB material from Weeks 1-5; the R material introduced this week is
+not assessed. Blackboard gives the authoritative date and access window for
+your section.
+:::
+
 ## Problem Focus
 
 How do we express a familiar computational question in a new language and turn

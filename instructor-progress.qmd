@@ -8,8 +8,9 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 
 **The full student-facing course sequence is published. Weeks 1-4 established
 the teaching pattern, Week 5 is classroom-ready, and upcoming weeks receive a
-final delivery check before use. Quiz 2 and the common midterm have confirmed
-calendar placement; their detailed instruments remain to be prepared.**
+final delivery check before use. Quiz 2 now has complete public and private
+delivery packages; the common midterm has a confirmed date and still needs its
+detailed instrument.**
 
 Last updated: **17 September 2026**
 :::
@@ -39,7 +40,7 @@ the motivation and the kind of feedback being requested.
 | Week 14: many models and grouped evidence | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the alignment, uncertainty, and sensitivity workload |
 | Week 15: communication and synthesis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the evidence-reconciliation and clean-run workload |
 | Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time with the approved workload |
-| Quizzes and midterm | **Quiz 1 complete; Quiz 2 and midterm scheduled** | Quiz 2: 30 September and 1 October, 15 minutes, reversed section order, coverage through Week 5. Common midterm: Saturday, 10 October, 12:00-13:30 | Prepare two equivalent Quiz 2 forms and design the 90-minute common midterm |
+| Quizzes and midterm | **Quiz 1 and Quiz 2 packages complete; midterm scheduled** | [Quiz 2 guide](assessments/quiz-02.qmd), two private forms and validated QTI banks. Common midterm: Saturday, 10 October, 12:00-13:30 | Rehearse Quiz 2 in Blackboard and design the 90-minute common midterm |
 | Projects | **Project 1 deadline fixed** | All 66 students are assigned to 33 groups; readiness occurs in the first Week 5 session; Project 1 is due Thursday, 24 September, 9:00 AM UAE time | Verify the Blackboard Group Assignment, receipt visibility, and common closing time |
 | Software and access | **Requirements approved; live systems pending** | [Student matrix](resources/software-requirements.qmd), two runnable setup checks, and [instructor checklist](resources/instructor-setup-checklist.qmd) | Run and record the checks on student laboratory accounts and in Blackboard |
 | Guided lab workflow | **Implemented; formative** | 16 MATLAB and 20 R starter/solution pairs; completion checklists replace routine submission language | Collect only explicitly announced Blackboard checkpoints and short exit checks |
@@ -98,7 +99,9 @@ need.
 - Quiz 2 is fixed for Wednesday, 30 September, and Thursday, 1 October, with
   the section order reversed relative to Quiz 1. It is a 15-minute in-class
   quiz near the beginning of the meeting and covers material through Week 5;
-  material first taught in Week 6 is excluded.
+  material first taught in Week 6 is excluded. Its public guide, two equivalent
+  private forms, written-response rubrics, validated QTI packages, and
+  Blackboard checklist are complete.
 - The midterm is fixed for Saturday, 10 October 2026, from 12:00 to 13:30.
   Scheduling it outside regular class hours allows both sections to sit the
   same 90-minute examination simultaneously and preserves both regular Week 7
@@ -264,8 +267,8 @@ need.
 The following questions remain open. They do not change the confirmed core
 architecture, but they block approval of the final calendar and release plan:
 
-1. What exact questions should the two equivalent Quiz 2 forms contain, and
-   what should Quizzes 3-4 measure and how should they be delivered?
+1. What should Quizzes 3-4 measure and how should they be delivered? Quiz 2 is
+   fully specified; only its live Blackboard rehearsal remains.
 2. How should the common 90-minute Saturday midterm combine code reading,
    implementation, and validation?
 3. What exact Blackboard opening and closing times should implement the
@@ -284,6 +287,7 @@ architecture and the remaining implementation decisions.
 | 17 September 2026 | Project 1 was fixed for Thursday, 24 September 2026, at 9:00 AM UAE time. Its readiness checkpoint moved to the first Week 5 session, leaving time for students to resolve blockers. Session 2 now uses the released minutes for a fuller numerical comparison and AI-claim repair. The Week 5 slides, project pages, milestone map, syllabus, implementation guide, and instructor scripts were aligned. |
 | 17 September 2026 | Week 5 became classroom-ready through two detailed instructor scripts. Session 1 integrates the seven-minute Quiz 1 evidence review before symbolic expressions and checks; it now also contains the formative Project 1 readiness checkpoint. Session 2 develops the complete tank-minimum evidence chain and extended AI-claim repair. Both scripts contain copy-ready Blackboard exit questions. |
 | 17 September 2026 | Quiz 2 was fixed for 30 September and 1 October as a 15-minute in-class assessment near the beginning of the meeting, with the section order reversed relative to Quiz 1 and coverage through Week 5. The common midterm was fixed for Saturday, 10 October, 12:00-13:30, outside regular class hours so both sections take it simultaneously. |
+| 17 September 2026 | Quiz 2 received a public student guide and two equivalent private 12-point forms. Each form contains nine conceptual/code-reading multiple-choice questions and three one-sentence written responses, with every item independently scored. Private answer rationales, 0/0.5/1 written rubrics, two validated QTI 2.1 banks, and a Blackboard import/preview checklist are complete; live rehearsal remains. |
 | 16 September 2026 | The project roster was finalized, subject only to correction of a confirmed clerical or roster error. All 66 students are assigned to 33 groups, identified continuously as `group-01` through `group-33`; these identifiers map directly to the first 33 validated candidate packages. |
 | 16 September 2026 | Three additional project teams were recorded from seven students previously listed in provisional one-person teams. All 66 students remain accounted for; the roster now contains 33 provisional teams with one to three students each. |
 | 14 September 2026 | Following student requests, Quiz 1 was extended from 12 to 15 minutes for both sections to allow for Blackboard loading and navigation when items appear one at a time. Its content, 12 points, A4-sheet rule, and individual-work conditions are unchanged; the public guide, build instructions, printable forms, and Week 4 quiz overlays were updated. |
@@ -350,10 +354,11 @@ contains 33 groups. They are mapped continuously to `group-01` through
 `group-33` and to the corresponding validated candidate packages.
 
 The audit, student workload contract, week-relative project milestone map, and
-student software matrix are complete. Quiz 2 and the common Saturday midterm
-now have confirmed dates and do not displace a full class meeting; the next
-assessment gate is to prepare their instruments and then resolve Quiz 3 and
-Quiz 4. Exact project dates remain deferred. The student software matrix is
+student software matrix are complete. Quiz 2 now has complete public and
+private delivery packages, while the common Saturday midterm has a confirmed
+date and still needs its instrument. The next assessment gate is the Quiz 2
+Blackboard rehearsal and common-midterm design, followed later by Quiz 3 and
+Quiz 4. Exact Project 2 dates remain deferred. The student software matrix is
 published; the next operational gate is to run its checks with a real student
 laboratory account and complete the live Blackboard dry run before those access
 routes are announced.

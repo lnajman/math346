@@ -7,20 +7,19 @@ description: "Student-facing assessment information for MATH 346."
 
 - [Quiz 1](quiz-01.qmd): an individual, 15-minute, in-class Blackboard quiz
   during Week 4.
+- [Quiz 2](quiz-02.qmd): an individual, 15-minute, in-class Blackboard quiz on
+  30 September or 1 October, covering MATLAB material from Weeks 1-5.
 - [Project 1](../projects/project-1-eda.qmd): one complete group package due
   Thursday, 24 September 2026, at 9:00 AM UAE time.
 
 ## Confirmed Upcoming Dates
 
-- **Quiz 2:** Wednesday, 30 September, and Thursday, 1 October, according to
-  section; 15 minutes near the beginning of class and covering material through
-  Week 5.
 - **Common midterm:** Saturday, 10 October 2026, from 12:00 to 1:30 PM. Both
   sections take the examination simultaneously outside regular class hours.
 
 The syllabus shows the complete assessment rhythm. Detailed preparation and
-permitted-material instructions for Quiz 2, the midterm, later quizzes, the
-final examination, and Project 2 will be published before each assessment.
+permitted-material instructions for the midterm, later quizzes, the final
+examination, and Project 2 will be published before each assessment.
 
 ::: {.callout-note}
 ## Where to look

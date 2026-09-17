@@ -58,8 +58,9 @@ website:
         - weeks/workload-guide.qmd
         - assessments/index.qmd
         - assessments/quiz-01.qmd
+        - assessments/quiz-02.qmd
         - resources/glossary.qmd
-        - section: "Launch block: Weeks 1-4"
+        - section: "MATLAB — Weeks 1-5"
           contents:
             - weeks/week-01.qmd
             - weeks/week-01-exercises.qmd
@@ -69,11 +70,11 @@ website:
             - weeks/week-03-exercises.qmd
             - weeks/week-04.qmd
             - weeks/week-04-exercises.qmd
-        - section: "Later roadmap: Weeks 5-10"
-          contents:
             - weeks/week-05.qmd
             - weeks/week-05-exercises.qmd
             - weeks/recovery-after-week-05.qmd
+        - section: "R — Weeks 6-10"
+          contents:
             - weeks/week-06.qmd
             - weeks/week-06-exercises.qmd
             - weeks/week-07.qmd
@@ -85,7 +86,7 @@ website:
             - weeks/week-10.qmd
             - weeks/week-10-exercises.qmd
             - weeks/recovery-after-week-10.qmd
-        - section: "Later roadmap: Weeks 11-15"
+        - section: "R — Weeks 11-15"
           contents:
             - weeks/week-11.qmd
             - weeks/week-11-exercises.qmd
