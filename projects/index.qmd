@@ -9,15 +9,16 @@ description: "Two scaffolded projects using MATLAB first and R second."
 Project 1 is completed in **MATLAB**. Project 2 is completed in **R**. Students
 submit a PDF report together with executable source code and machine-readable
 results. The [week-relative milestone sequence](project-milestones.qmd) is now
-established; exact calendar dates and final rubrics remain under review. The
-project verification policy is established below.
+established. Project 1 has a fixed deadline; later Project 2 dates and final
+rubrics remain under review. The project verification policy is established
+below.
 :::
 
 ## Milestone Sequence At A Glance
 
 | Project | Preview | Package release | Required gate | Completion window |
 |---|---|---|---|---|
-| Project 1 | Week 3 | Group MATLAB ZIP in Week 4 | Guided readiness checkpoint in Week 5 | After Week 5; exact deadline announced later |
+| Project 1 | Week 3 | Group MATLAB ZIP in Week 4 | Guided readiness checkpoint in the first Week 5 session | Thursday, 24 September 2026, 9:00 AM UAE time |
 | Project 2 | Weeks 9-10 | Group R training ZIP in Week 12 | Frozen model plan after Week 13; validation release in Week 14 | Week 15; exact deadline announced later |
 
 See [Project Milestones](project-milestones.qmd) for what students receive,

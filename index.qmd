@@ -71,20 +71,20 @@ course and classroom policies.
 :::
 
 ::: {.callout-important}
-## What is ready now
+## Using The Course Materials
 
-Weeks 1-4 and the [Quiz 1 guide](assessments/quiz-01.qmd) form the launch-ready
-part of the course. Later weeks remain visible as a course roadmap and may be
-refined in response to what students find difficult during the opening weeks.
-The current week's page and Blackboard announcements are the authoritative
-instructions for work and dates.
+The website contains the full 15-week course sequence, including weekly notes,
+slides, labs, exercises, code, projects, and assessment guidance. Completed
+weeks remain available for review. For current assigned work, submission
+instructions, and calendar dates, use the relevant course page together with
+the latest Blackboard announcement.
 :::
 
 ## Website And Blackboard
 
 Use this website for course explanations, weekly materials, labs, exercises,
 code, project instructions, and the [glossary](resources/glossary.qmd). Use
-Blackboard for announcements, calendar dates, submissions, grades, and Quiz 1.
+Blackboard for announcements, calendar dates, quizzes, submissions, and grades.
 If the two ever appear inconsistent, follow the latest Blackboard announcement
 and tell the instructor.
 

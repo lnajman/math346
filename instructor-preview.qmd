@@ -1,37 +1,41 @@
 ---
 title: "Instructor Preview"
-description: "A short guide for colleagues reviewing the MATH 346 redesign prototype."
+description: "A short guide for colleagues reviewing the MATH 346 redesign."
 ---
 
 ::: {.callout-tip}
-The primary website navigation is now student-facing. Weeks 1-4 and Quiz 1 are
-the launch-ready block; later materials remain visible for review and can be
-refined from opening-week student feedback.
+The course website is student-facing and contains the full 15-week sequence.
+Completed weeks remain available to students for review, while upcoming weeks
+receive a final delivery check before use.
 
 For the current development state, decisions, and next milestone, see the
 [instructor progress page](instructor-progress.qmd). The completed
 [course-wide coherence and workload audit](instructor-course-audit.qmd)
 led to an approved [student workload guide](weeks/workload-guide.qmd). The
 approved [project milestone map](projects/project-milestones.qmd) now fixes the
-release order while leaving exact calendar dates open.
+release order; Project 1 also has its confirmed submission deadline.
 :::
 
-## Why This Prototype Exists
+## Why This Redesign Exists
 
-I am preparing to teach MATH 346, and I do not think that teaching the course exactly as it was taught before is the right approach in the LLM era.
+I redesigned MATH 346 because teaching the course exactly as it was taught
+before is not the right approach in the LLM era.
 
 Students will use AI tools. The course should therefore teach them how to program, test, debug, interpret results, and critically inspect AI-generated code or explanations. The goal is not to make the course about AI. The goal is to teach mathematical and statistical software in a world where AI assistance is part of the working environment.
 
-## How The Prototype Was Built
+## How The Course Site Was Built
 
-I used the existing course slides as a starting point for the syllabus topics and progression. With Codex, I then prepared this prototype website, rewriting the materials around problem-focused computational work, validation habits, and responsible AI use.
+I used the existing course slides as a starting point for the syllabus topics
+and progression. With Codex, I then prepared this course website, rewriting the
+materials around problem-focused computational work, validation habits, and
+responsible AI use.
 
 The site does not redistribute copyrighted slide decks, textbook PDFs, answer keys, exams, or private student work. It contains original course materials and starter code prepared for this redesign.
 
 ## What To Review First
 
-Weeks 1-4 are the validated prototype. Weeks 5-15 have now been expanded
-using the same teaching pattern:
+The full course sequence is available. The opening MATLAB weeks established the
+teaching pattern used throughout the remaining weeks:
 
 | Week | Focus | Suggested review |
 |---:|---|---|
@@ -51,10 +55,9 @@ using the same teaching pattern:
 | [Week 14](weeks/week-14.qmd) | Many models and aligned evidence | Look at the fixed monthly model contract, retained fit objects, coefficient intervals, grouped sensitivity checks, and the AI model-ranking audit. |
 | [Week 15](weeks/week-15.qmd) | Communication and evidence reconciliation | Look at the generated evidence bundle, figure and caption contract, clean-run rehearsal, cross-artifact checks, and the AI conclusion audit. |
 
-Weeks 1-4 have now been validated as the prototype pattern for the course.
-Weeks 5-15 are developed and ready for review, but have not yet been
-designated as validated prototypes. The full weekly arc is now available for a
-course-wide coherence and workload review.
+Weeks 1-4 established the course pattern and were used during the opening
+month. Week 5 is classroom-ready. Weeks 6-15 are developed and receive the same
+pre-delivery coherence and workload review before they are taught.
 
 ## Useful Direct Links
 
@@ -79,7 +82,8 @@ I would especially appreciate feedback on these questions:
 - Does the redesign still respect the spirit and content of the existing course?
 - Is the required/scaffolded/optional software boundary realistic for the
   laboratories and student access routes you know?
-- Are Weeks 1-4 realistic for two 75-minute meetings per week?
+- Were Weeks 1-4 realistic for two 75-minute meetings per week, and what should
+  be carried forward from the opening month?
 - Is the new Week 5 symbolic unit a realistic final MATLAB block, especially
   its fixed-volume tank example and verification workload?
 - Does Week 6 give students with little programming experience enough support

@@ -6,7 +6,7 @@ execute:
 
 ## Official Topic
 
-Exploratory data analysis. Semester examination (midterm).
+Exploratory data analysis.
 
 ## Problem Focus
 
@@ -322,8 +322,7 @@ Audit each sentence:
 ## Exercises
 
 After the lab, attempt the core selection in the
-[Week 8 exercises](week-08-exercises.qmd). The selection will be reduced if
-the midterm displaces normal teaching time; see the
+[Week 8 exercises](week-08-exercises.qmd). See the
 [workload guide](workload-guide.qmd).
 
 ## Materials

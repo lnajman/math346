@@ -8,6 +8,12 @@ execute:
 
 R workflow, visualization, and data transformation.
 
+::: {.callout-important}
+The common midterm is on **Saturday, 10 October 2026, from 12:00 to 1:30 PM**.
+It is outside regular class hours so both sections take it simultaneously.
+Blackboard will provide the room and final examination instructions.
+:::
+
 ## Problem Focus
 
 How do we turn a statistical question into a sequence of transparent data

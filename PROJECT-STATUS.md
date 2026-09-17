@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-09-12
+Last updated: 2026-09-17
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -17,26 +17,38 @@ describe pedagogical progress.
 
 ## Current Phase
 
-The public site now has a student-first launch shell. Weeks 1-4 are the
-launch-ready block; Weeks 5-15 remain visible as an evolving roadmap that can
-be refined from student feedback during the opening weeks. Instructor review
-and progress pages remain available by direct link but are no longer in the
-primary navigation. Quiz 1 is the only assessment instrument finalized for
-launch: it is an individual, 12-minute, in-class Blackboard quiz in Week 4
+The full student-facing 15-week course sequence is published. Completed weeks
+remain available for review, and each upcoming week receives a final delivery
+check before use. Instructor review and progress pages remain available by
+direct link but are not in the primary navigation. Quiz 1 was delivered as an
+individual, 15-minute, in-class Blackboard quiz in Week 4
 with six content blocks and two independently scored one-point questions per
 block (ten multiple-choice and two one-sentence responses), one
 student-prepared handwritten A4 sheet (both sides), no AI or collaboration,
 and no requirement to run MATLAB. Two
-equivalent private forms, answer rationales, calibration notes, and a
-Blackboard build checklist are complete. Its Week 4 calendar date and meeting
-remain a Blackboard announcement. Later quiz and examination details are
-intentionally deferred.
+equivalent private forms, answer rationales, calibration notes, two validated
+QTI 2.1 question-bank ZIPs, and a Blackboard import/build checklist are
+complete. Its Week 4 calendar date and meeting remain a Blackboard
+announcement. Quiz 2 is now fixed for Week 6 on Wednesday, 30 September, and
+Thursday, 1 October, with the section order reversed relative to Quiz 1. It is
+a 15-minute in-class quiz near the beginning of the meeting and covers material
+through Week 5, not material first taught in Week 6. The common midterm is fixed
+for Saturday, 10 October 2026, from 12:00 to 13:30, outside normal class hours
+so both sections sit it simultaneously. The detailed Quiz 2 form and midterm
+architecture remain to be prepared.
 The student glossary and three optional phase-recovery checkpoints are now
 published, and the previously broken Quarto documentation link is corrected.
 The student home and syllabus now also publish the instructor contact,
 Banner/Blackboard/website roles, office-hour arrangement, missed-assessment
 rules, late-project penalty, and the approved five-minute classroom lateness
 threshold.
+
+Detailed instructor scripts for both Week 4 sessions are now prepared as
+separate PDFs. Each preserves the complete 75-minute teaching sequence and
+adds an explicit quiz-day overlay: three minutes for launch, the full
+15-minute Quiz 1 timer, and a compressed teaching route that retains the
+essential numerical checks and exit ticket. This supports the two-section
+schedule in which Quiz 1 occurs in a different meeting for each section.
 
 All 36 guided lab workflows now use a two-file teaching contract. The original,
 canonical script URLs deliver intentionally incomplete starters; completed
@@ -63,13 +75,25 @@ code starters, fixed result contracts, editable report templates, customized
 release ZIPs, and batch checkers are implemented. The release contract has been
 rehearsed locally, and the assessment-sensitive package is backed up in a
 private GitHub repository. The actual registered teams will use only the first
-required packages. The working assessment sequence remains visible
-on the public site: Quiz 1 in Week 4, Quiz 2 in Week 6, the semester examination
-(midterm) in Week 8, Quiz 3 in Week 9, and Quiz 4 in Week 13. Quiz 1 now has a
-fixed student contract; its date and the arrangements for later quizzes and
-the midterm remain intentionally deferred. The MATLAB project date is also deferred. Week 5 has
+required packages. The final roster accounts for all 66 enrolled students in
+33 groups, identified continuously as `group-01` through `group-33`. These
+identifiers map directly to the first 33 validated candidate packages. Any
+later correction is limited to a confirmed clerical or roster error. The working assessment sequence remains visible
+on the public site: Quiz 1 in Week 4, Quiz 2 in Week 6, the common Saturday
+midterm after Week 7, Quiz 3 in Week 9, and Quiz 4 in Week 13. Quiz 1 has a
+fixed student contract; Quiz 2 and the midterm now have confirmed calendar
+placement, while their remaining content and delivery details are still being
+prepared. Project 1 is due Thursday, 24 September 2026, at 9:00 AM UAE time;
+its readiness checkpoint is in the first Week 5 session. Week 5 has
 now been expanded using the validated Weeks 1-4 pattern and passes the complete
-MATLAB validation harness. Week 6 has now been expanded into a beginner-safe
+MATLAB validation harness. Separate classroom-ready instructor PDFs now cover
+both Week 5 sessions. Session 1 integrates the seven-minute Quiz 1 follow-up
+without dropping the symbolic-calculus checks and now includes the Project 1
+readiness checkpoint. Session 2 uses the released time for a fuller numerical
+comparison and AI-claim repair after the fixed-volume tank evidence chain.
+Both scripts provide exact wording, slide-to-MATLAB transitions, TA actions,
+timed student work, Blackboard exit questions, and time-loss contingencies.
+Week 6 has now been expanded into a beginner-safe
 MATLAB-to-R transition with ordinary R scripts, checked visualizations, a
 supplied reproducible-report scaffold, and an AI plot-review activity. Its R
 scripts and embedded report code pass the course validation harness. Week 7 has
@@ -138,6 +162,9 @@ approved and published.
   feedback.
 - Weeks 1-4 have developed week pages, slides, labs, exercises, and MATLAB code.
 - Weeks 1-4 have been validated as the prototype pattern to continue.
+- Separate Week 4 Session 1 and Session 2 instructor scripts now provide
+  exact slide-to-MATLAB transitions, suggested wording, TA actions,
+  Blackboard exit-ticket text, and optional quiz-day timing overlays.
 - Week 3 Meeting 2 now introduces a fixed fit/check split before the later
   training/validation terminology. Students see that training residuals are
   warning evidence rather than proof: a degree-7 polynomial can minimize fit
@@ -167,9 +194,11 @@ approved and published.
   2 training ZIPs contain no validation outcomes, and representative ZIPs pass
   a simulated Blackboard upload/download extraction cycle.
 - Week 5 now has a two-meeting teaching plan, full slides, a main lab, an AI
-  review lab, exercises, four MATLAB examples, and executable symbolic and
-  numerical checks. It is developed and ready for review, but has not yet been
-  designated a validated prototype.
+  review lab, exercises, four MATLAB examples, executable symbolic and
+  numerical checks, and two detailed instructor scripts. Session 1 includes
+  the Quiz 1 evidence review and Project 1 readiness checkpoint; Session 2
+  uses the resulting time for numerical comparison and AI-claim repair. It is
+  classroom-ready, but has not yet been designated a validated prototype.
 - Week 6 now has a two-meeting MATLAB-to-R transition plan, full slides, a main
   lab, an AI plot-review lab, exercises, three R scripts, and a supplied report
   scaffold whose code is checked automatically. It is developed and ready for
@@ -249,16 +278,17 @@ approved and published.
 - Projects are assessed as group work. Individual competence is established by
   quizzes, the semester examination, and the final examination, totaling 80%
   of the course grade.
-- The public working schedule places Quiz 1 in Week 4 and retains Quiz 2 in
-  Week 6, the
-  semester examination (midterm) in Week 8, Quiz 3 in Week 9, and Quiz 4 in
-  Week 13. These placements remain visible while detailed arrangements are
-  discussed.
+- The public working schedule places Quiz 1 in Week 4, Quiz 2 in Week 6, the
+  common Saturday midterm after Week 7, Quiz 3 in Week 9, and Quiz 4 in Week
+  13. Quiz 2 is scheduled for 30 September and 1 October, with the section
+  order reversed relative to Quiz 1. The midterm is scheduled for Saturday,
+  10 October 2026, from 12:00 to 13:30 so both sections take it simultaneously.
 - The primary public navigation and home page are student-facing. Instructor
   review pages remain published only as direct-link resources.
-- Weeks 1-4 are the launch-ready teaching block. Weeks 5-15 remain a visible
-  roadmap and may be refined from student feedback before their use.
-- Quiz 1 is an individual, 12-minute, in-class Blackboard quiz in Week 4. Its
+- Weeks 1-4 established the teaching pattern. The full 15-week sequence is
+  published, with each upcoming week receiving a final delivery check before
+  use.
+- Quiz 1 is an individual, 15-minute, in-class Blackboard quiz in Week 4. Its
   six content blocks each contain two independently scored one-point questions:
   ten multiple-choice and two one-sentence responses (12 questions and 12
   points in total). Each student may use one A4 sheet,
@@ -267,8 +297,13 @@ approved and published.
   collaboration, or web resources. Two equivalent forms and their answer
   rationales are complete. The Week 4 calendar date and meeting are announced
   in Blackboard.
-- Only Quiz 1 must be operational at launch. Quiz 2-4 and examination
-  architectures remain deferred.
+- Quiz 2 is a 15-minute in-class assessment near the beginning of the meeting.
+  It covers material through Week 5; Week 6 material is excluded because both
+  sections must have completed all assessed teaching before either form is
+  administered. Its two section forms still need to be prepared.
+- The midterm runs for 90 minutes outside regular class hours and therefore
+  does not replace either normal Week 7 teaching meeting. Its detailed content
+  and question architecture remain to be prepared.
 - There is no mandatory individual project examination. A brief verification
   may be requested for a small random sample or when submitted evidence contains
   a material inconsistency.
@@ -293,8 +328,9 @@ approved and published.
   quiz/examination preparation. Assessment weeks receive a reduced selection
   when an assessment displaces class time.
 - Project 1 is previewed in Week 3, its group MATLAB package is released in Week
-  4, and its readiness checkpoint occurs in Week 5. Its completion window opens
-  after Week 5; the exact deadline remains coordinated with Quiz 2.
+  4, and its readiness checkpoint occurs in the first Week 5 session. The
+  complete group package is due Thursday, 24 September 2026, at 9:00 AM UAE
+  time. No material first taught in the second Week 5 session is required.
 - Project 2 is previewed in Weeks 9-10, its group training package is released
   in Week 12, its model plan is frozen after Week 13, its validation package is
   released in a common Week 14 window, and its completion window is Week 15.
@@ -333,16 +369,14 @@ approved and published.
 
 These ideas have been discussed but are **not yet approved course policy**:
 
-1. The exact calendar dates, delivery arrangements, duration, and format of
-   Quizzes 2-4; their working Week 6, 9, and 13 placement remains visible. Quiz
-   1 is approved for Week 4; its exact calendar date and meeting remain to be
-   placed in Blackboard.
-2. The exact timing and balance of code reading, implementation, and validation
-   in the Week 8 semester examination (midterm), including whether it replaces
-   one or both normal teaching meetings.
-3. The exact due date for the MATLAB project within its approved post-Week-5
-   completion window and its relationship to Quiz 2.
-4. The exact Blackboard opening and closing times for the approved Project 2
+1. The exact formats and content of Quizzes 3-4 remain open. Quiz 2 timing,
+   duration, coverage boundary, and reversed section order are approved, but
+   its two equivalent forms still need to be designed and checked.
+2. The exact balance of code reading, implementation, and validation in the
+   common Saturday midterm remains open. Its date, 90-minute duration, and
+   simultaneous two-section administration are approved; it does not replace
+   a normal teaching meeting.
+3. The exact Blackboard opening and closing times for the approved Project 2
    training, frozen-plan, validation, and completion gates.
 These decisions remain open and are intentionally deferred until later course
 planning. A detailed implementation draft is available in `projects/`, and the
@@ -354,8 +388,8 @@ agreed core project architecture is incorporated into the syllabus.
 |---|---|---|
 | Course purpose | `index.qmd`, `syllabus/index.qmd` | Developed |
 | Course administration and classroom policy | `index.qmd`; `syllabus/index.qmd`; `assessments/quiz-01.qmd` | Instructor/contact/platform roles and approved attendance, missed-assessment, and late-project rules published |
-| Student launch shell | `index.qmd`; `_quarto.yml`; `weeks/index.qmd` | Weeks 1-4 launch-ready; Weeks 5-15 presented as an evolving roadmap |
-| Quiz 1 | `assessments/quiz-01.qmd`; two private forms, answer-keyed bank, calibration notes, and Blackboard checklist | Student contract and two equivalent 12-point instruments complete; live Blackboard rehearsal pending |
+| Student-facing course site | `index.qmd`; `_quarto.yml`; `weeks/index.qmd` | Full 15-week sequence published; completed weeks retained for review; Blackboard authoritative for logistics |
+| Quiz 1 | `assessments/quiz-01.qmd`; two private forms, answer-keyed bank, calibration notes, two validated QTI 2.1 ZIPs, and Blackboard checklist | Student contract and two equivalent 12-point import packages complete; live Blackboard import and rehearsal pending |
 | Glossary and recovery | `resources/glossary.qmd`; three `weeks/recovery-*.qmd` pages | Published as optional support |
 | Responsible AI policy | `syllabus/ai-policy.qmd` | Developed; still revisable |
 | Colleague review gateway | `instructor-preview.qmd` | Published and shared |
@@ -376,26 +410,28 @@ agreed core project architecture is incorporated into the syllabus.
 | Week 13 | `weeks/week-13.qmd`; `slides/week-13.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 14 | `weeks/week-14.qmd`; `slides/week-14.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
 | Week 15 | `weeks/week-15.qmd`; `slides/week-15.qmd`; two labs; exercises; three checked R scripts | Developed; ready for review |
-| Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | 66 candidate groups and all 198 ZIP contracts are validated; final team registration determines which packages are released |
+| Projects | `projects/`; `code/project-starters/`; private Git-ignored package and private GitHub backup | Final roster: all 66 students in 33 groups, `group-01` through `group-33`; corresponding candidate packages are validated |
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
 
 ## Next Actions
 
 1. Perform the live laboratory check and build/dry-run Quiz 1 in Blackboard,
    including Student Preview, timer, feedback, and accommodations.
-2. Collect student feedback during Weeks 1-4 and record concrete changes before
-   freezing each later block.
-3. Reconcile Quizzes 2-4 and semester-examination delivery with the teaching
-   minutes available in Weeks 6, 8, 9, and 13.
-4. Collect course-wide project-team choices, including cross-session teams,
-   determine the final number of teams, and map those teams to the already
-   validated candidate packages before the Week 4 release.
-5. Place the approved project gates on exact Blackboard dates only after the
-   assessment-time conflicts are resolved.
-6. Record and synthesize colleague feedback that is not currently stored in
+2. Continue collecting weekly student evidence and record concrete changes
+   before each upcoming block is taught.
+3. Deliver the two Week 5 sessions, collect their exit responses and Project 1
+   readiness blockers, and record any revision needed before the R transition.
+4. Prepare two equivalent Quiz 2 forms for 30 September and 1 October, then
+   design the common 90-minute midterm for 10 October; retain both regular
+   Week 7 meetings for teaching and review.
+5. Verify the Project 1 Blackboard Group Assignment, one-submission-per-group
+   workflow, receipt visibility, and 24 September 9:00 AM UAE closing time.
+6. Place the remaining Project 2 gates on exact Blackboard dates after the
+   remaining assessment conflicts are resolved.
+7. Record and synthesize colleague feedback that is not currently stored in
    the repository.
-7. Update the syllabus after the remaining assessment decisions are approved.
-8. Update both this record and `instructor-progress.qmd` after each decision or
+8. Update the syllabus after the remaining assessment decisions are approved.
+9. Update both this record and `instructor-progress.qmd` after each decision or
    major milestone.
 
 ## Update Protocol
@@ -411,6 +447,63 @@ milestone:
 
 ## History
 
+- **2026-09-17:** Pre-semester "launch block" and "later roadmap" wording was
+  removed from the live website. The home page and weekly index now present the
+  complete 15-week course sequence, retain completed weeks for review, and
+  direct students to current pages plus Blackboard for assigned work and
+  logistics. The syllabus, assessment index, and Week 7-8 pages were also
+  aligned with the common Saturday midterm after Week 7.
+- **2026-09-17:** Project 1 was fixed for Thursday, 24 September 2026, at 9:00
+  AM UAE time. The formative readiness checkpoint moved to the first Week 5
+  session so groups have time to resolve blockers. The Week 5 page, slides,
+  project pages, milestone map, syllabus, implementation guide, and both
+  instructor scripts were aligned. Session 2 now uses the released time for a
+  fuller numerical comparison and AI-claim repair.
+- **2026-09-17:** Two classroom-ready Week 5 instructor scripts were completed.
+  Session 1 integrates the seven-minute Quiz 1 follow-up into the exact
+  expressions, assumptions, symbolic calculus, equation-solving, and exit
+  sequence. Session 2 develops the fixed-volume tank minimum claim through
+  domain, stationarity, curvature, boundary, numerical, and plotting evidence,
+  followed by an AI audit and exit question. The readiness checkpoint was
+  subsequently moved into Session 1 when the project deadline was fixed.
+- **2026-09-17:** Quiz 2 was fixed as a 15-minute in-class assessment near the
+  beginning of the Week 6 meeting, on 30 September and 1 October with the
+  section order reversed relative to Quiz 1. It covers material through Week
+  5. The common midterm was fixed for Saturday, 10 October 2026, from 12:00 to
+  13:30, outside regular class hours so both sections take it simultaneously.
+- **2026-09-16:** The project roster was finalized, subject only to correction
+  of a confirmed clerical or roster error. All 66 students are assigned to 33
+  groups with continuous identifiers from `group-01` through `group-33`, which
+  map directly to the first 33 validated candidate data packages. A final
+  web-shareable workbook replaces the provisional presentation.
+
+- **2026-09-16:** Three additional project teams were recorded from seven
+  students who had previously appeared in provisional one-person teams. The
+  roster still accounts for all 66 students and now contains 33 provisional
+  teams, with team sizes between one and three. Official gradebook names and
+  IDs remain the roster authority.
+
+- **2026-09-14:** Following student requests, Quiz 1 was extended from 12 to
+  15 minutes for both sections. The three additional minutes protect the
+  assessment from Blackboard loading and navigation delays when its 12 scored
+  items are displayed one at a time. The content, points, permitted A4 sheet,
+  and individual-work rules are unchanged. The public guide, private build
+  instructions, printable forms, and Week 4 quiz-day overlays were updated.
+
+- **2026-09-14:** The provisional project roster was reconciled against both
+  official gradebooks. All 66 enrolled students are now listed in 37
+  provisional teams. The 15 students not covered by a submitted or
+  instructor-added registration were assigned ordinary one-person teams. Team
+  changes remain open until 16 September 2026 at 8:00 a.m. UAE time; final
+  identifiers and dataset assignments follow the deadline.
+
+- **2026-09-13:** Two private QTI 2.1 question-bank ZIPs were generated for
+  direct Blackboard Ultra import, one for each Quiz 1 form. Each package has 12
+  self-contained one-point items (10 multiple choice and 2 manually graded
+  written responses), including repeated code or table context where a
+  one-question-at-a-time display would otherwise be ambiguous. A deterministic
+  generator, structural validator, and exact import/preview checklist accompany
+  the packages. Live import in the KU Blackboard course remains pending.
 - **2026-09-12:** Quiz 1 was calibrated against the undergraduate grade bands
   without imposing a distribution quota. Its six content blocks now contain
   two independently scored one-point questions each, avoiding coarse score
@@ -482,11 +575,11 @@ milestone:
   roles, missed-assessment substitutions, the late-project penalty, and the
   five-minute lateness/absence rule were added to the student website.
 
-- **2026-08-18:** The public site was converted to a student-first launch
-  presentation. Weeks 1-4 were designated launch-ready, later weeks were
-  presented as an evolving roadmap, Quiz 1 received a public contract and
-  private Blackboard question bank, three recovery checkpoints and a glossary
-  were added, and the broken Quarto documentation link was corrected.
+- **2026-08-18:** The public site was converted to a student-first
+  presentation. The opening four weeks were prioritized for immediate use,
+  Quiz 1 received a public contract and private Blackboard question bank,
+  three recovery checkpoints and a glossary were added, and the broken Quarto
+  documentation link was corrected.
 
 - **2026-07-08:** Instructor preview added and used as the colleague-review
   entry point.

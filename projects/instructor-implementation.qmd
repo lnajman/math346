@@ -120,21 +120,23 @@ For Project 2:
 ## Week-Relative Milestones
 
 The public [project milestone map](project-milestones.qmd) fixes the release
-order while leaving exact calendar dates open.
+order. Project 1 now has a fixed submission time; Project 2 calendar dates
+remain open.
 
 | Course stage | Instructor action | Release source | Required control |
 |---|---|---|---|
 | Week 3 | Preview Project 1 and confirm groups | Public project pages and templates | Do not release group data as part of the preview |
 | Week 4 | Release each Project 1 MATLAB ZIP | `release-project-1/` | Match ZIP and Blackboard Group identifier |
-| Week 5 | Run the Project 1 readiness checkpoint | Already released files | Check data path, RMSE test, and one reproducible fit or figure; do not collect a second report |
-| After Week 5 | Open the Project 1 Group Assignment | Blackboard | Exact deadline follows the Quiz 2 calendar decision |
+| Week 5, first session | Run the Project 1 readiness checkpoint | Already released files | Check clean-workspace data path, RMSE test, and one reproducible fit or figure; do not collect a second report |
+| Thursday, 24 September, 9:00 AM UAE time | Close the Project 1 Group Assignment | Blackboard | Collect one complete package per group; every member verifies the receipt; apply the published late policy after 9:00 AM |
 | Weeks 9-10 | Preview Project 2 and confirm groups | Public project pages and templates | Explain the training/validation separation; do not release validation data |
 | Week 12 | Release each Project 2 training ZIP | `release-project-2-training/` | Confirm that no validation outcome or file is present |
 | After Week 13 | Collect one frozen model plan per group | Blackboard group checkpoint | Record the seven required plan fields before validation release |
 | Week 14 | Release each Project 2 validation ZIP in one common window | `release-project-2-validation/` | Release only after the plan gate; do not give individual groups an early window |
 | Week 15 | Open the final Project 2 Group Assignment and clean-run rehearsal | Blackboard and Week 15 materials | Exact deadline remains deferred; collect one group package |
 
-The Project 1 completion window begins only after its Week 5 checkpoint. The
+The Project 1 completion window closes on Thursday, 24 September 2026, at 9:00
+AM UAE time after the first-session readiness checkpoint. The
 Project 2 validation gate is one-way: a later model change is documented as a
 deviation or sensitivity analysis, not rewritten into the frozen plan.
 

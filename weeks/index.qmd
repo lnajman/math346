@@ -13,24 +13,23 @@ guided practice, extension work, and the role of each lab.
 :::
 
 ::: {.callout-important}
-## Launch block and roadmap
+## How To Use The Weekly Pages
 
-Weeks 1-4 are ready for the start of the semester. Weeks 5-15 show the planned
-direction of the course and may be refined after the class has worked through
-the opening block. For assigned work and dates, use the current week and the
-latest Blackboard announcement.
+The complete 15-week sequence is published here. Completed weeks remain useful
+for review and assessment preparation. For assigned work and calendar dates,
+use the current week's page and the latest Blackboard announcement.
 :::
 
-| Week | Focus | Main Tool | Planned assessment marker |
+| Week | Focus | Main Tool | Assessment or project marker |
 |---:|---|---|---|
 | [1](week-01.qmd) | Arrays, scripts, and plots as computational objects | MATLAB | — |
 | [2](week-02.qmd) | Functions, control flow, and debugging | MATLAB | — |
 | [3](week-03.qmd) | Curve fitting, interpolation, and residual checks | MATLAB | Project 1 preview |
 | [4](week-04.qmd) | Numerical methods and 3D visualization | MATLAB | Quiz 1; Project 1 group package release |
-| [5](week-05.qmd) | Symbolic and numerical computation | MATLAB | Project 1 readiness checkpoint |
-| [6](week-06.qmd) | MATLAB-to-R transition and reproducible reports | R | Quiz 2 |
-| [7](week-07.qmd) | Data transformation as question-answering | R | — |
-| [8](week-08.qmd) | Variation, covariation, and question refinement | R | Semester examination (midterm) |
+| [5](week-05.qmd) | Symbolic and numerical computation | MATLAB | Project 1 readiness; submission 24 September at 9:00 AM UAE time |
+| [6](week-06.qmd) | MATLAB-to-R transition and reproducible reports | R | Quiz 2 on 30 September and 1 October |
+| [7](week-07.qmd) | Data transformation as question-answering | R | Common midterm on Saturday, 10 October, 12:00-1:30 PM |
+| [8](week-08.qmd) | Variation, covariation, and question refinement | R | — |
 | [9](week-09.qmd) | Import contracts and tidy observation structure | R | Quiz 3; Project 2 preview begins |
 | [10](week-10.qmd) | Relational contracts, strings, factors, and date-times | R | Project 2 preview continues |
 | [11](week-11.qmd) | Readable pipelines and tested function contracts | R | — |
@@ -39,11 +38,12 @@ latest Blackboard announcement.
 | [14](week-14.qmd) | Repeated models, aligned evidence, and sensitivity | R | Project 2 validation release window |
 | [15](week-15.qmd) | Communication, evidence reconciliation, and synthesis | R | Project 2 completion window |
 
-Quiz 1 has a published [student guide](../assessments/quiz-01.qmd). The later
-markers show the intended course rhythm; their exact dates and formats will be
-announced before the relevant units.
+Quiz 1 has a published [student guide](../assessments/quiz-01.qmd). Confirmed
+project and assessment dates are shown on their relevant pages. Blackboard is
+authoritative for section-specific logistics, rooms, access windows, and
+individual accommodations.
 
-## Course Roadmap
+## Weekly Materials
 
 Every week includes:
 

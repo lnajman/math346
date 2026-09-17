@@ -48,7 +48,7 @@ audit; the remaining recommendations are proposals, not approved policy.
 | AI integration | Activities progress from code defects to question drift, statistical claims, automation, and communication | Strong but must not become a second weekly assignment |
 | Workload clarity | The full resource bank is now separated into core, guided, and extension work | Resolved through the [student workload guide](weeks/workload-guide.qmd) |
 | Assessment-week feasibility | Quiz 1 is now placed in Week 4, but its exact meeting and displaced teaching block still require Blackboard placement; Weeks 6, 8, 9, and 13 retain full plans beside assessments | Calendar-critical |
-| Project sequencing | Preview, group release, checkpoint, validation, and completion stages now follow prerequisite instruction | Resolved through the [project milestone map](projects/project-milestones.qmd); exact dates remain open |
+| Project sequencing | Preview, group release, checkpoint, validation, and completion stages now follow prerequisite instruction | Resolved through the [project milestone map](projects/project-milestones.qmd); Project 1 has a fixed deadline and Project 2 dates remain open |
 | Software readiness | Required access, scaffolded use, and optional tools are explicit; live institutional systems still require verification | Matrix resolved; live check pending |
 | Navigation and publication | Student-first home and navigation, weekly pages, exercises, labs, slides, code, assessments, and projects are linked and publish correctly | Strong |
 

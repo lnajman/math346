@@ -6,12 +6,12 @@ execute:
 ---
 
 ::: {.callout-important}
-## The sequence is fixed; calendar dates come later
+## The sequence is fixed
 
 The milestones below are anchored to the course content students need before
-each stage. They do not set calendar dates or change the working quiz and
-midterm placements. Exact Blackboard opening and closing times will be
-announced after the assessment calendar is finalized.
+each stage. Project 1 now has a fixed submission deadline. Later Project 2
+Blackboard opening and closing times will be announced after the remaining
+assessment calendar is finalized.
 :::
 
 ## Why The Projects Use Stages
@@ -40,12 +40,13 @@ do not require the complete team to attend one session together.
 |---|---|---|---|
 | **Week 3** | Preview | Public project page, data dictionary, report template, required filenames, and a view of the building-energy question | Confirm the group and group number; inspect the task and file structure. No project analysis is due. |
 | **Week 4** | Assigned package release | One group-specific MATLAB ZIP through Blackboard | Extract the ZIP without renaming its contents; check the group identifier; open the data and starter files; run the starter far enough to reach its first marked task. |
-| **Week 5** | Guided readiness checkpoint | Instructor-selected support using the released package | Show that the main script finds the assigned data, the supplied RMSE function passes its hand-checkable test, and at least one checked fit or figure can be reproduced. This is a progress checkpoint, not a second project submission. |
-| **After Week 5** | Completion window | Blackboard group submission area and final checklist | Complete the analysis, PDF, source, and generated results CSV; rerun from a clean folder; submit one group package. The exact deadline is set later in coordination with Quiz 2. |
+| **Week 5, first session** | Guided readiness checkpoint | Instructor-selected support using the released package | Show that the main script finds the assigned data from a clean workspace, the supplied RMSE function passes its hand-checkable test, and at least one checked fit or figure can be reproduced. This is a progress checkpoint, not a second project submission. |
+| **Thursday, 24 September 2026, 9:00 AM UAE time** | Final submission | Blackboard group submission area and final checklist | Complete the analysis, PDF, source, and generated results CSV; rerun from a clean folder; submit one group package; every member verifies the Blackboard receipt. |
 
-No new Project 1 technical requirement is introduced after Week 5. The
-completion window is for finishing, checking, reconciling the PDF with the
-generated results, and submitting—not for adding another analysis method.
+No material first taught in the second Week 5 session is required for Project
+1. The remaining time after the first-session checkpoint is for fixing known
+blockers, checking, reconciling the PDF with the generated results, and
+submitting - not for adding another analysis method.
 
 ### Project 1 Blackboard Gates
 
@@ -92,7 +93,7 @@ diagnostics. Those are completed after the relevant Week 13-14 teaching.
 |---|---|---|---|
 | Project 1 preview | All students | Week 3 preview | Remains available |
 | Project 1 assigned ZIP | Corresponding group only | Week 4 release gate | Remains available through submission |
-| Project 1 group assignment | Corresponding group | Completion window opens | Exact deadline announced later |
+| Project 1 group assignment | Corresponding group | Available before the Week 5 first-session checkpoint | Thursday, 24 September 2026, 9:00 AM UAE time |
 | Project 2 preview | All students | Weeks 9-10 preview | Remains available |
 | Project 2 training ZIP | Corresponding group only | Week 12 release gate | Remains available through submission |
 | Frozen-model-plan checkpoint | Corresponding group | After Week 13 model instruction | Locks before validation release |
@@ -106,9 +107,9 @@ live Blackboard course before student release.
 
 ## What Remains Deferred
 
-- exact calendar dates and times;
-- the exact length and delivery of the quizzes and midterm;
-- the final Project 1 deadline within its post-Week-5 completion window;
+- exact Project 2 calendar dates and times;
+- the exact content and delivery details of the remaining quizzes and midterm;
 - the exact Blackboard closing times for the Project 2 plan and final package.
 
-The order of the gates is established even while those dates remain open.
+The order of the gates is established; the remaining open dates concern
+Project 2.

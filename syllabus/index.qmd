@@ -71,7 +71,7 @@ By the end of the course, students should be able to:
 | Semester examination | 25% | Around Week 8 |
 | Final examination | 35% | Cumulative |
 
-[Quiz 1](../assessments/quiz-01.qmd) is an individual, 12-minute, in-class
+[Quiz 1](../assessments/quiz-01.qmd) is an individual, 15-minute, in-class
 Blackboard quiz with six short content blocks and two one-point questions in
 each block. Ten questions are multiple-choice and two require a one-sentence
 written response. The two class groups receive different but equivalent forms.
@@ -90,8 +90,8 @@ quizzes and examinations will be published before the relevant units.
 | 4 | MATLAB numerical analysis and 3D plotting; Quiz 1 |
 | 5 | MATLAB symbolic math |
 | 6 | R Markdown and data visualization; Quiz 2 |
-| 7 | R workflow and data transformation |
-| 8 | Exploratory data analysis; semester examination (midterm) |
+| 7 | R workflow and data transformation; common midterm on Saturday, 10 October, 12:00-1:30 PM |
+| 8 | Exploratory data analysis |
 | 9 | Tibbles, data import, and tidy data; Quiz 3 |
 | 10 | Relational data, strings, factors, dates, and times |
 | 11 | Pipes and functions |
@@ -147,8 +147,8 @@ one group grade; each student continues to attend their registered class
 session.
 
 **Project 1:** MATLAB numerical investigation using a group-specific synthetic
-building-energy dataset. The exact due date is being aligned with the end of the
-MATLAB block.
+building-energy dataset. The complete group package is due through Blackboard
+on Thursday, 24 September 2026, at 9:00 AM UAE time.
 
 **Project 2:** R data analysis, modeling, and validation using richer training
 data and a withheld validation file, due around Week 15.
@@ -157,13 +157,13 @@ The project stages are fixed relative to the teaching sequence:
 
 | Project | Preview | Group package | Checkpoint and later release | Completion window |
 |---|---|---|---|---|
-| Project 1 | Week 3 | MATLAB package in Week 4 | Readiness check in Week 5 | After Week 5; exact date announced later |
+| Project 1 | Week 3 | MATLAB package in Week 4 | Readiness check in the first Week 5 session | Thursday, 24 September 2026, 9:00 AM UAE time |
 | Project 2 | Weeks 9-10 | R training package in Week 12 | Frozen plan after Week 13; validation in Week 14 | Week 15; exact date announced later |
 
 The [project milestone map](../projects/project-milestones.qmd) explains what is
-released through Blackboard and what students do at each gate. These
-week-relative stages do not settle the deferred quiz, midterm, or calendar
-details.
+released through Blackboard and what students do at each gate. Confirmed dates
+are published on the relevant assessment or project page; Blackboard remains
+authoritative for access windows and submission logistics.
 
 Students submit a PDF report together with executable source code and required
 machine-readable results. They are not required to find or collect a dataset,

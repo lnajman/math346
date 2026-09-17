@@ -8,7 +8,7 @@ description: "Format, scope, rules, and preparation for the first MATH 346 quiz.
 | Item | Quiz 1 arrangement |
 |---|---|
 | When | In class during Week 4; the calendar date and meeting appear in Blackboard |
-| Duration | 12 minutes |
+| Duration | 15 minutes |
 | Delivery | Blackboard, one attempt |
 | Format | 10 multiple-choice and 2 one-sentence questions across 6 content blocks |
 | Work mode | Individual |
@@ -21,6 +21,8 @@ its result, and choose an appropriate validation step. Each of the six content
 blocks contains two short questions, for 12 questions and 12 points in total.
 Ten questions are multiple-choice; two ask for a response of at most one
 sentence. It does not ask you to write a long program from a blank page.
+The 15-minute duration includes time for Blackboard to load and move between
+the questions when they are displayed one at a time.
 
 The six content blocks sample these ideas:
 

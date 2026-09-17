@@ -53,12 +53,14 @@ Suggested 75-minute rhythm:
 
 | Time | Activity |
 |---:|---|
-| 0-8 min | Warm-up: compare `1/3`, `sym(1)/3`, and a finite decimal |
-| 8-20 min | Live coding: symbolic variables, expressions, and assumptions |
-| 20-35 min | Manipulation: `simplify`, `expand`, and `factor` |
-| 35-50 min | Calculus: `diff`, `int`, and verification by reversing the operation |
-| 50-62 min | Solving equations: domain restrictions and inadmissible roots |
-| 62-71 min | Student check: exact definite integral versus `integral` |
+| 0-7 min | Quiz 1 follow-up: vector shape, clean-workspace reliability, and fit/check evidence |
+| 7-15 min | Warm-up: compare `1/3`, `sym(1)/3`, and a finite decimal |
+| 15-26 min | Live coding: symbolic variables, expressions, and assumptions |
+| 26-37 min | Manipulation: `simplify`, `expand`, and `factor` |
+| 37-50 min | Calculus: `diff`, `int`, and verification by reversing the operation |
+| 50-60 min | Solving equations: domain restrictions and inadmissible roots |
+| 60-65 min | Student check: exact definite integral versus `integral` |
+| 65-71 min | Project 1 readiness checkpoint |
 | 71-75 min | Exit ticket: one assumption that must be written down |
 
 ### Core MATLAB Patterns
@@ -105,11 +107,11 @@ Suggested 75-minute rhythm:
 | Time | Activity |
 |---:|---|
 | 0-10 min | Translate volume and surface area into symbolic expressions |
-| 10-25 min | Record the physical assumptions `r > 0` and `V > 0` |
-| 25-40 min | Differentiate, solve for a stationary point, and substitute back |
-| 40-52 min | Check the second derivative and behavior near domain boundaries |
-| 52-63 min | Convert with `matlabFunction`; compare with `fminbnd` and a plot |
-| 63-71 min | AI critique: correct-looking radius with no proof or domain statement |
+| 10-23 min | Record the physical assumptions `r > 0` and `V > 0` |
+| 23-38 min | Differentiate, solve for a stationary point, and substitute back |
+| 38-50 min | Check the second derivative and behavior near domain boundaries |
+| 50-63 min | Convert with `matlabFunction`; compare with `fminbnd` and a plot |
+| 63-71 min | AI critique and repair: correct-looking radius with insufficient evidence |
 | 71-75 min | Exit ticket: list the evidence supporting the word “minimum” |
 
 ### Symbolic-To-Numerical Pattern
@@ -231,13 +233,19 @@ repair without relying on AI.
 - Check units and boundary behavior in an applied problem.
 - Explain whether the exact form is actually useful for the original question.
 
-## Project 1 Readiness Checkpoint
+## Project 1 Readiness Checkpoint And Submission
 
-Before moving into the completion window, each group checks that its main
-script finds the assigned data, `model_rmse.m` passes a hand-checkable test, and
-at least one fitted relationship or figure can be reproduced. This is a guided
-progress check, not a second report or separate graded submission. The exact
-final deadline remains coordinated with the Quiz 2 calendar decision.
+During the **first session of Week 5**, each group checks that its main script
+finds the assigned data from a clean workspace, `model_rmse.m` passes a
+hand-checkable test, and at least one fitted relationship or figure can be
+reproduced. This is a guided progress check, not a second report or separate
+graded submission.
+
+The final Project 1 package is due through the Blackboard Group Assignment on
+**Thursday, 24 September 2026, at 9:00 AM UAE time**. One group member uploads
+the complete package, and every group member verifies the Blackboard receipt.
+The published project late penalty applies after 9:00 AM. No material first
+taught in the second Week 5 session is required for Project 1.
 
 See the [project milestone map](../projects/project-milestones.qmd).
 

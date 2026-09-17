@@ -10,6 +10,15 @@ Submit a **PDF report**, MATLAB source files, and the required results CSV. No
 Quarto or HTML document is required.
 :::
 
+::: {.callout-important}
+## Deadline
+
+The complete Project 1 package is due through the Blackboard Group Assignment
+on **Thursday, 24 September 2026, at 9:00 AM UAE time**. One group member
+uploads the package, and every group member verifies the Blackboard receipt.
+The published late penalty applies after 9:00 AM.
+:::
+
 ## Purpose
 
 Project 1 brings together the MATLAB portion of the course. Each team analyzes
@@ -32,15 +41,15 @@ teams will obtain different coefficients, prediction errors, and conclusions.
   project analysis is due.
 - **Week 4 release:** download the assigned group ZIP from Blackboard and check
   that the group identifier and files are correct.
-- **Week 5 readiness checkpoint:** demonstrate a working data path, the tested
-  RMSE function, and at least one reproducible fit or figure.
-- **After Week 5 completion window:** finish, clean-run, reconcile, and submit
-  one group package. The exact deadline is announced later in coordination
-  with Quiz 2.
+- **Week 5 first-session readiness checkpoint:** demonstrate a working data
+  path from a clean workspace, the tested RMSE function, and at least one
+  reproducible fit or figure.
+- **Thursday, 24 September, at 9:00 AM UAE time:** finish, clean-run,
+  reconcile, and submit one complete group package through Blackboard.
 
 The complete [project milestone map](project-milestones.qmd) distinguishes each
-Blackboard release and checkpoint. No new Project 1 technical requirement is
-introduced after Week 5.
+Blackboard release and checkpoint. No material first taught in the second Week
+5 session is required for Project 1.
 
 ## Files Provided
 
