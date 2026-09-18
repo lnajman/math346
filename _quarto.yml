@@ -46,6 +46,8 @@ website:
         text: Code
       - href: resources/index.qmd
         text: Resources
+      - href: llm-use.qmd
+        text: LLM Use
   sidebar:
     - title: "Course"
       style: "docked"
@@ -53,6 +55,7 @@ website:
         - index.qmd
         - syllabus/index.qmd
         - syllabus/ai-policy.qmd
+        - llm-use.qmd
         - resources/software-requirements.qmd
         - weeks/index.qmd
         - weeks/workload-guide.qmd

@@ -44,6 +44,10 @@ Before the first class:
 4. Read the [workload guide](weeks/workload-guide.qmd): material visible on the
    site is not automatically assigned.
 
+The [LLM-use statement](llm-use.qmd) explains how OpenAI Codex assisted the
+instructor in developing this website and its supporting course materials. It
+is separate from the policy governing student AI use.
+
 ::: {.callout-note}
 ## Instructor And Class Information
 

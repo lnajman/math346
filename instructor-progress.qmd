@@ -12,7 +12,7 @@ final delivery check before use. Quiz 2 now has complete public and private
 delivery packages; the common midterm has a confirmed date and still needs its
 detailed instrument.**
 
-Last updated: **17 September 2026**
+Last updated: **18 September 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -25,7 +25,7 @@ the motivation and the kind of feedback being requested.
 |---|---|---|---|
 | Student-facing course site | **Published and active** | Student-first [home](index.qmd), navigation, [weekly materials](weeks/index.qmd), [glossary](resources/glossary.qmd), and three recovery checkpoints | Keep current pages, assessment dates, and Blackboard logistics aligned |
 | Course administration and classroom policy | **Published** | [Home](index.qmd), [syllabus](syllabus/index.qmd), and [Quiz 1 guide](assessments/quiz-01.qmd) | Keep Banner and Blackboard logistics current |
-| Course framing and AI policy | Developed | [Syllabus](syllabus/index.qmd) and [AI policy](syllabus/ai-policy.qmd) | Revise after assessment decisions |
+| Course framing, AI policy, and development disclosure | **Published** | [Syllabus](syllabus/index.qmd), student [AI policy](syllabus/ai-policy.qmd), and course-development [LLM-use statement](llm-use.qmd) | Keep assessment-specific student rules aligned with the general policy |
 | Colleague feedback | Requested | [Instructor preview](instructor-preview.qmd) shared for review | Record and synthesize responses |
 | Weeks 1-4: opening MATLAB block | **Established course pattern** | Week pages, slides, labs, exercises, checked MATLAB code, and separate Week 4 session delivery scripts with quiz-day overlays | Carry student evidence and pacing lessons into each upcoming week |
 | Week 5: symbolic mathematics | **Classroom-ready** | Two-meeting plan, full slides, two labs, exercises, four checked MATLAB scripts, and two detailed instructor PDFs | Deliver both sessions and use exit responses plus Project 1 blockers to refine the R transition |
@@ -283,6 +283,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 18 September 2026 | A public LLM-use statement was added to the primary navigation and home page. It explains how OpenAI Codex assisted course development, makes instructor authority and responsibility explicit, describes iterative review and limitations, and distinguishes this disclosure from the Responsible AI Use policy governing student work. |
 | 17 September 2026 | Pre-semester "launch block" and "later roadmap" wording was removed. The live site now presents one complete 15-week course sequence, keeps completed weeks available for review, and directs students to current pages plus Blackboard for assigned work and logistics. The weekly index, syllabus, assessment page, and Week 7-8 pages were aligned with the confirmed midterm placement. |
 | 17 September 2026 | Project 1 was fixed for Thursday, 24 September 2026, at 9:00 AM UAE time. Its readiness checkpoint moved to the first Week 5 session, leaving time for students to resolve blockers. Session 2 now uses the released minutes for a fuller numerical comparison and AI-claim repair. The Week 5 slides, project pages, milestone map, syllabus, implementation guide, and instructor scripts were aligned. |
 | 17 September 2026 | Week 5 became classroom-ready through two detailed instructor scripts. Session 1 integrates the seven-minute Quiz 1 evidence review before symbolic expressions and checks; it now also contains the formative Project 1 readiness checkpoint. Session 2 develops the complete tank-minimum evidence chain and extended AI-claim repair. Both scripts contain copy-ready Blackboard exit questions. |

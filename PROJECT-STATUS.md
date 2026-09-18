@@ -45,7 +45,10 @@ published, and the previously broken Quarto documentation link is corrected.
 The student home and syllabus now also publish the instructor contact,
 Banner/Blackboard/website roles, office-hour arrangement, missed-assessment
 rules, late-project penalty, and the approved five-minute classroom lateness
-threshold.
+threshold. A separate public LLM-use statement now discloses how OpenAI Codex
+assisted course development, distinguishes that disclosure from the student AI
+policy, and confirms that course authority and final responsibility remain
+with the instructor.
 
 Detailed instructor scripts for both Week 4 sessions are now prepared as
 separate PDFs. Each preserves the complete 75-minute teaching sequence and
@@ -398,6 +401,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Quiz 2 | `assessments/quiz-02.qmd`; two private forms, answer-keyed bank, calibration notes, two validated QTI 2.1 ZIPs, and Blackboard checklist | Student contract and two equivalent 12-point import packages complete; live Blackboard import and rehearsal pending |
 | Glossary and recovery | `resources/glossary.qmd`; three `weeks/recovery-*.qmd` pages | Published as optional support |
 | Responsible AI policy | `syllabus/ai-policy.qmd` | Developed; still revisable |
+| Course-development LLM disclosure | `llm-use.qmd`; primary navigation and home-page link | Published; distinguishes development assistance from rules for student work |
 | Colleague review gateway | `instructor-preview.qmd` | Published and shared |
 | Colleague feedback | Responses are external to the repository | Requested; synthesis pending |
 | Course-wide audit | `instructor-course-audit.qmd` | Completed; workload recommendation implemented, other recommendations remain open |
@@ -453,6 +457,11 @@ milestone:
 
 ## History
 
+- **2026-09-18:** A public LLM-use statement was added to the primary
+  navigation and home page. It discloses how OpenAI Codex assisted with course
+  development, records the instructor's authority and responsibility, explains
+  the iterative review process and its limitations, and points students to the
+  separate Responsible AI Use policy for rules governing their own work.
 - **2026-09-17:** Pre-semester "launch block" and "later roadmap" wording was
   removed from the live website. The home page and weekly index now present the
   complete 15-week course sequence, retain completed weeks for review, and

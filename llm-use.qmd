@@ -1,0 +1,72 @@
+---
+title: "LLM-Use Statement"
+description: "How LLM assistance was used to develop the MATH 346 course website and materials."
+---
+
+## Purpose Of This Statement
+
+This page explains how large language model (LLM) assistance was used to
+develop this course website and its supporting materials. It is a disclosure
+about course development, not a rule governing student work.
+
+Student use of generative AI is governed by the [Responsible AI Use
+policy](syllabus/ai-policy.qmd), the [syllabus](syllabus/index.qmd), assessment
+instructions, and instructor announcements. Blackboard remains authoritative
+for current assessment and submission logistics.
+
+## How LLM Assistance Was Used
+
+This website was developed with assistance from OpenAI Codex, a coding and
+writing assistant. Codex helped the instructor:
+
+- draft, organize, and revise website pages;
+- turn the course plan into weekly notes, slides, labs, exercises, and code;
+- prepare project instructions, templates, synthetic-data infrastructure, and
+  validation tools;
+- develop assessment guides and instructor-facing implementation materials;
+- check internal consistency, links, code structure, and repeated terminology;
+- maintain progress records so that decisions and unfinished work remained
+  visible across a long redesign process.
+
+LLM assistance was iterative. Drafts were prompted, inspected, corrected,
+rewritten, tested where possible, and sometimes rejected. The published site
+should not be understood as the result of a single prompt or an autonomous
+course-generation process.
+
+## What The Instructor Determined
+
+All course policies, assessment rules, mathematical and statistical content,
+teaching priorities, project expectations, and final editorial decisions
+remain the responsibility of the instructor, Laurent Alain Najman.
+
+Important course decisions came from the instructor and the institutional
+context. These include the MATLAB-to-R sequence, the emphasis on validation
+and reproducibility, the assessment weights and calendar, the use of
+group-specific synthetic project data, the permitted role of AI, the
+requirements of Khalifa University, and revisions made in response to student
+work and classroom feedback. Codex helped express and implement these choices;
+it did not have authority to set them.
+
+## Review, Testing, And Limitations
+
+Generated suggestions were reviewed, modified, accepted, or rejected by the
+instructor. Computational materials were checked with available automated
+tests and manual review, and the course remains intentionally revisable when
+classroom evidence identifies a problem.
+
+LLMs can produce plausible but incorrect code, mathematics, references,
+interpretations, or policy language. Automated checks also have limits. A
+script that runs, a page that renders, or a numerical answer that looks
+reasonable is not by itself proof that the underlying reasoning is correct.
+
+## What This Means For Students
+
+Students should treat the published website as instructor-authored course
+material. The instructor is responsible for what is assigned and assessed,
+regardless of whether an LLM assisted during preparation.
+
+Students are encouraged to report errors, ambiguities, broken links, or
+inconsistencies. If sources appear to disagree, follow the most recent
+Blackboard announcement and contact the instructor. The existence of LLM
+assistance in course development does not change the rules for student AI use
+in a particular quiz, examination, lab, exercise, or project.
