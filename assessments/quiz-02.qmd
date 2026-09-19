@@ -35,8 +35,22 @@ The six content blocks sample these ideas:
 - symbolic exactness, assumptions, and admissible solutions;
 - stationary points and the additional evidence needed to support a minimum.
 
-Some questions share a short code fragment or table, but each question is
-scored separately. The two sections receive different but equivalent forms.
+Some questions share a short code fragment or evidence display, but each
+question is scored separately. The two sections receive equivalent forms that
+use substantially different representations and solution routes, rather than
+the same questions with changed numerical values.
+
+## Practice Quiz
+
+An ungraded practice quiz will be available in Blackboard. It has the same
+12-question rhythm and approximate first-attempt duration, but it does not
+reproduce either live form. Every practice block asks you to audit a plausible
+AI or student claim, identify missing evidence, or choose a stronger check.
+
+Use the first attempt as a 15-minute simulation without MATLAB or AI. The
+practice activity allows repeated attempts and self-check feedback; its score
+does not contribute to the course grade. The purpose is to practice the
+reasoning standard, not to memorize a template for the live quiz.
 
 ## Rules During The Quiz
 

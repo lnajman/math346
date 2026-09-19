@@ -12,7 +12,7 @@ final delivery check before use. Quiz 2 now has complete public and private
 delivery packages; the common midterm has a confirmed date and still needs its
 detailed instrument.**
 
-Last updated: **18 September 2026**
+Last updated: **19 September 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -40,7 +40,7 @@ the motivation and the kind of feedback being requested.
 | Week 14: many models and grouped evidence | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the alignment, uncertainty, and sensitivity workload |
 | Week 15: communication and synthesis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the evidence-reconciliation and clean-run workload |
 | Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time with the approved workload |
-| Quizzes and midterm | **Quiz 1 and Quiz 2 packages complete; midterm scheduled** | [Quiz 2 guide](assessments/quiz-02.qmd), two private forms and validated QTI banks. Common midterm: Saturday, 10 October, 12:00-13:30 | Rehearse Quiz 2 in Blackboard and design the 90-minute common midterm |
+| Quizzes and midterm | **Quiz 1 and Quiz 2 packages complete; midterm scheduled** | [Quiz 2 guide](assessments/quiz-02.qmd), code-first Form A, evidence-first Form B, separate audit-style practice quiz, and three validated QTI banks. Common midterm: Saturday, 10 October, 12:00-13:30 | Rehearse both live forms and the practice quiz in Blackboard, then design the 90-minute common midterm |
 | Projects | **Project 1 deadline fixed** | All 66 students are assigned to 33 groups; readiness occurs in the first Week 5 session; Project 1 is due Thursday, 24 September, 9:00 AM UAE time | Verify the Blackboard Group Assignment, receipt visibility, and common closing time |
 | Software and access | **Requirements approved; live systems pending** | [Student matrix](resources/software-requirements.qmd), two runnable setup checks, and [instructor checklist](resources/instructor-setup-checklist.qmd) | Run and record the checks on student laboratory accounts and in Blackboard |
 | Guided lab workflow | **Implemented; formative** | 16 MATLAB and 20 R starter/solution pairs; completion checklists replace routine submission language | Collect only explicitly announced Blackboard checkpoints and short exit checks |
@@ -283,6 +283,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 19 September 2026 | Quiz 2 Form B was redesigned as an evidence-first assessment rather than a numerical variant of Form A. It now uses different representations and solution routes while retaining the same competencies, item types, points, and 15-minute target. A separate ungraded practice quiz uses AI/student-claim audits, has model feedback for its written self-checks, and has its own validated Blackboard QTI package without reproducing either live form. |
 | 18 September 2026 | A public LLM-use statement was added to the primary navigation and home page. It explains how OpenAI Codex assisted course development, makes instructor authority and responsibility explicit, describes iterative review and limitations, and distinguishes this disclosure from the Responsible AI Use policy governing student work. |
 | 17 September 2026 | Pre-semester "launch block" and "later roadmap" wording was removed. The live site now presents one complete 15-week course sequence, keeps completed weeks available for review, and directs students to current pages plus Blackboard for assigned work and logistics. The weekly index, syllabus, assessment page, and Week 7-8 pages were aligned with the confirmed midterm placement. |
 | 17 September 2026 | Project 1 was fixed for Thursday, 24 September 2026, at 9:00 AM UAE time. Its readiness checkpoint moved to the first Week 5 session, leaving time for students to resolve blockers. Session 2 now uses the released minutes for a fuller numerical comparison and AI-claim repair. The Week 5 slides, project pages, milestone map, syllabus, implementation guide, and instructor scripts were aligned. |

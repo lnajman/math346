@@ -36,7 +36,11 @@ through Week 5, not material first taught in Week 6. Its public student guide,
 two equivalent private 12-point forms, answer rationales, 0/0.5/1 written
 rubrics, two validated QTI 2.1 banks, and Blackboard checklist are complete.
 Each form has nine conceptual/code-reading multiple-choice questions and three
-one-sentence written responses. The common midterm is fixed
+one-sentence written responses. Form A is code-first; Form B was redesigned as
+an evidence-first form with different representations and solution routes to
+reduce cross-day leakage. A separate ungraded audit-style practice quiz and
+validated QTI bank rehearse the same reasoning standard without reproducing
+either live form. The common midterm is fixed
 for Saturday, 10 October 2026, from 12:00 to 13:30, outside normal class hours
 so both sections sit it simultaneously. The detailed midterm architecture
 remains to be prepared.
@@ -398,7 +402,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Course administration and classroom policy | `index.qmd`; `syllabus/index.qmd`; `assessments/quiz-01.qmd` | Instructor/contact/platform roles and approved attendance, missed-assessment, and late-project rules published |
 | Student-facing course site | `index.qmd`; `_quarto.yml`; `weeks/index.qmd` | Full 15-week sequence published; completed weeks retained for review; Blackboard authoritative for logistics |
 | Quiz 1 | `assessments/quiz-01.qmd`; two private forms, answer-keyed bank, calibration notes, two validated QTI 2.1 ZIPs, and Blackboard checklist | Student contract and two equivalent 12-point import packages complete; live Blackboard import and rehearsal pending |
-| Quiz 2 | `assessments/quiz-02.qmd`; two private forms, answer-keyed bank, calibration notes, two validated QTI 2.1 ZIPs, and Blackboard checklist | Student contract and two equivalent 12-point import packages complete; live Blackboard import and rehearsal pending |
+| Quiz 2 | `assessments/quiz-02.qmd`; two structurally distinct private forms, answer-keyed bank, calibration notes, two validated QTI 2.1 ZIPs, audit-style practice form and validated practice QTI, and Blackboard checklists | Student contract, two equivalent live packages, and ungraded practice package complete; live Blackboard import and rehearsal pending |
 | Glossary and recovery | `resources/glossary.qmd`; three `weeks/recovery-*.qmd` pages | Published as optional support |
 | Responsible AI policy | `syllabus/ai-policy.qmd` | Developed; still revisable |
 | Course-development LLM disclosure | `llm-use.qmd`; primary navigation and home-page link | Published; distinguishes development assistance from rules for student work |
@@ -431,9 +435,10 @@ agreed core project architecture is incorporated into the syllabus.
    before each upcoming block is taught.
 3. Deliver the two Week 5 sessions, collect their exit responses and Project 1
    readiness blockers, and record any revision needed before the R transition.
-4. Import and rehearse both Quiz 2 forms in Blackboard for 30 September and 1
-   October, then design the common 90-minute midterm for 10 October; retain
-   both regular Week 7 meetings for teaching and review.
+4. Import and rehearse both Quiz 2 forms plus the ungraded practice form in
+   Blackboard for 30 September and 1 October, then design the common 90-minute
+   midterm for 10 October; retain both regular Week 7 meetings for teaching and
+   review.
 5. Verify the Project 1 Blackboard Group Assignment, one-submission-per-group
    workflow, receipt visibility, and 24 September 9:00 AM UAE closing time.
 6. Place the remaining Project 2 gates on exact Blackboard dates after the
@@ -457,6 +462,14 @@ milestone:
 
 ## History
 
+- **2026-09-19:** Quiz 2 Form B was redesigned to reduce cross-day leakage.
+  Form A remains code-first, while Form B now uses matrix indexing, competing
+  function contracts, an error-curve description, sign and derivative tables,
+  symbolic-to-numeric conversion, and physical-domain evidence. Both retain
+  the same six competencies, 9-MCQ/3-written structure, 12 points, and
+  15-minute target. A third, ungraded audit-style practice quiz was completed
+  with its own answer feedback, Blackboard instructions, and validated QTI 2.1
+  package; it does not reproduce either live form.
 - **2026-09-18:** A public LLM-use statement was added to the primary
   navigation and home page. It discloses how OpenAI Codex assisted with course
   development, records the instructor's authority and responsibility, explains
