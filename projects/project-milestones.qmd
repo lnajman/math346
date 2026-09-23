@@ -41,7 +41,7 @@ do not require the complete team to attend one session together.
 | **Week 3** | Preview | Public project page, data dictionary, report template, required filenames, and a view of the building-energy question | Confirm the group and group number; inspect the task and file structure. No project analysis is due. |
 | **Week 4** | Assigned package release | One group-specific MATLAB ZIP through Blackboard | Extract the ZIP without renaming its contents; check the group identifier; open the data and starter files; run the starter far enough to reach its first marked task. |
 | **Week 5, first session** | Guided readiness checkpoint | Instructor-selected support using the released package | Show that the main script finds the assigned data from a clean workspace, the supplied RMSE function passes its hand-checkable test, and at least one checked fit or figure can be reproduced. This is a progress checkpoint, not a second project submission. |
-| **Thursday, 24 September 2026, 9:00 AM UAE time** | Final submission | Blackboard group submission area and final checklist | Complete the analysis, PDF, source, and generated results CSV; rerun from a clean folder; submit one group package; every member verifies the Blackboard receipt. |
+| **Thursday, 24 September 2026, 23:55 UAE time** | Final submission | Blackboard group submission area and final checklist | Complete the analysis, PDF, source, and generated results CSV; rerun from a clean folder; submit one group package; every member verifies the Blackboard receipt. |
 
 No material first taught in the second Week 5 session is required for Project
 1. The remaining time after the first-session checkpoint is for fixing known
@@ -93,7 +93,7 @@ diagnostics. Those are completed after the relevant Week 13-14 teaching.
 |---|---|---|---|
 | Project 1 preview | All students | Week 3 preview | Remains available |
 | Project 1 assigned ZIP | Corresponding group only | Week 4 release gate | Remains available through submission |
-| Project 1 group assignment | Corresponding group | Available before the Week 5 first-session checkpoint | Thursday, 24 September 2026, 9:00 AM UAE time |
+| Project 1 group assignment | Corresponding group | Available before the Week 5 first-session checkpoint | Thursday, 24 September 2026, 23:55 UAE time |
 | Project 2 preview | All students | Weeks 9-10 preview | Remains available |
 | Project 2 training ZIP | Corresponding group only | Week 12 release gate | Remains available through submission |
 | Frozen-model-plan checkpoint | Corresponding group | After Week 13 model instruction | Locks before validation release |

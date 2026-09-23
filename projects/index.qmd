@@ -18,7 +18,7 @@ below.
 
 | Project | Preview | Package release | Required gate | Completion window |
 |---|---|---|---|---|
-| Project 1 | Week 3 | Group MATLAB ZIP in Week 4 | Guided readiness checkpoint in the first Week 5 session | Thursday, 24 September 2026, 9:00 AM UAE time |
+| Project 1 | Week 3 | Group MATLAB ZIP in Week 4 | Guided readiness checkpoint in the first Week 5 session | Thursday, 24 September 2026, 23:55 UAE time |
 | Project 2 | Weeks 9-10 | Group R training ZIP in Week 12 | Frozen model plan after Week 13; validation release in Week 14 | Week 15; exact deadline announced later |
 
 See [Project Milestones](project-milestones.qmd) for what students receive,

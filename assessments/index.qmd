@@ -10,7 +10,7 @@ description: "Student-facing assessment information for MATH 346."
 - [Quiz 2](quiz-02.qmd): an individual, 15-minute, in-class Blackboard quiz on
   30 September or 1 October, covering MATLAB material from Weeks 1-5.
 - [Project 1](../projects/project-1-eda.qmd): one complete group package due
-  Thursday, 24 September 2026, at 9:00 AM UAE time.
+  Thursday, 24 September 2026, at 23:55 UAE time.
 
 ## Confirmed Upcoming Dates
 

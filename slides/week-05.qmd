@@ -179,11 +179,11 @@ Record an exact blocker and next action if any item fails.
 
 Due through the Blackboard Group Assignment:
 
-**Thursday, 24 September 2026, at 9:00 AM UAE time**
+**Thursday, 24 September 2026, at 23:55 UAE time**
 
 - one complete submission per group;
 - every member checks the Blackboard receipt;
-- the published late penalty applies after 9:00 AM.
+- the published late penalty applies after 23:55.
 
 No material first taught in Meeting 2 is required for Project 1.
 
@@ -306,4 +306,7 @@ Ask:
 
 ## Meeting 2 Exit Ticket
 
-A symbolic answer is trustworthy enough to report when ...
+What evidence is needed before you may describe a stationary radius as the
+material-minimizing tank design?
+
+Answer individually in **3-5 sentences**. No MATLAB code is required.

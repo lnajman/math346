@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-09-17
+Last updated: 2026-09-23
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -40,7 +40,11 @@ one-sentence written responses. Form A is code-first; Form B was redesigned as
 an evidence-first form with different representations and solution routes to
 reduce cross-day leakage. A separate ungraded audit-style practice quiz and
 validated QTI bank rehearse the same reasoning standard without reproducing
-either live form. The common midterm is fixed
+either live form. Following a failed Blackboard import on 20 September, all
+three Quiz 2 QTI packages were repaired to serialize assessment items in the
+default QTI namespace, given descriptive filenames and meaningful identifiers,
+and revalidated as 12-item banks. A repeat live import remains required. The
+common midterm is fixed
 for Saturday, 10 October 2026, from 12:00 to 13:30, outside normal class hours
 so both sections sit it simultaneously. The detailed midterm architecture
 remains to be prepared.
@@ -94,14 +98,18 @@ on the public site: Quiz 1 in Week 4, Quiz 2 in Week 6, the common Saturday
 midterm after Week 7, Quiz 3 in Week 9, and Quiz 4 in Week 13. Quiz 1 has a
 fixed student contract; Quiz 2 and the midterm now have confirmed calendar
 placement, while their remaining content and delivery details are still being
-prepared. Project 1 is due Thursday, 24 September 2026, at 9:00 AM UAE time;
+prepared. Project 1 is due Thursday, 24 September 2026, at 23:55 UAE time;
 its readiness checkpoint is in the first Week 5 session. Week 5 has
 now been expanded using the validated Weeks 1-4 pattern and passes the complete
 MATLAB validation harness. Separate classroom-ready instructor PDFs now cover
-both Week 5 sessions. Session 1 integrates the seven-minute Quiz 1 follow-up
-without dropping the symbolic-calculus checks and now includes the Project 1
-readiness checkpoint. Session 2 uses the released time for a fuller numerical
-comparison and AI-claim repair after the fixed-volume tank evidence chain.
+both Week 5 sessions. Session 1 integrates the seven-minute Quiz 1 follow-up,
+a five-minute evidence-based response to all 35 Week 4 Meeting 2 exit tickets,
+and the Project 1 readiness checkpoint without dropping the symbolic-calculus
+checks. The response reinforces substitution/residual, refinement, and known-
+value checks while correcting three weak standards: a plot alone, an undefined
+"small error," and agreement with an initial guess. Session 2 uses the released
+time for a fuller numerical comparison and AI-claim repair after the fixed-
+volume tank evidence chain.
 Both scripts provide exact wording, slide-to-MATLAB transitions, TA actions,
 timed student work, Blackboard exit questions, and time-loss contingencies.
 Week 6 has now been expanded into a beginner-safe
@@ -341,7 +349,7 @@ approved and published.
   when an assessment displaces class time.
 - Project 1 is previewed in Week 3, its group MATLAB package is released in Week
   4, and its readiness checkpoint occurs in the first Week 5 session. The
-  complete group package is due Thursday, 24 September 2026, at 9:00 AM UAE
+  complete group package is due Thursday, 24 September 2026, at 23:55 UAE
   time. No material first taught in the second Week 5 session is required.
 - Project 2 is previewed in Weeks 9-10, its group training package is released
   in Week 12, its model plan is frozen after Week 13, its validation package is
@@ -440,7 +448,7 @@ agreed core project architecture is incorporated into the syllabus.
    midterm for 10 October; retain both regular Week 7 meetings for teaching and
    review.
 5. Verify the Project 1 Blackboard Group Assignment, one-submission-per-group
-   workflow, receipt visibility, and 24 September 9:00 AM UAE closing time.
+   workflow, receipt visibility, and 24 September 23:55 UAE closing time.
 6. Place the remaining Project 2 gates on exact Blackboard dates after the
    remaining assessment conflicts are resolved.
 7. Record and synthesize colleague feedback that is not currently stored in
@@ -462,6 +470,23 @@ milestone:
 
 ## History
 
+- **2026-09-23:** Project 1's deadline was extended to Thursday, 24 September
+  2026, at 23:55 UAE time. Current website references and the Week 5 slides
+  were aligned. The Session 2 exit slide now asks what evidence supports a
+  material-minimizing tank design, with an individual 3-5 sentence response.
+- **2026-09-20:** The first live Blackboard import exposed a QTI serialization
+  defect in both Quiz 2 forms and the practice bank: every assessment item used
+  an `ns0:` prefix and Blackboard rejected all 12 resources. The generators
+  now restore the default QTI namespace for every item, reject prefixed output,
+  assign descriptive package filenames and meaningful manifest/resource/item
+  identifiers, and validate both descriptive and compatibility copies. A
+  repeat live import and student preview remain pending.
+- **2026-09-20:** Both Week 5 instructor scripts were regenerated and visually
+  checked after reconciling 35 Week 4 Meeting 2 exit tickets across the two
+  Blackboard exports. Session 1 now gives an anonymous five-minute response
+  built around answer, check, interpretation, and limitation; the Quiz 1
+  follow-up, symbolic lesson, Project 1 readiness checkpoint, and exit ticket
+  remain within the 75-minute plan.
 - **2026-09-19:** Quiz 2 Form B was redesigned to reduce cross-day leakage.
   Form A remains code-first, while Form B now uses matrix indexing, competing
   function contracts, an error-curve description, sign and derivative tables,

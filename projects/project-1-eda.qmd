@@ -14,9 +14,9 @@ Quarto or HTML document is required.
 ## Deadline
 
 The complete Project 1 package is due through the Blackboard Group Assignment
-on **Thursday, 24 September 2026, at 9:00 AM UAE time**. One group member
+on **Thursday, 24 September 2026, at 23:55 UAE time**. One group member
 uploads the package, and every group member verifies the Blackboard receipt.
-The published late penalty applies after 9:00 AM.
+The published late penalty applies after 23:55.
 :::
 
 ## Purpose
@@ -44,7 +44,7 @@ teams will obtain different coefficients, prediction errors, and conclusions.
 - **Week 5 first-session readiness checkpoint:** demonstrate a working data
   path from a clean workspace, the tested RMSE function, and at least one
   reproducible fit or figure.
-- **Thursday, 24 September, at 9:00 AM UAE time:** finish, clean-run,
+- **Thursday, 24 September, at 23:55 UAE time:** finish, clean-run,
   reconcile, and submit one complete group package through Blackboard.
 
 The complete [project milestone map](project-milestones.qmd) distinguishes each

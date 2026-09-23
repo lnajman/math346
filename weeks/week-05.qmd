@@ -242,9 +242,9 @@ reproduced. This is a guided progress check, not a second report or separate
 graded submission.
 
 The final Project 1 package is due through the Blackboard Group Assignment on
-**Thursday, 24 September 2026, at 9:00 AM UAE time**. One group member uploads
+**Thursday, 24 September 2026, at 23:55 UAE time**. One group member uploads
 the complete package, and every group member verifies the Blackboard receipt.
-The published project late penalty applies after 9:00 AM. No material first
+The published project late penalty applies after 23:55. No material first
 taught in the second Week 5 session is required for Project 1.
 
 See the [project milestone map](../projects/project-milestones.qmd).

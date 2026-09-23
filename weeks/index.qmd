@@ -26,7 +26,7 @@ use the current week's page and the latest Blackboard announcement.
 | [2](week-02.qmd) | Functions, control flow, and debugging | MATLAB | — |
 | [3](week-03.qmd) | Curve fitting, interpolation, and residual checks | MATLAB | Project 1 preview |
 | [4](week-04.qmd) | Numerical methods and 3D visualization | MATLAB | Quiz 1; Project 1 group package release |
-| [5](week-05.qmd) | Symbolic and numerical computation | MATLAB | Project 1 readiness; submission 24 September at 9:00 AM UAE time |
+| [5](week-05.qmd) | Symbolic and numerical computation | MATLAB | Project 1 readiness; submission 24 September at 23:55 UAE time |
 | [6](week-06.qmd) | MATLAB-to-R transition and reproducible reports | R | Quiz 2 on 30 September and 1 October |
 | [7](week-07.qmd) | Data transformation as question-answering | R | Common midterm on Saturday, 10 October, 12:00-1:30 PM |
 | [8](week-08.qmd) | Variation, covariation, and question refinement | R | — |
