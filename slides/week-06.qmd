@@ -220,12 +220,40 @@ A report combines:
 - interpretation;
 - limitations.
 
+## What Is Quarto?
+
+Quarto builds a readable report from **text, code, and computed results**.
+
+- **R** performs the calculations and creates plots.
+- **RStudio** is where we edit files and launch the work.
+- **Quarto** runs the report's code and assembles the document.
+
+Today: edit a supplied template, not a blank document.
+
+::: {.notes}
+Use this introduction within the existing report activity, not as an extra
+lecture. Say: "R does the calculation. Quarto puts the calculation, its output,
+and our explanation together. RStudio is the place where we work."
+:::
+
 ## Source And Rendered Output
 
 - `.qmd`: editable source, code, and prose
 - `.html`: rendered report for reading
 
-Edit the source, then render again.
+**Render** means: run the document's code and build the readable output.
+
+Edit `.qmd` → Render → read the new `.html`.
+
+Do not edit the HTML to fix your results: edit the source and render again.
+
+## Text Or Code?
+
+- Outside a code chunk: write your question and interpretation.
+- Inside a code chunk: write R commands that generate results.
+- The settings at the top control the title and output format.
+
+Keep the supplied structure. You do not need to learn all its settings today.
 
 ## Code Chunk
 
@@ -233,15 +261,62 @@ Edit the source, then render again.
 mean(mtcars$mpg)
 &#96;&#96;&#96;</code></pre>
 
-The rendered result is generated from the code.
+The opening line marks an **R code chunk**; the closing line ends it.
+
+R computes the mean: **20.090625**. Quarto includes the output in the report.
+
+Keep the chunk markers when editing the code inside them.
 
 ## Beginner Workflow
 
-1. Download the supplied template.
-2. Save it with the `.qmd` extension.
-3. Render it unchanged.
-4. Change one section.
-5. Render again from a clean session.
+1. Download the [supplied report template](../code/r/week06-first-report.qmd.txt).
+2. Save it as `week06-first-report.qmd`, **not** `.qmd.txt`.
+3. Open that file in RStudio.
+4. Click **Render** above the document editor.
+5. Inspect the generated HTML report.
+
+First render the template **unchanged**.
+
+::: {.notes}
+Switch to RStudio now. Show the filename, Render button, and resulting HTML.
+Point to one generated number and the code that produced it. This is the first
+part of the existing 15-minute report block in the Session 2 instructor script.
+:::
+
+## Your Turn: Edit And Render Again
+
+1. Replace the **Interpretation** placeholder with your own explanation.
+2. Save the `.qmd` file and click **Render** again.
+3. Check that the HTML contains your new wording.
+4. Check that your numerical claims match the generated results.
+
+Running a chunk alone does **not** rebuild the complete HTML report.
+
+::: {.notes}
+Keep student editing and inspection time. Do not ask students to copy a new
+document or write HTML. Show that code changes regenerate numbers and plots,
+but prose claims still need checking: Quarto does not correct the student's
+interpretation automatically.
+:::
+
+## If Rendering Fails
+
+- Check the file really ends in `.qmd`.
+- Read the first error: is a package or object missing?
+- The report must load packages and create its own objects.
+- Save the error message and ask the TA for help.
+
+A result made only in the console is not a reproducible report input.
+
+## Why Use This Workflow?
+
+Change code or data, then render: computed results and plots are rebuilt.
+
+**You must still check the calculations and update the interpretation.**
+
+Keep both source and output. This is formative practice, not a new submission.
+
+Project reports still use **PDF**; you are not required to author them in Quarto.
 
 ## Plausible But Weak AI Plot
 

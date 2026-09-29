@@ -52,6 +52,11 @@ need.
 
 ## What Has Been Established
 
+- The Week 6 slides now explicitly introduce Quarto, distinguish its role from
+  R and RStudio, and guide students through opening, rendering, editing, and
+  checking the supplied report. Troubleshooting and the unchanged PDF project
+  format are explicit; no additional submission is introduced.
+
 - All 36 guided worked-solution downloads now use `_sol.m` or `_sol.R`
   filenames, preventing confusion with starters saved in the same folder.
   Lab links, the code library, and validation paths use the new names;

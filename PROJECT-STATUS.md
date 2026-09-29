@@ -485,6 +485,12 @@ milestone:
 
 ## History
 
+- **2026-09-29:** Expanded the Week 6 report slides to explain Quarto's role
+  relative to R and RStudio, text versus code chunks, the Render button,
+  source/output differences, and an edit-render-check demonstration. This
+  remains within the existing scaffolded report activity, not a new submission
+  or a change to the PDF project-report requirement.
+
 - **2026-09-29:** Renamed all 36 public worked solutions with `_sol` before
   their extension (16 MATLAB, 20 R). Starter names are unchanged. Updated
   lab/code-library links and validation paths; the pair validator enforces
