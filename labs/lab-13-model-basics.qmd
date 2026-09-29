@@ -106,5 +106,5 @@ that the fitted training model cannot support.
 
 Open these only after attempting the corresponding starter:
 
-- [Simple linear model](../code/r/solutions/week13-simple-linear-model.R)
-- [Model diagnostics](../code/r/solutions/week13-model-diagnostics.R)
+- [Simple linear model](../code/r/solutions/week13-simple-linear-model_sol.R)
+- [Model diagnostics](../code/r/solutions/week13-model-diagnostics_sol.R)

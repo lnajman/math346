@@ -139,6 +139,6 @@ If you ask an LLM for help, include:
 
 Open these only after attempting the corresponding starter:
 
-- [Symbolic and numerical bridge](../code/matlab/solutions/week05_symbolic_numeric_bridge.m)
-- [Symbolic calculus checks](../code/matlab/solutions/week05_symbolic_calculus_checks.m)
-- [Tank optimization](../code/matlab/solutions/week05_tank_optimization.m)
+- [Symbolic and numerical bridge](../code/matlab/solutions/week05_symbolic_numeric_bridge_sol.m)
+- [Symbolic calculus checks](../code/matlab/solutions/week05_symbolic_calculus_checks_sol.m)
+- [Tank optimization](../code/matlab/solutions/week05_tank_optimization_sol.m)

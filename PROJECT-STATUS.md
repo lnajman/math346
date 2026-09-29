@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-09-23
+Last updated: 2026-09-29
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -112,6 +112,21 @@ time for a fuller numerical comparison and AI-claim repair after the fixed-
 volume tank evidence chain.
 Both scripts provide exact wording, slide-to-MATLAB transitions, TA actions,
 timed student work, Blackboard exit questions, and time-loss contingencies.
+Separate Week 6 instructor PDFs are now prepared in `output/pdf/`:
+`week-06-session-01-instructor-script.pdf` and
+`week-06-session-02-instructor-script.pdf`. They provide timed wording,
+slide-to-R transitions, expected outputs, TA actions, and Blackboard exit text.
+Session 1 includes six minutes of feedback on the Week 5 Session 2 exit;
+the separate `week-05-session-02-exit-feedback-script.pdf` distinguishes
+local-minimum evidence from a global tank-design justification. The two
+exports contain 34 records: 31 substantive responses, two unanswered entries,
+and one non-substantive entry. Student identities remain outside public pages.
+Session 2 explicitly budgets three minutes of launch plus the full 15-minute
+Quiz 2, with 57 minutes of teaching and contingencies for delays. The worked
+R basics and ggplot solutions were rerun successfully; live classroom report
+rendering remains a preflight check. These delivery PDFs are local instructor
+artifacts, not public assessment or student-response releases.
+
 Week 6 has now been expanded into a beginner-safe
 MATLAB-to-R transition with ordinary R scripts, checked visualizations, a
 supplied reproducible-report scaffold, and an AI plot-review activity. Its R
@@ -441,8 +456,8 @@ agreed core project architecture is incorporated into the syllabus.
    including Student Preview, timer, feedback, and accommodations.
 2. Continue collecting weekly student evidence and record concrete changes
    before each upcoming block is taught.
-3. Deliver the two Week 5 sessions, collect their exit responses and Project 1
-   readiness blockers, and record any revision needed before the R transition.
+3. Deliver the prepared Week 6 scripts, starting with the Week 5 exit feedback;
+   check R/Quarto access before class and record remaining beginner blockers.
 4. Import and rehearse both Quiz 2 forms plus the ungraded practice form in
    Blackboard for 30 September and 1 October, then design the common 90-minute
    midterm for 10 October; retain both regular Week 7 meetings for teaching and
@@ -469,6 +484,17 @@ milestone:
   colleagues to see.
 
 ## History
+
+- **2026-09-29:** Renamed all 36 public worked solutions with `_sol` before
+  their extension (16 MATLAB, 20 R). Starter names are unchanged. Updated
+  lab/code-library links and validation paths; the pair validator enforces
+  the distinct solution naming convention.
+
+- **2026-09-26:** Prepared two Week 6 instructor-script PDFs and a separate
+  six-minute Week 5 Session 2 exit-feedback PDF. Integrated local-versus-global
+  minimum feedback and protected Quiz 2 time in the R-transition lesson.
+  Rechecked the R basics and plot solutions successfully; classroom rendering
+  remains a live preflight task.
 
 - **2026-09-23:** Project 1's deadline was extended to Thursday, 24 September
   2026, at 23:55 UAE time. Current website references and the Week 5 slides

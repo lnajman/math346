@@ -7,12 +7,12 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 ## Current phase
 
 **The full student-facing course sequence is published. Weeks 1-4 established
-the teaching pattern, Week 5 is classroom-ready, and upcoming weeks receive a
+the teaching pattern, Weeks 5-6 have detailed delivery scripts, and upcoming weeks receive a
 final delivery check before use. Quiz 2 now has complete public and private
 delivery packages; the common midterm has a confirmed date and still needs its
 detailed instrument.**
 
-Last updated: **19 September 2026**
+Last updated: **29 September 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -29,7 +29,7 @@ the motivation and the kind of feedback being requested.
 | Colleague feedback | Requested | [Instructor preview](instructor-preview.qmd) shared for review | Record and synthesize responses |
 | Weeks 1-4: opening MATLAB block | **Established course pattern** | Week pages, slides, labs, exercises, checked MATLAB code, and separate Week 4 session delivery scripts with quiz-day overlays | Carry student evidence and pacing lessons into each upcoming week |
 | Week 5: symbolic mathematics | **Classroom-ready** | Two-meeting plan, full slides, two labs, exercises, four checked MATLAB scripts, and two detailed instructor PDFs | Deliver both sessions and use exit responses plus Project 1 blockers to refine the R transition |
-| Week 6: MATLAB-to-R transition | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, three checked R scripts, and a checked report scaffold | Review the transition workload for beginners |
+| Week 6: MATLAB-to-R transition | **Delivery scripts prepared** | Two timed instructor PDFs, a separate Week 5 exit-feedback script, slides, labs, checked R examples, and a report scaffold; Session 2 protects Quiz 2 time | Rehearse classroom R/Quarto access and rendering before delivery |
 | Week 7: data transformation | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the row-accounting and question-drift emphasis |
 | Week 8: exploratory data analysis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the finding/doubt/next-question discipline |
 | Week 9: import and tidy data | **Developed; ready for review** | Supplied synthetic CSV, two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the import-contract and observation-key workload |
@@ -51,6 +51,19 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- All 36 guided worked-solution downloads now use `_sol.m` or `_sol.R`
+  filenames, preventing confusion with starters saved in the same folder.
+  Lab links, the code library, and validation paths use the new names;
+  starter filenames remain unchanged.
+
+- On 26 September, two detailed Week 6 instructor scripts and a separate
+  six-minute feedback script were prepared. The feedback strengthens the
+  distinction between local and global optimization evidence. The second
+  session includes the full Quiz 2 timer, a launch allowance, and explicit
+  teaching cuts for delays. R example checks passed again; classroom report
+  rendering remains a live preflight check. Student responses and instructor
+  PDFs are not published on this page.
 
 - The course remains a mathematical and statistical software course using
   MATLAB and R.

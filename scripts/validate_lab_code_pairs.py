@@ -35,24 +35,24 @@ def check_pair(starter: Path, solution: Path, comment: str) -> None:
 for stem in matlab:
     check_pair(
         ROOT / "code" / "matlab" / f"{stem}.m",
-        ROOT / "code" / "matlab" / "solutions" / f"{stem}.m",
+        ROOT / "code" / "matlab" / "solutions" / f"{stem}_sol.m",
         "Possible worked solution",
     )
 
 for stem in r_scripts:
     check_pair(
         ROOT / "code" / "r" / f"{stem}.R",
-        ROOT / "code" / "r" / "solutions" / f"{stem}.R",
+        ROOT / "code" / "r" / "solutions" / f"{stem}_sol.R",
         "possible worked solution",
     )
 
 code_index = (ROOT / "code" / "index.qmd").read_text(encoding="utf-8")
 for stem in matlab:
-    for expected in (f"matlab/{stem}.m", f"matlab/solutions/{stem}.m"):
+    for expected in (f"matlab/{stem}.m", f"matlab/solutions/{stem}_sol.m"):
         if expected not in code_index:
             errors.append(f"code index does not expose paired file: {expected}")
 for stem in r_scripts:
-    for expected in (f"r/{stem}.R", f"r/solutions/{stem}.R"):
+    for expected in (f"r/{stem}.R", f"r/solutions/{stem}_sol.R"):
         if expected not in code_index:
             errors.append(f"code index does not expose paired file: {expected}")
 
@@ -68,7 +68,7 @@ for lab in main_labs:
         errors.append(f"guided lab lacks starter/solution note: {lab.relative_to(ROOT)}")
 
 for stem in matlab:
-    expected = f"../code/matlab/solutions/{stem}.m"
+    expected = f"../code/matlab/solutions/{stem}_sol.m"
     if expected not in main_lab_text:
         errors.append(f"guided labs do not link directly to solution: {expected}")
 
@@ -83,9 +83,14 @@ lab_index = (ROOT / "labs" / "index.qmd").read_text(encoding="utf-8")
 if "Labs are not routinely submitted or graded" not in lab_index:
     errors.append("lab index does not state the formative non-submission policy")
 for stem in r_scripts:
-    expected = f"../code/r/solutions/{stem}.R"
+    expected = f"../code/r/solutions/{stem}_sol.R"
     if expected not in main_lab_text:
         errors.append(f"guided labs do not link directly to solution: {expected}")
+
+for language, extension in (("matlab", ".m"), ("r", ".R")):
+    for solution in (ROOT / "code" / language / "solutions").glob(f"*{extension}"):
+        if not solution.stem.endswith("_sol"):
+            errors.append(f"solution lacks _sol suffix: {solution.relative_to(ROOT)}")
 
 if errors:
     print("Starter/solution validation failed:")

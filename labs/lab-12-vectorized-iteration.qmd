@@ -105,5 +105,5 @@ shape, generated output, missing or coerced results, and the repaired contract.
 
 Open these only after attempting the corresponding starter:
 
-- [Vectorized iteration](../code/r/solutions/week12-vectorized-iteration.R)
-- [Repeated workflow](../code/r/solutions/week12-repeated-workflow.R)
+- [Vectorized iteration](../code/r/solutions/week12-vectorized-iteration_sol.R)
+- [Repeated workflow](../code/r/solutions/week12-repeated-workflow_sol.R)

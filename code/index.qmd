@@ -7,6 +7,10 @@ setup and task prompts, but not the completed commands. After making a serious
 attempt, compare your work with the **possible solution**. A solution is one
 valid approach, not the only acceptable program.
 
+Solution downloads have `_sol` before the extension (for example,
+`week06-r-basics_sol.R`), so they remain distinguishable from starters when
+saved in the same folder. Starter filenames are unchanged.
+
 ## Setup Checks
 
 - [MATLAB and Symbolic Math Toolbox check](setup/check_matlab_setup.m)
@@ -20,47 +24,47 @@ the expected results and deadlines.
 
 | Workflow | Try first | Compare afterward |
 |---|---|---|
-| Week 1 arrays and plots | [Starter](matlab/week01_arrays_plotting.m) | [Possible solution](matlab/solutions/week01_arrays_plotting.m) |
-| Week 1 measured data | [Starter](matlab/week01_temperature_matrix.m) | [Possible solution](matlab/solutions/week01_temperature_matrix.m) |
-| Week 1 matrices and systems | [Starter](matlab/week01_matrix_systems.m) | [Possible solution](matlab/solutions/week01_matrix_systems.m) |
-| Week 2 functions and tests | [Starter](matlab/week02_function_tests.m) | [Possible solution](matlab/solutions/week02_function_tests.m) |
-| Week 2 piecewise validation | [Starter](matlab/week02_piecewise_validation.m) | [Possible solution](matlab/solutions/week02_piecewise_validation.m) |
-| Week 2 loop patterns | [Starter](matlab/week02_loop_patterns.m) | [Possible solution](matlab/solutions/week02_loop_patterns.m) |
-| Week 2 logical indexing | [Starter](matlab/week02_logical_indexing_switch.m) | [Possible solution](matlab/solutions/week02_logical_indexing_switch.m) |
-| Week 3 fitting, residuals, and new-data check | [Starter](matlab/week03_curve_fitting_validation.m) | [Possible solution](matlab/solutions/week03_curve_fitting_validation.m) |
-| Week 3 interpolation and fitting | [Starter](matlab/week03_interpolation_vs_fit.m) | [Possible solution](matlab/solutions/week03_interpolation_vs_fit.m) |
-| Week 3 polynomial tools | [Starter](matlab/week03_polynomial_tools.m) | [Possible solution](matlab/solutions/week03_polynomial_tools.m) |
-| Week 4 roots and integration | [Starter](matlab/week04_root_integration_checks.m) | [Possible solution](matlab/solutions/week04_root_integration_checks.m) |
-| Week 4 ODE checks | [Starter](matlab/week04_ode_solver_check.m) | [Possible solution](matlab/solutions/week04_ode_solver_check.m) |
-| Week 4 surfaces and contours | [Starter](matlab/week04_surface_contour_visualization.m) | [Possible solution](matlab/solutions/week04_surface_contour_visualization.m) |
-| Week 5 symbolic/numerical bridge | [Starter](matlab/week05_symbolic_numeric_bridge.m) | [Possible solution](matlab/solutions/week05_symbolic_numeric_bridge.m) |
-| Week 5 symbolic calculus | [Starter](matlab/week05_symbolic_calculus_checks.m) | [Possible solution](matlab/solutions/week05_symbolic_calculus_checks.m) |
-| Week 5 tank optimization | [Starter](matlab/week05_tank_optimization.m) | [Possible solution](matlab/solutions/week05_tank_optimization.m) |
+| Week 1 arrays and plots | [Starter](matlab/week01_arrays_plotting.m) | [Possible solution](matlab/solutions/week01_arrays_plotting_sol.m) |
+| Week 1 measured data | [Starter](matlab/week01_temperature_matrix.m) | [Possible solution](matlab/solutions/week01_temperature_matrix_sol.m) |
+| Week 1 matrices and systems | [Starter](matlab/week01_matrix_systems.m) | [Possible solution](matlab/solutions/week01_matrix_systems_sol.m) |
+| Week 2 functions and tests | [Starter](matlab/week02_function_tests.m) | [Possible solution](matlab/solutions/week02_function_tests_sol.m) |
+| Week 2 piecewise validation | [Starter](matlab/week02_piecewise_validation.m) | [Possible solution](matlab/solutions/week02_piecewise_validation_sol.m) |
+| Week 2 loop patterns | [Starter](matlab/week02_loop_patterns.m) | [Possible solution](matlab/solutions/week02_loop_patterns_sol.m) |
+| Week 2 logical indexing | [Starter](matlab/week02_logical_indexing_switch.m) | [Possible solution](matlab/solutions/week02_logical_indexing_switch_sol.m) |
+| Week 3 fitting, residuals, and new-data check | [Starter](matlab/week03_curve_fitting_validation.m) | [Possible solution](matlab/solutions/week03_curve_fitting_validation_sol.m) |
+| Week 3 interpolation and fitting | [Starter](matlab/week03_interpolation_vs_fit.m) | [Possible solution](matlab/solutions/week03_interpolation_vs_fit_sol.m) |
+| Week 3 polynomial tools | [Starter](matlab/week03_polynomial_tools.m) | [Possible solution](matlab/solutions/week03_polynomial_tools_sol.m) |
+| Week 4 roots and integration | [Starter](matlab/week04_root_integration_checks.m) | [Possible solution](matlab/solutions/week04_root_integration_checks_sol.m) |
+| Week 4 ODE checks | [Starter](matlab/week04_ode_solver_check.m) | [Possible solution](matlab/solutions/week04_ode_solver_check_sol.m) |
+| Week 4 surfaces and contours | [Starter](matlab/week04_surface_contour_visualization.m) | [Possible solution](matlab/solutions/week04_surface_contour_visualization_sol.m) |
+| Week 5 symbolic/numerical bridge | [Starter](matlab/week05_symbolic_numeric_bridge.m) | [Possible solution](matlab/solutions/week05_symbolic_numeric_bridge_sol.m) |
+| Week 5 symbolic calculus | [Starter](matlab/week05_symbolic_calculus_checks.m) | [Possible solution](matlab/solutions/week05_symbolic_calculus_checks_sol.m) |
+| Week 5 tank optimization | [Starter](matlab/week05_tank_optimization.m) | [Possible solution](matlab/solutions/week05_tank_optimization_sol.m) |
 
 ## R Lab Files
 
 | Workflow | Try first | Compare afterward |
 |---|---|---|
-| Week 6 R foundations | [Starter](r/week06-r-basics.R) | [Possible solution](r/solutions/week06-r-basics.R) |
-| Week 6 checked plots | [Starter](r/week06-ggplot-checks.R) | [Possible solution](r/solutions/week06-ggplot-checks.R) |
-| Week 7 transformation verbs | [Starter](r/week07-verb-checks.R) | [Possible solution](r/solutions/week07-verb-checks.R) |
-| Week 7 checked pipeline | [Starter](r/week07-dplyr-eda.R) | [Possible solution](r/solutions/week07-dplyr-eda.R) |
-| Week 8 EDA cycle | [Starter](r/week08-eda-cycle.R) | [Possible solution](r/solutions/week08-eda-cycle.R) |
-| Week 8 plot checks | [Starter](r/week08-plot-checks.R) | [Possible solution](r/solutions/week08-plot-checks.R) |
-| Week 9 import contract | [Starter](r/week09-import-contract.R) | [Possible solution](r/solutions/week09-import-contract.R) |
-| Week 9 tidy energy | [Starter](r/week09-tidy-energy.R) | [Possible solution](r/solutions/week09-tidy-energy.R) |
-| Week 10 typed data | [Starter](r/week10-clean-types.R) | [Possible solution](r/solutions/week10-clean-types.R) |
-| Week 10 join audit | [Starter](r/week10-join-audit.R) | [Possible solution](r/solutions/week10-join-audit.R) |
-| Week 11 readable pipeline | [Starter](r/week11-readable-pipeline.R) | [Possible solution](r/solutions/week11-readable-pipeline.R) |
-| Week 11 function contracts | [Starter](r/week11-function-contracts.R) | [Possible solution](r/solutions/week11-function-contracts.R) |
-| Week 12 vectorization and iteration | [Starter](r/week12-vectorized-iteration.R) | [Possible solution](r/solutions/week12-vectorized-iteration.R) |
-| Week 12 repeated workflow | [Starter](r/week12-repeated-workflow.R) | [Possible solution](r/solutions/week12-repeated-workflow.R) |
-| Week 13 linear model | [Starter](r/week13-simple-linear-model.R) | [Possible solution](r/solutions/week13-simple-linear-model.R) |
-| Week 13 diagnostics | [Starter](r/week13-model-diagnostics.R) | [Possible solution](r/solutions/week13-model-diagnostics.R) |
-| Week 14 many models | [Starter](r/week14-many-models.R) | [Possible solution](r/solutions/week14-many-models.R) |
-| Week 14 sensitivity | [Starter](r/week14-grouped-sensitivity.R) | [Possible solution](r/solutions/week14-grouped-sensitivity.R) |
-| Week 15 evidence bundle | [Starter](r/week15-evidence-bundle.R) | [Possible solution](r/solutions/week15-evidence-bundle.R) |
-| Week 15 artifact audit | [Starter](r/week15-cross-artifact-audit.R) | [Possible solution](r/solutions/week15-cross-artifact-audit.R) |
+| Week 6 R foundations | [Starter](r/week06-r-basics.R) | [Possible solution](r/solutions/week06-r-basics_sol.R) |
+| Week 6 checked plots | [Starter](r/week06-ggplot-checks.R) | [Possible solution](r/solutions/week06-ggplot-checks_sol.R) |
+| Week 7 transformation verbs | [Starter](r/week07-verb-checks.R) | [Possible solution](r/solutions/week07-verb-checks_sol.R) |
+| Week 7 checked pipeline | [Starter](r/week07-dplyr-eda.R) | [Possible solution](r/solutions/week07-dplyr-eda_sol.R) |
+| Week 8 EDA cycle | [Starter](r/week08-eda-cycle.R) | [Possible solution](r/solutions/week08-eda-cycle_sol.R) |
+| Week 8 plot checks | [Starter](r/week08-plot-checks.R) | [Possible solution](r/solutions/week08-plot-checks_sol.R) |
+| Week 9 import contract | [Starter](r/week09-import-contract.R) | [Possible solution](r/solutions/week09-import-contract_sol.R) |
+| Week 9 tidy energy | [Starter](r/week09-tidy-energy.R) | [Possible solution](r/solutions/week09-tidy-energy_sol.R) |
+| Week 10 typed data | [Starter](r/week10-clean-types.R) | [Possible solution](r/solutions/week10-clean-types_sol.R) |
+| Week 10 join audit | [Starter](r/week10-join-audit.R) | [Possible solution](r/solutions/week10-join-audit_sol.R) |
+| Week 11 readable pipeline | [Starter](r/week11-readable-pipeline.R) | [Possible solution](r/solutions/week11-readable-pipeline_sol.R) |
+| Week 11 function contracts | [Starter](r/week11-function-contracts.R) | [Possible solution](r/solutions/week11-function-contracts_sol.R) |
+| Week 12 vectorization and iteration | [Starter](r/week12-vectorized-iteration.R) | [Possible solution](r/solutions/week12-vectorized-iteration_sol.R) |
+| Week 12 repeated workflow | [Starter](r/week12-repeated-workflow.R) | [Possible solution](r/solutions/week12-repeated-workflow_sol.R) |
+| Week 13 linear model | [Starter](r/week13-simple-linear-model.R) | [Possible solution](r/solutions/week13-simple-linear-model_sol.R) |
+| Week 13 diagnostics | [Starter](r/week13-model-diagnostics.R) | [Possible solution](r/solutions/week13-model-diagnostics_sol.R) |
+| Week 14 many models | [Starter](r/week14-many-models.R) | [Possible solution](r/solutions/week14-many-models_sol.R) |
+| Week 14 sensitivity | [Starter](r/week14-grouped-sensitivity.R) | [Possible solution](r/solutions/week14-grouped-sensitivity_sol.R) |
+| Week 15 evidence bundle | [Starter](r/week15-evidence-bundle.R) | [Possible solution](r/solutions/week15-evidence-bundle_sol.R) |
+| Week 15 artifact audit | [Starter](r/week15-cross-artifact-audit.R) | [Possible solution](r/solutions/week15-cross-artifact-audit_sol.R) |
 
 The supplied Week 6 report scaffold remains a template rather than an answer:
 

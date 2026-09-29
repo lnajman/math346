@@ -117,7 +117,7 @@ If you ask an LLM for a function, include:
 
 Open these only after attempting the corresponding starter:
 
-- [Functions and tests](../code/matlab/solutions/week02_function_tests.m)
-- [Piecewise validation](../code/matlab/solutions/week02_piecewise_validation.m)
-- [Loop patterns](../code/matlab/solutions/week02_loop_patterns.m)
-- [Logical indexing and switch](../code/matlab/solutions/week02_logical_indexing_switch.m)
+- [Functions and tests](../code/matlab/solutions/week02_function_tests_sol.m)
+- [Piecewise validation](../code/matlab/solutions/week02_piecewise_validation_sol.m)
+- [Loop patterns](../code/matlab/solutions/week02_loop_patterns_sol.m)
+- [Logical indexing and switch](../code/matlab/solutions/week02_logical_indexing_switch_sol.m)

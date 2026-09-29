@@ -105,5 +105,5 @@ performed.
 
 Open these only after attempting the corresponding starter:
 
-- [Evidence bundle](../code/r/solutions/week15-evidence-bundle.R)
-- [Cross-artifact audit](../code/r/solutions/week15-cross-artifact-audit.R)
+- [Evidence bundle](../code/r/solutions/week15-evidence-bundle_sol.R)
+- [Cross-artifact audit](../code/r/solutions/week15-cross-artifact-audit_sol.R)

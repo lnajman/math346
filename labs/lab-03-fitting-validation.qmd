@@ -148,6 +148,6 @@ Include the prompt and the part of the answer that changed or challenged your mo
 
 Open these only after attempting the corresponding starter:
 
-- [Curve fitting and validation](../code/matlab/solutions/week03_curve_fitting_validation.m)
-- [Interpolation versus fitting](../code/matlab/solutions/week03_interpolation_vs_fit.m)
-- [Polynomial tools](../code/matlab/solutions/week03_polynomial_tools.m)
+- [Curve fitting and validation](../code/matlab/solutions/week03_curve_fitting_validation_sol.m)
+- [Interpolation versus fitting](../code/matlab/solutions/week03_interpolation_vs_fit_sol.m)
+- [Polynomial tools](../code/matlab/solutions/week03_polynomial_tools_sol.m)

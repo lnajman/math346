@@ -142,5 +142,5 @@ do, include:
 
 Open these only after attempting the corresponding starter:
 
-- [R foundations](../code/r/solutions/week06-r-basics.R)
-- [Checked ggplot workflow](../code/r/solutions/week06-ggplot-checks.R)
+- [R foundations](../code/r/solutions/week06-r-basics_sol.R)
+- [Checked ggplot workflow](../code/r/solutions/week06-ggplot-checks_sol.R)

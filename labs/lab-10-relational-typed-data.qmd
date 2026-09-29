@@ -106,5 +106,5 @@ its code.
 
 Open these only after attempting the corresponding starter:
 
-- [Clean and type data](../code/r/solutions/week10-clean-types.R)
-- [Join audit](../code/r/solutions/week10-join-audit.R)
+- [Clean and type data](../code/r/solutions/week10-clean-types_sol.R)
+- [Join audit](../code/r/solutions/week10-join-audit_sol.R)

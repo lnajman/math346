@@ -102,5 +102,5 @@ interpretation.
 
 Open these only after attempting the corresponding starter:
 
-- [Many models](../code/r/solutions/week14-many-models.R)
-- [Grouped sensitivity](../code/r/solutions/week14-grouped-sensitivity.R)
+- [Many models](../code/r/solutions/week14-many-models_sol.R)
+- [Grouped sensitivity](../code/r/solutions/week14-grouped-sensitivity_sol.R)

@@ -118,6 +118,6 @@ You may ask an LLM for help with MATLAB plotting syntax. If you do, record:
 
 Open these only after attempting the corresponding starter:
 
-- [Arrays and plotting](../code/matlab/solutions/week01_arrays_plotting.m)
-- [Measured data](../code/matlab/solutions/week01_temperature_matrix.m)
-- [Matrices and linear systems](../code/matlab/solutions/week01_matrix_systems.m)
+- [Arrays and plotting](../code/matlab/solutions/week01_arrays_plotting_sol.m)
+- [Measured data](../code/matlab/solutions/week01_temperature_matrix_sol.m)
+- [Matrices and linear systems](../code/matlab/solutions/week01_matrix_systems_sol.m)

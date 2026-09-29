@@ -97,5 +97,5 @@ test cases, any behavior drift, and the repaired function.
 
 Open these only after attempting the corresponding starter:
 
-- [Readable pipeline](../code/r/solutions/week11-readable-pipeline.R)
-- [Function contracts](../code/r/solutions/week11-function-contracts.R)
+- [Readable pipeline](../code/r/solutions/week11-readable-pipeline_sol.R)
+- [Function contracts](../code/r/solutions/week11-function-contracts_sol.R)

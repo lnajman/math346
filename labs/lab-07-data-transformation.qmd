@@ -143,5 +143,5 @@ before accepting any result.
 
 Open these only after attempting the corresponding starter:
 
-- [One-verb checks](../code/r/solutions/week07-verb-checks.R)
-- [Checked transformation workflow](../code/r/solutions/week07-dplyr-eda.R)
+- [One-verb checks](../code/r/solutions/week07-verb-checks_sol.R)
+- [Checked transformation workflow](../code/r/solutions/week07-dplyr-eda_sol.R)
