@@ -107,6 +107,9 @@ Blackboard.
 
 ## Weekly Workload
 
+For the common examination on 10 October, see the [midterm student
+guide](../assessments/midterm.qmd). It covers Weeks 1-6 only; Week 7 is excluded.
+
 The website is a complete resource bank; not every visible activity is due. In
 an ordinary week, students attend the two class meetings, complete the
 instructor-selected checkpoints of one guided main lab, attempt 4-6 core

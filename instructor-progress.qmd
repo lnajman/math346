@@ -9,10 +9,10 @@ description: "A concise, shareable status report for the MATH 346 redesign."
 **The full student-facing course sequence is published. Weeks 1-4 established
 the teaching pattern, Weeks 5-6 have detailed delivery scripts, and upcoming weeks receive a
 final delivery check before use. Quiz 2 now has complete public and private
-delivery packages; the common midterm has a confirmed date and still needs its
-detailed instrument.**
+delivery packages; the common midterm now has a private paper-exam draft and
+marking guide awaiting final review and a timed pilot.**
 
-Last updated: **29 September 2026**
+Last updated: **4 October 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -40,7 +40,7 @@ the motivation and the kind of feedback being requested.
 | Week 14: many models and grouped evidence | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the alignment, uncertainty, and sensitivity workload |
 | Week 15: communication and synthesis | **Developed; ready for review** | Two-meeting plan, full slides, two labs, exercises, and three checked R scripts | Review the evidence-reconciliation and clean-run workload |
 | Course-wide coherence and workload | **Audit completed; workload contract approved** | [Full audit](instructor-course-audit.qmd) and [student workload guide](weeks/workload-guide.qmd) | Reconcile assessment time with the approved workload |
-| Quizzes and midterm | **Quiz 1 and Quiz 2 packages complete; midterm scheduled** | [Quiz 2 guide](assessments/quiz-02.qmd), code-first Form A, evidence-first Form B, separate audit-style practice quiz, and three validated QTI banks. Common midterm: Saturday, 10 October, 12:00-13:30 | Rehearse both live forms and the practice quiz in Blackboard, then design the 90-minute common midterm |
+| Quizzes and midterm | **Quiz packages complete; private midterm draft prepared** | [Quiz 2 guide](assessments/quiz-02.qmd) and private delivery packages. Common paper midterm: Saturday, 10 October, 12:00-13:30; student paper and marking guide prepared privately | Complete instructor review and timed TA pilot before release |
 | Projects | **Project 1 deadline fixed** | All 66 students are assigned to 33 groups; readiness occurs in the first Week 5 session; Project 1 is due Thursday, 24 September, 23:55 UAE time | Verify the Blackboard Group Assignment, receipt visibility, and common closing time |
 | Software and access | **Requirements approved; live systems pending** | [Student matrix](resources/software-requirements.qmd), two runnable setup checks, and [instructor checklist](resources/instructor-setup-checklist.qmd) | Run and record the checks on student laboratory accounts and in Blackboard |
 | Guided lab workflow | **Implemented; formative** | 16 MATLAB and 20 R starter/solution pairs; completion checklists replace routine submission language | Collect only explicitly announced Blackboard checkpoints and short exit checks |
@@ -51,6 +51,21 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- A [midterm student guide](assessments/midterm.qmd) now provides the approved
+  scope, format, permitted materials, marking conventions, and revision advice.
+  It is linked from the course navigation and relevant pages; live questions
+  and answers remain private. The site build and guide links pass validation.
+
+- The common paper midterm draft covers Weeks 1-6 only, not Week 7. Students
+  may use one handwritten A4 sheet on both sides; calculators are not permitted.
+  The private LaTeX draft now combines six conceptual MCQs (12 marks) with
+  short written work (48 marks), preserving the 60-mark total and MATLAB/R
+  balance. Written responses retain space and partial-credit guidance. Both
+  private PDF versions now include the adapted bilingual university cover,
+  without a duplicate title page, and their layouts have been reviewed.
+  Final review and a timed human
+  pilot remain release gates; live questions and solutions are not published.
 
 - The Week 6 slides now explicitly introduce Quarto, distinguish its role from
   R and RStudio, and guide students through opening, rendering, editing, and
@@ -287,8 +302,9 @@ architecture, but they block approval of the final calendar and release plan:
 
 1. What should Quizzes 3-4 measure and how should they be delivered? Quiz 2 is
    fully specified; only its live Blackboard rehearsal remains.
-2. How should the common 90-minute Saturday midterm combine code reading,
-   implementation, and validation?
+2. Does the private common-midterm draft have the right workload and balance
+   of code reading, debugging, validation, and reporting after instructor review
+   and a timed TA pilot?
 3. What exact Blackboard opening and closing times should implement the
    approved Project 2 training, frozen-plan, validation, and completion gates?
 Projects have no mandatory individual examination. The approved policy permits
@@ -378,9 +394,9 @@ contains 33 groups. They are mapped continuously to `group-01` through
 
 The audit, student workload contract, week-relative project milestone map, and
 student software matrix are complete. Quiz 2 now has complete public and
-private delivery packages, while the common Saturday midterm has a confirmed
-date and still needs its instrument. The next assessment gate is the Quiz 2
-Blackboard rehearsal and common-midterm design, followed later by Quiz 3 and
+private delivery packages, while the common Saturday midterm has a private
+paper and marking-guide draft. The next assessment gate is final instructor
+review and a timed TA pilot of that paper, followed later by Quiz 3 and
 Quiz 4. Exact Project 2 dates remain deferred. The student software matrix is
 published; the next operational gate is to run its checks with a real student
 laboratory account and complete the live Blackboard dry run before those access

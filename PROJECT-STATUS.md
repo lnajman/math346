@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-09-29
+Last updated: 2026-10-04
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -46,8 +46,38 @@ default QTI namespace, given descriptive filenames and meaningful identifiers,
 and revalidated as 12-item banks. A repeat live import remains required. The
 common midterm is fixed
 for Saturday, 10 October 2026, from 12:00 to 13:30, outside normal class hours
-so both sections sit it simultaneously. The detailed midterm architecture
-remains to be prepared.
+so both sections sit it simultaneously. A common 90-minute paper midterm draft
+now exists in the private assessment repository, with standalone student and
+corrected LaTeX sources and PDFs. It covers Weeks 1-6 only, excluding Week 7.
+The proposed instrument has eight questions and 60 marks (45 MATLAB, 15 Week 6
+R). The approved revision has six conceptual MCQ subparts worth 12 marks and
+22 written subparts worth 48, with response-length guidance and partial credit
+for written work. MCQs require one choice, with 2 marks for correct and 0
+otherwise, no negative marking, and no written justification. On 3 October the
+instructor approved one handwritten A4 sheet, both sides, and no calculators.
+Final instrument approval and a timed TA pilot remain outstanding; the paper
+has not been published or distributed.
+A student preparation guide is now authored at `assessments/midterm.qmd`,
+linked from the sidebar, home, assessment index, syllabus, and Week 7. It
+states the approved scope, mixed format, materials, marking conventions, and
+revision approach without exposing live items. The full 107-page site build
+and the guide's local links pass validation. Publication was authorized on
+4 October; GitHub Pages deploys the guide with the public website update.
+The mixed-format sources now incorporate a LaTeX recreation of the supplied
+KU examination cover, adapted to Fall 2026 and this common midterm. The logo,
+English/Arabic integrity undertakings, and signature fields are preserved;
+the separate-answer-booklet note now instructs students to keep and return all
+pages. The old title page is replaced, and only nonduplicate exam instructions
+follow. Both 12-page PDFs have been regenerated and visually reviewed. Sources
+use XeLaTeX with TeX-distributed fonts and an embedded logo, with no external
+image dependency; the corrected source also compiles in the open desktop
+editor. The synchronized student source is mechanically checked to contain
+eight questions, 28 parts, six MCQs, 60 marks, and no solution bodies.
+MATLAB and R verification scripts passed;
+the polynomial check RMSE was also checked independently with exact rational
+arithmetic. Build artifacts are kept
+out of public Git using local exclusions. Only student-facing guide/navigation
+and non-sensitive status updates belong in the public publication commit.
 The student glossary and three optional phase-recovery checkpoints are now
 published, and the previously broken Quarto documentation link is corrected.
 The student home and syllabus now also publish the instructor contact,
@@ -407,10 +437,13 @@ These ideas have been discussed but are **not yet approved course policy**:
 1. The exact formats and content of Quizzes 3-4 remain open. Quiz 2 is fully
    specified; its live Blackboard import and Student Preview remain operational
    checks rather than design decisions.
-2. The exact balance of code reading, implementation, and validation in the
-   common Saturday midterm remains open. Its date, 90-minute duration, and
-   simultaneous two-section administration are approved; it does not replace
-   a normal teaching meeting.
+2. Final approval and timed human calibration of the common Saturday midterm
+   draft. The private draft combines code reading, debugging, mathematical
+   validation, and reporting. Its date, 90-minute paper format, Weeks 1-6 scope,
+   simultaneous two-section administration, one handwritten A4 sheet (both
+   sides), and no-calculator rule are confirmed. It does not replace a normal
+   teaching meeting. Question content and estimated timings remain subject to
+   instructor/TA review, not a guarantee of a particular grade distribution.
 3. The exact Blackboard opening and closing times for the approved Project 2
    training, frozen-plan, validation, and completion gates.
 These decisions remain open and are intentionally deferred until later course
@@ -458,10 +491,12 @@ agreed core project architecture is incorporated into the syllabus.
    before each upcoming block is taught.
 3. Deliver the prepared Week 6 scripts, starting with the Week 5 exit feedback;
    check R/Quarto access before class and record remaining beginner blockers.
-4. Import and rehearse both Quiz 2 forms plus the ungraded practice form in
-   Blackboard for 30 September and 1 October, then design the common 90-minute
-   midterm for 10 October; retain both regular Week 7 meetings for teaching and
-   review.
+4. Review and time-pilot the common 90-minute midterm for 10 October, then
+   approve its final wording and announce coverage/materials consistently to
+   both sections. Sources and verification checks are in the private repository
+   under `assessments/midterm-2026/`; local delivery PDFs are under `output/pdf/`
+   and excluded from public Git. Retain both regular Week 7 meetings for teaching
+   and review. Do not publish the exam or answer key on the course website.
 5. Verify the Project 1 Blackboard Group Assignment, one-submission-per-group
    workflow, receipt visibility, and 24 September 23:55 UAE closing time.
 6. Place the remaining Project 2 gates on exact Blackboard dates after the

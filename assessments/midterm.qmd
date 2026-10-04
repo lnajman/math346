@@ -1,0 +1,124 @@
+---
+title: "Midterm Student Guide"
+description: "Scope, format, permitted materials, and preparation for the Fall 2026 MATH 346 midterm."
+---
+
+## At A Glance
+
+| Item | Midterm arrangement |
+|---|---|
+| When | Saturday, 10 October 2026, 12:00–13:30 UAE time |
+| Duration | 90 minutes |
+| Delivery | On paper; write your answers directly on the examination paper |
+| Sections | Both sections take the same examination at the same time, outside regular class hours |
+| Coverage | Weeks 1–6 only: MATLAB from Weeks 1–5 and the Week 6 introduction to R |
+| Format | 8 main questions with subparts: 6 conceptual MCQs and short written responses |
+| Marks | 60 total: 12 for MCQs and 48 for written responses; 45 MATLAB and 15 Week 6 R |
+| Permitted reference | One A4 sheet, handwritten by you, on both sides |
+| Calculator / software | No calculator; no MATLAB or R execution required or permitted |
+
+**Week 7 is not included**, even though the examination takes place at the end
+of that week. Check Blackboard for the room, arrival instructions, and any
+approved individual accommodation. The latest Blackboard announcement is
+authoritative for logistics.
+
+## What The Midterm Measures
+
+The midterm checks whether you can understand a short piece of code, identify
+and repair an error, perform a small calculation, and explain what a result
+does—and does not—establish. It combines ideas from several weeks rather than
+asking you only to recall command names.
+
+You will not need to write a long program from a blank page or produce essays.
+Written answers may be a vector, a short calculation, a corrected line of code,
+or a few sentences. Follow the response-length guidance in each question;
+concise explanations and bullet points are acceptable.
+
+## What To Review
+
+Start with the material taught in class, the weekly survival checklists, and
+the **core** exercises. The website is a resource bank: this guide is not an
+instruction to complete every optional extension before the examination.
+
+| Week | Revision focus | Materials |
+|---|---|---|
+| 1 | Arrays, dimensions, indexing, matrix versus element-wise operations, plots, scripts, and numerical checks | [Week 1](../weeks/week-01.qmd) · [Exercises](../weeks/week-01-exercises.qmd) |
+| 2 | Function inputs and outputs, conditions, logical selection, loops, debugging, and tests derived from a mathematical definition | [Week 2](../weeks/week-02.qmd) · [Exercises](../weeks/week-02-exercises.qmd) |
+| 3 | Polynomial coefficients and evaluation, fitting, interpolation and extrapolation, residuals, RMSE, and separate fit/check observations | [Week 3](../weeks/week-03.qmd) · [Exercises](../weeks/week-03-exercises.qmd) |
+| 4 | Numerical methods and their checks: roots, integration, optimization, and interpreting numerical results and visualizations | [Week 4](../weeks/week-04.qmd) · [Exercises](../weeks/week-04-exercises.qmd) |
+| 5 | Symbolic versus numerical computation, exactness, assumptions and domains, differentiation, integration, solving equations, and optimization evidence | [Week 5](../weeks/week-05.qmd) · [Exercises](../weeks/week-05-exercises.qmd) |
+| 6 | R vectors and data frames, indexing and logical selection, missing values, summaries, plot mappings and labels, and the source/render/output distinction in Quarto | [Week 6](../weeks/week-06.qmd) · [Exercises](../weeks/week-06-exercises.qmd) |
+
+For Week 6, also review the difference between a descriptive association and a
+causal claim. You are not expected to write a Quarto document from scratch.
+Week 7 data-transformation material and later R topics are outside the scope.
+
+## How To Prepare
+
+1. **Try first, then check.** Revisit selected core exercises and lab starters.
+   Make an attempt before opening the separately labelled possible solution.
+   Explain any difference between your answer and the solution.
+2. **Practise on paper.** Read a short code fragment without running it. Write
+   the expected values, dimensions, or selected observations. Trace a loop one
+   iteration at a time. Then use MATLAB or R to check your prediction during
+   revision—not during the examination.
+3. **Practise explanations as well as calculations.** For each result, ask:
+   What was computed? What check supports it? What conclusion is justified?
+   What remains uncertain? Do not use “the code runs” or “the plot looks right”
+   as your only evidence.
+4. **Use previous feedback.** Revisit the class discussion of Quiz 1, Quiz 2,
+   and the exit tickets. The Quiz 2 practice activity in Blackboard can help
+   with MATLAB reasoning, but it is not a complete midterm rehearsal: it does
+   not cover Week 6 R or the full written format.
+5. **Do a timed mixed practice session.** Choose several existing exercises
+   across the six weeks. Work individually with only your handwritten sheet,
+   without AI, software, or a calculator. Afterwards, identify whether errors
+   came from notation, calculation, interpretation, or an inadequate check.
+
+The [MATLAB recovery checkpoint](../weeks/recovery-after-week-05.qmd) and
+[glossary](../resources/glossary.qmd) are available if you need to rebuild a
+foundation before attempting mixed exercises.
+
+## Preparing Your Handwritten Sheet
+
+Organize the sheet around ideas you need to distinguish: representations,
+operators, function contracts, validation checks, and MATLAB/R syntax. Include
+brief reminders of what a check establishes and its limitations. Small examples
+that you understand are more useful than pages of copied code.
+
+The sheet must be **one A4 sheet handwritten by you**; both sides may be used.
+Printed material, photocopies, and additional reference sheets are not allowed.
+
+## Answering And Marking
+
+- For each MCQ, select **one** answer. A correct single selection earns 2 marks;
+  an incorrect, blank, or multiple selection earns 0. There is no negative
+  marking and no written justification is required for an MCQ.
+- Written questions allow partial credit for correct working and reasoning.
+  Show the calculation or explanation requested; a bare answer may not earn
+  full credit when justification is required.
+- Equivalent correct code and mathematically correct explanations are accepted.
+  Precise reasoning matters more than polished English or lengthy writing.
+- Exact fractions and square roots are acceptable unless a question specifies
+  otherwise. The arithmetic is intended to be manageable without a calculator.
+- Use the suggested question timings as a guide and leave time to check your
+  answers. If you use additional answer space, label the question and subpart.
+
+## On The Day
+
+Bring writing materials and your permitted handwritten sheet. Follow the room
+and arrival instructions in Blackboard. Enter your name and student ID and
+read and sign the academic integrity undertaking on the cover.
+
+Work individually. AI, collaboration, unauthorized reference material, and
+electronic devices are not permitted. Follow the invigilators' instructions
+for storing phones, watches, and other devices. Keep the examination pages
+together and return the complete paper, including any additional answer sheets.
+
+Approved accommodations follow the usual course arrangements. If you cannot
+attend, the [syllabus policy on missed
+assessments](../syllabus/index.qmd#missed-assessments-and-late-project-submissions)
+applies. Ask the instructor or TA before the examination if any preparation
+instruction is unclear.
+
+The live examination questions and answer key are not published on this site.

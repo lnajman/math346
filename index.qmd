@@ -35,6 +35,10 @@ This course uses MATLAB and R, with generative AI treated as a professional assi
 
 ## Start Here
 
+**Preparing for the midterm?** Read the [midterm student
+guide](assessments/midterm.qmd) for the 10 October paper examination: Weeks 1-6,
+permitted materials, format, and revision advice.
+
 Before the first class:
 
 1. Read the [syllabus](syllabus/index.qmd) and [AI use policy](syllabus/ai-policy.qmd).
