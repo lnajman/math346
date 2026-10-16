@@ -88,7 +88,7 @@ student could reasonably interpret as expected work.
 | 6 | 15 | 29 | 2 | 9 | Calendar-critical R transition plus Quiz 2 |
 | 7 | 15 | 31 | 2 | 9 | Coherent but needs core-versus-extension labels |
 | 8 | 16 | 32 | 2 | 9 | Calendar-critical full EDA week plus semester examination |
-| 9 | 17 | 33 | 2 | 9 | Calendar-critical import and reshape week plus Quiz 3 |
+| 9 | 17 | 33 | 2 | 9 | Import and reshape week; original Quiz 3 marker moved to Week 10 on 16 October |
 | 10 | 17 | 34 | 2 | 10 | High breadth across strings, factors, date-times, and joins |
 | 11 | 16 | 34 | 2 | 10 | High: functions, validation, boundaries, errors, and refactoring |
 | 12 | 16 | 35 | 2 | 10 | High: three iteration forms, failure logs, and Project 2 orientation |
@@ -166,8 +166,9 @@ ordinary week, excluding separately announced project and examination work.
   substantial in-class time for the semester examination. The examination
   location and duration must be resolved before this week is considered
   feasible.
-- **Week 9** combines import contracts and reshaping effectively, but Quiz 3
-  has no reserved time in either meeting.
+- **Week 9** combined import contracts and reshaping with an unallocated Quiz 3
+  in the original audit. **Update, 16 October:** Quiz 3 has moved to Week 10;
+  the Week 10 plan now includes a quiz-meeting pacing adjustment.
 - **Week 10** is pedagogically coherent but unusually broad. Join contracts and
   observation preservation should remain the central outcome; the separate
   string, factor, and date-time tools can be scaffolded around that purpose.

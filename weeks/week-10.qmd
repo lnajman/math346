@@ -8,6 +8,24 @@ execute:
 
 Relational data, strings, factors, dates, and times.
 
+::: {.callout-important}
+**Quiz 3 takes place this week**, covering material through Week 9 inclusive.
+The new Week 10 material is not assessed. See the
+[preparation guide](../assessments/quiz-03.qmd); Blackboard confirms the date,
+meeting and final delivery rules for each section.
+:::
+
+### Quiz-Meeting Timing
+
+The full teaching plans below describe meetings without an assessment. For
+the meeting containing the proposed 15-minute quiz, reserve three minutes for
+launch and 15 minutes for the quiz. Use the remaining 57 minutes for a
+five-minute retrieval, 20-minute core demonstration, 24-minute guided task,
+five-minute checking discussion and three-minute exit ticket. Move the AI
+extension to guided follow-up rather than compressing the quiz or introducing
+Week 10 material into its scope. Apply the same teaching coverage to both
+sections, regardless of which meeting contains their quiz.
+
 ## Problem Focus
 
 How do we combine related tables without silently changing what one row means?

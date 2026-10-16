@@ -111,8 +111,9 @@ and tell the instructor.
 5. Use a [recovery checkpoint](weeks/workload-guide.qmd#phase-recovery-checkpoints)
    if an earlier phase still feels insecure.
 
-Assessment information begins with [Quiz 1](assessments/quiz-01.qmd). Later
-quiz and examination details will be published before they are needed.
+The next quiz is [Quiz 3 in Week 10](assessments/quiz-03.qmd), covering material
+through Week 9 inclusive. A separate practice quiz and preparation guide are
+available. Blackboard confirms the exact section dates and final delivery rules.
 
 ## Course Question
 

@@ -30,15 +30,15 @@ use the current week's page and the latest Blackboard announcement.
 | [6](week-06.qmd) | MATLAB-to-R transition and reproducible reports | R | Quiz 2 on 30 September and 1 October |
 | [7](week-07.qmd) | Data transformation as question-answering | R | Common midterm on Saturday, 10 October, 12:00-1:30 PM |
 | [8](week-08.qmd) | Variation, covariation, and question refinement | R | — |
-| [9](week-09.qmd) | Import contracts and tidy observation structure | R | Quiz 3; Project 2 preview begins |
-| [10](week-10.qmd) | Relational contracts, strings, factors, and date-times | R | Project 2 preview continues |
+| [9](week-09.qmd) | Import contracts and tidy observation structure | R | Project 2 preview begins; prepare for Quiz 3 |
+| [10](week-10.qmd) | Relational contracts, strings, factors, and date-times | R | [Quiz 3](../assessments/quiz-03.qmd), through Week 9 inclusive; Project 2 preview continues |
 | [11](week-11.qmd) | Readable pipelines and tested function contracts | R | — |
 | [12](week-12.qmd) | Vectorized thinking, iteration, and visible batch evidence | R | Project 2 training package release |
 | [13](week-13.qmd) | Regression claims, baseline comparison, and diagnostics | R | Quiz 4; Project 2 frozen-plan gate follows |
 | [14](week-14.qmd) | Repeated models, aligned evidence, and sensitivity | R | Project 2 validation release window |
 | [15](week-15.qmd) | Communication, evidence reconciliation, and synthesis | R | Project 2 completion window |
 
-Quiz 1 and Quiz 2 have published [student guides](../assessments/index.qmd).
+Quizzes 1–3 have [student guides](../assessments/index.qmd).
 Confirmed project and assessment dates are shown on their relevant pages.
 Blackboard is authoritative for section-specific logistics, rooms, access
 windows, and individual accommodations.

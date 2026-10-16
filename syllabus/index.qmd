@@ -92,8 +92,8 @@ quizzes and examinations will be published before the relevant units.
 | 6 | R Markdown and data visualization; Quiz 2 |
 | 7 | R workflow and data transformation; common midterm on Saturday, 10 October, 12:00-1:30 PM |
 | 8 | Exploratory data analysis |
-| 9 | Tibbles, data import, and tidy data; Quiz 3 |
-| 10 | Relational data, strings, factors, dates, and times |
+| 9 | Tibbles, data import, and tidy data |
+| 10 | Relational data, strings, factors, dates, and times; [Quiz 3](../assessments/quiz-03.qmd), covering through Week 9 inclusive |
 | 11 | Pipes and functions |
 | 12 | Vectors and iteration |
 | 13 | Model basics and model building; Quiz 4 |

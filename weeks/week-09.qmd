@@ -6,7 +6,14 @@ execute:
 
 ## Official Topic
 
-Tibbles, data import, and tidy data. Quiz 3.
+Tibbles, data import, and tidy data.
+
+::: {.callout-important}
+**Quiz 3 is in Week 10, not this week.** It covers material through Week 9
+inclusive. Use the [preparation guide](../assessments/quiz-03.qmd) and
+[practice quiz](../assessments/quiz-03-practice.qmd). Blackboard will confirm
+the exact date and meeting for each section.
+:::
 
 ## Problem Focus
 

@@ -1,0 +1,65 @@
+---
+title: "Quiz 3 Student Guide"
+description: "Week 10 quiz: coverage through Week 9 and preparation guidance."
+---
+
+## At A Glance
+
+| Item | Quiz 3 arrangement |
+|---|---|
+| When | **Week 10, not Week 9**; exact date and meeting for each section in Blackboard |
+| Coverage | **R only, Weeks 6–9 inclusive**; no MATLAB or Week 10 material |
+| Preparation focus | R foundations, transformations, exploratory analysis, import and tidy data from Weeks 6–9 |
+| Proposed format | 15 minutes; 9 single-choice questions and 3 short written responses; 12 points |
+| Delivery | In-class Blackboard quiz; final settings and permitted materials will be confirmed in Blackboard |
+
+The schedule and **R-only coverage of Weeks 6–9 inclusive** are confirmed.
+MATLAB is not included. The detailed format awaits final instructor confirmation.
+The preparation below and practice activity follow this confirmed scope.
+
+## What To Practise
+
+| Week | Core skills |
+|---|---|
+| [6](../weeks/week-06.qmd) | R vectors and missing values; recorded zero versus `NA`; saved scripts, clean runs and consistent rendered reports |
+| [7](../weeks/week-07.qmd) | Read short pipelines; distinguish rows from columns; filtering, grouping and summaries; retain observed denominators; match a pipeline to its question |
+| [8](../weeks/week-08.qmd) | Choose plots for variable types; interpret distributions and comparisons; bin width and overplotting; investigate anomalies; distinguish association from causation |
+| [9](../weeks/week-09.qmd) | Relative paths, import schemas, missing encodings and parsing diagnostics; wide-to-long reshaping; row meaning, expected row counts and observation keys |
+
+You should be able to read a short piece of R code or a small result and state
+what it does, which observations contribute, and what check or limitation
+matters. You do not need to write a long program from a blank page. Practice
+simple calculations by hand; the proposed quiz does not require running R.
+
+Week 10 joins, string normalization, factor conversion and date-time parsing
+are **not included**. Modeling first introduced later in the course is not
+included either. The core exercises are the preparation priority; extension
+tasks are not assumed knowledge for this quiz.
+
+## Practice And Revision
+
+1. Review the survival checklists and core exercises for Weeks 6–9.
+2. Trace a small pipeline by hand, recording row counts and row meaning.
+3. Distinguish original row count from the number of observed values entering
+   a mean. Missing values are not automatically zeros.
+4. For each plot, state a supported observation and one limitation.
+5. Predict a reshape's size and explain why row count alone cannot validate it.
+6. Attempt the [separate practice quiz](quiz-03-practice.qmd), then open its
+   self-check feedback. Its situations differ from the live versions.
+
+For short written answers, answer the requested parts directly. Equivalent
+correct wording is accepted; polished English and extra unrequested details
+are not needed. The proposed written rubric uses two explicit half-point
+criteria per question, and the MCQs have one best answer each.
+
+## Proposed Materials And Delivery Rules
+
+The prepared versions follow Quiz 2's arrangement: one A4 sheet handwritten by
+the student on both sides, blank scratch paper, individual work, and no R,
+AI, websites, messaging or collaboration. There is no need for a calculator.
+Final rules, timing, accommodations and the access window will be confirmed in
+Blackboard before the quiz. A paper backup is available to the instructor.
+
+The [syllabus missed-assessment policy](../syllabus/index.qmd#missed-assessments-and-late-project-submissions)
+continues to apply. Live quiz questions and their answer keys are not published
+on this website.

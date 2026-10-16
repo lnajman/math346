@@ -1,0 +1,238 @@
+---
+title: "Quiz 3 Practice"
+execute:
+  enabled: false
+---
+
+This ungraded practice uses different situations from the live forms. Try it in 15 minutes before opening the feedback. Each item is worth one practice point; written items have two half-point criteria. See the [Quiz 3 guide](quiz-03.qmd).
+
+## Question 1: NA comparison audit
+
+```r
+v <- c(2, NA, 7)
+```
+
+Which expression counts the missing values?
+
+- A. sum(v == NA)
+- B. length(v)
+- C. sum(is.na(v))
+- D. mean(v)
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+**C.** is.na identifies missing positions; comparing with NA does not produce an ordinary TRUE/FALSE missingness test.
+
+
+:::
+
+## Question 2: Report delivery audit
+
+A newly rendered PDF contains the current numerical table, but its conclusion still names an old analysis group.
+
+What should the author do?
+
+- A. Send it because rendering completed.
+- B. Reconcile the conclusion with the current analysis, render again and inspect the delivered PDF.
+- C. Change only the PDF filename.
+- D. Delete the numerical table so the conflict is invisible.
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+**B.** A successful render does not establish agreement between prose and numerical evidence.
+
+
+:::
+
+## Question 3: Sorting audit
+
+```r
+d <- data.frame(id = c("a", "b", "c"), value = c(8, 2, 5))
+d |> arrange(value)
+```
+
+Which id is in the first row?
+
+- A. a
+- B. c
+- C. No rows remain
+- D. b
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+**D.** Ascending order places value 2 first, retaining its paired id b.
+
+
+:::
+
+## Question 4: Units audit
+
+```r
+d |> mutate(temp_c = temp_f - 32)
+```
+
+The intended conversion is C = (F - 32) * 5/9. Identify the omitted operation and give one input with its expected Celsius result that exposes the error.
+
+**Response:** _________________________________________________
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+Multiply by 5/9; for example 212 F should give 100 C, whereas the faulty code gives 180.
+
+- **0.5:** Identifies multiplication by 5/9.
+- **0.5:** Gives a valid non-32 F test and its correct Celsius result that distinguishes the formulas.
+:::
+
+## Question 5: Grouping check audit
+
+Three group counts are 4, 3 and 5. The groups are disjoint and include every retained row exactly once.
+
+How many rows entered the grouped summary?
+
+- A. 12
+- B. 3
+- C. 5
+- D. 60
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+**A.** Add the disjoint exhaustive group counts: 4 + 3 + 5 = 12.
+
+
+:::
+
+## Question 6: Incomplete total audit
+
+Month 1 has 10 observed meters out of 10. Month 2 has 7 observed meters out of 10 and a lower recorded total.
+
+Which conclusion is supported?
+
+- A. True total consumption certainly fell.
+- B. All missing readings must be zero.
+- C. The recorded total is lower, but unequal completeness prevents that alone from establishing a fall in full consumption.
+- D. The two totals are equally complete because both months contain ten expected meters.
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+**C.** Missing readings may account for part or all of the observed difference; report completeness alongside totals.
+
+
+:::
+
+## Question 7: Plot type audit
+
+The variable is the categorical room type: lab, office or classroom. The question asks how many rooms are in each category.
+
+Which display matches the question?
+
+- A. A scatterplot with a regression line
+- B. A histogram treating category codes as measurements
+- C. A boxplot of category names
+- D. A bar chart of counts by room type
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+**D.** Categorical frequencies require counts; numerical category codes do not turn categories into quantitative measurements.
+
+
+:::
+
+## Question 8: Causal claim audit
+
+An observational scatterplot shows that buildings with larger floor areas tend to use more energy.
+
+Write a supported descriptive statement and one reason the plot does not establish a causal effect. One or two short sentences.
+
+**Response:** _________________________________________________
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+In these observations, larger buildings tend to use more energy; building use or occupancy may also differ, so the plot alone does not isolate a causal effect.
+
+- **0.5:** States a descriptive association without a universal or causal claim.
+- **0.5:** Explains lack of causal identification, for example an alternative factor or absence of a controlled comparison.
+:::
+
+## Question 9: File check audit
+
+```r
+file.exists("data/results.csv") # returns TRUE
+```
+
+What has this check established?
+
+- A. The file is available at that path, not that its contents satisfy the schema.
+- B. All measurement columns are numeric.
+- C. There are no duplicate observations.
+- D. Every missing value has been handled correctly.
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+**A.** Existence is only the first check; schema, content, keys and missingness require separate checks.
+
+
+:::
+
+## Question 10: Type audit
+
+A numeric identifier such as 0012 must preserve its leading zeros when a CSV is imported.
+
+Which declared type best preserves that identifier?
+
+- A. col_double()
+- B. col_character()
+- C. A mean calculated after import
+- D. A histogram bin width
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+**B.** Identifiers are labels; character import preserves leading zeros rather than treating the identifier as a measurement.
+
+
+:::
+
+## Question 11: Missing rows audit
+
+A wide file has 2 rooms and 4 time columns. After pivoting only those time columns while retaining NA, the long table has 8 rows, including 2 missing values.
+
+What happens if those 2 missing-value rows are then filtered out?
+
+- A. The table stays at 8 rows.
+- B. The missing readings become recorded zeros.
+- C. The table has 6 rows and the two excluded room-time observations must be accounted for.
+- D. The table has 4 rows because there are four times.
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+**C.** Reshaping and filtering are different steps. Report the two excluded observations rather than silently changing completeness.
+
+
+:::
+
+## Question 12: Round-trip audit
+
+A cleaned table is exported to CSV and re-imported. The file opens successfully.
+
+Name two different checks that compare the re-imported table with the intended contract.
+
+**Response:** _________________________________________________
+
+::: {.callout-note collapse="true"}
+## Self-check
+
+For example, verify the expected row count and that the observation key remains unique. Other valid checks include column names, measurement types, missing counts, or value agreement.
+
+- **0.5:** One specific valid contract check.
+- **0.5:** A second distinct valid contract check; repeating the first in different words earns no additional credit.
+:::

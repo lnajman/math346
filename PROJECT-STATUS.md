@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-10-04
+Last updated: 2026-10-16
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -16,6 +16,72 @@ describe pedagogical progress.
    been approved.
 
 ## Current Phase
+
+Quiz 3 is confirmed for Week 10, covering material taught through Week 9
+inclusive and excluding Week 10 content. Public preparation and separate
+practice pages are prepared. Private A/B/practice QTI banks, paper versions,
+and a marking guide are drafted under `instructor-private/assessments/quiz-03/`.
+The proposed format is 15 minutes, 9 MCQs and 3 short written responses,
+12 marks. The instructor confirmed R-only Weeks 6–9 coverage; MATLAB is
+excluded. Exact section dates and final format still need confirmation. Keep
+live questions and keys private; perform a timed TA pilot and Blackboard
+Student Preview before release. Earlier Week 9 schedule markers are superseded.
+
+On 15 October, the instructor approved reweighting midterm Q8 from 20 to
+15 marks, retaining Q1–Q7 at 40 and a no-detriment rule. The adjusted fraction
+is max(original total / 60, (Q1–Q7 + 0.75 × Q8) / 55). This supersedes the
+discussed but unapproved whole-exam scaling alternatives. The private revised
+marking workbook retains original marks and percentages alongside calculated
+adjusted percentages and KU letters. Confirmed marking corrections are included;
+the unresolved missing-page case is flagged and an unmarked exam remains blank.
+No individual grades, identifiers, or marking workbooks belong on the public site.
+
+The Week 8 Session 1 exit exports were fully reconciled on 14 October:
+28 distinct records, 23 written responses and five unanswered entries.
+`output/pdf/week-08-session-01-exit-feedback-script.pdf` provides eight minutes
+of feedback replacing the Week 8 Session 2 retrieval block. It addresses
+right-skew interpretation, recorded zeros versus unsupported negative-value
+claims, anomaly investigation, volume-summary reasoning and descriptive next
+questions. All five pages were visually reviewed; relevant data minima and
+volume-product behavior were checked in R. Individual responses remain private.
+
+Two Week 8 instructor delivery PDFs are now prepared locally, each 10 pages:
+`output/pdf/week-08-session-01-instructor-script.pdf` and
+`output/pdf/week-08-session-02-instructor-script.pdf`. Both cover 75 minutes,
+with suggested speech, exact slide-heading cues, R demonstrations, numerical
+reference outputs, student activities, TA support, pacing cuts and Blackboard
+exit prompts with instructor keys. Session 1 covers variable types, structure,
+price distributions, histogram choices, category counts and dimension anomalies.
+Session 2 covers overplotting, boxplots, differing carat distributions across
+cut groups, conditional panels and the AI interpretation audit. All displayed
+R code executed successfully; plot row/count checks passed, and all 20 PDF
+pages were visually reviewed. At initial preparation no new Week 7 exit or
+midterm results had been supplied, so opening prompts were retrieval activities.
+A subsequent Week 7 Session 2 export and submission folder contained 18 unique
+student records: 16 written responses and two unanswered entries. All were read;
+the actual prompt was the sentence completion about what a trustworthy pipeline
+must make visible. A separate eight-minute feedback PDF is now prepared at
+`output/pdf/week-07-session-02-exit-feedback-script.pdf`. It clarifies
+question-specific missingness handling and the limits of row accounting as
+evidence of representativeness. Its opening instructions replace six minutes
+of Week 8 retrieval and shorten the next activity by two minutes, preserving
+75 minutes. All five feedback PDF pages were visually reviewed. Delivery PDFs
+and individual student responses remain local instructor materials.
+
+Two Week 7 instructor delivery PDFs are now prepared locally:
+`output/pdf/week-07-session-01-instructor-script.pdf` (10 pages) and
+`output/pdf/week-07-session-02-instructor-script.pdf` (11 pages).
+Each provides a complete 75-minute plan, suggested speech, slide-heading cues,
+executable R demonstrations, expected outputs, TA actions, recovery routes,
+and a copy-ready Blackboard exit question with a private instructor key.
+Session 1 opens with eight minutes of feedback from all 29 distinct Week 6
+Session 2 submissions (9 and 20 records in the two exports). It distinguishes
+reproducibility, independent checks, and supported interpretation. Session 2
+develops grouped denominators and the AI pipeline question-drift audit.
+Both follow the slide object names and keep Week 7 outside the Weeks 1-6
+midterm scope. All demonstrated R code was executed successfully and every
+PDF page visually reviewed. Classroom pacing remains to be observed during
+delivery. Student responses and delivery PDFs remain local instructor material.
 
 The full student-facing 15-week course sequence is published. Completed weeks
 remain available for review, and each upcoming week receives a final delivery
@@ -125,7 +191,7 @@ required packages. The final roster accounts for all 66 enrolled students in
 identifiers map directly to the first 33 validated candidate packages. Any
 later correction is limited to a confirmed clerical or roster error. The working assessment sequence remains visible
 on the public site: Quiz 1 in Week 4, Quiz 2 in Week 6, the common Saturday
-midterm after Week 7, Quiz 3 in Week 9, and Quiz 4 in Week 13. Quiz 1 has a
+midterm after Week 7, Quiz 3 in Week 10, and Quiz 4 in Week 13. Quiz 1 has a
 fixed student contract; Quiz 2 and the midterm now have confirmed calendar
 placement, while their remaining content and delivery details are still being
 prepared. Project 1 is due Thursday, 24 September 2026, at 23:55 UAE time;
@@ -343,7 +409,7 @@ approved and published.
   quizzes, the semester examination, and the final examination, totaling 80%
   of the course grade.
 - The public working schedule places Quiz 1 in Week 4, Quiz 2 in Week 6, the
-  common Saturday midterm after Week 7, Quiz 3 in Week 9, and Quiz 4 in Week
+  common Saturday midterm after Week 7, Quiz 3 in Week 10, and Quiz 4 in Week
   13. Quiz 2 is scheduled for 30 September and 1 October, with the section
   order reversed relative to Quiz 1. The midterm is scheduled for Saturday,
   10 October 2026, from 12:00 to 13:30 so both sections take it simultaneously.
@@ -434,16 +500,13 @@ approved and published.
 
 These ideas have been discussed but are **not yet approved course policy**:
 
-1. The exact formats and content of Quizzes 3-4 remain open. Quiz 2 is fully
+1. Quiz 3's Week 10 timing and R-only Weeks 6–9 scope are confirmed. Its
+   15-minute format, section dates and timed calibration
+   await approval. Quiz 4's exact format and content remain open. Quiz 2 is fully
    specified; its live Blackboard import and Student Preview remain operational
    checks rather than design decisions.
-2. Final approval and timed human calibration of the common Saturday midterm
-   draft. The private draft combines code reading, debugging, mathematical
-   validation, and reporting. Its date, 90-minute paper format, Weeks 1-6 scope,
-   simultaneous two-section administration, one handwritten A4 sheet (both
-   sides), and no-calculator rule are confirmed. It does not replace a normal
-   teaching meeting. Question content and estimated timings remain subject to
-   instructor/TA review, not a guarantee of a particular grade distribution.
+2. Resolve remaining individual midterm marking queries privately. The exam
+   has been delivered and Q8 reweighting is approved, as recorded above.
 3. The exact Blackboard opening and closing times for the approved Project 2
    training, frozen-plan, validation, and completion gates.
 These decisions remain open and are intentionally deferred until later course
@@ -455,6 +518,7 @@ agreed core project architecture is incorporated into the syllabus.
 | Area | Evidence | State |
 |---|---|---|
 | Course purpose | `index.qmd`, `syllabus/index.qmd` | Developed |
+| Quiz 3 | `assessments/quiz-03.qmd`; separate public practice; private `assessments/quiz-03/` forms, rubrics, PDFs and QTI banks | Week 10 and R-only Weeks 6–9 scope confirmed; awaiting final format approval and timed pilot |
 | Course administration and classroom policy | `index.qmd`; `syllabus/index.qmd`; `assessments/quiz-01.qmd` | Instructor/contact/platform roles and approved attendance, missed-assessment, and late-project rules published |
 | Student-facing course site | `index.qmd`; `_quarto.yml`; `weeks/index.qmd` | Full 15-week sequence published; completed weeks retained for review; Blackboard authoritative for logistics |
 | Quiz 1 | `assessments/quiz-01.qmd`; two private forms, answer-keyed bank, calibration notes, two validated QTI 2.1 ZIPs, and Blackboard checklist | Student contract and two equivalent 12-point import packages complete; live Blackboard import and rehearsal pending |
@@ -484,6 +548,12 @@ agreed core project architecture is incorporated into the syllabus.
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
 
 ## Next Actions
+
+Current priority (16 October): approve Quiz 3 format, confirm section
+dates in Week 10, time-pilot both forms, then import and check Blackboard settings
+including withheld feedback until both sections finish and all marks are posted.
+The older delivery checklist below is retained for context, not as a claim that
+the already-delivered quizzes and midterm are still awaiting preparation.
 
 1. Perform the live laboratory check and build/dry-run Quiz 1 in Blackboard,
    including Student Preview, timer, feedback, and accommodations.

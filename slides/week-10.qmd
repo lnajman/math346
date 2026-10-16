@@ -18,6 +18,12 @@ How do we combine related tables without silently changing what one row means?
 - Meeting 1: strings, factors, dates, and times
 - Meeting 2: keys, unmatched rows, and join contracts
 
+## Quiz 3: This Week
+
+- Coverage stops at the end of **Week 9**; today's new material is not tested.
+- Follow Blackboard for your section's quiz meeting and arrangements.
+- [Preparation and practice](../assessments/quiz-03.qmd)
+
 ## Supplied Synthetic Tables
 
 - building registry: 6 buildings

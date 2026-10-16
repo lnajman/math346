@@ -19,6 +19,13 @@ the intended analysis?
 - Meeting 1: file paths, parsing, types, and import contracts
 - Meeting 2: observation meaning, `pivot_longer`, keys, and AI review
 
+## Quiz 3: Next Week
+
+- Quiz 3 takes place in **Week 10**, not Week 9.
+- Material taught through **Week 9 inclusive** is eligible; Week 10 is excluded.
+- Use the [preparation guide](../assessments/quiz-03.qmd) and separate practice quiz.
+- Blackboard will confirm your section's date and final arrangements.
+
 ## The Supplied Data
 
 - six fictional campus buildings
