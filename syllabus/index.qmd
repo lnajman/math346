@@ -168,14 +168,8 @@ The course follows the approved MATLAB and R syllabus. The teaching approach emp
 | Semester examination | 25% | 2, 3 | Saturday, 10 October 2026, 12:00-13:30 UAE time |
 | Final examination | 35% | 1, 2, 3, 4 | Cumulative |
 
-[Quiz 1](../assessments/quiz-01.qmd) is an individual, 15-minute, in-class
-Blackboard quiz with six short content blocks and two one-point questions in
-each block. Ten questions are multiple-choice and two require a one-sentence
-written response. The two class groups receive different but equivalent forms.
-Students may use one A4 sheet, handwritten by them on both sides; no other
-reference material is permitted. The quiz does not require students to run
-MATLAB. Details for later
-quizzes and examinations will be published before the relevant units.
+Assessment formats, permitted materials and preparation guidance are provided
+on the [assessment pages](../assessments/index.qmd).
 
 ### Tentative Weekly Plan
 
