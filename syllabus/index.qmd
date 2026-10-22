@@ -2,10 +2,9 @@
 title: "Syllabus"
 ---
 
-This page reproduces the formal syllabus content from the February 2026 Word
-document, before its syllabus supplement. The separate
-[Fall 2026 supplementary information](#fall-2026-supplementary-information)
-below provides current contacts, dates and course arrangements.
+The course syllabus is followed by
+[supplementary information for Fall 2026](#fall-2026-supplementary-information),
+including contacts, assessment dates and project arrangements.
 
 ## Course Information
 
@@ -87,10 +86,9 @@ All course learning outcomes are assessed using the following assessment tools.
 | Semester Examination | 25% | 8 | 2, 3 |
 | Final Examination | 35% | 15 | 1, 2, 3, 4 |
 
-**Calendar note:** The week numbers above reproduce the February 2026 source
-syllabus; they are not the current Fall 2026 assessment calendar. See the
-[semester teaching schedule](#tentative-weekly-plan) and
-[project arrangements](#project-structure) below for current timing.
+**Calendar note:** Assessment weeks above follow the approved syllabus.
+For Fall 2026 dates, see the [semester schedule](#tentative-weekly-plan)
+and [project arrangements](#project-structure) below.
 
 ## Grading Scheme
 
@@ -120,10 +118,6 @@ For undergraduate programs:
 All students must adhere to the university’s policies on copyright and plagiarism, including the ethical use of generative AI tools. Any use of AI-generated content must be properly attributed and must not violate academic integrity standards.
 
 ## Fall 2026 Supplementary Information
-
-The formal syllabus content ends above. The following information supplements
-it for this semester; it does not reproduce the original Word supplement.
-The current project instructions and semester arrangements are unchanged.
 
 **Instructor:** Laurent Alain Najman
 
@@ -203,10 +197,8 @@ quizzes and examinations will be published before the relevant units.
 | 14 | Handling many models |
 | 15 | Visualization, communication, and project synthesis |
 
-The assessment markers above preserve the current working sequence. Quiz 1 is
-placed in Week 4 and its format is fixed; its calendar date and meeting, and
-the formats and dates of later assessments, will be announced through
-Blackboard.
+Consult the [assessment guides](../assessments/index.qmd) and Blackboard
+announcements for confirmed dates, formats and submission details.
 
 ### Weekly Workload
 
