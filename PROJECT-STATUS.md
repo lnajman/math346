@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-10-16
+Last updated: 2026-10-22
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -16,6 +16,13 @@ describe pedagogical progress.
    been approved.
 
 ## Current Phase
+
+The website syllabus now reproduces the February 2026 syllabus's CLO–PLO
+mappings, emphasis levels and assessment–CLO mappings. Its assessment table
+also uses the confirmed midterm date rather than the stale Week 8 marker.
+This documentation update does not change outcomes, weights or project rules.
+Providing the semester-completed formal university-template syllabus remains
+a separate documentation task; the mapping update alone does not complete it.
 
 Quiz 3 is confirmed for Week 10, covering material taught through Week 9
 inclusive and excluding Week 10 content. Public preparation and separate

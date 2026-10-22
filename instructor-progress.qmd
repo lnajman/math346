@@ -12,7 +12,7 @@ final delivery check before use. The midterm has been delivered. Quiz 3 is now
 scheduled for Week 10 with a Week 9 inclusive cutoff; its public preparation
 guide, distinct practice quiz and private section versions are drafted.**
 
-Last updated: **16 October 2026**
+Last updated: **22 October 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -51,6 +51,12 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- The [syllabus](syllabus/index.qmd) now includes the approved CLO–PLO
+  mappings, emphasis levels and assessment–CLO mappings from the February
+  2026 source document. The assessment table also reflects the confirmed
+  midterm date. This is a documentation update, not a change to assessment
+  weights or project requirements.
 
 - Quiz 3 moves from Week 9 to **Week 10**, covering material taught through
   **Week 9 inclusive**. The R-focused draft has 9 MCQs and 3 short written

@@ -57,19 +57,29 @@ The course follows the approved MATLAB and R syllabus. The teaching approach emp
 
 By the end of the course, students should be able to:
 
-1. Write code for mathematical and statistical applications using appropriate software.
-2. Present mathematical and statistical results using appropriate software.
-3. Solve problems using mathematical and statistical software.
-4. Analyze data using mathematical and statistical software.
+| CLO | Course learning outcome | Contributing PLO(s) | Emphasis level(s) |
+|---|---|---|---|
+| 1 | Write code for mathematical and statistical applications using appropriate software. | 3 | H |
+| 2 | Present mathematical and statistical results using appropriate software. | 4, 5 | M, M |
+| 3 | Solve problems using mathematical and statistical software. | 3 | H |
+| 4 | Analyze data using mathematical and statistical software. | 3, 5 | H, M |
+
+These mappings are reproduced from the approved February 2026 syllabus for
+the BSc Applied Mathematics, Statistics, and Data Science program. PLO means
+Program Learning Outcome; PLO definitions are given in the academic catalog.
+Emphasis levels are **H: High**, **M: Medium**, and **L: Low**. Where two PLOs
+are listed, their emphasis levels are listed in the same order.
 
 ## Assessment
 
-| Assessment | Weight | Notes |
-|---|---:|---|
-| Quizzes | 20% | Four quizzes; lowest quiz dropped |
-| Projects | 20% | MATLAB Project 1 and R Project 2, 10% each |
-| Semester examination | 25% | Around Week 8 |
-| Final examination | 35% | Cumulative |
+| Assessment | Weight | CLO(s) assessed | Notes |
+|---|---:|---|---|
+| Quizzes | 20% | 1, 2, 3, 4 | Four quizzes; lowest quiz dropped |
+| Projects | 20% | 2, 3 | MATLAB Project 1 and R Project 2, 10% each |
+| Semester examination | 25% | 2, 3 | Saturday, 10 October 2026, 12:00-13:30 UAE time |
+| Final examination | 35% | 1, 2, 3, 4 | Cumulative |
+
+The assessment-to-CLO mappings above reproduce the approved syllabus.
 
 [Quiz 1](../assessments/quiz-01.qmd) is an individual, 15-minute, in-class
 Blackboard quiz with six short content blocks and two one-point questions in
