@@ -31,6 +31,51 @@ This documentation update does not change outcomes, weights or project rules.
 Providing the semester-completed formal university-template syllabus remains
 a separate documentation task; the mapping update alone does not complete it.
 
+Week 9 Session 1 exit feedback is prepared in
+`output/pdf/week-09-session-01-exit-feedback-script.pdf`: eight minutes,
+five visually reviewed pages, replacing the Session 2 opening retrieval.
+All 26 records were read: 25 written responses (including one "not sure")
+and one unanswered entry; no duplicate IDs. The actual question requested
+one import assumption, not code. Feedback distinguishes expected missingness
+from a blanket no-NA rule, specific contracts from vague validity claims,
+diagnostics from stopping assertions, and wide versus building-month keys.
+Displayed checks passed in R. The overlay preserves 75 minutes and the full
+five-minute exit window by shortening the closing AI audit. Individual records
+and the feedback PDF remain local instructor materials.
+
+Week 8 Session 2 exit feedback now has a separate eight-minute instructor PDF:
+`output/pdf/week-08-session-02-exit-feedback-script.pdf` (five pages, visually
+reviewed). The two exports contain 21 distinct records: 18 written answers
+(one substantially incomplete) and three unanswered entries. The instructor
+already reserves the final five minutes for responses; the script reinforces
+independent participation without adding a grading penalty. It revisits
+carat-price association, causal limits and comparisons at similar weights.
+These post-midterm responses do not establish why midterm marks varied.
+Its Week 9 Session 1 opening overlay preserves 75 minutes and the full exit
+window; use it in place of the original opening, not as additional time.
+
+Week 9 now has two 75-minute instructor delivery PDFs under `output/pdf/`:
+`week-09-session-01-instructor-script.pdf` (9 pages, 19/20 October) and
+`week-09-session-02-instructor-script.pdf` (11 pages, 21/22 October).
+They provide timed speech, exact slide-heading cues, executable R blocks,
+expected outputs, student attempts, TA checkpoints, pacing cuts and Blackboard
+exit prompts with instructor keys. Session 1 covers import contracts and
+parsing; Session 2 covers tidy observations, keys, missingness, summaries and
+AI review. Export/re-import is optional follow-up to preserve the 75-minute
+limit. All displayed R blocks passed execution checks; all 20 pages were
+visually reviewed. At initial preparation no new Week 8 Session 2 exit evidence
+had been supplied; the subsequent feedback overlay above supersedes the
+Session 1 opening. Quiz 3 remains
+in Week 10; no quiz time is removed from either Week 9 meeting.
+
+On 18 October, Quiz 3 Forms A, B and Practice gained standalone `exam`-class
+LaTeX sources with embedded answers and separate student/corrected PDFs under
+the private `assessments/quiz-03/latex/` directory. All six four-page PDFs
+compiled and all 24 pages were visually reviewed. Student PDFs hide answers;
+even student TeX sources contain the key and must remain private. Question
+content is unchanged. The agreed section order is Tuesday–Thursday first
+(27 October), then Monday–Wednesday (28 October).
+
 Quiz 3 is confirmed for Week 10, covering material taught through Week 9
 inclusive and excluding Week 10 content. Public preparation and separate
 practice pages are prepared. Private A/B/practice QTI banks, paper versions,

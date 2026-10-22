@@ -63,6 +63,32 @@ need.
   midterm date. This is a documentation update, not a change to assessment
   weights or project requirements.
 
+- Week 9 Session 1 exit feedback now has a reviewed eight-minute instructor
+  script addressing specific import assumptions, expected missing values,
+  executable checks and observation keys. Its Session 2 opening overlay
+  preserves the lesson duration and five-minute exit period. Demonstrated R
+  checks passed; individual responses and delivery PDFs remain private.
+
+- Week 8 Session 2 exit feedback has a separate eight-minute instructor script
+  reinforcing association, interpretation limits and fair comparisons. It
+  restates the use of the five minutes already reserved for independent exit
+  responses without introducing a new grading rule. A Week 9 opening overlay
+  preserves the 75-minute lesson and full exit window. Individual responses
+  and the reviewed five-page PDF remain private.
+
+- Week 9 has two detailed 75-minute instructor scripts for import contracts
+  and tidy-data validation. They include slide cues, checked R demonstrations,
+  student attempts, TA guidance, exit questions and pacing contingencies.
+  All 20 pages were visually reviewed. Both meetings retain full teaching
+  time; Quiz 3 is in Week 10. Export/re-import is optional follow-up, and the
+  instructor scripts remain local rather than public student handouts.
+
+- Quiz 3 now also has private LaTeX `exam`-class sources with embedded solutions
+  and separate student/corrected PDFs for both section forms and practice.
+  All six PDFs compile and their 24 pages have been visually reviewed.
+  Student PDFs hide solutions; source files remain private because they contain
+  answers. This is a format conversion, not a change to the questions.
+
 - Quiz 3 moves from Week 9 to **Week 10**, covering material taught through
   **Week 9 inclusive**. The R-focused draft has 9 MCQs and 3 short written
   responses in 15 minutes, with separate section forms and distinct practice.
