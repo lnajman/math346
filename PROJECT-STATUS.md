@@ -17,6 +17,13 @@ describe pedagogical progress.
 
 ## Current Phase
 
+The formal part of the web syllabus now follows the February 2026 Word source
+through Copyright and Plagiarism, restoring references, topic wording,
+methodology, computer resources, grade bands and institutional statements.
+Source assessment weeks are explicitly distinguished from the Fall 2026
+calendar. Existing semester/project arrangements are retained under a separate
+supplementary heading; the original Word supplement has not been reinstated.
+
 The website syllabus now reproduces the February 2026 syllabus's CLO–PLO
 mappings, emphasis levels and assessment–CLO mappings. Its assessment table
 also uses the confirmed midterm date rather than the stale Week 8 marker.

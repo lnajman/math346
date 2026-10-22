@@ -2,12 +2,128 @@
 title: "Syllabus"
 ---
 
+This page reproduces the formal syllabus content from the February 2026 Word
+document, before its syllabus supplement. The separate
+[Fall 2026 supplementary information](#fall-2026-supplementary-information)
+below provides current contacts, dates and course arrangements.
+
 ## Course Information
 
-**Course:** MATH 346 Mathematical and Statistical Software  
-**Credits:** 3  
-**Contact hours:** 3 lecture hours per week  
-**Prerequisites:** COSC 114; MATH 204 or MATH 211; MATH 242 or MATH 243 or MATH 244
+**MATH 346 Mathematical and Statistical Software**
+
+**3 Lecture hours, 0 Laboratory hours, 3 Credits**
+
+**Prerequisite:**
+
+- COSC 114
+- MATH 204 or MATH 211
+- MATH 242 or MATH 243 or MATH 244
+
+## Course Catalog Description
+
+This course introduces mathematical and statistical programming using the MATLAB and R programming languages. The topics covered span a variety of topics in data science and numerical computation, including tidy data, exploratory data analysis, plotting, and symbolic computation.
+
+## Textbook
+
+A. Gilat, *MATLAB: An Introduction with Applications*, 6th Edition, Wiley, 2020, ISBN: 9781119299257.
+
+## Reference Materials
+
+H. Wickham and G. Grolemund, *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data*, 2nd Edition, O'Reilly Media, 2023.
+
+## Course Topics
+
+| Week # | Topics |
+|---|---|
+| 01 | Arrays and script files in MATLAB |
+| 02 | MATLAB: Programming, user functions |
+| 03 | MATLAB: Curve fitting and interpolation |
+| 04 | MATLAB: Built-in numerical analysis, 3d plotting |
+| 05 | MATLAB: Symbolic Math |
+| 06 | R: Markdown, and data visualization |
+| 07 | R: Workflow, and Data Transformation |
+| 08 | R: Exploratory Data Analysis |
+| 09 | R: Tibbles, Data import, and Tidy data |
+| 10 | R: Relational data, Strings, Factors, dates and times |
+| 11 | R: Pipes and Functions |
+| 12 | R: Vectors and iteration |
+| 13 | R: Model basics and model building |
+| 14 | R: Handling many models |
+| 15 | R: Additional topics in visualization and communication |
+
+## Structure and Learning Methodologies
+
+Lectures will be 2 x 75-minutes per week. Students are required to practice the use of computer software on their laptops. Quizzes, assignments and projects are held throughout the semester to reinforce knowledge of the material.
+
+## Computer Resources
+
+Students are required to have individual access to MATLAB and R.
+
+## Course Learning Outcomes and Contributions to Program Learning Outcomes
+
+Course Learning Outcomes (CLO) and Contributions to BSc Applied Math, Statistics,
+& Data Science Program Learning Outcomes (PLOs):
+
+| No. | CLOs | PLOs | Emphasis Level |
+|---|---|---|---|
+| 1 | Write programing codes for mathematical and statistical applications using appropriate software. | 3 | H |
+| 2 | Present mathematical/statistical results using appropriate software. | 4, 5 | M, M |
+| 3 | Solve problems using mathematical and statistical software. | 3 | H |
+| 4 | Analyze data using mathematical and statistical software. | 3, 5 | H, M |
+
+PLOs can be found in the academic catalog.
+
+Emphasis level: **H: High; M: Medium; L: Low**.
+Where two PLOs are listed, emphasis levels follow the same order.
+
+## Assessment
+
+All course learning outcomes are assessed using the following assessment tools.
+
+| Assessment Instruments | Contribution to Course Grade (%) | Week # | CLO(s) |
+|---|---:|---|---|
+| Quizzes | 20% | 3, 6, 9, 13 | 1, 2, 3, 4 |
+| Project(s) | 20% | 9, 15 | 2, 3 |
+| Semester Examination | 25% | 8 | 2, 3 |
+| Final Examination | 35% | 15 | 1, 2, 3, 4 |
+
+**Calendar note:** The week numbers above reproduce the February 2026 source
+syllabus; they are not the current Fall 2026 assessment calendar. See the
+[semester teaching schedule](#tentative-weekly-plan) and
+[project arrangements](#project-structure) below for current timing.
+
+## Grading Scheme
+
+The official Khalifa University grading system uses letter grades with pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point on a four-point scale as per the guidelines below:
+
+For undergraduate programs:
+
+| Letter Grade | Grade Point | Grade Range | Description |
+|---|---:|---|---|
+| A | 4.00 | From 92.5% to 100% | Excellent |
+| A- | 3.70 | From 89.5% to less than 92.5% | Very Good |
+| B+ | 3.30 | From 86.5% to less than 89.5% | Very Good |
+| B | 3.00 | From 82.5% to less than 86.5% | Good |
+| B- | 2.70 | From 79.5% to less than 82.5% | Good |
+| C+ | 2.30 | From 76.5% to less than 79.5% | Satisfactory |
+| C | 2.00 | From 72.5% to less than 76.5% | Satisfactory |
+| C- | 1.70 | From 69.5% to less than 72.5% | Less than Satisfactory |
+| D | 1.00 | From 59.5% to less than 69.5% | Poor |
+| F | 0.00 | Less than 59.5% | Fail |
+
+## Academic Integrity Statement
+
+“As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will behave according to university rules and UAE societal norms and expectations.” Refer to ACA 3500 Academic Integrity Policy for more details.
+
+## Copyright and Plagiarism
+
+All students must adhere to the university’s policies on copyright and plagiarism, including the ethical use of generative AI tools. Any use of AI-generated content must be properly attributed and must not violate academic integrity standards.
+
+## Fall 2026 Supplementary Information
+
+The formal syllabus content ends above. The following information supplements
+it for this semester; it does not reproduce the original Word supplement.
+The current project instructions and semester arrangements are unchanged.
 
 **Instructor:** Laurent Alain Najman
 
@@ -28,7 +144,7 @@ email to arrange both the time and the meeting location.
 outside class. Contact him by email to arrange support outside scheduled class
 meetings.
 
-## Course Platforms
+### Course Platforms
 
 | Platform | Purpose |
 |---|---|
@@ -39,11 +155,7 @@ meetings.
 If information on the course website and Blackboard appears inconsistent,
 follow the most recent Blackboard announcement and contact the instructor.
 
-## Catalog Description
-
-This course introduces mathematical and statistical programming using MATLAB and R. Topics include data science, numerical computation, tidy data, exploratory data analysis, plotting, and symbolic computation.
-
-## Course Framing
+### Course Framing
 
 The course follows the approved MATLAB and R syllabus. The teaching approach emphasizes reproducible, AI-aware computational work:
 
@@ -53,24 +165,7 @@ The course follows the approved MATLAB and R syllabus. The teaching approach emp
 - communicate the result in a reproducible report;
 - document any generative AI assistance.
 
-## Course Learning Outcomes
-
-By the end of the course, students should be able to:
-
-| CLO | Course learning outcome | Contributing PLO(s) | Emphasis level(s) |
-|---|---|---|---|
-| 1 | Write code for mathematical and statistical applications using appropriate software. | 3 | H |
-| 2 | Present mathematical and statistical results using appropriate software. | 4, 5 | M, M |
-| 3 | Solve problems using mathematical and statistical software. | 3 | H |
-| 4 | Analyze data using mathematical and statistical software. | 3, 5 | H, M |
-
-These mappings are reproduced from the approved February 2026 syllabus for
-the BSc Applied Mathematics, Statistics, and Data Science program. PLO means
-Program Learning Outcome; PLO definitions are given in the academic catalog.
-Emphasis levels are **H: High**, **M: Medium**, and **L: Low**. Where two PLOs
-are listed, their emphasis levels are listed in the same order.
-
-## Assessment
+### Semester Assessment Arrangements
 
 | Assessment | Weight | CLO(s) assessed | Notes |
 |---|---:|---|---|
@@ -78,8 +173,6 @@ are listed, their emphasis levels are listed in the same order.
 | Projects | 20% | 2, 3 | MATLAB Project 1 and R Project 2, 10% each |
 | Semester examination | 25% | 2, 3 | Saturday, 10 October 2026, 12:00-13:30 UAE time |
 | Final examination | 35% | 1, 2, 3, 4 | Cumulative |
-
-The assessment-to-CLO mappings above reproduce the approved syllabus.
 
 [Quiz 1](../assessments/quiz-01.qmd) is an individual, 15-minute, in-class
 Blackboard quiz with six short content blocks and two one-point questions in
@@ -90,7 +183,7 @@ reference material is permitted. The quiz does not require students to run
 MATLAB. Details for later
 quizzes and examinations will be published before the relevant units.
 
-## Tentative Weekly Plan
+### Tentative Weekly Plan
 
 | Week | Topic |
 |---:|---|
@@ -115,7 +208,7 @@ placed in Week 4 and its format is fixed; its calendar date and meeting, and
 the formats and dates of later assessments, will be announced through
 Blackboard.
 
-## Weekly Workload
+### Weekly Workload
 
 For the common examination on 10 October, see the [midterm student
 guide](../assessments/midterm.qmd). It covers Weeks 1-6 only; Week 7 is excluded.
@@ -134,7 +227,7 @@ quiz or examination preparation. See the
 and the meaning of core, guided, and extension work. Assessment weeks receive
 a reduced selection when an assessment displaces normal class time.
 
-## Software and Access
+### Software and Access
 
 Students need reliable access to MATLAB for Weeks 1-5 and Project 1, and to R
 for Weeks 6-15 and Project 2. Symbolic Math Toolbox is required for Week 5. The
@@ -149,7 +242,7 @@ optional and are not submission tools. See the
 [software and access requirements](../resources/software-requirements.qmd) for
 the complete matrix and runnable setup checks.
 
-## Project Structure
+### Project Structure
 
 Each project team may contain one, two, or three students. Three students is the
 maximum. Groups of two are allowed, and a student may choose to work alone as a
@@ -190,9 +283,9 @@ invited to a brief project verification, selected randomly or because submitted
 work requires clarification. Selection does not imply suspected misconduct, and
 a project–examination grade difference is not evidence by itself.
 
-## Missed Assessments And Late Project Submissions
+### Missed Assessments And Late Project Submissions
 
-### Quizzes
+#### Quizzes
 
 - There are no make-up quizzes.
 - A student who misses a scheduled quiz without an absence approved by the
@@ -215,12 +308,12 @@ a project–examination grade difference is not evidence by itself.
 A maximum of **40% of the course grade** can be compensated through the
 approved-absence substitutions above.
 
-### Projects
+#### Projects
 
 Late project submissions are penalized at **10% per day or part of a day**.
 The number of late days is rounded up.
 
-## Classroom Policies
+### Classroom Policies
 
 Discipline and punctuality are important components of academic and
 professional success. Students should make every effort to arrive before the

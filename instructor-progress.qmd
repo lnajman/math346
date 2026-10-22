@@ -52,6 +52,11 @@ need.
 
 ## What Has Been Established
 
+- The web syllabus now separates the formal February 2026 syllabus content
+  from Fall 2026 supplementary information. References, the grading scale,
+  teaching methodology and institutional statements have been restored;
+  current project requirements and semester dates are unchanged.
+
 - The [syllabus](syllabus/index.qmd) now includes the approved CLO–PLO
   mappings, emphasis levels and assessment–CLO mappings from the February
   2026 source document. The assessment table also reflects the confirmed
