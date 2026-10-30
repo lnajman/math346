@@ -45,10 +45,10 @@ announced project work or preparation for a quiz, midterm, or final
 examination.
 
 Assessment weeks use a reduced teaching and practice selection when an
-assessment displaces normal class time. The [Quiz 1 guide](../assessments/quiz-01.qmd)
-is available now; later assessment formats will be announced before they are
-needed. Students will not be expected to complete a full ordinary week on top
-of displaced class time.
+assessment displaces normal class time. Consult the
+[assessment pages](../assessments/index.qmd) for preparation guides and
+Blackboard for current dates and instructions. Students will not be expected
+to complete a full ordinary week on top of displaced class time.
 
 ## Weekly Exercise Selection
 
