@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-10-22
+Last updated: 2026-11-02
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -16,6 +16,19 @@ describe pedagogical progress.
    been approved.
 
 ## Current Phase
+
+The instructor authorized publication of the approved Week 11 companion on
+2 November, with later revisions in response to feedback. The student chapter
+is at `companion/week-11.html`, linked from `weeks/week-11.qmd`. It publishes
+the approved HTML and six public teaching downloads unchanged. Its Quarto
+source remains in `companion-review/week-11.qmd`; rebuild and validate with
+`python3 scripts/build_week11_companion.py`. Instructor review notes and private
+working materials are not included in the release. The source project remains
+excluded from the main website render; only the allowlisted HTML/download
+bundle is copied to the public site. The syllabus, assessment scope, exercise
+labels, two 75-minute meetings and existing workload budget are unchanged.
+All 32 R chunks and fresh-session checks pass. Student/TA timing has not been
+measured; feedback may guide later revisions without blocking this release.
 
 The formal part of the web syllabus now follows the February 2026 Word source
 through Copyright and Plagiarism, restoring references, topic wording,
@@ -576,6 +589,7 @@ agreed core project architecture is incorporated into the syllabus.
 
 | Area | Evidence | State |
 |---|---|---|
+| Course companion | `companion/week-11.html`; `companion-review/week-11.qmd`; `scripts/build_week11_companion.py` | Approved for publication; revise after feedback if needed |
 | Course purpose | `index.qmd`, `syllabus/index.qmd` | Developed |
 | Quiz 3 | `assessments/quiz-03.qmd`; separate public practice; private `assessments/quiz-03/` forms, rubrics, PDFs and QTI banks | Week 10 and R-only Weeks 6–9 scope confirmed; awaiting final format approval and timed pilot |
 | Course administration and classroom policy | `index.qmd`; `syllabus/index.qmd`; `assessments/quiz-01.qmd` | Instructor/contact/platform roles and approved attendance, missed-assessment, and late-project rules published |
@@ -607,6 +621,11 @@ agreed core project architecture is incorporated into the syllabus.
 | Code checks | `scripts/`, `.github/workflows/validate-code.yml` | Implemented |
 
 ## Next Actions
+
+Companion priority (2 November): publish the approved Week 11 version through
+the existing GitHub Pages workflow, verify its live page and downloads, then
+revise if feedback warrants. Publication is explicitly authorized; a student/TA
+run-through is not a prerequisite. Further-week rollout has not been requested.
 
 Current priority (16 October): approve Quiz 3 format, confirm section
 dates in Week 10, time-pilot both forms, then import and check Blackboard settings

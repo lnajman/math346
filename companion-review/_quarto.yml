@@ -1,0 +1,26 @@
+project:
+  type: default
+  output-dir: _preview
+  render:
+    - week-11.qmd
+  resources:
+    - downloads/
+
+format:
+  html:
+    theme: cosmo
+    css: companion.css
+    embed-resources: true
+    toc: true
+    toc-depth: 2
+    number-sections: false
+    code-copy: true
+    code-overflow: wrap
+    link-external-newwindow: true
+
+execute:
+  freeze: false
+  cache: false
+  warning: false
+  message: false
+  error: false

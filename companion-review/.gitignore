@@ -1,0 +1,6 @@
+/_preview/
+/.quarto/
+/*_files/
+/*.zip
+
+**/*.quarto_ipynb

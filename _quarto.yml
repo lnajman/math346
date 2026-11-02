@@ -11,7 +11,10 @@ project:
     - "slides/*.qmd"
     - "syllabus/*.qmd"
     - "weeks/*.qmd"
+    - "!companion-review/**"
+    - "!companion/**"
   resources:
+    - companion/
     - code/
     - data/
     - projects/handouts/

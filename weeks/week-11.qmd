@@ -4,6 +4,15 @@ execute:
   enabled: false
 ---
 
+::: {.callout-tip}
+## Work through Week 11 independently
+
+Open the [Week 11 companion: Readable code, defensible results](../companion/week-11.html)
+for guided code reading, checked examples and self-checks alongside the slides.
+Use it within the existing practice budget; it adds no assessment or submission.
+The labs and exercises below remain the practice route.
+:::
+
 ## Official Topic
 
 Pipes and functions.

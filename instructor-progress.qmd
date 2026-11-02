@@ -12,7 +12,7 @@ final delivery check before use. The midterm has been delivered. Quiz 3 is now
 scheduled for Week 10 with a Week 9 inclusive cutoff; its public preparation
 guide, distinct practice quiz and private section versions are drafted.**
 
-Last updated: **22 October 2026**
+Last updated: **2 November 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -23,6 +23,7 @@ the motivation and the kind of feedback being requested.
 
 | Workstream | Status | Evidence | Next step |
 |---|---|---|---|
+| Course companion | **Week 11 published** | [Approved companion](companion/week-11.html), checked R examples and six public teaching downloads | Revise after feedback if needed; timing remains unmeasured |
 | Student-facing course site | **Published and active** | Student-first [home](index.qmd), navigation, [weekly materials](weeks/index.qmd), [glossary](resources/glossary.qmd), and three recovery checkpoints | Keep current pages, assessment dates, and Blackboard logistics aligned |
 | Course administration and classroom policy | **Published** | [Home](index.qmd), [syllabus](syllabus/index.qmd), and [Quiz 1 guide](assessments/quiz-01.qmd) | Keep Banner and Blackboard logistics current |
 | Course framing, AI policy, and development disclosure | **Published** | [Syllabus](syllabus/index.qmd), student [AI policy](syllabus/ai-policy.qmd), and course-development [LLM-use statement](llm-use.qmd) | Keep assessment-specific student rules aligned with the general policy |
@@ -51,6 +52,13 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- The instructor approved publication of the [Week 11 companion](companion/week-11.html)
+  on 2 November, with later revisions after feedback if needed. It supports
+  independent code reading and checking, preserves existing practice and assessment
+  scope, and publishes only the approved chapter and public teaching downloads.
+  All R examples and fresh-session checks pass. The 90–120-minute practice budget
+  is unchanged; actual student completion timing has not yet been measured.
 
 - The web syllabus now separates the formal February 2026 syllabus content
   from Fall 2026 supplementary information. References, the grading scale,
@@ -391,6 +399,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 2 November 2026 | The instructor authorized publication of the approved Week 11 companion as it stands, with later revisions after feedback if needed. Existing workload and assessment scope are unchanged. |
 | 16 October 2026 | Quiz 3 is confirmed for Week 10 and covers R only from Weeks 6–9 inclusive. MATLAB and Week 10 material are excluded. Public preparation guidance and the private package notes reflect the approved scope. |
 | 23 September 2026 | Project 1's deadline was extended to Thursday, 24 September 2026, at 23:55 UAE time. Current website references and the Week 5 slides were aligned. The Meeting 2 exit slide now asks what evidence is needed to describe a stationary radius as the material-minimizing tank design, answered individually in 3-5 sentences without MATLAB code. |
 | 20 September 2026 | A failed live Blackboard import revealed that the Quiz 2 Form A, Form B, and practice QTI packages serialized every assessment item with an `ns0:` namespace prefix. The generators were repaired to emit prefix-free default-namespace QTI, to reject that regression during validation, and to provide descriptive filenames plus meaningful bank/resource/item identifiers. All three repaired banks pass local ZIP, XML, question-count, question-type, key, and metadata checks; a repeat live Blackboard import remains required. |
