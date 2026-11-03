@@ -1,0 +1,8 @@
+/_rendered/
+/.quarto/
+/*_files/
+/Rplots.pdf
+/data/week09-campus-energy-tidy.csv
+
+**/*.quarto_ipynb
+/*.html

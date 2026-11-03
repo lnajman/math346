@@ -1,0 +1,7 @@
+building_id,building_name,campus_zone,building_type
+BLDG-01,Newton Hall,north,academic
+BLDG-02,Faraday Library,east,library
+BLDG-03,Curie Laboratory,north,laboratory
+BLDG-04,Turing Residence,south,residence
+BLDG-05,Noether Sports Centre,west,sports
+BLDG-06,Hopper Administration,east,administration

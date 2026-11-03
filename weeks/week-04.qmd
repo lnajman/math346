@@ -2,6 +2,10 @@
 title: "Week 4: Numerical Analysis and 3D Plotting"
 ---
 
+Open the [Week 4 companion](../companion/week-04.html) for guided reading
+and self-checks alongside the slides and selected practice. Nothing there is
+collected or graded.
+
 ## Official Topic
 
 MATLAB built-in numerical analysis and 3D plotting. Quiz 1.

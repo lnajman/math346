@@ -1,0 +1,631 @@
+---
+title: "Week 10 · Clean meanings before joining tables"
+subtitle: "MATH 346 course companion · R"
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route {#route}
+
+**Can we attach building information while preserving every original event once?**
+
+An event is not a building. Several events may occur in one building, so
+an event identifier and a building matching key do different jobs. We clean the
+supplied synthetic event log, state the registry relationship, then inspect
+unmatched records before joining.
+
+The final guided audit uses monthly energy: its observation key has two parts.
+A valid-looking partial key can multiply rows while every displayed value still
+looks plausible.
+
+[Before you start](#before-start) · [Words used here](#words) · [Setup](#setup) ·
+[Meeting 1](#meeting-one) · [Meeting 2](#meeting-two) · [AI audit](#ai-audit) ·
+[Practice and resources](#practice) · [Chapter list](chapters.html).
+The page contents navigation also links to the sections.
+
+::: {.callout-tip}
+## A first 30-minute recovery session
+
+Choose a stopping point within about 30 minutes; continue from there next time.
+This is an untested first-pass budget, not a completion promise. 
+
+1. Check prerequisites and setup. If access is blocked, focus on that first.
+2. Read the raw/cleaned field explanations and predict what happens to BLDG-99.
+3. Inspect the two unmatched tables and the zone-summary count, then state what one joined row represents.
+4. Try the second self-check and select Core 8 or 9 as your next step.
+
+Read displayed results when jumping ahead; run complete code in its stated
+sequence when returning to your script. The full practice selection is Core
+**1, 3, 6, 7, 8, 9**, selective Guided **2, 4, 5, 10**, and optional Extension **none**,
+within the **90–120-minute** ordinary-week budget.
+:::
+
+### Before you start {#before-start}
+
+Use Week 9 import contracts, numeric/text types, missing values and relative
+`data/` paths. The Week 9 recovery companion is available from the chapter list.
+You should recognize a pipe and `mutate`; join syntax is explained here rather
+than assumed. The data are fictional teaching examples, not campus observations.
+
+Use [software requirements](https://lnajman.github.io/math346/resources/software-requirements.html) and the
+[course glossary](https://lnajman.github.io/math346/resources/glossary.html) when needed. You do not need a
+paid AI account or an external AI call: the flawed examples are supplied locally.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Observation key** | Identifies one row: `event_id` for an event. |
+| **Matching/foreign key** | Links an event to its building; repeated building keys can be legitimate. |
+| **Normalization** | Apply an explicit rule treating case/whitespace variants as the same meaning. |
+| **Ordered factor** | A categorical variable with a declared progression: low, medium, high. |
+| **Parsing** | Interpret text as a typed value, such as a timestamp. |
+| **Time zone** | The interpretation of the clock reading; Europe/Paris is the synthetic file convention. |
+| **`anti_join`** | Show left-hand rows with no matching right-hand key. |
+| **Many-to-one** | Each left-hand row matches at most one right-hand row; zero is allowed. |
+| **Composite key** | Several fields together identify the relevant observation, here building plus month. |
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the inputs and operations; explain your prediction; check a specific
+claim; interpret the result with its domain or units.
+
+Think first; write a private comment only where requested—see the
+[prediction guide](how-to-use.html#read-explain-check-interpret).
+
+## Setup {#setup}
+
+Use R 4.1 or later, dplyr 1.1 or later for relationship declarations, and the readr, stringr, lubridate and tidyr packages. Save starters in `week10/` and the three CSVs in `week10/data/`; the Week 9 CSV is only for the guided AI audit.
+
+Download the starters first. Keep these files in your working folder: `week10-clean-types.R`; `week10-join-audit.R`; `data/week10-building-registry.csv`; `data/week10-service-events.csv`; `data/week09-campus-energy-wide.csv`.
+Keep `data/` directly below that folder.
+Possible solutions are separate comparison files linked below.
+
+- [Starter: week10-clean-types.R](downloads/week10-clean-types.R)
+- [Starter: week10-join-audit.R](downloads/week10-join-audit.R)
+- [AI critique target: week10-ai-join-review.R](downloads/week10-ai-join-review.R)
+- [Supplied data: week10-building-registry.csv](data/week10-building-registry.csv)
+- [Supplied data: week10-service-events.csv](data/week10-service-events.csv)
+- [Supplied data: week09-campus-energy-wide.csv](data/week09-campus-energy-wide.csv)
+
+Run this before the other blocks; it reports missing paths without changing files.
+
+```{r}
+#| label: w10-setup
+required_paths <- c("week10-clean-types.R", "week10-join-audit.R", "data/week10-building-registry.csv", "data/week10-service-events.csv", "data/week09-campus-energy-wide.csv")
+```
+
+```{r}
+#| label: w10-author-paths
+#| include: false
+required_paths <- ifelse(startsWith(required_paths, "data/"), required_paths,
+                         file.path("downloads", required_paths))
+```
+
+```{r}
+#| label: w10-setup-check
+#| output: false
+missing_paths <- required_paths[!file.exists(required_paths)]
+if (length(missing_paths) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing from the current folder:\n", paste(missing_paths, collapse = "\n"), "\n", sep = "")
+}
+```
+
+**Example output when all required files are present:**
+
+```text
+Setup OK
+```
+
+This is example output, not confirmation of your computer's setup. Run the
+check in your own R session and read that result. Restart R, then run the chapter's code in order, including the code inside
+the reference reveals. A successful `stopifnot` is
+silent; a failed condition stops the script.
+
+## Meeting 1 · Read the computation {#meeting-one}
+
+Class route: two 75-minute meetings, each with its final five-minute exit.
+
+First inspect the raw strings. Normalizing `" bldg-01 "` to `"BLDG-01"`
+assumes case and surrounding spaces do not distinguish identifiers. The code
+renames raw `building_key` to cleaned `building_id`. That change does not turn
+it into the event identifier. A cleaning rule makes a meaning claim and needs
+both a syntactic check and later relational evidence.
+
+### Strings, factor levels and timestamps {#stage-1}
+
+**Slide cues:** *Normalize With A Rule*; *Shape Is Not Existence*; *Build And Check The Factor*; *Parse Explicitly*.
+
+The import declares six fields and nine events. `str_squish` removes outer
+spaces and compresses repeated inner spaces; case conversion makes the key
+format and issue labels consistent. Factor conversion uses the supplied severity
+levels rather than alphabetical order. An unexpected label becomes `NA`, so the
+check immediately after conversion matters.
+
+`ymd_hm` parses year-month-day and hour-minute with an explicit time zone. It
+retains the full timestamp, then derives date, hour and abbreviated month. The
+month convention assumes English abbreviations, as in the supplied examples;
+if another locale produces different labels, investigate before joining.
+
+**Predict in a private comment first:** BLDG-99 matches the declared identifier pattern. Does that establish a known registry match? What could happen to severity text "urgent" with the declared levels?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+No: the pattern checks shape, not membership in the registry. BLDG-99 is
+syntactically valid but unknown in this file. "urgent" is not among low, medium,
+high, so factor conversion produces NA and the nonmissing-severity check fails.
+If your answer differed, distinguish valid syntax from an allowed category or
+an actual match.
+
+</details>
+
+**Try before expanding:** Use the Core 3/6 starter to state the cleaning rule, then complete the key and timestamp lines. Compare the original and cleaned fields before opening the reference.
+
+<details>
+<summary>Reference version · week10-clean-types_sol.R</summary>
+
+```{r}
+#| label: w10-reference-1
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+library(readr)
+library(dplyr)
+library(stringr)
+library(lubridate)
+
+events_path <- "data/week10-service-events.csv"
+stopifnot(file.exists(events_path))
+
+events_raw <- read_csv(
+  events_path,
+  col_types = cols(
+    event_id = col_character(),
+    building_key = col_character(),
+    reported_at = col_character(),
+    issue_label = col_character(),
+    severity = col_character(),
+    response_hours = col_double()
+  ),
+  show_col_types = FALSE
+)
+
+expected_raw_names <- c(
+  "event_id", "building_key", "reported_at",
+  "issue_label", "severity", "response_hours"
+)
+
+stopifnot(
+  identical(names(events_raw), expected_raw_names),
+  nrow(events_raw) == 9,
+  n_distinct(events_raw$event_id) == 9,
+  nrow(problems(events_raw)) == 0
+)
+
+severity_levels <- c("low", "medium", "high")
+
+events <- events_raw |>
+  mutate(
+    building_id = str_to_upper(str_squish(building_key)),
+    issue = str_to_lower(str_squish(issue_label)),
+    severity_text = str_to_lower(str_squish(severity)),
+    severity = factor(
+      severity_text,
+      levels = severity_levels,
+      ordered = TRUE
+    ),
+    reported_at = ymd_hm(reported_at, tz = "Europe/Paris", quiet = TRUE),
+    report_date = as_date(reported_at),
+    report_hour = hour(reported_at),
+    month = str_to_lower(format(reported_at, "%b"))
+  ) |>
+  select(
+    event_id, building_id, reported_at, report_date, report_hour,
+    month, issue, severity, response_hours
+  )
+
+expected_issues <- c("access", "hvac", "lighting", "water leak")
+
+stopifnot(
+  all(str_detect(events$building_id, "^BLDG-[0-9]{2}$")),
+  identical(sort(unique(events$issue)), sort(expected_issues)),
+  is.ordered(events$severity),
+  identical(levels(events$severity), severity_levels),
+  !any(is.na(events$severity)),
+  !any(is.na(events$reported_at)),
+  all(events$report_hour >= 0 & events$report_hour <= 23),
+  identical(sort(unique(events$month)), c("apr", "feb", "jan", "mar")),
+  all(events$response_hours > 0)
+)
+
+severity_summary <- events |>
+  group_by(severity) |>
+  summarize(
+    n_events = n(),
+    mean_response_hours = mean(response_hours),
+    .groups = "drop"
+  )
+
+print(events)
+print(severity_summary)
+cat("Week 10 string, factor, and date-time checks passed.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** Read the assertions as separate promises: exact issue labels, ordered
+severity, no unexpected missing timestamp, valid hours, and four expected months.
+The severity summary changes a row from an event to a severity group; group
+counts should still account for all nine events. None of these checks alone
+confirms registry membership. Preserve the source data for investigating a
+conversion failure.
+
+### Meeting 1 in-class exit · Final five minutes
+
+Name one cleaning rule and the meaning it assumes.
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 1 self-check · No submission
+
+For the cleaning-rule exit, use this case: an unexpected severity
+becomes NA after factor conversion. Does that prove the original value was
+missing? State what you would inspect before deleting the event.
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+No. The value may have been observed text outside the declared levels.
+Compare the raw label, whitespace/case rules and allowed level set. Investigate
+and document a justified repair; do not remove the event just to pass a check.
+
+</details>
+
+## Meeting 2 · Check the claim {#meeting-two}
+
+A registry row describes one building; an event row describes one report.
+The registry lookup should have unique building IDs. Before the join, predict
+what duplicated registry keys could do to event multiplicity. The intended
+many-to-one relationship prevents multiple matches, but allows unknown keys.
+A left join retains the event population; an inner join would change it.
+
+### Audit unmatched rows, then join {#stage-2}
+
+**Slide cues:** *Check Registry Uniqueness*; *Audit Unmatched Events*; *Audit The Other Direction*; *Join With A Contract*; *Post-Join Checks*.
+
+The second reference imports both files and recreates its own event table,
+so it does not rely on hidden console objects. Read the two `anti_join` calls in
+opposite directions. Unknown event buildings and registered buildings without
+an event are different populations.
+
+The left join matches on cleaned `building_id` and declares many-to-one. It
+keeps the unmatched event with missing registry fields. The later `coalesce`
+labels that missing zone "unmatched" for the summary; it does not invent a
+registry match. Keep the unmatched record visible while investigating.
+
+**Predict · Think first:** The registry has six buildings and the log has nine events. Should the joined result have six rows? How many records should the two unmatched tables contain?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+The left-hand event population has nine rows. There is one unknown event,
+EVT-008 at BLDG-99, and one registered building with no event, BLDG-06. Those two
+one-row unmatched tables answer different questions. If your answer differed,
+you may have counted buildings rather than events, or reversed the join direction.
+
+</details>
+
+**Try before expanding:** Complete Core 7/8/9 in the starter: check lookup multiplicity and inspect unmatched rows before running the join.
+
+<details>
+<summary>Reference version · week10-join-audit_sol.R</summary>
+
+```{r}
+#| label: w10-reference-2
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+library(readr)
+library(dplyr)
+library(stringr)
+library(lubridate)
+
+registry_path <- "data/week10-building-registry.csv"
+events_path <- "data/week10-service-events.csv"
+stopifnot(file.exists(registry_path), file.exists(events_path))
+
+registry <- read_csv(
+  registry_path,
+  col_types = cols(
+    building_id = col_character(),
+    building_name = col_character(),
+    campus_zone = col_character(),
+    building_type = col_character()
+  ),
+  show_col_types = FALSE
+)
+
+events_raw <- read_csv(
+  events_path,
+  col_types = cols(
+    event_id = col_character(),
+    building_key = col_character(),
+    reported_at = col_character(),
+    issue_label = col_character(),
+    severity = col_character(),
+    response_hours = col_double()
+  ),
+  show_col_types = FALSE
+)
+
+events <- events_raw |>
+  transmute(
+    event_id,
+    building_id = str_to_upper(str_squish(building_key)),
+    reported_at = ymd_hm(reported_at, tz = "Europe/Paris", quiet = TRUE),
+    issue = str_to_lower(str_squish(issue_label)),
+    severity = factor(
+      str_to_lower(str_squish(severity)),
+      levels = c("low", "medium", "high"),
+      ordered = TRUE
+    ),
+    response_hours
+  )
+
+registry_key_counts <- registry |>
+  count(building_id, name = "registry_rows")
+
+stopifnot(
+  nrow(registry) == 6,
+  nrow(registry_key_counts) == nrow(registry),
+  all(registry_key_counts$registry_rows == 1),
+  n_distinct(events$event_id) == nrow(events)
+)
+
+unmatched_events <- events |>
+  anti_join(registry, by = "building_id")
+
+buildings_without_events <- registry |>
+  anti_join(events, by = "building_id")
+
+event_buildings <- events |>
+  left_join(
+    registry,
+    by = "building_id",
+    relationship = "many-to-one"
+  )
+
+stopifnot(
+  nrow(event_buildings) == nrow(events),
+  n_distinct(event_buildings$event_id) == nrow(events),
+  identical(unmatched_events$event_id, "EVT-008"),
+  identical(buildings_without_events$building_id, "BLDG-06"),
+  sum(is.na(event_buildings$building_name)) == 1,
+  sum(!is.na(event_buildings$building_name)) == 8
+)
+
+zone_summary <- event_buildings |>
+  mutate(campus_zone = coalesce(campus_zone, "unmatched")) |>
+  count(campus_zone, name = "n_events") |>
+  arrange(campus_zone)
+
+stopifnot(sum(zone_summary$n_events) == nrow(events))
+
+print(unmatched_events)
+print(buildings_without_events)
+print(zone_summary)
+cat("Week 10 join contract passed without row multiplication.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** The source checks nine unique event IDs, eight nonmissing building names
+and one missing building name. The zone-summary counts sum to nine. Also compare
+the original ID set and event response values when evaluating preservation:
+count and uniqueness alone cannot exclude substitution of one ID for another.
+A many-to-one declaration protects multiplicity, not whether the chosen key
+has the intended meaning.
+
+## AI audit · Inspect before accepting {#ai-audit}
+
+**Slide cues:** *A Plausible AI Join*; *The Missing Key Component*; *Repair The Join*.
+
+This is **selective Guided practice**; use it when selected or helpful.
+
+Read the supplied target and choose a check before opening the diagnosis.
+No AI service is contacted.
+
+The source includes both a flawed join and its repair. First inspect only
+the building-only join; stop reading at `generated_event_counts` until you have
+predicted multiplicity. Candidate checks: nine rows, nine distinct event IDs,
+one row per event, complete building-month matching key. The generated
+`many-to-many` declaration accepts row multiplication rather than fixing it.
+
+**Reading excerpt:** this fragment relies on the supplied script setup; inspect it here, then run the complete file in the evidence reveal.
+
+```r
+generated_join <- events |>
+  left_join(
+    energy_long,
+    by = "building_id",
+    relationship = "many-to-many"
+  )
+```
+
+
+**Predict in a private comment first:** Eight known events each find four monthly rows and one unknown event has no match. How many left-join rows result, and which key component is missing?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+There are `8 * 4 + 1 = 33` rows. The energy row is one building-month,
+so month must join building_id in the matching key. The repaired join returns
+nine event rows. If your answer differed, remember that a left join still emits
+one unmatched row; it does not emit zero rows for that event. Inspect both
+multiplicity and missing attached information before interpreting energy.
+
+</details>
+
+<details>
+<summary>Run the complete supplied critique target and inspect the evidence</summary>
+
+```{r}
+#| label: w10-reference-ai
+library(readr)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(lubridate)
+
+events_path <- "data/week10-service-events.csv"
+energy_path <- "data/week09-campus-energy-wide.csv"
+stopifnot(file.exists(events_path), file.exists(energy_path))
+
+events_raw <- read_csv(
+  events_path,
+  col_types = cols(
+    event_id = col_character(),
+    building_key = col_character(),
+    reported_at = col_character(),
+    issue_label = col_character(),
+    severity = col_character(),
+    response_hours = col_double()
+  ),
+  show_col_types = FALSE
+)
+
+energy_wide <- read_csv(
+  energy_path,
+  na = c("", "missing"),
+  col_types = cols(
+    building_id = col_character(),
+    building_type = col_character(),
+    area_m2 = col_double(),
+    jan_kwh = col_double(),
+    feb_kwh = col_double(),
+    mar_kwh = col_double(),
+    apr_kwh = col_double()
+  ),
+  show_col_types = FALSE
+)
+
+events <- events_raw |>
+  transmute(
+    event_id,
+    building_id = str_to_upper(str_squish(building_key)),
+    reported_at = ymd_hm(reported_at, tz = "Europe/Paris", quiet = TRUE),
+    month = str_to_lower(format(reported_at, "%b")),
+    response_hours
+  )
+
+energy_long <- energy_wide |>
+  pivot_longer(
+    cols = ends_with("_kwh"),
+    names_to = "month",
+    names_pattern = "(.*)_kwh",
+    values_to = "energy_kwh"
+  )
+
+# Generated code accepts a many-to-many join and uses only building_id.
+# Every matched event is therefore repeated once for each energy month.
+generated_join <- events |>
+  left_join(
+    energy_long,
+    by = "building_id",
+    relationship = "many-to-many"
+  )
+
+generated_event_counts <- generated_join |>
+  count(event_id, name = "rows_after_join")
+
+stopifnot(
+  nrow(events) == 9,
+  nrow(generated_join) == 33,
+  all(generated_event_counts$rows_after_join[generated_event_counts$event_id != "EVT-008"] == 4),
+  generated_event_counts$rows_after_join[generated_event_counts$event_id == "EVT-008"] == 1
+)
+
+# The repaired join uses the full building-month observation key.
+repaired_join <- events |>
+  left_join(
+    energy_long,
+    by = c("building_id", "month"),
+    relationship = "many-to-one"
+  )
+
+stopifnot(
+  nrow(repaired_join) == nrow(events),
+  n_distinct(repaired_join$event_id) == nrow(events),
+  sum(is.na(repaired_join$building_type)) == 1,
+  sum(is.na(repaired_join$energy_kwh)) == 1
+)
+
+print(generated_event_counts)
+cat("The generated join expands 9 events to 33 rows.\n")
+cat("The repaired building-month join preserves 9 event observations.\n")
+```
+
+</details>
+
+Use the existing AI policy when assistance is used: explain every accepted line
+and keep the requested evidence with your existing work. A passing test never
+replaces checking whether the code answers the actual question.
+
+### Meeting 2 in-class exit · Final five minutes
+
+What evidence shows that a join preserved the intended observation unit?
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 2 self-check · No submission
+
+Close earlier reveals and explain from memory: A declared many-to-one left join preserves nine events but one has no
+building match. Did the declaration fail? Would an inner join preserve the same
+population?
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+The declaration can pass: many-to-one means at most one match, including
+zero. The left join keeps the unknown event. An inner join would remove it and
+leave eight events in this supplied case. Match coverage and multiplicity need
+separate checks; the unknown event is not automatically erroneous.
+
+</details>
+
+## Practice, recovery and resources {#practice}
+
+**Core:** 1, 3, 6, 7, 8, 9. **Guided:** 2, 4, 5, 10. **Extension:** none.
+
+Core 1 defines row meanings, Core 3 normalizes keys, Core 6 parses time,
+and Core 7–9 audit and perform the join. The composite-key AI audit remains
+Guided 10. The [post–Week 10 recovery page](https://lnajman.github.io/math346/weeks/recovery-after-week-10.html)
+connects these foundations to Week 11. 
+
+Attempt the selected starter blocks before comparing possible solutions.
+TODO comments are placeholders, not completed analysis. Keep your checked script
+and follow Blackboard if a checkpoint is requested.
+
+**If you are stuck:** inspect cleaned keys, registry multiplicity, timestamp/locale conventions, and unmatched rows. Run missing definitions
+before their first use. Keep the first error and ask for help if a focused
+attempt remains blocked.
+
+- [Possible solution: week10-clean-types_sol.R](downloads/solutions/week10-clean-types_sol.R)
+- [Possible solution: week10-join-audit_sol.R](downloads/solutions/week10-join-audit_sol.R)
+
+**Where this fits:** [Week 10 notes](https://lnajman.github.io/math346/weeks/week-10.html) ·
+[Matching slides](https://lnajman.github.io/math346/slides/week-10.html) ·
+[Main lab](https://lnajman.github.io/math346/labs/lab-10-relational-typed-data.html) ·
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-10-ai-join-review.html) ·
+[Exercises](https://lnajman.github.io/math346/weeks/week-10-exercises.html).
+

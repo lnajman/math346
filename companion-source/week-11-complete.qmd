@@ -1,0 +1,1198 @@
+---
+title: "Week 11 · Readable code, defensible results"
+subtitle: "MATH 346 course companion · Pipelines and function contracts"
+description: "Read, explain and check an R workflow, then audit a generated refactor."
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route through the week {#start}
+
+**How can we make an analysis easier to read and reuse without changing what it
+does?** We will follow nine synthetic service events through named tables,
+extract two reusable rules, and test a plausible but incorrect AI refactor.
+
+By the end, you should be able to trace what enters and leaves a pipe, choose
+checks that match a table's row meaning, state a function's contract, and catch
+changes to boundaries, missing values and argument use.
+
+::: {.route}
+**Contents:** [Before you start](#before-start) · [Words used here](#words) ·
+[Setup](#setup) · [Practice and solutions](#practice).
+
+**Meeting 1:** [recover the observation unit](#bridge), then
+[read a pipeline](#pipeline), [check its stages](#checkpoints) and
+[explain the summary](#summary).
+
+**Meeting 2:** [write a vector function](#vector-function),
+[test a table function](#table-function) and [audit a refactor](#ai-audit).
+
+**Practice:** Core Exercises **1, 2, 4, 7 and 8**.
+[Return to the practice route](#practice) after class.
+:::
+
+Use this chapter alongside the slides and selected lab checkpoints. Both
+75-minute meetings retain their final five-minute individual exit. Companion
+reading counts within the **90–120-minute ordinary-week practice budget**;
+this is not a measured completion time. See the [reading guide](how-to-use.html)
+for resource roles, workload and keeping your work.
+
+::: {.callout-tip}
+## Minimum path · A first 30-minute recovery session
+
+Choose a stopping point within about 30 minutes and resume there later.
+This is an untested first-pass budget, not a completion promise. If setup is
+unfinished, use the session to fix it and think through predictions on paper.
+
+1. Read the prerequisites and run the setup check.
+2. Try the [identity prediction](#bridge) and trace the [checkpoint table](#checkpoints) (Core 1/2).
+3. Inspect the [issue summary](#summary): what does one row represent, and how do its counts account for all nine events?
+4. Begin your [function contract](#vector-function), then compare the hidden explanation (Core 4). Mark where to resume; implementation, boundary testing and Core 7/8 come later.
+
+This first pass includes summary reading, but defers writing and checking the
+summary code to the full path. Read displayed results when jumping ahead;
+run R blocks in chapter order when you return to the code.
+
+**Full path:** work through the chapter in order, including the required Core
+1, 2, 4, 7 and 8 practice. Use Guided 3, 9 and 10 selectively; the AI audit is
+guided practice. Extension 5 and 6, the extra transfer variant and the
+“explain this line” check are optional. The 30 minutes counts within the
+90–120 minute ordinary-week practice budget.
+:::
+
+### Before you start {#before-start}
+
+From Week 10, you should be able to open an R script, find a CSV relative to
+your project folder, recognize `NA`, and explain that a service event and a
+building are different observation units. You should have seen string cleaning,
+factors, timestamps and joins; you do not need to memorize their syntax.
+The join examples recall Week 10 and explain why checkpoints matter. You do
+not need to write or run a join to complete this chapter.
+Use the [post–Week 10 recovery page](https://lnajman.github.io/math346/weeks/recovery-after-week-10.html)
+if those ideas are unfamiliar. The complete setup below rebuilds the data;
+no saved Week 10 workspace is needed.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Invariant** | A promise that should remain true at a particular stage, such as one row per original event. |
+| **Contract** | What a function accepts, what it returns, and when it should stop with an error. |
+| **Known-answer test** | A small example whose answer you work out independently before running the code. |
+| **Boundary** | The exact dividing value in a rule, such as 12 in a 12-hour target. |
+| **Observation key / matching key** | An observation key identifies one row's event; a matching key connects it to another table. Several events can share a matching building key. |
+| **Unmatched key** | A key value with no matching row in the other table. |
+| **Left join / inner join** | A left join keeps every left-hand row; an inner join keeps only matching rows. Multiple matches can multiply rows in either. |
+| **`anti_join(x, y, by = ...)`** | Show rows of `x` with no match in `y` using the stated key. |
+| **Many-to-one declaration** | Require each left-hand row to match at most one right-hand row; zero matches are allowed. |
+| **`tryCatch`** | Catch an expected error and keep it as an object so the script can continue. |
+| **`inherits(x, "error")`** | Ask whether `x` is an error object; the answer is `TRUE` or `FALSE`. |
+| **`identical` / `all.equal`** | `identical` checks exact type and value. `all.equal` allows numerical tolerance and returns `TRUE` or a description of differences; use `isTRUE(all.equal(...))` in a check. |
+
+The [course glossary](https://lnajman.github.io/math346/resources/glossary.html)
+provides further background.
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the inputs and operations; explain your prediction; check a specific
+claim; interpret the result with its population, domain or units. Apply this
+to supplied code, your own code and LLM-generated code alike.
+
+Think first; write a private comment only where requested—see the
+[prediction guide](how-to-use.html#read-explain-check-interpret).
+
+## Start with the familiar data {#setup}
+
+**Slide cue:** “Reuse Familiar Data”.
+
+Download the [synthetic service-event CSV](downloads/week10-service-events.csv),
+the [pipeline starter](downloads/week11-readable-pipeline.R), and the
+[function starter](downloads/week11-function-contracts.R). Save them as follows:
+
+```text
+week11/
+  week11-readable-pipeline.R
+  week11-function-contracts.R
+  data/
+    week10-service-events.csv
+```
+
+Open this folder as your RStudio project or set it as your working directory.
+Use R 4.1 or later and the already-required `readr`, `dplyr`, `stringr` and
+`lubridate` packages. If setup is blocked, use the
+[course software checks](https://lnajman.github.io/math346/resources/software-requirements.html)
+and ask for help; you can still predict outputs while access is resolved.
+
+### Setup check
+
+Run this check from the `week11/` folder before loading packages. It checks the
+two starters and the CSV's position without running or changing their contents.
+If it lists missing paths, fix those paths before continuing.
+
+```{r}
+#| label: setup-files
+setup_files <- c(
+  "week11-readable-pipeline.R",
+  "week11-function-contracts.R",
+  "data/week10-service-events.csv"
+)
+```
+
+```{r}
+#| label: author-setup-files
+#| include: false
+# Author render uses the same public files in the download bundle.
+setup_files <- file.path("downloads", basename(setup_files))
+```
+
+```{r}
+#| label: setup-check
+#| output: false
+missing_files <- setup_files[!file.exists(setup_files)]
+if (length(missing_files) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing from the current folder:\n",
+      paste(missing_files, collapse = "\n"), "\n", sep = "")
+}
+```
+
+**Example output when all required files are present:**
+
+```text
+Setup OK
+```
+
+This is example output, not confirmation of your computer's setup. Run the
+check in your own R session and inspect that result.
+
+If you see missing paths, run `getwd()` to see where R is looking. Creating a
+folder in a file browser does not automatically make it R's working directory.
+
+The starter files contain unfinished tasks. Complete the selected blocks before
+running the whole starter. The worked blocks in this chapter run **in order in a
+fresh R session**. Closed reveals contain runnable reference code: after your
+attempt, open and run them when following the full route. To begin directly
+with Meeting 2, run the setup and import below, define
+[`within_target`](#vector-function), then run the [Meeting 2 setup](#meeting-two-setup).
+The later original-versus-refactored comparison also needs Meeting 1's stages.
+
+```{r}
+#| label: import
+library(readr)
+library(dplyr)
+library(stringr)
+library(lubridate)
+
+# In your week11 folder, use the data/ path below.
+events_path <- "data/week10-service-events.csv"
+```
+
+```{r}
+#| label: author-render-path
+#| include: false
+# The review project stores its supplied CSV in downloads/.
+# This author-only path adjustment does not appear in the student example.
+events_path <- "downloads/week10-service-events.csv"
+```
+
+```{r}
+#| label: read-events
+stopifnot(file.exists(events_path))
+events_raw <- read_csv(
+  events_path,
+  col_types = cols(
+    event_id = col_character(),
+    building_key = col_character(),
+    reported_at = col_character(),
+    issue_label = col_character(),
+    severity = col_character(),
+    response_hours = col_double()
+  ),
+  show_col_types = FALSE
+)
+stopifnot(
+  nrow(events_raw) == 9,
+  !anyNA(events_raw$event_id),
+  n_distinct(events_raw$event_id) == 9,
+  nrow(problems(events_raw)) == 0
+)
+dim(events_raw)
+```
+
+### What a failed check looks like
+
+A silent `stopifnot` means all its conditions passed. An error names the first
+failing condition. The next example deliberately asks for eight rows when the
+file has nine; it does not alter `events_raw`.
+
+`tryCatch` catches this expected error and keeps it in `failed_check`, so the
+rest of the script can continue. `conditionMessage` reads its message.
+
+```{r}
+#| label: failed-check-demo
+failed_check <- tryCatch(
+  stopifnot(nrow(events_raw) == 8),
+  error = function(e) e
+)
+cat("Error: ", conditionMessage(failed_check), "\n", sep = "")
+stopifnot(inherits(failed_check, "error"))
+```
+
+The displayed message comes from the actual failed assertion. The final check
+passes because the deliberately incorrect assertion produced an error object.
+For an unexpected failure, inspect the named condition and its input before
+changing anything; deleting the check only hides the problem.
+
+Tables in this chapter display checked output; in R, use `print(object_name)`
+to inspect an object. The import output is nine rows and six columns. Each row is **one service event**;
+`event_id` identifies that event. A building may have several events. All
+response times in this small supplied file are observed; none equals exactly
+12 hours. We will therefore need deliberately chosen tests for missingness and
+the boundary. These data are synthetic and contain no student information.
+
+## Three distinctions to keep straight {#bridge}
+
+**Slide cue:** “Check The Observation Unit”.
+
+Keep counts separate from identity, an observation key separate from a matching
+key, and an unmatched event separate from a lost event.
+
+**Predict before revealing:** a pipeline begins with `E1, E2, E3` and ends
+with `E1, E1, E3`. What does a row-count check miss? What if the result is
+`E1, E2, E4` instead? Write your prediction in a comment before opening the reveal.
+
+<details>
+<summary>Compare your explanation</summary>
+
+Both results still have three rows. The first duplicates E1 and loses E2.
+The second has three distinct IDs but replaces E3 with E4. Check the count,
+uniqueness **and the original set of IDs**. These are examples of corrupted
+processing, not claims that a left join itself drops a left-hand row.
+
+**If your answer differed, the likely cause is** counting rows without checking
+which IDs they contain. `E1, E1, E3` also needs a uniqueness check;
+`E1, E2, E4` passes uniqueness but fails comparison with the original ID set.
+
+</details>
+
+| Question | Evidence to inspect | What this check does not show |
+|---|---|---|
+| Are the same events present once each? | Row count, nonmissing unique `event_id`, and the same original ID set | That the attached building information is correct |
+| Can several events share a building? | Event identity is `event_id`; raw `building_key` becomes the normalized `building_id` during cleaning and is used for matching | That a registry may contain duplicate building keys |
+| Did every event find building information? | Unmatched keys, for example from `anti_join` | That every missing attached field necessarily indicates an unmatched key |
+| Does a many-to-one join declaration suffice? | It guards against an event matching multiple registry rows | That every event matches, or that the chosen keys identify the correct building and period |
+
+An unmatched event survives a left join, with missing attached registry fields.
+An inner join would exclude it. Investigate that distinction before deleting
+rows. Week 11 makes this reasoning easier by keeping named tables before and
+after a transformation. We do not repeat the full Week 10 join lab here.
+
+## Meeting 1 · Read the pipeline {#pipeline}
+
+**Slide cues:** “Read A Pipe Top To Bottom”, “What Moves Through The Pipe?”
+and “Nested Calls”.
+
+### Follow the whole object
+
+**Predict · Think first:** the number of rows and columns after each call.
+
+```{r}
+#| label: trace-pipe
+trace_example <- events_raw |>
+  transmute(event_id, response_hours) |>
+  arrange(event_id)
+dim(trace_example)
+```
+
+`events_raw` is the first argument of `transmute`. Its nine-row, two-column
+result becomes the first argument of `arrange`. The pipe does not mean “run
+separately on every row.” `arrange` orders rows; it does not summarize them.
+The equivalent nested expression is:
+
+```{r}
+#| label: nested-equivalence
+trace_nested <- arrange(
+  transmute(events_raw, event_id, response_hours),
+  event_id
+)
+stopifnot(identical(trace_example, trace_nested))
+```
+
+A shorter expression is useful only if its meaning is easier to inspect. A
+long pipe that cleans, joins and summarizes can hide where its promises change.
+
+### Name the state, then check its promise {#checkpoints}
+
+**Slide cues:** “Use Named Checkpoints”, “Name The Data State” and
+“Check The Observation Unit”.
+
+Our four states are:
+
+| State | One row represents | Expected size for this file | A useful check |
+|---|---|---|---|
+| `events_raw` | One supplied service event | 9 × 6 | Import problems and unique nonmissing event IDs |
+| `events_clean` | The same event, with normalized fields | 9 × 6 | Same IDs, valid timestamps and ordered severity |
+| `events_analysis` | The same event, with derived variables | 9 × 8 | Same IDs, logical flags and correct units |
+| `issue_summary` | One issue category | 4 × 5 | Category counts account for all nine events |
+
+Try the selected cleaning checkpoint in your starter first. Then read this
+worked block line by line:
+
+```{r}
+#| label: clean-events
+events_clean <- events_raw |>
+  transmute(
+    event_id,
+    building_id = str_to_upper(str_squish(building_key)),
+    reported_at = ymd_hm(reported_at, tz = "Europe/Paris", quiet = TRUE),
+    issue = str_to_lower(str_squish(issue_label)),
+    severity = factor(
+      str_to_lower(str_squish(severity)),
+      levels = c("low", "medium", "high"),
+      ordered = TRUE
+    ),
+    response_hours
+  )
+
+stopifnot(
+  nrow(events_clean) == nrow(events_raw),
+  !anyNA(events_clean$event_id),
+  n_distinct(events_clean$event_id) == nrow(events_clean),
+  setequal(events_raw$event_id, events_clean$event_id),
+  !anyNA(events_clean$reported_at),
+  !anyNA(events_clean$severity),
+  is.ordered(events_clean$severity),
+  identical(levels(events_clean$severity), c("low", "medium", "high")),
+  is.numeric(events_clean$response_hours)
+)
+```
+
+`transmute` keeps the named output columns. `str_squish` removes surrounding
+space and compresses repeated internal spaces; case normalization assumes case
+does not distinguish these identifiers or labels. The original table remains
+available for inspection. `Europe/Paris` is the synthetic data's time-zone
+convention, not the location or time zone of the class. An unknown severity
+label can turn into `NA` during factor conversion; inspect the raw text if
+that assertion fails.
+
+**Explain:** why do we need both `setequal` and a uniqueness check?
+
+<details>
+<summary>Check the reasoning, then damage a copy</summary>
+
+A set ignores repetition. `setequal(c("E1", "E2"), c("E1", "E1", "E2"))`
+is true. Set equality checks which IDs are present; uniqueness and row count
+check how often they appear. Neither verifies every attached value.
+
+```{r}
+#| label: damaged-copy
+bad <- events_clean
+bad$event_id[2] <- bad$event_id[1]
+data.frame(
+  rows = nrow(bad),
+  distinct_ids = n_distinct(bad$event_id),
+  same_ids = setequal(events_raw$event_id, bad$event_id)
+)
+stopifnot(
+  nrow(bad) == 9,
+  n_distinct(bad$event_id) == 8,
+  !setequal(events_raw$event_id, bad$event_id)
+)
+```
+
+The result is 9 rows, 8 distinct IDs and `FALSE` for the same-ID test.
+`events_clean` is untouched. These assertions verify the deliberately damaged
+example; they are not acceptance checks for a cleaned production table.
+
+</details>
+
+### State the target rule before calculating
+
+**Slide cues:** “Add The Target Rule” and “Check The Derived Variable”.
+
+Our flag means **a recorded response at or below 12 hours**. Exactly 12 counts.
+A missing response is not evidence that the target was met, so its flag is
+`FALSE`. That does **not** establish that the response was late.
+
+**Predict in a comment first:** the flags for 11, 12, 13 and a missing response.
+Then open and run the derivation before continuing to the summary.
+
+<details>
+<summary>Compare the four flags and run the derivation</summary>
+
+```{r}
+#| label: derive-target
+x <- c(11, 12, 13, NA_real_)
+!is.na(x) & x <= 12
+
+events_analysis <- events_clean |>
+  mutate(
+    within_12_hours = !is.na(response_hours) & response_hours <= 12,
+    response_days = response_hours / 24
+  )
+stopifnot(
+  nrow(events_analysis) == nrow(events_clean),
+  identical(events_analysis$event_id, events_clean$event_id),
+  is.logical(events_analysis$within_12_hours),
+  !anyNA(events_analysis$within_12_hours),
+  sum(events_analysis$within_12_hours) == 5,
+  isTRUE(all.equal(events_analysis$response_days,
+                  events_clean$response_hours / 24))
+)
+```
+
+`!is.na(x)` says whether a value is observed. `&` combines conditions
+entry by entry. For a missing value, `FALSE & NA` is `FALSE`. Dividing hours
+by 24 changes units to days. It does not change event identity.
+
+**If your answer differed, the likely cause is** using `<` instead of `<=` for
+12, or leaving the response's missing-value rule implicit. The expected vector
+is `TRUE, TRUE, FALSE, FALSE`; the response flag uses an explicit missing-value
+rule.
+
+</details>
+
+### Summarize only when the row meaning should change {#summary}
+
+**Slide cues:** “Summarize Last” and “Check Group Accounting”.
+
+```{r}
+#| label: issue-summary
+issue_summary <- events_analysis |>
+  group_by(issue) |>
+  summarize(
+    n_events = n(),
+    observed_responses = sum(!is.na(response_hours)),
+    mean_response_hours = mean(response_hours, na.rm = TRUE),
+    within_target_rate = mean(within_12_hours),
+    .groups = "drop"
+  ) |>
+  arrange(desc(n_events), issue)
+
+stopifnot(
+  nrow(issue_summary) == 4,
+  sum(issue_summary$n_events) == nrow(events_analysis),
+  sum(issue_summary$observed_responses) == 9,
+  all(issue_summary$within_target_rate >= 0),
+  all(issue_summary$within_target_rate <= 1)
+)
+```
+
+```{r}
+#| label: formatted-output-1
+#| echo: false
+knitr::kable(issue_summary, digits = 6)
+```
+
+There are now four rows because a row represents an issue category. Nine
+summary rows would be the wrong invariant. The HVAC mean can be checked by
+hand: `(4.5 + 11 + 9) / 3 = 24.5 / 3` hours. Access has two events,
+with mean `(25 + 14) / 2 = 19.5` hours.
+
+`mean(within_12_hours)` treats `TRUE` as 1 and `FALSE` as 0. Its denominator
+is **all event rows in the category**. `mean(response_hours, na.rm = TRUE)`
+uses only observed response times. In this file all times are observed, so
+the two counts agree. With all times missing, that mean would be `NaN`;
+the function in Meeting 2 explicitly rejects such a selected group.
+
+**Predict · Think first:** is the overall target rate the unweighted mean
+of the four category rates? Explain your denominator.
+
+<details>
+<summary>Check the denominator</summary>
+
+No. HVAC has three events, while each other category has two. Five of the nine
+events meet the rule, so the overall fraction is `5/9`, about 0.556. The
+unweighted mean `(1 + 0 + 0 + 1)/4 = 0.5` gives each category equal weight,
+answering a different question.
+
+**If your answer differed, the likely cause is** giving each category equal
+weight even though the categories contain different numbers of events.
+
+```{r}
+#| label: denominator-check
+stopifnot(
+  isTRUE(all.equal(mean(events_analysis$within_12_hours), 5 / 9)),
+  isTRUE(all.equal(
+    weighted.mean(issue_summary$within_target_rate, issue_summary$n_events),
+    5 / 9
+  ))
+)
+```
+
+</details>
+
+### Close Meeting 1
+
+**Slide cue:** “Meeting 1 Exit Ticket”.
+
+Save, restart R, and rerun the completed blocks from the beginning. Explain one
+assertion and a defect it could catch. A silent `stopifnot` means its conditions
+passed. Match each assertion to the specific promise it checks.
+
+**Individual in-class exit, final five minutes:** where should the event-analysis
+pipeline pause for a named checkpoint, and why? Name the stage, say what one row
+represents there, and describe one check and the problem it could reveal.
+Two or three sentences; code is optional. Submit only through the announced
+classroom route. The companion does not collect responses.
+
+**Self-check (no submission):** your cleaned table has nine rows and nine
+distinct IDs, but `EVT-009` has been replaced with a new ID, `EVT-010` (absent
+from the supplied CSV). At which stage would you check, and what comparison
+would reveal the replacement? Would that check also fail if the original rows
+were merely reordered? Close earlier reveals and explain from memory before
+opening the model answer.
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+Check immediately after cleaning, while a row still represents one service
+event. Compare the original and cleaned ID sets with `setequal`; it returns
+`FALSE` because one original ID disappeared and another appeared. Counts and
+uniqueness alone pass in this case. Keep those checks too, because they test
+different promises. Merely reordering the original rows leaves `setequal`
+true: it compares the IDs present, not their order.
+
+</details>
+
+## Meeting 2 · Reuse a rule with a contract {#vector-function}
+
+**Slide cues:** “Meeting 2 Question”, “When A Function Helps”, “Function Anatomy”
+and “Start With A Contract Sentence”.
+
+A function helps when a meaningful rule repeats, its inputs and output can be
+stated clearly, and small tests can check it independently. Do not hide an
+unexplained block inside a function just to shorten the main script.
+
+### A vector function
+
+**Commit your prediction first:** write the following sentence as a `# My
+contract: ...` comment in your own script, filling all four gaps before opening
+either reveal. This is for your own use, not for submission.
+
+> `within_target` accepts …, returns …, treats equality and missingness …,
+> and rejects … .
+
+<details>
+<summary>Compare the complete contract</summary>
+
+It accepts a numeric response vector and one finite, nonnegative numeric target
+(default 12). It returns a same-length logical vector with no missing entries:
+an observed response at or below the target is `TRUE`, and a missing response
+is `FALSE`. Unsupported response types or invalid targets cause an error.
+
+This matches the teaching contract. It does not promise to reject negative or
+infinite response values. Physical-range validation would be an additional
+rule, not something `is.numeric` already guarantees. The target itself must
+be finite and nonnegative.
+
+**If your answer differed, the likely cause is** mixing up missing responses
+with missing targets, omitting the same-length output promise, or forgetting
+that equality belongs inside the target.
+
+</details>
+
+Attempt Core Exercise 4 in the starter using your contract comment. Before
+expanding, think through the response check and the target checks you
+expect to need. Then compare and run the complete reference definition so that
+the later test calls can find `within_target`.
+
+**Slide cues:** “Validate Input Type”, “Validate A Default Argument”,
+“Calculate Then Check” and “The Last Expression Returns”.
+
+<details>
+<summary>Reference implementation · within_target</summary>
+
+```{r}
+#| label: within-target
+within_target <- function(response_hours, target_hours = 12) {
+  if (!is.numeric(response_hours)) {
+    stop("response_hours must be numeric")
+  }
+  if (!is.numeric(target_hours) || length(target_hours) != 1 ||
+      !is.finite(target_hours) || target_hours < 0) {
+    stop("target_hours must be one finite nonnegative number")
+  }
+  result <- !is.na(response_hours) & response_hours <= target_hours
+  stopifnot(
+    is.logical(result),
+    length(result) == length(response_hours),
+    !anyNA(result)
+  )
+  result
+}
+```
+
+</details>
+
+Defining a function stores a rule; calling it applies the rule. The names in
+parentheses are arguments. The default `12` is used only when the caller omits
+`target_hours`. `result` is local to the call; the final expression returns it.
+
+The abbreviated function-anatomy and default-validation slides are sketches;
+use the full checks in the reference version when implementing the contract.
+
+**Optional · Explain this line:** think through why the validation
+chain uses `||`, while the response calculation uses `&`.
+
+<details>
+<summary>Compare the line explanation</summary>
+
+`||` checks one condition at a time and stops as soon as one is true. Here it
+checks type and length before attempting scalar finite/range checks. `&`
+combines the two logical conditions entry by entry for the response vector.
+This avoids silently recycling a two-element target through the calculation.
+
+</details>
+
+### Choose tests for the mistakes they expose
+
+**Slide cues:** “Known-Answer Test”, “Boundary And Missing Test” and
+“Test Expected Failure”.
+
+Think through the expected result before running each call; reuse your earlier
+boundary prediction. These are direct function calls; repeating functions over
+many inputs belongs to Week 12.
+
+```{r}
+#| label: vector-tests
+stopifnot(
+  identical(within_target(c(4, 18)), c(TRUE, FALSE)),
+  identical(within_target(c(11, 12, 13, NA_real_), 12),
+            c(TRUE, TRUE, FALSE, FALSE)),
+  identical(within_target(c(0, 1), 0), c(TRUE, FALSE)),
+  identical(within_target(c(4, 18), 20), c(TRUE, TRUE)),
+  identical(within_target(numeric(0)), logical(0))
+)
+invalid <- tryCatch(
+  within_target(c(4, 18), target_hours = -1),
+  error = function(e) e
+)
+stopifnot(inherits(invalid, "error"))
+conditionMessage(invalid)
+```
+
+`identical` tests exact values and types, suitable for these logical vectors.
+For calculated floating-point means, use a stated tolerance or
+`isTRUE(all.equal(actual, expected))`. `tryCatch` retains the expected error
+as an object, so the test script can continue. An expected error is a successful
+test of rejection behavior.
+
+**Read and explain:** which test distinguishes `<` from `<=`? Which detects a
+hard-coded default? Which tests the empty output's type?
+
+<details>
+<summary>Check your choices and try another invalid input</summary>
+
+The 12-hour equality distinguishes the boundary operators. The call with target
+20 checks that the caller can override the default. `numeric(0)` checks that an
+empty numeric vector yields `logical(0)`.
+
+**If your answer differed, the likely cause is** testing only a value below the
+target: both `<` and `<=` accept that value, so only equality separates them.
+
+```{r}
+#| label: invalid-vector-tests
+invalid_text <- tryCatch(within_target("4"), error = function(e) e)
+invalid_missing <- tryCatch(within_target(4, NA_real_), error = function(e) e)
+invalid_infinite <- tryCatch(within_target(4, Inf), error = function(e) e)
+invalid_many <- tryCatch(within_target(4, c(12, 20)), error = function(e) e)
+invalid_empty <- tryCatch(within_target(4, numeric(0)), error = function(e) e)
+stopifnot(
+  inherits(invalid_text, "error"),
+  inherits(invalid_missing, "error"),
+  inherits(invalid_infinite, "error"),
+  inherits(invalid_many, "error"),
+  inherits(invalid_empty, "error")
+)
+```
+
+Missing **responses** are allowed; a missing **target** is rejected. Those are
+different inputs with different contracts.
+
+</details>
+
+## A table function: one category, one summary row {#table-function}
+
+**Slide cues:** “A Data-Frame Function”, “Check Required Columns” and
+“Test Two Arguments”.
+
+### Meeting 2 setup {#meeting-two-setup}
+
+After the import, this block makes Meeting 2 independent of Meeting 1's cleaned
+objects. Define `within_target` above before defining the summary function.
+
+```{r}
+#| label: meeting-two-data
+events <- events_raw |>
+  transmute(
+    event_id,
+    issue = str_to_lower(str_squish(issue_label)),
+    response_hours
+  )
+```
+
+**Begin your implementation first:** for Core Exercise 7, start your own
+`summarize_issue <- function(data, issue_name, target_hours = 12)` skeleton with
+`# TODO: check required columns`, `# TODO: check issue argument`, and
+`# TODO: check selected responses` inside its braces. Think through the inputs,
+five output columns and rejected cases before expanding the reference. Complete
+your attempt and compare; these stubs are part of the existing exercise, not a
+separate written response. Run the complete definition before the tests below.
+
+<details>
+<summary>Reference implementation · summarize_issue</summary>
+
+The function receives a data frame with `issue` and `response_hours`, one
+nonmissing character issue name, and the target. It returns one row with five
+columns. It rejects an absent category or one with no observed responses.
+Numeric responses and a valid target are checked by `within_target`.
+
+```{r}
+#| label: summarize-function
+summarize_issue <- function(data, issue_name, target_hours = 12) {
+  required <- c("issue", "response_hours")
+  if (!is.data.frame(data) || !all(required %in% names(data))) {
+    stop("data must contain issue and response_hours")
+  }
+  if (!is.character(issue_name) || length(issue_name) != 1 ||
+      is.na(issue_name)) {
+    stop("issue_name must be one nonmissing character value")
+  }
+  selected <- data |>
+    filter(issue == issue_name)
+  if (nrow(selected) == 0 || !any(!is.na(selected$response_hours))) {
+    stop("the requested issue needs at least one observed response")
+  }
+  selected |>
+    summarize(
+      issue = issue_name,
+      n_events = n(),
+      observed_responses = sum(!is.na(response_hours)),
+      mean_response_hours = mean(response_hours, na.rm = TRUE),
+      within_target_rate = mean(within_target(response_hours, target_hours))
+    )
+}
+```
+
+</details>
+
+The explicit missing-issue guard rejects a missing category argument.
+The function uses the supplied `data`, rather than silently reading a global
+`events` object. It selects rows by the supplied `issue_name`.
+
+**Predict · Think first:** the HVAC and access counts and means from the
+raw values. Then run:
+
+```{r}
+#| label: summary-tests
+hvac_summary <- summarize_issue(events, "hvac")
+access_summary <- summarize_issue(events, "access")
+stopifnot(
+  nrow(hvac_summary) == 1,
+  identical(names(hvac_summary),
+    c("issue", "n_events", "observed_responses",
+      "mean_response_hours", "within_target_rate")),
+  hvac_summary$issue == "hvac",
+  hvac_summary$n_events == 3,
+  hvac_summary$observed_responses == 3,
+  abs(hvac_summary$mean_response_hours - 24.5 / 3) < 1e-12,
+  hvac_summary$within_target_rate == 1,
+  access_summary$issue == "access",
+  access_summary$n_events == 2,
+  access_summary$observed_responses == 2,
+  abs(access_summary$mean_response_hours - 19.5) < 1e-12,
+  access_summary$within_target_rate == 0
+)
+```
+
+```{r}
+#| label: formatted-output-2
+#| echo: false
+knitr::kable(bind_rows(hvac_summary, access_summary), digits = 6)
+```
+
+An expected result derived from the input values gives independent evidence.
+Copying the function's own output into an “expected” column does not.
+
+### Missingness and failure are part of the result contract
+
+**Predict · Think first:** for two synthetic access events with times `10`
+and `NA`, give the number of events, observed-response count, mean and target
+rate.
+
+<details>
+<summary>Reveal the small test and expected failures</summary>
+
+```{r}
+#| label: summary-edge-tests
+partial <- data.frame(issue = c("access", "access"),
+                      response_hours = c(10, NA_real_))
+partial_summary <- summarize_issue(partial, "access")
+stopifnot(
+  partial_summary$n_events == 2,
+  partial_summary$observed_responses == 1,
+  partial_summary$mean_response_hours == 10,
+  partial_summary$within_target_rate == 0.5
+)
+
+all_missing <- partial
+all_missing$response_hours <- c(NA_real_, NA_real_)
+missing_group <- tryCatch(
+  summarize_issue(all_missing, "access"), error = function(e) e)
+absent_group <- tryCatch(
+  summarize_issue(events, "not-an-issue"), error = function(e) e)
+missing_column <- tryCatch(
+  summarize_issue(data.frame(issue = "access"), "access"),
+  error = function(e) e)
+missing_name <- tryCatch(
+  summarize_issue(events, NA_character_), error = function(e) e)
+stopifnot(
+  inherits(missing_group, "error"),
+  inherits(absent_group, "error"),
+  inherits(missing_column, "error"),
+  inherits(missing_name, "error")
+)
+```
+
+There are two events but one observed response. The observed mean is 10 hours;
+the recorded-within-target fraction is `1/2`. The unrecorded time is unknown,
+not a measured late response. With no observed response at all, the function
+stops rather than presenting an unexplained `NaN` mean.
+
+**If your answer differed, the likely cause is** using the same denominator
+for both summaries. The mean response uses one observed time; the flag rate
+uses both event rows. A missing response is not evidence that the target was met.
+
+</details>
+
+## Audit a plausible LLM refactor {#ai-audit}
+
+**Slide cues:** “Plausible AI Refactor 1”, “Plausible AI Refactor 2” and
+“Refactor Audit”. **Guided practice:** use selectively with Exercise 9.
+
+Use this selective AI-review activity with Guided 9; no live AI account is
+needed. Download the
+[deliberately flawed review script](downloads/week11-ai-refactor-review.R).
+It is a critique target, not a possible solution.
+
+### Shorter code can change the rule
+
+Read this proposed refactor before running it:
+
+```{r}
+#| label: flawed-threshold
+within_target_ai <- function(response_hours, target_hours = 12) {
+  response_hours < target_hours
+}
+```
+
+Use this test list before opening the evidence:
+
+| Call to the proposed function | Required result under the original contract |
+|---|---|
+| `within_target_ai(4.5)` | `TRUE` |
+| `within_target_ai(12)` | `TRUE` |
+| `within_target_ai(13)` | `FALSE` |
+| `within_target_ai(NA_real_)` | `FALSE` |
+| `within_target_ai(4, -1)` | An error |
+
+**Predict in a comment first:** which tests would fail, and which line explains
+each failure? State the generated result as well as the required result.
+
+<details>
+<summary>Compare the evidence</summary>
+
+```{r}
+#| label: ai-threshold-evidence
+ai_evidence <- data.frame(
+  input = c("4.5", "12", "13", "NA"),
+  intended = within_target(c(4.5, 12, 13, NA_real_)),
+  generated = within_target_ai(c(4.5, 12, 13, NA_real_))
+)
+stopifnot(
+  identical(within_target_ai(4.5), TRUE),
+  identical(within_target_ai(c(12, NA_real_)), c(FALSE, NA)),
+  identical(within_target(c(12, NA_real_)), c(TRUE, FALSE))
+)
+```
+
+```{r}
+#| label: formatted-output-3
+#| echo: false
+knitr::kable(ai_evidence)
+```
+
+The ordinary case passes both functions. Equality and missingness expose two
+different changes. The generated version also drops type and target validation.
+Repairing `<` alone does not restore the full contract. Restore the validated
+`within_target` implementation and rerun the ordinary, equality, missing,
+zero-target, changed-target and invalid-input tests.
+
+**If your answer differed, the likely cause is** reading `<` as inclusive, or
+assuming R removes missing values automatically. Equality changes `TRUE` to
+`FALSE`; the missing response remains `NA`. An invalid target also passes
+through without the required error.
+
+</details>
+
+### Does the category argument change the result?
+
+```{r}
+#| label: flawed-summary
+summarize_issue_ai <- function(data, issue_name) {
+  data |>
+    filter(issue == "hvac") |>
+    summarize(
+      n_events = n(),
+      mean_response_hours = mean(response_hours)
+    )
+}
+```
+
+Compare these tests of the count and mean before opening the evidence:
+
+| Call to the proposed function | Required count and mean |
+|---|---|
+| `summarize_issue_ai(events, "hvac")` | 3 events; `24.5 / 3` hours |
+| `summarize_issue_ai(events, "access")` | 2 events; `19.5` hours |
+
+**Predict in a comment first:** which call would fail its expected-result test,
+and why? Point to the expression that should depend on `issue_name`.
+
+<details>
+<summary>Compare two categories and plan the repair</summary>
+
+```{r}
+#| label: ai-summary-evidence
+generated_hvac <- summarize_issue_ai(events, "hvac")
+generated_access <- summarize_issue_ai(events, "access")
+stopifnot(
+  generated_hvac$n_events == hvac_summary$n_events,
+  abs(generated_hvac$mean_response_hours -
+      hvac_summary$mean_response_hours) < 1e-12,
+  generated_access$n_events == 3,
+  generated_access$n_events != access_summary$n_events
+)
+```
+
+```{r}
+#| label: formatted-output-4
+#| echo: false
+knitr::kable(bind_rows(
+  mutate(generated_hvac, requested = "hvac"),
+  mutate(generated_access, requested = "access")
+), digits = 6)
+```
+
+Both return HVAC's three events and mean 8.166667. Replacing the literal
+`"hvac"` with `issue_name` repairs argument use, but the abbreviated function
+still lacks the full validation and all five output columns. Restore the full
+`summarize_issue` implementation above. The two-column comparison here concerns
+count and mean only; it is not a claim that the entire output contract matches.
+
+**If your answer differed, the likely cause is** assuming that an argument is
+used merely because it appears in the function signature. Trace `issue_name`
+inside the body: the filter uses the literal `"hvac"` instead.
+
+</details>
+
+### Optional transfer · A different missing-value mistake
+
+Skip this extra self-check unless it helps you practise Guided Exercise 9.
+This abbreviated candidate only computes a category's mean. Test it with two
+direct calls, keeping the Week 11 focus on individual function calls.
+
+```{r}
+#| label: transfer-variant
+mean_response_ai <- function(data, issue_name) {
+  data |>
+    filter(issue == issue_name) |>
+    summarize(mean_response_hours = mean(response_hours))
+}
+```
+
+**Predict · Think first:** test access times `c(10, 20)` (expected observed
+mean 15) and `c(10, NA_real_)` (expected observed mean 10). Which test exposes
+the missing option, and why does testing the supplied complete data miss it?
+
+<details>
+<summary>Compare the optional transfer test</summary>
+
+```{r}
+#| label: transfer-evidence
+transfer_complete <- data.frame(issue = c("access", "access"),
+                                response_hours = c(10, 20))
+transfer_partial <- data.frame(issue = c("access", "access"),
+                               response_hours = c(10, NA_real_))
+transfer_first <- mean_response_ai(transfer_complete, "access")
+transfer_second <- mean_response_ai(transfer_partial, "access")
+stopifnot(
+  transfer_first$mean_response_hours == 15,
+  is.na(transfer_second$mean_response_hours),
+  summarize_issue(transfer_partial, "access")$mean_response_hours == 10
+)
+```
+
+Without `na.rm = TRUE`, `mean(c(10, NA_real_))` returns `NA`. The constructed
+partial case exposes the defect; the complete case gives 15 either way.
+For this mean calculation, restoring `na.rm = TRUE` recovers 10. The full
+summary function's separate all-missing-group guard is still needed.
+These assertions verify the candidate's observed defect; it fails the intended
+10-hour known-answer test. Keep the full `summarize_issue` as your reference.
+
+**If your answer differed, the likely cause is** assuming `mean` ignores `NA`
+by default. It does so only when instructed.
+
+</details>
+
+### Check the repaired workflow against the original
+
+A repair must meet the intended rule, not merely agree with another potentially
+wrong implementation. First use independently predicted values; then compare
+the original and function-based workflows on the same data. This final
+comparison needs the Meeting 1 stages; if you started at Meeting 2, run those
+stages before this block.
+
+```{r}
+#| label: preservation-check
+reused_flags <- within_target(events_clean$response_hours)
+stopifnot(identical(reused_flags, events_analysis$within_12_hours))
+
+reused_summary <- bind_rows(
+  summarize_issue(events, "hvac"),
+  summarize_issue(events, "access"),
+  summarize_issue(events, "lighting"),
+  summarize_issue(events, "water leak")
+) |>
+  arrange(desc(n_events), issue)
+stopifnot(isTRUE(all.equal(reused_summary, issue_summary)))
+```
+
+These four direct calls keep the Week 11 boundary: automated repeated
+application is Week 12. Matching this supplied file is useful evidence, but
+it cannot catch an exact-boundary or missing-value error when neither occurs
+in the file. Keep the small constructed tests as well.
+
+| Contract dimension | Evidence before accepting generated code |
+|---|---|
+| Inputs and defaults | Check supported types and shapes; override the default |
+| Boundary and missingness | Test equality and missing response separately |
+| Argument use | Call at least two different categories |
+| Output | Check logical type/length or the summary's names and row meaning |
+| Failure | Capture errors for an invalid target, absent category and all-missing group |
+| Behavior preservation | Compare original and repaired results, plus independent known answers |
+
+When an LLM helps, read every line you accept and explain why it belongs.
+Record the suggestion, accepted or rejected changes, and your checks as required
+by the existing [AI policy](https://lnajman.github.io/math346/syllabus/ai-policy.html).
+Do not upload private student material or assessment keys to public AI tools.
+The existing project AI-use appendix remains the project documentation route;
+this chapter introduces no separate AI log submission.
+
+**Slide cues:** “Week 12 Boundary” and “Exit Ticket”.
+
+**Individual in-class exit, final five minutes:** for
+`within_target(response_hours, target_hours = 12)`, state the input, output,
+exact-boundary rule, missing-response rule and invalid-target behavior.
+One or two concise sentences; code is optional. Write your own response.
+
+### Self-check (no submission) {#solo-exit-two}
+
+Close earlier reveals. Predict `within_target(c(12, NA), 12)` and explain each
+entry from memory. Then predict what changes if the *target* is `NA_real_`.
+Think first, then compare below; no written response is needed.
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+The first call returns `c(TRUE, FALSE)`: 12 is inside the inclusive boundary,
+and a missing response maps to `FALSE` under this flag rule. Replacing the
+target with `NA_real_` causes an error because the target must be one finite,
+nonnegative number. Missing response and missing target have different roles.
+
+</details>
+
+## Practice, recovery and next steps {#practice}
+
+**Slide cue:** “Refactor Audit” for the test checklist; “Week 12 Boundary” for
+what comes next.
+
+Use the
+[Week 11 exercise set](https://lnajman.github.io/math346/weeks/week-11-exercises.html)
+and [main lab](https://lnajman.github.io/math346/labs/lab-11-pipelines-functions.html).
+The labels below retain the approved selection.
+
+| Work | Activity | Evidence to retain |
+|---|---|---|
+| **Core 1** · after Meeting 1 | Trace a pipe and its nested equivalent | Input, receiving function, output columns/rows and row meaning |
+| **Core 2** · after Meeting 1 | Choose named checkpoints | At least two relevant invariants at each stage |
+| **Core 4** · after Meeting 2 | Implement `within_target` | Contract plus ordinary, equality and missing-value checks |
+| **Core 7** · after Meeting 2 | Implement `summarize_issue` | One-row output, required-column checks and absent/all-missing cases |
+| **Core 8** · after Meeting 2 | Build a test table | `test`, `input`, `expected`, `actual`, `pass`; include invalid input and two issue arguments |
+| **Guided 3, 9, 10** | Reorganize a chain; audit generated refactors; decide when to extract functions | Use selectively in class or for recovery |
+| **Extension 5, 6** | Key-cleaning and timestamp functions | Optional additional contracts and tests |
+
+The four-function lab is a resource bank. This week's core demonstration
+focuses on the target and summary functions. Key cleaning and timestamp parsing
+remain guided/extension support; you do not need two extra core implementations.
+
+<details>
+<summary>Possible solutions · Compare only after your attempt</summary>
+
+- [Pipeline possible solution](downloads/solutions/week11-readable-pipeline_sol.R)
+- [Function-contract possible solution](downloads/solutions/week11-function-contracts_sol.R)
+
+These public comparison files show possible answers.
+The chapter also shows identity checks and an explicit missing issue-name
+guard. A shorter comparison file is not a reason
+to remove checks whose purpose you can explain.
+
+</details>
+
+### If you are stuck
+
+| Symptom | Next useful action |
+|---|---|
+| CSV cannot be found | Run `getwd()` and `file.exists("data/week10-service-events.csv")`; check the project folder and `data/` subfolder |
+| `events_clean` or a function is missing | Run the defining block before its first use; restart and rerun in order |
+| A starter runs but produces no analysis | TODO lines are comments, so R skips them. Complete the selected blocks before treating the starter as a solution |
+| Cleaning creates `NA` | Compare the raw text with the factor levels or timestamp convention; investigate before deleting |
+| A check fails | Name the promise it tested, inspect the smallest relevant input, and correct the cause before rerunning |
+| A function runs but you cannot explain it | Trace one known scalar, then a vector, equality, missingness and an invalid target; ask for help at the first unclear step |
+
+The optional
+[post–Week 10 recovery page](https://lnajman.github.io/math346/weeks/recovery-after-week-10.html)
+can help with observation keys and reusable workflows. Stop extending the task
+when the selected core work is secure. The routine practice target applies to
+the whole week's selected work, not separately to this chapter.
+
+### Ready to move on?
+
+You should be able to explain what one row means at each stage, why count alone
+is insufficient, what the two functions accept and return, and which test
+catches each generated defect. Keep your checked script and explanations.
+
+Week 12 repeats functions across inputs. Follow the
+[Project 2 page](https://lnajman.github.io/math346/projects/project-2-modeling.html)
+and Blackboard for project stages and logistics.
+
+## Where this fits {#sources}
+
+Use the matching
+[Week 11 notes](https://lnajman.github.io/math346/weeks/week-11.html),
+[slides](https://lnajman.github.io/math346/slides/week-11.html),
+[main lab](https://lnajman.github.io/math346/labs/lab-11-pipelines-functions.html),
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-11-ai-refactor-review.html)
+and [exercises](https://lnajman.github.io/math346/weeks/week-11-exercises.html).
+The download links above supply the public teaching files.
+
+[Return to the chapter list](chapters.html).

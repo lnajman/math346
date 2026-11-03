@@ -1,0 +1,631 @@
+---
+title: "Week 12 · Repeat a tested workflow without losing evidence"
+subtitle: "MATH 346 course companion · R"
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route {#route}
+
+**What exactly repeats, and how will we know whether every request was handled?**
+
+Week 11 isolated a rule and checked it on chosen inputs. Week 12 repeats a
+checked descriptive calculation across named columns. A loop is not a shortcut
+around understanding the function: it repeats both its strengths and its bugs.
+
+We use the built-in `airquality` data throughout. First convert a whole vector,
+then compare list results, typed scalar results and a loop. Finally request both
+valid and invalid columns and keep a complete record of every request.
+
+[Before you start](#before-start) · [Words used here](#words) · [Setup](#setup) ·
+[Meeting 1](#meeting-one) · [Meeting 2](#meeting-two) · [AI audit](#ai-audit) ·
+[Practice and resources](#practice) · [Chapter list](chapters.html).
+The page contents navigation also links to the sections.
+
+::: {.callout-tip}
+## A first 30-minute recovery session
+
+Choose a stopping point within about 30 minutes; continue from there next time.
+This is an untested first-pass budget, not a completion promise. 
+
+1. Check prerequisites and setup. If access is blocked, focus on that first.
+2. Read the vectorization example and identify the four repeated column names in Meeting 1.
+3. Inspect the four-row batch log in Meeting 2: separate a successful mean from a failed request.
+4. Try the Meeting 2 self-check and choose your next Core 4 or 8 step. Full implementation comes later.
+
+Read displayed results when jumping ahead; run complete code in its stated
+sequence when returning to your script. The full practice selection is Core
+**1, 2, 4, 7, 8**, selective Guided **3, 5, 6, 9, 10**, and optional Extension **none**,
+within the **90–120-minute** ordinary-week budget.
+:::
+
+### Before you start {#before-start}
+
+You should be able to run an R script, explain a function contract and read
+`NA`, `stopifnot` and `tryCatch` from Week 11. Use the
+[Week 11 companion](https://lnajman.github.io/math346/companion/week-11.html)
+for recovery. No regression model or validation outcome is needed here.
+
+Use [software requirements](https://lnajman.github.io/math346/resources/software-requirements.html) and the
+[course glossary](https://lnajman.github.io/math346/resources/glossary.html) when needed. You do not need a
+paid AI account or an external AI call: the flawed examples are supplied locally.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Vectorization** | Apply an operation already defined for a whole vector to all its elements. |
+| **Iteration** | Repeat a workflow for each declared input, here a column name. |
+| **Scalar** | One value, such as one mean. |
+| **List** | A container keeping one possibly structured object per input. |
+| **`[[name]]`** | Select the column whose name is stored in the object `name`. |
+| **Output template** | The type and length each call must return; `numeric(1)` requests one number. |
+| **Preallocation** | Create the result container with its intended size and type before filling it. |
+| **Status row** | One record saying which request ran, whether it succeeded and what failed. |
+| **Coercion** | Changing values to a common type, for example numbers becoming text. |
+| **`NA_real_` / `NA_character_`** | Missing values explicitly typed as numeric or character. |
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the inputs and operations; explain your prediction; check a specific
+claim; interpret the result with its domain or units.
+
+Think first; write a private comment only where requested—see the
+[prediction guide](how-to-use.html#read-explain-check-interpret).
+
+## Setup {#setup}
+
+Use R 4.1 or later and the `dplyr` package. No CSV is needed. Save the two starters in a `week12` folder and open that folder as your RStudio project.
+
+Download the starters first. Keep these files in your working folder: `week12-vectorized-iteration.R`; `week12-repeated-workflow.R`.
+
+Possible solutions are separate comparison files linked below.
+
+- [Starter: week12-vectorized-iteration.R](downloads/week12-vectorized-iteration.R)
+- [Starter: week12-repeated-workflow.R](downloads/week12-repeated-workflow.R)
+- [AI critique target: week12-ai-batch-review.R](downloads/week12-ai-batch-review.R)
+
+Run this before the other blocks; it reports missing paths without changing files.
+
+```{r}
+#| label: w12-setup
+required_paths <- c("week12-vectorized-iteration.R", "week12-repeated-workflow.R")
+```
+
+```{r}
+#| label: w12-author-paths
+#| include: false
+required_paths <- ifelse(startsWith(required_paths, "data/"), required_paths,
+                         file.path("downloads", required_paths))
+```
+
+```{r}
+#| label: w12-setup-check
+#| output: false
+missing_paths <- required_paths[!file.exists(required_paths)]
+if (length(missing_paths) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing from the current folder:\n", paste(missing_paths, collapse = "\n"), "\n", sep = "")
+}
+```
+
+**Example output when all required files are present:**
+
+```text
+Setup OK
+```
+
+This is example output, not confirmation of your computer's setup. Run the
+check in your own R session and read that result. Restart R, then run the chapter's code in order, including the code inside
+the reference reveals. A successful `stopifnot` is
+silent; a failed condition stops the script.
+
+## Meeting 1 · Read the computation {#meeting-one}
+
+Class route: two 75-minute meetings, each with its final five-minute exit.
+
+The question has two different levels. `(Temp - 32) * 5 / 9` converts each
+of 153 temperatures; R already applies the arithmetic element by element.
+`variables <- c("Ozone", "Solar.R", "Wind", "Temp")` instead declares four
+requests, each asking a function to examine a complete column. Keep the number
+of observations separate from the number of repeated tasks.
+
+### One vector, four variables, three ways to repeat {#stage-1}
+
+**Slide cues:** *Vectorize Elementwise Work*; *Select By A Stored Name*; *`lapply`: One Object Per Input*; *`vapply`: State The Type*; *Compare Behavior*.
+
+`data[[variable_name]]` selects a column by a stored name; `$variable_name`
+would seek a literal column called `variable_name`. Before automating anything,
+read `summarize_numeric` as a contract: it accepts a data frame and one present,
+numeric column with at least one observed value. It returns one row containing
+the variable name, total and missing counts, mean and standard deviation.
+
+The function first builds `observed`; the mean is over those values, while
+`n_total` still counts every day. `lapply` keeps a list of four one-row tables;
+`bind_rows` combines them. `vapply(..., numeric(1))` instead requires one number
+per variable and preserves the character input names. The preallocated loop
+fills a named numeric vector and is checked against that result.
+
+**Predict in a private comment first:** Will the temperature conversion return four values or 153? How many elements will the list of variable summaries contain?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+The converted vector has 153 values, one per day. The summary list has four
+elements, one per requested variable. If your answer differed, you probably
+counted observations when the iteration inputs were column names, or vice versa.
+
+</details>
+
+**Try before expanding:** For the Core 2/4 work, sketch which expression acts on the whole vector and which repeats over names. If attempting the function, start with its signature and validation comments before comparing the full version.
+
+<details>
+<summary>Reference version · week12-vectorized-iteration_sol.R</summary>
+
+```{r}
+#| label: w12-reference-1
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+library(dplyr)
+
+data <- airquality |>
+  mutate(day_id = row_number())
+
+variables <- c("Ozone", "Solar.R", "Wind", "Temp")
+
+# Vectorize an elementwise calculation instead of looping over observations.
+temperature_c <- (data$Temp - 32) * 5 / 9
+
+stopifnot(
+  length(temperature_c) == nrow(data),
+  abs(temperature_c[1] - 19.4444444444444) < 1e-10,
+  !any(is.na(temperature_c))
+)
+
+summarize_numeric <- function(data, variable_name) {
+  if (!is.data.frame(data)) {
+    stop("data must be a data frame")
+  }
+  if (!is.character(variable_name) || length(variable_name) != 1) {
+    stop("variable_name must be one character value")
+  }
+  if (!variable_name %in% names(data)) {
+    stop("requested variable is not present")
+  }
+
+  values <- data[[variable_name]]
+  if (!is.numeric(values)) {
+    stop("requested variable must be numeric")
+  }
+
+  observed <- values[!is.na(values)]
+  if (length(observed) == 0) {
+    stop("requested variable has no observed values")
+  }
+
+  tibble(
+    variable = variable_name,
+    n_total = length(values),
+    n_missing = sum(is.na(values)),
+    mean = mean(observed),
+    standard_deviation = sd(observed)
+  )
+}
+
+# lapply keeps one result object for every requested input.
+summary_list <- lapply(
+  variables,
+  function(variable_name) summarize_numeric(data, variable_name)
+)
+summary_table <- bind_rows(summary_list)
+
+stopifnot(
+  nrow(summary_table) == length(variables),
+  identical(summary_table$variable, variables),
+  identical(summary_table$n_missing, c(37L, 7L, 0L, 0L))
+)
+
+# vapply states that every iteration must return exactly one number.
+means_vapply <- vapply(
+  variables,
+  function(variable_name) mean(data[[variable_name]], na.rm = TRUE),
+  numeric(1)
+)
+
+# A preallocated loop makes the same repeated calculation explicit.
+means_loop <- setNames(numeric(length(variables)), variables)
+for (variable_name in variables) {
+  means_loop[[variable_name]] <- mean(
+    data[[variable_name]],
+    na.rm = TRUE
+  )
+}
+
+stopifnot(
+  identical(names(means_vapply), variables),
+  isTRUE(all.equal(means_vapply, means_loop)),
+  isTRUE(all.equal(unname(means_vapply), summary_table$mean))
+)
+
+print(summary_table)
+print(means_vapply)
+cat("Week 12 vectorization and typed-iteration checks passed.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** Trace the first temperature: 67 F becomes about 19.4444 C. The reference
+checks that value independently, then checks list/table order, missing counts
+`37, 7, 0, 0`, and agreement between both mean implementations. `numeric(1)`
+is an output template, not the value each mean must equal. Compare Ozone’s
+`n_total = 153` with its 116 observed values; a mean alone hides this distinction.
+The function does not promise to reject every nonfinite numeric input.
+
+### Meeting 1 in-class exit · Final five minutes
+
+Choose vectorization, vapply or a loop for a task and explain why.
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 1 self-check · No submission
+
+For the in-class choice-of-repetition activity, ask yourself:
+You need one missing-value count for each of four columns. Would a 153-row loop
+be the right unit? Which output template belongs in `vapply`? Think before
+opening the model; nothing is submitted here.
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+The repeated inputs are four column names, not individual rows. Each call
+returns one missing count; `integer(1)` is appropriate for the scalar integer
+returned by `sum(is.na(...))`. Check names, order, length and the known counts
+`37, 7, 0, 0`. Core 4 asks you to implement this check.
+
+</details>
+
+## Meeting 2 · Check the claim {#meeting-two}
+
+The second reference uses the same data but adds a character `month_label`
+column. It also **redefines** `summarize_numeric`: this version returns a status
+and error-message column instead of a standard-deviation column. Run its full
+reference block; do not mix the two function definitions. The safe wrapper
+catches an expected error and returns a typed record so later requests can run.
+An unavailable column is a failed task; an unavailable measurement is a value
+inside a task. They need different evidence.
+
+### One record per request, including failures {#stage-2}
+
+**Slide cues:** *Include Expected Failures*; *Return A Typed Error Row*; *Check The Batch Log*; *Keep The Complete Log*.
+
+Read `requested_variables` before running anything. `Ozone` and `Temp` are
+numeric. `month_label` exists but is text, and `not_a_column` is absent. These
+four requests test different branches; they are not four copies of a successful
+Ozone test.
+
+Inside `tryCatch`, the main expression calls the checked function. If it stops,
+`error = function(error) ...` builds an error row using `conditionMessage`.
+Both branches return the same column names and compatible types, including
+numeric `mean` and character `error_message`. The error mean is unknown because
+the task failed; it is not a measured zero. Filter successes into a **new** table
+only after preserving and checking `run_log`.
+
+**Predict in a private comment first:** What should the ordered status vector be for Ozone, month_label, not_a_column and Temp? How many rows should remain in the full log and in the successful-results table?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+The statuses are `ok, error, error, ok`. The full log has four rows and
+the successful-results table has two. If your answer differed, you may have
+treated a text column as an absent column, or confused a filtered analysis table
+with the complete record of attempts.
+
+</details>
+
+**Try before expanding:** Use the Core 8 starter to write the success/error column names and types in a small skeleton before expanding. Keep the full log separate from the filtered successes.
+
+<details>
+<summary>Reference version · week12-repeated-workflow_sol.R</summary>
+
+**Start a separate script for Meeting 2.** Both references use the name `summarize_numeric`, but this version returns `status` and `error_message` instead of `standard_deviation`. Close the Meeting 1 script and start from a fresh session before running this complete reference. Keep their tests and result columns with their respective versions; do not paste the two implementations into one script.
+
+```{r}
+#| label: w12-reference-2
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+library(dplyr)
+
+data <- airquality |>
+  mutate(month_label = month.abb[Month])
+
+summarize_numeric <- function(data, variable_name) {
+  if (!is.data.frame(data)) {
+    stop("data must be a data frame")
+  }
+  if (!is.character(variable_name) || length(variable_name) != 1) {
+    stop("variable_name must be one character value")
+  }
+  if (!variable_name %in% names(data)) {
+    stop("requested variable is not present")
+  }
+
+  values <- data[[variable_name]]
+  if (!is.numeric(values)) {
+    stop("requested variable must be numeric")
+  }
+  if (all(is.na(values))) {
+    stop("requested variable has no observed values")
+  }
+
+  tibble(
+    variable = variable_name,
+    status = "ok",
+    n_total = length(values),
+    n_missing = sum(is.na(values)),
+    mean = mean(values, na.rm = TRUE),
+    error_message = NA_character_
+  )
+}
+
+# Every request produces one status row, including failures.
+safe_summarize_numeric <- function(data, variable_name) {
+  tryCatch(
+    summarize_numeric(data, variable_name),
+    error = function(error) {
+      tibble(
+        variable = variable_name,
+        status = "error",
+        n_total = NA_integer_,
+        n_missing = NA_integer_,
+        mean = NA_real_,
+        error_message = conditionMessage(error)
+      )
+    }
+  )
+}
+
+requested_variables <- c(
+  "Ozone",
+  "month_label",
+  "not_a_column",
+  "Temp"
+)
+
+run_log <- bind_rows(lapply(
+  requested_variables,
+  function(variable_name) {
+    safe_summarize_numeric(data, variable_name)
+  }
+))
+
+stopifnot(
+  nrow(run_log) == length(requested_variables),
+  identical(run_log$variable, requested_variables),
+  identical(run_log$status, c("ok", "error", "error", "ok")),
+  all(nchar(run_log$error_message[run_log$status == "error"]) > 0),
+  all(is.finite(run_log$mean[run_log$status == "ok"]))
+)
+
+successful_results <- run_log |>
+  filter(status == "ok")
+
+stopifnot(
+  nrow(successful_results) == 2,
+  identical(successful_results$variable, c("Ozone", "Temp"))
+)
+
+print(run_log)
+cat("Week 12 repeated-workflow log preserves every request and failure.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** The source asserts input/output count, exact request order, two error
+statuses, readable error messages and finite successful means. Inspect
+`str(run_log)` too: a four-row table can still have a mean column coerced to
+character. These are checks of the declared requests and supported inputs, not
+a guarantee about untested files or arbitrary function arguments.
+
+## AI audit · Inspect before accepting {#ai-audit}
+
+**Slide cues:** *Dangerous Shortcut*; *Type Coercion Trap*; *AI Batch Audit*.
+
+This is **selective Guided practice**; use it when selected or helpful.
+
+Read the supplied target and choose a check before opening the diagnosis.
+No AI service is contacted.
+
+The two supplied variants use the same four requests. Choose between these
+tests before the diagnosis: output count equals four; exact requested names and
+order; mean values remain numeric; error rows have readable messages. Ask which
+test each variant can pass while still being wrong.
+
+**Reading excerpt:** this fragment relies on the supplied script setup; inspect it here, then run the complete file in the evidence reveal.
+
+```r
+generated_results <- bind_rows(lapply(
+  requested_variables,
+  function(variable_name) {
+    tryCatch(
+      tibble(
+        variable = variable_name,
+        mean = checked_mean(data, variable_name)
+      ),
+      error = function(error) NULL
+    )
+  }
+))
+
+generated_mixed <- sapply(
+  requested_variables,
+  function(variable_name) {
+    tryCatch(
+      checked_mean(data, variable_name),
+      error = function(error) conditionMessage(error)
+    )
+  }
+)
+```
+
+
+**Predict in a private comment first:** Which shortcut drops evidence, and which preserves four entries but changes successful numbers into text? Name a test that distinguishes the defects.
+
+<details>
+<summary>Compare your reasoning</summary>
+
+`error = function(error) NULL` returns no record for a failed request;
+`bind_rows` then produces only the two successes. Count and exact-name checks
+expose it. The `sapply` variant mixes numbers with error strings and simplifies
+them to a character vector. It preserves four names but fails the numeric-type
+check. If your answer differed, you likely treated “four outputs” or “finished
+without stopping” as a complete contract. A typed status row keeps the failed
+request visible without converting successful means to text.
+
+</details>
+
+<details>
+<summary>Run the complete supplied critique target and inspect the evidence</summary>
+
+```{r}
+#| label: w12-reference-ai
+library(dplyr)
+
+data <- airquality |>
+  mutate(month_label = month.abb[Month])
+
+checked_mean <- function(data, variable_name) {
+  if (!variable_name %in% names(data)) {
+    stop("requested variable is not present")
+  }
+
+  values <- data[[variable_name]]
+  if (!is.numeric(values)) {
+    stop("requested variable must be numeric")
+  }
+
+  mean(values, na.rm = TRUE)
+}
+
+requested_variables <- c(
+  "Ozone",
+  "month_label",
+  "not_a_column",
+  "Temp"
+)
+
+# Generated batch code: an error becomes NULL and disappears in bind_rows().
+generated_results <- bind_rows(lapply(
+  requested_variables,
+  function(variable_name) {
+    tryCatch(
+      tibble(
+        variable = variable_name,
+        mean = checked_mean(data, variable_name)
+      ),
+      error = function(error) NULL
+    )
+  }
+))
+
+stopifnot(
+  nrow(generated_results) == 2,
+  identical(generated_results$variable, c("Ozone", "Temp")),
+  !all(requested_variables %in% generated_results$variable)
+)
+
+# Generated simplification: error messages force every numeric mean to text.
+generated_mixed <- sapply(
+  requested_variables,
+  function(variable_name) {
+    tryCatch(
+      checked_mean(data, variable_name),
+      error = function(error) conditionMessage(error)
+    )
+  }
+)
+
+stopifnot(
+  is.character(generated_mixed),
+  length(generated_mixed) == length(requested_variables),
+  identical(names(generated_mixed), requested_variables),
+  identical(generated_mixed[["not_a_column"]],
+            "requested variable is not present")
+)
+
+cat("The generated batch silently drops two failed requests.\n")
+cat("The generated simplification coerces valid numeric means to text.\n")
+```
+
+</details>
+
+Use the existing AI policy when assistance is used: explain every accepted line
+and keep the requested evidence with your existing work. A passing test never
+replaces checking whether the code answers the actual question.
+
+### Meeting 2 in-class exit · Final five minutes
+
+For one proposed repeated task, choose vectorization, `lapply`, `vapply`, or a
+loop and name the check that would reveal a missing iteration.
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 2 self-check · No submission
+
+Close earlier reveals and explain from memory: A batch reports four rows in the correct order, but `typeof` says its mean
+column is character. Has the batch contract passed? Explain what to inspect
+before converting the column.
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+No. Count and order passed, but numerical type did not. Inspect which
+branch returned text, especially error handling, and restore compatible typed
+success/error rows. Blind conversion can create fresh NAs and conceal the cause.
+Retain the full log and use successful numeric rows separately.
+
+</details>
+
+## Practice, recovery and resources {#practice}
+
+**Core:** 1, 2, 4, 7, 8. **Guided:** 3, 5, 6, 9, 10. **Extension:** none.
+
+Core 1/2 concern the repeated unit and vectorization; Core 4 adds typed missing
+counts; Core 7 chooses stop versus record; Core 8 builds the complete log. The
+extra loop/list extensions and AI audit stay selective Guided work. Do not turn
+all of the lab into an extra assignment.
+
+**Project 2:** follow the training-stage instructions and your assigned
+Blackboard package. Confirm group/filenames, read the dictionary and fixed result
+contract, and run the project starter to its intentional stop. Validation stays
+closed until the frozen-plan gate. Model fitting belongs to Week 13. Use the
+[Project 2 page](https://lnajman.github.io/math346/projects/project-2-modeling.html)
+and [milestone map](https://lnajman.github.io/math346/projects/project-milestones.html);
+this chapter releases no private data or new deadline.
+
+Attempt the selected starter blocks before comparing possible solutions.
+TODO comments are placeholders, not completed analysis. Keep your checked script
+and follow Blackboard if a checkpoint is requested.
+
+**If you are stuck:** inspect request names/order, result types, and the success/error branches. Run missing definitions
+before their first use. Keep the first error and ask for help if a focused
+attempt remains blocked.
+
+- [Possible solution: week12-vectorized-iteration_sol.R](downloads/solutions/week12-vectorized-iteration_sol.R)
+- [Possible solution: week12-repeated-workflow_sol.R](downloads/solutions/week12-repeated-workflow_sol.R)
+
+**Where this fits:** [Week 12 notes](https://lnajman.github.io/math346/weeks/week-12.html) ·
+[Matching slides](https://lnajman.github.io/math346/slides/week-12.html) ·
+[Main lab](https://lnajman.github.io/math346/labs/lab-12-vectorized-iteration.html) ·
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-12-ai-batch-review.html) ·
+[Exercises](https://lnajman.github.io/math346/weeks/week-12-exercises.html).
+

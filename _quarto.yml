@@ -13,6 +13,7 @@ project:
     - "weeks/*.qmd"
     - "!companion-review/**"
     - "!companion/**"
+    - "!companion-source/**"
   resources:
     - companion/
     - code/
@@ -20,6 +21,8 @@ project:
     - projects/handouts/
     - projects/schemas/
     - projects/templates/
+    - "!companion-review/**"
+    - "!companion-source/**"
 
 website:
   title: "MATH 346"
@@ -37,6 +40,8 @@ website:
         text: Syllabus
       - href: weeks/index.qmd
         text: Weeks
+      - href: companion/index.html
+        text: Companion
       - href: assessments/index.qmd
         text: Assessments
       - href: slides/index.qmd
@@ -61,6 +66,7 @@ website:
         - llm-use.qmd
         - resources/software-requirements.qmd
         - weeks/index.qmd
+        - companion/index.html
         - weeks/workload-guide.qmd
         - assessments/index.qmd
         - assessments/quiz-01.qmd

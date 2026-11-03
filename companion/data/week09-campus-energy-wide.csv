@@ -1,0 +1,7 @@
+building_id,building_type,area_m2,jan_kwh,feb_kwh,mar_kwh,apr_kwh
+BLDG-01,academic,4200,118000,111500,106200,98200
+BLDG-02,library,5600,152000,147500,143800,138200
+BLDG-03,laboratory,3900,168500,165200,171000,169800
+BLDG-04,residence,6100,203000,missing,187500,176800
+BLDG-05,sports,7200,241000,225500,218900,
+BLDG-06,administration,2800,74500,71200,68800,64200

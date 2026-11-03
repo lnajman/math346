@@ -4,6 +4,10 @@ execute:
   enabled: false
 ---
 
+Open the [Week 12 companion](../companion/week-12.html) for guided reading
+and self-checks alongside the slides and selected practice. Nothing there is
+collected or graded.
+
 ## Official Topic
 
 Vectors and iteration. Project 2 training package released.

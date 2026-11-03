@@ -2,6 +2,10 @@
 title: "Week 2: MATLAB Programming and Functions"
 ---
 
+Open the [Week 2 companion](../companion/week-02.html) for guided reading
+and self-checks alongside the slides and selected practice. Nothing there is
+collected or graded.
+
 ## Official Topic
 
 MATLAB programming and user functions.

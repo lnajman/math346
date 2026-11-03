@@ -1,0 +1,563 @@
+---
+title: "Week 8 · Explore patterns without overstating them"
+subtitle: "MATH 346 course companion · R"
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route {#route}
+
+**What does a plot show, what remains uncertain, and which check comes next?**
+
+Exploration moves between a question, a checked summary or plot, and a
+more precise question. The built-in diamonds data provide 53,940 observations
+with prices, carat weights, ordered quality grades and recorded dimensions.
+
+A clean-looking plot is not a final explanation. We distinguish missing values
+from implausible recorded values, compare distribution views, and examine what
+can be hidden in a dense scatterplot or a marginal group comparison.
+
+[Before you start](#before-start) · [Words used here](#words) · [Setup](#setup) ·
+[Meeting 1](#meeting-one) · [Meeting 2](#meeting-two) · [AI audit](#ai-audit) ·
+[Practice and resources](#practice) · [Chapter list](chapters.html).
+The page contents navigation also links to the sections.
+
+::: {.callout-tip}
+## A first 30-minute recovery session
+
+Choose a stopping point within about 30 minutes; continue from there next time.
+This is an untested first-pass budget, not a completion promise. 
+
+1. Check prerequisites and setup. If access is blocked, focus on that first.
+2. Read the structure audit and distinguish no missing values from plausible recorded dimensions.
+3. Inspect a histogram and the transparent carat-price scatterplot; locate the row-count checks.
+4. Try the second self-check and choose one Core 3/6 display comparison to continue.
+
+Read displayed results when jumping ahead; run complete code in its stated
+sequence when returning to your script. The full practice selection is Core
+**1, 2, 3, 6, 9**, selective Guided **4, 5, 7**, and optional Extension **8**,
+within the **90–120-minute** ordinary-week budget.
+:::
+
+### Before you start {#before-start}
+
+You should recognize variables, grouped counts and ggplot layers from
+Weeks 6–7. No file import, regression or causal method is assumed. Use the
+Week 6/7 recovery companions if plot mappings or row accounting remain unclear.
+
+Use [software requirements](https://lnajman.github.io/math346/resources/software-requirements.html) and the
+[course glossary](https://lnajman.github.io/math346/resources/glossary.html) when needed. You do not need a
+paid AI account or an external AI call: the flawed examples are supplied locally.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Distribution** | How values of one variable are spread across observations. |
+| **Bin width** | The interval size used to group numeric values in a histogram. |
+| **Covariation** | How two variables vary together. |
+| **Overplotting** | Points cover one another, hiding density or variation. |
+| **Marginal comparison** | Compare groups without holding related variables similar. |
+| **Conditional view** | Examine a relationship within a category or a stated range. |
+| **Anomaly** | An unusual value needing investigation; it is not automatically an error. |
+| **Sensitivity check** | Compare a result under an explicit alternative handling of a concern. |
+| **EDA log** | A record of question, evidence, pattern/anomaly, limitation and next question. |
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the inputs and operations; explain your prediction; check a specific
+claim; interpret the result with its domain or units.
+
+Think first; write a private comment only where requested—see the
+[prediction guide](how-to-use.html#read-explain-check-interpret).
+
+## Setup {#setup}
+
+Use the dplyr and ggplot2 packages. The data are built into ggplot2; no CSV is needed. Save both starters in a `week08` folder.
+
+Download the starters first. Keep these files in your working folder: `week08-eda-cycle.R`; `week08-plot-checks.R`.
+
+Possible solutions are separate comparison files linked below.
+
+- [Starter: week08-eda-cycle.R](downloads/week08-eda-cycle.R)
+- [Starter: week08-plot-checks.R](downloads/week08-plot-checks.R)
+- [AI critique target: week08-ai-interpretation-review.R](downloads/week08-ai-interpretation-review.R)
+
+Run this before the other blocks; it reports missing paths without changing files.
+
+```{r}
+#| label: w08-setup
+required_paths <- c("week08-eda-cycle.R", "week08-plot-checks.R")
+```
+
+```{r}
+#| label: w08-author-paths
+#| include: false
+required_paths <- ifelse(startsWith(required_paths, "data/"), required_paths,
+                         file.path("downloads", required_paths))
+```
+
+```{r}
+#| label: w08-setup-check
+#| output: false
+missing_paths <- required_paths[!file.exists(required_paths)]
+if (length(missing_paths) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing from the current folder:\n", paste(missing_paths, collapse = "\n"), "\n", sep = "")
+}
+```
+
+**Example output when all required files are present:**
+
+```text
+Setup OK
+```
+
+This is example output, not confirmation of your computer's setup. Run the
+check in your own R session and read that result. Restart R, then run the chapter's code in order, including the code inside
+the reference reveals. A successful `stopifnot` is
+silent; a failed condition stops the script.
+
+## Meeting 1 · Read the computation {#meeting-one}
+
+Class route: two 75-minute meetings, each with its final five-minute exit.
+
+First match variable types to questions: prices and carat are numeric;
+cut is an ordered category. A histogram groups price values into intervals;
+a bar chart counts categories. State units before plotting. No NA in the file
+means no explicitly missing values, not that all measurements are physically
+plausible. Keep unusual records available for investigation.
+
+### Structure, distributions and questions {#stage-1}
+
+**Slide cues:** *Start With An Audit*; *No `NA` Does Not Mean Clean*; *Histogram Pattern*; *Validate Histogram Counts*.
+
+The reference keeps `diamonds_raw`, then adds a logical dimension flag.
+It prints a structure audit, price summary, cut counts, grouped medians and
+anomaly table before interpreting the plots. Read the OR condition literally:
+a row is flagged if any one of x, y or z is nonpositive; it is counted once even
+if several dimensions are affected.
+
+For the price histogram, the $500 bin width is stated in code and caption.
+Changing the bin width changes displayed detail without changing the dataset.
+The mean exceeds the median and the distribution is right-skewed; describe the
+observed shape rather than asserting a probability model.
+
+**Predict in a private comment first:** Can there be 20 dimension concerns when the missing-value count is zero? Would changing histogram bin width change the number of input diamonds?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+Yes: zeros are recorded numbers, not NA. Twenty rows contain at least one
+nonpositive dimension. Changing bin width changes grouping of the same prices,
+not the number of input observations. If your answer differed, separate missing
+encodings from plausibility and distinguish a display choice from filtering.
+
+</details>
+
+**Try before expanding:** Use Core 1/2/3 to classify variables, inspect the audit and choose bin widths before comparing the reference. Keep an EDA-log entry with a limitation as well as a pattern.
+
+<details>
+<summary>Reference version · week08-eda-cycle_sol.R</summary>
+
+```{r}
+#| label: w08-reference-1
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+# MATH 346 - Week 8
+# A checked exploratory data analysis cycle using ggplot2::diamonds
+
+library(dplyr)
+library(ggplot2)
+
+diamonds_raw <- diamonds |> as_tibble()
+
+diamonds_eda <- diamonds_raw |>
+  mutate(
+    dimension_issue = x <= 0 | y <= 0 | z <= 0
+  )
+
+structure_audit <- data.frame(
+  quantity = c(
+    "rows",
+    "original variables",
+    "missing values",
+    "rows with a nonpositive dimension"
+  ),
+  value = c(
+    nrow(diamonds_eda),
+    ncol(diamonds_raw),
+    sum(is.na(diamonds_raw)),
+    sum(diamonds_eda$dimension_issue)
+  )
+)
+
+price_summary <- diamonds_eda |>
+  summarize(
+    n = n(),
+    minimum_usd = min(price),
+    first_quartile_usd = quantile(price, 0.25),
+    median_usd = median(price),
+    mean_usd = mean(price),
+    third_quartile_usd = quantile(price, 0.75),
+    maximum_usd = max(price)
+  )
+
+cut_summary <- diamonds_eda |>
+  count(cut, name = "n_diamonds") |>
+  mutate(proportion = n_diamonds / sum(n_diamonds))
+
+price_by_cut <- diamonds_eda |>
+  group_by(cut) |>
+  summarize(
+    n_diamonds = n(),
+    median_carat = median(carat),
+    median_price_usd = median(price),
+    .groups = "drop"
+  )
+
+dimension_issues <- diamonds_eda |>
+  filter(dimension_issue) |>
+  select(carat, price, cut, x, y, z)
+
+print(structure_audit)
+print(price_summary)
+print(cut_summary)
+print(price_by_cut)
+print(dimension_issues)
+
+price_histogram <- ggplot(diamonds_eda, aes(x = price)) +
+  geom_histogram(binwidth = 500, boundary = 0, color = "white", fill = "#2A6F97") +
+  labs(
+    title = "Diamond prices are strongly right-skewed",
+    x = "Price (US dollars)",
+    y = "Number of diamonds",
+    caption = "Bin width: $500. Data: ggplot2::diamonds."
+  ) +
+  theme_minimal(base_size = 12)
+
+carat_price_plot <- ggplot(diamonds_eda, aes(x = carat, y = price)) +
+  geom_point(alpha = 0.08, size = 0.7, color = "#264653") +
+  labs(
+    title = "Price generally increases with carat, with substantial variation",
+    x = "Weight (carats)",
+    y = "Price (US dollars)",
+    caption = "Transparency reveals point density; the plot is descriptive, not causal."
+  ) +
+  theme_minimal(base_size = 12)
+
+histogram_data <- ggplot_build(price_histogram)$data[[1]]
+scatter_data <- ggplot_build(carat_price_plot)$data[[1]]
+
+stopifnot(
+  nrow(diamonds_eda) == 53940,
+  ncol(diamonds_raw) == 10,
+  ncol(diamonds_eda) == 11,
+  sum(is.na(diamonds_eda)) == 0,
+  sum(diamonds_eda$dimension_issue) == 20,
+  nrow(cut_summary) == 5,
+  sum(cut_summary$n_diamonds) == nrow(diamonds_eda),
+  abs(sum(cut_summary$proportion) - 1) < 1e-12,
+  nrow(price_by_cut) == 5,
+  sum(price_by_cut$n_diamonds) == nrow(diamonds_eda),
+  sum(histogram_data$count) == nrow(diamonds_eda),
+  nrow(scatter_data) == nrow(diamonds_eda)
+)
+
+print(price_histogram)
+print(carat_price_plot)
+cat("Rows with nonpositive dimensions:", nrow(dimension_issues), "\n")
+cat("All Week 8 EDA checks passed.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** The source checks 53,940 rows, no NA, twenty flagged rows, five cut groups
+and complete histogram/scatter counts. Anomaly causes are not established by
+those assertions. A zero dimension matters directly to a volume product; a
+carat-price plot uses other fields. Investigate the affected analysis rather
+than silently deleting all unusual records from every question.
+
+### Meeting 1 in-class exit · Final five minutes
+
+Record:
+
+- one observed distribution pattern;
+- one anomaly;
+- one limitation;
+- one next question.
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 1 self-check · No submission
+
+Use the finding/anomaly/next-question activity: zero missing
+values and twenty nonpositive dimension records are reported. Name one
+investigation that would help a dimension-based calculation.
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+Inspect the flagged source records and units, then compare the stated
+dimension-based result with and without the documented anomaly rule. Source
+verification is needed to explain the cause. Avoid declaring an error or silently
+dropping records merely because they are unusual.
+
+</details>
+
+## Meeting 2 · Check the claim {#meeting-two}
+
+The same rows can support different displays with different strengths.
+Small transparent points reveal density better than large opaque marks. A
+boxplot compares price distributions across cut, but carat distributions also
+differ between cut groups. Inspecting related variables refines the descriptive
+question; it does not automatically isolate a causal effect.
+
+### Compare displays and retain their limits {#stage-2}
+
+**Slide cues:** *Use Transparency*; *Check The Scatterplot Layer*; *Categorical And Quantitative*; *A Marginal Comparison Can Mislead*.
+
+Read each plot as data + mappings + geometry + labels. The reference
+builds a histogram, cut bar chart, carat-price scatterplot and price-by-cut
+boxplot. `ggplot_build` exposes layer data: counts should reconcile, the scatter
+should contain all input rows, and category displays should represent all five
+cut levels.
+
+The boxplot has one summary per category, not one row per diamond. The count
+check must match that geometry. A correct layer row count does not guarantee
+a readable design or a justified title. If you use a narrow carat range or
+facets in the selected lab, state the restriction and retained counts.
+
+**Predict · Think first:** Should the boxplot layer and scatterplot layer each have 53,940 rows? What is the unit represented in each layer?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+The scatterplot has one point per diamond, so 53,940 layer rows. The
+boxplot layer summarizes five cut categories, so five rows. If your answer
+differed, you may have treated every geometry as a point-per-observation display.
+Check counts according to the layer’s actual meaning.
+
+</details>
+
+**Try before expanding:** Use Core 6 to compare opaque and transparent scatterplots with the same data. Read the mappings and units first, then run the plot checks.
+
+<details>
+<summary>Reference version · week08-plot-checks_sol.R</summary>
+
+```{r}
+#| label: w08-reference-2
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+# MATH 346 - Week 8
+# Distribution and covariation plots with executable data checks
+
+library(dplyr)
+library(ggplot2)
+
+diamonds_eda <- diamonds |> as_tibble()
+
+price_histogram <- ggplot(diamonds_eda, aes(x = price)) +
+  geom_histogram(binwidth = 500, boundary = 0) +
+  labs(x = "Price (US dollars)", y = "Number of diamonds")
+
+cut_bar_plot <- ggplot(diamonds_eda, aes(x = cut)) +
+  geom_bar() +
+  labs(x = "Cut quality", y = "Number of diamonds")
+
+carat_price_plot <- ggplot(diamonds_eda, aes(x = carat, y = price)) +
+  geom_point(alpha = 0.08, size = 0.7) +
+  labs(x = "Weight (carats)", y = "Price (US dollars)")
+
+price_by_cut_plot <- ggplot(diamonds_eda, aes(x = cut, y = price)) +
+  geom_boxplot(outlier.alpha = 0.15) +
+  labs(x = "Cut quality", y = "Price (US dollars)")
+
+histogram_data <- ggplot_build(price_histogram)$data[[1]]
+bar_data <- ggplot_build(cut_bar_plot)$data[[1]]
+scatter_data <- ggplot_build(carat_price_plot)$data[[1]]
+boxplot_data <- ggplot_build(price_by_cut_plot)$data[[1]]
+
+stopifnot(
+  sum(histogram_data$count) == nrow(diamonds_eda),
+  sum(bar_data$count) == nrow(diamonds_eda),
+  nrow(bar_data) == nlevels(diamonds_eda$cut),
+  nrow(scatter_data) == nrow(diamonds_eda),
+  nrow(boxplot_data) == nlevels(diamonds_eda$cut),
+  identical(carat_price_plot$labels$x, "Weight (carats)"),
+  identical(carat_price_plot$labels$y, "Price (US dollars)")
+)
+
+print(price_histogram)
+print(cut_bar_plot)
+print(carat_price_plot)
+print(price_by_cut_plot)
+
+cat("Histogram observations counted:", sum(histogram_data$count), "\n")
+cat("Scatterplot observations checked:", nrow(scatter_data), "\n")
+cat("All Week 8 plot checks passed.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** Keep two statements separate: larger-carat diamonds tend to have higher
+prices in these data; substantial price variation remains at similar weights.
+Price-by-cut differences can also reflect different carat distributions. The
+Guided conditional view can ask a better comparison without fitting a
+model. Put a next question and limitation beside the observed pattern.
+
+## AI audit · Inspect before accepting {#ai-audit}
+
+**Slide cues:** *Weak AI Plot*; *Weak AI Interpretation*; *AI Interpretation Audit*.
+
+This section supports **Core 9**. Use its code-reading and checking
+steps for that exercise. The full AI-review lab is used only when selected.
+
+Read the supplied target and choose a check before opening the diagnosis.
+No AI service is contacted.
+
+Read the supplied plot and claim as separate objects. The mapping can be
+correct while opacity, units and causal wording are weak. Candidate checks:
+layer count, variation at similar carat values, cut-group carat distributions,
+and the dimension anomaly table. A count check cannot test causation.
+
+**Reading excerpt:** this fragment relies on the supplied script setup; inspect it here, then run the complete file in the evidence reveal.
+
+```r
+generated_plot <- ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point() +
+  labs(
+    title = "Carat determines diamond price",
+    x = "Carat",
+    y = "Price"
+  )
+
+
+generated_interpretation <- paste(
+  "The plot proves that increasing carat causes price to rise by a fixed amount.",
+  "All diamonds follow the same pattern, so cut, color, and clarity do not matter.",
+  "There are no unusual observations or data-quality concerns."
+)
+```
+
+
+**Predict in a private comment first:** Which parts of the generated explanation exceed a scatterplot’s evidence, even though its layer-count assertion passes?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+"Proves", "causes", a fixed increase, "all diamonds", dismissal of other
+attributes and absence of anomalies are unsupported. Preserve an observed
+positive association, qualify variation and scope, and propose a conditional
+comparison. If your answer differed, you may have treated accurate plotting as
+validation of every sentence attached to the plot.
+
+</details>
+
+<details>
+<summary>Run the complete supplied critique target and inspect the evidence</summary>
+
+```{r}
+#| label: w08-reference-ai
+# MATH 346 - Week 8
+# AI interpretation critique starter
+#
+# The plot runs, but its design and the generated interpretation need review.
+
+library(ggplot2)
+
+generated_plot <- ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point() +
+  labs(
+    title = "Carat determines diamond price",
+    x = "Carat",
+    y = "Price"
+  )
+
+print(generated_plot)
+
+generated_interpretation <- paste(
+  "The plot proves that increasing carat causes price to rise by a fixed amount.",
+  "All diamonds follow the same pattern, so cut, color, and clarity do not matter.",
+  "There are no unusual observations or data-quality concerns."
+)
+
+cat(generated_interpretation, "\n")
+
+plot_data <- ggplot_build(generated_plot)$data[[1]]
+stopifnot(nrow(plot_data) == nrow(diamonds))
+
+# Review questions:
+# 1. Does a scatterplot establish causation or a fixed rate of change?
+# 2. What variation remains among diamonds with similar carat values?
+# 3. How does overplotting hide density in the generated figure?
+# 4. Which additional variables might refine the question?
+# 5. Do zero recorded dimensions or extreme measurements require inspection?
+# 6. Which claims should be rewritten as observations, questions, or doubts?
+```
+
+</details>
+
+Use the existing AI policy when assistance is used: explain every accepted line
+and keep the requested evidence with your existing work. A passing test never
+replaces checking whether the code answers the actual question.
+
+### Meeting 2 in-class exit · Final five minutes
+
+An exploratory pattern should become a finding, doubt, or next question when ...
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 2 self-check · No submission
+
+Close earlier reveals and explain from memory: An analyst sees a price difference between cut categories and says cut
+alone explains it. Which next check would improve this comparison,
+and what would still remain uncertain?
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+Inspect carat distributions and compare prices among diamonds with similar
+carat, retaining group counts. Colour, clarity and selection can still differ,
+so this improves the descriptive comparison without proving cut caused the
+price difference. This is refinement, not a regression assignment.
+
+</details>
+
+## Practice, recovery and resources {#practice}
+
+**Core:** 1, 2, 3, 6, 9. **Guided:** 4, 5, 7. **Extension:** 8.
+
+Core 1/2 classify and audit, Core 3 checks histogram choices, Core 6 compares
+scatterplot designs and Core 9 critiques claims. Guided 4/5/7 provide categorical,
+anomaly and conditional support; marginal-comparison Exercise 8 is Extension.
+Keep the original EDA-log practice within the selected lab, not as a second
+submission. Statistical models belong to Week 13.
+
+Attempt the selected starter blocks before comparing possible solutions.
+TODO comments are placeholders, not completed analysis. Keep your checked script
+and follow Blackboard if a checkpoint is requested.
+
+**If you are stuck:** inspect the plotted variables, geometry, bin width, and anomaly rule. Run missing definitions
+before their first use. Keep the first error and ask for help if a focused
+attempt remains blocked.
+
+- [Possible solution: week08-eda-cycle_sol.R](downloads/solutions/week08-eda-cycle_sol.R)
+- [Possible solution: week08-plot-checks_sol.R](downloads/solutions/week08-plot-checks_sol.R)
+
+**Where this fits:** [Week 8 notes](https://lnajman.github.io/math346/weeks/week-08.html) ·
+[Matching slides](https://lnajman.github.io/math346/slides/week-08.html) ·
+[Main lab](https://lnajman.github.io/math346/labs/lab-08-exploratory-data-analysis.html) ·
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-08-ai-interpretation-review.html) ·
+[Exercises](https://lnajman.github.io/math346/weeks/week-08-exercises.html).
+

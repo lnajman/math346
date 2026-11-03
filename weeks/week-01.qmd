@@ -2,6 +2,10 @@
 title: "Week 1: MATLAB Arrays, Scripts, and 2D Plotting"
 ---
 
+Open the [Week 1 companion](../companion/week-01.html) for guided reading
+and self-checks alongside the slides and selected practice. Nothing there is
+collected or graded.
+
 ## Official Topic
 
 MATLAB arrays, script files, and 2D plotting.

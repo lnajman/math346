@@ -5,6 +5,9 @@ title: "Weekly Materials"
 Each week has a problem focus, the official syllabus topic, the software tools involved, and an AI-aware validation task.
 
 ::: {.callout-tip}
+The [course companion](../companion/index.html) supports independent reading
+and self-checking for Weeks 1–12, alongside the slides and selected practice.
+
 ## Start with the workload guide
 
 The website is a complete resource bank, not a list of tasks that are all due.

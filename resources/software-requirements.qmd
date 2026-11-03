@@ -33,6 +33,16 @@ Only access is required: students are not expected to purchase MATLAB,
 Symbolic Math Toolbox, Microsoft Word, or an AI subscription. The instructor
 will announce the verified institutional access routes before Week 1.
 
+## Version compatibility
+
+The supplied Week 2 check uses `max(..., [], "all")`, introduced in
+[MATLAB R2018b](https://www.mathworks.com/help/matlab/ref/double.max.html).
+Use R2018b or later for that helper; this feature requirement does not certify
+every course example on an older installation. The native R pipe `|>` requires
+R 4.1 or later, and Week 10 join relationship declarations require `dplyr` 1.1
+or later. Run the setup checks and the relevant teaching script on your intended
+computer; a successful website build cannot verify your installation.
+
 ## Before Week 1: MATLAB
 
 1. Open MATLAB on the computer you intend to use. This may be a local

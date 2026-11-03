@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-11-02
+Last updated: 2026-11-03
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -17,18 +17,28 @@ describe pedagogical progress.
 
 ## Current Phase
 
-The instructor authorized publication of the approved Week 11 companion on
-2 November, with later revisions in response to feedback. The student chapter
-is at `companion/week-11.html`, linked from `weeks/week-11.qmd`. It publishes
-the approved HTML and six public teaching downloads unchanged. Its Quarto
-source remains in `companion-review/week-11.qmd`; rebuild and validate with
-`python3 scripts/build_week11_companion.py`. Instructor review notes and private
-working materials are not included in the release. The source project remains
-excluded from the main website render; only the allowlisted HTML/download
-bundle is copied to the public site. The syllabus, assessment scope, exercise
-labels, two 75-minute meetings and existing workload budget are unchanged.
-All 32 R chunks and fresh-session checks pass. Student/TA timing has not been
-measured; feedback may guide later revisions without blocking this release.
+The instructor authorized publication of the reviewed companion for Weeks 1–12
+on 3 November 2026. The student entry point is `companion/index.html`.
+Week 11 has two independently runnable meeting pages, a route page and a
+complete single-page reference. All 110 R chunks render successfully; both
+meeting routes and the complete chapter have passed fresh-session checks.
+The MATLAB examples retain their previously checked code and output.
+
+The release contains only student HTML and allowlisted public teaching code,
+synthetic CSVs, figures and the exact-rational supplement. Source is maintained
+in `companion-source/`; rebuild and validate with
+`python3 scripts/build_companion.py`. Both source and review projects are
+excluded from the main website render/resource lists. Reviewer documents,
+timing checklists, ZIPs, feedback and assessment keys are excluded from the
+release. The student index is linked from the home page, navigation and weekly
+notes. Approved syllabus, exercise labels, workload, assessment scope and
+Blackboard authority are unchanged. Timing remains unmeasured; Weeks 13–15
+companions remain to be authored.
+
+The original Week 11 pilot was published on 2 November. The Weeks 1–12 release
+supersedes its public HTML while retaining the historical source under
+`companion-review/week-11.qmd`. The old build command now delegates to the
+complete release builder to avoid overwriting the current meeting layout.
 
 The formal part of the web syllabus now follows the February 2026 Word source
 through Copyright and Plagiarism, restoring references, topic wording,
@@ -622,10 +632,10 @@ agreed core project architecture is incorporated into the syllabus.
 
 ## Next Actions
 
-Companion priority (2 November): publish the approved Week 11 version through
-the existing GitHub Pages workflow, verify its live page and downloads, then
-revise if feedback warrants. Publication is explicitly authorized; a student/TA
-run-through is not a prerequisite. Further-week rollout has not been requested.
+Companion priority (3 November): verify the deployed student index and meeting
+pages, then revise using actual classroom feedback. A colleague timing Week 12
+and one MATLAB week remains useful; it does not block the authorized release.
+Weeks 13–15 companion writing is the remaining content work.
 
 Current priority (16 October): approve Quiz 3 format, confirm section
 dates in Week 10, time-pilot both forms, then import and check Blackboard settings

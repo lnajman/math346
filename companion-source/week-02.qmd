@@ -1,0 +1,687 @@
+---
+title: "Week 2 · Turn a formula into tested reusable code"
+subtitle: "MATH 346 course companion · MATLAB"
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route {#route}
+
+**Which tests would reveal that a plausible function implements the wrong rule?**
+
+A function states inputs and outputs, while tests connect its code to a
+mathematical definition. We compare scalar and vector formulas, inspect the
+boundaries of a ticket-price rule, and choose logical selection or a loop
+according to the repeated task.
+
+The supplied AI circle-area example intentionally fails on a vector. Treat
+that failure as evidence to explain, not as a reason to remove the vector test.
+
+[Before you start](#before-start) · [Words used here](#words) · [Setup](#setup) ·
+[Meeting 1](#meeting-one) · [Meeting 2](#meeting-two) · [AI audit](#ai-audit) ·
+[Practice and resources](#practice) · [Chapter list](chapters.html).
+The page contents navigation also links to the sections.
+
+::: {.callout-tip}
+## A first 30-minute recovery session
+
+Choose a stopping point within about 30 minutes; continue from there next time.
+This is an untested first-pass budget, not a completion promise. 
+
+1. Check prerequisites and setup. If access is blocked, focus on that first.
+2. Read the quadratic signature and a scalar/vector known-answer test.
+3. Inspect the ticket-price boundary table and identify the branch at age 18.
+4. Try the second self-check, then continue Core 3 or 6. The switch and while variations can wait.
+
+Read displayed results when jumping ahead; run complete code in its stated
+sequence when returning to your script. The full practice selection is Core
+**1, 2, 3, 4, 6**, selective Guided **8, 9**, and optional Extension **5, 7**,
+within the **90–120-minute** ordinary-week budget.
+:::
+
+### Before you start {#before-start}
+
+Use Week 1 vector shapes, elementwise powers, indexing and saved scripts.
+No prior function-writing knowledge is assumed. Save each full function-bearing
+example as its own script so the local definitions travel with its tests.
+
+Use [software requirements](https://lnajman.github.io/math346/resources/software-requirements.html) and the
+[course glossary](https://lnajman.github.io/math346/resources/glossary.html) when needed. You do not need a
+paid AI account or an external AI call: the flawed examples are supplied locally.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Signature** | The line naming a function, its input arguments and returned output. |
+| **Local function** | A named function defined inside the same saved file as its script. |
+| **Contract** | Accepted inputs, returned output and behavior on unsupported input. |
+| **Boundary case** | A value exactly at a rule transition, such as age 18. |
+| **Logical mask** | A TRUE/FALSE array selecting, counting or replacing values. |
+| **Accumulator** | A value initialized once and updated on every iteration. |
+| **Preallocation** | Create a correctly sized output array before filling it. |
+| **Guard** | A condition limiting loop iterations if the intended stop is not reached. |
+| **Scalar / elementwise logic** | && and \|\| test scalar conditions; & and \| combine array masks. |
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the inputs and operations; explain your prediction; check a specific
+claim; interpret the result with its domain or units.
+
+Think first; write a private comment only where requested—see the
+[prediction guide](how-to-use.html#read-explain-check-interpret).
+
+## Setup {#setup}
+
+Use MATLAB in a `week02` folder. Local-function scripts must be saved before running. The circle-area critique is expected to stop at its vector call; run it separately from accepted reference scripts.
+
+Download the starters first. Keep these files in your working folder: `week02_function_tests.m`; `week02_piecewise_validation.m`; `week02_logical_indexing_switch.m`; `week02_loop_patterns.m`.
+
+Possible solutions are separate comparison files linked below.
+
+- [Starter: week02_function_tests.m](downloads/week02_function_tests.m)
+- [Starter: week02_piecewise_validation.m](downloads/week02_piecewise_validation.m)
+- [Starter: week02_logical_indexing_switch.m](downloads/week02_logical_indexing_switch.m)
+- [Starter: week02_loop_patterns.m](downloads/week02_loop_patterns.m)
+- [AI critique target: week02_ai_function_review.m](downloads/week02_ai_function_review.m)
+
+Run this from your working folder:
+
+```matlab
+required_files = {'week02_function_tests.m', 'week02_piecewise_validation.m', 'week02_logical_indexing_switch.m', 'week02_loop_patterns.m'};
+for file_index = 1:numel(required_files)
+    if isfile(required_files{file_index})
+        fprintf("Found: %s\n", required_files{file_index});
+    else
+        fprintf("Missing: %s\n", required_files{file_index});
+    end
+end
+```
+
+Fix any missing path before continuing. Each reference below is a complete
+script: save/run it as its own `.m` file, rather than combining several scripts
+and local-function definitions in one file. The `clear` lines deliberately
+rebuild each example independently. MATLAB `assert` is silent when its condition
+passes and stops when it fails. Read the error and inspect the input; do not
+weaken a check merely to finish the run.
+
+## Meeting 1 · Read the computation {#meeting-one}
+
+Class route: two 75-minute meetings, each with its final five-minute exit.
+
+Read `quadratic_value(a,b,c,x)` as “given coefficients and x, return y”.
+The elementwise operations allow a vector x. Known-answer tests should be
+independently calculated, rather than copying the function’s formula into a
+test and calling the repetition verification. A scalar test cannot expose every
+array-shape mistake.
+
+### Read a function and its tests together {#stage-1}
+
+**Slide cues:** *Function Pattern*; *Test Pattern*; *Vector Test*.
+
+The first call produces x²-1 for five inputs. The helper assert_close
+compares actual and expected values within 1e-12 and reports a named failure.
+The tests include zero, both ±1 boundaries for that expression, and a linear
+vector case obtained by setting a=0.
+
+Trace the arguments into the function signature; coefficients change the rule,
+while x changes evaluation points. This reference is a small teaching function,
+not comprehensive validation of arbitrary coefficient shapes or unsupported
+objects. A supported vector contract should retain shape, not accidentally
+broadcast into a matrix.
+
+**Predict in a private comment first:** For quadratic_value(0,2,3,[0 1 2]), what should y be? Which test would reveal using x^2 where x.^2 was intended?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+The values are [3 5 7]. A non-square row-vector input exposes the matrix
+power error; a scalar input does not. If your answer differed, substitute the
+arguments into ax²+bx+c and distinguish an elementwise power from matrix power.
+
+</details>
+
+**Try before expanding:** Use Core 1/2 to write the function signature and at least one independently calculated expected value before expanding the full implementation.
+
+<details>
+<summary>Reference version · week02_function_tests_sol.m</summary>
+
+```matlab
+% MATH 346 - Week 2
+% Possible worked solution - compare only after attempting the starter.
+% Other correct implementations are possible.
+% Functions, vectorized formulas, and basic tests
+
+clear; clc;
+
+values = [-2, -1, 0, 1, 2];
+outputs = quadratic_value(1, 0, -1, values);
+
+disp(table(values.', outputs.', 'VariableNames', ["x", "x_squared_minus_1"]));
+
+expected_at_zero = -1;
+actual_at_zero = quadratic_value(1, 0, -1, 0);
+
+assert_close(actual_at_zero, expected_at_zero, "quadratic at x = 0");
+
+assert_close(quadratic_value(1, 0, -1, 1), 0, "quadratic at x = 1");
+assert_close(quadratic_value(1, 0, -1, -1), 0, "quadratic at x = -1");
+assert_close(quadratic_value(0, 2, 3, [0 1 2]), [3 5 7], "linear vector case");
+
+disp("All Week 2 function tests passed.");
+
+function y = quadratic_value(a, b, c, x)
+    y = a .* x.^2 + b .* x + c;
+end
+
+function assert_close(actual, expected, test_name)
+    tolerance = 1e-12;
+    if max(abs(actual - expected), [], "all") > tolerance
+        error("Test failed: %s", test_name);
+    else
+        fprintf("Test passed: %s\n", test_name);
+    end
+end
+```
+
+**Output from the checked MATLAB run:**
+
+```text
+x     x_squared_minus_1
+    __    _________________
+
+    -2            3        
+    -1            0        
+     0           -1        
+     1            0        
+     2            3        
+
+Test passed: quadratic at x = 0
+Test passed: quadratic at x = 1
+Test passed: quadratic at x = -1
+Test passed: linear vector case
+All Week 2 function tests passed.
+```
+
+</details>
+
+**Explain / Check / Interpret:** Successful tests support those cases, including the supplied vector case.
+The maximum-difference helper does not separately enforce every input shape or
+reject all unsupported types; when adapting it, check the promised shape as well
+as values. Keep the function and its tests in the saved file, not only in the
+Command Window.
+
+### Meeting 1 in-class exit · Final five minutes
+
+Name one test you trust and explain why.
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 1 self-check · No submission
+
+For the function-trust activity, suppose a scalar test passes
+but the same formula errors for [0 1 2]. What kind of promise has not yet been
+satisfied?
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+The claimed vector-input contract has not passed. Inspect matrix versus
+elementwise operators and shapes, then compare a vector result with independently
+known values. A scalar success supports only that scalar case.
+
+</details>
+
+## Meeting 2 · Check the claim {#meeting-two}
+
+For a piecewise rule, the exact boundary determines the branch. Logical
+masks apply one decision per array element, while scalar if chooses a branch
+for a supported scalar input. When the number of repeated tasks is known, a
+for loop can fill a preallocated result; a while loop instead repeats while a
+condition remains true and needs a reliable update and guard.
+
+### Piecewise conditions and exact thresholds {#stage-2}
+
+**Slide cues:** *Conditional Pattern*; *Boundary Cases*.
+
+The ticket function accepts one age in its scalar branch logic; arrayfun
+in the test script calls it once per test age. It is not evidence that directly
+passing an age vector to scalar if has the same meaning. Read the ordered
+conditions: negative errors, through 5 is free, through 17 is 20, through 64 is
+35, otherwise 25.
+
+The source’s negative-age test uses try/catch to check that an error occurs.
+A catch alone would accept any error; when designing a stronger rejection test,
+check that it is the intended failure. The supplied integer age thresholds leave
+fractional-age interpretation to an explicit contract decision.
+
+**Predict in a private comment first:** What should the function return at ages 17 and 18? Does testing age 10 alone distinguish <=17 from <17?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+17 returns 20 and 18 returns 35. Age 10 lies safely inside a branch and
+cannot distinguish the boundary operators; testing exactly 17 can. If your
+answer differed, inspect equality at the threshold rather than only convenient
+interior values.
+
+</details>
+
+**Try before expanding:** Use Core 3 to list expected boundary ages before completing the function. State supported scalar inputs and the choice for fractional ages in your own exercise notes.
+
+<details>
+<summary>Reference version · week02_piecewise_validation_sol.m</summary>
+
+```matlab
+% MATH 346 - Week 2
+% Possible worked solution - compare only after attempting the starter.
+% Other correct implementations are possible.
+% Piecewise rules and boundary tests
+
+clear; clc;
+
+test_ages = [0 5 6 17 18 64 65];
+expected_prices = [0 0 20 20 35 35 25];
+actual_prices = arrayfun(@ticket_price, test_ages);
+
+disp(table(test_ages.', actual_prices.', expected_prices.', ...
+    'VariableNames', ["age", "actual_price", "expected_price"]));
+
+assert(isequal(actual_prices, expected_prices), "Boundary price test failed.");
+disp("Boundary price tests passed.");
+
+negative_age_rejected = false;
+try
+    ticket_price(-1);
+catch
+    negative_age_rejected = true;
+end
+assert(negative_age_rejected, "Negative age test failed: function should reject -1.");
+disp("Negative age test passed.");
+
+function price = ticket_price(age)
+    if age < 0
+        error("Age must be nonnegative.");
+    elseif age <= 5
+        price = 0;
+    elseif age <= 17
+        price = 20;
+    elseif age <= 64
+        price = 35;
+    else
+        price = 25;
+    end
+end
+```
+
+**Output from the checked MATLAB run:**
+
+```text
+age    actual_price    expected_price
+    ___    ____________    ______________
+
+     0           0                0      
+     5           0                0      
+     6          20               20      
+    17          20               20      
+    18          35               35      
+    64          35               35      
+    65          25               25      
+
+Boundary price tests passed.
+Negative age test passed.
+```
+
+</details>
+
+**Explain / Check / Interpret:** The boundary vector and expected prices are paired in order, and the
+reference compares all of them. Do not assume the code validates an integer-only
+age contract: it rejects negatives but does not explicitly reject fractional
+ages. Decide and document the domain before changing a teaching rule.
+
+### Select and replace with a mask · switch is optional {#stage-3}
+
+**Slide cues:** *Logical Mask Pattern*; *Logical Indexing Pattern*; *Switch Pattern*.
+
+The mask has one logical value per temperature. Indexing with it selects
+34 and 31; nnz counts two TRUE entries. Copying temperatures to adjusted before
+replacement preserves the original values. The switch section converts 77 F to
+25 C and raises an error for an unknown unit. Switch itself is Extension 5;
+the mask operation supports Core 4.
+
+**Predict · Think first:** Will replacing adjusted(hot_mask) alter the original temperatures vector? What does nnz count here?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+No: adjusted is the modified copy. nnz counts the two TRUE mask entries,
+not the sum of selected temperatures. If your answer differed, distinguish a
+selector from the values it selects and an explicitly copied result from its
+source.
+
+</details>
+
+**Try before expanding:** Use Core 4 to create the mask, predict selected values and check its size before expanding. Skip the switch variation unless selected or useful for recovery.
+
+<details>
+<summary>Reference version · week02_logical_indexing_switch_sol.m</summary>
+
+```matlab
+% MATH 346 - Week 2
+% Possible worked solution - compare only after attempting the starter.
+% Other correct implementations are possible.
+% Logical indexing and switch patterns
+
+clear; clc; close all;
+
+temperatures = [18 21 25 29 34 31 22];
+
+hot_mask = temperatures >= 30;
+hot_values = temperatures(hot_mask);
+
+fprintf("Number of hot days: %d\n", nnz(hot_mask));
+disp("Hot temperatures:");
+disp(hot_values);
+
+adjusted = temperatures;
+adjusted(hot_mask) = 30;
+
+disp(table(temperatures.', hot_mask.', adjusted.', ...
+    'VariableNames', {'Original', 'IsHot', 'Capped'}));
+
+unit = "F";
+value = 77;
+
+switch unit
+    case "C"
+        celsius = value;
+    case "F"
+        celsius = (value - 32) * 5/9;
+    otherwise
+        error("Unknown unit.");
+end
+
+fprintf("%.1f %s is %.2f C\n", value, unit, celsius);
+```
+
+**Output from the checked MATLAB run:**
+
+```text
+Number of hot days: 2
+Hot temperatures:
+    34    31
+
+    Original    IsHot    Capped
+    ________    _____    ______
+
+       18       false      18  
+       21       false      21  
+       25       false      25  
+       29       false      29  
+       34       true       30  
+       31       true       30  
+       22       false      22  
+
+77.0 F is 25.00 C
+```
+
+</details>
+
+**Explain / Check / Interpret:** The mask’s threshold includes equality at 30, while the exercise
+also discusses capping values above 30. The supplied values contain no exact
+30, so both choose the same changed values in this case. A constructed boundary
+would be needed to distinguish the selector definitions.
+
+### A known loop and a condition-controlled loop {#stage-4}
+
+**Slide cues:** *For Loop Pattern*; *Accumulator Pattern*; *While Loop Guard*; *Loop Or Vectorize?*.
+
+The preallocated squares vector has the same size as values. The for loop
+fills one position at a time and is compared against values.^2. The second
+loop starts total at zero and adds each input; it is checked against sum(values).
+These are separate computations, even though both use a loop.
+
+The while example updates n before adding n² and stops when the running sum
+reaches the target, with max_steps as a guard. The target-500 variant is
+Extension 7. Core 6 requires the for loop and its vectorized equivalent; use
+the while example as optional recognition support unless selected.
+
+**Predict · Think first:** Why must total be initialized outside the for loop? If it were reset to zero inside every iteration, what information would be lost?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+Initialization outside the loop allows earlier contributions to remain.
+Resetting total inside would discard them, leaving only the latest addition.
+If your answer differed, trace the value after the first two iterations rather
+than reading only the final assignment.
+
+</details>
+
+**Try before expanding:** Use Core 6 to preallocate and trace the first/last square before expanding. Compare the full result with the vectorized version.
+
+<details>
+<summary>Reference version · week02_loop_patterns_sol.m</summary>
+
+```matlab
+% MATH 346 - Week 2
+% Possible worked solution - compare only after attempting the starter.
+% Other correct implementations are possible.
+% Loop patterns, accumulators, and vectorization checks
+
+clear; clc; close all;
+
+values = [1 2 3 4 5];
+
+% Pattern 1: for loop with preallocation
+squares_loop = zeros(size(values));
+
+for k = 1:numel(values)
+    squares_loop(k) = values(k)^2;
+end
+
+squares_vectorized = values.^2;
+assert(isequal(squares_loop, squares_vectorized));
+
+disp("Squares computed with a loop:");
+disp(squares_loop);
+disp("Squares computed with vectorized MATLAB:");
+disp(squares_vectorized);
+
+% Pattern 2: accumulator
+total = 0;
+
+for k = 1:numel(values)
+    total = total + values(k);
+end
+
+assert(total == sum(values));
+fprintf("Accumulator total: %d\n", total);
+
+% Pattern 3: while loop with a guard
+target = 100;
+sum_of_squares = 0;
+n = 0;
+max_steps = 1000;
+
+while sum_of_squares < target && n < max_steps
+    n = n + 1;
+    sum_of_squares = sum_of_squares + n^2;
+end
+
+if n == max_steps && sum_of_squares < target
+    error("The while loop reached max_steps before the target.");
+end
+
+fprintf("Smallest n with 1^2 + ... + n^2 >= %d is %d.\n", target, n);
+fprintf("Final sum: %d\n", sum_of_squares);
+
+% Reflection questions:
+% 1. Which loop has a known number of repetitions?
+% 2. Which loop stops because a condition changes?
+% 3. Which calculation is clearer without a loop?
+```
+
+**Output from the checked MATLAB run:**
+
+```text
+Squares computed with a loop:
+     1     4     9    16    25
+
+Squares computed with vectorized MATLAB:
+     1     4     9    16    25
+
+Accumulator total: 15
+Smallest n with 1^2 + ... + n^2 >= 100 is 7.
+Final sum: 140
+```
+
+</details>
+
+**Explain / Check / Interpret:** For the supplied while target 100, n=7 gives a sum of 140; n=6 gives 91,
+so seven is the first success. The guard prevents endless repetition if the
+intended condition fails to progress. A condition depending on n is only useful
+when n is actually updated. Keep the accumulator and stopping rule explicit.
+
+## AI audit · Inspect before accepting {#ai-audit}
+
+**Slide cues:** *Plausible But Weak Code*; *Critique Questions*.
+
+This is **selective Guided practice**; use it when selected or helpful.
+
+Read the supplied target and choose a check before opening the diagnosis.
+No AI service is contacted.
+
+This target intentionally prints a scalar result and then stops at the
+vector call. Inspect the function at the end before running the entire file.
+Candidate tests: radius 0, 1, 2, [0 1 2], and -1. Predict which fails by execution,
+which detects approximation and which tests a domain choice. The error below
+is deliberate evidence, not a reference result to copy.
+
+**Reading excerpt:** this fragment relies on the supplied script setup; inspect it here, then run the complete file in the evidence reveal.
+
+```matlab
+clear; clc;
+
+r_scalar = 2;
+area_scalar = circle_area_ai(r_scalar);
+fprintf("Area for radius %.1f: %.4f\n", r_scalar, area_scalar);
+
+r_vector = [0 1 2];
+area_vector = circle_area_ai(r_vector);
+disp(area_vector);
+
+function area = circle_area_ai(radius)
+    area = 3.14 * radius^2;
+end
+```
+
+
+**Predict in a private comment first:** Which defect does the vector test reveal, and which problems can remain even if the scalar radius 2 produces a number?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+radius^2 is matrix power and fails for the supplied row vector. Use pi
+rather than 3.14 and an elementwise power for supported vectors; add an explicit
+negative-radius rejection according to the physical contract. If your answer
+differed, a successful scalar calculation may have hidden shape and domain
+issues. The supplied unmodified critique script is expected to fail; compare
+its captured error before implementing your own repair.
+
+</details>
+
+<details>
+<summary>Run the complete supplied critique target and inspect the evidence</summary>
+
+```matlab
+% MATH 346 - Week 2
+% AI function review example
+%
+% This script is intentionally plausible but weak. Run it, critique it,
+% and then repair the local function.
+
+clear; clc;
+
+r_scalar = 2;
+area_scalar = circle_area_ai(r_scalar);
+fprintf("Area for radius %.1f: %.4f\n", r_scalar, area_scalar);
+
+r_vector = [0 1 2];
+area_vector = circle_area_ai(r_vector);
+disp(area_vector);
+
+function area = circle_area_ai(radius)
+    area = 3.14 * radius^2;
+end
+```
+
+**Output from the checked MATLAB run:**
+
+```text
+Expected error at the vector call:
+Incorrect dimensions for raising a matrix to a power. Check that the matrix is square and the power is a scalar. To operate on each element of the matrix individually, use POWER (.^) for elementwise power.
+```
+
+</details>
+
+Use the existing AI policy when assistance is used: explain every accepted line
+and keep the requested evidence with your existing work. A passing test never
+replaces checking whether the code answers the actual question.
+
+### Meeting 2 in-class exit · Final five minutes
+
+A function is trustworthy enough to reuse when ...
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 2 self-check · No submission
+
+Close earlier reveals and explain from memory: A repaired circle-area function uses pi*radius.^2. It returns a positive
+area for -1. Has it satisfied a contract that rejects negative physical radii?
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+No. Elementwise arithmetic fixes vector calculation but not physical input
+validation. Test negative rejection separately, along with scalar, zero, vector
+and known-answer cases. Different fixes address different promises.
+
+</details>
+
+## Practice, recovery and resources {#practice}
+
+**Core:** 1, 2, 3, 4, 6. **Guided:** 8, 9. **Extension:** 5, 7.
+
+Core 1/2 read functions and write tests; Core 3 checks piecewise boundaries;
+Core 4 uses masks; Core 6 compares the for loop with vectorization. AI/debugging
+Exercises 8/9 are Guided. Switch and target-500 while work stay Extension 5/7.
+The lab’s selected implementations/tests remain the practice record;
+these explanations add no separate function submission.
+
+Attempt the selected starter blocks before comparing possible solutions.
+TODO comments are placeholders, not completed analysis. Keep your checked script
+and follow Blackboard if a checkpoint is requested.
+
+**If you are stuck:** inspect argument values, boundary operators, vector shapes, and saved local functions. Run missing definitions
+before their first use. Keep the first error and ask for help if a focused
+attempt remains blocked.
+
+- [Possible solution: week02_function_tests_sol.m](downloads/solutions/week02_function_tests_sol.m)
+- [Possible solution: week02_piecewise_validation_sol.m](downloads/solutions/week02_piecewise_validation_sol.m)
+- [Possible solution: week02_logical_indexing_switch_sol.m](downloads/solutions/week02_logical_indexing_switch_sol.m)
+- [Possible solution: week02_loop_patterns_sol.m](downloads/solutions/week02_loop_patterns_sol.m)
+
+**Where this fits:** [Week 2 notes](https://lnajman.github.io/math346/weeks/week-02.html) ·
+[Matching slides](https://lnajman.github.io/math346/slides/week-02.html) ·
+[Main lab](https://lnajman.github.io/math346/labs/lab-02-matlab-functions.html) ·
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-02-ai-debugging.html) ·
+[Exercises](https://lnajman.github.io/math346/weeks/week-02-exercises.html).
+

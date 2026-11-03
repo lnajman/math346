@@ -1,0 +1,10 @@
+event_id,building_key,reported_at,issue_label,severity,response_hours
+EVT-001," bldg-01 ",2026-01-12 08:30," HVAC ",High,4.5
+EVT-002,BLDG-01,2026-01-28 14:10,lighting," low ",18
+EVT-003,bldg-02,2026-02-03 09:05,Water leak,HIGH,2.25
+EVT-004,"BLDG-03 ",2026-02-16 17:45,hvac,medium,11
+EVT-005," bldg-04",2026-03-01 07:20,ACCESS,Low,25
+EVT-006,BLDG-05,2026-03-14 12:00,"water  leak",high,3
+EVT-007,BLDG-05,2026-03-22 10:30,"Lighting ",LOW,16
+EVT-008,bldg-99,2026-04-02 15:15,hvac,medium,9
+EVT-009,BLDG-02,2026-04-19 06:50,access," medium ",14

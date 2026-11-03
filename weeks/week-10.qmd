@@ -4,6 +4,10 @@ execute:
   enabled: false
 ---
 
+Open the [Week 10 companion](../companion/week-10.html) for guided reading
+and self-checks alongside the slides and selected practice. Nothing there is
+collected or graded.
+
 ## Official Topic
 
 Relational data, strings, factors, dates, and times.

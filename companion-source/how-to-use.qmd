@@ -1,0 +1,66 @@
+---
+title: "How to use these companions"
+---
+
+Use the slides for lecture flow, a companion for explanations and self-checks,
+and the selected lab/exercises for practice. You do not need to read duplicate
+explanations in every resource. Earlier chapters are for revision; nothing in them is collected or graded.
+
+The approved [syllabus](https://lnajman.github.io/math346/syllabus/index.html),
+[workload guide](https://lnajman.github.io/math346/weeks/workload-guide.html) and
+Blackboard announcements remain authoritative. Nothing in the companions is
+collected or graded. Keep your checked script for your own use and any checkpoint
+announced on Blackboard. In-class exits keep their announced classroom route;
+solo self-checks need no submission.
+
+## Choose a route
+
+The ordinary-week practice budget is **90–120 minutes total**, including selected
+companion reading, lab checkpoints and Core exercises. It is a budget, not a
+measured chapter completion time. Assessment weeks use the announced reduced
+selection. Guided work is selective; Extension work is optional. A full AI-review
+lab is used only when selected, even where a short audit supports a Core exercise.
+
+The first-pass route gives an order for about 30 minutes of recovery. Stop where
+you reach and resume later. It does not promise completion of every step or
+replace the full Core practice. Student/TA timing has not yet been measured.
+
+## Read / Explain / Check / Interpret
+
+Read what enters the code and what it does. Explain the expected result. Choose
+a check that could expose a particular mistake. Interpret the output with its
+units, population or domain, and the limits of the check.
+
+**Think first** means a mental prediction. **Private comment first** asks for one
+brief comment before expanding a reveal, so you can compare your own reasoning
+with the model explanation. Those few comments are private and not collected.
+A clean run recreates the calculation; independent known-answer checks help
+establish what the calculation means.
+
+## Run the code in the right place
+
+Download starters before looking at possible solutions. TODO comments are
+placeholders: an unfinished script can run without completing the analysis.
+Keep each MATLAB reference as its own saved script, especially when it contains
+local functions. Run R definitions before their first use, including those in
+reference reveals. Reading excerpts are fragments; use the complete supplied
+script when executing them.
+
+**Printed output in this HTML is an example from a checked run.** It cannot
+confirm the state of your computer. Run setup checks yourself, inspect your own
+output, and investigate the first failed check rather than weakening it.
+
+## Software compatibility
+
+For MATLAB, Symbolic Math Toolbox is needed in Week 5. The Week 2 helper uses
+max(...,[],"all"), a feature requiring R2018b or later; older versions have not
+been certified for this material. For R, the native pipe needs R 4.1 or later,
+and Week 10 relationship declarations need dplyr 1.1 or later. The current
+validation used MATLAB R2026a with Symbolic Math Toolbox, R 4.6.1, ggplot2 4.0.3
+and dplyr 1.2.1. The Week 6/8 `$labels` checks pass with ggplot2 4.0.3. This is a tested
+version, not evidence that 4.x is the minimum; other versions have not been
+checked in this review.
+See the [software requirements](https://lnajman.github.io/math346/resources/software-requirements.html)
+for the setup route and support.
+
+[Return to the chapter list](chapters.html).

@@ -1,0 +1,516 @@
+---
+title: "Week 11 · Meeting 1 · Read the pipeline"
+subtitle: "MATH 346 · Readable code, defensible results"
+lang: en
+---
+
+Use this page with the [reading guide](how-to-use.html). Nothing here is collected
+or graded; the approved syllabus, workload guide and Blackboard remain authoritative.
+Each meeting retains its 75-minute class route and final five-minute individual exit.
+
+Trace event identity, name the data states and explain what changes when you
+summarize. This page supports Core 1/2. Use the shared [first-pass route](week-11.html#route)
+if recovering the week; the meeting pages divide the same work, not the workload budget.
+
+### Before you start {#before-start}
+
+From Week 10, you should be able to open an R script, find a CSV relative to
+your project folder, recognize `NA`, and explain that a service event and a
+building are different observation units. You should have seen string cleaning,
+factors, timestamps and joins; you do not need to memorize their syntax.
+The join examples recall Week 10 and explain why checkpoints matter. You do
+not need to write or run a join to complete this chapter.
+Use the [post–Week 10 recovery page](https://lnajman.github.io/math346/weeks/recovery-after-week-10.html)
+if those ideas are unfamiliar. The complete setup below rebuilds the data;
+no saved Week 10 workspace is needed.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Invariant** | A promise that should remain true at a particular stage, such as one row per original event. |
+| **Contract** | What a function accepts, what it returns, and when it should stop with an error. |
+| **Known-answer test** | A small example whose answer you work out independently before running the code. |
+| **Boundary** | The exact dividing value in a rule, such as 12 in a 12-hour target. |
+| **Observation key / matching key** | An observation key identifies one row's event; a matching key connects it to another table. Several events can share a matching building key. |
+| **Unmatched key** | A key value with no matching row in the other table. |
+| **Left join / inner join** | A left join keeps every left-hand row; an inner join keeps only matching rows. Multiple matches can multiply rows in either. |
+| **`anti_join(x, y, by = ...)`** | Show rows of `x` with no match in `y` using the stated key. |
+| **Many-to-one declaration** | Require each left-hand row to match at most one right-hand row; zero matches are allowed. |
+| **`tryCatch`** | Catch an expected error and keep it as an object so the script can continue. |
+| **`inherits(x, "error")`** | Ask whether `x` is an error object; the answer is `TRUE` or `FALSE`. |
+| **`identical` / `all.equal`** | `identical` checks exact type and value. `all.equal` allows numerical tolerance and returns `TRUE` or a description of differences; use `isTRUE(all.equal(...))` in a check. |
+
+The [course glossary](https://lnajman.github.io/math346/resources/glossary.html)
+provides further background.
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the inputs and operations; explain your prediction; check a specific
+claim; interpret the result with its population, domain or units. Apply this
+to supplied code, your own code and LLM-generated code alike.
+
+Think first; write a private comment only where requested—see the
+[prediction guide](how-to-use.html#read-explain-check-interpret).
+
+## Start with the familiar data {#setup}
+
+**Slide cue:** “Reuse Familiar Data”.
+
+Download the [synthetic service-event CSV](downloads/week10-service-events.csv),
+the [pipeline starter](downloads/week11-readable-pipeline.R), and the
+[function starter](downloads/week11-function-contracts.R). Save them as follows:
+
+```text
+week11/
+  week11-readable-pipeline.R
+  week11-function-contracts.R
+  data/
+    week10-service-events.csv
+```
+
+Open this folder as your RStudio project or set it as your working directory.
+Use R 4.1 or later and the already-required `readr`, `dplyr`, `stringr` and
+`lubridate` packages. If setup is blocked, use the
+[course software checks](https://lnajman.github.io/math346/resources/software-requirements.html)
+and ask for help; you can still predict outputs while access is resolved.
+
+### Setup check
+
+Run this check from the `week11/` folder before loading packages. It checks the
+two starters and the CSV's position without running or changing their contents.
+If it lists missing paths, fix those paths before continuing.
+
+```{r}
+#| label: setup-files
+setup_files <- c(
+  "week11-readable-pipeline.R",
+  "week11-function-contracts.R",
+  "data/week10-service-events.csv"
+)
+```
+
+```{r}
+#| label: author-setup-files
+#| include: false
+# Author render uses the same public files in the download bundle.
+setup_files <- file.path("downloads", basename(setup_files))
+```
+
+```{r}
+#| label: setup-check
+#| output: false
+missing_files <- setup_files[!file.exists(setup_files)]
+if (length(missing_files) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing from the current folder:\n",
+      paste(missing_files, collapse = "\n"), "\n", sep = "")
+}
+```
+
+**Example output when all required files are present:**
+
+```text
+Setup OK
+```
+
+This is example output, not confirmation of your computer's setup. Run the
+check in your own R session and inspect that result.
+
+If you see missing paths, run `getwd()` to see where R is looking. Creating a
+folder in a file browser does not automatically make it R's working directory.
+
+The starter files contain unfinished tasks. Complete the selected blocks before
+running the whole starter. The worked blocks in this chapter run **in order in a
+fresh R session**. Closed reveals contain runnable reference code: after your
+attempt, open and run them when following the full route. To begin directly
+with Meeting 2, run the setup and import below, define
+[`within_target`](week-11-meeting-2.html#vector-function), then run the [Meeting 2 setup](week-11-meeting-2.html#meeting-two-setup).
+The later original-versus-refactored comparison also needs Meeting 1's stages.
+
+```{r}
+#| label: import
+library(readr)
+library(dplyr)
+library(stringr)
+library(lubridate)
+
+# In your week11 folder, use the data/ path below.
+events_path <- "data/week10-service-events.csv"
+```
+
+```{r}
+#| label: author-render-path
+#| include: false
+# The review project stores its supplied CSV in downloads/.
+# This author-only path adjustment does not appear in the student example.
+events_path <- "downloads/week10-service-events.csv"
+```
+
+```{r}
+#| label: read-events
+stopifnot(file.exists(events_path))
+events_raw <- read_csv(
+  events_path,
+  col_types = cols(
+    event_id = col_character(),
+    building_key = col_character(),
+    reported_at = col_character(),
+    issue_label = col_character(),
+    severity = col_character(),
+    response_hours = col_double()
+  ),
+  show_col_types = FALSE
+)
+stopifnot(
+  nrow(events_raw) == 9,
+  !anyNA(events_raw$event_id),
+  n_distinct(events_raw$event_id) == 9,
+  nrow(problems(events_raw)) == 0
+)
+dim(events_raw)
+```
+
+### What a failed check looks like
+
+A silent `stopifnot` means all its conditions passed. An error names the first
+failing condition. The next example deliberately asks for eight rows when the
+file has nine; it does not alter `events_raw`.
+
+`tryCatch` catches this expected error and keeps it in `failed_check`, so the
+rest of the script can continue. `conditionMessage` reads its message.
+
+```{r}
+#| label: failed-check-demo
+failed_check <- tryCatch(
+  stopifnot(nrow(events_raw) == 8),
+  error = function(e) e
+)
+cat("Error: ", conditionMessage(failed_check), "\n", sep = "")
+stopifnot(inherits(failed_check, "error"))
+```
+
+The displayed message comes from the actual failed assertion. The final check
+passes because the deliberately incorrect assertion produced an error object.
+For an unexpected failure, inspect the named condition and its input before
+changing anything; deleting the check only hides the problem.
+
+Tables in this chapter display checked output; in R, use `print(object_name)`
+to inspect an object. The import output is nine rows and six columns. Each row is **one service event**;
+`event_id` identifies that event. A building may have several events. All
+response times in this small supplied file are observed; none equals exactly
+12 hours. We will therefore need deliberately chosen tests for missingness and
+the boundary. These data are synthetic and contain no student information.
+
+## Three distinctions to keep straight {#bridge}
+
+**Slide cue:** “Check The Observation Unit”.
+
+Keep counts separate from identity, an observation key separate from a matching
+key, and an unmatched event separate from a lost event.
+
+**Predict before revealing:** a pipeline begins with `E1, E2, E3` and ends
+with `E1, E1, E3`. What does a row-count check miss? What if the result is
+`E1, E2, E4` instead? Write your prediction in a comment before opening the reveal.
+
+<details>
+<summary>Compare your explanation</summary>
+
+Both results still have three rows. The first duplicates E1 and loses E2.
+The second has three distinct IDs but replaces E3 with E4. Check the count,
+uniqueness **and the original set of IDs**. These are examples of corrupted
+processing, not claims that a left join itself drops a left-hand row.
+
+**If your answer differed, the likely cause is** counting rows without checking
+which IDs they contain. `E1, E1, E3` also needs a uniqueness check;
+`E1, E2, E4` passes uniqueness but fails comparison with the original ID set.
+
+</details>
+
+| Question | Evidence to inspect | What this check does not show |
+|---|---|---|
+| Are the same events present once each? | Row count, nonmissing unique `event_id`, and the same original ID set | That the attached building information is correct |
+| Can several events share a building? | Event identity is `event_id`; raw `building_key` becomes the normalized `building_id` during cleaning and is used for matching | That a registry may contain duplicate building keys |
+| Did every event find building information? | Unmatched keys, for example from `anti_join` | That every missing attached field necessarily indicates an unmatched key |
+| Does a many-to-one join declaration suffice? | It guards against an event matching multiple registry rows | That every event matches, or that the chosen keys identify the correct building and period |
+
+An unmatched event survives a left join, with missing attached registry fields.
+An inner join would exclude it. Investigate that distinction before deleting
+rows. Week 11 makes this reasoning easier by keeping named tables before and
+after a transformation. We do not repeat the full Week 10 join lab here.
+
+## Meeting 1 · Read the pipeline {#pipeline}
+
+**Slide cues:** “Read A Pipe Top To Bottom”, “What Moves Through The Pipe?”
+and “Nested Calls”.
+
+### Follow the whole object
+
+**Predict · Think first:** the number of rows and columns after each call.
+
+```{r}
+#| label: trace-pipe
+trace_example <- events_raw |>
+  transmute(event_id, response_hours) |>
+  arrange(event_id)
+dim(trace_example)
+```
+
+`events_raw` is the first argument of `transmute`. Its nine-row, two-column
+result becomes the first argument of `arrange`. The pipe does not mean “run
+separately on every row.” `arrange` orders rows; it does not summarize them.
+The equivalent nested expression is:
+
+```{r}
+#| label: nested-equivalence
+trace_nested <- arrange(
+  transmute(events_raw, event_id, response_hours),
+  event_id
+)
+stopifnot(identical(trace_example, trace_nested))
+```
+
+A shorter expression is useful only if its meaning is easier to inspect. A
+long pipe that cleans, joins and summarizes can hide where its promises change.
+
+### Name the state, then check its promise {#checkpoints}
+
+**Slide cues:** “Use Named Checkpoints”, “Name The Data State” and
+“Check The Observation Unit”.
+
+Our four states are:
+
+| State | One row represents | Expected size for this file | A useful check |
+|---|---|---|---|
+| `events_raw` | One supplied service event | 9 × 6 | Import problems and unique nonmissing event IDs |
+| `events_clean` | The same event, with normalized fields | 9 × 6 | Same IDs, valid timestamps and ordered severity |
+| `events_analysis` | The same event, with derived variables | 9 × 8 | Same IDs, logical flags and correct units |
+| `issue_summary` | One issue category | 4 × 5 | Category counts account for all nine events |
+
+Try the selected cleaning checkpoint in your starter first. Then read this
+worked block line by line:
+
+```{r}
+#| label: clean-events
+events_clean <- events_raw |>
+  transmute(
+    event_id,
+    building_id = str_to_upper(str_squish(building_key)),
+    reported_at = ymd_hm(reported_at, tz = "Europe/Paris", quiet = TRUE),
+    issue = str_to_lower(str_squish(issue_label)),
+    severity = factor(
+      str_to_lower(str_squish(severity)),
+      levels = c("low", "medium", "high"),
+      ordered = TRUE
+    ),
+    response_hours
+  )
+
+stopifnot(
+  nrow(events_clean) == nrow(events_raw),
+  !anyNA(events_clean$event_id),
+  n_distinct(events_clean$event_id) == nrow(events_clean),
+  setequal(events_raw$event_id, events_clean$event_id),
+  !anyNA(events_clean$reported_at),
+  !anyNA(events_clean$severity),
+  is.ordered(events_clean$severity),
+  identical(levels(events_clean$severity), c("low", "medium", "high")),
+  is.numeric(events_clean$response_hours)
+)
+```
+
+`transmute` keeps the named output columns. `str_squish` removes surrounding
+space and compresses repeated internal spaces; case normalization assumes case
+does not distinguish these identifiers or labels. The original table remains
+available for inspection. `Europe/Paris` is the synthetic data's time-zone
+convention, not the location or time zone of the class. An unknown severity
+label can turn into `NA` during factor conversion; inspect the raw text if
+that assertion fails.
+
+**Explain:** why do we need both `setequal` and a uniqueness check?
+
+<details>
+<summary>Check the reasoning, then damage a copy</summary>
+
+A set ignores repetition. `setequal(c("E1", "E2"), c("E1", "E1", "E2"))`
+is true. Set equality checks which IDs are present; uniqueness and row count
+check how often they appear. Neither verifies every attached value.
+
+```{r}
+#| label: damaged-copy
+bad <- events_clean
+bad$event_id[2] <- bad$event_id[1]
+data.frame(
+  rows = nrow(bad),
+  distinct_ids = n_distinct(bad$event_id),
+  same_ids = setequal(events_raw$event_id, bad$event_id)
+)
+stopifnot(
+  nrow(bad) == 9,
+  n_distinct(bad$event_id) == 8,
+  !setequal(events_raw$event_id, bad$event_id)
+)
+```
+
+The result is 9 rows, 8 distinct IDs and `FALSE` for the same-ID test.
+`events_clean` is untouched. These assertions verify the deliberately damaged
+example; they are not acceptance checks for a cleaned production table.
+
+</details>
+
+### State the target rule before calculating
+
+**Slide cues:** “Add The Target Rule” and “Check The Derived Variable”.
+
+Our flag means **a recorded response at or below 12 hours**. Exactly 12 counts.
+A missing response is not evidence that the target was met, so its flag is
+`FALSE`. That does **not** establish that the response was late.
+
+**Predict in a comment first:** the flags for 11, 12, 13 and a missing response.
+Then open and run the derivation before continuing to the summary.
+
+<details>
+<summary>Compare the four flags and run the derivation</summary>
+
+```{r}
+#| label: derive-target
+x <- c(11, 12, 13, NA_real_)
+!is.na(x) & x <= 12
+
+events_analysis <- events_clean |>
+  mutate(
+    within_12_hours = !is.na(response_hours) & response_hours <= 12,
+    response_days = response_hours / 24
+  )
+stopifnot(
+  nrow(events_analysis) == nrow(events_clean),
+  identical(events_analysis$event_id, events_clean$event_id),
+  is.logical(events_analysis$within_12_hours),
+  !anyNA(events_analysis$within_12_hours),
+  sum(events_analysis$within_12_hours) == 5,
+  isTRUE(all.equal(events_analysis$response_days,
+                  events_clean$response_hours / 24))
+)
+```
+
+`!is.na(x)` says whether a value is observed. `&` combines conditions
+entry by entry. For a missing value, `FALSE & NA` is `FALSE`. Dividing hours
+by 24 changes units to days. It does not change event identity.
+
+**If your answer differed, the likely cause is** using `<` instead of `<=` for
+12, or leaving the response's missing-value rule implicit. The expected vector
+is `TRUE, TRUE, FALSE, FALSE`; the response flag uses an explicit missing-value
+rule.
+
+</details>
+
+### Summarize only when the row meaning should change {#summary}
+
+**Slide cues:** “Summarize Last” and “Check Group Accounting”.
+
+```{r}
+#| label: issue-summary
+issue_summary <- events_analysis |>
+  group_by(issue) |>
+  summarize(
+    n_events = n(),
+    observed_responses = sum(!is.na(response_hours)),
+    mean_response_hours = mean(response_hours, na.rm = TRUE),
+    within_target_rate = mean(within_12_hours),
+    .groups = "drop"
+  ) |>
+  arrange(desc(n_events), issue)
+
+stopifnot(
+  nrow(issue_summary) == 4,
+  sum(issue_summary$n_events) == nrow(events_analysis),
+  sum(issue_summary$observed_responses) == 9,
+  all(issue_summary$within_target_rate >= 0),
+  all(issue_summary$within_target_rate <= 1)
+)
+```
+
+```{r}
+#| label: formatted-output-1
+#| echo: false
+knitr::kable(issue_summary, digits = 6)
+```
+
+There are now four rows because a row represents an issue category. Nine
+summary rows would be the wrong invariant. The HVAC mean can be checked by
+hand: `(4.5 + 11 + 9) / 3 = 24.5 / 3` hours. Access has two events,
+with mean `(25 + 14) / 2 = 19.5` hours.
+
+`mean(within_12_hours)` treats `TRUE` as 1 and `FALSE` as 0. Its denominator
+is **all event rows in the category**. `mean(response_hours, na.rm = TRUE)`
+uses only observed response times. In this file all times are observed, so
+the two counts agree. With all times missing, that mean would be `NaN`;
+the function in Meeting 2 explicitly rejects such a selected group.
+
+**Predict · Think first:** is the overall target rate the unweighted mean
+of the four category rates? Explain your denominator.
+
+<details>
+<summary>Check the denominator</summary>
+
+No. HVAC has three events, while each other category has two. Five of the nine
+events meet the rule, so the overall fraction is `5/9`, about 0.556. The
+unweighted mean `(1 + 0 + 0 + 1)/4 = 0.5` gives each category equal weight,
+answering a different question.
+
+**If your answer differed, the likely cause is** giving each category equal
+weight even though the categories contain different numbers of events.
+
+```{r}
+#| label: denominator-check
+stopifnot(
+  isTRUE(all.equal(mean(events_analysis$within_12_hours), 5 / 9)),
+  isTRUE(all.equal(
+    weighted.mean(issue_summary$within_target_rate, issue_summary$n_events),
+    5 / 9
+  ))
+)
+```
+
+</details>
+
+### Close Meeting 1
+
+**Slide cue:** “Meeting 1 Exit Ticket”.
+
+Save, restart R, and rerun the completed blocks from the beginning. Explain one
+assertion and a defect it could catch. A silent `stopifnot` means its conditions
+passed. Match each assertion to the specific promise it checks.
+
+**Individual in-class exit, final five minutes:** where should the event-analysis
+pipeline pause for a named checkpoint, and why? Name the stage, say what one row
+represents there, and describe one check and the problem it could reveal.
+Two or three sentences; code is optional. Submit only through the announced
+classroom route. The companion does not collect responses.
+
+**Self-check (no submission):** your cleaned table has nine rows and nine
+distinct IDs, but `EVT-009` has been replaced with a new ID, `EVT-010` (absent
+from the supplied CSV). At which stage would you check, and what comparison
+would reveal the replacement? Would that check also fail if the original rows
+were merely reordered? Close earlier reveals and explain from memory before
+opening the model answer.
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+Check immediately after cleaning, while a row still represents one service
+event. Compare the original and cleaned ID sets with `setequal`; it returns
+`FALSE` because one original ID disappeared and another appeared. Counts and
+uniqueness alone pass in this case. Keep those checks too, because they test
+different promises. Merely reordering the original rows leaves `setequal`
+true: it compares the IDs present, not their order.
+
+</details>
+
+
+[Continue to Meeting 2](week-11-meeting-2.html) for contracts and tests.
+[Practice and possible solutions](week-11-meeting-2.html#practice) ·
+[Chapter list](chapters.html) · [Complete chapter](week-11-complete.html).

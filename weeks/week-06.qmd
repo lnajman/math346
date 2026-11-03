@@ -4,6 +4,10 @@ execute:
   enabled: false
 ---
 
+Open the [Week 6 companion](../companion/week-06.html) for guided reading
+and self-checks alongside the slides and selected practice. Nothing there is
+collected or graded.
+
 ## Official Topic
 
 R Markdown and data visualization. Quiz 2.

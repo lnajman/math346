@@ -1,0 +1,508 @@
+---
+title: "Week 6 · Carry checked computation from MATLAB into R"
+subtitle: "MATH 346 course companion · R"
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route {#route}
+
+**Can the saved R script recreate its evidence and support its interpretation?**
+
+The familiar ideas transfer: objects, vectors, selectors, formulas and
+checks. Their syntax changes. Begin with a saved R script and the built-in
+mtcars data, then turn data, mappings and geometry into checked plots.
+
+The report activity uses a supplied template. R performs calculations; RStudio
+is the editor; Quarto runs the report code and assembles prose, computed results
+and figures. Rendering cannot decide whether your explanation is justified.
+
+[Before you start](#before-start) · [Words used here](#words) · [Setup](#setup) ·
+[Meeting 1](#meeting-one) · [Meeting 2](#meeting-two) · [AI audit](#ai-audit) ·
+[Practice and resources](#practice) · [Chapter list](chapters.html).
+The page contents navigation also links to the sections.
+
+::: {.callout-tip}
+## A first 30-minute recovery session
+
+Choose a stopping point within about 30 minutes; continue from there next time.
+This is an untested first-pass budget, not a completion promise. 
+
+1. Check prerequisites and setup. If access is blocked, focus on that first.
+2. Compare the syntax table and inspect the first data-frame/selector example.
+3. Read the scatterplot mappings, units and layer-count check.
+4. Try the second self-check, then continue the relevant Core 5/6 task. Rendering the supplied report can follow later.
+
+Read displayed results when jumping ahead; run complete code in its stated
+sequence when returning to your script. The full practice selection is Core
+**1, 2, 3, 5, 6**, selective Guided **4, 7, 8, 9**, and optional Extension **none**,
+within the **90–120-minute** ordinary-week budget.
+:::
+
+### Before you start {#before-start}
+
+You should recognize a vector, a logical condition and a saved script from
+MATLAB. Use the [post–Week 5 recovery page](https://lnajman.github.io/math346/weeks/recovery-after-week-05.html)
+if needed. R indexing and assignment are introduced here, so do not assume
+MATLAB parentheses or elementwise dots transfer unchanged.
+
+Use [software requirements](https://lnajman.github.io/math346/resources/software-requirements.html) and the
+[course glossary](https://lnajman.github.io/math346/resources/glossary.html) when needed. You do not need a
+paid AI account or an external AI call: the flawed examples are supplied locally.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Object** | A named value created with assignment, usually <- in R. |
+| **Vector** | An ordered sequence of values of a common basic type. |
+| **Data frame** | A rectangular collection of variables with equal row lengths. |
+| **`$` / brackets** | Select a named variable with $, or indexed elements/rows with brackets. |
+| **NA** | An unavailable value; not a measured zero. |
+| **Logical selector** | One TRUE/FALSE value per item, used to choose a subset. |
+| **Mapping** | Assign a variable to a visual property inside aes. |
+| **Geometry** | The plotted mark, for example points or histogram bins. |
+| **Render** | Run a source document’s code and assemble the readable output. |
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the inputs and operations; explain your prediction; check a specific
+claim; interpret the result with its domain or units.
+
+Think first; write a private comment only where requested—see the
+[prediction guide](how-to-use.html#read-explain-check-interpret).
+
+## Setup {#setup}
+
+Use the R setup check and ggplot2. Save starters in `week06/`; mtcars is built into R. For the selected report activity, also download the supplied template, save it as `.qmd` rather than `.qmd.txt`, and use the already-required Quarto setup.
+
+Download the starters first. Keep these files in your working folder: `week06-r-basics.R`; `week06-ggplot-checks.R`.
+
+Possible solutions are separate comparison files linked below.
+
+- [Starter: week06-r-basics.R](downloads/week06-r-basics.R)
+- [Starter: week06-ggplot-checks.R](downloads/week06-ggplot-checks.R)
+- [AI critique target: week06-ai-plot-review.R](downloads/week06-ai-plot-review.R)
+
+Run this before the other blocks; it reports missing paths without changing files.
+
+```{r}
+#| label: w06-setup
+required_paths <- c("week06-r-basics.R", "week06-ggplot-checks.R")
+```
+
+```{r}
+#| label: w06-author-paths
+#| include: false
+required_paths <- ifelse(startsWith(required_paths, "data/"), required_paths,
+                         file.path("downloads", required_paths))
+```
+
+```{r}
+#| label: w06-setup-check
+#| output: false
+missing_paths <- required_paths[!file.exists(required_paths)]
+if (length(missing_paths) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing from the current folder:\n", paste(missing_paths, collapse = "\n"), "\n", sep = "")
+}
+```
+
+**Example output when all required files are present:**
+
+```text
+Setup OK
+```
+
+This is example output, not confirmation of your computer's setup. Run the
+check in your own R session and read that result. Restart R, then run the chapter's code in order, including the code inside
+the reference reveals. A successful `stopifnot` is
+silent; a failed condition stops the script.
+
+## Meeting 1 · Read the computation {#meeting-one}
+
+Class route: two 75-minute meetings, each with its final five-minute exit.
+
+MATLAB `x = [1 2 3]` becomes R `x <- c(1, 2, 3)`; `x(1)` becomes `x[1]`;
+MATLAB `x.^2` becomes R `x^2`. Both languages count from one. `cars$mpg` is a
+vector, while cars is a data frame. Check class, length and row count instead
+of inferring structure from an object’s name.
+
+### Objects, logical groups and summaries {#stage-1}
+
+**Slide cues:** *Data Frames*; *Select A Variable*; *Logical Selection*; *Executable Expectations*.
+
+The script copies mtcars, makes car names explicit and removes the special
+row names. It now has 32 rows and twelve variables, including the added car
+column. mpg and weight each have one value per row.
+
+The two selectors split rows at the observed median weight: equality belongs
+to lighter. R counts TRUE as one when summed, so sum(lighter) counts selected
+cars; mpg[lighter] selects their fuel-efficiency values. The means are over
+separate subsets, not over a vector of TRUE/FALSE flags. Inspect missingness
+before relying on a selector or summary.
+
+**Predict in a private comment first:** Is length(cars) the number of cars? What do length(cars$mpg) and nrow(cars) count?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+For a data frame, length(cars) counts columns—twelve after adding car.
+Both length(cars$mpg) and nrow(cars) are 32. If your answer differed, distinguish
+a vector’s elements from the columns of a rectangular collection.
+
+</details>
+
+**Try before expanding:** Use Core 1/2/3 to translate syntax and inspect types before expanding. For Core 5, think what a mean will do if one input becomes NA.
+
+<details>
+<summary>Reference version · week06-r-basics_sol.R</summary>
+
+```{r}
+#| label: w06-reference-1
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+# MATH 346 - Week 6
+# First R objects, vectors, data frames, and explicit checks
+
+cars <- mtcars
+cars$car <- rownames(mtcars)
+rownames(cars) <- NULL
+
+cat("Object class:", class(cars), "\n")
+cat("Rows:", nrow(cars), "Columns:", ncol(cars), "\n")
+print(names(cars))
+
+mpg <- cars$mpg
+weight <- cars$wt
+
+summary_values <- data.frame(
+  quantity = c(
+    "number of cars",
+    "missing mpg values",
+    "mean mpg",
+    "median weight (1000 lb)"
+  ),
+  value = c(
+    length(mpg),
+    sum(is.na(mpg)),
+    mean(mpg),
+    median(weight)
+  )
+)
+
+print(summary_values)
+
+median_weight <- median(weight)
+lighter <- weight <= median_weight
+heavier <- weight > median_weight
+
+mean_mpg_lighter <- mean(mpg[lighter])
+mean_mpg_heavier <- mean(mpg[heavier])
+
+comparison <- data.frame(
+  group = c("at or below median weight", "above median weight"),
+  n = c(sum(lighter), sum(heavier)),
+  mean_mpg = c(mean_mpg_lighter, mean_mpg_heavier)
+)
+
+print(comparison)
+
+stopifnot(
+  nrow(cars) == 32,
+  length(mpg) == nrow(cars),
+  sum(is.na(mpg)) == 0,
+  all(weight > 0),
+  sum(lighter) + sum(heavier) == nrow(cars),
+  mean_mpg_lighter > mean_mpg_heavier
+)
+
+plot(
+  weight,
+  mpg,
+  pch = 19,
+  xlab = "Weight (1000 lb)",
+  ylab = "Fuel efficiency (miles per US gallon)",
+  main = "Fuel Efficiency And Vehicle Weight"
+)
+
+cat("All Week 6 basic R checks passed.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** The source checks 32 cars, complete mpg, positive weight, a complete split
+and a higher observed mean mpg in the lighter group. That descriptive difference
+does not show weight alone caused fuel economy. With a deliberately introduced
+NA, mean returns NA unless an explicit missing-value rule is used; na.rm changes
+the observations contributing to the answer and needs an accompanying count.
+
+### Meeting 1 in-class exit · Final five minutes
+
+One idea that transfers from MATLAB is ...
+
+One syntax change I must remember is ...
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 1 self-check · No submission
+
+For the MATLAB-to-R activity, explain how you would square every
+value in a vector and select its first element in R. Which MATLAB punctuation
+must change?
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+R uses x^2 for vectorized powers and x[1] for the first element. MATLAB
+uses x.^2 and x(1). The idea of elementwise calculation transfers; copying the
+punctuation does not. Run a small hand-checkable vector after translating.
+
+</details>
+
+## Meeting 2 · Check the claim {#meeting-two}
+
+A plot object contains a recipe for its data and layers. `ggplot_build`
+exposes calculated layer data, allowing checks against intended observations.
+Labels must carry units: wt is in 1000 lb and mpg is miles per US gallon. A
+working plot can still carry an unsupported causal title.
+
+### A checked plot is part of a reproducible argument {#stage-2}
+
+**Slide cues:** *Scatterplot Pattern*; *Add Meaningful Labels*; *Check The Plot Data*; *Source And Rendered Output*.
+
+Read `ggplot(cars, aes(x = wt, y = mpg))` as the population and mappings.
+geom_point selects the mark, labs states meaning and units, and the theme
+changes presentation. The plus stays at the end of a continued line. The
+histogram uses a stated bin width of three mpg and counts observations in bins.
+
+After the selected script work, open the supplied report template from the
+resource link below, render it unchanged, then edit the interpretation and
+render again. Edit the qmd source rather than its HTML output. Running one
+chunk does not rebuild the full report, and console-only objects are not
+reproducible inputs.
+
+**Predict · Think first:** Could two scatterplots each contain 32 points but map different variables? Which additional code or layer check would expose the difference?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+Yes. The count checks population size, not which columns were plotted.
+Inspect aes and compare layer x/y against the intended variables, as the source
+does for wt/mpg. If your answer differed, a successful count may have been
+treated as evidence for the whole figure rather than one specific property.
+
+</details>
+
+**Try before expanding:** Use Core 6 to build the horsepower-versus-mpg plot and update its labels yourself before comparing the wt example. Think through the mappings and units before running it.
+
+<details>
+<summary>Reference version · week06-ggplot-checks_sol.R</summary>
+
+```{r}
+#| label: w06-reference-2
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+# MATH 346 - Week 6
+# A ggplot2 workflow with data, label, and interpretation checks
+
+library(ggplot2)
+
+cars <- mtcars
+cars$car <- rownames(mtcars)
+rownames(cars) <- NULL
+
+scatter_plot <- ggplot(cars, aes(x = wt, y = mpg)) +
+  geom_point(size = 2.4, alpha = 0.8, color = "#2A6F97") +
+  labs(
+    title = "Heavier cars tend to have lower fuel efficiency",
+    subtitle = "Thirty-two 1973-1974 car models in the mtcars data",
+    x = "Weight (1000 lb)",
+    y = "Fuel efficiency (miles per US gallon)",
+    caption = "Association in this dataset; this plot does not establish causation."
+  ) +
+  theme_minimal(base_size = 12)
+
+histogram_plot <- ggplot(cars, aes(x = mpg)) +
+  geom_histogram(
+    binwidth = 3,
+    boundary = 0,
+    color = "white",
+    fill = "#E76F51"
+  ) +
+  labs(
+    title = "Distribution of fuel efficiency",
+    x = "Fuel efficiency (miles per US gallon)",
+    y = "Number of car models"
+  ) +
+  theme_minimal(base_size = 12)
+
+scatter_data <- ggplot_build(scatter_plot)$data[[1]]
+histogram_data <- ggplot_build(histogram_plot)$data[[1]]
+
+stopifnot(
+  nrow(scatter_data) == nrow(cars),
+  sum(scatter_data$x == cars$wt) == nrow(cars),
+  sum(scatter_data$y == cars$mpg) == nrow(cars),
+  identical(scatter_plot$labels$x, "Weight (1000 lb)"),
+  identical(
+    scatter_plot$labels$y,
+    "Fuel efficiency (miles per US gallon)"
+  ),
+  sum(histogram_data$count) == nrow(cars)
+)
+
+print(scatter_plot)
+print(histogram_plot)
+
+cat("Scatterplot rows checked:", nrow(scatter_data), "\n")
+cat("Histogram observations counted:", sum(histogram_data$count), "\n")
+cat("All Week 6 ggplot checks passed.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** The reference checks every scatter x/y value, axis labels and histogram
+counts. A clean-session render recreates computation, but it can also recreate
+the same mistake. Combine that check with known-answer arithmetic, plot-data
+checks and a cautious interpretation. Keep both the supplied report source and
+its output; course project reports still use the PDF route.
+
+## AI audit · Inspect before accepting {#ai-audit}
+
+**Slide cues:** *Plausible But Weak AI Plot*; *AI Audit*.
+
+This is **selective Guided practice**; use it when selected or helpful.
+
+Read the supplied target and choose a check before opening the diagnosis.
+No AI service is contacted.
+
+Candidate checks: intended x/y mappings, 32 observations, complete variables,
+positive weight, labels with units, identified observations and a defensible
+claim. These tests have different jobs. The supplied red point colour does not
+encode an extra category.
+
+**Reading excerpt:** this fragment relies on the supplied script setup; inspect it here, then run the complete file in the evidence reveal.
+
+```r
+generated_plot <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "red") +
+  labs(
+    title = "Heavy cars cause poor fuel economy",
+    x = "Weight",
+    y = "Efficiency"
+  )
+```
+
+
+**Predict in a private comment first:** What remains wrong when the generated plot runs and maps wt to mpg correctly?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+Its causal title exceeds observational evidence, its axes omit complete
+units, it omits data context and independent data checks, and red conveys no
+stated variable. Repair the claim to an association among the 32 1973–1974 car
+models in mtcars. If your answer differed, separate mapping correctness from
+labels, evidence and the conclusion attached to the plot.
+
+</details>
+
+<details>
+<summary>Run the complete supplied critique target and inspect the evidence</summary>
+
+```{r}
+#| label: w06-reference-ai
+# MATH 346 - Week 6
+# AI plot critique starter
+#
+# This plot runs, but its labels and conclusion are not yet defensible.
+
+library(ggplot2)
+
+generated_plot <- ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point(color = "red") +
+  labs(
+    title = "Heavy cars cause poor fuel economy",
+    x = "Weight",
+    y = "Efficiency"
+  )
+
+print(generated_plot)
+
+cat("Generated-code claim: heavy cars cause poor fuel economy.\n")
+
+# Review questions:
+# 1. What units are missing from the axes?
+# 2. Does an observational scatterplot establish causation?
+# 3. Which cars and years does mtcars describe?
+# 4. Were missing values, row count, and variable ranges checked?
+# 5. What caption would accurately describe only what the plot supports?
+```
+
+</details>
+
+Use the existing AI policy when assistance is used: explain every accepted line
+and keep the requested evidence with your existing work. A passing test never
+replaces checking whether the code answers the actual question.
+
+### Meeting 2 in-class exit · Final five minutes
+
+A reproducible R report is trustworthy enough to share when ...
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 2 self-check · No submission
+
+Close earlier reveals and explain from memory: A report renders after restarting R, but its interpretation describes
+horsepower while the code maps wt. Is it ready to share? Name a direct check.
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+No. Reproducibility passed, but prose and evidence disagree. Inspect aes
+and the built x values, then align the labels and interpretation with the
+chosen question. Rendering regenerates code output, not an automatically
+correct explanation.
+
+</details>
+
+## Practice, recovery and resources {#practice}
+
+**Core:** 1, 2, 3, 5, 6. **Guided:** 4, 7, 8, 9. **Extension:** none.
+
+Core 1/2/3 establish syntax and objects, Core 5 handles missingness and
+summaries, and Core 6 builds the horsepower plot. Report-reading/AI audits are
+Guided 8/9, used with the selected lab, not extra homework.
+
+The [supplied report template](https://lnajman.github.io/math346/code/r/week06-first-report.qmd.txt)
+is the only report scaffold needed. Save as week06-first-report.qmd and keep
+its chunk markers. 
+
+Attempt the selected starter blocks before comparing possible solutions.
+TODO comments are placeholders, not completed analysis. Keep your checked script
+and follow Blackboard if a checkpoint is requested.
+
+**If you are stuck:** inspect object classes, R brackets, missing values, and plot mappings. Run missing definitions
+before their first use. Keep the first error and ask for help if a focused
+attempt remains blocked.
+
+- [Possible solution: week06-r-basics_sol.R](downloads/solutions/week06-r-basics_sol.R)
+- [Possible solution: week06-ggplot-checks_sol.R](downloads/solutions/week06-ggplot-checks_sol.R)
+
+**Where this fits:** [Week 6 notes](https://lnajman.github.io/math346/weeks/week-06.html) ·
+[Matching slides](https://lnajman.github.io/math346/slides/week-06.html) ·
+[Main lab](https://lnajman.github.io/math346/labs/lab-06-rmarkdown-eda.html) ·
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-06-ai-plot-review.html) ·
+[Exercises](https://lnajman.github.io/math346/weeks/week-06-exercises.html).
+

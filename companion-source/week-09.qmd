@@ -1,0 +1,566 @@
+---
+title: "Week 9 · Import a file without losing its meaning"
+subtitle: "MATH 346 course companion · R"
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route {#route}
+
+**What must be true before an external table becomes evidence?**
+
+Opening a CSV is only the start. Its names, column types, missing-value
+conventions and row meaning must match the question. We use six fictional
+buildings with four monthly measurements and two deliberately unavailable values.
+
+We then change the observation from a building to a building-month. The row
+count should change, but identifiers, units and missingness must survive.
+A table can have exactly 24 rows and still lose the information needed to
+interpret them.
+
+[Before you start](#before-start) · [Words used here](#words) · [Setup](#setup) ·
+[Meeting 1](#meeting-one) · [Meeting 2](#meeting-two) · [AI audit](#ai-audit) ·
+[Practice and resources](#practice) · [Chapter list](chapters.html).
+The page contents navigation also links to the sections.
+
+::: {.callout-tip}
+## A first 30-minute recovery session
+
+Choose a stopping point within about 30 minutes; continue from there next time.
+This is an untested first-pass budget, not a completion promise. 
+
+1. Check prerequisites and setup. If access is blocked, focus on that first.
+2. Inspect the supplied CSV header and the declared import contract.
+3. Read the tidy observation/key explanation and predict six buildings times four months.
+4. Inspect the monthly missing/observed counts and try the key self-check. Defer export and extra practice.
+
+Read displayed results when jumping ahead; run complete code in its stated
+sequence when returning to your script. The full practice selection is Core
+**1, 3, 4, 5, 6**, selective Guided **2, 7, 9**, and optional Extension **8**,
+within the **90–120-minute** ordinary-week budget.
+:::
+
+### Before you start {#before-start}
+
+You should recognize data frames, numeric/text variables, NA and grouped
+summaries from Weeks 6–8. No prior external-file import or pivot syntax is
+assumed. This file is supplied synthetic data; do not collect your own dataset
+or describe it as actual campus measurement.
+
+Use [software requirements](https://lnajman.github.io/math346/resources/software-requirements.html) and the
+[course glossary](https://lnajman.github.io/math346/resources/glossary.html) when needed. You do not need a
+paid AI account or an external AI call: the flawed examples are supplied locally.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **CSV** | A text file containing comma-separated fields and a header. |
+| **Relative path** | A location such as data/file.csv interpreted from the project folder. |
+| **Schema** | Expected field names and column types. |
+| **Parsing problem** | A recorded failure to interpret a field according to its declared type. |
+| **Missing marker** | A source encoding, here blank or "missing", declared to mean NA. |
+| **Wide / long** | Measurements stored in several columns versus a measurement column and a label variable. |
+| **Observation key** | The fields that identify one intended row; after pivoting, building plus month. |
+| **Denominator** | The number of observations contributing to a summary. |
+| **Round trip** | Export, re-import and recheck the same contract. |
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the inputs and operations; explain your prediction; check a specific
+claim; interpret the result with its domain or units.
+
+Think first; write a private comment only where requested—see the
+[prediction guide](how-to-use.html#read-explain-check-interpret).
+
+## Setup {#setup}
+
+Use the readr, dplyr, tidyr and ggplot2 packages. Save the CSV in `week09/data/` and starters in `week09/`. Set the project folder once; do not use a personal absolute path.
+
+Download the starters first. Keep these files in your working folder: `week09-import-contract.R`; `week09-tidy-energy.R`; `data/week09-campus-energy-wide.csv`.
+Keep `data/` directly below that folder.
+Possible solutions are separate comparison files linked below.
+
+- [Starter: week09-import-contract.R](downloads/week09-import-contract.R)
+- [Starter: week09-tidy-energy.R](downloads/week09-tidy-energy.R)
+- [AI critique target: week09-ai-tidy-review.R](downloads/week09-ai-tidy-review.R)
+- [Supplied data: week09-campus-energy-wide.csv](data/week09-campus-energy-wide.csv)
+
+Run this before the other blocks; it reports missing paths without changing files.
+
+```{r}
+#| label: w09-setup
+required_paths <- c("week09-import-contract.R", "week09-tidy-energy.R", "data/week09-campus-energy-wide.csv")
+```
+
+```{r}
+#| label: w09-author-paths
+#| include: false
+required_paths <- ifelse(startsWith(required_paths, "data/"), required_paths,
+                         file.path("downloads", required_paths))
+```
+
+```{r}
+#| label: w09-setup-check
+#| output: false
+missing_paths <- required_paths[!file.exists(required_paths)]
+if (length(missing_paths) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing from the current folder:\n", paste(missing_paths, collapse = "\n"), "\n", sep = "")
+}
+```
+
+**Example output when all required files are present:**
+
+```text
+Setup OK
+```
+
+This is example output, not confirmation of your computer's setup. Run the
+check in your own R session and read that result. Restart R, then run the chapter's code in order, including the code inside
+the reference reveals. A successful `stopifnot` is
+silent; a failed condition stops the script.
+
+## Meeting 1 · Read the computation {#meeting-one}
+
+Class route: two 75-minute meetings, each with its final five-minute exit.
+
+Before import, read the raw header: building identifier/type, area in m²,
+then January through April energy in kWh. The blank April field and the word
+"missing" in February both encode unavailable measurements. Requiring no NA
+anywhere would contradict this source. IDs can require completeness while
+energy measurements permit documented missingness.
+
+### Declare and enforce an import contract {#stage-1}
+
+**Slide cues:** *Use A Relative Path*; *Declare Missing Markers*; *Declare Column Types*; *Inspect Parsing Problems*.
+
+`file.exists` checks the location, not the contents. `read_csv` receives an
+explicit `na` rule and `cols` specification; `show_col_types = FALSE` only
+reduces routine output and is not a validation step. The audit prints five
+quantities, while the later assertions enforce the expected names, count,
+types, ranges and missingness.
+
+Automatic guessing can accept a whole column as text and therefore report no
+parsing problems. That is why a zero-row problems table and a numeric-column
+contract have different jobs. Compare a declaration with the actual source
+before choosing which values to exclude or recode.
+
+**Predict in a private comment first:** Should the declared import have zero missing measurements or two? Can zero parsing problems alone establish that every monthly column is numeric?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+The supplied file should contain two missing energy values after import.
+Zero parsing problems alone is insufficient: text may be valid under a guessed
+text type. If your answer differed, separate intended missing encodings from
+failed parsing, and intended types from successful acceptance of any text.
+
+</details>
+
+**Try before expanding:** Use Core 1/3 to inspect the source and fill the import/schema checks before opening the reference. Predict which expectation your code would stop on if the wrong file were selected.
+
+<details>
+<summary>Reference version · week09-import-contract_sol.R</summary>
+
+```{r}
+#| label: w09-reference-1
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+# MATH 346 - Week 9
+# Import an external CSV using an explicit, checked contract
+
+library(dplyr)
+library(readr)
+
+data_path <- "data/week09-campus-energy-wide.csv"
+stopifnot(file.exists(data_path))
+
+expected_columns <- c(
+  "building_id", "building_type", "area_m2",
+  "jan_kwh", "feb_kwh", "mar_kwh", "apr_kwh"
+)
+
+energy_wide <- read_csv(
+  data_path,
+  na = c("", "missing"),
+  col_types = cols(
+    building_id = col_character(),
+    building_type = col_character(),
+    area_m2 = col_double(),
+    jan_kwh = col_double(),
+    feb_kwh = col_double(),
+    mar_kwh = col_double(),
+    apr_kwh = col_double()
+  ),
+  show_col_types = FALSE
+)
+
+parse_issues <- problems(energy_wide)
+monthly_columns <- c("jan_kwh", "feb_kwh", "mar_kwh", "apr_kwh")
+
+import_audit <- data.frame(
+  quantity = c(
+    "rows",
+    "columns",
+    "unique building identifiers",
+    "missing monthly energy values",
+    "parsing problems"
+  ),
+  value = c(
+    nrow(energy_wide),
+    ncol(energy_wide),
+    n_distinct(energy_wide$building_id),
+    sum(is.na(energy_wide[monthly_columns])),
+    nrow(parse_issues)
+  )
+)
+
+print(import_audit)
+glimpse(energy_wide)
+
+stopifnot(
+  identical(names(energy_wide), expected_columns),
+  nrow(energy_wide) == 6,
+  ncol(energy_wide) == 7,
+  n_distinct(energy_wide$building_id) == nrow(energy_wide),
+  all(energy_wide$area_m2 > 0),
+  all(vapply(energy_wide[monthly_columns], is.double, logical(1))),
+  all(unlist(energy_wide[monthly_columns]) > 0, na.rm = TRUE),
+  sum(is.na(energy_wide[monthly_columns])) == 2,
+  nrow(parse_issues) == 0
+)
+
+cat("Week 9 import contract passed.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** The printed audit should show six rows, seven columns, six unique building
+identifiers, two missing energy values and zero parsing problems. A Boolean
+comparison printed as FALSE does not stop later computation; stopifnot enforces
+it. Checks specific to this teaching file should be investigated if data change,
+not treated as universal rules about buildings.
+
+### Meeting 1 in-class exit · Final five minutes
+
+Name one import assumption that should become executable code.
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 1 self-check · No submission
+
+A file opens successfully and shows the word "missing" as ordinary text.
+Which assumption should become executable code before calculating a mean?
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+Declare "missing" and blank as NA, declare the energy field numeric, and
+check missing counts/types and parsing diagnostics. The word itself is a
+source convention to interpret, not an energy measurement or a zero.
+
+</details>
+
+## Meeting 2 · Check the claim {#meeting-two}
+
+One wide row is a building with four monthly cells. One tidy row is one
+building in one month, so a repeated building ID is expected. Building plus
+month must be unique. `pivot_longer` takes month values from selected column
+names and energy values from cells; identifier and area columns remain attached.
+Tidy structure is defined for a question, not by a table merely looking long.
+
+### Make building-month observations explicit {#stage-2}
+
+**Slide cues:** *The Intended Tidy Row*; *`pivot_longer` Pattern*; *Check The Observation Key*; *Keep Denominators*.
+
+`ends_with("_kwh")` selects only measurement columns. `names_pattern`
+extracts the month prefix; the unit remains in `energy_kwh`. The code adds a
+month number using `match` so chronological order does not depend on alphabetical
+sorting. After pivoting, arrange by building and month, then check the key.
+
+Each monthly total uses observed measurements. `na.rm = TRUE` does not impute
+missing energy or make all months equally complete. The neighboring expected,
+observed and missing counts keep that limitation visible. The plot labels
+recorded totals and says the data are synthetic.
+
+**Predict in a private comment first:** Will a unique-building-ID check still pass on the tidy table? Can a 24-row result be wrong even when it has the expected size?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+Building ID alone repeats four times; building plus month is the new key.
+A 24-row result could duplicate one building-month and omit another. If your
+answer differed, you probably carried the wide-table row meaning into the long
+table or treated a count as proof of identity.
+
+</details>
+
+**Try before expanding:** Complete Core 4/5/6: state the output row meaning and expected key, then fill pivot_longer and its key check in the starter.
+
+<details>
+<summary>Reference version · week09-tidy-energy_sol.R</summary>
+
+```{r}
+#| label: w09-reference-2
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+# MATH 346 - Week 9
+# Reshape the supplied campus-energy data and validate its observation key
+
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(tidyr)
+
+data_path <- "data/week09-campus-energy-wide.csv"
+stopifnot(file.exists(data_path))
+
+energy_wide <- read_csv(
+  data_path,
+  na = c("", "missing"),
+  col_types = cols(
+    building_id = col_character(),
+    building_type = col_character(),
+    area_m2 = col_double(),
+    jan_kwh = col_double(),
+    feb_kwh = col_double(),
+    mar_kwh = col_double(),
+    apr_kwh = col_double()
+  ),
+  show_col_types = FALSE
+)
+
+month_order <- c("jan", "feb", "mar", "apr")
+
+energy_tidy <- energy_wide |>
+  pivot_longer(
+    cols = ends_with("_kwh"),
+    names_to = "month",
+    names_pattern = "(.*)_kwh",
+    values_to = "energy_kwh"
+  ) |>
+  mutate(month_number = match(month, month_order)) |>
+  arrange(building_id, month_number) |>
+  select(
+    building_id, building_type, area_m2,
+    month, month_number, energy_kwh
+  )
+
+key_counts <- energy_tidy |>
+  count(building_id, month, name = "key_count")
+
+monthly_summary <- energy_tidy |>
+  group_by(month, month_number) |>
+  summarize(
+    expected_buildings = n(),
+    observed_buildings = sum(!is.na(energy_kwh)),
+    missing_buildings = sum(is.na(energy_kwh)),
+    total_energy_kwh = sum(energy_kwh, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  arrange(month_number)
+
+print(energy_tidy)
+print(monthly_summary)
+
+stopifnot(
+  nrow(energy_tidy) == 24,
+  ncol(energy_tidy) == 6,
+  n_distinct(energy_tidy$building_id) == 6,
+  identical(sort(unique(energy_tidy$month_number)), 1:4),
+  !anyNA(energy_tidy$month_number),
+  all(energy_tidy$energy_kwh > 0, na.rm = TRUE),
+  all(key_counts$key_count == 1),
+  nrow(key_counts) == nrow(energy_tidy),
+  sum(is.na(energy_tidy$energy_kwh)) == 2,
+  nrow(monthly_summary) == 4,
+  all(monthly_summary$expected_buildings == 6),
+  sum(monthly_summary$missing_buildings) == 2,
+  all(monthly_summary$observed_buildings +
+    monthly_summary$missing_buildings == 6)
+)
+
+monthly_plot <- ggplot(
+  monthly_summary,
+  aes(x = reorder(month, month_number), y = total_energy_kwh)
+) +
+  geom_col(fill = "#2A6F97") +
+  labs(
+    title = "Recorded campus energy total by month",
+    subtitle = "Six fictional buildings; missing building-month values are not imputed",
+    x = "Month",
+    y = "Recorded energy total (kWh)",
+    caption = "Synthetic teaching data. Monthly totals use available observations only."
+  ) +
+  theme_minimal(base_size = 12)
+
+plot_data <- ggplot_build(monthly_plot)$data[[1]]
+stopifnot(nrow(plot_data) == nrow(monthly_summary))
+
+print(monthly_plot)
+cat("Week 9 tidy-data checks passed.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** The result has 24 rows and six columns, retains two NAs, and contains
+exactly one row per building-month. The monthly summary has four rows with six
+expected buildings each. Check that observed plus missing equals six per month.
+The export/re-import task stays optional Extension 8; when selected, recheck
+names, types, key and missingness after reading the saved file.
+
+## AI audit · Inspect before accepting {#ai-audit}
+
+**Slide cues:** *Plausible AI Reshape*; *Why It Is Not Trustworthy*; *Repair Order*.
+
+This is **selective Guided practice**; use it when selected or helpful.
+
+Read the supplied target and choose a check before opening the diagnosis.
+No AI service is contacted.
+
+Before running the supplied flawed reshape, choose checks for retained
+building_id, retained area, numeric energy, separated month/unit and an
+observation key. Its own count check is deliberately weak. Inspect its
+`values_transform` and final `select` before reading its printed diagnosis.
+
+**Reading excerpt:** this fragment relies on the supplied script setup; inspect it here, then run the complete file in the evidence reveal.
+
+```r
+ai_tidy <- ai_import |>
+  pivot_longer(
+    cols = jan_kwh:apr_kwh,
+    names_to = "measurement",
+    values_to = "energy_kwh",
+    values_transform = list(energy_kwh = as.character)
+  ) |>
+  select(building_type, measurement, energy_kwh)
+```
+
+
+**Predict in a private comment first:** Why can the generated table pass a 24-row assertion while being unusable for a building-level energy-intensity question?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+It converts energy to text and selects away both building_id and area.
+The `measurement` label still contains names such as jan_kwh. There is no
+traceable building-month key and no area for an intensity calculation. Repair
+the import first, then reshape only measurements while retaining context.
+If your answer differed, count verification probably displaced checks of type,
+identity, units and the actual question.
+
+</details>
+
+<details>
+<summary>Run the complete supplied critique target and inspect the evidence</summary>
+
+```{r}
+#| label: w09-reference-ai
+# MATH 346 - Week 9
+# AI tidy-data critique starter
+#
+# The generated result has 24 rows, but it loses the observation key and keeps
+# energy values as character text.
+
+library(dplyr)
+library(readr)
+library(tidyr)
+
+data_path <- "data/week09-campus-energy-wide.csv"
+stopifnot(file.exists(data_path))
+
+ai_import <- read_csv(data_path, show_col_types = FALSE)
+
+ai_tidy <- ai_import |>
+  pivot_longer(
+    cols = jan_kwh:apr_kwh,
+    names_to = "measurement",
+    values_to = "energy_kwh",
+    values_transform = list(energy_kwh = as.character)
+  ) |>
+  select(building_type, measurement, energy_kwh)
+
+print(ai_tidy)
+
+stopifnot(
+  nrow(ai_tidy) == 24,
+  is.character(ai_tidy$energy_kwh),
+  !"building_id" %in% names(ai_tidy),
+  !"area_m2" %in% names(ai_tidy)
+)
+
+cat("The generated reshape runs and returns 24 rows.\n")
+cat("It drops the building identifier and area, fuses month with the unit, and stores energy as text.\n")
+
+# Review questions:
+# 1. What should one tidy row represent?
+# 2. Which variables form the observation key?
+# 3. Why must energy_kwh be numeric?
+# 4. Which columns were discarded even though later questions may need them?
+# 5. How should the month names be separated from the _kwh unit suffix?
+# 6. Which checks would detect duplicated or missing building-month keys?
+```
+
+</details>
+
+Use the existing AI policy when assistance is used: explain every accepted line
+and keep the requested evidence with your existing work. A passing test never
+replaces checking whether the code answers the actual question.
+
+### Meeting 2 in-class exit · Final five minutes
+
+A table is tidy and trustworthy for a question when ...
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 2 self-check · No submission
+
+Close earlier reveals and explain from memory: After a correct pivot, BLDG-01 appears four times. Is that sufficient
+evidence of a duplicate observation? Name the check that matches the new unit.
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+No. Four rows are expected, one per month. Count by building_id and month;
+each pair should occur once, with all expected months present. Row meaning
+explains why a valid wide-table uniqueness rule must change after pivoting.
+
+</details>
+
+## Practice, recovery and resources {#practice}
+
+**Core:** 1, 3, 4, 5, 6. **Guided:** 2, 7, 9. **Extension:** 8.
+
+Core 1/3 concern source inspection and import; Core 4/5 define and create
+the tidy unit; Core 6 checks its key. Guided 7 adds incomplete-month summaries
+and Guided 9 audits AI structure. Exercise 8 export is Extension. Keep this
+selection when using the main lab. 
+
+Attempt the selected starter blocks before comparing possible solutions.
+TODO comments are placeholders, not completed analysis. Keep your checked script
+and follow Blackboard if a checkpoint is requested.
+
+**If you are stuck:** inspect the file path, schema, missing markers, and observation key. Run missing definitions
+before their first use. Keep the first error and ask for help if a focused
+attempt remains blocked.
+
+- [Possible solution: week09-import-contract_sol.R](downloads/solutions/week09-import-contract_sol.R)
+- [Possible solution: week09-tidy-energy_sol.R](downloads/solutions/week09-tidy-energy_sol.R)
+
+**Where this fits:** [Week 9 notes](https://lnajman.github.io/math346/weeks/week-09.html) ·
+[Matching slides](https://lnajman.github.io/math346/slides/week-09.html) ·
+[Main lab](https://lnajman.github.io/math346/labs/lab-09-import-tidy-data.html) ·
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-09-ai-tidy-review.html) ·
+[Exercises](https://lnajman.github.io/math346/weeks/week-09-exercises.html).
+

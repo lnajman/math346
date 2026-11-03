@@ -1,0 +1,26 @@
+---
+title: "MATH 346 · Course companions"
+---
+
+Use these chapters for guided reading and self-checking alongside the slides
+and selected lab/exercises. Earlier chapters are for revision; nothing in them
+is collected or graded. The approved syllabus, workload guide and Blackboard
+remain authoritative.
+
+Read [How to use these companions](how-to-use.html) first. Week 11 is divided
+into two linked meeting pages; its complete single-page version is also available.
+
+| Week | Companion |
+|---:|---|
+| 1 | [Give arrays, scripts and figures a meaning](week-01.html) |
+| 2 | [Turn a formula into tested reusable code](week-02.html) |
+| 3 | [Choose between interpolation and a checked fit](week-03.html) |
+| 4 | [Report numerical answers with evidence](week-04.html) |
+| 5 | [Use exact mathematics with independent checks](week-05.html) |
+| 6 | [Carry checked computation from MATLAB into R](week-06.html) |
+| 7 | [Make every transformation answer the question](week-07.html) |
+| 8 | [Explore patterns without overstating them](week-08.html) |
+| 9 | [Import a file without losing its meaning](week-09.html) |
+| 10 | [Clean meanings before joining tables](week-10.html) |
+| 11 | [Readable code, defensible results](week-11.html) |
+| 12 | [Repeat a tested workflow without losing evidence](week-12.html) |

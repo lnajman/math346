@@ -4,6 +4,10 @@ execute:
   enabled: false
 ---
 
+Open the [Week 8 companion](../companion/week-08.html) for guided reading
+and self-checks alongside the slides and selected practice. Nothing there is
+collected or graded.
+
 ## Official Topic
 
 Exploratory data analysis.

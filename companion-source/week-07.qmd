@@ -1,0 +1,548 @@
+---
+title: "Week 7 · Make every transformation answer the question"
+subtitle: "MATH 346 course companion · R"
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route {#route}
+
+**Which observations, groups and units does this pipeline actually use?**
+
+The main question compares observed ozone on days below 80 F with days at
+least 80 F. We use 153 daily New York observations from May–September 1973,
+then retain only days with recorded ozone and temperature for this question.
+
+Each verb encodes a decision. We first trace simple verbs, then combine them
+into a two-group summary with visible denominators. The supplied AI pipeline
+runs but quietly substitutes a monthly comparison of warmer days.
+
+[Before you start](#before-start) · [Words used here](#words) · [Setup](#setup) ·
+[Meeting 1](#meeting-one) · [Meeting 2](#meeting-two) · [AI audit](#ai-audit) ·
+[Practice and resources](#practice) · [Chapter list](chapters.html).
+The page contents navigation also links to the sections.
+
+::: {.callout-tip}
+## A first 30-minute recovery session
+
+Choose a stopping point within about 30 minutes; continue from there next time.
+This is an untested first-pass budget, not a completion promise. 
+
+1. Check prerequisites and setup. If access is blocked, focus on that first.
+2. Trace the one-verb objects and predict which operations change rows.
+3. Inspect the two-group summary and reconcile its counts with retained days.
+4. Try the second self-check and continue the relevant Core 3/6 checkpoint.
+
+Read displayed results when jumping ahead; run complete code in its stated
+sequence when returning to your script. The full practice selection is Core
+**1, 3, 4, 6, 9**, selective Guided **2, 5, 8**, and optional Extension **7**,
+within the **90–120-minute** ordinary-week budget.
+:::
+
+### Before you start {#before-start}
+
+Use Week 6 R assignment, vectors, data frames, NA and basic ggplot syntax.
+The native pipe requires R 4.1 or later. No CSV import or automatic iteration
+is needed here. Keep a single naming scheme: this chapter follows the public
+scripts, including lowercase month/day and the name analysis_days.
+
+Use [software requirements](https://lnajman.github.io/math346/resources/software-requirements.html) and the
+[course glossary](https://lnajman.github.io/math346/resources/glossary.html) when needed. You do not need a
+paid AI account or an external AI call: the flawed examples are supplied locally.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Pipe `\|>`** | Pass the object on the left into the next operation. |
+| **Verb** | A data operation such as select, filter or mutate. |
+| **Invariant** | A property expected to remain true at a stage. |
+| **Logical selector** | TRUE/FALSE values deciding which rows are retained. |
+| **Derived variable** | A new value calculated from fields, such as Celsius. |
+| **Group** | Rows sharing the comparison label used by the next operation. |
+| **Denominator** | The count of observations contributing to a group summary. |
+| **Descriptive comparison** | A statement about observed groups, without a causal claim. |
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the inputs and operations; explain your prediction; check a specific
+claim; interpret the result with its domain or units.
+
+Think first; write a private comment only where requested—see the
+[prediction guide](how-to-use.html#read-explain-check-interpret).
+
+## Setup {#setup}
+
+Use the dplyr and ggplot2 packages and built-in airquality data. Save both starters in a `week07` folder; no file import is required.
+
+Download the starters first. Keep these files in your working folder: `week07-verb-checks.R`; `week07-dplyr-eda.R`.
+
+Possible solutions are separate comparison files linked below.
+
+- [Starter: week07-verb-checks.R](downloads/week07-verb-checks.R)
+- [Starter: week07-dplyr-eda.R](downloads/week07-dplyr-eda.R)
+- [AI critique target: week07-ai-pipeline-review.R](downloads/week07-ai-pipeline-review.R)
+
+Run this before the other blocks; it reports missing paths without changing files.
+
+```{r}
+#| label: w07-setup
+required_paths <- c("week07-verb-checks.R", "week07-dplyr-eda.R")
+```
+
+```{r}
+#| label: w07-author-paths
+#| include: false
+required_paths <- ifelse(startsWith(required_paths, "data/"), required_paths,
+                         file.path("downloads", required_paths))
+```
+
+```{r}
+#| label: w07-setup-check
+#| output: false
+missing_paths <- required_paths[!file.exists(required_paths)]
+if (length(missing_paths) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing from the current folder:\n", paste(missing_paths, collapse = "\n"), "\n", sep = "")
+}
+```
+
+**Example output when all required files are present:**
+
+```text
+Setup OK
+```
+
+This is example output, not confirmation of your computer's setup. Run the
+check in your own R session and read that result. Restart R, then run the chapter's code in order, including the code inside
+the reference reveals. A successful `stopifnot` is
+silent; a failed condition stops the script.
+
+## Meeting 1 · Read the computation {#meeting-one}
+
+Class route: two 75-minute meetings, each with its final five-minute exit.
+
+`select` keeps columns; `filter` keeps rows where its conditions are TRUE;
+`mutate` adds or changes columns; `arrange` changes order. Predict the input
+and output object for every line. A count that should remain unchanged is an
+invariant, while a legitimate filter needs explicit retained/excluded counts.
+
+### Read one verb at a time {#stage-1}
+
+**Slide cues:** *Rename With Units*; *`select`: Keep Variables*; *`filter`: Keep Rows*; *`mutate`: Create Variables*; *`arrange`: Change Order*.
+
+The script starts with six columns and 153 rows. Renaming carries units
+into ozone_ppb, wind_mph and temp_f without changing observations. select keeps
+five columns, then the warm-day filter retains 73 rows because temperature is
+complete. It has not required ozone to be observed.
+
+The Celsius formula applies to every retained temperature. Arrange sorts
+observed ozone descending and leaves missing ozone to be handled separately.
+In the final check the missing values are omitted only for checking the order
+of observed values; this is not a claim that the data are complete.
+
+**Predict in a private comment first:** Which of select, filter, mutate and arrange can change the number of rows in this script? Does arranging ozone remove its missing values?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+Only filter changes the row count here. Select changes columns, mutate
+adds Celsius, and arrange changes order. Missing ozone remains present after
+sorting. If your answer differed, distinguish changing row order from removing
+rows and changing the set of variables from changing observations.
+
+</details>
+
+**Try before expanding:** Use Core 1/3/4 to trace object dimensions and complete a known-temperature check before comparing the reference.
+
+<details>
+<summary>Reference version · week07-verb-checks_sol.R</summary>
+
+```{r}
+#| label: w07-reference-1
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+# MATH 346 - Week 7
+# One transformation verb at a time, with a check after every step
+
+library(dplyr)
+
+air <- airquality |>
+  as_tibble() |>
+  rename(
+    ozone_ppb = Ozone,
+    wind_mph = Wind,
+    temp_f = Temp,
+    month = Month,
+    day = Day
+  )
+
+selected <- air |>
+  select(month, day, ozone_ppb, temp_f, wind_mph)
+
+warm_days <- selected |>
+  filter(temp_f >= 80)
+
+with_celsius <- warm_days |>
+  mutate(temp_c = (temp_f - 32) * 5 / 9)
+
+ordered_ozone <- with_celsius |>
+  arrange(desc(ozone_ppb))
+
+warm_month_counts <- with_celsius |>
+  count(month, name = "n_warm_days") |>
+  arrange(month)
+
+stopifnot(
+  nrow(selected) == nrow(air),
+  identical(names(selected), c("month", "day", "ozone_ppb", "temp_f", "wind_mph")),
+  nrow(warm_days) <= nrow(selected),
+  nrow(warm_days) == 73,
+  nrow(with_celsius) == nrow(warm_days),
+  "temp_c" %in% names(with_celsius),
+  all(abs(with_celsius$temp_c - (with_celsius$temp_f - 32) * 5 / 9) < 1e-12),
+  sum(warm_month_counts$n_warm_days) == nrow(warm_days),
+  all(diff(ordered_ozone$ozone_ppb[!is.na(ordered_ozone$ozone_ppb)]) <= 0)
+)
+
+print(warm_month_counts)
+cat("select: rows preserved =", nrow(selected), "\n")
+cat("filter: warm rows retained =", nrow(warm_days), "\n")
+cat("mutate: Celsius variable checked for every retained row.\n")
+cat("arrange: observed ozone values are in descending order.\n")
+cat("All one-verb checks passed.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** The source checks 73 warm days and preserves that count through mutate;
+monthly warm counts account for those rows. Known values 32 F → 0 C and
+212 F → 100 C independently check the conversion formula. A formula compared
+with itself tests implementation consistency but is weaker than those known
+answers. Keep the original airquality object available.
+
+### Meeting 1 in-class exit · Final five minutes
+
+For `select`, `filter`, `mutate`, and `arrange`:
+
+1. what changes?
+2. what should remain invariant?
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 1 self-check · No submission
+
+For the verb/invariant activity: select removes Solar.R and then
+mutate adds Celsius. What should happen to the day count, and why is that a
+useful expectation?
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+Both preserve the day rows in this workflow. A row-count check would expose
+an unintended row filter, but would not verify the Celsius formula or identify
+substituted observations. Match different checks to different promises.
+
+</details>
+
+## Meeting 2 · Check the claim {#meeting-two}
+
+The one-verb example keeps all warm days, including days with missing
+ozone. The full comparison instead filters required measurements before creating
+two temperature groups. These are different intermediate populations, so do
+not transplant the 73 warm-row expectation into the 116-day complete-observation
+workflow. Missingness handling is tied to the question.
+
+### Reduce days to a two-group comparison {#stage-2}
+
+**Slide cues:** *`group_by`: Define Units Of Comparison*; *`summarize`: Reduce Rows*; *Keep The Denominator*; *Validate The Reduction*.
+
+The explicit missing-value filter removes 37 days without ozone and none
+for temperature, leaving 116 usable days. Only variables required for this
+question determine that rule: dropping every row missing Solar.R would change
+the population unnecessarily.
+
+`if_else(temp_f >= 80, ...)` assigns the exact threshold to the warmer group.
+The factor levels order the two displayed labels. group_by does not itself
+reduce rows; summarize returns one row per band with its count, mean and median.
+The separate monthly summary uses the same usable days but answers another
+question. `.groups = "drop"` removes grouping metadata afterward.
+
+**Predict · Think first:** Do the two temperature-group counts need to sum to 153 or 116? Can the unweighted mean of the two group means replace the overall day-level mean?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+They sum to 116 usable days: 59 cooler and 57 warmer. The overall mean
+weights each group by its count; an unweighted mean gives unequal-sized groups
+equal influence. If your answer differed, use the row population at the summary
+stage and keep its denominator beside every mean.
+
+</details>
+
+**Try before expanding:** Complete Core 6 with an explicit two-label grouping rule and counts before expanding. Check that equality belongs in the >= 80 group.
+
+<details>
+<summary>Reference version · week07-dplyr-eda_sol.R</summary>
+
+```{r}
+#| label: w07-reference-2
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+# MATH 346 - Week 7
+# Data transformation as question-answering with dplyr
+
+library(dplyr)
+library(ggplot2)
+
+# Daily New York air-quality measurements, May-September 1973.
+air <- airquality |>
+  as_tibble() |>
+  rename(
+    ozone_ppb = Ozone,
+    solar_radiation_langleys = Solar.R,
+    wind_mph = Wind,
+    temp_f = Temp,
+    month = Month,
+    day = Day
+  )
+
+missing_audit <- air |>
+  summarize(
+    rows = n(),
+    missing_ozone = sum(is.na(ozone_ppb)),
+    missing_temperature = sum(is.na(temp_f))
+  )
+
+print(missing_audit)
+
+# Question: How does observed ozone differ between cooler and warmer days?
+# Only rows with both variables observed can answer this question.
+analysis_days <- air |>
+  filter(!is.na(ozone_ppb), !is.na(temp_f)) |>
+  mutate(
+    temp_c = (temp_f - 32) * 5 / 9,
+    temperature_band = if_else(
+      temp_f >= 80,
+      "80 F or warmer",
+      "below 80 F"
+    ),
+    temperature_band = factor(
+      temperature_band,
+      levels = c("below 80 F", "80 F or warmer")
+    )
+  ) |>
+  select(
+    month, day, ozone_ppb, temp_f, temp_c, wind_mph, temperature_band
+  )
+
+temperature_summary <- analysis_days |>
+  group_by(temperature_band) |>
+  summarize(
+    n_days = n(),
+    mean_ozone_ppb = mean(ozone_ppb),
+    median_ozone_ppb = median(ozone_ppb),
+    .groups = "drop"
+  )
+
+monthly_summary <- analysis_days |>
+  group_by(month) |>
+  summarize(
+    n_days = n(),
+    mean_ozone_ppb = mean(ozone_ppb),
+    .groups = "drop"
+  ) |>
+  arrange(month)
+
+print(temperature_summary)
+print(monthly_summary)
+
+stopifnot(
+  nrow(air) == 153,
+  missing_audit$missing_ozone == 37,
+  missing_audit$missing_temperature == 0,
+  nrow(analysis_days) == 116,
+  sum(temperature_summary$n_days) == nrow(analysis_days),
+  sum(monthly_summary$n_days) == nrow(analysis_days),
+  nrow(temperature_summary) == 2,
+  nrow(monthly_summary) == 5,
+  !anyNA(temperature_summary),
+  all(abs(analysis_days$temp_c - (analysis_days$temp_f - 32) * 5 / 9) < 1e-12)
+)
+
+summary_plot <- ggplot(
+  temperature_summary,
+  aes(x = temperature_band, y = mean_ozone_ppb)
+) +
+  geom_point(size = 4, color = "#2A6F97") +
+  labs(
+    title = "Observed ozone was higher on warmer days",
+    subtitle = "Daily New York measurements with recorded ozone, May-September 1973",
+    x = "Maximum daily temperature group",
+    y = "Mean ozone (parts per billion)",
+    caption = "Descriptive comparison only; 37 days without ozone measurements were excluded."
+  ) +
+  theme_minimal(base_size = 12)
+
+plot_data <- ggplot_build(summary_plot)$data[[1]]
+stopifnot(nrow(plot_data) == nrow(temperature_summary))
+
+print(summary_plot)
+cat("Rows retained for the question:", nrow(analysis_days), "of", nrow(air), "\n")
+cat("All Week 7 transformation checks passed.\n")
+```
+
+</details>
+
+**Explain / Check / Interpret:** The checked means are about 22.6 ppb below 80 F and 62.4 ppb at or above
+80 F. Describe the difference for these observations with units and the 37
+excluded days. Reconciliation shows the computation accounted for usable rows;
+it does not establish representativeness or explain why ozone was missing.
+
+## AI audit · Inspect before accepting {#ai-audit}
+
+**Slide cues:** *Plausible AI Pipeline*; *Locate The Question Drift*; *Repair Pattern*.
+
+This section supports **Core 9**. Use its code-reading and checking
+steps for that exercise. The full AI-review lab is used only when selected.
+
+Read the supplied target and choose a check before opening the diagnosis.
+No AI service is contacted.
+
+Candidate checks: both temperature groups retained; intended group labels;
+raw/usable/excluded accounting; group counts; units. Trace filter and group_by
+in the supplied example before looking at its final printed diagnosis.
+
+**Reading excerpt:** this fragment relies on the supplied script setup; inspect it here, then run the complete file in the evidence reveal.
+
+```r
+ai_pipeline <- airquality |>
+  as_tibble() |>
+  filter(Temp >= 80, !is.na(Ozone)) |>
+  group_by(Month) |>
+  summarize(
+    n_days = n(),
+    mean_ozone = mean(Ozone),
+    .groups = "drop"
+  )
+```
+
+
+**Predict in a private comment first:** What question does the generated code answer, and why can its 57-day total be numerically correct while failing the requested comparison?
+
+<details>
+<summary>Compare your reasoning</summary>
+
+It summarizes recorded ozone by month among warmer days only. The 57 days
+are a legitimate subset, but cooler days were removed and Month replaces the
+requested temperature grouping. Repair the population/grouping choices, then
+recheck both counts. If your answer differed, execution and plausible means
+may have distracted you from translating each verb back to the question.
+
+</details>
+
+<details>
+<summary>Run the complete supplied critique target and inspect the evidence</summary>
+
+```{r}
+#| label: w07-reference-ai
+# MATH 346 - Week 7
+# AI pipeline critique starter
+#
+# Prompt: "Compare observed ozone on cooler and warmer days."
+# The generated code runs, but it answers a different question.
+
+library(dplyr)
+
+ai_pipeline <- airquality |>
+  as_tibble() |>
+  filter(Temp >= 80, !is.na(Ozone)) |>
+  group_by(Month) |>
+  summarize(
+    n_days = n(),
+    mean_ozone = mean(Ozone),
+    .groups = "drop"
+  )
+
+print(ai_pipeline)
+
+stopifnot(
+  nrow(ai_pipeline) > 0,
+  !anyNA(ai_pipeline),
+  sum(ai_pipeline$n_days) == 57
+)
+
+cat("The generated pipeline runs and produces plausible numbers.\n")
+cat("It keeps only warmer days and groups by month, so it cannot compare cooler and warmer days.\n")
+
+# Review questions:
+# 1. Which rows were removed before any comparison was made?
+# 2. Is Month the grouping variable requested by the prompt?
+# 3. What derived variable would represent the two requested groups?
+# 4. How many rows have missing ozone, and where should that be documented?
+# 5. Which counts should add back to the number of usable rows?
+```
+
+</details>
+
+Use the existing AI policy when assistance is used: explain every accepted line
+and keep the requested evidence with your existing work. A passing test never
+replaces checking whether the code answers the actual question.
+
+### Meeting 2 in-class exit · Final five minutes
+
+A trustworthy transformation pipeline must make visible ...
+
+Solo readers: use the self-check below; no submission.
+
+### Meeting 2 self-check · No submission
+
+Close earlier reveals and explain from memory: A pipeline retains 116 usable days but groups by month. Its five group
+counts sum to 116. Does this establish that it answers the cooler-versus-warmer
+question?
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+No. Accounting can pass for the wrong grouping. One result row now means
+one month rather than one temperature band. Create the two-band variable and
+check intended labels, row meaning and denominators as well as total counts.
+
+</details>
+
+## Practice, recovery and resources {#practice}
+
+**Core:** 1, 3, 4, 6, 9. **Guided:** 2, 5, 8. **Extension:** 7.
+
+Core 1 reads a pipeline; Core 3 accounts for selected/usable rows; Core 4
+checks the conversion; Core 6 compares groups; Core 9 audits question drift.
+Monthly summaries remain Guided 8 and changing thresholds remains Extension 7.
+
+
+Attempt the selected starter blocks before comparing possible solutions.
+TODO comments are placeholders, not completed analysis. Keep your checked script
+and follow Blackboard if a checkpoint is requested.
+
+**If you are stuck:** inspect retained rows, group labels, summary denominators, and units. Run missing definitions
+before their first use. Keep the first error and ask for help if a focused
+attempt remains blocked.
+
+- [Possible solution: week07-verb-checks_sol.R](downloads/solutions/week07-verb-checks_sol.R)
+- [Possible solution: week07-dplyr-eda_sol.R](downloads/solutions/week07-dplyr-eda_sol.R)
+
+**Where this fits:** [Week 7 notes](https://lnajman.github.io/math346/weeks/week-07.html) ·
+[Matching slides](https://lnajman.github.io/math346/slides/week-07.html) ·
+[Main lab](https://lnajman.github.io/math346/labs/lab-07-data-transformation.html) ·
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-07-ai-pipeline-review.html) ·
+[Exercises](https://lnajman.github.io/math346/weeks/week-07-exercises.html).
+

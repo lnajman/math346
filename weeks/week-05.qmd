@@ -2,6 +2,10 @@
 title: "Week 5: Symbolic Mathematics and Verification"
 ---
 
+Open the [Week 5 companion](../companion/week-05.html) for guided reading
+and self-checks alongside the slides and selected practice. Nothing there is
+collected or graded.
+
 ## Official Topic
 
 MATLAB symbolic mathematics. Project 1 readiness checkpoint.

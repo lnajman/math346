@@ -1,0 +1,30 @@
+---
+title: "Week 11 · Readable code, defensible results"
+---
+
+Follow Week 11 in two parts:
+
+1. [Meeting 1 · Read the pipeline](week-11-meeting-1.html): trace events, name checkpoints and explain summaries (Core 1/2).
+2. [Meeting 2 · Reuse rules with contracts](week-11-meeting-2.html): implement the two functions and choose tests (Core 4/7/8), with selective Guided AI review.
+
+Both meetings retain their 75-minute classroom structure and five-minute
+individual exits. Nothing in these pages is collected or graded. The approved
+syllabus, workload guide and Blackboard remain authoritative.
+
+## A first 30-minute recovery session {#route}
+
+Choose a stopping point within about 30 minutes and resume later. This is an
+untested stopping budget, not a completion promise; it counts within the whole
+week's approved 90–120-minute practice budget.
+
+1. Read the [prerequisites](week-11-meeting-1.html#before-start) and run the [setup](week-11-meeting-1.html#setup).
+2. Try the [identity prediction](week-11-meeting-1.html#bridge) and trace the [checkpoint table](week-11-meeting-1.html#checkpoints).
+3. Inspect the [issue summary](week-11-meeting-1.html#summary): explain its row meaning and counts.
+4. Begin the [function contract](week-11-meeting-2.html#vector-function); compare the hidden explanation and mark where to resume.
+
+For the full route, follow each meeting in order. Core 1/2/4/7/8 remain the
+selected practice; Guided 3/9/10 are selective, and Extension 5/6 are optional.
+See [practice and possible solutions](week-11-meeting-2.html#practice).
+
+[Read the complete chapter on one page](week-11-complete.html) if you prefer.
+[How to use the companions](how-to-use.html) · [Chapter list](chapters.html).
