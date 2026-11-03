@@ -26,3 +26,4 @@ into two linked meeting pages; its complete single-page version is also availabl
 | 12 | [Repeat a tested workflow without losing evidence](week-12.html) |
 | 13 | [Read model claims against their evidence](week-13.html) |
 | 14 | [Repeat models without losing the evidence](week-14.html) |
+| 15 | [Make the evidence agree before you communicate it](week-15.html) |

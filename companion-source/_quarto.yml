@@ -11,6 +11,7 @@ project:
     - week-12.qmd
     - week-13.qmd
     - week-14.qmd
+    - week-15.qmd
     - week-10.qmd
     - week-09.qmd
     - week-08.qmd
@@ -26,6 +27,7 @@ project:
     - data/
     - figures/
     - supplemental/
+    - example-output/
 format:
   html:
     theme: cosmo

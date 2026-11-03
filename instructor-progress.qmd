@@ -23,7 +23,7 @@ the motivation and the kind of feedback being requested.
 
 | Workstream | Status | Evidence | Next step |
 |---|---|---|---|
-| Course companion | **Weeks 1–14 published** | [Student index](companion/index.html) and [Week 14](companion/week-14.html), with checked public code/data | Prepare Week 15; revise after feedback; learner timing remains unmeasured |
+| Course companion | **All 15 weeks published** | [Student index](companion/index.html) and [Week 15](companion/week-15.html), with labelled example downloads and checked code/data | Revise using student feedback and a learner/TA timing run |
 | Student-facing course site | **Published and active** | Student-first [home](index.qmd), navigation, [weekly materials](weeks/index.qmd), [glossary](resources/glossary.qmd), and three recovery checkpoints | Keep current pages, assessment dates, and Blackboard logistics aligned |
 | Course administration and classroom policy | **Published** | [Home](index.qmd), [syllabus](syllabus/index.qmd), and [Quiz 1 guide](assessments/quiz-01.qmd) | Keep Banner and Blackboard logistics current |
 | Course framing, AI policy, and development disclosure | **Published** | [Syllabus](syllabus/index.qmd), student [AI policy](syllabus/ai-policy.qmd), and course-development [LLM-use statement](llm-use.qmd) | Keep assessment-specific student rules aligned with the general policy |
@@ -52,6 +52,11 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- The reviewed [Week 15 companion](companion/week-15.html) is approved for
+  publication, completing the fifteen-week companion. Saved-file, numerical,
+  caption and claim checks pass; example outputs are labelled classroom evidence,
+  not project submissions. Assessment scope and workload remain unchanged.
 
 - The reviewed [Week 14 companion](companion/week-14.html) is approved for
   publication with unchanged R code and five public downloads. Grouped-input,
@@ -414,6 +419,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 3 November 2026 | The revised Week 15 companion was approved for publication, completing Weeks 1–15. It includes checked overprediction/caption feedback and labelled classroom examples, with unchanged public scripts and project requirements. Timing remains unmeasured. |
 | 3 November 2026 | The revised Week 14 companion was approved for publication after review, with sharper contract/sensitivity feedback, corrected text rounding and unchanged public code. Grouped numeric, slide and plot-layer checks pass. The companion covers Weeks 1–14; Week 15 remains pending. |
 | 3 November 2026 | The revised Week 13 companion was approved for publication after review, with reference-object guidance, unchanged code/downloads and independently checked diagnostic counts. The companion now covers Weeks 1–13; assessment scope and workload are unchanged. |
 | 3 November 2026 | The reviewed course companion for Weeks 1–12 was approved for publication, with a student index, two independently runnable Week 11 meeting pages, public code/data downloads and unchanged assessment/workload scope. Reviewer files are excluded; learner timing remains unmeasured. |

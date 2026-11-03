@@ -18,7 +18,8 @@
     "week-02",
     "week-01",
     "week-13",
-    "week-14"
+    "week-14",
+    "week-15"
   ],
   "resources": {
     "downloads/solutions/week01_arrays_plotting_sol.m": "65d39ba892a7b4d3ce3ce6e0191056ae001f70e862a1f7aa4ea90353174c5ea2",
@@ -124,6 +125,15 @@
     "downloads/week14-ai-model-ranking-review.R": "2faaf96bc3c29be195c33a62aae45c5c98f4ea171caa6aff11d8e365ebdd0ac5",
     "downloads/week14-grouped-sensitivity.R": "f76ce0864fd3b324b6152ad6e3287627f97549978f9a6c161dcbc3871117faf0",
     "downloads/solutions/week14-many-models_sol.R": "be33724110cbca73247af81be5d994262579e4df482c5c19e8b143c508587956",
-    "downloads/solutions/week14-grouped-sensitivity_sol.R": "06e89f44b81b9bfad2ffc83329f340309c627a26f9be0d4a8f4497a31fd3d2c1"
+    "downloads/solutions/week14-grouped-sensitivity_sol.R": "06e89f44b81b9bfad2ffc83329f340309c627a26f9be0d4a8f4497a31fd3d2c1",
+    "downloads/week15-ai-conclusion-review.R": "45e04235aaa3aade9b9f7070c732a62288a1fc5173cf3caae7f2d7370c24cef8",
+    "downloads/week15-evidence-bundle.R": "897a0e8ddcda949d50f52881cba8c215cb63c94bea7381ebe91a14d9923e3bb6",
+    "downloads/week15-cross-artifact-audit.R": "3f6921fe11124a747bcfacb66c8ca298797908830843f987bfebfbcd5393c94b",
+    "downloads/solutions/week15-evidence-bundle_sol.R": "6f871dbc0be7e20f5e447f4f48b1db5b4d5b8de274c6d90e98f5217e7a2b9d9d",
+    "downloads/solutions/week15-cross-artifact-audit_sol.R": "70bebf8cb2cb26d5431180e33c3b5a9314a2041ab13addd2858cda86fd63676c",
+    "example-output/week15-results.csv": "42d7d5243d5a8be79fff411dc566712a62766016140af0970f77a55b900d2823",
+    "example-output/week15-validation-figure.png": "569d88004c9d30cf45f3160cf3b9529616d95aceaed41adf6342e6c5a2dc6909",
+    "example-output/week15-manifest.csv": "6578801ffc94d75c54a53ece96b9e51926799505485c82f66d87d8e44b536037",
+    "example-output/week15-predictions.csv": "05a0d038a69ee1f5714adf6fcf48823591b374681a44b6b551a397c27baa4bdc"
   }
 }

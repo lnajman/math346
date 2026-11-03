@@ -1,0 +1,897 @@
+---
+title: "Week 15 · Make the evidence agree before you communicate it"
+subtitle: "MATH 346 course companion · Figures, files and defensible claims"
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](https://lnajman.github.io/math346/companion/how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route {#route}
+
+**Can another reader reproduce your results and trace each important sentence
+to the same evidence?**
+
+We bring the familiar model, files and interpretation together. A runnable
+script, plausible CSV and readable report can disagree. This chapter shows how
+to generate and inspect an evidence bundle, read a prediction figure, find
+inconsistencies and repair overstrong generated prose.
+
+[Before you start](#before-start) · [Words used here](#words) · [Setup](#setup) ·
+[Meeting 1](#meeting-one) · [Meeting 2](#meeting-two) · [AI audit](#ai-audit) ·
+[Practice and project transfer](#practice).
+
+::: {.callout-tip}
+## A first 30-minute session
+
+Choose a stopping point within about 30 minutes and resume later. This is an
+untested stopping budget, not a completion promise.
+
+1. Check setup and the role of each artifact.
+2. Inspect the declared training/validation split and prediction figure.
+3. Try a caption, then read the saved-file checks.
+4. Identify one deliberate audit mismatch and choose your next Core step.
+
+Read displayed results when jumping ahead; run code in order when returning to
+your script. The full route is Core **1, 4, 5, 6, 8, 12**, selective Guided
+**2, 3, 7, 9, 10, 11**, with **no Extension exercises**. Reading and selected
+lab/exercise work share the **90–120-minute ordinary-week practice budget**.
+Project work remains separately scheduled. Both class meetings retain 75 minutes
+and a final five-minute individual exit; follow any announced reduced selection.
+:::
+
+### Before you start {#before-start}
+
+Use [Week 13](https://lnajman.github.io/math346/companion/week-13.html) for
+formulas, residuals and error metrics, and
+[Week 14](https://lnajman.github.io/math346/companion/week-14.html) for retaining
+model evidence and sensitivity. You should recognize source IDs, CSVs and
+checked function calls. This chapter introduces no new model or dataset.
+
+Slides provide lecture flow, this chapter explains and checks it, and selected
+labs/exercises provide practice. You do not need to author Quarto: Project 2
+still uses the approved report template exported to PDF, R source and required
+CSV files. The `airquality` outputs below are practice artifacts, not project
+submission evidence.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Artifact / bundle** | A file or display carrying evidence / the related outputs from one analysis. |
+| **Schema** | Required column names, order and types. |
+| **Manifest** | An inventory naming artifacts, their roles and a declared generating script. |
+| **Identity line** | The line where predicted equals observed; it is not a fitted regression line. |
+| **RMSE / MAE** | Root mean squared error / mean absolute error, both in response units. |
+| **Residual / absolute error** | Observed minus predicted / the magnitude of that difference. |
+| **Exact / display value** | Stored computed precision / a rounded number used for communication. |
+| **Tolerance** | A declared allowable difference, such as 0.01 ppb for a displayed metric. |
+| **Reconciliation** | Check that files, figures and prose describe the same rows, formula and values. |
+| **Clean run / hidden state** | Run from a fresh session / an old object or manual action on which code silently depends. |
+| **Claim ledger** | A table linking each claim to evidence, scope and limitation. |
+| **Sensitivity / validation** | A declared change to test fragility / evaluation on rows not used to fit the model. |
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the producing code and artifact; explain what should agree; check the
+saved evidence; interpret with scope and limitations. Think first; write a
+private comment only where requested—see the [prediction guide](https://lnajman.github.io/math346/companion/how-to-use.html#read-explain-check-interpret).
+
+## Setup {#setup}
+
+Use R 4.1 or later, `dplyr` and `ggplot2`. Save the
+[bundle starter](downloads/week15-evidence-bundle.R) and
+[audit starter](downloads/week15-cross-artifact-audit.R) in a `week15/` folder.
+The [AI critique target](downloads/week15-ai-conclusion-review.R) is for selected
+Guided 11 work; no AI account or external call is needed. All examples use
+built-in data, not private group files.
+
+Run this from your `week15/` folder:
+
+```{r}
+#| label: required-files
+required_files <- c("week15-evidence-bundle.R", "week15-cross-artifact-audit.R")
+```
+
+```{r}
+#| label: author-paths
+#| include: false
+required_files <- file.path("downloads", required_files)
+```
+
+```{r}
+#| label: setup-check
+#| output: false
+missing_files <- required_files[!file.exists(required_files)]
+missing_packages <- c("dplyr", "ggplot2")[!vapply(
+  c("dplyr", "ggplot2"), requireNamespace, logical(1), quietly = TRUE
+)]
+if (length(missing_files) + length(missing_packages) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing files:", paste(missing_files, collapse = ", "), "\n")
+  cat("Missing packages:", paste(missing_packages, collapse = ", "), "\n")
+}
+```
+
+**Example output when the files and packages are available:**
+
+```text
+Setup OK
+```
+
+Run the check on your own computer; this printed example cannot confirm its
+setup. Use `getwd()` for path problems and the [software checks](https://lnajman.github.io/math346/resources/software-requirements.html)
+for package help. Restart R, then run the chapter's code in order, including the
+code inside the reference reveals.
+
+Each complete reference rebuilds its own objects. Keep the saved scripts
+separate; running the next reference deliberately replaces names such as `fit`
+and `model_data`. Evidence chunks use the reference object names; run that
+reference first, or adapt the names to your own completed starter.
+
+## Meeting 1 · Give each artifact a job {#meeting-one}
+
+**Slide cues:** “The Submission Is A System”, “Five Artifacts”,
+“Correct Separately Is Not Enough” and “Freeze Before Polishing”.
+
+The five artifacts are R source, results CSV, prediction CSV, figure and PDF report.
+
+**Predict in a private comment first:** a results CSV reports 29 validation
+predictions. Does that prove there are 29 correctly aligned prediction rows?
+Name the artifact and check needed before trusting the statement.
+
+<details>
+<summary>Compare the artifact roles</summary>
+
+The summary count is not row-level evidence. Read the prediction CSV and
+compare its count, unique IDs, ID order and values with the validation rows.
+**If your answer differed,** you may have treated a reported total as a check
+of the actual saved predictions.
+
+| Artifact | Primary job | What it cannot establish alone |
+|---|---|---|
+| R source | Recreate the calculation | That its interpretation is defensible |
+| Results CSV | Preserve computed metrics and model description | One correct prediction per source row |
+| Prediction CSV | Preserve row-level predictions and IDs | An adequate explanation of the whole result |
+| Figure | Make pattern and error visible | Causation or broad generalization |
+| PDF report | Explain question, reasoning and limitations | Computational reproducibility |
+
+</details>
+
+### Generate one declared classroom bundle {#bundle}
+
+**Slide cues:** “Classroom Example”, “Checked Modeling Rows”, “Frozen Analysis”,
+“First Reconciliation”, “Generate, Do Not Re-Type”, “Artifact Manifest” and “Read It Back”.
+
+The observation is a recorded New York day in May–September 1973; ozone is in
+ppb, temperature in degrees F and wind in mph. This example fits
+`ozone_ppb ~ temperature_f + wind_mph` on **May–August only**: 87 complete rows.
+September supplies **29 validation rows**. Do not reuse the Week 13 model fitted
+on all 116 rows: it would already include these validation observations.
+
+For Core 1/5/12, identify the producing code, expected files and read-back
+checks in your starter before opening the reference. Its output is three
+evidence artifacts plus a manifest—not a PDF report.
+
+<details>
+<summary>Reference version · Generate and read back the evidence</summary>
+
+```{r}
+#| label: bundle-reference
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+library(dplyr)
+library(ggplot2)
+
+rmse <- function(observed, predicted) {
+  sqrt(mean((observed - predicted)^2))
+}
+
+mae <- function(observed, predicted) {
+  mean(abs(observed - predicted))
+}
+
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    month = factor(month.abb[Month], levels = month.abb[5:9]),
+    ozone_ppb = Ozone,
+    temperature_f = Temp,
+    wind_mph = Wind
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+
+training <- model_data |> filter(month != "Sep")
+validation <- model_data |> filter(month == "Sep")
+frozen_formula <- ozone_ppb ~ temperature_f + wind_mph
+
+fit <- lm(frozen_formula, data = training)
+training_predictions <- predict(fit)
+validation_predictions <- predict(fit, newdata = validation)
+baseline_value <- mean(training$ozone_ppb)
+
+sensitivity_index <- which.max(abs(rstandard(fit)))
+sensitivity_removed_id <- training$observation_id[[sensitivity_index]]
+sensitivity_fit <- lm(frozen_formula, data = training[-sensitivity_index, ])
+sensitivity_predictions <- predict(sensitivity_fit, newdata = validation)
+
+results <- tibble(
+  n_training_rows = nrow(training),
+  n_validation_rows = nrow(validation),
+  formula = paste(deparse(frozen_formula), collapse = " "),
+  baseline_validation_rmse_ppb = rmse(validation$ozone_ppb, baseline_value),
+  training_rmse_ppb = rmse(training$ozone_ppb, training_predictions),
+  validation_rmse_ppb = rmse(validation$ozone_ppb, validation_predictions),
+  validation_mae_ppb = mae(validation$ozone_ppb, validation_predictions),
+  sensitivity_removed_observation_id = sensitivity_removed_id,
+  sensitivity_validation_rmse_ppb = rmse(
+    validation$ozone_ppb,
+    sensitivity_predictions
+  )
+)
+
+prediction_table <- validation |>
+  transmute(
+    observation_id,
+    observed_ozone_ppb = ozone_ppb,
+    prediction_ppb = as.numeric(validation_predictions),
+    residual_ppb = observed_ozone_ppb - prediction_ppb
+  )
+
+largest_error <- prediction_table |>
+  slice_max(abs(residual_ppb), n = 1, with_ties = FALSE)
+
+validation_plot <- ggplot(
+  prediction_table,
+  aes(x = observed_ozone_ppb, y = prediction_ppb)
+) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  geom_point(size = 2) +
+  geom_text(
+    data = largest_error,
+    aes(label = paste("ID", observation_id)),
+    nudge_y = 4
+  ) +
+  coord_equal() +
+  labs(
+    title = "Frozen-model predictions for September",
+    subtitle = "The dashed line marks perfect observed-predicted agreement",
+    x = "Observed ozone (ppb)",
+    y = "Predicted ozone (ppb)",
+    caption = paste(
+      "Each point is one of", nrow(validation),
+      "complete September observations; ID marks the largest absolute error."
+    )
+  )
+
+bundle_directory <- file.path(tempdir(), "math346-week15-evidence")
+dir.create(bundle_directory, showWarnings = FALSE)
+
+results_path <- file.path(bundle_directory, "week15-results.csv")
+predictions_path <- file.path(bundle_directory, "week15-predictions.csv")
+figure_path <- file.path(bundle_directory, "week15-validation-figure.png")
+manifest_path <- file.path(bundle_directory, "week15-manifest.csv")
+
+write.csv(results, results_path, row.names = FALSE)
+write.csv(prediction_table, predictions_path, row.names = FALSE)
+ggsave(figure_path, validation_plot, width = 7, height = 6, dpi = 120)
+
+manifest <- tibble(
+  artifact = basename(c(results_path, predictions_path, figure_path)),
+  role = c(
+    "exact summary values",
+    "one prediction per validation observation",
+    "visual prediction evidence"
+  ),
+  generated_by = "week15-evidence-bundle.R"
+)
+write.csv(manifest, manifest_path, row.names = FALSE)
+
+results_check <- read.csv(results_path, check.names = FALSE)
+predictions_check <- read.csv(predictions_path, check.names = FALSE)
+manifest_check <- read.csv(manifest_path, check.names = FALSE)
+plot_build <- ggplot_build(validation_plot)
+
+stopifnot(
+  nrow(training) == 87,
+  nrow(validation) == 29,
+  sensitivity_removed_id == 117,
+  abs(results$validation_rmse_ppb - 17.93979) < 1e-5,
+  abs(results$validation_mae_ppb - 14.89114) < 1e-5,
+  results$validation_rmse_ppb < results$baseline_validation_rmse_ppb,
+  identical(prediction_table$observation_id, validation$observation_id),
+  nrow(results_check) == 1,
+  nrow(predictions_check) == nrow(validation),
+  nrow(manifest_check) == 3,
+  nrow(plot_build$data[[2]]) == nrow(validation),
+  file.info(figure_path)$size > 1000
+)
+
+print(results)
+print(manifest)
+cat("Week 15 evidence bundle passed row, value, alignment, and file checks.\n")
+```
+
+</details>
+
+The result contains training RMSE about **22.93 ppb**, validation RMSE
+**17.94 ppb**, validation MAE **14.89 ppb**, and baseline validation RMSE
+**27.67 ppb**. The baseline repeats the **training** mean on validation rows;
+it does not calculate a new mean from September outcomes. R repeats the single
+baseline value across 29 rows; model predictions use the aligned 29-value vector,
+since these small helpers do not check lengths or missingness.
+
+The script writes four temporary files. These **example-output downloads**
+contain one checked run, for reading if R is unavailable or your temporary
+files are gone. They are not Project 2 evidence or confirmation of your own run:
+
+| File | Contents |
+|---|---|
+| [week15-results.csv](example-output/week15-results.csv) | One row, nine summary/model fields |
+| [week15-predictions.csv](example-output/week15-predictions.csv) | 29 rows: ID, observed ozone, prediction and residual |
+| [week15-validation-figure.png](example-output/week15-validation-figure.png) | Observed-versus-predicted figure |
+| [week15-manifest.csv](example-output/week15-manifest.csv) | Three inventory rows, one for each evidence artifact above |
+
+The manifest lists three artifacts, not itself; its inventory is not proof
+of correct generation. Type `bundle_directory` on your computer to find the
+current temporary folder. Copy outputs you want before closing R; a new session
+needs a new run, not an old temporary path.
+
+### Inspect the saved evidence, not only memory {#saved-files}
+
+**Slide cues:** “Exact And Display Values”, “Source Identifier Check” and “A Figure Contract”.
+
+These checks use the reference object names. Run the bundle reference first,
+or adapt the names to your completed starter. `read.csv` in that reference
+created the `*_check` objects from the newly written files.
+
+```{r}
+#| label: saved-evidence
+print(validation_plot)
+numeric_results <- results_check[setdiff(names(results_check), "formula")]
+stopifnot(
+  identical(names(results_check), c("n_training_rows", "n_validation_rows",
+    "formula", "baseline_validation_rmse_ppb", "training_rmse_ppb",
+    "validation_rmse_ppb", "validation_mae_ppb",
+    "sensitivity_removed_observation_id", "sensitivity_validation_rmse_ppb")),
+  identical(names(predictions_check), c("observation_id", "observed_ozone_ppb",
+                                      "prediction_ppb", "residual_ppb")),
+  identical(names(manifest_check), c("artifact", "role", "generated_by")),
+  nrow(results_check) == 1, nrow(predictions_check) == 29,
+  !anyNA(results_check), !anyNA(predictions_check),
+  results_check$formula == paste(deparse(frozen_formula), collapse = " "),
+  all(vapply(numeric_results, function(x) is.numeric(x) && all(is.finite(x)),
+             logical(1))),
+  !anyDuplicated(predictions_check$observation_id),
+  identical(predictions_check$observation_id, validation$observation_id),
+  isTRUE(all.equal(predictions_check$observed_ozone_ppb, validation$ozone_ppb)),
+  isTRUE(all.equal(predictions_check$prediction_ppb,
+                   as.numeric(validation_predictions), tolerance = 1e-10)),
+  abs(results_check$validation_rmse_ppb - sqrt(mean(
+    (predictions_check$observed_ozone_ppb - predictions_check$prediction_ppb)^2
+  ))) < 1e-10,
+  all(vapply(predictions_check, function(x) all(is.finite(x)), logical(1))),
+  setequal(manifest_check$artifact,
+           basename(c(results_path, predictions_path, figure_path))),
+  all(file.exists(file.path(bundle_directory, manifest_check$artifact))),
+  max(abs(predictions_check$observed_ozone_ppb -
+          predictions_check$prediction_ppb - predictions_check$residual_ppb)) < 1e-10
+)
+```
+
+A silent `stopifnot` means its conditions passed; an error names the failed
+condition. Reading the saved CSV can reveal a stale file, omitted column or
+lost row that a correct in-memory table would not show. Count checks need
+identity and order checks too. In a new folder, a complete run should need
+only the saved source, declared inputs and packages—not objects left in memory.
+This is Core 12's clean-run rehearsal.
+
+### Make the caption carry evidence {#caption}
+
+**Slide cues:** “One Figure, One Main Job”, “Observed Versus Predicted”,
+“The Identity Line”, “Caption Test” and “Stronger Caption”.
+
+The horizontal axis is **observed** ozone and the vertical axis is **predicted**
+ozone, in ppb. One point is one complete September observation; the dashed
+line has slope 1 and intercept 0, so it marks equality. The label is an
+original source ID, not a point's position in the 29-row table. One prediction
+is below zero: that is a limitation of the unconstrained linear model, not a
+negative source measurement. Keep that prediction visible rather than clipping
+it out of the display.
+
+**Think first:** count points above versus below the dashed line. What direction
+of error does that suggest, and what does it show that RMSE alone does not?
+Check the row counts in the reveal if points overlap.
+
+**Predict in a private comment first:** for Core 4, draft your caption in your
+script before expanding. Use its four sentences to name the subset/variables,
+explain the line, describe a checked pattern and state a limitation. Think
+through whether a point above the line is overpredicted or underpredicted.
+
+<details>
+<summary>Compare the figure reading and a possible caption</summary>
+
+Use the saved prediction rows for exact counts; these names come from the
+bundle reference and read-back check above.
+
+```{r}
+#| label: direction-evidence
+direction_check <- data.frame(
+  above_line = sum(predictions_check$prediction_ppb > predictions_check$observed_ozone_ppb),
+  below_line = sum(predictions_check$prediction_ppb < predictions_check$observed_ozone_ppb),
+  mean_residual_ppb = mean(predictions_check$residual_ppb)
+)
+direction_check
+```
+
+The model overpredicts **23 of these 29 September days**; six points lie below
+the line. The mean observed-minus-predicted residual is about **-10.94 ppb**:
+predictions are about 10.94 ppb higher on average. RMSE measures error magnitude
+but loses its sign, so beating the baseline can coexist with this directional
+pattern. This describes the checked September subset, not all future periods.
+
+Above the line, prediction exceeds observation: the model overpredicts.
+The residual `observed - predicted` is negative there. Source ID **143** has
+observed ozone 16 ppb and predicted ozone about 58.72 ppb, an absolute error
+of about **42.72 ppb**. It is the largest validation error. Source ID **117**,
+in contrast, is the training observation omitted for the sensitivity refit.
+
+A possible four-sentence caption is:
+
+> Observed and frozen-model predicted ozone (ppb) are shown for 29 complete
+> September days, with one point per day.
+> The dashed line marks equality, and ID 143 identifies the largest absolute
+> prediction error, about 42.72 ppb.
+> The model overpredicts 23 of 29 days with mean residual about -10.94 ppb,
+> even though its RMSE of 17.94 ppb is below the baseline's 27.67 ppb.
+> This check covers one period in this dataset and does not establish causation
+> or performance in all seasons.
+
+**If your answer differed,** you may have swapped the axes, mistaken the
+identity line for a fitted trend, overlooked the directional pattern, or read
+the lower-average-error claim as
+if every prediction were close. This is one possible caption, not a unique
+required answer.
+
+</details>
+
+**Individual in-class exit, final five minutes:** which artifact is authoritative
+for exact metrics, row-level predictions, interpretation and limitations, and
+reproducible computation? Follow the announced classroom route.
+
+**Self-check (no submission):** a saved prediction file has all 29 correct IDs,
+but its rows are permuted relative to validation. Which check detects this,
+and what must stay together when repairing the order?
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+`identical` on the two ID vectors fails the declared order contract. Reorder
+whole ID-linked rows, or align by ID and verify the contract afterward; do not
+sort the prediction values separately. A count or ID-set check alone misses
+this order difference.
+
+</details>
+
+## Meeting 2 · Reconcile values and claims {#meeting-two}
+
+**Slide cues:** “Clean-Run Rehearsal”, “Hidden-State Failure”, “Cross-Artifact Audit”,
+“Tolerance Zero”, “Small Display Tolerance” and “Three Deliberate Mismatches”.
+
+### Passing an audit script is not agreement {#audit}
+
+For Core 6, compare the proposed reported values with the earlier saved
+results: training rows 116, validation rows 29, prediction rows 28, RMSE 15.80
+and MAE 14.89. Which look like stale or incorrect values, and which are acceptable
+rounding? Think first, then compare the complete audit. These deliberately
+wrong reported values do not mean the correctly generated prediction CSV above
+actually lost a row.
+
+The reference below is self-contained for a fresh session. It **constructs**
+reported/computed vectors to illustrate mismatches; it does not parse an actual
+PDF or read the preceding bundle's CSV files. The saved-file checks above are
+the separate check of those files.
+
+<details>
+<summary>Reference version · Find the deliberate disagreements</summary>
+
+```{r}
+#| label: audit-reference
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+library(dplyr)
+
+rmse <- function(observed, predicted) {
+  sqrt(mean((observed - predicted)^2))
+}
+
+mae <- function(observed, predicted) {
+  mean(abs(observed - predicted))
+}
+
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    month = factor(month.abb[Month], levels = month.abb[5:9]),
+    ozone_ppb = Ozone,
+    temperature_f = Temp,
+    wind_mph = Wind
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+
+training <- model_data |> filter(month != "Sep")
+validation <- model_data |> filter(month == "Sep")
+fit <- lm(
+  ozone_ppb ~ temperature_f + wind_mph,
+  data = training
+)
+
+validation_predictions <- predict(fit, newdata = validation)
+baseline_value <- mean(training$ozone_ppb)
+sensitivity_index <- which.max(abs(rstandard(fit)))
+
+computed_values <- c(
+  training_rows = nrow(training),
+  validation_rows = nrow(validation),
+  prediction_rows = length(validation_predictions),
+  validation_rmse = rmse(validation$ozone_ppb, validation_predictions),
+  validation_mae = mae(validation$ozone_ppb, validation_predictions),
+  sensitivity_removed_id = training$observation_id[[sensitivity_index]],
+  model_beats_baseline = as.numeric(
+    rmse(validation$ozone_ppb, validation_predictions) <
+      rmse(validation$ozone_ppb, baseline_value)
+  )
+)
+
+# These values imitate a report assembled from several stale or mistyped sources.
+reported_values <- c(
+  training_rows = 116,
+  validation_rows = 29,
+  prediction_rows = 28,
+  validation_rmse = 15.80,
+  validation_mae = 14.89,
+  sensitivity_removed_id = 117,
+  model_beats_baseline = 1
+)
+
+tolerances <- c(
+  training_rows = 0,
+  validation_rows = 0,
+  prediction_rows = 0,
+  validation_rmse = 0.01,
+  validation_mae = 0.01,
+  sensitivity_removed_id = 0,
+  model_beats_baseline = 0
+)
+
+source_artifact <- c(
+  "PDF data section",
+  "results CSV",
+  "prediction CSV",
+  "PDF conclusion",
+  "figure caption",
+  "sensitivity section",
+  "PDF conclusion"
+)
+
+artifact_audit <- tibble(
+  item = names(computed_values),
+  source_artifact,
+  reported_value = as.numeric(reported_values),
+  computed_value = as.numeric(computed_values),
+  tolerance = as.numeric(tolerances),
+  difference = abs(reported_value - computed_value),
+  status = if_else(difference <= tolerance, "agrees", "mismatch")
+)
+
+required_exact_items <- c(
+  "training_rows", "validation_rows", "prediction_rows",
+  "sensitivity_removed_id"
+)
+
+release_ready <- !any(
+  artifact_audit$status == "mismatch" &
+    artifact_audit$item %in% required_exact_items
+)
+
+stopifnot(
+  identical(
+    artifact_audit$status,
+    c("mismatch", "agrees", "mismatch", "mismatch", "agrees", "agrees", "agrees")
+  ),
+  sum(artifact_audit$status == "mismatch") == 3,
+  !release_ready,
+  artifact_audit$computed_value[artifact_audit$item == "prediction_rows"] == 29,
+  artifact_audit$computed_value[artifact_audit$item == "sensitivity_removed_id"] == 117
+)
+
+print(artifact_audit)
+cat("Release ready:", release_ready, "\n")
+cat("Week 15 cross-artifact audit found three deliberate inconsistencies.\n")
+```
+
+Three mismatches are deliberate: **116 versus 87 training rows**, **28 versus
+29 prediction rows**, and **15.80 versus about 17.94 validation RMSE**. MAE
+14.89 differs from 14.891139 by about 0.001139 and passes its 0.01 ppb display
+tolerance. Counts and IDs use zero tolerance. Do not choose a tolerance after
+seeing a discrepancy merely to make it pass.
+
+The `stopifnot` calls pass because the program correctly detected the expected
+three mismatches and `release_ready` is `FALSE`. They do not certify that the
+reported artifacts agree. That boolean checks selected exact-count/ID items;
+it is not a complete release decision if some other material claim disagrees.
+Read the whole audit, not only its final boolean.
+
+**If your answer differed,** you may have treated every display difference as
+an error or treated successful execution as permission to release.
+
+</details>
+
+If the PDF is stale but newly generated evidence is correct, repair the report
+and recheck. If analysis rows, prediction output or formula are wrong, repair
+the producing code and regenerate dependent outputs. An unexplained discrepancy
+needs review. Never manually edit a CSV value to force agreement.
+
+### Keep sensitivity in its declared role
+
+**Slide cues:** “Sensitivity Has A Declared Role”, “Average Error Is Not Every Error”
+and “Baseline Comparison”.
+
+**Predict · Think first:** sensitivity validation RMSE is about **16.68 ppb**,
+lower than the primary model's 17.94 ppb. Should the sensitivity model silently
+replace the frozen primary model?
+
+<details>
+<summary>Compare the sensitivity interpretation</summary>
+
+No. The declared question is whether the conclusion changes under one training-row
+omission. Report the lower metric and the changed fit as sensitivity evidence;
+it is not permission to select a new primary model using validation outcomes.
+The primary comparison remains 17.94 versus the baseline's 27.67 ppb.
+**If your answer differed,** you may have turned a planned robustness check
+into unreported model selection.
+
+RMSE and MAE summarize errors across the 29 rows. Neither says every prediction
+is accurate, and no acceptable-error threshold for every day has been declared.
+The 42.72 ppb largest error is evidence to retain alongside the averages.
+
+</details>
+
+### Build the conclusion from a claim ledger {#ledger}
+
+**Slide cues:** “Claim Ledger”, “Four Different Claim Types” and “Repair Rules”.
+
+For Core 8, make each statement traceable before polishing prose:
+
+| Claim type | Classroom evidence and scope | Limitation |
+|---|---|---|
+| Description | 29 complete September validation days | Not every original day or season |
+| Association | Temperature/wind coefficients from the declared training fit | Observational adjusted relationship, not intervention evidence |
+| Prediction | Frozen model's September RMSE below the training-mean baseline | One dataset/period; one large error remains |
+| Sensitivity | Declared training-row omission changes validation RMSE | One planned check, not replacement-model selection |
+
+A numerical check cannot establish causation from this study design. A clear
+figure cannot erase missing outcomes, limited predictors or narrow validation
+scope. Keep the evidence and limitation attached to each claim.
+
+## Guided audit · Check every clause in generated prose {#ai-audit}
+
+**Slide cues:** “AI-Polished Conclusion”, “Split At Logical Connectors”,
+“Claim-Level AI Audit” and “Repair Rules”.
+
+Use selectively for Guided 11; this is not a second required lab. Read the
+supplied paragraph before the evidence reveal:
+
+> “The model proves that hot, calm weather causes high ozone. Its validation
+> RMSE is lower than the mean baseline, so every September day is predicted
+> accurately and the model will generalize to all seasons. The sensitivity refit
+> has lower validation RMSE and should replace the frozen model. The clear figure
+> means that limitations are negligible.”
+
+**Predict in a private comment first:** separate the supported baseline comparison
+from the claim joined to it by “so.” Name the evidence for each and repair the
+unsupported conclusion using checked values and scope.
+
+<details>
+<summary>Compare the evidence and run the supplied claim audit</summary>
+
+```{r}
+#| label: ai-reference
+library(dplyr)
+
+rmse <- function(observed, predicted) {
+  sqrt(mean((observed - predicted)^2))
+}
+
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    month = factor(month.abb[Month], levels = month.abb[5:9]),
+    ozone_ppb = Ozone,
+    temperature_f = Temp,
+    wind_mph = Wind
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+
+training <- model_data |> filter(month != "Sep")
+validation <- model_data |> filter(month == "Sep")
+fit <- lm(
+  ozone_ppb ~ temperature_f + wind_mph,
+  data = training
+)
+
+validation_predictions <- predict(fit, newdata = validation)
+baseline_predictions <- rep(mean(training$ozone_ppb), nrow(validation))
+sensitivity_index <- which.max(abs(rstandard(fit)))
+sensitivity_fit <- lm(
+  ozone_ppb ~ temperature_f + wind_mph,
+  data = training[-sensitivity_index, ]
+)
+sensitivity_predictions <- predict(sensitivity_fit, newdata = validation)
+
+validation_rmse <- rmse(validation$ozone_ppb, validation_predictions)
+baseline_validation_rmse <- rmse(validation$ozone_ppb, baseline_predictions)
+sensitivity_validation_rmse <- rmse(
+  validation$ozone_ppb,
+  sensitivity_predictions
+)
+largest_absolute_error <- max(abs(validation$ozone_ppb - validation_predictions))
+
+generated_conclusion <- paste(
+  "The model proves that hot, calm weather causes high ozone.",
+  "Its validation RMSE is lower than the mean baseline, so every September",
+  "day is predicted accurately and the model will generalize to all seasons.",
+  "The sensitivity refit has lower validation RMSE and should replace the",
+  "frozen model. The clear figure means that limitations are negligible."
+)
+
+claim_audit <- tibble(
+  generated_claim = c(
+    "weather causes high ozone",
+    "validation RMSE is lower than the mean baseline",
+    "every September day is predicted accurately",
+    "the model will generalize to all seasons",
+    "the sensitivity refit should replace the frozen model",
+    "limitations are negligible"
+  ),
+  verdict = c(
+    "unsupported",
+    "supported",
+    "contradicted",
+    "unsupported",
+    "unsupported",
+    "unsupported"
+  ),
+  evidence = c(
+    "observational regression supports association, not causation",
+    sprintf(
+      "model RMSE %.1f ppb is below baseline RMSE %.1f ppb",
+      validation_rmse, baseline_validation_rmse
+    ),
+    sprintf("the largest absolute validation error is %.1f ppb", largest_absolute_error),
+    "validation covers September observations from the same dataset only",
+    sprintf(
+      "the frozen plan remains primary; sensitivity RMSE is %.1f ppb",
+      sensitivity_validation_rmse
+    ),
+    "missing outcomes, limited predictors, observational data, and one validation period remain"
+  ),
+  repair = c(
+    "describe adjusted association",
+    "retain with the two rounded values",
+    "report average performance and the largest error",
+    "limit the claim to the validation setting",
+    "report sensitivity as robustness evidence",
+    "state the material limitations"
+  )
+)
+
+stopifnot(
+  abs(validation_rmse - 17.93979) < 1e-5,
+  validation_rmse < baseline_validation_rmse,
+  sensitivity_validation_rmse < validation_rmse,
+  largest_absolute_error > 40,
+  sum(claim_audit$verdict == "supported") == 1,
+  sum(claim_audit$verdict != "supported") == 5
+)
+
+cat(generated_conclusion, "\n\n")
+print(claim_audit)
+cat("Week 15 AI conclusion audit retained one claim and repaired five.\n")
+```
+
+Only one of the six listed claims is supported: lower validation RMSE than the
+baseline, about **17.94 versus 27.67 ppb**. The comparison does not imply accurate
+prediction of every day, all-season performance, causation, permission to replace
+the frozen model or negligible limitations. The observation with error about
+42.72 ppb is an important counterexample to unqualified individual accuracy.
+
+A defensible conclusion states the declared split and formula, retains the
+baseline comparison, reports the large error and sensitivity result, and limits
+the claim to these complete September observations. It describes any coefficient
+as an adjusted association, not an established cause.
+
+**If your answer differed,** you may have accepted the whole sentence because
+its first clause was numerically correct. Check each claim and logical connector,
+not just each number. Retain material AI assistance and human checks under the
+[course AI policy](https://lnajman.github.io/math346/syllabus/ai-policy.html).
+Do not upload private group/student information or assessment keys to an external tool.
+
+</details>
+
+**Individual in-class exit, final five minutes:** “Why can individually plausible
+artifacts still form an indefensible submission?” Follow the announced classroom route.
+
+**Self-check (no submission):** a release check returns `TRUE` for all row counts,
+but the PDF's validation RMSE differs from the exact CSV by 2 ppb, beyond its
+0.01 ppb tolerance. Does the count check settle the release decision? What next?
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+No. A passed count check says nothing about that metric disagreement. Trace the
+reported value to the generating analysis and saved file. Repair a stale report
+or the producing code as appropriate, rerun the affected checks and keep the
+release blocked until the material discrepancy is explained and corrected.
+
+</details>
+
+## Practice and final project transfer {#practice}
+
+| Work | Practice supported here |
+|---|---|
+| **Core 1, 4** | Assign artifact roles and write an evidence-bearing caption |
+| **Core 5, 6** | Read generated files back and reconcile reported values |
+| **Core 8, 12** | Build a claim ledger and rehearse a clean complete run |
+| **Guided 2, 3, 7, 9, 10, 11** | Freeze the communication contract, audit the figure/tolerances/errors, interpret sensitivity and review generated prose; use selectively |
+| **Extension** | None in this set |
+
+Keep this checked practice for your own use and any checkpoint requested on
+Blackboard. The classroom outputs must not be submitted as Project 2 evidence.
+
+<details>
+<summary>Possible solutions · Compare after your attempt</summary>
+
+- [Evidence-bundle possible solution](downloads/solutions/week15-evidence-bundle_sol.R)
+- [Cross-artifact possible solution](downloads/solutions/week15-cross-artifact-audit_sol.R)
+
+These are unchanged public comparison files; other correct implementations are
+possible. Keep checks whose purpose you can explain.
+
+</details>
+
+For Project 2, map the **already required** PDF, R source, results CSV and
+validation-predictions CSV to their producing code and checks. Use your assigned
+group prefix and package, not the classroom `week15-` names. Follow the
+[Project 2 file contract](https://lnajman.github.io/math346/projects/project-2-modeling.html#required-submission)
+and [milestone map](https://lnajman.github.io/math346/projects/project-milestones.html)
+for submission and dates; this chapter sets neither. The classroom manifest is
+not an additional required project file, and reading this page adds no Quarto
+authoring requirement.
+
+Before the group submits, every member should be able to find the producing
+code, explain formula/metric, interpret a figure, state a limitation/sensitivity
+result and describe their contribution and material AI assistance. Complete the
+approved report's AI-use appendix and contribution statement; do not replace
+those with a separate companion form.
+
+If an object is missing, restart and rerun its defining reference, or adapt names
+to your completed starter. If a file is missing, check the current run's temporary
+folder. If a clean rerun changes an important result without explanation, retain
+the evidence and ask for review rather than polishing around the discrepancy.
+
+**Where this fits:** [Week 15 notes](https://lnajman.github.io/math346/weeks/week-15.html) ·
+[Slides](https://lnajman.github.io/math346/slides/week-15.html) ·
+[Main lab](https://lnajman.github.io/math346/labs/lab-15-evidence-reconciliation.html) ·
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-15-ai-conclusion-review.html) ·
+[Exercises](https://lnajman.github.io/math346/weeks/week-15-exercises.html).
+
+[Published companion chapters](https://lnajman.github.io/math346/companion/index.html).

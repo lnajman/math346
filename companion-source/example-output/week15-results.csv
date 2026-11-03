@@ -1,0 +1,2 @@
+"n_training_rows","n_validation_rows","formula","baseline_validation_rmse_ppb","training_rmse_ppb","validation_rmse_ppb","validation_mae_ppb","sensitivity_removed_observation_id","sensitivity_validation_rmse_ppb"
+87,29,"ozone_ppb ~ temperature_f + wind_mph",27.6685194380791,22.9284510959088,17.9397912821521,14.891139034654,117,16.6784305953366

@@ -4,6 +4,10 @@ execute:
   enabled: false
 ---
 
+Open the [Week 15 companion](../companion/week-15.html) for guided reading
+and self-checks alongside the slides and selected practice. Nothing there is
+collected or graded.
+
 ## Official Topic
 
 Additional topics in visualization and communication. Project 2 completion

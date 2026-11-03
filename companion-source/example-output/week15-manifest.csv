@@ -1,0 +1,4 @@
+"artifact","role","generated_by"
+"week15-results.csv","exact summary values","week15-evidence-bundle.R"
+"week15-predictions.csv","one prediction per validation observation","week15-evidence-bundle.R"
+"week15-validation-figure.png","visual prediction evidence","week15-evidence-bundle.R"
