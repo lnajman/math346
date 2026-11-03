@@ -24,3 +24,4 @@ into two linked meeting pages; its complete single-page version is also availabl
 | 10 | [Clean meanings before joining tables](week-10.html) |
 | 11 | [Readable code, defensible results](week-11.html) |
 | 12 | [Repeat a tested workflow without losing evidence](week-12.html) |
+| 13 | [Read model claims against their evidence](week-13.html) |

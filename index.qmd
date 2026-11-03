@@ -36,7 +36,7 @@ This course uses MATLAB and R, with generative AI treated as a professional assi
 ## Start Here
 
 Use the [course companion](companion/index.html) for guided reading and self-checks
-for Weeks 1–12. Week 11 has separate meeting pages. Nothing in the companion is
+for Weeks 1–13. Week 11 has separate meeting pages. Nothing in the companion is
 collected or graded; follow Blackboard for assigned work.
 
 **Preparing for the midterm?** Read the [midterm student

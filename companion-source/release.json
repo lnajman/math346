@@ -16,7 +16,8 @@
     "week-04",
     "week-03",
     "week-02",
-    "week-01"
+    "week-01",
+    "week-13"
   ],
   "resources": {
     "downloads/solutions/week01_arrays_plotting_sol.m": "65d39ba892a7b4d3ce3ce6e0191056ae001f70e862a1f7aa4ea90353174c5ea2",
@@ -112,6 +113,11 @@
     "figures/week04_surface_contour_visualization_sol-02.png": "080b9dbdfece2c19627e4a941f237b5728e6970824d6ceba7b3b7ebc5e6c3e44",
     "figures/week05_symbolic_calculus_checks_sol-01.png": "e84b34333614a6fddea03993e16a95c833fd4d5e285aa191bc0df082495b9cfe",
     "figures/week05_tank_optimization_sol-01.png": "aae87fb14a3cd40cc3404edfc7a508a98a512bb8e6eb8ed9fda7bd5164ff75d0",
-    "supplemental/week05_exact_rational_check.m": "22f53161c61000d81bab6bbc5acd7e64f8d17c962adf76e145332c169ac8c724"
+    "supplemental/week05_exact_rational_check.m": "22f53161c61000d81bab6bbc5acd7e64f8d17c962adf76e145332c169ac8c724",
+    "downloads/week13-model-diagnostics.R": "5f1719e2041bf65d718b6945c8d4888a2784faa03559f406f5b9418411993361",
+    "downloads/week13-simple-linear-model.R": "ed0e2d1771d029271dd8c8789d52045395df1b8dc26375788624e44812fa55b7",
+    "downloads/week13-ai-model-interpretation-review.R": "1faf187b91b64547abdca59e0e4a18e6cadc5dfff0c2a6fe48225b9a4c95f07e",
+    "downloads/solutions/week13-model-diagnostics_sol.R": "2ffc7828ab06b69ae1a8800425df2223d586128f99ee728b29dae218c407f6e4",
+    "downloads/solutions/week13-simple-linear-model_sol.R": "3088072e70390fcec634f1501c0c83839f4869de4979b115fe8256774e3b88a0"
   }
 }

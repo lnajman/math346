@@ -23,7 +23,7 @@ the motivation and the kind of feedback being requested.
 
 | Workstream | Status | Evidence | Next step |
 |---|---|---|---|
-| Course companion | **Weeks 1–12 published** | [Student companion](companion/index.html), including two Week 11 meeting pages and checked public code/data | Revise after feedback; prepare Weeks 13–15 companions; learner timing remains unmeasured |
+| Course companion | **Weeks 1–13 published** | [Student index](companion/index.html) and [Week 13](companion/week-13.html), with checked public code/data | Prepare Weeks 14–15 companions; revise after feedback; learner timing remains unmeasured |
 | Student-facing course site | **Published and active** | Student-first [home](index.qmd), navigation, [weekly materials](weeks/index.qmd), [glossary](resources/glossary.qmd), and three recovery checkpoints | Keep current pages, assessment dates, and Blackboard logistics aligned |
 | Course administration and classroom policy | **Published** | [Home](index.qmd), [syllabus](syllabus/index.qmd), and [Quiz 1 guide](assessments/quiz-01.qmd) | Keep Banner and Blackboard logistics current |
 | Course framing, AI policy, and development disclosure | **Published** | [Syllabus](syllabus/index.qmd), student [AI policy](syllabus/ai-policy.qmd), and course-development [LLM-use statement](llm-use.qmd) | Keep assessment-specific student rules aligned with the general policy |
@@ -52,6 +52,11 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- The reviewed [Week 13 companion](companion/week-13.html) is approved for
+  publication with unchanged R code and five public downloads. Independent
+  checks confirm both models' diagnostic counts and source observation 117.
+  The companion covers Weeks 1–13; Weeks 14–15 remain to be prepared.
 
 - Publication of the [Weeks 1–12 companion](companion/index.html) is authorized.
   It provides independent reading and self-checks, with separate Week 11 meeting
@@ -404,6 +409,7 @@ architecture and the remaining implementation decisions.
 
 | Date | Milestone or decision |
 |---|---|
+| 3 November 2026 | The revised Week 13 companion was approved for publication after review, with reference-object guidance, unchanged code/downloads and independently checked diagnostic counts. The companion now covers Weeks 1–13; assessment scope and workload are unchanged. |
 | 3 November 2026 | The reviewed course companion for Weeks 1–12 was approved for publication, with a student index, two independently runnable Week 11 meeting pages, public code/data downloads and unchanged assessment/workload scope. Reviewer files are excluded; learner timing remains unmeasured. |
 | 2 November 2026 | The instructor authorized publication of the approved Week 11 companion as it stands, with later revisions after feedback if needed. Existing workload and assessment scope are unchanged. |
 | 16 October 2026 | Quiz 3 is confirmed for Week 10 and covers R only from Weeks 6–9 inclusive. MATLAB and Week 10 material are excluded. Public preparation guidance and the private package notes reflect the approved scope. |

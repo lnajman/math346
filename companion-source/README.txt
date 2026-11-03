@@ -1,4 +1,4 @@
-MATH 346 published companion sources — Weeks 1–12
+MATH 346 published companion sources — Weeks 1–13
 
 Build from the repository root: python3 scripts/build_companion.py
 Requires Quarto, R and the course R packages. HTML/code chunks render in fresh
@@ -12,4 +12,4 @@ website build; companion/ contains the standalone release copied by Pages.
 
 The 90–120-minute practice budget is approved; learner timing is unmeasured.
 Week 11 offers two independently runnable meetings and the complete chapter.
-Weeks 13–15 companions are not yet available. Blackboard remains authoritative.
+Weeks 14–15 companions are not yet available. Blackboard remains authoritative.

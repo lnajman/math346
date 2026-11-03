@@ -1,0 +1,792 @@
+---
+title: "Week 13 · Read model claims against their evidence"
+subtitle: "MATH 346 course companion · Regression, baselines and diagnostics"
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](https://lnajman.github.io/math346/companion/how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route {#route}
+
+**What does a fitted regression model claim, and which evidence could weaken it?**
+
+We use the familiar `airquality` data to fit ozone on temperature, compare its
+training error with a simple baseline, then add wind and investigate what the
+model missed. Reading a coefficient correctly matters as much as obtaining it.
+A fluent explanation, including an LLM-generated explanation, needs evidence
+for each sentence.
+
+[Before you start](#before-start) · [Words used here](#words) · [Setup](#setup) ·
+[Meeting 1](#meeting-one) · [Meeting 2](#meeting-two) · [AI audit](#ai-audit) ·
+[Practice and resources](#practice).
+
+::: {.callout-tip}
+## A first 30-minute session
+
+Choose a stopping point within about 30 minutes and resume later. This is an
+untested stopping budget, not a completion promise.
+
+1. Check prerequisites and setup; resolve access first if blocked.
+2. Try the row-accounting prediction and read the modeling-table check.
+3. Read the temperature coefficient and mean-baseline comparison; state what
+   they describe and which observations they use.
+4. Inspect the diagnostic flag explanation, then choose the next Core step.
+
+Read displayed results when jumping ahead; run the code in order when returning
+to your script. The full route is Core **1, 2, 3, 4, 6, 8**, selective Guided
+**5, 7, 9, 10**, with **no Extension exercises** in this set. Reading and the
+selected lab/exercises share the **90–120-minute ordinary-week practice budget**.
+Use the announced reduced selection when an assessment displaces teaching time.
+The two class meetings retain 75 minutes each and their final five-minute exits.
+:::
+
+### Before you start {#before-start}
+
+You should be able to open and run an R script, read a pipe, identify a table's
+row meaning, handle `NA` explicitly and understand a function with a checked
+input/output contract. Review [Week 11](https://lnajman.github.io/math346/companion/week-11.html)
+for contracts and [Week 12](https://lnajman.github.io/math346/companion/week-12.html)
+for complete result records. No regression command syntax is assumed.
+
+Slides provide lecture flow, this chapter explains and checks it, and the
+selected lab/exercises provide practice. Week 13 fits and diagnoses a few
+declared models; repeated modeling across groups/formulas belongs to Week 14.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Response / predictor** | The variable being modeled / a variable used to describe its average relationship. |
+| **Formula** | In `y ~ x`, model response `y` using predictor `x`; reversing them changes the question. |
+| **Complete case** | A row with observed values for every variable required by the declared model. |
+| **Coefficient / slope / intercept** | Numbers defining the fitted line; the slope is change per predictor unit, the intercept its value at predictor zero. |
+| **Fitted value / residual** | The model's estimate on a modeling row / observed response minus that estimate. |
+| **Baseline** | A simple comparison rule: predict the same training mean for every row. |
+| **Training RMSE** | Square root of mean squared prediction errors on the rows used for fitting, in response units. |
+| **R-squared** | The fraction of response variation accounted for by the fitted relationship on its modeling rows. |
+| **Standardized residual** | A residual scaled to make unusually large discrepancies easier to screen. |
+| **Cook's distance** | A measure of how much a row affects the fitted model; it is not a probability of error. |
+| **Conditional coefficient** | A slope interpreted while holding the other included predictor fixed. |
+| **Extrapolation / validation** | Predict beyond observed conditions / assess a declared model on data not used to fit it. |
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the variables and formula; explain a prediction; check a specific claim;
+interpret with units, population and limitations. Think first; write a private
+comment only where requested—see the [prediction guide](https://lnajman.github.io/math346/companion/how-to-use.html#read-explain-check-interpret).
+
+## Setup {#setup}
+
+Use R 4.1 or later and the course `dplyr` and `ggplot2` packages. Download the
+[model starter](downloads/week13-simple-linear-model.R) and
+[diagnostic starter](downloads/week13-model-diagnostics.R), and save them in a
+`week13/` folder. The built-in `airquality` table needs no CSV download.
+The [AI critique script](downloads/week13-ai-model-interpretation-review.R)
+is used only for selected Guided 10 work; no AI account or live call is needed.
+
+Run this check from your `week13/` folder:
+
+```{r}
+#| label: required-files
+required_files <- c("week13-simple-linear-model.R", "week13-model-diagnostics.R")
+```
+
+```{r}
+#| label: author-paths
+#| include: false
+required_files <- file.path("downloads", required_files)
+```
+
+```{r}
+#| label: setup-check
+#| output: false
+missing_files <- required_files[!file.exists(required_files)]
+missing_packages <- c("dplyr", "ggplot2")[!vapply(
+  c("dplyr", "ggplot2"), requireNamespace, logical(1), quietly = TRUE
+)]
+if (length(missing_files) + length(missing_packages) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing files:", paste(missing_files, collapse = ", "), "\n")
+  cat("Missing packages:", paste(missing_packages, collapse = ", "), "\n")
+}
+```
+
+**Example output when both files and packages are available:**
+
+```text
+Setup OK
+```
+
+This example cannot confirm your computer's setup. Run the check yourself;
+use `getwd()` for a missing path and the [software checks](https://lnajman.github.io/math346/resources/software-requirements.html)
+for package/access help. Restart R, then run the chapter's code in order,
+including the code inside the reference reveals.
+
+Each full reference rebuilds its own `model_data` and `rmse` function. They are
+independent supplied scripts; keep them as separate saved files. Running this
+chapter in order deliberately replaces those objects when the next reference
+begins. Keep the simple-model output before moving to the diagnostics script.
+
+## Meeting 1 · State what the fitted line describes {#meeting-one}
+
+**Slide cues:** “Modeling Contract”, “Observational Question”, “Build The Modeling Table”
+and “Account For Exclusions”.
+
+### Choose the rows before fitting {#rows}
+
+One source row is one recorded day in New York from May through September 1973.
+The response is ozone in ppb; temperature is in degrees Fahrenheit and wind is
+in miles per hour. We ask about an **observational association**, not what an
+intervention changing temperature would cause.
+
+**Predict in a private comment first:** `airquality` has 153 rows and 37 missing
+`Ozone` values. Temperature and wind are complete. How many complete rows can
+both models use? Does keeping every retained row once show that the omitted
+days are representative of the others?
+
+<details>
+<summary>Compare the row reasoning</summary>
+
+Both models use the same 116 rows; 37 are excluded because ozone is missing.
+Row accounting records the selection but does not establish representativeness.
+**If your answer differed,** you may have confused missing cells with missing
+rows or treated a consistent count as evidence about omitted days.
+
+</details>
+
+For Core 1/2, state the contract and attempt the table in your starter before
+running this check. `observation_id` is created **before** filtering so it still
+points to the original source row.
+
+```{r}
+#| label: modeling-population
+library(dplyr)
+model_rows <- airquality |>
+  transmute(observation_id = row_number(), ozone_ppb = Ozone,
+            temperature_f = Temp, wind_mph = Wind) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+stopifnot(
+  nrow(airquality) == 153,
+  sum(is.na(airquality$Ozone)) == 37,
+  !anyNA(airquality$Temp), !anyNA(airquality$Wind),
+  nrow(model_rows) == 116, !anyNA(model_rows),
+  n_distinct(model_rows$observation_id) == 116
+)
+data.frame(original = nrow(airquality), retained = nrow(model_rows),
+           excluded = nrow(airquality) - nrow(model_rows))
+```
+
+A silent `stopifnot` means its conditions passed; an error identifies the failed
+condition. Check the named input before changing a failed assertion.
+
+### Read the formula, then the implementation {#simple-model}
+
+**Slide cues:** “Plot Before Fitting”, “Read The Formula”, “Fitted Equation”,
+“Interpret The Slope”, “Intercept Warning”, “Fitted Plus Residual”, “Preserve Row Alignment”
+and “Check The Alignment”.
+
+For Core 3, read `ozone_ppb ~ temperature_f` as “model mean ozone using
+temperature.” `~` declares a formula; it is not an assignment. `lm` estimates a
+line from the declared modeling rows. `coef` returns its intercept and slope.
+Reversing the formula models temperature instead and changes both units and
+question.
+
+For Core 4/6, write one slope sentence and name the comparison baseline in your
+starter before opening the complete reference. Trace the formula, then the
+fitted/residual columns, then each argument to `rmse`.
+
+<details>
+<summary>Reference version · Simple model and training baseline</summary>
+
+```{r}
+#| label: simple-reference
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+library(dplyr)
+library(ggplot2)
+
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    ozone_ppb = Ozone,
+    temperature_f = Temp
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f))
+
+stopifnot(
+  nrow(model_data) == 116,
+  identical(range(model_data$temperature_f), c(57L, 97L)),
+  !anyNA(model_data)
+)
+
+relationship_plot <- ggplot(
+  model_data,
+  aes(x = temperature_f, y = ozone_ppb)
+) +
+  geom_point(alpha = 0.65) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Temperature (degrees F)",
+    y = "Ozone (ppb)"
+  )
+
+relationship_build <- ggplot_build(relationship_plot)
+stopifnot(nrow(relationship_build$data[[1]]) == nrow(model_data))
+
+ozone_fit <- lm(ozone_ppb ~ temperature_f, data = model_data)
+
+model_data <- model_data |>
+  mutate(
+    fitted_ozone_ppb = fitted(ozone_fit),
+    residual_ppb = residuals(ozone_fit)
+  )
+
+rmse <- function(observed, predicted) {
+  stopifnot(
+    is.numeric(observed),
+    is.numeric(predicted),
+    length(observed) == length(predicted),
+    !anyNA(observed),
+    !anyNA(predicted)
+  )
+
+  sqrt(mean((observed - predicted)^2))
+}
+
+baseline_prediction <- mean(model_data$ozone_ppb)
+baseline_rmse <- rmse(
+  model_data$ozone_ppb,
+  rep(baseline_prediction, nrow(model_data))
+)
+model_rmse <- rmse(
+  model_data$ozone_ppb,
+  model_data$fitted_ozone_ppb
+)
+
+coefficients <- coef(ozone_fit)
+model_r_squared <- summary(ozone_fit)$r.squared
+
+stopifnot(
+  abs(coefficients[["(Intercept)"]] - (-146.995491)) < 1e-6,
+  abs(coefficients[["temperature_f"]] - 2.428703) < 1e-6,
+  abs(model_r_squared - 0.4877072) < 1e-6,
+  abs(mean(model_data$residual_ppb)) < 1e-12,
+  model_rmse < baseline_rmse
+)
+
+prediction_inputs <- tibble(temperature_f = c(70, 80, 90))
+prediction_outputs <- prediction_inputs |>
+  mutate(predicted_ozone_ppb = predict(ozone_fit, newdata = prediction_inputs))
+
+stopifnot(
+  nrow(prediction_outputs) == 3,
+  all(prediction_outputs$temperature_f >= min(model_data$temperature_f)),
+  all(prediction_outputs$temperature_f <= max(model_data$temperature_f))
+)
+
+model_summary <- tibble(
+  quantity = c(
+    "observations used",
+    "temperature slope (ppb per degree F)",
+    "R-squared",
+    "baseline training RMSE (ppb)",
+    "model training RMSE (ppb)"
+  ),
+  value = c(
+    nrow(model_data),
+    coefficients[["temperature_f"]],
+    model_r_squared,
+    baseline_rmse,
+    model_rmse
+  )
+)
+
+print(model_summary)
+print(prediction_outputs)
+cat("Week 13 simple-linear-model checks passed.\n")
+```
+
+</details>
+
+The printed summary reports a slope near **2.428703 ppb per degree F**, an
+R-squared near **0.487707**, and training RMSEs near **32.8 ppb** for the mean
+baseline and **23.5 ppb** for the line. The reference prediction inputs 70, 80
+and 90 F lie inside the observed 57–97 F range; making these predictions is not
+a new-data accuracy test because no observed responses are evaluated for them.
+
+**Predict · Think first:** the intercept is about -147.0. Is it an observed
+negative ozone value? What does a positive residual mean?
+
+<details>
+<summary>Compare coefficients and residuals</summary>
+
+The intercept is the fitted line at 0 F, outside these modeling temperatures;
+it is not a negative measurement in the table. A positive residual means the
+observed ozone exceeds its fitted value. **If your answer differed,** distinguish
+the fitted line from source measurements and read residual as observed minus
+fitted, not the reverse.
+
+The slope describes an estimated change in **mean ozone associated with** a
+one-degree difference within these conditions. It does not describe every day's
+change or establish causation.
+
+</details>
+
+The reference checks how many points reached the scatter layer. View it and
+check row alignment independently. These checks use the reference object names;
+run the modeling-table check and reference above first. If your completed
+starter uses other names, adapt the names in these checks:
+
+```{r}
+#| label: simple-evidence
+print(relationship_plot)
+stopifnot(
+  identical(model_data$observation_id, model_rows$observation_id),
+  length(fitted(ozone_fit)) == nrow(model_data),
+  length(residuals(ozone_fit)) == nrow(model_data),
+  max(abs(model_data$ozone_ppb -
+          (model_data$fitted_ozone_ppb + model_data$residual_ppb))) < 1e-12,
+  abs(rmse(c(0, 2), c(1, 1)) - 1) < 1e-12
+)
+```
+
+For the last check, the two prediction errors are -1 and 1. Squaring gives 1
+and 1; their mean and its square root are 1. That known answer checks the RMSE
+calculation independently. The reconstruction identity checks row alignment;
+neither check proves the model describes the pattern well.
+
+### Compare like with like {#baseline}
+
+**Slide cues:** “Mean Baseline”, “Fair Training Comparison”, “Training Is Not Validation”,
+“R-Squared” and “R-Squared Is Not”.
+
+The mean baseline repeats one number for every training row. The line changes
+its fitted value with temperature. Both RMSEs must use the **same response,
+same 116 rows and same units**. Lower RMSE means smaller squared discrepancies
+on that comparison, not “more observations predicted exactly.”
+
+**Predict in a private comment first:** after seeing 23.5 versus 32.8 ppb, can
+you say the line predicts a new summer's days well? Does R-squared about 0.488
+mean 48.8% of these days were predicted correctly?
+
+<details>
+<summary>Compare what the metrics support</summary>
+
+The line fits these training rows better than the mean baseline. No new days
+were assessed. R-squared describes response variation accounted for by the
+fitted relationship on these rows; it is not a classification accuracy rate.
+**If your answer differed,** you may have mistaken fitting evidence for
+validation evidence or read “fraction of variation” as “fraction of days.”
+
+</details>
+
+**Individual in-class exit, final five minutes:** name one supported claim and
+one unsupported claim about the fitted model. Follow the announced classroom
+route.
+
+**Self-check (no submission):** a report compares a model's RMSE on 116 complete
+rows with a baseline computed on a different subset of 100 rows. Both numbers
+are in ppb. What must be fixed before interpreting their difference?
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+Recompute both predictions and RMSEs on one declared set of rows with the same
+response. Equal units alone do not make different populations comparable.
+Then label the comparison training or new-data evaluation according to where
+the model was fitted and assessed.
+
+</details>
+
+## Meeting 2 · Investigate what remains {#meeting-two}
+
+**Slide cues:** “Meeting 2 Question”, “Residual Plot”, “Look For Structure”,
+“Standardized Residuals”, “Cook's Distance”, “Diagnostic Flags Ask Questions”,
+“Add Wind”, “Conditional Coefficients” and “Same-Row Comparison”.
+
+### Rebuild the declared additive model {#diagnostics}
+
+Resuming here? The complete reference and following diagnostic check can run
+together in a fresh session; no saved Meeting 1 model object is needed.
+
+The second reference builds a table containing ozone, temperature **and wind**,
+then fits both formulas on it. Because wind has no missing values here, its
+116 source IDs agree with the earlier simple-model table. In another dataset,
+adding a predictor could change the complete-case population; check IDs, not
+just counts, before comparing fits.
+
+`temperature_f + wind_mph` includes both predictors. A temperature slope now
+compares fitted means at the **same wind speed**; the wind slope holds
+temperature fixed. These remain adjusted associations. The formula adds no
+interaction term, so its temperature slope does not change with wind.
+
+For Core 8, locate the additive formula, the diagnostic columns and the flag
+conditions in your starter before opening the reference. Trace the model fit,
+then its residuals, Cook's distances and plot in that order.
+
+<details>
+<summary>Reference version · Additive model and diagnostic flags</summary>
+
+```{r}
+#| label: diagnostic-reference
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+library(dplyr)
+library(ggplot2)
+
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    ozone_ppb = Ozone,
+    temperature_f = Temp,
+    wind_mph = Wind
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+
+stopifnot(nrow(model_data) == 116, !anyNA(model_data))
+
+simple_fit <- lm(
+  ozone_ppb ~ temperature_f,
+  data = model_data
+)
+additive_fit <- lm(
+  ozone_ppb ~ temperature_f + wind_mph,
+  data = model_data
+)
+
+model_data <- model_data |>
+  mutate(
+    simple_prediction = predict(simple_fit),
+    additive_prediction = predict(additive_fit),
+    additive_residual = residuals(additive_fit),
+    standardized_residual = rstandard(additive_fit),
+    cooks_distance = cooks.distance(additive_fit)
+  )
+
+rmse <- function(observed, predicted) {
+  stopifnot(length(observed) == length(predicted), !anyNA(observed), !anyNA(predicted))
+  sqrt(mean((observed - predicted)^2))
+}
+
+baseline_prediction <- mean(model_data$ozone_ppb)
+comparison <- tibble(
+  model = c("mean baseline", "temperature", "temperature + wind"),
+  training_rmse_ppb = c(
+    rmse(model_data$ozone_ppb, rep(baseline_prediction, nrow(model_data))),
+    rmse(model_data$ozone_ppb, model_data$simple_prediction),
+    rmse(model_data$ozone_ppb, model_data$additive_prediction)
+  ),
+  r_squared = c(
+    NA_real_,
+    summary(simple_fit)$r.squared,
+    summary(additive_fit)$r.squared
+  )
+)
+
+residual_plot <- ggplot(
+  model_data,
+  aes(x = additive_prediction, y = additive_residual)
+) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point(alpha = 0.65) +
+  labs(
+    x = "Fitted ozone (ppb)",
+    y = "Residual (ppb)"
+  )
+
+residual_build <- ggplot_build(residual_plot)
+stopifnot(nrow(residual_build$data[[2]]) == nrow(model_data))
+
+influence_threshold <- 4 / nrow(model_data)
+flagged <- model_data |>
+  filter(
+    abs(standardized_residual) > 2 |
+      cooks_distance > influence_threshold
+  ) |>
+  arrange(desc(cooks_distance))
+
+additive_coefficients <- coef(additive_fit)
+
+stopifnot(
+  abs(additive_coefficients[["temperature_f"]] - 1.840179) < 1e-6,
+  abs(additive_coefficients[["wind_mph"]] - (-3.055491)) < 1e-6,
+  abs(summary(additive_fit)$r.squared - 0.5687097) < 1e-6,
+  abs(mean(model_data$additive_residual)) < 1e-12,
+  comparison$training_rmse_ppb[[3]] < comparison$training_rmse_ppb[[2]],
+  comparison$training_rmse_ppb[[2]] < comparison$training_rmse_ppb[[1]],
+  sum(model_data$cooks_distance > influence_threshold) == 7,
+  sum(abs(model_data$standardized_residual) > 2) == 4,
+  flagged$observation_id[[1]] == 117
+)
+
+print(comparison)
+print(flagged)
+cat("Week 13 diagnostic flags are prompts for investigation, not automatic deletion rules.\n")
+cat("Week 13 model-diagnostic checks passed.\n")
+```
+
+</details>
+
+These checks use the object names from the reference above. Run that reference
+first; if your completed starter uses other names, adapt them in these checks.
+
+```{r}
+#| label: diagnostic-evidence
+print(residual_plot)
+expected_model_ids <- which(complete.cases(airquality[c("Ozone", "Temp", "Wind")]))
+stopifnot(
+  identical(model_data$observation_id, expected_model_ids),
+  max(abs(model_data$ozone_ppb -
+          (model_data$additive_prediction + model_data$additive_residual))) < 1e-12
+)
+data.frame(
+  model = "temperature + wind",
+  large_standardized_residuals = sum(abs(model_data$standardized_residual) > 2),
+  cooks_flags = sum(model_data$cooks_distance > influence_threshold),
+  either_flag = nrow(flagged)
+)
+```
+
+Read the residual plot as fitted ozone horizontally and **observed minus
+fitted ozone** vertically, both in ppb. The dashed horizontal line is zero.
+Points above it were underpredicted. Look for bends, changes in vertical spread,
+clusters and isolated points. A near-zero mean residual can coexist with those
+patterns; with an intercept it is a fitted-model algebraic property, not a
+complete diagnostic pass. Some fitted values are negative here: these are model
+estimates, not negative recorded ozone measurements. That is a limitation to
+inspect in this unconstrained linear model.
+
+The additive temperature slope is about **1.840179 ppb per degree F** and the
+wind slope about **-3.055491 ppb per mph**. These answer a different, conditional
+question from the simple model's 2.428703. Its training RMSE is about **21.6 ppb**,
+with R-squared about **0.568710**. Added predictors can improve training fit;
+new-data evidence is still missing.
+
+### Flags invite questions, not automatic deletion
+
+For this **additive model**, four residuals exceed 2 in absolute standardized
+units and seven Cook's distances exceed `4/116`, about 0.0345. `abs` checks
+both negative and positive residuals. Cook's distance measures influence, not
+whether a measurement is false. The script's `|` selects a row meeting **either**
+condition; a row meeting both still appears once.
+
+**Predict · Think first:** must the combined flag table contain 4 + 7 = 11 rows?
+Does crossing the Cook's threshold justify removing a row immediately?
+
+<details>
+<summary>Compare the flag logic</summary>
+
+The groups can overlap, so add their counts only after accounting for overlap.
+Read `either_flag` above and compare the source IDs in `flagged`. No threshold
+alone justifies deletion. **If your answer differed,** you may have counted
+memberships rather than distinct rows, or treated a screening rule as proof
+that a value is wrong.
+
+</details>
+
+The reference sorts flagged rows by Cook's distance; the first is original
+**observation 117**, not “the 117th retained row” (there are only 116 retained
+rows). Use `observation_id` to recover the source day. Ask whether its measurement
+is valid, whether unusual weather/context is real, and how much the fitted
+conclusion depends on it. Do not remove it just to improve a metric. Repeating
+whole modeling workflows is next week's topic.
+
+## Guided audit · A fluent explanation is a set of claims {#ai-audit}
+
+**Slide cues:** “AI Claim Audit” and “Do Not Declare A Winner Yet”.
+
+Use this section selectively for **Guided 10**; the full AI-review lab is not
+an additional required lab. The candidate is supplied locally; no external AI
+call is involved.
+
+> “Increasing temperature by one degree causes ozone to rise by 2.43 ppb.
+> The intercept predicts ozone at 0 F. An R-squared of 0.49 means 49% of
+> observations are predicted correctly. The low training error proves the model
+> will predict new days well, and the residuals show no unusual observations.”
+
+Before revealing the audit, choose evidence for each claim:
+
+| Candidate claim | Evidence to inspect first |
+|---|---|
+| “causes” | How the data were collected; a fitted number alone cannot settle this |
+| meaningful prediction at 0 F | Observed temperature range |
+| percent predicted correctly | What R-squared measures |
+| good new-day predictions | Which rows trained the model and which rows were evaluated |
+| no unusual observations | Residual/influence output for the specified model |
+
+**Predict in a private comment first:** select one sentence, name the exact
+output or design fact you would check, then write a defensible replacement.
+A grammatically correct sentence or a passing R script is not enough.
+
+<details>
+<summary>Compare the evidence and run the supplied audit</summary>
+
+```{r}
+#| label: ai-reference
+library(dplyr)
+
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    ozone_ppb = Ozone,
+    temperature_f = Temp
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f))
+
+ozone_fit <- lm(ozone_ppb ~ temperature_f, data = model_data)
+
+generated_interpretation <- paste(
+  "Increasing temperature by one degree causes ozone to rise by",
+  "2.43 ppb. The intercept predicts ozone at 0 F.",
+  "An R-squared of 0.49 means 49% of observations are predicted correctly.",
+  "The low training error proves the model will predict new days well,",
+  "and the residuals show no unusual observations."
+)
+
+coefficients <- coef(ozone_fit)
+r_squared <- summary(ozone_fit)$r.squared
+standardized_residuals <- rstandard(ozone_fit)
+cooks_distances <- cooks.distance(ozone_fit)
+
+rmse <- function(observed, predicted) {
+  sqrt(mean((observed - predicted)^2))
+}
+
+baseline_rmse <- rmse(
+  model_data$ozone_ppb,
+  rep(mean(model_data$ozone_ppb), nrow(model_data))
+)
+training_rmse <- rmse(model_data$ozone_ppb, predict(ozone_fit))
+
+audit <- tibble(
+  generated_claim = c(
+    "temperature causes ozone to rise",
+    "the intercept is a meaningful prediction at 0 F",
+    "R-squared is the percentage predicted correctly",
+    "training error proves performance on new days",
+    "there are no unusual observations"
+  ),
+  verdict = rep("unsupported or incorrect", 5),
+  evidence = c(
+    "the fitted observational association does not establish causation",
+    paste("observed temperatures range from", min(model_data$temperature_f),
+          "to", max(model_data$temperature_f), "F"),
+    "R-squared describes variation accounted for by the fitted model",
+    "training predictions reuse the same observations used for fitting",
+    paste(sum(abs(standardized_residuals) > 2),
+          "standardized residuals exceed 2 in absolute value")
+  )
+)
+
+stopifnot(
+  nrow(model_data) == 116,
+  abs(coefficients[["temperature_f"]] - 2.428703) < 1e-6,
+  min(model_data$temperature_f) == 57,
+  max(model_data$temperature_f) == 97,
+  abs(r_squared - 0.4877072) < 1e-6,
+  training_rmse < baseline_rmse,
+  sum(abs(standardized_residuals) > 2) == 5,
+  sum(cooks_distances > 4 / nrow(model_data)) == 5,
+  nrow(audit) == 5
+)
+
+cat(generated_interpretation, "\n\n")
+print(audit)
+cat("Week 13 AI model-interpretation audit passed.\n")
+```
+
+The audit is for the **temperature-only model**: it has **five** large
+standardized residuals and **five** Cook's flags. Earlier counts 4/7 belong to
+the additive model; diagnostics depend on the model, not just the dataset.
+The intercept sentence is algebraically correct; using that value as a meaningful
+prediction for these conditions is the unsupported step. Qualify it with the
+observed range rather than calling the definition itself false.
+
+A defensible interpretation says: on these 116 observed days, temperature is
+associated with mean ozone, with fitted slope about 2.43 ppb per degree F.
+The intercept is algebraically the value at 0 F, but that is outside the
+observed 57–97 F range. About 0.488 of response variation is accounted for on
+these modeling rows. Training RMSE is lower than the mean baseline, with flagged
+observations to investigate; no new-day performance was measured.
+
+**If your answer differed,** you may have accepted the explanation's confidence
+instead of identifying the model, units, design and evaluation rows behind it.
+Read all code and claims you accept from an LLM and keep the checks required by
+the [course AI policy](https://lnajman.github.io/math346/syllabus/ai-policy.html).
+Never supply private student information or assessment keys to an external tool.
+
+</details>
+
+**Individual in-class exit, final five minutes:** “Write one supported model
+claim, one unsupported claim, and one diagnostic that would change your
+confidence.” Follow the announced classroom route.
+
+**Self-check (no submission):** a large positive residual and a Cook's flag
+occur for the same day. Explain what each measures and name a useful next
+investigation without deciding the day is an error.
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+The positive residual says observed ozone exceeded the fitted value; Cook's
+distance concerns how much that row affects the fit. Inspect the original
+source day, measurement validity and conditions, and ask whether the conclusion
+depends strongly on it. Neither diagnostic establishes a data-entry mistake.
+
+</details>
+
+## Practice, recovery and next steps {#practice}
+
+| Work | Practice supported here |
+|---|---|
+| **Core 1, 2** | State the contract and reconcile original/retained/excluded rows |
+| **Core 3, 4** | Read/reverse formulas and interpret coefficients with units and scope |
+| **Core 6** | Test RMSE and compare with a mean baseline on identical rows |
+| **Core 8** | Read additive diagnostics and investigate a flagged source row |
+| **Guided 5, 7, 9, 10** | Residual reconstruction, R-squared explanation, model comparison and AI audit; use selectively |
+| **Extension** | None in this exercise set |
+
+The worked references support the selected main-lab checkpoints; they are not
+extra scripts to submit. Keep your checked work for your own use and any
+checkpoint explicitly requested on Blackboard.
+
+<details>
+<summary>Possible solutions · Compare after your attempt</summary>
+
+- [Simple-model possible solution](downloads/solutions/week13-simple-linear-model_sol.R)
+- [Diagnostics possible solution](downloads/solutions/week13-model-diagnostics_sol.R)
+
+These are unchanged public comparison files. Other correct implementations are
+possible; keep checks whose purpose you can explain.
+
+</details>
+
+If an object is missing, rerun its defining block rather than relying on an old
+workspace. If counts or coefficients differ, check the formula, complete-case
+variables, source IDs and model before comparing numbers. If a model runs but
+you cannot explain it, start with one row's observed/fitted/residual values.
+
+**Project 2:** locate response, predictors, formula, principal coefficient,
+mean baseline, metric and failure condition in the approved model plan. The
+frozen-plan gate follows Week 13 instruction; validation files stay withheld
+until that gate closes and the common Week 14 release. Follow the
+[project instructions](https://lnajman.github.io/math346/projects/project-2-modeling.html)
+and [milestone map](https://lnajman.github.io/math346/projects/project-milestones.html).
+Training fit is not validation.
+
+**Where this fits:** [Week 13 notes](https://lnajman.github.io/math346/weeks/week-13.html) ·
+[Slides](https://lnajman.github.io/math346/slides/week-13.html) ·
+[Main lab](https://lnajman.github.io/math346/labs/lab-13-model-basics.html) ·
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-13-ai-model-review.html) ·
+[Exercises](https://lnajman.github.io/math346/weeks/week-13-exercises.html).
+
+[Published companion chapters](https://lnajman.github.io/math346/companion/index.html).
