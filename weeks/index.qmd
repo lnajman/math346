@@ -6,7 +6,7 @@ Each week has a problem focus, the official syllabus topic, the software tools i
 
 ::: {.callout-tip}
 The [course companion](../companion/index.html) supports independent reading
-and self-checking for Weeks 1–13, alongside the slides and selected practice.
+and self-checking for Weeks 1–14, alongside the slides and selected practice.
 
 ## Start with the workload guide
 

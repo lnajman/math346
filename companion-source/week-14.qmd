@@ -1,0 +1,815 @@
+---
+title: "Week 14 · Repeat models without losing the evidence"
+subtitle: "MATH 346 course companion · Groups, uncertainty and sensitivity"
+lang: en
+---
+
+::: {.callout-note}
+Use this chapter with the [companion reading guide](https://lnajman.github.io/math346/companion/how-to-use.html).
+**Nothing in this chapter is collected or graded.** The approved syllabus,
+workload guide and Blackboard remain authoritative.
+:::
+
+## Your route {#route}
+
+**How can we repeat one modeling question across groups without treating
+different months as competing models?**
+
+We reuse the Week 13 formula for ozone, temperature and wind, changing only the
+monthly subset. A useful result keeps the group, sample size, fitted model,
+coefficient interval and diagnostics together. We then ask how a declared
+sensitivity refit changes the conclusion, and audit an LLM-style ranking.
+
+[Before you start](#before-start) · [Words used here](#words) · [Setup](#setup) ·
+[Meeting 1](#meeting-one) · [Meeting 2](#meeting-two) · [AI audit](#ai-audit) ·
+[Practice and resources](#practice).
+
+::: {.callout-tip}
+## A first 30-minute session
+
+Choose a stopping point within about 30 minutes and resume there later. This
+is an untested stopping budget, not a promise to complete every step.
+
+1. Check prerequisites/setup; resolve access first if blocked.
+2. State what stays fixed, then inspect the group counts and source IDs.
+3. Read the coefficient plot with its sample-size table; compare uncertainty
+   rather than naming a winning month.
+4. Read June's sensitivity explanation and mark the next Core checkpoint.
+
+Read displayed output when jumping ahead; run R blocks in order when returning
+to your script. The full route is Core **1, 2, 4, 5, 6**, selective Guided
+**3, 7, 8, 9, 10**, with **no Extension exercises** in this set. Reading, selected
+lab checkpoints and exercises share the **90–120-minute ordinary-week practice
+budget**. Follow the announced reduced selection in assessment weeks. Both
+class meetings retain 75 minutes and their final five-minute individual exit.
+:::
+
+### Before you start {#before-start}
+
+Use [Week 12](https://lnajman.github.io/math346/companion/week-12.html) for named
+lists, `lapply`, typed `vapply` and keeping requested work visible, and
+[Week 13](https://lnajman.github.io/math346/companion/week-13.html) for complete
+cases, coefficient units, training metrics, residuals and Cook's distance.
+You need to recognize those ideas; the complete references rebuild every object.
+No saved workspace or external CSV is needed.
+
+Slides provide lecture flow, this chapter explains and checks it, and selected
+labs/exercises provide practice. Week 14 repeats one declared workflow; it does
+not search many formulas. Week 15 turns the evidence into reproducible
+communication.
+
+::: {.callout-note #words}
+## Words used in this chapter
+
+| Word or pattern | Meaning here |
+|---|---|
+| **Fixed contract** | The question, formula, units, row-selection and output rules kept the same across groups. |
+| **Subset / group** | The observations used for one fit; here, complete rows from one month. |
+| **Factor levels** | Declared category order; May through September controls the input split. A later text column need not preserve that order in a plot. |
+| **Named list** | A collection with one addressable element per group, such as `month_data[["Jun"]]`. |
+| **Model object / summary** | The retained fitted `lm` object / a compact row of selected evidence from it. |
+| **Schema / alignment** | Agreed output columns and types / keeping each result attached to the right request. |
+| **Coefficient interval** | A model-based uncertainty interval for a coefficient, not a range of individual ozone values. |
+| **Training R-squared / RMSE** | Variation accounted for / prediction-error scale on the rows used for fitting. |
+| **Standardized residual / Cook's distance** | A scaled observed-minus-fitted discrepancy / a measure of a row's influence on the fit. |
+| **Sensitivity refit** | Repeat the fixed fit after one declared change and report how the result changes. |
+| **Source ID / list position** | The original observation identifier / its current location inside a subset or result list. |
+| **Validation** | Evaluate the declared model on data not used to fit it; a changed training subset is not validation. |
+:::
+
+### Read / Explain / Check / Interpret
+
+Read the repeated unit and its inputs; explain a prediction; check alignment;
+interpret the result with sample size and uncertainty. Think first; write a
+private comment only where requested—see the [prediction guide](https://lnajman.github.io/math346/companion/how-to-use.html#read-explain-check-interpret).
+
+## Setup {#setup}
+
+Use R 4.1 or later, `dplyr` and `ggplot2`. Save the
+[many-model starter](downloads/week14-many-models.R) and
+[sensitivity starter](downloads/week14-grouped-sensitivity.R) in a `week14/`
+folder. The examples use built-in `airquality`; no data download is required.
+The [AI critique target](downloads/week14-ai-model-ranking-review.R) is for
+selected Guided 10 work, with no AI account or external call.
+
+Run this check from your `week14/` folder:
+
+```{r}
+#| label: required-files
+required_files <- c("week14-many-models.R", "week14-grouped-sensitivity.R")
+```
+
+```{r}
+#| label: author-paths
+#| include: false
+required_files <- file.path("downloads", required_files)
+```
+
+```{r}
+#| label: setup-check
+#| output: false
+missing_files <- required_files[!file.exists(required_files)]
+missing_packages <- c("dplyr", "ggplot2")[!vapply(
+  c("dplyr", "ggplot2"), requireNamespace, logical(1), quietly = TRUE
+)]
+if (length(missing_files) + length(missing_packages) == 0) {
+  cat("Setup OK\n")
+} else {
+  cat("Missing files:", paste(missing_files, collapse = ", "), "\n")
+  cat("Missing packages:", paste(missing_packages, collapse = ", "), "\n")
+}
+```
+
+**Example output when both files and packages are available:**
+
+```text
+Setup OK
+```
+
+Run the check on your computer; the printed example cannot confirm your setup.
+Use `getwd()` for a missing path and the [software checks](https://lnajman.github.io/math346/resources/software-requirements.html)
+for access/package help. Restart R, then run the chapter's code in order,
+including the code inside the reference reveals.
+
+The full references are independent saved scripts. Each rebuilds `model_data`
+and related objects; the next reference deliberately replaces them. Keep your
+own starters separate and compare only after attempting the selected work.
+
+## Meeting 1 · One contract, five groups {#meeting-one}
+
+**Slide cues:** “Hold The Contract Fixed”, “What Changes?”, “Checked Modeling Table”,
+“Split By Group”, “Reconcile The Split” and “Freeze The Formula”.
+
+### Check the split before fitting {#split}
+
+For Core 1, state one recorded New York day (May–September 1973) as the
+observation, ozone (ppb) as the
+response, temperature (degrees F) and wind (mph) as predictors, and
+`ozone_ppb ~ temperature_f + wind_mph` as the formula. Keep the same
+complete-case rule, minimum five rows, output schema and diagnostic rules.
+The month changes the subset; it is not an extra predictor in this formula.
+
+**Predict in a private comment first:** five month labels are present. Does
+that alone show all 116 complete observations reached exactly one group? Which
+checks would reveal lost rows, duplicated rows or a label-order mistake?
+
+<details>
+<summary>Compare the split reasoning</summary>
+
+Check names/order, counts adding to 116, and the original source IDs appearing
+once each. Merely returning five groups checks none of the row identities.
+**If your answer differed,** you may have treated group completeness as row
+completeness, or assumed matching totals establish identity.
+
+</details>
+
+Attempt Core 2's grouped-input audit in your starter, then compare this check.
+Create `observation_id` before filtering; factor levels set the month order.
+The split contains complete cases, not all 153 source days.
+
+```{r}
+#| label: grouped-inputs
+library(dplyr)
+model_input <- airquality |>
+  transmute(observation_id = row_number(),
+            month = factor(month.abb[Month], levels = month.abb[5:9]),
+            ozone_ppb = Ozone, temperature_f = Temp, wind_mph = Wind) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+audit_groups <- split(model_input, model_input$month)
+group_audit <- model_input |>
+  group_by(month) |>
+  summarize(n = n(), temperature_min = min(temperature_f),
+            temperature_max = max(temperature_f), wind_min = min(wind_mph),
+            wind_max = max(wind_mph), .groups = "drop")
+split_ids <- unlist(lapply(audit_groups, function(d) d$observation_id),
+                    use.names = FALSE)
+stopifnot(
+  nrow(model_input) == 116,
+  identical(names(audit_groups), month.abb[5:9]),
+  identical(unname(vapply(audit_groups, nrow, integer(1))),
+            c(26L, 9L, 26L, 26L, 29L)),
+  sum(group_audit$n) == 116,
+  !anyDuplicated(split_ids),
+  identical(sort(split_ids), model_input$observation_id),
+  all(group_audit$temperature_min < group_audit$temperature_max),
+  all(group_audit$wind_min < group_audit$wind_max)
+)
+print(group_audit, width = Inf)
+```
+
+The monthly counts are 26, 9, 26, 26 and 29. `split` returns a list, not a
+combined table: `audit_groups[["Jun"]]` is June's nine-row data frame. The
+original IDs stay attached even though positions change inside each subset.
+A silent `stopifnot` means its conditions passed; an error names the failed
+condition. Inspect that input rather than deleting the check.
+
+### Retain the fitted object with its evidence {#fits}
+
+**Slide cues:** “One-Group Contract”, “Return More Than A Number”, “Test May First”,
+“Repeat The Checked Unit”, “Name The Results”, “Extract Summary Rows” and “Check The Batch”.
+
+**Predict in a private comment first:** for Core 1/4, state your function's
+intended input and return components before expanding the reference. In your starter, keep the
+model object as well as the summary. A coefficient alone cannot later supply
+residuals, intervals or the fitted formula.
+
+Read the `fit_one_month` definition first. Its return list has `month`,
+`formula`, `fit` and `summary`. `lapply` returns one such record per month;
+`names(model_results)` restores the requested labels to that result list.
+The second `lapply` extracts each `result$summary`, and `bind_rows` combines
+compatible rows. `vapply(..., character(1))` checks that formula text is one
+character value per result, not an arbitrary-length object.
+
+Guided 3 tests May and expected failures before automation in your own starter.
+The complete supplied reference below defines the function and executes the
+five-group batch; it does not separately print a May-only test.
+
+<details>
+<summary>Reference version · Retain all five models</summary>
+
+A useful contract takes prepared one-month data, a month label and the fixed
+formula, and returns `month`, `formula`, the fitted `lm` object and one summary
+row. Keep sample size, coefficients, interval and training metrics in that row.
+**If your answer differed,** you may have kept only a coefficient or omitted
+the group label, retained fit or uncertainty needed for later checking.
+
+```{r}
+#| label: many-models-reference
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+library(dplyr)
+library(ggplot2)
+
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    month = factor(month.abb[Month], levels = month.abb[5:9]),
+    ozone_ppb = Ozone,
+    temperature_f = Temp,
+    wind_mph = Wind
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+
+fixed_formula <- ozone_ppb ~ temperature_f + wind_mph
+month_data <- split(model_data, model_data$month)
+
+fit_one_month <- function(data, month_name, model_formula) {
+  required <- c("month", "ozone_ppb", "temperature_f", "wind_mph")
+  if (!is.data.frame(data) || !all(required %in% names(data))) {
+    stop("group data do not satisfy the required column contract")
+  }
+  if (nrow(data) < 5 || length(unique(data$month)) != 1) {
+    stop("each group needs one month and at least five observations")
+  }
+  if (sd(data$temperature_f) == 0 || sd(data$wind_mph) == 0) {
+    stop("each predictor must vary within the group")
+  }
+
+  fit <- lm(model_formula, data = data)
+  intervals <- confint(fit)
+  predictions <- predict(fit)
+
+  summary_row <- tibble(
+    month = month_name,
+    n_observations = nrow(data),
+    temperature_slope = coef(fit)[["temperature_f"]],
+    temperature_low = intervals["temperature_f", 1],
+    temperature_high = intervals["temperature_f", 2],
+    wind_slope = coef(fit)[["wind_mph"]],
+    training_rmse_ppb = sqrt(mean((data$ozone_ppb - predictions)^2)),
+    r_squared = summary(fit)$r.squared
+  )
+
+  list(
+    month = month_name,
+    formula = model_formula,
+    fit = fit,
+    summary = summary_row
+  )
+}
+
+model_results <- lapply(
+  names(month_data),
+  function(month_name) {
+    fit_one_month(month_data[[month_name]], month_name, fixed_formula)
+  }
+)
+names(model_results) <- names(month_data)
+
+model_summary <- bind_rows(lapply(model_results, function(result) result$summary))
+formula_text <- vapply(
+  model_results,
+  function(result) paste(deparse(result$formula), collapse = " "),
+  character(1)
+)
+
+expected_slopes <- c(
+  May = 1.642119,
+  Jun = 1.637785,
+  Jul = 3.743456,
+  Aug = 1.974714,
+  Sep = 2.027110
+)
+
+stopifnot(
+  identical(names(model_results), month.abb[5:9]),
+  identical(model_summary$month, month.abb[5:9]),
+  identical(model_summary$n_observations, c(26L, 9L, 26L, 26L, 29L)),
+  sum(model_summary$n_observations) == nrow(model_data),
+  length(unique(formula_text)) == 1,
+  all(model_summary$temperature_low < model_summary$temperature_slope),
+  all(model_summary$temperature_slope < model_summary$temperature_high),
+  max(abs(model_summary$temperature_slope - expected_slopes)) < 1e-6,
+  all(vapply(model_results, function(result) inherits(result$fit, "lm"), logical(1)))
+)
+
+coefficient_plot <- ggplot(
+  model_summary,
+  aes(x = month, y = temperature_slope)
+) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_errorbar(
+    aes(ymin = temperature_low, ymax = temperature_high),
+    width = 0.15
+  ) +
+  geom_point(size = 2) +
+  labs(
+    x = "Month",
+    y = "Temperature coefficient (ozone ppb per degree F)"
+  )
+
+coefficient_build <- ggplot_build(coefficient_plot)
+stopifnot(nrow(coefficient_build$data[[3]]) == nrow(model_summary))
+
+print(model_summary)
+cat("Week 14 fitted one checked model for every requested month.\n")
+```
+
+</details>
+
+The helper checks required columns, one month, minimum row count and predictor
+variation; preprocessing supplied the complete rows. The caller passes the
+same formula each time, and the batch checks its text. These are teaching checks,
+not an exhaustive validator for arbitrary inputs. If a group fails, this
+`lapply` batch **stops**; it does not return a status row for the failed group.
+Keep the requested group list visible and investigate the failure rather than
+silently dropping the group. The Week 12 status-log pattern is available when
+a task calls for mixed success/error records.
+
+### Read estimates with intervals and sample sizes {#intervals}
+
+**Slide cues:** “Retain Beside Every Estimate”, “Plot Estimate And Interval”,
+“Why Intervals Matter” and “Different Rows, Different Questions”.
+
+These checks use the reference object names. Run the full reference above first;
+if your completed starter uses other names, adapt the names in these checks.
+
+```{r}
+#| label: coefficient-evidence
+print(coefficient_plot)
+print(model_summary[, c("month", "n_observations", "temperature_slope",
+                        "temperature_low", "temperature_high")], width = Inf)
+stopifnot(all(vapply(model_results, function(result) {
+  identical(paste(deparse(formula(result$fit)), collapse = " "),
+            paste(deparse(fixed_formula), collapse = " "))
+}, logical(1))))
+```
+
+Each point is a temperature coefficient in ppb per degree F, holding wind
+fixed. Each vertical bar is its 95% model-based coefficient interval; the dashed
+line is zero. Read the adjacent sample-size table with the plot. These are
+intervals for coefficients under the model assumptions, not ranges containing
+95% of individual ozone readings.
+
+In the returned summary, `month` is text, so this plot orders its labels
+alphabetically (Aug, Jul, Jun, May, Sep). The table remains in May–September
+order. Use the labels to match each point to its table row, rather than assuming
+the positions coincide.
+
+**Predict · Think first:** June has the fewest rows. Must it have the widest
+temperature interval? Does July's highest point estimate establish the largest
+true effect?
+
+<details>
+<summary>Compare what the display supports</summary>
+
+June has nine rows, but July's temperature interval is widest in this example.
+Width also depends on the observed predictor information and residual spread;
+sample size alone does not determine it. July's point estimate is about 3.74,
+while the other estimates are roughly 1.64–2.03. Retain the intervals rather
+than treating those point estimates as exact group effects.
+
+**If your answer differed,** you may have used only sample size or only the
+coefficient column. Interval overlap alone does not prove equal effects, either.
+These remain observational associations, not causal effects.
+
+</details>
+
+For Core 6, useful statements connect the estimate to its evidence: June has
+only nine complete rows; July's estimated temperature association is larger
+but has substantial uncertainty; September has 29 rows and its own observed
+conditions. They do not define a common predictive competition. Same formula
+and units make summaries align; they do not make different rows interchangeable.
+
+**Individual in-class exit, final five minutes:** what must stay fixed across
+all five fits? Follow the announced classroom route.
+
+**Self-check (no submission):** a result table still has five rows after a bug,
+but `Jun` appears twice and `Aug` disappears. Why is a row-count check inadequate,
+and which requested-versus-returned comparison would expose it?
+
+<details>
+<summary>Compare the Meeting 1 self-check</summary>
+
+Five rows can contain the wrong labels. Compare the returned month names and
+order with `names(month_data)` or `month.abb[5:9]`, and require one summary for
+each requested group. Counts and names test different promises; retain both.
+
+</details>
+
+## Meeting 2 · Repeat diagnostics and a declared sensitivity rule {#meeting-two}
+
+**Slide cues:** “Meeting 2 Question”, “One Diagnostic Record Per Group”,
+“Preserve Source Identity”, “Sensitivity Refit”, “Sensitivity Is A Question”,
+“Classroom Result” and “Why Training Error Falls”.
+
+### Keep the selected row traceable {#sensitivity}
+
+Use this section selectively with Guided 7/8/9. It supplies evidence for
+Core 6's cautious comparisons, not an extra full assignment. The complete
+reference and following evidence check can run in a fresh session independently
+of Meeting 1.
+
+The declared rule selects the largest **absolute standardized residual** in each
+month, removes that one row for a sensitivity refit, and keeps the same formula.
+It is not a rule selecting the largest Cook's distance. `removed_index` is a
+position within that month; `data$observation_id[[removed_index]]` recovers the
+original source ID. `data[-removed_index, , drop = FALSE]` keeps the remaining
+rows as a data frame. No original source row is deleted from `airquality`.
+
+Before expanding, identify that rule in your starter and predict which evidence
+must remain beside every sensitivity coefficient: group, original/retained size,
+selected source ID, original coefficient and both training-error records.
+
+<details>
+<summary>Reference version · Grouped diagnostics and sensitivity</summary>
+
+```{r}
+#| label: sensitivity-reference
+# MATH 346 - possible worked solution
+# Compare only after attempting the starter; other correct implementations are possible.
+
+library(dplyr)
+
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    month = factor(month.abb[Month], levels = month.abb[5:9]),
+    ozone_ppb = Ozone,
+    temperature_f = Temp,
+    wind_mph = Wind
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+
+month_data <- split(model_data, model_data$month)
+fixed_formula <- ozone_ppb ~ temperature_f + wind_mph
+
+rmse <- function(observed, predicted) {
+  stopifnot(length(observed) == length(predicted), !anyNA(observed), !anyNA(predicted))
+  sqrt(mean((observed - predicted)^2))
+}
+
+diagnose_one_month <- function(data, month_name) {
+  fit <- lm(fixed_formula, data = data)
+  standardized <- rstandard(fit)
+  cook <- cooks.distance(fit)
+  removed_index <- which.max(abs(standardized))
+
+  sensitivity_data <- data[-removed_index, , drop = FALSE]
+  sensitivity_fit <- lm(fixed_formula, data = sensitivity_data)
+
+  original_slope <- coef(fit)[["temperature_f"]]
+  sensitivity_slope <- coef(sensitivity_fit)[["temperature_f"]]
+
+  tibble(
+    month = month_name,
+    n_observations = nrow(data),
+    standardized_residual_flags = sum(abs(standardized) > 2),
+    cooks_distance_flags = sum(cook > 4 / nrow(data)),
+    sensitivity_removed_observation_id = data$observation_id[[removed_index]],
+    original_temperature_slope = original_slope,
+    sensitivity_temperature_slope = sensitivity_slope,
+    slope_change_percent =
+      100 * (sensitivity_slope - original_slope) / abs(original_slope),
+    original_training_rmse_ppb = rmse(data$ozone_ppb, predict(fit)),
+    sensitivity_training_rmse_ppb =
+      rmse(sensitivity_data$ozone_ppb, predict(sensitivity_fit))
+  )
+}
+
+sensitivity_table <- bind_rows(lapply(
+  names(month_data),
+  function(month_name) {
+    diagnose_one_month(month_data[[month_name]], month_name)
+  }
+))
+
+stopifnot(
+  nrow(sensitivity_table) == length(month_data),
+  identical(sensitivity_table$month, month.abb[5:9]),
+  identical(
+    sensitivity_table$standardized_residual_flags,
+    c(1L, 1L, 2L, 1L, 2L)
+  ),
+  identical(
+    sensitivity_table$cooks_distance_flags,
+    c(2L, 2L, 2L, 1L, 3L)
+  ),
+  identical(
+    sensitivity_table$sensitivity_removed_observation_id,
+    c(30L, 49L, 62L, 117L, 124L)
+  ),
+  all(sensitivity_table$sensitivity_training_rmse_ppb <
+        sensitivity_table$original_training_rmse_ppb),
+  sum(abs(sensitivity_table$slope_change_percent) > 40) == 3
+)
+
+print(sensitivity_table)
+cat("Lower sensitivity training error follows removal of a difficult row; it is not new-data validation.\n")
+cat("Week 14 grouped sensitivity checks passed.\n")
+```
+
+</details>
+
+These checks use the reference object names. Run the reference above first, or
+adapt the names to your own completed starter.
+
+```{r}
+#| label: sensitivity-evidence
+selected_rows <- airquality[sensitivity_table$sensitivity_removed_observation_id,
+                            c("Ozone", "Temp", "Wind", "Month", "Day")]
+stopifnot(
+  identical(month.abb[selected_rows$Month], sensitivity_table$month),
+  identical(sensitivity_table$n_observations - 1L, c(25L, 8L, 25L, 25L, 28L))
+)
+print(cbind(source_id = sensitivity_table$sensitivity_removed_observation_id,
+            selected_rows))
+print(sensitivity_table, width = Inf)
+```
+
+The selected source IDs are **30, 49, 62, 117 and 124**, in May–September order.
+A source ID is not its row position inside the month. In the five monthly fits,
+the standardized-residual flag counts are **1, 1, 2, 1, 2**, and Cook's-distance
+counts are **2, 2, 2, 1, 3**. The Cook's threshold is `4 / n` for **each month's**
+size; June's threshold is `4/9`, not the pooled Week 13 threshold `4/116`.
+A row meeting both flags is still one observation.
+
+**Predict · Think first:** June's refitted temperature slope is about 2.83.
+Using the more precise values 1.6378 before and 2.8319 after, calculate the
+approximate percentage change and identify the denominator. If its training
+RMSE falls, have we shown that removing the row improved future prediction?
+
+<details>
+<summary>Compare the sensitivity reading</summary>
+
+The change is positive: the script computes
+`100 * (sensitivity_slope - original_slope) / abs(original_slope)`, about +72.9%
+for June. Using the displayed rounded coefficients gives approximately the
+same percentage. The denominator is the magnitude of the original slope, not
+the refitted slope. A percent change would need special handling if that original
+slope were zero; it is nonzero in these supplied fits.
+
+June now uses eight rather than nine rows. Its difficult row was selected using
+the original fitted model. Lower error on the changed, selected training subset
+is not a fair same-row validation comparison. **If your answer differed,** you
+may have changed the denominator or mistaken a refit on easier training rows
+for evidence on new observations.
+
+</details>
+
+Three temperature coefficients change by more than 40% in magnitude: May
+(about -45.7%), June (+72.9%) and August (+48.7%). July changes about +13.4% and
+September -12.8%. Here all five sensitivity training RMSEs decrease. Report the
+coefficient changes as evidence of fragility; a lower error does not make the
+removed observations erroneous or approve a data-cleaning rule.
+
+## Guided audit · Sorting a table does not define a winner {#ai-audit}
+
+**Slide cues:** “Generated Ranking”, “AI Claim: September Is Best”,
+“AI Claim: Wind Raises June Ozone”, “AI Claim: Ranking Will Persist” and
+“AI Claim: Diagnostics Do Not Matter”.
+
+Use selectively for Guided 10. Read the supplied candidate first:
+
+> “September is the best model because it has the highest R-squared.
+> June proves that higher wind increases ozone. The ranking will hold for
+> future observations, and diagnostics do not change the conclusion.”
+
+The sorting rule is `arrange(desc(r_squared))`: order by decreasing training
+R-squared. Before accepting the conclusion, inspect this evidence:
+
+| Claim | Evidence to check |
+|---|---|
+| Best monthly model | Whether all models predict the same observations for one declared criterion |
+| Wind increases June ozone | Study design, June sample size and wind coefficient interval |
+| Ranking persists on new observations | Where the ranking metrics were evaluated |
+| Diagnostics do not matter | Group flags and declared sensitivity changes |
+
+**Predict in a private comment first:** choose one claim, name the output or
+design fact you would inspect, then write a defensible replacement before
+opening the audit. A successful sort or a confident sentence is not evidence
+that the scientific comparison is defined.
+
+<details>
+<summary>Compare the evidence and run the supplied audit</summary>
+
+```{r}
+#| label: ai-reference
+library(dplyr)
+
+model_data <- airquality |>
+  transmute(
+    observation_id = row_number(),
+    month = factor(month.abb[Month], levels = month.abb[5:9]),
+    ozone_ppb = Ozone,
+    temperature_f = Temp,
+    wind_mph = Wind
+  ) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+
+month_data <- split(model_data, model_data$month)
+
+summarize_model <- function(data, month_name) {
+  fit <- lm(ozone_ppb ~ temperature_f + wind_mph, data = data)
+  intervals <- confint(fit)
+  standardized <- rstandard(fit)
+  cook <- cooks.distance(fit)
+  removed_index <- which.max(abs(standardized))
+  sensitivity_fit <- lm(
+    ozone_ppb ~ temperature_f + wind_mph,
+    data = data[-removed_index, , drop = FALSE]
+  )
+
+  tibble(
+    month = month_name,
+    n_observations = nrow(data),
+    r_squared = summary(fit)$r.squared,
+    wind_slope = coef(fit)[["wind_mph"]],
+    wind_low = intervals["wind_mph", 1],
+    wind_high = intervals["wind_mph", 2],
+    diagnostic_flags =
+      sum(abs(standardized) > 2 | cook > 4 / nrow(data)),
+    temperature_slope_change_percent = 100 *
+      (coef(sensitivity_fit)[["temperature_f"]] -
+         coef(fit)[["temperature_f"]]) /
+      abs(coef(fit)[["temperature_f"]])
+  )
+}
+
+evidence <- bind_rows(lapply(
+  names(month_data),
+  function(month_name) summarize_model(month_data[[month_name]], month_name)
+))
+
+# Generated ranking: different group-specific models are treated as competitors
+# and only training R-squared is considered.
+generated_ranking <- evidence |>
+  arrange(desc(r_squared)) |>
+  transmute(rank = row_number(), month, r_squared)
+
+generated_claim <- paste(
+  "September is the best model because it has the highest R-squared.",
+  "June proves that higher wind increases ozone.",
+  "The ranking will hold for future observations, and diagnostics do not",
+  "change the conclusion."
+)
+
+june <- evidence |>
+  filter(month == "Jun")
+
+audit <- tibble(
+  generated_claim = c(
+    "September is the best model",
+    "June proves wind increases ozone",
+    "training ranking will hold for future observations",
+    "diagnostics do not affect the conclusion"
+  ),
+  verdict = rep("unsupported", 4),
+  evidence = c(
+    "each monthly model is fitted to a different subset rather than competing on the same rows",
+    "June has nine rows and its wind interval includes zero",
+    "all ranking metrics are calculated on training subsets",
+    "every month has diagnostic flags and three slopes change by over 40 percent in sensitivity fits"
+  )
+)
+
+stopifnot(
+  identical(generated_ranking$month, c("Sep", "Jul", "Jun", "Aug", "May")),
+  june$n_observations == 9,
+  june$wind_low < 0,
+  june$wind_high > 0,
+  all(evidence$diagnostic_flags > 0),
+  sum(abs(evidence$temperature_slope_change_percent) > 40) == 3,
+  nrow(audit) == 4
+)
+
+print(generated_ranking)
+cat(generated_claim, "\n\n")
+print(audit)
+cat("Week 14 AI model-ranking audit passed.\n")
+```
+
+The sort returns **Sep, Jul, Jun, Aug, May** correctly for this training metric.
+It assesses different subsets, not common validation observations. June's wind
+slope is about +1.97 ppb per mph, but its interval is about **-0.93 to 4.88** and
+its sample has nine rows. The point estimate does not establish a causal effect;
+its uncertainty also prevents a confident positive-association claim here.
+July's and August's wind intervals lie wholly below zero, whereas June's spans
+both signs: read uncertainty beside a surprising sign rather than concluding
+that June has a real reversed effect or that its estimate is proven noise.
+Even an interval wholly above zero would not turn this observational design
+into an experiment.
+
+Every month has at least one diagnostic flag, and three temperature slopes
+change by over 40% under the declared sensitivity rule. These facts belong
+beside the training metrics rather than being discarded by a ranking table.
+
+A defensible replacement describes the five sample sizes, conditional
+coefficient estimates with intervals, diagnostics and sensitivity, and states
+that future-observation performance has not been measured. **If your answer
+differed,** you may have mistaken the highest number in a sorted column for
+answering a common prediction question.
+
+Read every line and claim you accept from an LLM; retain the checks required by
+the [course AI policy](https://lnajman.github.io/math346/syllabus/ai-policy.html).
+Do not provide private student information or assessment keys to external tools.
+
+</details>
+
+**Individual in-class exit, final five minutes:** “Name one piece of evidence
+that prevents a high training R-squared from becoming an automatic ‘best model’
+claim.” Follow the announced classroom route.
+
+**Self-check (no submission):** a sensitivity result has lower training RMSE
+after removing the declared row, but the temperature coefficient changes by
++73%. Write one supported statement and one statement that would go beyond
+that evidence.
+
+<details>
+<summary>Compare the Meeting 2 self-check</summary>
+
+Supported: the coefficient is sensitive to that declared one-row change, and
+error is smaller on the changed training subset. Unsupported: deletion fixed
+bad data or improved future prediction. Inspect the source observation and
+report instability instead of hiding the original result.
+
+</details>
+
+## Practice, recovery and next steps {#practice}
+
+| Work | Practice supported here |
+|---|---|
+| **Core 1, 2** | Freeze the contract and audit groups, source rows and predictor ranges |
+| **Core 4, 5** | Keep five aligned fits and summaries; plot coefficients with intervals/sample sizes |
+| **Core 6** | Make cautious group comparisons without a false winner |
+| **Guided 3, 7, 8, 9, 10** | Test one group and failures, repeat diagnostics, trace IDs, assess sensitivity and audit generated rankings; use selectively |
+| **Extension** | None in this set |
+
+The references support selected main-lab checkpoints; they are not extra
+scripts to submit. Keep checked work for your own use and any checkpoint
+explicitly requested on Blackboard.
+
+<details>
+<summary>Possible solutions · Compare after your attempt</summary>
+
+- [Many-model possible solution](downloads/solutions/week14-many-models_sol.R)
+- [Sensitivity possible solution](downloads/solutions/week14-grouped-sensitivity_sol.R)
+
+These are unchanged public comparison files; other correct implementations
+are possible. Keep checks whose purpose you can explain.
+
+</details>
+
+If an object is missing, run its defining reference or adapt the check names
+to your own script. If a batch fails, inspect the first failing group and its
+predictor ranges before repeating. If a coefficient seems surprising, check
+the model, units, sample size, interval and selected source row before changing
+any observation.
+
+**Project 2:** preserve the frozen formula and declared sensitivity procedure.
+Validation files are released in the common Week 14 window after the frozen-plan
+gate. Apply the recorded formula, keep one prediction per validation row, and
+report deviations rather than silently revising the plan. The monthly workflow
+is a classroom example, not an additional project requirement. Use the
+[project instructions](https://lnajman.github.io/math346/projects/project-2-modeling.html)
+and [milestone map](https://lnajman.github.io/math346/projects/project-milestones.html).
+Week 15 focuses on communicating and reproducing the evidence.
+
+**Where this fits:** [Week 14 notes](https://lnajman.github.io/math346/weeks/week-14.html) ·
+[Slides](https://lnajman.github.io/math346/slides/week-14.html) ·
+[Main lab](https://lnajman.github.io/math346/labs/lab-14-many-models.html) ·
+[AI-review lab](https://lnajman.github.io/math346/labs/lab-14-ai-model-ranking.html) ·
+[Exercises](https://lnajman.github.io/math346/weeks/week-14-exercises.html).
+
+[Published companion chapters](https://lnajman.github.io/math346/companion/index.html).

@@ -17,21 +17,22 @@ describe pedagogical progress.
 
 ## Current Phase
 
-Publication of the reviewed Week 13 companion is authorized on 3 November
-2026. The student companion now covers Weeks 1–13 at `companion/index.html`,
-with the model chapter at `companion/week-13.html`. The release has 19 student
-HTML pages and 99 allowlisted public resources. Week 13 preserves all nine R
+Publication of the revised Week 14 companion is authorized on 3 November
+2026. The student companion now covers Weeks 1–14 at `companion/index.html`,
+with the new chapter at `companion/week-14.html`. The release contains 20 student
+HTML pages and 104 allowlisted public resources. Week 14 preserves all nine R
 chunks, the five public downloads, Core/Guided labels and both in-class exits.
-Fresh-session checks cover the full chapter, independent Meeting 2 route,
-model-specific diagnostic counts and source observation 117. All 28 slide cues
-and the numeric results were verified; learner timing remains unmeasured.
+Fresh-session checks cover the complete chapter and independent Meeting 2 route;
+independent base-R checks verify grouped counts, flags, source IDs, intervals
+and sensitivity. All 29 slide cues and the plot-layer order were verified.
+The supplied alphabetical plot order remains explained and unchanged.
 
-Student source is in `companion-source/`, rebuilt with
-`python3 scripts/build_companion.py`. Reviewer documents, timing checklists,
+Student source is maintained in `companion-source/`, rebuilt with
+`python3 scripts/build_companion.py`. Reviewer documents, checklists, ZIPs,
 feedback, private data and assessment keys are excluded. The student index,
-home/weekly navigation and Week 13 notes link to the published chapter. The
-approved syllabus, assessment scope, workload and Blackboard authority remain
-unchanged. Weeks 14–15 companions are the remaining content work.
+home/weekly navigation and Week 14 notes link to the new chapter. Approved
+syllabus, assessment scope, workload and Blackboard authority remain unchanged.
+Learner timing remains unmeasured. Week 15 is the remaining companion to author.
 
 The original Week 11 pilot was published on 2 November. The Weeks 1–12 release
 supersedes its public HTML while retaining the historical source under
@@ -633,7 +634,7 @@ agreed core project architecture is incorporated into the syllabus.
 Companion priority (3 November): verify the deployed student index and meeting
 pages, then revise using actual classroom feedback. A colleague timing Week 12
 and one MATLAB week remains useful; it does not block the authorized release.
-Weeks 14–15 companion writing is the remaining content work.
+Week 15 companion writing is the remaining content work.
 
 Current priority (16 October): approve Quiz 3 format, confirm section
 dates in Week 10, time-pilot both forms, then import and check Blackboard settings
