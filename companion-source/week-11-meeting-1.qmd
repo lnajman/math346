@@ -281,7 +281,13 @@ long pipe that cleans, joins and summarizes can hide where its promises change.
 **Slide cues:** “Use Named Checkpoints”, “Name The Data State” and
 “Check The Observation Unit”.
 
-Our four states are:
+A **checkpoint** is a saved intermediate table that we inspect before
+continuing. Assigning a name such as `events_clean` saves that state; it does
+not make R pause automatically. Your own object names can differ: explain
+what is saved and which promise you will check.
+
+Read each checkpoint as **stage → what one row represents → check → problem
+it could reveal**. Our four states are:
 
 | State | One row represents | Expected size for this file | A useful check |
 |---|---|---|---|
@@ -328,7 +334,9 @@ does not distinguish these identifiers or labels. The original table remains
 available for inspection. `Europe/Paris` is the synthetic data's time-zone
 convention, not the location or time zone of the class. An unknown severity
 label can turn into `NA` during factor conversion; inspect the raw text if
-that assertion fails.
+that assertion fails. Successful timestamp parsing only shows that the text
+was accepted: a parsed time can still have the wrong month or time zone.
+Compare those with the intended convention when checking meaning.
 
 **Explain:** why do we need both `setequal` and a uniqueness check?
 
@@ -482,8 +490,9 @@ stopifnot(
 **Slide cue:** “Meeting 1 Exit Ticket”.
 
 Save, restart R, and rerun the completed blocks from the beginning. Explain one
-assertion and a defect it could catch. A silent `stopifnot` means its conditions
-passed. Match each assertion to the specific promise it checks.
+assertion and a defect it could catch. Use the sequence **stage → what one row
+represents → check → problem it could reveal**. A silent `stopifnot` means its
+conditions passed; match each assertion to the specific promise it checks.
 
 **Individual in-class exit, final five minutes:** where should the event-analysis
 pipeline pause for a named checkpoint, and why? Name the stage, say what one row

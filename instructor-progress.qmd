@@ -12,7 +12,7 @@ final delivery check before use. The midterm has been delivered. Quiz 3 is now
 scheduled for Week 10 with a Week 9 inclusive cutoff; its public preparation
 guide, distinct practice quiz and private section versions are drafted.**
 
-Last updated: **3 November 2026**
+Last updated: **4 November 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -52,6 +52,11 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- Publication of the clarified Week 11 Meeting 1 and complete chapter is
+  authorized on 4 November. Checkpoints, row meaning and timestamp-parsing
+  limits are clearer; code, results, practice scope and workload are unchanged.
+  Fresh R execution and the full companion release checks pass.
 
 - The reviewed [Week 15 companion](companion/week-15.html) is approved for
   publication, completing the fifteen-week companion. Saved-file, numerical,

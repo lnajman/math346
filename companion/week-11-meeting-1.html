@@ -2527,7 +2527,8 @@ Compare your explanation
 <section id="checkpoints" class="level3">
 <h3 class="anchored" data-anchor-id="checkpoints">Name the state, then check its promise</h3>
 <p><strong>Slide cues:</strong> “Use Named Checkpoints”, “Name The Data State” and “Check The Observation Unit”.</p>
-<p>Our four states are:</p>
+<p>A <strong>checkpoint</strong> is a saved intermediate table that we inspect before continuing. Assigning a name such as <code>events_clean</code> saves that state; it does not make R pause automatically. Your own object names can differ: explain what is saved and which promise you will check.</p>
+<p>Read each checkpoint as <strong>stage → what one row represents → check → problem it could reveal</strong>. Our four states are:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -2598,7 +2599,7 @@ Compare your explanation
 <span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.numeric</span>(events_clean<span class="sc">$</span>response_hours)</span>
 <span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>transmute</code> keeps the named output columns. <code>str_squish</code> removes surrounding space and compresses repeated internal spaces; case normalization assumes case does not distinguish these identifiers or labels. The original table remains available for inspection. <code>Europe/Paris</code> is the synthetic data’s time-zone convention, not the location or time zone of the class. An unknown severity label can turn into <code>NA</code> during factor conversion; inspect the raw text if that assertion fails.</p>
+<p><code>transmute</code> keeps the named output columns. <code>str_squish</code> removes surrounding space and compresses repeated internal spaces; case normalization assumes case does not distinguish these identifiers or labels. The original table remains available for inspection. <code>Europe/Paris</code> is the synthetic data’s time-zone convention, not the location or time zone of the class. An unknown severity label can turn into <code>NA</code> during factor conversion; inspect the raw text if that assertion fails. Successful timestamp parsing only shows that the text was accepted: a parsed time can still have the wrong month or time zone. Compare those with the intended convention when checking meaning.</p>
 <p><strong>Explain:</strong> why do we need both <code>setequal</code> and a uniqueness check?</p>
 <details>
 <summary>
@@ -2758,7 +2759,7 @@ Check the denominator
 <section id="close-meeting-1" class="level3">
 <h3 class="anchored" data-anchor-id="close-meeting-1">Close Meeting 1</h3>
 <p><strong>Slide cue:</strong> “Meeting 1 Exit Ticket”.</p>
-<p>Save, restart R, and rerun the completed blocks from the beginning. Explain one assertion and a defect it could catch. A silent <code>stopifnot</code> means its conditions passed. Match each assertion to the specific promise it checks.</p>
+<p>Save, restart R, and rerun the completed blocks from the beginning. Explain one assertion and a defect it could catch. Use the sequence <strong>stage → what one row represents → check → problem it could reveal</strong>. A silent <code>stopifnot</code> means its conditions passed; match each assertion to the specific promise it checks.</p>
 <p><strong>Individual in-class exit, final five minutes:</strong> where should the event-analysis pipeline pause for a named checkpoint, and why? Name the stage, say what one row represents there, and describe one check and the problem it could reveal. Two or three sentences; code is optional. Submit only through the announced classroom route. The companion does not collect responses.</p>
 <p><strong>Self-check (no submission):</strong> your cleaned table has nine rows and nine distinct IDs, but <code>EVT-009</code> has been replaced with a new ID, <code>EVT-010</code> (absent from the supplied CSV). At which stage would you check, and what comparison would reveal the replacement? Would that check also fail if the original rows were merely reordered? Close earlier reveals and explain from memory before opening the model answer.</p>
 <details>

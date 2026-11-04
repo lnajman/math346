@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-11-03
+Last updated: 2026-11-04
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -16,6 +16,19 @@ describe pedagogical progress.
    been approved.
 
 ## Current Phase
+
+On 4 November, Week 11 Meeting 1 and its complete-chapter counterpart received
+a targeted clarification from the Session 1 exit-feedback synthesis: checkpoints
+are saved states, names may vary, and the explanation connects stage, row
+meaning, check and possible defect. Successful parsing is distinguished from
+correct timestamp meaning. No code, results, exercises or workload changed;
+private responses and participation figures are excluded from the chapter.
+Fresh student-folder execution passes all 12 visible Meeting 1 blocks and
+all 26 complete-chapter blocks, including every assertion. All 15/32 R chunk
+bodies respectively remain byte-identical. The full build passes for 21 HTML
+pages and 113 resources, including navigation, closed reveals, resource hashes
+and privacy/source-exclusion checks. The rendered clarifications were re-read.
+Publication of this checked revision is authorized on 4 November 2026.
 
 Publication of the revised Week 15 companion is authorized on 3 November
 2026, completing companion coverage for all fifteen weeks. The student entry
