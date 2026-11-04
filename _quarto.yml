@@ -73,7 +73,6 @@ website:
         - assessments/quiz-02.qmd
         - assessments/quiz-03.qmd
         - assessments/quiz-04.qmd
-        - assessments/quiz-04-practice.qmd
         - assessments/midterm.qmd
         - resources/glossary.qmd
         - section: "MATLAB — Weeks 1-5"
