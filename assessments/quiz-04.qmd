@@ -1,0 +1,66 @@
+---
+title: "Quiz 4 Student Guide"
+description: "Paper quiz on R Weeks 10–12: format, preparation and practice."
+---
+
+## At A Glance
+
+| Item | Quiz 4 arrangement |
+|---|---|
+| Delivery | Individual **paper quiz**, with a separate version for each section |
+| Timing | **15 minutes** of working time; exact section dates announced in Blackboard |
+| Coverage | **R, Weeks 10–12**; earlier R fundamentals are used within these topics |
+| Format | **6 single-choice MCQs × 1 mark + 3 short written responses × 2 marks = 12 marks** |
+| Balance | Four marks each for Weeks 10, 11 and 12 |
+| Preparation | Core exercises and the [separate practice quiz](quiz-04-practice.qmd) |
+
+Quiz 4 retains the working Week 13 place in the course schedule. Both sections
+will have completed the assessed teaching before the first sitting. MATLAB
+and material first introduced in Week 13 or later are excluded.
+
+## What To Practise
+
+| Week | Focus |
+|---|---|
+| [10](../weeks/week-10.qmd) | Explain the meaning assumption behind cleaning; distinguish observation and lookup keys; reason about join matches, unmatched rows and preservation; understand what a check establishes and what it does not |
+| [11](../weeks/week-11.qmd) | Read short pipelines and explain row meaning at checkpoints; trace a function under a stated contract; choose a revealing test and give its expected result |
+| [12](../weeks/week-12.qmd) | Use vector operations without losing positions; distinguish list results from typed scalar results; keep failed requests visible in a complete batch record |
+
+The priority is the **Core** selection on each week's exercise page. Guided
+and extension tasks are not automatically additional requirements. You do
+not need to write a long program, run R, memorize the classroom dataset or
+perform lengthy arithmetic. All data and contracts needed for a question
+will be supplied. No calculator is needed.
+
+## How Marks Are Awarded
+
+- MCQs have one best answer: **1 mark** for the correct choice and **0** otherwise.
+  No justification is required and there is no negative marking.
+- Each written question has **two explicit one-mark parts**. Each part can
+  earn 0, 0.5 or 1, so relevant partial reasoning receives credit.
+- Answer the requested parts directly. One or two short sentences, bullets,
+  or a small input/output example will usually suffice. Length suggestions
+  are guides rather than strict limits.
+- Equivalent correct wording and methods are accepted. English polish and
+  unrequested details do not earn or lose marks.
+
+For example, be able to pair a specific check with the failure it could
+detect, or a test input with the expected output under a stated rule. A
+successful run, an expected row count or a unique key is useful evidence,
+but each has a limited job.
+
+## Practice And Arrangements
+
+Attempt the [ungraded practice quiz](quiz-04-practice.qmd) on paper in
+15 minutes before opening its self-check feedback. Its situations differ
+from both live versions. Use the feedback to check each part of your reasoning.
+
+Work individually. R execution, AI, websites, messaging and collaboration
+are not permitted during the quiz. Follow the permitted-reference instructions
+announced in Blackboard; the practice page does not introduce a new reference
+sheet or calculator policy. Blackboard also provides section dates and
+accommodation arrangements.
+
+The existing [missed-assessment policy](../syllabus/index.qmd#missed-assessments-and-late-project-submissions)
+and lowest-quiz-drop rule remain unchanged. Live questions and their keys
+remain private.

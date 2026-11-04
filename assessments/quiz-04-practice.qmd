@@ -1,0 +1,210 @@
+---
+title: "Quiz 4 Practice"
+description: "Ungraded paper-quiz practice on R Weeks 10–12, with self-check feedback."
+execute:
+  enabled: false
+---
+
+Try this ungraded practice **on paper in 15 minutes**, without running R,
+before opening the feedback. It contains **six one-mark MCQs and three
+two-mark written questions: 12 practice marks in total**. The situations
+differ from both live section versions. See the [Quiz 4 guide](quiz-04.qmd).
+
+Choose one answer for each MCQ. For Questions 3, 6 and 9, short sentences or
+bullets are enough. Each written criterion earns 0, 0.5 or 1 mark, independently.
+Equivalent correct wording is accepted. Assume the named R packages are available.
+
+
+## Question 1: Format and existence (1 mark)
+
+A cleaned key is "BLDG-42". It passes a pattern check requiring BLDG- followed by two digits.
+
+What has this check established?
+
+- A. The building is present in the registry.
+- B. Every event refers to a different building.
+- C. The key has the required format; registry membership still needs checking.
+- D. Any events with this key are duplicates.
+
+::: {.callout-note collapse="true"}
+
+## Self-check
+
+**C.** A format rule checks the spelling pattern. A well-formed identifier can still be unknown to the registry.
+
+:::
+
+## Question 2: A repeated lookup key (1 mark)
+
+Reading A refers to sensor S1; reading B refers to S2. A lookup table has two S1 rows and one S2 row. A left join by sensor ID is performed without a relationship guard and retains every match.
+
+How many output rows result, and why?
+
+- A. Three: reading A matches twice and reading B once.
+- B. Two: a left join always preserves the row count.
+- C. One: repeated sensor keys are automatically removed.
+- D. Four: both readings match both S1 rows.
+
+::: {.callout-note collapse="true"}
+
+## Self-check
+
+**A.** The S1 reading is repeated once per matching lookup row. Investigate the lookup-key contract rather than silently deleting a record.
+
+:::
+
+## Question 3: What parsing did not prove (2 marks)
+
+A source specifies that all recorded timestamps are UTC. A pipeline parses every timestamp without producing NA. A reviewer concludes that all timestamps must represent the correct instants.
+
+Describe one additional check against the source contract (1 mark) and the specific error it could reveal despite successful parsing (1 mark). One or two sentences; code is optional.
+
+**Write your response before opening the feedback.**
+
+::: {.callout-note collapse="true"}
+
+## Self-check
+
+Check the parser's time-zone setting against the documented UTC convention, or compare a parsed timestamp with an independently established UTC instant. It could reveal that a non-UTC zone was assigned to UTC clock readings, shifting the represented instants despite no NA values.
+
+- 1 mark: a concrete comparison with the documented time zone or a known reference instant; 0.5 for suggesting a time-zone check without naming the expected UTC convention/reference.
+- 1 mark: explain that the wrong assigned zone can produce the wrong instant while parsing succeeds; 0.5 for naming a wrong time zone without explaining the consequence. Other specific source-contract checks and matching failures are acceptable.
+
+:::
+
+## Question 4: Grouping is not summarizing (1 mark)
+
+The pipeline stops after group_by; no summarize call is made.
+
+```r
+d <- data.frame(person = c("P1", "P2", "P3"),
+                treatment = c("A", "B", "A"))
+grouped <- d |> group_by(treatment)
+```
+
+What remains in grouped?
+
+- A. Two rows, one count per treatment.
+- B. One row for all participants.
+- C. Only the first participant in each treatment.
+- D. Three participant rows, with grouping information attached.
+
+::: {.callout-note collapse="true"}
+
+## Self-check
+
+**D.** group_by adds grouping metadata but does not aggregate observations. The checkpoint still has one row per participant.
+
+:::
+
+## Question 5: Explicit parameters (1 mark)
+
+The following function applies its supplied adjustment to every measurement.
+
+```r
+adjust <- function(x, offset) {
+  x - offset
+}
+```
+
+What does adjust(c(7, NA, 10), 2) return?
+
+- A. c(7, NA, 10)
+- B. c(5, NA, 8)
+- C. c(5, 8)
+- D. c(9, NA, 12)
+
+::: {.callout-note collapse="true"}
+
+## Self-check
+
+**B.** The supplied offset 2 is subtracted elementwise. Missingness and vector positions remain visible.
+
+:::
+
+## Question 6: Testing a supplied argument (2 marks)
+
+The contract for adjust(x, offset) is to subtract the supplied offset from each measurement. This proposed implementation is shown below. Testing adjust(10, 2) succeeds.
+
+```r
+adjust <- function(x, offset) {
+  x - 2
+}
+```
+
+Give one call that exposes the defect (1 mark). Give its expected output and the output returned by this code (1 mark). A scalar measurement is enough.
+
+**Write your response before opening the feedback.**
+
+::: {.callout-note collapse="true"}
+
+## Self-check
+
+For example, adjust(10, 3) should return 7 but returns 8. The function hard-codes 2 instead of using the supplied offset. Any finite scalar measurement and an offset different from 2 can expose the defect.
+
+- 1 mark: a concrete call with a finite measurement and an offset other than 2; 0.5 for proposing a different offset without a complete call.
+- 1 mark: both expected and actual outputs are correct for the chosen call; 0.5 for either. Score outputs independently even if the chosen call does not expose the defect.
+
+:::
+
+## Question 7: One value per input (1 mark)
+
+A vector of lengths in centimetres is converted to millimetres.
+
+```r
+cm <- c(2, NA, 5)
+mm <- 10 * cm
+```
+
+Which result preserves the input positions, including missingness?
+
+- A. c(20, 0, 50)
+- B. c(20, 50)
+- C. c(20, NA, 50)
+- D. 70
+
+::: {.callout-note collapse="true"}
+
+## Self-check
+
+**C.** Multiplication by 10 converts each element. NA is not zero and is not removed by this operation.
+
+:::
+
+## Question 8: Keeping list results (1 mark)
+
+Each call to the worker returns one small data frame, which may contain a different number of rows. The goal is to retain these data frames as separate result objects.
+
+Which operation fits that goal directly?
+
+- A. lapply over the requested inputs.
+- B. vapply with numeric(1).
+- C. A mean over all input names.
+- D. Converting all worker results to one number.
+
+::: {.callout-note collapse="true"}
+
+## Self-check
+
+**A.** lapply retains one result object per input and permits data frames of different sizes. A scalar numeric vapply contract would not match these outputs.
+
+:::
+
+## Question 9: Mixed result types (2 marks)
+
+Two requests return numeric means 4 and 9; a third fails and returns the text failed. Combining them produces c("4", "failed", "9"). The batch must keep one row per request and a numeric mean column.
+
+Explain the type problem (1 mark). Describe how separate result fields can retain the failure while keeping the mean column numeric (1 mark). No code is required.
+
+**Write your response before opening the feedback.**
+
+::: {.callout-note collapse="true"}
+
+## Self-check
+
+Mixing the failure text with numbers coerces the combined vector to character. Use one row per request, a numeric mean column containing 4, NA, 9, and separate character status/message fields that identify the failed request.
+
+- 1 mark: explain that mixing text and numbers made the result character; 0.5 for identifying the incorrect type without its cause.
+- 1 mark: preserve all requests with numeric NA for the failed mean and separate failure status/message; 0.5 for separating status from results but omitting either the retained request or the numeric missing value.
+
+:::

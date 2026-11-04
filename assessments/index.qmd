@@ -5,6 +5,9 @@ description: "Student-facing assessment information for MATH 346."
 
 ## Published Information
 
+- [Quiz 4](quiz-04.qmd): a 15-minute individual paper quiz on R Weeks 10–12,
+  with six MCQs and three short written responses; try the
+  [separate practice quiz](quiz-04-practice.qmd).
 - [Quiz 1](quiz-01.qmd): an individual, 15-minute, in-class Blackboard quiz
   during Week 4.
 - [Quiz 2](quiz-02.qmd): an individual, 15-minute, in-class Blackboard quiz on

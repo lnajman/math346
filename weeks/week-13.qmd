@@ -10,8 +10,10 @@ collected or graded.
 
 ## Official Topic
 
-Model basics and model building. Quiz 4 remains the working assessment marker
-for this week; its exact date, duration, delivery, and format are still open.
+Model basics and model building. [Quiz 4](../assessments/quiz-04.qmd) retains
+the working slot this week: a 15-minute paper quiz on R Weeks 10–12, excluding
+this week's modeling. Exact section dates are announced in Blackboard.
+Try the [separate practice quiz](../assessments/quiz-04-practice.qmd).
 
 ## Problem Focus
 
