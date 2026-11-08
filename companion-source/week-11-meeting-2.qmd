@@ -193,6 +193,10 @@ It accepts a numeric response vector and one finite, nonnegative numeric target
 an observed response at or below the target is `TRUE`, and a missing response
 is `FALSE`. Unsupported response types or invalid targets cause an error.
 
+Here `FALSE` means **not established as meeting the target**. For a missing
+response it does not establish lateness. Returning `FALSE` rather than `NA` is
+this function's chosen contract; another function could use a different rule.
+
 This matches the teaching contract. It does not promise to reject negative or
 infinite response values. Physical-range validation would be an additional
 rule, not something `is.numeric` already guarantees. The target itself must
@@ -319,8 +323,16 @@ stopifnot(
 )
 ```
 
-Missing **responses** are allowed; a missing **target** is rejected. Those are
-different inputs with different contracts.
+Keep the two inputs' rules separate:
+
+| Case | Result under this contract |
+|---|---|
+| Missing **response** | `FALSE` for that entry; keep its place in the output |
+| Missing **target** | Stop with an error: the comparison rule is undefined |
+| Target of **zero** | Valid: the target must be nonnegative, so zero is allowed |
+
+The default of 12 applies when the target argument is omitted; explicitly
+passing a missing target does not select the default.
 
 </details>
 
@@ -799,10 +811,14 @@ Think first, then compare below; no written response is needed.
 <details>
 <summary>Compare the Meeting 2 self-check</summary>
 
-The first call returns `c(TRUE, FALSE)`: 12 is inside the inclusive boundary,
-and a missing response maps to `FALSE` under this flag rule. Replacing the
-target with `NA_real_` causes an error because the target must be one finite,
-nonnegative number. Missing response and missing target have different roles.
+The first call returns `c(TRUE, FALSE)`: 12 is inside the inclusive boundary.
+For the missing response, `!is.na(NA) & (NA <= 12)` becomes `FALSE & NA`, which
+is `FALSE` in R. The flag therefore has no missing entry; this does not prove
+that the unrecorded response was late.
+
+Replacing the target with `NA_real_` causes an error because the target must
+be one finite, nonnegative number. Zero is allowed: it is nonnegative. Missing
+response and missing target have different roles.
 
 </details>
 

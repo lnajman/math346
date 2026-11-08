@@ -11,7 +11,7 @@ approved paper format: six MCQs and three short written responses in 15
 minutes. Private section forms and separate practice are prepared;
 cumulative-final preparation follows. Course policies are unchanged.**
 
-Last updated: **4 November 2026**
+Last updated: **8 November 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -51,6 +51,11 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- Publication of the clarified Week 11 Meeting 2 and complete chapter is
+  authorized on 8 November. Missing-response flags, missing-target rejection,
+  zero targets and defaults are clearer, with the logical self-check explained.
+  Code, results and workload are unchanged. Fresh R and release checks pass.
 
 - Quiz 4 Option A is approved: six one-mark MCQs and three two-mark written
   responses in a 15-minute paper quiz. Two private section forms and a

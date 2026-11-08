@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-11-04
+Last updated: 2026-11-08
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -16,6 +16,18 @@ describe pedagogical progress.
    been approved.
 
 ## Current Phase
+
+On 7 November, the Week 11 Meeting 2 companion and its complete-chapter
+counterpart were clarified following Session 2 feedback. The prose distinguishes
+FALSE-on-missing-response from invalid missing targets, confirms that zero is
+a valid target and explains the existing hidden self-check's FALSE & NA result.
+The default applies only to an omitted argument. No code, numeric result,
+practice selection, assessment or workload changed; student evidence stays
+private. Fresh student-folder runs pass all 22 visible Meeting 2 blocks and
+26 complete-chapter blocks, including all assertions. All 27/32 R block bodies
+respectively remain unchanged. The full build passes for 21 HTML pages and
+113 resources, including links, closed reveals, hashes and source exclusion;
+the rendered clarifications were re-read. Publication of this checked revision is authorized on 8 November 2026.
 
 On 4 November, Week 11 Meeting 1 and its complete-chapter counterpart received
 a targeted clarification from the Session 1 exit-feedback synthesis: checkpoints
