@@ -11,7 +11,7 @@ approved paper format: six MCQs and three short written responses in 15
 minutes. Private section forms and separate practice are prepared;
 cumulative-final preparation follows. Course policies are unchanged.**
 
-Last updated: **8 November 2026**
+Last updated: **9 November 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -51,6 +51,11 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- The 9 November Week 12 slide release includes complete function definitions
+  before use, fresh setup for both meetings, expected results and runnable
+  batch/error examples. The slides and instructor-script cues are aligned;
+  instructor-only materials and student records remain private.
 
 - Publication of the clarified Week 11 Meeting 2 and complete chapter is
   authorized on 8 November. Missing-response flags, missing-target rejection,

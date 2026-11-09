@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-11-08
+Last updated: 2026-11-09
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -16,6 +16,12 @@ describe pedagogical progress.
    been approved.
 
 ## Current Phase
+
+On 9 November, publication of the updated Week 12 slide deck was authorized.
+The deck supplies complete function definitions before use, fresh setup for
+both meetings, expected outputs and checked batch/error examples. Its exit
+prompts and slide cues match the regenerated instructor scripts. Publication
+does not include instructor PDFs, student responses or assessment records.
 
 On 7 November, the Week 11 Meeting 2 companion and its complete-chapter
 counterpart were clarified following Session 2 feedback. The prose distinguishes

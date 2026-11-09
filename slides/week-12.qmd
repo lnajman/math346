@@ -26,24 +26,42 @@ Repeat descriptive workflows across known inputs.
 
 Statistical models begin in Week 13.
 
+## Meeting 1 Setup
+
+```r
+library(dplyr)
+data <- airquality |>
+  mutate(day_id = row_number())
+```
+
+One row is one daily observation. There are 153 rows.
+
+Run the examples in order. The complete [worked script](../code/r/solutions/week12-vectorized-iteration_sol.R)
+is available for comparison after an attempt.
+
 ## Vectorize Elementwise Work
 
 ```r
 temperature_c <-
-  (airquality$Temp - 32) * 5 / 9
+  (data$Temp - 32) * 5 / 9
 ```
 
-No observation-by-observation loop is needed.
+The formula produces one Celsius value per input temperature, in the same order.
+For the first observation, 67 F becomes approximately 19.44 C.
 
 ## Check The Vector Contract
 
 ```r
 stopifnot(
   length(temperature_c) ==
-    nrow(airquality),
+    nrow(data),
+  abs(temperature_c[1] - (67 - 32) * 5 / 9) < 1e-10,
   !any(is.na(temperature_c))
 )
 ```
+
+Length checks the number of results. The hand calculation checks one converted
+value. Neither check proves every possible property of the data.
 
 ## What Is Being Repeated?
 
@@ -66,21 +84,64 @@ Order is part of the batch contract.
 
 ```r
 variable_name <- "Ozone"
-values <- airquality[[variable_name]]
+values <- data[[variable_name]]
 ```
 
-The name changes across iterations.
+`values` contains 153 ozone measurements, including 37 missing values.
+
+`data[[variable_name]]` uses the stored name. `data$variable_name` looks for a
+column literally named `variable_name`.
+
+## One Summary's Contract {.smaller}
+
+`summarize_numeric(data, variable_name)` accepts a data frame and one column name.
+
+- The selected column must be numeric and contain an observed value.
+- Missing measurements are counted and omitted from the mean and standard deviation.
+- One call returns one row describing the selected variable.
+- An absent column, a text column or an all-missing column causes an error.
+
+The output has five columns: `variable`, `n_total`, `n_missing`, `mean` and
+`standard_deviation`.
+
+## Define The Summary Function {.smaller}
+
+```r
+summarize_numeric <- function(data, variable_name) {
+  if (!is.data.frame(data)) stop("data must be a data frame")
+  if (!is.character(variable_name) || length(variable_name) != 1)
+    stop("variable_name must be one character value")
+  if (!variable_name %in% names(data))
+    stop("requested variable is not present")
+  values <- data[[variable_name]]
+  if (!is.numeric(values)) stop("requested variable must be numeric")
+  observed <- values[!is.na(values)]
+  if (length(observed) == 0)
+    stop("requested variable has no observed values")
+  tibble(
+    variable = variable_name, n_total = length(values),
+    n_missing = sum(is.na(values)), mean = mean(observed),
+    standard_deviation = sd(observed)
+  )
+}
+```
+
+Read the input checks and returned row before calling the function.
 
 ## Trust One Unit First
 
 ```r
-summarize_numeric(
-  airquality,
-  "Ozone"
-)
+one <- summarize_numeric(data, "Ozone")
+one
 ```
 
-Test the function before repeating it.
+Expected: one row, `n_total = 153`, `n_missing = 37`, and `mean` approximately
+42.12931. The mean uses 116 observed values.
+
+```r
+stopifnot(one$n_total == 153, one$n_missing == 37,
+          abs(one$mean - 42.1293103448276) < 1e-10)
+```
 
 ## `lapply`: One Object Per Input
 
@@ -88,10 +149,13 @@ Test the function before repeating it.
 results <- lapply(
   variables,
   function(name) {
-    summarize_numeric(airquality, name)
+    summarize_numeric(data, name)
   }
 )
 ```
+
+Four column names produce four function calls. Each list element is a one-row
+table, not an individual daily observation.
 
 ## The List Contract
 
@@ -99,6 +163,7 @@ results <- lapply(
 stopifnot(
   length(results) == length(variables)
 )
+results[[1]]
 ```
 
 Inspect one element before combining.
@@ -107,9 +172,16 @@ Inspect one element before combining.
 
 ```r
 summary_table <- bind_rows(results)
+summary_table
+stopifnot(
+  nrow(summary_table) == 4,
+  identical(summary_table$variable, variables),
+  identical(summary_table$n_missing, c(37L, 7L, 0L, 0L))
+)
 ```
 
-Each function call returns one row with the same columns and types.
+The four rows represent Ozone, Solar.R, Wind and Temp, in that order. Compatible
+columns and types allow the one-row results to be combined.
 
 ## `vapply`: State The Type
 
@@ -117,11 +189,15 @@ Each function call returns one row with the same columns and types.
 means <- vapply(
   variables,
   function(name) mean(
-    airquality[[name]], na.rm = TRUE
+    data[[name]], na.rm = TRUE
   ),
   numeric(1)
 )
+means
 ```
+
+Expected means: approximately `42.1293`, `185.9315`, `9.9575`, `77.8824`.
+They have different measurement units.
 
 ## Output Template
 
@@ -130,6 +206,26 @@ means <- vapply(
 - exactly one result per input
 - every result numeric
 - stop on the wrong shape or type
+
+It does not prove the calculation is correct. A wrong formula can still return
+one number, so retain known-answer checks.
+
+## One Integer Count Per Column
+
+```r
+missing_counts <- vapply(
+  variables,
+  function(name) sum(is.na(data[[name]])),
+  integer(1)
+)
+stopifnot(
+  identical(names(missing_counts), variables),
+  identical(unname(missing_counts), c(37L, 7L, 0L, 0L))
+)
+```
+
+The template describes one call's result. The complete output contains four
+named integer counts.
 
 ## Preallocate A Loop Result
 
@@ -147,7 +243,7 @@ The result contract exists before iteration.
 ```r
 for (name in variables) {
   means_loop[[name]] <- mean(
-    airquality[[name]], na.rm = TRUE
+    data[[name]], na.rm = TRUE
   )
 }
 ```
@@ -161,6 +257,9 @@ stopifnot(
 )
 ```
 
+Check values, names and order. Allocating four slots does not prove all four
+calculations ran.
+
 ## Choose For Clarity
 
 - Vectorize natural elementwise operations.
@@ -168,21 +267,83 @@ stopifnot(
 - Use `lapply` for result objects.
 - Use a loop when explicit steps are clearer.
 
+## Meeting 1 Exit Ticket
+
+You need one numeric missing-value count for each of four named columns.
+
+Which repetition method would you choose, what should the output contain, and
+what check would reveal an omitted column?
+
+Explain briefly in your own words. Code is optional.
+
 ## Meeting 2 Question
 
 When one repeated task fails, how do we keep the failure visible without
 losing successful work?
 
+## Meeting 2 Setup
+
+Start a fresh script with:
+
+```r
+library(dplyr)
+data <- airquality |>
+  mutate(month_label = month.abb[Month])
+```
+
+The character column `month_label` gives us a deliberate invalid input for a
+numeric summary. Define the function on the next slide before calling it.
+
+The complete [repeated-workflow script](../code/r/solutions/week12-repeated-workflow_sol.R)
+provides the matching setup and definitions.
+
+## Define A Summary With Status {.smaller}
+
+```r
+summarize_numeric <- function(data, variable_name) {
+  if (!is.data.frame(data)) stop("data must be a data frame")
+  if (!is.character(variable_name) || length(variable_name) != 1)
+    stop("variable_name must be one character value")
+  if (!variable_name %in% names(data))
+    stop("requested variable is not present")
+  values <- data[[variable_name]]
+  if (!is.numeric(values)) stop("requested variable must be numeric")
+  if (all(is.na(values)))
+    stop("requested variable has no observed values")
+  tibble(
+    variable = variable_name, status = "ok",
+    n_total = length(values), n_missing = sum(is.na(values)),
+    mean = mean(values, na.rm = TRUE),
+    error_message = NA_character_
+  )
+}
+```
+
+## The Successful Row
+
+```r
+summarize_numeric(data, "Ozone")
+```
+
+This version returns six columns. It adds `status = "ok"` and a missing error
+message (`NA_character_`), and omits the earlier standard-deviation column.
+
+Expected: total 153, missing 37 and mean approximately 42.12931. Missing
+measurements are handled by the summary's rule and do not make this call fail.
+
 ## Include Expected Failures
 
 ```r
-requested <- c(
+requested_variables <- c(
   "Ozone", "month_label",
   "not_a_column", "Temp"
 )
 ```
 
-Expected: four status records.
+Expected statuses: `ok`, `error`, `error`, `ok`.
+
+`month_label` exists but is text. `not_a_column` does not exist. Each error must
+remain distinguishable from an allowed missing measurement.
 
 ## Failure Is A Result
 
@@ -196,41 +357,82 @@ It must not pretend the request never existed.
 ## Dangerous Shortcut
 
 ```r
-tryCatch(
-  summarize_numeric(data, name),
-  error = function(error) NULL
-)
+generated_results <- bind_rows(lapply(
+  requested_variables,
+  function(name) {
+    tryCatch(
+      summarize_numeric(data, name),
+      error = function(error) NULL
+    )
+  }
+))
 ```
 
-`bind_rows` later drops the `NULL` evidence.
+Expected: only Ozone and Temp remain. `bind_rows` drops the `NULL` entries,
+including the identities and reasons for the two failures.
 
-## The Count Exposes It
+## Two Rows Cannot Describe Four Requests
 
 ```r
-stopifnot(
-  nrow(run_log) == length(requested)
-)
+length(requested_variables)  # 4 requested
+nrow(generated_results)     # 2 returned
+generated_results$variable  # Ozone, Temp
 ```
 
-Four requests cannot honestly become two unexplained rows.
+The batch finished, but its output omits attempted work. We need a record for
+every request before deciding which successful results to use.
 
 ## Return A Typed Error Row
 
 ```r
-tibble(
-  variable = name,
-  status = "error",
-  mean = NA_real_,
-  error_message = conditionMessage(error)
-)
+safe_summarize_numeric <- function(data, variable_name) {
+  tryCatch(
+    summarize_numeric(data, variable_name),
+    error = function(error) {
+      tibble(
+        variable = variable_name, status = "error",
+        n_total = NA_integer_, n_missing = NA_integer_,
+        mean = NA_real_,
+        error_message = conditionMessage(error)
+      )
+    }
+  )
+}
 ```
+
+The error row matches the success row's six columns and types. `NA_real_`
+means no computed numerical result, not a measured zero.
+
+## Build The Complete Run Log
+
+```r
+run_log <- bind_rows(lapply(
+  requested_variables,
+  function(name) safe_summarize_numeric(data, name)
+))
+run_log
+```
+
+Expected: four rows in the requested order, with two successes and two readable
+error messages. This wrapper captures errors. Warnings require separate review.
+
+## The Count Exposes It
+
+```r
+stopifnot(nrow(run_log) == length(requested_variables))
+```
+
+Count reconciliation detects omitted requests. Names, order, status and type
+checks establish additional parts of the contract.
 
 ## Check The Batch Log
 
 ```r
 stopifnot(
-  identical(run_log$variable, requested),
-  sum(run_log$status == "error") == 2
+  identical(run_log$variable, requested_variables),
+  identical(run_log$status, c("ok", "error", "error", "ok")),
+  is.double(run_log$mean),
+  all(nchar(run_log$error_message[run_log$status == "error"]) > 0)
 )
 ```
 
@@ -245,31 +447,39 @@ Use successes downstream; retain `run_log` as evidence.
 
 ## Type Coercion Trap
 
-If one simplification mixes numeric means and text error messages, every result
-may become character.
+```r
+generated_mixed <- sapply(requested_variables, function(name) {
+  tryCatch(
+    summarize_numeric(data, name)$mean,
+    error = function(error) conditionMessage(error)
+  )
+})
+typeof(generated_mixed)  # "character"
+```
 
-Check types after iteration.
+All four requests remain, but combining numbers and error text turns every
+entry into text. The typed status table keeps numeric results numeric.
 
 ## AI Batch Audit
 
 - Same number of requests and records?
 - Names and order preserved?
-- Errors and warnings visible?
+- Errors visible, and warnings reviewed?
 - Numeric results still numeric?
 - Stable columns and types?
 
 ## Project 2 Training Stage Opens
 
 - R building-energy analysis
-- group-specific training ZIP released through Blackboard
+- group-specific training ZIP through the announced course channel
 - PDF plus source and result CSVs
 - validation ZIP withheld until after the frozen-plan gate
 
 ## Two-Stage Sequence
 
 1. Inspect and clean training data.
-2. Record the model plan.
-3. Receive validation data.
+2. After Week 13 instruction, record and clarify the model plan, then freeze it.
+3. Receive validation data at the common Week 14 release.
 4. Apply the frozen plan.
 5. Report performance and limitations.
 
@@ -305,7 +515,12 @@ Check types after iteration.
 - Inspect types.
 - Retain the complete log.
 
-## Exit Ticket
+## Meeting 2 Exit Ticket
 
-For one proposed repeated task, choose vectorization, `lapply`, `vapply`, or a
-loop and name the check that would reveal a missing iteration.
+A batch requests four variables, but the final table contains only the two
+successful summaries.
+
+Explain what evidence is missing, what a complete run log should retain, and
+one check that would expose the problem.
+
+Write a short response in your own words. Code is optional.
