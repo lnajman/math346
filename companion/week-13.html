@@ -2788,11 +2788,11 @@ Compare coefficients and residuals
 </section>
 <section id="baseline" class="level3">
 <h3 class="anchored" data-anchor-id="baseline">Compare like with like</h3>
-<p><strong>Slide cues:</strong> “Mean Baseline”, “Fair Training Comparison”, “Training Is Not Validation”, “R-Squared” and “R-Squared Is Not”.</p>
+<p><strong>Slide cues:</strong> “Mean Baseline”, “Fair Training Comparison”, “Training Is Not Validation”, “R-Squared: Baseline Formula” and “R-Squared: Interpretation And Limits”.</p>
 <p>The mean baseline repeats one number for every training row. The line changes its fitted value with temperature. Both RMSEs must use the <strong>same response, same 116 rows and same units</strong>. Lower RMSE means smaller squared discrepancies on that comparison, not “more observations predicted exactly.”</p>
 </section>
-<section id="r-squared-compares-squared-errors-with-the-mean-baseline" class="level3">
-<h3 class="anchored" data-anchor-id="r-squared-compares-squared-errors-with-the-mean-baseline">R-squared compares squared errors with the mean baseline</h3>
+<section id="r-squared-baseline" class="level3">
+<h3 class="anchored" data-anchor-id="r-squared-baseline">R-squared compares squared errors with the mean baseline</h3>
 <p>For the unweighted least-squares fits <strong>with an intercept</strong> used here, and a response that is not constant,</p>
 <p><span class="math display">\[
 R^2 = 1 -
@@ -2993,6 +2993,7 @@ Reference version · Additive model and diagnostic flags
 </div>
 <p>Read the residual plot as fitted ozone horizontally and <strong>observed minus fitted ozone</strong> vertically, both in ppb. The dashed horizontal line is zero. Points above it were underpredicted. Look for bends, changes in vertical spread, clusters and isolated points. A near-zero mean residual can coexist with those patterns; with an intercept it is a fitted-model algebraic property, not a complete diagnostic pass. Some fitted values are negative here: these are model estimates, not negative recorded ozone measurements. That is a limitation to inspect in this unconstrained linear model.</p>
 <p>The additive temperature slope is about <strong>1.840179 ppb per degree F</strong> and the wind slope about <strong>-3.055491 ppb per mph</strong>. These answer a different, conditional question from the simple model’s 2.428703. Its training RMSE is about <strong>21.6 ppb</strong>, with R-squared about <strong>0.568710</strong>. Added predictors can improve training fit; new-data evidence is still missing.</p>
+<p>The “R-Squared Reminder” slide reuses the <a href="#r-squared-baseline">baseline definition introduced in Meeting 1</a>; it does not introduce a different statistic. Both models use the same training days and mean-baseline denominator, so the additive model’s higher R-squared means a lower training squared-error total. It does not establish better prediction on unseen days.</p>
 </section>
 <section id="flags-invite-questions-not-automatic-deletion" class="level3">
 <h3 class="anchored" data-anchor-id="flags-invite-questions-not-automatic-deletion">Flags invite questions, not automatic deletion</h3>

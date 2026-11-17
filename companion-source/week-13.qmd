@@ -405,14 +405,14 @@ the values describe. Neither check proves the model describes the pattern well.
 ### Compare like with like {#baseline}
 
 **Slide cues:** “Mean Baseline”, “Fair Training Comparison”, “Training Is Not Validation”,
-“R-Squared” and “R-Squared Is Not”.
+“R-Squared: Baseline Formula” and “R-Squared: Interpretation And Limits”.
 
 The mean baseline repeats one number for every training row. The line changes
 its fitted value with temperature. Both RMSEs must use the **same response,
 same 116 rows and same units**. Lower RMSE means smaller squared discrepancies
 on that comparison, not “more observations predicted exactly.”
 
-### R-squared compares squared errors with the mean baseline
+### R-squared compares squared errors with the mean baseline {#r-squared-baseline}
 
 For the unweighted least-squares fits **with an intercept** used here, and a
 response that is not constant,
@@ -645,6 +645,13 @@ wind slope about **-3.055491 ppb per mph**. These answer a different, conditiona
 question from the simple model's 2.428703. Its training RMSE is about **21.6 ppb**,
 with R-squared about **0.568710**. Added predictors can improve training fit;
 new-data evidence is still missing.
+
+The “R-Squared Reminder” slide reuses the
+[baseline definition introduced in Meeting 1](#r-squared-baseline); it does
+not introduce a different statistic. Both models use the same training days
+and mean-baseline denominator, so the additive model's higher R-squared means
+a lower training squared-error total. It does not establish better prediction
+on unseen days.
 
 ### Flags invite questions, not automatic deletion
 

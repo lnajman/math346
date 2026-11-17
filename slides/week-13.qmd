@@ -228,17 +228,28 @@ The model was fitted and evaluated on the same 116 observations.
 
 Lower training error does not prove performance on new days.
 
-## R-Squared
+## R-Squared: Baseline Formula
 
-About 0.488 of the response variation is accounted for by the fitted linear
-relationship on these modeling rows.
+Use the same training rows, with an intercept and a varying response:
 
-## R-Squared Is Not
+$$
+R^2 = 1 -
+\frac{\sum_i (y_i-\widehat y_i)^2}
+     {\sum_i (y_i-\bar y)^2}.
+$$
 
-- percent of observations predicted correctly
-- causal strength
-- validation performance
-- proof that assumptions hold
+- Top: the model's total squared errors.
+- Bottom: the training-mean baseline's total squared errors.
+
+## R-Squared: Interpretation And Limits
+
+For the simple temperature model, $R^2 \approx 0.488$.
+
+Its training squared-error total is about **48.8% lower** than the
+mean-baseline total on the same 116 days.
+
+This is **not** a 48.8% reduction in RMSE, a percentage of correct predictions,
+evidence of causation, or a guarantee of new-data accuracy.
 
 ## Fitting A Line And Model Adequacy
 
@@ -389,28 +400,13 @@ Some meet both rules. The most influential source row is 117.
 | Temperature | 23.5 | 0.488 |
 | Temperature + wind | 21.6 | 0.569 |
 
-## R-Squared: Baseline Formula
+## R-Squared Reminder
 
-Use the same training rows, with an intercept and a varying response:
-
-$$
-R^2 = 1 -
-\frac{\sum_i (y_i-\widehat y_i)^2}
-     {\sum_i (y_i-\bar y)^2}.
-$$
-
-- Top: the model's total squared errors.
-- Bottom: the training-mean baseline's total squared errors.
-
-## R-Squared: Interpretation And Limits
-
-For the simple temperature model, $R^2 \approx 0.488$.
-
-Its training squared-error total is about **48.8% lower** than the
-mean-baseline total on the same 116 days.
-
-This is **not** a 48.8% reduction in RMSE, a percentage of correct predictions,
-evidence of causation, or a guarantee of new-data accuracy.
+- The earlier [baseline formula](#/r-squared-baseline-formula) compares
+  squared-error totals on the same training rows.
+- Here the training R-squared rises from about **0.488** to **0.569**.
+- The additive model accounts for more training variation; new-data evidence
+  is still missing.
 
 ## Do Not Declare A Winner Yet
 

@@ -52,6 +52,12 @@ need.
 
 ## What Has Been Established
 
+- Publication of the Week 13 sequencing correction is authorized: the R-squared formula and
+  interpretation now accompany its first introduction in Meeting 1; Meeting 2
+  uses a linked reminder. The companion's existing order is retained, with
+  aligned slide cues and a return link. R execution, companion and slide-layout
+  checks pass; assessment scope and policies are unchanged.
+
 - Publication of the checked Week 13 revisions is authorized on 17 November:
   quiz dates/format, complete runnable slide setup, Cook's-distance intuition,
   the R-squared formula and limits, aligned exits and Project 2 plan guidance.

@@ -17,6 +17,14 @@ describe pedagogical progress.
 
 ## Current Phase
 
+Publication of the subsequent Week 13 sequencing correction is authorized: the detailed
+R-squared baseline formula and interpretation now appear at their first
+introduction in Meeting 1, after the training/baseline comparison. Meeting 2
+uses a short linked reminder. The companion already introduced the formula in
+Meeting 1; its slide cues and cross-reference are aligned. Executable examples,
+assessment scope and policies are unchanged. Fresh R execution, the companion
+bundle and the 53-slide typeset layout checks pass.
+
 Publication of the checked Week 13 revisions was authorized on 17 November.
 The release updates quiz dates/format, runnable slide setup, Cook's-distance
 intuition, the R-squared formula and interpretation, both exit prompts and the
