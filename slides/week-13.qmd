@@ -17,14 +17,40 @@ claim weak?
 ## Week 13 Plan
 
 - Meeting 1: formula, coefficients, fitted values, baseline
-- Meeting 2: residuals, influence, additive model
-- AI interpretation audit
+- Meeting 2: Quiz 4, additive model, residuals and influence
+- Project 2 model plan and a short AI-claim audit
 
-## Working Assessment Marker
+## Quiz 4: Dates And Delivery
 
-Quiz 4 remains in Week 13.
+- Monday–Wednesday section: **Wednesday 18 November 2026**
+- Tuesday–Thursday section: **Thursday 19 November 2026**
+- During regular class, in Meeting 2
+- Individual **paper quiz**, **15 minutes**, **12 marks**
 
-Its exact date, duration, delivery, and format are still open.
+The Monday–Wednesday section goes first, reversing Quiz 3's order.
+
+## Quiz 4: Scope And Preparation
+
+- **R Weeks 10–12**, using earlier R fundamentals where needed
+- **6 MCQs × 1 mark + 3 short written questions × 2 marks**
+- Partial credit for written work; no negative marking
+- **No MATLAB or new Week 13 modeling**
+
+[Student guide](../assessments/quiz-04.qmd) and
+[separate practice quiz](../assessments/quiz-04-practice.qmd).
+
+Bring a pen and student ID. Follow Blackboard's permitted-reference instructions.
+
+## Meeting 1 Setup
+
+Start a fresh R script. Built-in `airquality` needs no CSV download.
+
+```r
+library(dplyr)
+library(ggplot2)
+```
+
+Run code in order. Read and check generated code before accepting it.
 
 ## Modeling Contract
 
@@ -44,6 +70,7 @@ This is not a controlled intervention.
 ```r
 model_data <- airquality |>
   transmute(
+    observation_id = row_number(),
     ozone_ppb = Ozone,
     temperature_f = Temp
   ) |>
@@ -56,9 +83,13 @@ model_data <- airquality |>
 stopifnot(
   nrow(airquality) == 153,
   nrow(model_data) == 116,
-  !anyNA(model_data)
+  !anyNA(model_data),
+  !anyDuplicated(model_data$observation_id)
 )
 ```
+
+The rule excludes 37 days with missing ozone. Temperature is complete.
+Keep original source IDs assigned before filtering.
 
 ## Plot Before Fitting
 
@@ -81,10 +112,10 @@ Response left; explanatory variable right.
 
 ## Fitted Equation
 
-\[
+$$
 \widehat{\text{ozone}}
 = -147.0 + 2.43\,\text{temperature}
-\]
+$$
 
 Units and observed range determine interpretation.
 
@@ -99,6 +130,16 @@ an estimated 2.43 ppb increase in mean ozone.
 
 “Causes” requires a stronger design and assumptions.
 
+## A Claim Needs Evidence And A Limit
+
+**Supported:** one degree F higher temperature is associated with about
+2.43 ppb higher fitted mean ozone in these observed conditions.
+
+**Evidence:** the fitted temperature coefficient.
+
+**Limit:** an average association does not establish a causal effect or the
+change on every individual day.
+
 ## Intercept Warning
 
 - Intercept: fitted ozone at 0 F
@@ -108,9 +149,9 @@ an estimated 2.43 ppb increase in mean ozone.
 
 ## Fitted Plus Residual
 
-\[
+$$
 y_i = \hat{y}_i + e_i
-\]
+$$
 
 A positive residual means the observed response exceeds the fitted value.
 
@@ -119,8 +160,8 @@ A positive residual means the observed response exceeds the fitted value.
 ```r
 model_data <- model_data |>
   mutate(
-    fitted = fitted(ozone_fit),
-    residual = residuals(ozone_fit)
+    fitted_ozone_ppb = fitted(ozone_fit),
+    residual_ppb = residuals(ozone_fit)
   )
 ```
 
@@ -129,9 +170,13 @@ model_data <- model_data |>
 ```r
 stopifnot(
   length(fitted(ozone_fit)) == nrow(model_data),
-  length(residuals(ozone_fit)) == nrow(model_data)
+  length(residuals(ozone_fit)) == nrow(model_data),
+  max(abs(model_data$ozone_ppb -
+    model_data$fitted_ozone_ppb - model_data$residual_ppb)) < 1e-10
 )
 ```
+
+Keep the same source-row identity and order, not just matching lengths.
 
 ## Mean Baseline
 
@@ -140,6 +185,33 @@ baseline <- mean(model_data$ozone_ppb)
 ```
 
 Predict the same training mean for every modeling row.
+
+## A Checked RMSE Calculation
+
+```r
+rmse <- function(observed, predicted) {
+  stopifnot(length(observed) > 0,
+            length(observed) == length(predicted),
+            !anyNA(observed), !anyNA(predicted))
+  sqrt(mean((observed - predicted)^2))
+}
+stopifnot(rmse(c(10, 12), c(8, 14)) == 2)
+```
+
+Errors 2 and -2 give squared mean 4 and RMSE 2.
+
+## Calculate The Training Comparison
+
+```r
+baseline_rmse <- rmse(model_data$ozone_ppb,
+  rep(baseline, nrow(model_data)))
+model_rmse <- rmse(model_data$ozone_ppb,
+  model_data$fitted_ozone_ppb)
+c(baseline_training_rmse = baseline_rmse,
+  model_training_rmse = model_rmse)
+```
+
+Both use the same 116 retained days and ozone units (ppb).
 
 ## Fair Training Comparison
 
@@ -168,16 +240,81 @@ relationship on these modeling rows.
 - validation performance
 - proof that assumptions hold
 
+## Fitting A Line And Model Adequacy
+
+`lm` can estimate a line without establishing that it describes the pattern well.
+
+- Residual evidence helps investigate remaining structure.
+- Untouched new-data evidence helps assess predictive performance.
+- A successful run or low training error alone settles neither question.
+
+## Meeting 1 Exit Ticket
+
+For the ozone-on-temperature model, write one supported claim and one
+unsupported claim. Explain why for each, with units where relevant.
+
+Write a short individual response in your own words. Code is not required.
+
 ## Meeting 2 Question
 
 What remains in the data after the fitted model has made its prediction?
 
+Meeting 2 begins with Quiz 4. Modeling resumes after papers are collected.
+
+## Meeting 2 Setup
+
+This meeting can run in a fresh R session.
+
+```r
+library(dplyr)
+library(ggplot2)
+model_data <- airquality |>
+  transmute(observation_id = row_number(), ozone_ppb = Ozone,
+            temperature_f = Temp, wind_mph = Wind) |>
+  filter(complete.cases(ozone_ppb, temperature_f, wind_mph))
+stopifnot(nrow(model_data) == 116, !anyNA(model_data),
+          !anyDuplicated(model_data$observation_id))
+simple_fit <- lm(ozone_ppb ~ temperature_f, data = model_data)
+```
+
+## Add Wind
+
+```r
+additive_fit <- lm(
+  ozone_ppb ~ temperature_f + wind_mph,
+  data = model_data
+)
+coef(additive_fit)
+```
+
+Temperature slope about 1.84 ppb/F; wind slope about -3.06 ppb/mph.
+
+## Conditional Coefficients
+
+- Temperature: compare days at the same wind speed.
+- Wind: compare days at the same temperature.
+
+These remain adjusted associations.
+
+## Save Aligned Predictions And Residuals
+
+```r
+model_data <- model_data |>
+  mutate(simple_prediction = predict(simple_fit),
+         additive_prediction = predict(additive_fit),
+         additive_residual = residuals(additive_fit))
+stopifnot(max(abs(model_data$ozone_ppb -
+  model_data$additive_prediction -
+  model_data$additive_residual)) < 1e-10)
+```
+
 ## Residual Plot
 
 ```r
-ggplot(model_data, aes(prediction, residual)) +
+ggplot(model_data, aes(additive_prediction, additive_residual)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_point()
+  geom_point() +
+  labs(x = "Fitted ozone (ppb)", y = "Residual (ppb)")
 ```
 
 ## Look For Structure
@@ -200,12 +337,42 @@ Values beyond approximately -2 or 2 invite investigation.
 
 ## Cook's Distance
 
+Compare the same model fitted with all observations and with one left out.
+
+**Cook's distance measures the scaled overall change in fitted values.**
+
+- **Residual:** prediction error for one observation.
+- **Cook's distance:** that observation's influence on the fit.
+- Large values warrant investigation, even for genuine observations.
+
+## Cook's Distance In R
+
 ```r
 model_data$cooks_distance <-
   cooks.distance(additive_fit)
+influence_threshold <- 4 / nrow(model_data)
 ```
 
-The classroom threshold `4 / n` is a flag, not a deletion rule.
+The classroom threshold `4 / nrow(model_data)` is about 0.03448.
+
+It flags influence for investigation, not automatic deletion.
+
+R computes it; no Cook's-distance formula or hand calculation is required.
+
+## Check The Additive Model's Flags
+
+```r
+flagged <- model_data |>
+  filter(abs(standardized_residual) > 2 |
+         cooks_distance > influence_threshold) |>
+  arrange(desc(cooks_distance))
+c(large_residuals = sum(abs(model_data$standardized_residual) > 2),
+  influence_flags = sum(model_data$cooks_distance > influence_threshold))
+head(flagged)
+```
+
+Four large residuals, seven influence flags, eight distinct flagged days.
+Some meet both rules. The most influential source row is 117.
 
 ## Diagnostic Flags Ask Questions
 
@@ -213,22 +380,6 @@ The classroom threshold `4 / n` is a flag, not a deletion rule.
 - Is the context unusual but real?
 - Does the conclusion depend on it?
 - Would a different model structure help?
-
-## Add Wind
-
-```r
-additive_fit <- lm(
-  ozone_ppb ~ temperature_f + wind_mph,
-  data = model_data
-)
-```
-
-## Conditional Coefficients
-
-- Temperature: compare days at the same wind speed.
-- Wind: compare days at the same temperature.
-
-These remain adjusted associations.
 
 ## Same-Row Comparison
 
@@ -238,11 +389,42 @@ These remain adjusted associations.
 | Temperature | 23.5 | 0.488 |
 | Temperature + wind | 21.6 | 0.569 |
 
+## R-Squared: Baseline Formula
+
+Use the same training rows, with an intercept and a varying response:
+
+$$
+R^2 = 1 -
+\frac{\sum_i (y_i-\widehat y_i)^2}
+     {\sum_i (y_i-\bar y)^2}.
+$$
+
+- Top: the model's total squared errors.
+- Bottom: the training-mean baseline's total squared errors.
+
+## R-Squared: Interpretation And Limits
+
+For the simple temperature model, $R^2 \approx 0.488$.
+
+Its training squared-error total is about **48.8% lower** than the
+mean-baseline total on the same 116 days.
+
+This is **not** a 48.8% reduction in RMSE, a percentage of correct predictions,
+evidence of causation, or a guarantee of new-data accuracy.
+
 ## Do Not Declare A Winner Yet
 
 Adding predictors commonly improves training fit.
 
 New-data evidence is still missing.
+
+## Model-Specific Evidence
+
+- Additive-model diagnostics above: **4** large residuals, **7** influence flags.
+- The separate AI-review script uses the **simple temperature-only model**:
+  **5** large residuals, **5** influence flags.
+
+Read the formula before comparing counts. The model is part of the evidence.
 
 ## AI Claim Audit
 
@@ -254,12 +436,31 @@ New-data evidence is still missing.
 
 ## Project 2 Connection
 
-- response and predictors
-- frozen formula
-- coefficient interpretation
-- mean baseline
-- residual evidence
-- later validation metric
+Your short plan records:
+
+1. numeric response and selected predictors;
+2. exact R formula and principal coefficient to interpret;
+3. mean-training-response baseline;
+4. validation metric (the project requires both MAE and RMSE);
+5. one expected failure condition.
+
+These cover the seven fields in the supplied template.
+
+## Project 2 Plan Submission
+
+- **Friday 20 November, 23:55 UAE time**
+- Complete the plan page; export **group-NN-model-plan.pdf**.
+- Include team number, names and student IDs.
+- The **lowest-ID member** submits once in their own Blackboard course.
+- No duplicate submission across sections; no code, data or full report yet.
+
+## Project 2 Plan Feedback And Freeze
+
+- The checkpoint is formative, with **no separate grade**.
+- Its quality and implementation count within the final project.
+- Follow Blackboard for feedback and any requested clarification.
+- Confirm the plan before receiving validation data.
+- Explain any later deviation rather than silently changing the frozen plan.
 
 ## Before Fitting
 
@@ -284,7 +485,12 @@ Week 13 fits and diagnoses declared models.
 
 Week 14 repeats modeling workflows across groups or formulas.
 
-## Exit Ticket
+## Meeting 2 Exit Ticket
 
-Write one supported model claim, one unsupported claim, and one diagnostic that
-would change your confidence.
+An observation exceeds the classroom Cook's-distance threshold. Explain:
+
+1. what this flag suggests;
+2. one concrete investigation before deciding whether to exclude it;
+3. why lower training RMSE alone does not establish better new-data prediction.
+
+Write a short individual response in your own words. Code is not required.

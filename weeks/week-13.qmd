@@ -10,9 +10,11 @@ collected or graded.
 
 ## Official Topic
 
-Model basics and model building. [Quiz 4](../assessments/quiz-04.qmd) retains
-the working slot this week: a 15-minute paper quiz on R Weeks 10–12, excluding
-this week's modeling. Exact section dates are announced in Blackboard.
+Model basics and model building. [Quiz 4](../assessments/quiz-04.qmd) takes place
+in Meeting 2: **Wednesday 18 November 2026 for Monday–Wednesday**, and
+**Thursday 19 November 2026 for Tuesday–Thursday**, during regular class.
+It is a 15-minute paper quiz on R Weeks 10–12, excluding this week's modeling.
+Follow Blackboard for permitted references and individual arrangements.
 Try the [separate practice quiz](../assessments/quiz-04-practice.qmd).
 
 ## Problem Focus
@@ -71,7 +73,7 @@ week13/
 
 **Question:** What exactly does the fitted line describe?
 
-Suggested 75-minute rhythm:
+Suggested 75-minute rhythm (Quiz 4 is in Meeting 2):
 
 | Time | Activity |
 |---:|---|
@@ -210,19 +212,26 @@ observations predicted correctly, a causal effect, or a validation score.
 **Question:** Does the residual evidence support using the fitted model for the
 intended claim?
 
-Suggested 75-minute rhythm:
+Quiz 4 occupies the start of this meeting. The classroom route protects the
+full 15-minute working time and the final five-minute exit:
 
 | Time | Activity |
 |---:|---|
-| 0-10 min | Reconstruct observed = fitted + residual |
-| 10-25 min | Build and read a residual-versus-fitted plot |
-| 25-38 min | Flag large standardized residuals and Cook's distances |
-| 38-50 min | Add wind and interpret conditional coefficients |
-| 50-60 min | Compare baseline, simple, and additive training RMSE fairly |
-| 60-70 min | Audit a fluent AI model interpretation |
-| 70-75 min | Exit ticket: diagnostic evidence that changes confidence |
+| 0-20 min | Quiz instructions, 15-minute paper quiz and collection |
+| 20-26 min | Model-claim feedback and fresh setup |
+| 26-32 min | Add wind and interpret conditional coefficients |
+| 32-38 min | Read the residual-versus-fitted plot |
+| 38-48 min | Explain Cook's distance and investigate diagnostic flags |
+| 48-55 min | Compare training evidence and explain the R-squared baseline formula |
+| 55-70 min | Project 2 model-plan guidance and team questions |
+| 70-75 min | Individual exit: influence, investigation and new-data limits |
 
 ### Residual Plot
+
+Use the complete diagnostic script or companion reference first: it creates
+the wind-inclusive table, fits `additive_fit` and saves aligned predictions and
+residuals before these diagnostic snippets. They are excerpts, not standalone
+programs.
 
 ```r
 ggplot(model_data, aes(additive_prediction, additive_residual)) +

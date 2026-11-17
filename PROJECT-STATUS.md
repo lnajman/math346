@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-11-09
+Last updated: 2026-11-17
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -16,6 +16,15 @@ describe pedagogical progress.
    been approved.
 
 ## Current Phase
+
+Publication of the checked Week 13 revisions was authorized on 17 November.
+The release updates quiz dates/format, runnable slide setup, Cook's-distance
+intuition, the R-squared formula and interpretation, both exit prompts and the
+Project 2 plan instructions. The companion's executable examples/downloads
+remain unchanged. R, companion-bundle, typeset-slide and PDF checks pass.
+Only student-facing sources/rendered companion and a concise public milestone
+are included; private PDFs, assessment drafts, student data and unrelated
+pending handoff changes remain outside this publication commit.
 
 On 9 November, publication of the updated Week 12 slide deck was authorized.
 The deck supplies complete function definitions before use, fresh setup for

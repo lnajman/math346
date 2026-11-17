@@ -42,6 +42,25 @@ to your script. The full route is Core **1, 2, 3, 4, 6, 8**, selective Guided
 selected lab/exercises share the **90–120-minute ordinary-week practice budget**.
 Use the announced reduced selection when an assessment displaces teaching time.
 The two class meetings retain 75 minutes each and their final five-minute exits.
+Meeting 2 includes Quiz 4; its modeling activities use the remaining class time.
+:::
+
+::: {.callout-note}
+## Quiz 4 this week
+
+**Monday–Wednesday section: Wednesday 18 November 2026.**
+**Tuesday–Thursday section: Thursday 19 November 2026.**
+
+The individual paper quiz takes **15 minutes** during regular class and covers
+**R Weeks 10–12**, using earlier R fundamentals where needed. It has six
+one-mark MCQs and three two-mark written questions, **12 marks** total, with
+partial credit for written responses and no negative marking. MATLAB and new
+Week 13 modeling are excluded.
+
+Use the [student guide](https://lnajman.github.io/math346/assessments/quiz-04.html)
+and [separate practice quiz](https://lnajman.github.io/math346/assessments/quiz-04-practice.html).
+Bring a pen and student ID; follow Blackboard for permitted references and
+individual arrangements. No live quiz questions or answers appear here.
 :::
 
 ### Before you start {#before-start}
@@ -340,6 +359,25 @@ change or establish causation.
 
 </details>
 
+### A complete claim and its evidence
+
+“A one-degree-F higher temperature is associated with about 2.43 ppb higher
+fitted mean ozone in these observed conditions” states a model claim with units.
+The positive fitted slope supports it. The observational design does not
+support replacing “is associated with” by “causes.” Other properly justified
+claim pairs are possible; this is one example, not a required sentence to memorise.
+
+Naming units or saying “check linearity” supplies useful context, but does not
+by itself state a claim and explain its evidence. A complete answer identifies
+what the fitted output supports and why a proposed stronger statement goes
+beyond that evidence.
+
+Successfully fitting a line also does not establish that a linear description
+is adequate. `lm` can return coefficients while residuals still show curvature,
+uneven spread or influential observations. Residual checks investigate what the
+model missed; untouched new-data evaluation addresses predictive performance.
+Keep those two questions separate from whether the code ran successfully.
+
 The reference checks how many points reached the scatter layer. View it and
 check row alignment independently. These checks use the reference object names;
 run the modeling-table check and reference above first. If your completed
@@ -360,8 +398,9 @@ stopifnot(
 
 For the last check, the two prediction errors are -1 and 1. Squaring gives 1
 and 1; their mean and its square root are 1. That known answer checks the RMSE
-calculation independently. The reconstruction identity checks row alignment;
-neither check proves the model describes the pattern well.
+calculation independently. The reconstruction identity checks numerical
+consistency; retain source IDs and unchanged row order to establish which days
+the values describe. Neither check proves the model describes the pattern well.
 
 ### Compare like with like {#baseline}
 
@@ -372,6 +411,40 @@ The mean baseline repeats one number for every training row. The line changes
 its fitted value with temperature. Both RMSEs must use the **same response,
 same 116 rows and same units**. Lower RMSE means smaller squared discrepancies
 on that comparison, not “more observations predicted exactly.”
+
+### R-squared compares squared errors with the mean baseline
+
+For the unweighted least-squares fits **with an intercept** used here, and a
+response that is not constant,
+
+$$
+R^2 = 1 -
+\frac{\sum_i (y_i-\widehat y_i)^2}
+     {\sum_i (y_i-\bar y)^2}.
+$$
+
+Here $y_i$ is observed ozone, $\widehat y_i$ is its fitted value and
+$\bar y$ is the mean ozone on the **same training rows**. The numerator is
+the fitted model's total squared errors. The denominator is the total squared
+errors from giving every row the training-mean prediction. Both sums use the
+same observations and have the same squared units, so their ratio and
+$R^2$ have no units. This mean-baseline interpretation is specific to the
+intercept models here; do not silently apply it to a no-intercept fit or a
+different evaluation dataset.
+
+For the simple temperature model, $R^2\approx0.488$ says that the fitted
+line's training sum of squared errors is about **48.8% lower** than that of
+the mean baseline. Equivalently, about 48.8% of the response variation around
+the training mean is accounted for by this fitted relationship. This does not
+mean 48.8% of days are predicted correctly, 48.8% lower RMSE, or a causal effect.
+Because RMSE takes a square root, its percentage reduction is different.
+New-data performance still requires new-data evidence.
+
+For an arithmetic illustration, if the mean baseline's squared-error total
+were 100 and the line's were 51.2, the formula would give
+$1-51.2/100=0.488$. These are illustrative totals, not additional
+measurements from `airquality`. In R, `summary(ozone_fit)$r.squared` returns
+the simple model's value. Use unrounded model outputs when checking it.
 
 **Predict in a private comment first:** after seeing 23.5 versus 32.8 ppb, can
 you say the line predicts a new summer's days well? Does R-squared about 0.488
@@ -388,9 +461,10 @@ validation evidence or read “fraction of variation” as “fraction of days.�
 
 </details>
 
-**Individual in-class exit, final five minutes:** name one supported claim and
-one unsupported claim about the fitted model. Follow the announced classroom
-route.
+**Individual in-class exit, final five minutes:** for the ozone-on-temperature
+model, write one supported claim and one unsupported claim. Explain why for
+each and include units where relevant. Write a short individual response in
+your own words; code is not required. Follow the announced classroom route.
 
 **Self-check (no submission):** a report compares a model's RMSE on 116 complete
 rows with a baseline computed on a different subset of 100 rows. Both numbers
@@ -408,9 +482,10 @@ the model was fitted and assessed.
 
 ## Meeting 2 · Investigate what remains {#meeting-two}
 
-**Slide cues:** “Meeting 2 Question”, “Residual Plot”, “Look For Structure”,
-“Standardized Residuals”, “Cook's Distance”, “Diagnostic Flags Ask Questions”,
-“Add Wind”, “Conditional Coefficients” and “Same-Row Comparison”.
+**Slide cues:** “Meeting 2 Question”, “Meeting 2 Setup”, “Add Wind”,
+“Conditional Coefficients”, “Save Aligned Predictions And Residuals”,
+“Residual Plot”, “Look For Structure”, “Standardized Residuals”,
+“Cook's Distance”, “Diagnostic Flags Ask Questions” and “Same-Row Comparison”.
 
 ### Rebuild the declared additive model {#diagnostics}
 
@@ -573,11 +648,38 @@ new-data evidence is still missing.
 
 ### Flags invite questions, not automatic deletion
 
+**Cook's distance asks how much one observation influences the fitted model.**
+Imagine fitting the same formula to all training observations, then refitting
+after leaving out one particular observation. Compare the two sets of fitted
+values at the original predictor inputs. Cook's distance summarises that
+overall change on a scaled basis. A large value means that the observation
+has a comparatively strong effect on the fitted relationship.
+
+A **residual** measures a discrepancy for one observation: observed minus
+fitted. **Cook's distance** measures influence on the model. They answer
+different questions. An observation at an unusual predictor value can pull
+the fit towards itself, so influence cannot be judged from residual size alone.
+A genuine observation can be influential; influence does not establish a
+measurement error.
+
+`cooks.distance(additive_fit)` computes one Cook's-distance value per modeling
+row. You should be able to explain its meaning, read the output and justify
+a follow-up investigation. **No Cook's-distance formula, derivation or hand
+calculation is required for this lesson.** Consult R's `?influence.measures`
+and `?summary.lm` help for the diagnostic and R-squared definitions.
+
 For this **additive model**, four residuals exceed 2 in absolute standardized
 units and seven Cook's distances exceed `4/116`, about 0.0345. `abs` checks
 both negative and positive residuals. Cook's distance measures influence, not
 whether a measurement is false. The script's `|` selects a row meeting **either**
 condition; a row meeting both still appears once.
+
+The classroom rule `4 / nrow(model_data)` is a **screening threshold**, not
+a universal decision rule, a probability that the row is incorrect or an
+instruction to delete it. Here it is $4/116\approx0.0345$. Inspect the
+original record and context, then assess whether a transparently documented
+sensitivity comparison changes the conclusion. Retain valid observations
+unless a defensible, stated analysis decision justifies otherwise.
 
 **Predict · Think first:** must the combined flag table contain 4 + 7 = 11 rows?
 Does crossing the Cook's threshold justify removing a row immediately?
@@ -726,9 +828,12 @@ Never supply private student information or assessment keys to an external tool.
 
 </details>
 
-**Individual in-class exit, final five minutes:** “Write one supported model
-claim, one unsupported claim, and one diagnostic that would change your
-confidence.” Follow the announced classroom route.
+**Individual in-class exit, final five minutes:** an observation exceeds the
+classroom Cook's-distance threshold. Explain what this flag suggests, one
+concrete investigation before deciding whether to exclude the observation,
+and why a lower training RMSE alone would not establish better prediction on
+new data. Write a short individual response in your own words; code is not
+required. Follow the announced classroom route.
 
 **Self-check (no submission):** a large positive residual and a Cook's flag
 occur for the same day. Explain what each measures and name a useful next
@@ -782,6 +887,19 @@ until that gate closes and the common Week 14 release. Follow the
 [project instructions](https://lnajman.github.io/math346/projects/project-2-modeling.html)
 and [milestone map](https://lnajman.github.io/math346/projects/project-milestones.html).
 Training fit is not validation.
+
+The model-plan checkpoint is due **Friday 20 November 2026, 23:55 UAE time**.
+Complete the frozen-plan page of the supplied template and export it as
+**group-NN-model-plan.pdf**, including the team number, names and student IDs.
+The member with the **lowest student ID** submits once in their own section's
+Blackboard course, including for cross-section teams. Do not submit duplicates.
+No full report, code, dataset or ZIP is required at this checkpoint.
+
+This is a formative checkpoint with no separate grade. The final project
+assesses the plan's quality and implementation within the existing rubric.
+Consult Blackboard for feedback, requested clarification and confirmation
+before validation release. Identify and explain later deviations instead of
+silently changing the plan after inspecting validation outcomes.
 
 **Where this fits:** [Week 13 notes](https://lnajman.github.io/math346/weeks/week-13.html) ·
 [Slides](https://lnajman.github.io/math346/slides/week-13.html) ·

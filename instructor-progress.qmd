@@ -11,7 +11,7 @@ approved paper format: six MCQs and three short written responses in 15
 minutes. Private section forms and separate practice are prepared;
 cumulative-final preparation follows. Course policies are unchanged.**
 
-Last updated: **9 November 2026**
+Last updated: **17 November 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -51,6 +51,12 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- Publication of the checked Week 13 revisions is authorized on 17 November:
+  quiz dates/format, complete runnable slide setup, Cook's-distance intuition,
+  the R-squared formula and limits, aligned exits and Project 2 plan guidance.
+  Companion code/downloads and assessment weights are unchanged. Private
+  instructor PDFs, assessment drafts and student records remain excluded.
 
 - The 9 November Week 12 slide release includes complete function definitions
   before use, fresh setup for both meetings, expected results and runnable
