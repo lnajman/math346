@@ -17,6 +17,22 @@ describe pedagogical progress.
 
 ## Current Phase
 
+On 22 November the Week 14 slide source was expanded from 40 to 54 slides to
+supply the existing workflow in runnable reading order. Both meetings rebuild
+the 116-row complete-case table; May and June demonstrations precede repetition.
+Complete fit/diagnostic function definitions precede calls, generic diagnostic
+placeholders are replaced with defined objects, and a separate ranking table
+makes Meeting 2 independent. The plotting copy preserves calendar order without
+changing fitted results. Both exits match the published companion and current
+instructor scripts; Project 2 availability remains conditional on Blackboard.
+All 28 displayed R blocks run in order in a fresh session; Meeting 2's 12 blocks
+also run independently. All 54 rendered slides pass bounds and code-scroll
+checks and were visually reviewed. All 29 companion slide cues still match.
+The three original public R files remain byte-identical and pass execution.
+No assessment, workload or syllabus change was made; human timing remains
+unmeasured. Publication of the checked slides is authorized on 22 November.
+Private instructor PDFs and student evidence remain excluded.
+
 On 22 November the Week 14 companion received a targeted local revision:
 a Week 13 influence/source/sensitivity bridge, both exit prompts aligned with
 the current delivery scripts, a stronger hidden explanation of changed-row

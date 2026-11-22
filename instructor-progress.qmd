@@ -52,6 +52,12 @@ need.
 
 ## What Has Been Established
 
+- Publication of the checked 54-slide Week 14 revision is authorized on
+  22 November. Complete setup and function definitions precede use, each meeting
+  runs independently, and both exits match the companion. Fresh R execution,
+  slide-layout and visual checks pass; public R files and workload are unchanged.
+  Private instructor PDFs and student evidence remain excluded.
+
 - Publication of the Week 14 companion clarification is authorized on
   22 November: influence/source/sensitivity reasoning, aligned class exits,
   a stronger hidden self-check and Blackboard-led project availability.
