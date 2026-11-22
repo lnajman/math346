@@ -11,7 +11,7 @@ approved paper format: six MCQs and three short written responses in 15
 minutes. Private section forms and separate practice are prepared;
 cumulative-final preparation follows. Course policies are unchanged.**
 
-Last updated: **17 November 2026**
+Last updated: **22 November 2026**
 :::
 
 This page tracks the redesign at the level of decisions and teaching materials.
@@ -51,6 +51,12 @@ course materials remain revisable when classroom evidence identifies a clear
 need.
 
 ## What Has Been Established
+
+- Publication of the Week 14 companion clarification is authorized on
+  22 November: influence/source/sensitivity reasoning, aligned class exits,
+  a stronger hidden self-check and Blackboard-led project availability.
+  R code, results and workload are unchanged; fresh execution and release
+  checks pass. Private delivery scripts and student evidence are excluded.
 
 - Publication of the Week 13 sequencing correction is authorized: the R-squared formula and
   interpretation now accompany its first introduction in Meeting 1; Meeting 2

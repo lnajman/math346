@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-11-17
+Last updated: 2026-11-22
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -16,6 +16,19 @@ describe pedagogical progress.
    been approved.
 
 ## Current Phase
+
+On 22 November the Week 14 companion received a targeted local revision:
+a Week 13 influence/source/sensitivity bridge, both exit prompts aligned with
+the current delivery scripts, a stronger hidden explanation of changed-row
+training RMSE, and conditional Project 2 availability wording tied to Blackboard.
+No validation release is claimed; no new task, deadline or assessment is introduced.
+R blocks, downloads, numerical results, Core/Guided selections and the two
+75-minute routes with five-minute exits are preserved. Student evidence and
+instructor-only material are excluded. All nine R block bodies are unchanged;
+all eight visible blocks and the independent two-block Meeting 2 route pass
+fresh-session execution. The full 21-page/113-resource build passes navigation,
+closed-reveal, hash and privacy/source-exclusion checks. Rendered wording and
+hidden self-check placement were reviewed. Publication is authorized on 22 November; private delivery PDFs remain local.
 
 Publication of the subsequent Week 13 sequencing correction is authorized: the detailed
 R-squared baseline formula and interpretation now appear at their first

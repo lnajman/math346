@@ -53,6 +53,14 @@ cases, coefficient units, training metrics, residuals and Cook's distance.
 You need to recognize those ideas; the complete references rebuild every object.
 No saved workspace or external CSV is needed.
 
+Carry forward this sequence from Week 13: **influence flag → check the source →
+report sensitivity → assess new-data performance separately**. A large residual
+measures a gap between an observed and fitted value; Cook's distance measures
+influence on the fitted relationship. Neither proves the observation is wrong.
+If the source confirms a genuine observation from the population being studied,
+keep it in the primary analysis rather than removing it just to improve fit.
+A declared sensitivity refit shows how much the conclusion changes.
+
 Slides provide lecture flow, this chapter explains and checks it, and selected
 labs/exercises provide practice. Week 14 repeats one declared workflow; it does
 not search many formulas. Week 15 turns the evidence into reproducible
@@ -412,8 +420,12 @@ but has substantial uncertainty; September has 29 rows and its own observed
 conditions. They do not define a common predictive competition. Same formula
 and units make summaries align; they do not make different rows interchangeable.
 
-**Individual in-class exit, final five minutes:** what must stay fixed across
-all five fits? Follow the announced classroom route.
+**Individual in-class exit, final five minutes:** Across our five monthly fits,
+name two parts of the modeling contract that must stay fixed. Explain why five
+summary rows alone do not prove that every requested month was fitted exactly
+once, and name a check that would reveal a missing or duplicated month. Write
+a short individual response in your own words. Code is not required. Follow
+the announced classroom route.
 
 **Self-check (no submission):** a result table still has five rows after a bug,
 but `Jun` appears twice and `Aug` disappears. Why is a row-count check inadequate,
@@ -747,9 +759,13 @@ Do not provide private student information or assessment keys to external tools.
 
 </details>
 
-**Individual in-class exit, final five minutes:** “Name one piece of evidence
-that prevents a high training R-squared from becoming an automatic ‘best model’
-claim.” Follow the announced classroom route.
+**Individual in-class exit, final five minutes:** June has only nine complete
+observations. After removing the row with the largest absolute standardized
+residual and refitting the same formula, its temperature coefficient changes
+by about +73% and its training RMSE falls. What does this show, and what does
+it not show? Name one piece of evidence needed before claiming better prediction
+on new observations. Write a short individual response in your own words. Code
+is not required. Follow the announced classroom route.
 
 **Self-check (no submission):** a sensitivity result has lower training RMSE
 after removing the declared row, but the temperature coefficient changes by
@@ -760,9 +776,16 @@ that evidence.
 <summary>Compare the Meeting 2 self-check</summary>
 
 Supported: the coefficient is sensitive to that declared one-row change, and
-error is smaller on the changed training subset. Unsupported: deletion fixed
-bad data or improved future prediction. Inspect the source observation and
-report instability instead of hiding the original result.
+error is smaller on the changed training subset. The original RMSE uses nine
+rows; the sensitivity RMSE uses eight after selecting a difficult row to omit.
+The metrics describe different observations, so the decrease does not establish
+better prediction on new observations.
+
+Unsupported: deletion fixed bad data or improved future prediction. Inspect
+the source observation and report instability instead of hiding the original
+result. Evidence for new-data performance would include predictions and errors
+on held-out observations not used to fit or select the model, with a suitable
+baseline evaluated on those same observations.
 
 </details>
 
@@ -798,9 +821,10 @@ the model, units, sample size, interval and selected source row before changing
 any observation.
 
 **Project 2:** preserve the frozen formula and declared sensitivity procedure.
-Validation files are released in the common Week 14 window after the frozen-plan
-gate. Apply the recorded formula, keep one prediction per validation row, and
-report deviations rather than silently revising the plan. The monthly workflow
+Follow the Blackboard announcement for the frozen-plan gate and validation
+file availability. When your validation package is released, apply the recorded
+formula, keep one prediction per validation row, and report deviations rather
+than silently revising the plan. The monthly workflow
 is a classroom example, not an additional project requirement. Use the
 [project instructions](https://lnajman.github.io/math346/projects/project-2-modeling.html)
 and [milestone map](https://lnajman.github.io/math346/projects/project-milestones.html).
