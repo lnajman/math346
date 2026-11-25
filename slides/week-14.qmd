@@ -295,7 +295,7 @@ They are not competitors predicting the same observations.
 
 Across our five monthly fits, name two parts of the modeling contract that must stay fixed. Explain why five summary rows alone do not prove that every requested month was fitted exactly once, and name a check that would reveal a missing or duplicated month. Write a short individual response in your own words. Code is not required.
 
-Use the announced classroom route.
+Submit your individual response in Blackboard.
 
 ## Meeting 2 Question
 
@@ -601,4 +601,4 @@ Week 15 communicates the final result clearly and reproducibly.
 
 June has only nine complete observations. After removing the row with the largest absolute standardized residual and refitting the same formula, its temperature coefficient changes by about +73% and its training RMSE falls. What does this show, and what does it not show? Name one piece of evidence needed before claiming better prediction on new observations. Write a short individual response in your own words. Code is not required.
 
-Use the announced classroom route.
+Submit your individual response in Blackboard.

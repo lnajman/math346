@@ -20,6 +20,11 @@ the motivation and the kind of feedback being requested.
 
 ## Status at a Glance
 
+Week 14's two exit prompts explicitly direct students to submit their
+individual responses in Blackboard, in both the slides and companion.
+Publication of this wording-only correction is authorized; questions and
+assessment policy are unchanged.
+
 Publication of the [final preparation guide](assessments/final.qmd) and
 [separate practice booklet](assessments/final-practice.qmd) is authorized on
 25 November. The final is on Sunday, 13 December 2026, 09:00-11:00 UAE time,

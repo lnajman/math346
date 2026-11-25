@@ -17,6 +17,12 @@ describe pedagogical progress.
 
 ## Current Phase
 
+On 25 November publication of the Week 14 exit-instruction correction was
+authorized. Both exit slides and the matching companion prompts now say
+"Submit your individual response in Blackboard." Questions, code, timing
+and assessment policy are unchanged. Only this public-safe milestone and
+the scoped slide/companion source and rendered HTML are included.
+
 Publication of final preparation is authorized on 25 November: the cumulative
 guide, separate practice page and answer-free student booklet, linked from the
 home page, assessment navigation/index and Week 15. Confirmed logistics are
