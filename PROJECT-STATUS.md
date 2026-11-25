@@ -17,6 +17,14 @@ describe pedagogical progress.
 
 ## Current Phase
 
+Publication of the separate online revision deck is authorized on 25 November.
+The answer-free 17-slide workshop for 30 November / 1 December is linked from
+the Slides index and Week 15 materials. The original Week 15 communication
+deck is unchanged. The workshop remains 75 minutes and ungraded; the private
+instructor script and backup student sheets are aligned. Model responses,
+the real final and the practice worked key remain private. No Blackboard
+announcement or practice-solution release is included.
+
 On 25 November publication of the Week 14 exit-instruction correction was
 authorized. Both exit slides and the matching companion prompts now say
 "Submit your individual response in Blackboard." Questions, code, timing

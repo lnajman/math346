@@ -20,6 +20,12 @@ the motivation and the kind of feedback being requested.
 
 ## Status at a Glance
 
+The separate [online revision slides](slides/week-15-online-revision.qmd)
+are ready for the 30 November / 1 December classes; publication is authorized.
+The 75-minute ungraded workshop has an aligned private instructor script.
+The original Week 15 communication deck remains unchanged for on-campus
+follow-up. Practice solutions and the real final remain private.
+
 Week 14's two exit prompts explicitly direct students to submit their
 individual responses in Blackboard, in both the slides and companion.
 Publication of this wording-only correction is authorized; questions and

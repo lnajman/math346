@@ -362,6 +362,7 @@ Project 2 remains separately scheduled.
 
 ## Materials
 
+- [Online revision workshop: 30 November / 1 December](../slides/week-15-online-revision.qmd)
 - [Slides](../slides/week-15.qmd)
 - [Exercises](week-15-exercises.qmd)
 - [Lab 15: Evidence bundle and submission rehearsal](../labs/lab-15-evidence-reconciliation.qmd)

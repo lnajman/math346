@@ -1,0 +1,249 @@
+---
+title: "Final Examination: Online Revision"
+subtitle: "30 November / 1 December 2026"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    footer: "MATH 346 · Ungraded revision"
+    include-in-header:
+      text: |
+        <style>
+        .reveal { font-size: 30px; }
+        .reveal h2 { font-size: 1.35em; }
+        .reveal pre { font-size: 0.68em; line-height: 1.25; }
+        .reveal blockquote { box-sizing: border-box; width: 100%; margin: 0.5em 0; padding: 0.5em; font-size: 0.92em; }
+        </style>
+execute:
+  enabled: false
+---
+
+## Our Online Session {#online-plan}
+
+**75 minutes · Same workshop for both sections**
+
+| Time | Activity |
+|---|---|
+| 0–5 | Join and post one uncertainty |
+| 5–15 | Three short diagnostic questions |
+| 15–35 | Two guided examples |
+| 35–50 | Individual evidence task and discussion |
+| 50–65 | Your questions |
+| 65–70 | Revision plan |
+| 70–75 | Individual Blackboard exit |
+
+This is ungraded revision, not a quiz.
+
+## Think, Then Send {#think-then-send}
+
+1. Stay connected through Blackboard.
+2. Work individually on paper beside your computer, or in a private note.
+3. Prepare a short answer. Wait for the invitation to send it in chat.
+
+No scans, uploaded handwritten pages, or MATLAB/R execution are required.
+Try the question yourself before consulting software or AI.
+
+**Post one uncertainty:** the practice question/topic, what you tried,
+and the step you cannot yet explain. An incomplete attempt is welcome.
+
+## D1: MATLAB Selections {#diagnostic-matlab}
+
+Without running this code:
+
+```matlab
+v = [1 4 7];
+z = v(2:end) - v(1:end-1);
+```
+
+- What is `z`, and what are its dimensions?
+- What do the two index expressions select?
+
+Prepare your answer, then send it labelled **D1** when invited.
+
+## D2: What Is The Denominator? {#diagnostic-r}
+
+```r
+x <- c(0, NA, 6, 12)
+mean(x, na.rm = TRUE)
+length(x)
+```
+
+- What mean is returned?
+- How many recorded values contribute to it?
+- Does `length(x)` give that denominator?
+
+Prepare your answer, then send it labelled **D2** when invited.
+
+## D3: What Does MAE Summarize? {#diagnostic-error}
+
+A validation MAE is **2 minutes**.
+
+Does this establish that **every** prediction error is at most 2 minutes?
+
+Explain what MAE summarizes.
+
+Prepare your answer, then send it labelled **D3** when invited.
+
+## Data Repair: Which Readings Count? {#data-repair}
+
+**Question:** What is the mean of all recorded readings?
+Zero is a valid measurement; `NA` means no reading was recorded.
+
+```r
+readings <- data.frame(
+  id = c("a", "b", "c", "d"),
+  value = c(0, NA, 6, 12)
+)
+kept <- readings[
+  !is.na(readings$value) & readings$value > 0, ]
+mean(kept$value)
+```
+
+Which IDs remain, and what mean does this draft return?
+Does it answer the stated question? Give the smallest repair and one check.
+
+## Metric Audit: Read The Operation {#metric-audit}
+
+Errors are **observed minus predicted**. An AI-assisted script labels its output `rmse`.
+
+```r
+errors <- c(0, 0, 6)
+rmse <- mean(abs(errors))
+rmse
+```
+
+1. What metric does this compute, and what value does it return?
+2. Obtain RMSE from its definition, then repair the line or describe the repair.
+3. Would restarting R and obtaining the same output establish correctness?
+
+An exact square root is sufficient. No execution is needed.
+
+## Individual Task: The Evidence {#evidence-case}
+
+An observational clinic study supplies this evidence:
+
+- A frozen model is checked on **five previously unused clinic sessions**.
+- On exactly those same sessions, model **MAE = 4 minutes** and
+  baseline **MAE = 5 minutes**.
+- One model prediction has **absolute error 14 minutes**.
+
+Keep the observations, metric and comparison in view when assessing a claim.
+
+## Individual Task: Repair The Claim {#repair-claim}
+
+**Same five held-out sessions: MAE 4 vs 5 minutes; one error 14 minutes;
+observational data.**
+
+An AI summary says:
+
+> Our model cuts average absolute error by 20% against the baseline on these
+> five sessions. Every prediction is therefore 20% more accurate, hiring staff
+> will reduce waits by 20%, and the model is ready for every hospital.
+
+**Work individually for five minutes.** Identify the supported part and write
+a two-sentence replacement that keeps the useful comparison but removes
+unsupported claims. Name one concrete check on the comparison.
+
+Prepare your answer privately; send the short replacement when invited.
+
+## Your Questions {#question-clinic}
+
+For a question from your practice attempt, give:
+
+- the question reference;
+- the step you tried;
+- the point you cannot yet explain.
+
+Is the uncertainty about **syntax, calculation, interpretation or checking**?
+
+We will discuss methods using different examples.
+The full practice key will be released separately; the date is to be confirmed.
+
+## Clinic Example: A Clipped Plot {#clinic-plot}
+
+Use this example if selected during the discussion.
+
+The stored table contains readings **2, 3 and 25**. A figure uses a vertical
+viewing range from **0 to 10**, and only two points are visible.
+
+An AI explanation says: “The third reading must have been deleted from the data.”
+
+Does the figure establish that? Name one check that distinguishes a display
+restriction from a missing data row, and a display repair if the reading is genuine.
+
+## Clinic Example: Same Filename, Different Inputs {#clinic-inputs}
+
+Use this example if selected during the discussion.
+
+Two analysts successfully run the same script in clean R sessions.
+Both import a file called `measurements.csv`, but one has yesterday's
+version and the other has today's revised version. Their summaries differ.
+
+- Does the difference alone demonstrate a programming error?
+- What input evidence should they compare and record before interpreting it?
+
+Explain why checking the filename alone is insufficient.
+
+## Your Revision Plan {#revision-plan}
+
+1. Choose one mistake or uncertainty from today or your practice attempt.
+2. Classify it: syntax, calculation, interpretation or checking.
+3. Revisit the relevant explanation, then try again without the aid.
+4. Change one input and predict what should change.
+
+Read and check code generated by an LLM. A confident explanation is not
+independent evidence that a calculation or claim is correct.
+
+Use the [final preparation guide](../assessments/final.qmd) and
+[separate practice paper](../assessments/final-practice.qmd).
+
+## Final Arrangements And Support {#final-arrangements}
+
+**Sunday, 13 December 2026 · 09:00–11:00 UAE time**<br>
+**D04101, Main Campus**
+
+- Paper examination; two A4 sheets handwritten by you, both sides permitted.
+- No calculator, software execution or electronic assistance.
+- Ask the TA or instructor for support; bring your attempted work and uncertainty.
+
+Next on-campus class: **7 December** for the Monday/Wednesday section;
+**8 December** for the Tuesday/Thursday section.
+
+The practice-solutions release date will be confirmed separately.
+
+## Blackboard Exit: Can The Test Reveal The Bug? {#online-exit}
+
+**Individual · Final five minutes · Ungraded**
+
+An R function is meant to compute RMSE. It returns 5 for errors `c(-5, 5)`,
+and gives 5 again after restarting R.
+
+Is this enough to distinguish correct RMSE code from code that actually
+computes MAE?
+
+Give a different short error vector that distinguishes the calculations.
+State the expected MAE and RMSE (an exact square root is fine), and explain
+why restarting alone is insufficient. No code is required.
+
+Submit your individual response in Blackboard. If you cannot finish,
+submit partial reasoning and identify your uncertainty.
+
+## Optional Alternative: MATLAB Conversion {#matlab-alternative}
+
+Use this **instead of** the data-repair activity if selected by the instructor.
+
+**Contract:** one time in minutes per input time in seconds, preserving
+the row-vector shape.
+
+```matlab
+seconds = [30 90];
+minutes = sum(seconds)/60;
+```
+
+What does the draft return? What does the contract require?
+Repair it and give an independently expected test result.
+Would a test using only one input time necessarily expose the problem?
+
+Then predict the required and original outputs for `[60 120]`.
+
+[Return to Metric Audit](#metric-audit).
