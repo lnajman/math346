@@ -1,6 +1,6 @@
 # MATH 346 Redesign Status
 
-Last updated: 2026-11-22
+Last updated: 2026-11-25
 
 This is the durable handoff record for the course redesign. Read this file before
 starting new work. A clean Git tree describes repository state; it does not
@@ -16,6 +16,15 @@ describe pedagogical progress.
    been approved.
 
 ## Current Phase
+
+Publication of final preparation is authorized on 25 November: the cumulative
+guide, separate practice page and answer-free student booklet, linked from the
+home page, assessment navigation/index and Week 15. Confirmed logistics are
+Sunday, 13 December 2026, 09:00-11:00 UAE time, D04101, Main Campus.
+The real examination, answer keys, builders and detailed review notes remain
+private. Practice solutions will be released separately after an announcement.
+The public commit contains only this publication summary, not pending private
+assessment-review details. Human timing and print review remain outstanding.
 
 On 22 November the Week 14 slide source was expanded from 40 to 54 slides to
 supply the existing workflow in runnable reading order. Both meetings rebuild

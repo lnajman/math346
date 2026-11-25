@@ -1,0 +1,42 @@
+---
+title: "Final Examination: Separate Practice Paper"
+description: "Ungraded individual rehearsal with a separate worked key."
+---
+
+## Paper-first practice
+
+[Download the practice booklet (PDF)](handouts/math346-final-practice-student.pdf).
+
+This is **practice, not the final examination**. It uses different tasks and
+representations from the live paper and is not a prediction of its questions.
+The revised booklet matches the planned final format: **eight
+questions, 56 marks and 28 subparts**, comprising **eight one-mark MCQs and
+20 written parts worth 48 marks**. MATLAB carries 14 marks and R 42 marks
+(25% / 75%). The contexts, tasks and combinations of ideas are distinct; this
+is a format rehearsal, not a question bank. All information needed for the
+calculations is supplied.
+
+## How to use it
+
+1. Work individually, using only two A4 sheets handwritten by you, both sides.
+   Do not use AI, a calculator or software on the first attempt.
+2. Allow up to 120 minutes. A design estimate is about 90 minutes answering,
+   with the remainder for reading and checking; student timing has not been
+   measured. The practice is not a speed test.
+3. Write directly in the booklet. If stuck, record your partial reasoning,
+   move on, and return. Show working and preserve units and row identities.
+4. Keep your attempt. No submission or grade is required. Use it to ask precise
+   questions at review or an appointment.
+
+## Solutions
+
+The worked key is separate so that you can attempt the paper first. Its release
+will be announced in Blackboard; there is no fixed release date on this page.
+It includes the reasoning, partial-credit guidance and common pitfalls.
+
+When checking, distinguish a slip from an incorrect method. Redo an unsuccessful
+part without the key, then test your understanding on a changed input.
+
+Return to the [final preparation guide](final.qmd) for the full cumulative
+revision map, confirmed rules and support contacts. The practice does not cover
+every examinable topic.

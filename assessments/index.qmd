@@ -5,6 +5,8 @@ description: "Student-facing assessment information for MATH 346."
 
 ## Published Information
 
+- [Final preparation guide](final.qmd): cumulative MATLAB/R revision, confirmed
+  two-hour paper rules and a [separate practice booklet](final-practice.qmd).
 - [Quiz 4](quiz-04.qmd): a 15-minute individual paper quiz on R Weeks 10–12,
   with six MCQs and three short written responses; try the
   [separate practice quiz](quiz-04-practice.qmd).
@@ -21,6 +23,8 @@ description: "Student-facing assessment information for MATH 346."
 
 ## Confirmed Assessment Schedule
 
+- **Final examination:** Sunday, 13 December 2026, 09:00–11:00 UAE time,
+  in **D04101, Main Campus**. See the [final preparation guide](final.qmd).
 - **Common midterm:** Saturday, 10 October 2026, from 12:00 to 1:30 PM. Both
   sections take the examination simultaneously outside regular class hours.
 - **Quiz 3:** Week 10, not Week 9. Exact section dates and meetings will be
@@ -28,8 +32,10 @@ description: "Student-facing assessment information for MATH 346."
 
 The [midterm guide](midterm.qmd) covers Weeks 1-6; Week 7 is excluded.
 The syllabus shows the complete assessment rhythm. Detailed preparation and
-permitted-material instructions for later quizzes, the final
-examination, and Project 2 will be published before each assessment.
+permitted-material instructions are provided on each assessment page. The
+[final guide](final.qmd) now covers revision and confirmed examination rules;
+the confirmed final is on 13 December, 09:00–11:00 UAE time, in D04101,
+Main Campus. Check Blackboard for any subsequent logistical updates.
 
 ::: {.callout-note}
 ## Where to look

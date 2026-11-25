@@ -20,6 +20,13 @@ the motivation and the kind of feedback being requested.
 
 ## Status at a Glance
 
+Publication of the [final preparation guide](assessments/final.qmd) and
+[separate practice booklet](assessments/final-practice.qmd) is authorized on
+25 November. The final is on Sunday, 13 December 2026, 09:00-11:00 UAE time,
+in D04101, Main Campus. Only the answer-free practice booklet is public;
+the real examination and solution keys remain private. Practice solutions
+will be announced separately. Human timing and print review remain outstanding.
+
 | Workstream | Status | Evidence | Next step |
 |---|---|---|---|
 | Course companion | **All 15 weeks published** | [Student index](companion/index.html) and [Week 15](companion/week-15.html), with labelled example downloads and checked code/data | Revise using student feedback and a learner/TA timing run |

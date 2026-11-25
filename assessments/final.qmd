@@ -1,0 +1,119 @@
+---
+title: "Final Examination: Preparation Guide"
+description: "Confirmed rules, cumulative revision priorities, and individual paper practice."
+---
+
+## Confirmed arrangements
+
+| Item | Arrangement |
+|---|---|
+| Weight | 35% of the course grade |
+| Duration | 120 minutes |
+| Delivery | Individual paper examination; write directly in the booklet |
+| Coverage | Cumulative course material, Weeks 1–15: MATLAB and R, with greater emphasis on R |
+| Tasks | Eight questions and 28 subparts: eight one-mark conceptual MCQs and 20 written parts (code reading/repair, small calculations and evidence-based explanations) |
+| Marks | 56 total: 14 MATLAB and 42 R; written parts carry 48 marks |
+| References | Two A4 sheets, handwritten by you; both sides of each sheet may be used |
+| Calculator / software | No calculator, software execution, AI or electronic reference material |
+| Date | Sunday, 13 December 2026 |
+| Time | 09:00–11:00 UAE time |
+| Room | D04101, Main Campus |
+
+The midterm's Weeks 1–6 cutoff and the quizzes' individual cutoffs do **not**
+restrict the cumulative final. Approved individual accommodations follow the
+usual university arrangements. This guide does not change the formal syllabus.
+
+You are not expected to write long essays or a complete program from a blank
+page. An answer might be a few values, a corrected expression, a calculation,
+or a short explanation. Read the action requested in each part.
+
+## Start here
+
+1. Attempt the [separate practice paper](final-practice.qmd) individually, on
+   paper, before consulting solutions. It is ungraded and needs no submission.
+2. Mark each uncertainty as **syntax**, **calculation**, **interpretation** or
+   **check**. Revisit the relevant strand below instead of rereading everything.
+3. Redo the missed task without looking at the answer. Then change one input
+   and predict what should change and what should stay the same.
+4. Take unresolved questions and your attempted working to the TA or instructor.
+
+The practice is not a question bank for the examination. Contexts, code,
+numbers and combinations of ideas differ. Its revised eight-question,
+56-mark format matches the planned final format, with eight one-mark MCQs
+and 20 written parts. It samples the skills, not every topic that may be assessed.
+
+## Revision map
+
+Start with class examples, the companion explanations and selected **Core**
+exercises. You do not need to complete every lab or optional extension.
+
+| Strand | Be able to do this without running code | Where to revise |
+|---|---|---|
+| MATLAB foundations | Trace arrays, dimensions and indexing; distinguish matrix and element-wise operations; follow conditions and short loops; repair a function and design a revealing test | [Weeks 1–2](../weeks/week-01.qmd), [MATLAB recovery](../weeks/recovery-after-week-05.qmd) |
+| Mathematical computation | Read polynomial coefficients; distinguish fitting, interpolation and extrapolation; calculate residuals/error; check roots, integrals and optima; preserve symbolic domains and compare admissible candidates | [Week 3](../weeks/week-03.qmd), [Week 4](../weeks/week-04.qmd), [Week 5](../weeks/week-05.qmd) |
+| R foundations and exploration | Trace vectors and selections; keep paired observations aligned; explain missingness and denominators; interpret a labelled plot without a causal overclaim | [Weeks 6–8](../weeks/week-06.qmd), [companion index](../companion/index.html) |
+| Data contracts | Explain types, missing-value encodings, row meaning and composite keys; reason about reshaping, factors, joins, unmatched rows and duplicated matches | [Week 9](../weeks/week-09.qmd), [Week 10](../weeks/week-10.qmd), [recovery](../weeks/recovery-after-week-10.qmd) |
+| Reliable R programs | Use named checkpoints, function arguments, boundaries and edge-case tests; distinguish vectorization from iteration; retain every requested batch item, including failures; understand typed results | [Week 11](../weeks/week-11.qmd), [Week 12](../weeks/week-12.qmd), [recovery](../weeks/recovery-after-week-12.qmd) |
+| Models and evidence | Interpret coefficients with units and conditioning; calculate predictions, residuals, MAE/RMSE; interpret R-squared against a same-row mean baseline; distinguish diagnostics, influence, sensitivity and new-data evaluation | [Week 13](../weeks/week-13.qmd), [Week 14](../weeks/week-14.qmd) |
+| Communication and reproducibility | Read axes and reference lines; connect a caption to its observations; reconcile source, CSV, figure and report; identify a hidden workspace dependency and a clean-run check; qualify AI-written claims | [Week 15](../weeks/week-15.qmd), [Week 15 companion](../companion/week-15.html) |
+
+For Weeks 13–14, understand what a coefficient interval or Cook's-distance flag
+means and does not mean. Do not spend revision time deriving the Cook's-distance
+formula or memorizing a full many-model program. Read supplied output and
+explain the next justified check. Writing a Quarto report from scratch and
+optional extension activities are not preparation requirements.
+
+## Make an explanation specific
+
+The useful habit is **answer + concrete check + interpretation + limitation**.
+It is not an instruction to add four paragraphs to every part: supply what the
+question actually requests.
+
+| Incomplete answer | More useful answer |
+|---|---|
+| “Check the data.” | “Check that each requested group appears exactly once, including a status row for any failed fit.” |
+| “The code runs, so it is correct.” | “The code runs; I still need a test whose expected value follows independently from the definition.” |
+| “The residual is small, so that is the root.” | “Substitute the candidate into the original function and check that it belongs to the allowed domain; a small residual alone does not prove uniqueness.” |
+| “The lowest RMSE wins.” | “Compare frozen predictions and a baseline on the same held-out rows. Training errors from different groups do not establish a common future-performance ranking.” |
+
+For a numerical question, show substitutions and intermediate quantities.
+For a code repair, respect the stated input/output contract, including missing
+values, boundaries and supplied arguments. For a claim, name the population,
+units, evidence and relevant limitation rather than writing only “not enough
+information.”
+
+## Using solutions and AI during revision
+
+First make your own paper attempt. You may then use software, solutions or AI
+to investigate a discrepancy, but read every line and check the result against
+the mathematical definition or a separate small example. An AI explanation is
+not an independent check merely because it sounds confident.
+
+Close the aid and explain the reasoning again yourself. During the examination
+there is no AI assistance or code execution. Your handwritten sheets should
+contain distinctions, short examples you understand, and useful checks—not a
+large program that you cannot trace.
+
+## Marking and pacing
+
+- Written tasks allow partial credit for correct method and reasoning;
+  equivalent correct code and concise explanations are acceptable.
+- A bare value may not earn all marks when working or justification is requested.
+- For an MCQ, choose one answer. There is no negative marking.
+- Exact fractions and square roots are acceptable unless otherwise specified.
+- Scan the entire paper first. There are accessible marks throughout; move on
+  when stuck and return later. Reserve time to check signs, units, IDs, domains
+  and whether you answered every requested action.
+
+## Ask for support
+
+Email the TA, Muhammad Ismail Yunus
+([100063760@ku.ac.ae](mailto:100063760@ku.ac.ae)), or Dr. Laurent Alain Najman
+([laurentalain.najman@ku.ac.ae](mailto:laurentalain.najman@ku.ac.ae)) to arrange
+support. Include the question, your attempt and the exact point of uncertainty.
+Appointment time and location are agreed by email. No additional clinic date
+is announced here; check Blackboard for any scheduled review arrangements.
+
+Bring your permitted sheets, writing materials and student identification.
+Check the booklet page count at distribution, report a missing page immediately,
+and return the complete booklet and any additional answer sheets.

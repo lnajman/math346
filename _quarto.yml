@@ -21,6 +21,7 @@ project:
     - projects/handouts/
     - projects/schemas/
     - projects/templates/
+    - assessments/handouts/math346-final-practice-student.pdf
     - "!companion-review/**"
     - "!companion-source/**"
 
@@ -74,6 +75,7 @@ website:
         - assessments/quiz-03.qmd
         - assessments/quiz-04.qmd
         - assessments/midterm.qmd
+        - assessments/final.qmd
         - resources/glossary.qmd
         - section: "MATLAB — Weeks 1-5"
           contents:

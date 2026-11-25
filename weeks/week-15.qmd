@@ -350,6 +350,11 @@ random or prompted by a material inconsistency, and is not itself an accusation.
 
 ## Workload
 
+For cumulative examination revision, use the
+[final preparation guide](../assessments/final.qmd) and its separate ungraded
+practice paper. These are revision resources, not an additional Week 15
+submission; communication and clean-run work remain part of the week.
+
 Attempt the core selection in the
 [Week 15 exercises](week-15-exercises.qmd). The
 [workload guide](workload-guide.qmd) distinguishes core and guided work;
